@@ -8,7 +8,7 @@ apply plugin: 'kotlin-android-extensions'
 android {
     compileSdkVersion 27
     defaultConfig {
-        applicationId "com.library.aaron.module"
+        applicationId "com.library.aaron.rac"
         minSdkVersion 15
         targetSdkVersion 27
         versionCode 1
@@ -22,7 +22,22 @@ android {
             buildConfigField 'String', 'API_KEY', '"ce7f730145454a25bbccf29d7ebc60fb"'
         }
         debug {
-            buildConfigField 'String', 'API_KEY','"ce7f730145454a25bbccf29d7ebc60fb"'
+            buildConfigField 'String', 'API_KEY', '"ce7f730145454a25bbccf29d7ebc60fb"'
+        }
+    }
+
+    signingConfigs { // 签名，你可以配置多个签名，然后再在buildTypes 进行指定。
+        release {
+            storeFile file("../aaron.jks") // 签名文件存放路径
+            storePassword "123123"
+            keyAlias "123123"
+            keyPassword "123123"
+        }
+        debug {
+            storeFile file("../aaron.jks") // 签名文件存放路径
+            storePassword "123123"
+            keyAlias "123123"
+            keyPassword "123123"
         }
     }
 }
@@ -33,6 +48,10 @@ dependencies {
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
 
+    kapt deps.dagger.android_support_compiler
+    kapt deps.dagger.compiler
+    kapt deps.room.compiler
+    kapt deps.lifecycle.compiler
     implementation project(path: ':core')
 
 }

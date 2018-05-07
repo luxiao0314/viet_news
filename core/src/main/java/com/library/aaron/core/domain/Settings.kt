@@ -1,7 +1,7 @@
 package com.library.aaron.core.domain
 
 import android.annotation.SuppressLint
-import com.library.aaron.core.App
+import com.library.aaron.core.BaseApplication
 import com.library.aaron.core.utils.SPHelper
 
 /**
@@ -12,7 +12,7 @@ import com.library.aaron.core.utils.SPHelper
  */
 object Settings {
     @SuppressLint("StaticFieldLeak")
-    val spHelper = SPHelper.create(App.instance)
+    val spHelper = SPHelper.create(BaseApplication.instance)
 
     val SP_TOKEN = "sp_token"
     val SP_USERNAME = "sp_username"

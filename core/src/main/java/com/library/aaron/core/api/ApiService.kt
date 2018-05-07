@@ -1,8 +1,8 @@
 package com.library.aaron.core.api
 
 import android.arch.lifecycle.LiveData
-import com.library.aaron.module.ui.model.ArticlesResponse
-import com.library.aaron.module.ui.model.SourceResponse
+import com.library.aaron.rac.ui.model.ArticlesResponse
+import com.library.aaron.rac.ui.model.SourceResponse
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Query

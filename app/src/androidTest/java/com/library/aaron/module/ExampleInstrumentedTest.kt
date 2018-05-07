@@ -1,4 +1,4 @@
-package com.library.aaron.module
+package com.library.aaron.rac
 
 import android.support.test.InstrumentationRegistry
 import android.support.test.runner.AndroidJUnit4
@@ -19,6 +19,6 @@ class ExampleInstrumentedTest {
     fun useAppContext() {
         // Context of the app under test.
         val appContext = InstrumentationRegistry.getTargetContext()
-        assertEquals("com.library.aaron.module", appContext.packageName)
+        assertEquals("com.library.aaron.rac", appContext.packageName)
     }
 }

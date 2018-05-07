@@ -1,4 +1,4 @@
-package com.library.aaron.module.ui.model
+package com.library.aaron.rac.ui.model
 import com.google.gson.annotations.SerializedName
 
 

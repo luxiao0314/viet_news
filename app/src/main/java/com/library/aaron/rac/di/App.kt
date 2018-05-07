@@ -1,0 +1,42 @@
+package com.library.aaron.rac.di
+
+import android.app.Activity
+import com.library.aaron.core.BaseApplication
+import dagger.android.AndroidInjector
+import dagger.android.DispatchingAndroidInjector
+import dagger.android.HasActivityInjector
+import javax.inject.Inject
+import kotlin.properties.Delegates
+
+/**
+ * @Author Aaron
+ * @Date 2018/5/7
+ * @Email aaron@magicwindow.cn
+ * @Description
+ */
+class App : BaseApplication(), HasActivityInjector {
+
+
+    @Inject
+    lateinit var dispatchingAndroidInjector: DispatchingAndroidInjector<Activity>
+
+    override fun onCreate() {
+        super.onCreate()
+
+        instance = this
+        AppInjector.init(this)
+
+    }
+
+    override fun activityInjector(): AndroidInjector<Activity>? {
+        return dispatchingAndroidInjector
+    }
+
+    companion object {
+
+        //方式1.通过标准代理实现late init
+        var instance: BaseApplication by Delegates.notNull()
+            private set
+    }
+
+}
