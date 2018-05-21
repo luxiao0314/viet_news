@@ -5,16 +5,17 @@ import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.library.aaron.rac.db.SourceEntity
-import com.library.aaron.rac.ui.model.ArticlesResponse
 import com.library.aaron.core.ui.BaseFragment
 import com.library.aaron.core.vo.Resource
 import com.library.aaron.rac.R
 import com.library.aaron.rac.adapter.NewsArticleAdapter
 import com.library.aaron.rac.adapter.NewsSourceAdapter
+import com.library.aaron.rac.db.SourceEntity
+import com.library.aaron.rac.ui.model.ArticlesResponse
 import com.library.aaron.rac.viewmodel.NewsViewModel
 import kotlinx.android.synthetic.main.fragment_news.*
 
@@ -26,7 +27,7 @@ class NewsFragment : BaseFragment(), (SourceEntity) -> Unit {
 
     private lateinit var newsViewModel: NewsViewModel
     private lateinit var observerNewsSource: Observer<Resource<List<SourceEntity>>>
-    private lateinit var observerNewsArticle: Observer<ArticlesResponse>
+    private lateinit var observerNewsArticle: Observer<Resource<ArticlesResponse>>
     private lateinit var newsSourceAdapter: NewsSourceAdapter
     private lateinit var newsArticleAdapter: NewsArticleAdapter
     private val sourceList = ArrayList<SourceEntity>()
@@ -39,7 +40,10 @@ class NewsFragment : BaseFragment(), (SourceEntity) -> Unit {
         progressDialog.show()
         return view
     }
+
     override fun initView(view: View) {
+        Log.e("", "initView")
+
         newsSourceAdapter = NewsSourceAdapter(this, sourceList)
         recyclerView.adapter = newsSourceAdapter
         recyclerView.layoutManager = LinearLayoutManager(activity)
@@ -52,9 +56,9 @@ class NewsFragment : BaseFragment(), (SourceEntity) -> Unit {
 
         }
 
-        observerNewsArticle = Observer { newsArticle ->
-            if (newsArticle != null) {
-                newsArticleAdapter = NewsArticleAdapter(newsArticle.articles!!)
+        observerNewsArticle = Observer {
+            if (it?.data != null) {
+                newsArticleAdapter = NewsArticleAdapter(it.data!!.articles!!)
                 recyclerView.adapter = newsArticleAdapter
             }
         }
@@ -65,8 +69,9 @@ class NewsFragment : BaseFragment(), (SourceEntity) -> Unit {
     }
 
     override fun invoke(source: SourceEntity) {
-//        newsViewModel.getNewsArticles(source.id!!, null)
-//                .observe(this, observerNewsArticle)
+        Log.e("News", "invoke source:$source.id")
+        newsViewModel.getNewsArticles(source.id, null)
+                .observe(this, observerNewsArticle)
     }
 
     fun onBackPressed(): Boolean {

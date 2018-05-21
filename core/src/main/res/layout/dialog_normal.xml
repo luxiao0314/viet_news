@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/shape_dialog_bg"
+    android:gravity="center_horizontal"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/dialog_title"
+        style="@style/text.white.16"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="35dp"
+        android:textStyle="bold"
+        tools:text="title" />
+
+    <View
+        android:id="@+id/v_title_divider"
+        style="@style/line.darker_gray" />
+
+    <TextView
+        android:id="@+id/dialog_content"
+        style="@style/text.white.14"
+        android:layout_marginTop="20dp"
+        android:gravity="center|left"
+        android:lineSpacingMultiplier="1.2"
+        android:minHeight="80dp"
+        android:paddingLeft="33dp"
+        android:paddingRight="33dp"
+        tools:text="content content this is content" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="35dp"
+        android:layout_marginTop="35dp"
+        android:orientation="horizontal"
+        android:paddingLeft="33dp"
+        android:paddingRight="33dp">
+
+        <TextView
+            android:id="@+id/btn_dialog_cancel"
+            style="@style/text.gray.14"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="30dp"
+            android:layout_marginRight="30dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="Cancel"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/btn_dialog_ok"
+            style="@style/text.white.18"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="Confirm" />
+    </LinearLayout>
+
+</LinearLayout>

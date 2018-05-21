@@ -26,6 +26,7 @@ import com.library.aaron.core.di.FragmentInjectable
 import com.library.aaron.core.ui.BaseActivity
 import dagger.android.AndroidInjection
 import dagger.android.support.AndroidSupportInjection
+import dagger.android.support.HasSupportFragmentInjector
 
 /**
  * Helper class to automatically inject fragments if they implement [FragmentInjectable].
@@ -72,7 +73,7 @@ object AppInjector {
     }
 
     private fun handleActivity(activity: Activity) {
-        if (activity is BaseActivity) {
+        if (activity is HasSupportFragmentInjector) {
             AndroidInjection.inject(activity)
         }
         if (activity is FragmentActivity) {
