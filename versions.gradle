@@ -35,6 +35,7 @@ versions.dagger = "2.15"
 versions.lifecycle = "1.1.1"
 versions.room = "1.0.0"
 versions.glide = "4.5.0"
+versions.navigationVersion = "1.0.0-alpha01"
 def deps = [:]
 
 def support = [:]
@@ -98,9 +99,14 @@ deps.junit = "junit:junit:$versions.junit"
 deps.rxjava2 = "io.reactivex.rxjava2:rxjava:$versions.rxjava2"
 deps.rx_android = "io.reactivex.rxjava2:rxandroid:$versions.rx_android"
 //deps.android_gradle_plugin = "com.android.tools.build:gradle:$versions.android_gradle_plugin"
+
+// Navigation
+def navigation = [:]
+navigation.fragment = 'android.arch.navigation:navigation-fragment:' + versions.navigationVersion
+navigation.ui = 'android.arch.navigation:navigation-ui:' + versions.navigationVersion
+deps.navigation = navigation
+
 ext.deps = deps
-
-
 //
 //def addRepos(RepositoryHandler handler) {
 //    handler.google()

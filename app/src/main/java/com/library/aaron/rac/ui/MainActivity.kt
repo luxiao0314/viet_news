@@ -1,7 +1,9 @@
 package com.library.aaron.rac.ui
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import androidx.navigation.Navigation
 import com.library.aaron.core.ui.BaseActivity
 import com.library.aaron.rac.R
 import com.library.aaron.rac.db.SourceEntity
@@ -17,12 +19,6 @@ class MainActivity : BaseActivity(), HasSupportFragmentInjector {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState ?: Bundle())
         setContentView(R.layout.activity_main)
-        showSourceFragment()
-    }
-
-    private fun showSourceFragment() {
-        newsFragment = NewsFragment()
-        addFragment(newsFragment!!, R.id.container, "NewsFragment")
     }
 
     override fun onBackPressed() {
@@ -31,4 +27,8 @@ class MainActivity : BaseActivity(), HasSupportFragmentInjector {
     }
 
     override fun supportFragmentInjector() = dispatchingAndroidInjector
+
+    override fun onSupportNavigateUp(): Boolean {
+        return Navigation.findNavController(this,R.id.nav_host_fragment).navigateUp()
+    }
 }

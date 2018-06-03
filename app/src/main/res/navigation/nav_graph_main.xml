@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    app:startDestination="@id/page1Fragment">
+
+    <fragment
+        android:id="@+id/page1Fragment"
+        android:name="com.library.aaron.rac.ui.NewsFragment"
+        android:label="fragment_page1"
+        tools:layout="@layout/fragment_news">
+        <action
+            android:id="@+id/action_page2"
+            app:destination="@id/page2Fragment"
+            app:enterAnim="@anim/slide_right_in"
+            app:exitAnim="@anim/slide_left_out"
+            app:popEnterAnim="@anim/slide_left_in"
+            app:popExitAnim="@anim/slide_right_out" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/page2Fragment"
+        android:name="com.library.aaron.rac.ui.NewsFragment"
+        android:label="fragment_page2"
+        tools:layout="@layout/fragment_news">
+        <action
+            android:id="@+id/action_page1"
+            app:enterAnim="@anim/slide_right_in"
+            app:exitAnim="@anim/slide_left_out"
+            app:popEnterAnim="@anim/slide_left_in"
+            app:popExitAnim="@anim/slide_right_out"
+            app:popUpTo="@id/page1Fragment" />
+        <action
+            android:id="@+id/action_page3"
+            app:destination="@id/nav_graph_page3"
+            app:enterAnim="@anim/slide_right_in"
+            app:exitAnim="@anim/slide_left_out"
+            app:popEnterAnim="@anim/slide_left_in"
+            app:popExitAnim="@anim/slide_right_out" />
+    </fragment>
+
+    <navigation
+        android:id="@+id/nav_graph_page3"
+        app:startDestination="@id/page3Fragment">
+        <fragment
+            android:id="@+id/page3Fragment"
+            android:name="com.library.aaron.rac.ui.NewsFragment"
+            android:label="fragment_page3"
+            tools:layout="@layout/fragment_news" />
+    </navigation>
+
+</navigation>
