@@ -9,10 +9,9 @@
 
     <TextView
         android:id="@+id/dialog_title"
-        style="@style/text.white.16"
+        style="@style/text.16.white.bold"
         android:layout_marginBottom="10dp"
         android:layout_marginTop="35dp"
-        android:textStyle="bold"
         tools:text="title" />
 
     <View
@@ -21,9 +20,9 @@
 
     <TextView
         android:id="@+id/dialog_content"
-        style="@style/text.white.14"
+        style="@style/text.14.white"
         android:layout_marginTop="20dp"
-        android:gravity="center|left"
+        android:gravity="center|start"
         android:lineSpacingMultiplier="1.2"
         android:minHeight="80dp"
         android:paddingLeft="33dp"
@@ -41,7 +40,7 @@
 
         <TextView
             android:id="@+id/btn_dialog_cancel"
-            style="@style/text.gray.14"
+            style="@style/text.14.gray"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="30dp"
@@ -53,7 +52,7 @@
 
         <TextView
             android:id="@+id/btn_dialog_ok"
-            style="@style/text.white.18"
+            style="@style/text.18.white"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"

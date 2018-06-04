@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 
     <style name="DialogTheme" parent="android:style/Theme.Dialog">
         <!-- 是否没有标题 -->
@@ -26,141 +26,233 @@
     </style>
 
 
-
     <style name="text">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:drawablePadding">5dp</item>
     </style>
 
-    <style name="text.gray">
-        <item name="android:textColor">@android:color/darker_gray</item>
-    </style>
 
-    <style name="text.white">
-        <item name="android:textColor">@android:color/white</item>
-    </style>
-
-
-    <style name="text.gray.10">
+    <style name="text.10">
         <item name="android:textSize">10sp</item>
     </style>
 
-    <style name="text.gray.12">
+    <style name="text.12">
         <item name="android:textSize">12sp</item>
     </style>
 
-    <style name="text.white.12">
-        <item name="android:textSize">12sp</item>
-    </style>
-
-    <style name="text.white.14">
+    <style name="text.14">
         <item name="android:textSize">14sp</item>
     </style>
 
-    <style name="text.white.14.bold">
-        <item name="android:textStyle">bold</item>
-    </style>
-
-    <style name="text.gray.14">
-        <item name="android:textSize">14sp</item>
-    </style>
-
-
-    <style name="text.white.16">
+    <style name="text.16">
         <item name="android:textSize">16sp</item>
     </style>
 
-    <style name="text.white.16.bold">
-        <item name="android:textStyle">bold</item>
-    </style>
-
-    <style name="text.white.18">
+    <style name="text.18">
         <item name="android:textSize">18sp</item>
     </style>
 
-    <style name="text.white.18.bold">
-        <item name="android:textStyle">bold</item>
-    </style>
-
-    <style name="text.white.20">
+    <style name="text.20" tools:keep="@style/text_20">
         <item name="android:textSize">20sp</item>
     </style>
-    <style name="text.white.24">
+
+    <style name="text.24" tools:keep="@style/text_24">
         <item name="android:textSize">24sp</item>
     </style>
-    <style name="text.white.20.bold">
-        <item name="android:textStyle">bold</item>
-    </style>
 
-    <style name="text.white.30">
+    <style name="text.30" tools:keep="@style/text_30">
         <item name="android:textSize">30sp</item>
     </style>
 
-    <style name="text.white.35">
+    <style name="text.35" tools:keep="@style/text_35">
         <item name="android:textSize">35sp</item>
     </style>
 
-    <style name="text.white.18.length10">
+
+    <!--深灰色-->
+    <style name="text.10.gray" tools:keep="@style/text_10_gray">
+        <item name="android:textColor">@color/text_gray</item>
+    </style>
+
+    <style name="text.12.gray">
+        <item name="android:textColor">@color/text_gray</item>
+    </style>
+
+    <style name="text.14.gray">
+        <item name="android:textColor">@color/text_gray</item>
+    </style>
+
+    <style name="text.14.gray.bold">
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="text.16.gray">
+        <item name="android:textColor">@color/text_gray</item>
+    </style>
+
+    <style name="text.16.gray.bold">
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="text.18.gray">
+        <item name="android:textColor">@color/text_gray</item>
+    </style>
+
+    <style name="text.18.gray.bold" tools:keep="@style/text_18_gray_bold">
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="text.18.gray.bold.title" tools:keep="@style/text_18_gray_bold_title">
+        <item name="android:layout_marginTop">10dp</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:layout_gravity">center_horizontal</item>
+        <item name="android:layout_centerHorizontal">true</item>
+    </style>
+
+    <style name="text.18.gray.length10" tools:keep="@style/text_18_gray_length10">
         <item name="android:maxLength">10</item>
         <item name="android:ellipsize">end</item>
     </style>
 
-    <style name="text.white.20.length10">
+    <style name="text.20.gray" tools:keep="@style/text_20_gray">
+        <item name="android:textColor">@color/text_gray</item>
+    </style>
+
+    <style name="text.24.gray" tools:keep="@style/text_24_gray">
+        <item name="android:textColor">@color/text_gray</item>
+    </style>
+
+    <style name="text.20.gray.bold" tools:keep="@style/text_20_gray_bold">
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="text.30.gray" tools:keep="@style/text_30_gray">
+        <item name="android:textColor">@color/text_gray</item>
+    </style>
+
+    <style name="text.35.gray" tools:keep="@style/text_35_gray">
+        <item name="android:textColor">@color/text_gray</item>
+    </style>
+
+    <style name="text.30.gray.length10" tools:keep="@style/text_30_gray_length10">
         <item name="android:maxLength">10</item>
         <item name="android:ellipsize">end</item>
     </style>
 
-    <style name="text.white.30.length10">
+    <style name="text.35.gray.length10" tools:keep="@style/text_35_gray_length10">
         <item name="android:maxLength">10</item>
         <item name="android:ellipsize">end</item>
     </style>
 
-    <style name="text.white.35.length10">
+    <style name="text.35.gray.length10.bold" tools:keep="@style/text_35_gray_length10_bold">
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="text.30.gray.bold" tools:keep="@style/text_30_gray_bold">
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <!--白色·真 start-->
+
+    <style name="text.14.white">
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="text.14.white.bold">
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="text.16.white" tools:keep="@style/text_16_white">
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="text.16.white.bold" tools:keep="@style/text_18_white_bold">
+        <item name="android:textStyle">bold</item>
+    </style>
+    <style name="text.18.white" tools:keep="@style/text_18_white">
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="text.18.white.bold" tools:keep="@style/text_18_white_bold">
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="text.18.white.bold.title" tools:keep="@style/text_18_white_bold_title">
+        <item name="android:layout_marginTop">10dp</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:layout_gravity">center_horizontal</item>
+        <item name="android:layout_centerHorizontal">true</item>
+    </style>
+
+    <style name="text.20.white" tools:keep="@style/text_20_white">
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="text.20.white.length10" tools:keep="@style/text_20_white_length10">
         <item name="android:maxLength">10</item>
         <item name="android:ellipsize">end</item>
     </style>
+    <!--白色·真 end-->
 
-    <style name="text.white.35.length10.bold">
-        <item name="android:textStyle">bold</item>
+
+    <!--浅灰色-->
+    <style name="text.10.light_gray">
+        <item name="android:textColor">@color/text_light_gray</item>
     </style>
 
-    <style name="text.gray.30">
-        <item name="android:textSize">30sp</item>
+    <style name="text.12.light_gray">
+        <item name="android:textColor">@color/text_light_gray</item>
     </style>
 
-    <style name="text.gray.30.blod">
-        <item name="android:textStyle">bold</item>
+    <style name="text.14.light_gray">
+        <item name="android:textColor">@color/text_light_gray</item>
     </style>
 
-    <style name="text.white.30.blod">
-        <item name="android:textStyle">bold</item>
+    <style name="text.16.light_gray" tools:keep="@style/text_16_light_gray">
+        <item name="android:textColor">@color/text_light_gray</item>
     </style>
 
-    <style name="text.gray.18">
-        <item name="android:textSize">18sp</item>
+    <!--edit-->
+    <style name="edit" tools:keep="@style/edit">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">@null</item>
+        <item name="android:textColorHint">@color/darker_gray</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:singleLine">true</item>
     </style>
 
-    <style name="text.gray.18.bold">
-        <item name="android:textStyle">bold</item>
+    <style name="edit.12" tools:keep="@style/edit_12">
+        <item name="android:textSize">12sp</item>
     </style>
 
-    <style name="text.white.10">
-        <item name="android:textSize">10sp</item>
+    <style name="edit.12.gray" tools:keep="@style/edit_12_gray">
+        <item name="android:textColor">@color/text_gray</item>
     </style>
 
-    <style name="text.gray.14.bold">
-        <item name="android:textStyle">bold</item>
+    <style name="edit.12.gray.number" tools:keep="@style/edit_12_gray_number">
+        <item name="android:digits">1234567890</item>
+        <item name="android:inputType">number</item>
     </style>
 
-    <style name="text.gray.16">
+    <style name="edit.12.gray.decimal" tools:keep="@style/edit_12_gray_decimal">
+        <item name="android:digits">1234567890.</item>
+        <item name="android:inputType">number</item>
+    </style>
+
+
+    <style name="button">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">50dp</item>
+        <item name="android:paddingLeft">20dp</item>
+        <item name="android:paddingRight">20dp</item>
         <item name="android:textSize">16sp</item>
-    </style>
-
-    <style name="text.gray.16.bold">
         <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@drawable/selector_btn_text_color</item>
+        <item name="android:background">@drawable/shape_btn_bg</item>
+        <item name="android:gravity">center</item>
     </style>
-
 
 
     <style name="line">
@@ -171,5 +263,13 @@
     <style name="line.darker_gray">
         <item name="android:background">@android:color/darker_gray</item>
     </style>
+
+
+
+    <declare-styleable name="MultiStatusView">
+        <attr name="loadingView" format="reference"/>
+        <attr name="errorView" format="reference"/>
+        <attr name="emptyView" format="reference"/>
+    </declare-styleable>
 
 </resources>

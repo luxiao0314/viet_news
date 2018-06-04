@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">Core</string>
+
+    <string name="loading_msg">Loading</string><!-- 正在加载 -->
+    <string name="empty_msg">There is noting here！</string><!-- 没有数据 -->
+    <string name="error_msg">Network exception, please check network settings</string><!-- 网络错误，请检查您的网络设置 -->
+    <string name="retry">Try again</string>
+    <string name="cancel">Cancel</string>
+
 </resources>

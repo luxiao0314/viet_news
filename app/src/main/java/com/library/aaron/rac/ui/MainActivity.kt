@@ -21,10 +21,10 @@ class MainActivity : BaseActivity(), HasSupportFragmentInjector {
         setContentView(R.layout.activity_main)
     }
 
-    override fun onBackPressed() {
-        if (!newsFragment?.onBackPressed()!!)
-            super.onBackPressed()
-    }
+//    override fun onBackPressed() {
+//        if (!newsFragment?.onBackPressed()!!)
+//            super.onBackPressed()
+//    }
 
     override fun supportFragmentInjector() = dispatchingAndroidInjector
 

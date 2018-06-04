@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <color name="colorPrimary" tools:keep="@color/colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark" tools:keep="@color/colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent" tools:keep="@color/colorAccent">#FED230</color>
+
+    <color name="colorHomeRingStart" tools:keep="@color/colorHomeRingStart">#00FFFFFF</color>
+    <color name="colorHomeRingMiddle" tools:keep="@color/colorHomeRingMiddle">#77FFFFFF</color>
+    <color name="colorHomeRingEnd" tools:keep="@color/colorHomeRingEnd">#FFFFFF</color>
+
+    <color name="white">@android:color/white</color>
+    <color name="btn_white_bg">@color/white</color>
+    <color name="page_bg">@color/white</color>
+    <color name="darker_gray" tools:keep="@color/darker_gray">@android:color/darker_gray</color>
+
+    <color name="btn_text">@color/white</color>
+    <color name="btn_text_disable">#55F9DBCC</color>
+
+    <!--规范设计Start-->
+    <color name="btn_start">#9361F8</color>
+    <color name="btn_end">#6B65E1</color>
+    <color name="btn_pressed_start">#9361F8</color>
+    <color name="btn_pressed_end">#6B65E1</color>
+    <color name="btn_disable_start">#7D9361F8</color>
+    <color name="btn_disable_end">#7D6B65E1</color>
+    <color name="text_gray">#FF4A4A4A</color>
+    <color name="text_light_gray">#9B9B9B</color>
+    <!--规范设计End-->
+</resources>
