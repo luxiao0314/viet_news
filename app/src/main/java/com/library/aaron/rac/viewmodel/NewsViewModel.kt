@@ -15,10 +15,9 @@ import com.library.aaron.core.vo.Resource
 class NewsViewModel(application: Application) : AndroidViewModel(application) {
 
     private val newsRepo: NewsRepository = NewsRepository()
-    val context: Context = application.applicationContext
 
     fun getNewsSource(language: String?, category: String?, country: String?): LiveData<Resource<List<SourceEntity>>> {
-        return newsRepo.fetchNewsSource(context, language, category, country)
+        return newsRepo.fetchNewsSource(getApplication(), language, category, country)
     }
 
     fun getNewsArticles(source: String, sortBy: String?): LiveData<Resource<ArticlesResponse>> {

@@ -1,6 +1,5 @@
 package com.library.aaron.rac.ui
 
-import android.app.ProgressDialog
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
@@ -10,12 +9,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.library.aaron.core.ui.BaseFragment
-import com.library.aaron.core.vo.Resource
 import com.library.aaron.rac.R
 import com.library.aaron.rac.adapter.NewsArticleAdapter
 import com.library.aaron.rac.adapter.NewsSourceAdapter
 import com.library.aaron.rac.db.SourceEntity
-import com.library.aaron.rac.ui.model.ArticlesResponse
 import com.library.aaron.rac.viewmodel.NewsViewModel
 import kotlinx.android.synthetic.main.fragment_news.*
 
@@ -49,17 +46,17 @@ class NewsFragment : BaseFragment(), (SourceEntity) -> Unit {
         newsViewModel.getNewsSource(null, null, null)
                 .observe(this, Observer { newsSource ->
                     if (newsSource?.data != null && newsSource.data!!.isNotEmpty()) {
-//                progressDialog.dismiss()
                         multiStatusView.showContent()
 
                         newsSourceAdapter.updateDataSet(newsSource.data!!)
-                    } else{
+                    } else {
                         multiStatusView.showEmpty()
                     }
 
                 })
     }
 
+    //点击事件
     override fun invoke(source: SourceEntity) {
         Log.e("News", "invoke source:$source.id")
         newsViewModel.getNewsArticles(source.id, null)
