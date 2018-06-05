@@ -36,6 +36,7 @@ versions.lifecycle = "1.1.1"
 versions.room = "1.0.0"
 versions.glide = "4.5.0"
 versions.navigationVersion = "1.0.0-alpha01"
+versions.leakcanary = "1.5.4"
 def deps = [:]
 
 def support = [:]
@@ -106,6 +107,12 @@ navigation.fragment = 'android.arch.navigation:navigation-fragment:' + versions.
 navigation.ui = 'android.arch.navigation:navigation-ui:' + versions.navigationVersion
 deps.navigation = navigation
 
+// Navigation
+def leakcanary = [:]
+deps.leakcanary = leakcanary
+leakcanary.leakcanary = 'com.squareup.leakcanary:leakcanary-android:' + versions.leakcanary
+leakcanary.leakcanary_no_op = 'com.squareup.leakcanary:leakcanary-android-no-op:' + versions.leakcanary
+//the end
 ext.deps = deps
 //
 //def addRepos(RepositoryHandler handler) {

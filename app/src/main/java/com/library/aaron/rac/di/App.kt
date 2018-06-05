@@ -2,6 +2,7 @@ package com.library.aaron.rac.di
 
 import android.app.Activity
 import com.library.aaron.core.BaseApplication
+import com.squareup.leakcanary.LeakCanary
 import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.HasActivityInjector
@@ -24,6 +25,10 @@ class App : BaseApplication(), HasActivityInjector {
         super.onCreate()
 
         instance = this
+
+        if (LeakCanary.isInAnalyzerProcess(this)) return
+        LeakCanary.install(this)
+
         AppInjector.init(this)
 
     }

@@ -78,4 +78,6 @@ dependencies {
     kapt deps.room.compiler
     kapt deps.lifecycle.compiler
 
+    debugApi deps.leakcanary.leakcanary
+    releaseApi deps.leakcanary.leakcanary_no_op
 }
