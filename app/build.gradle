@@ -8,7 +8,7 @@ apply plugin: 'kotlin-android-extensions'
 android {
     compileSdkVersion 27
     defaultConfig {
-        applicationId "com.library.aaron.rac"
+        applicationId "com.viet.news"
         minSdkVersion 15
         targetSdkVersion 27
         versionCode 1

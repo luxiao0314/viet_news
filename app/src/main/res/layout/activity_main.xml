@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context="com.library.aaron.rac.ui.MainActivity">
+    tools:context="com.viet.news.rac.com.library.aaron.ui.MainActivity">
 
     <!--<FrameLayout-->
         <!--android:id="@+id/container"-->

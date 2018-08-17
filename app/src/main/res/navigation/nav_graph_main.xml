@@ -6,7 +6,7 @@
 
     <fragment
         android:id="@+id/page1Fragment"
-        android:name="com.library.aaron.rac.ui.NewsFragment"
+        android:name="com.viet.news.ui.NewsFragment"
         android:label="fragment_page1"
         tools:layout="@layout/fragment_news">
         <action
@@ -20,7 +20,7 @@
 
     <fragment
         android:id="@+id/page2Fragment"
-        android:name="com.library.aaron.rac.ui.NewsFragment"
+        android:name="com.viet.news.ui.NewsFragment"
         android:label="fragment_page2"
         tools:layout="@layout/fragment_news">
         <action
@@ -44,7 +44,7 @@
         app:startDestination="@id/page3Fragment">
         <fragment
             android:id="@+id/page3Fragment"
-            android:name="com.library.aaron.rac.ui.NewsFragment"
+            android:name="com.viet.news.ui.NewsFragment"
             android:label="fragment_page3"
             tools:layout="@layout/fragment_news" />
     </navigation>
