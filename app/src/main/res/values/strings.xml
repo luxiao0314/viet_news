@@ -1,6 +1,9 @@
 <resources>
     <string name="app_name">NewsApp</string>
     <string name="attribution">powered by NewsAPI.org</string>
+    <!--Main Activity-->
+    <string name="title_home">Home</string>
+    <string name="title_people">Mine</string>
     <string-array name="news_categories">
         <item>business</item>
         <item>entertainment</item>

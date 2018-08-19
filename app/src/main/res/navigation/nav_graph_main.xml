@@ -2,16 +2,16 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    app:startDestination="@id/page1Fragment">
+    app:startDestination="@id/navigation_home">
 
     <fragment
-        android:id="@+id/page1Fragment"
+        android:id="@+id/navigation_home"
         android:name="com.viet.news.ui.NewsFragment"
         android:label="fragment_page1"
         tools:layout="@layout/fragment_news">
         <action
             android:id="@+id/action_page2"
-            app:destination="@id/page2Fragment"
+            app:destination="@id/navigation_people"
             app:enterAnim="@anim/slide_right_in"
             app:exitAnim="@anim/slide_left_out"
             app:popEnterAnim="@anim/slide_left_in"
@@ -19,7 +19,7 @@
     </fragment>
 
     <fragment
-        android:id="@+id/page2Fragment"
+        android:id="@+id/navigation_people"
         android:name="com.viet.news.ui.NewsFragment"
         android:label="fragment_page2"
         tools:layout="@layout/fragment_news">
@@ -29,7 +29,7 @@
             app:exitAnim="@anim/slide_left_out"
             app:popEnterAnim="@anim/slide_left_in"
             app:popExitAnim="@anim/slide_right_out"
-            app:popUpTo="@id/page1Fragment" />
+            app:popUpTo="@id/navigation_home" />
         <action
             android:id="@+id/action_page3"
             app:destination="@id/nav_graph_page3"

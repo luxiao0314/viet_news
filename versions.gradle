@@ -86,9 +86,9 @@ deps.dagger = dagger
 
 def kotlin = [:]
 kotlin.stdlib = "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+//kotlin.test = "org.jetbrains.kotlin:kotlin-test-junit:$versions.kotlin"
 //kotlin.plugin = "org.jetbrains.kotlin:kotlin-gradle-plugin:$versions.kotlin"
 //kotlin.allopen = "org.jetbrains.kotlin:kotlin-allopen:$versions.kotlin"
-kotlin.jdk7 = "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 deps.kotlin = kotlin
 
 def glide = [:]
@@ -103,8 +103,8 @@ deps.rx_android = "io.reactivex.rxjava2:rxandroid:$versions.rx_android"
 
 // Navigation
 def navigation = [:]
-navigation.fragment = 'android.arch.navigation:navigation-fragment:' + versions.navigationVersion
-navigation.ui = 'android.arch.navigation:navigation-ui:' + versions.navigationVersion
+navigation.fragment = 'android.arch.navigation:navigation-fragment-ktx:' + versions.navigationVersion
+navigation.ui = 'android.arch.navigation:navigation-ui-ktx:' + versions.navigationVersion
 deps.navigation = navigation
 
 // Navigation

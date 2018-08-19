@@ -35,7 +35,6 @@ dependencies {
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
     api deps.kotlin.stdlib
-    api deps.kotlin.jdk7
 
 
     api deps.support.app_compat
@@ -70,7 +69,6 @@ dependencies {
     api deps.dagger.android
     api deps.dagger.android_support
     api deps.constraint_layout
-    api deps.kotlin.stdlib
 
     kapt deps.dagger.android_support_compiler
     kapt deps.dagger.compiler
