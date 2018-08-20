@@ -2,6 +2,9 @@ package com.viet.news.core.domain
 
 object Config {
 
+    const val NETWORK_OK = 200
+    const val NETWORK_RESPONSE_OK = 0
+
     val IMPORT_REQUEST_CODE = 1001
     val EXPORT_REQUEST_CODE = 1002
     val SHARE_REQUEST_CODE = 1003

@@ -170,6 +170,7 @@
     <style name="text.16.white.bold" tools:keep="@style/text_18_white_bold">
         <item name="android:textStyle">bold</item>
     </style>
+
     <style name="text.18.white" tools:keep="@style/text_18_white">
         <item name="android:textColor">@color/white</item>
     </style>
@@ -264,12 +265,18 @@
         <item name="android:background">@android:color/darker_gray</item>
     </style>
 
+    <style name="line.white">
+        <item name="android:background">@color/white</item>
+    </style>
 
+    <style name="line.white.transparent">
+        <item name="android:background">@color/white_transparent</item>
+    </style>
 
     <declare-styleable name="MultiStatusView">
-        <attr name="loadingView" format="reference"/>
-        <attr name="errorView" format="reference"/>
-        <attr name="emptyView" format="reference"/>
+        <attr name="loadingView" format="reference" />
+        <attr name="errorView" format="reference" />
+        <attr name="emptyView" format="reference" />
     </declare-styleable>
 
 </resources>

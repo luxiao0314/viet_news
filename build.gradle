@@ -49,4 +49,10 @@ ext {
     glide = "4.5.0"
     navigationVersion = "1.0.0-alpha05"
     leakcanary = "1.5.4"
+    agentweb = "4.0.2"
+    saf_log = "1.5.3"
+    saf_okhttp_log = "1.3.0"
+    saf_kotlin_utils = "0.0.4.7"
+    saf_kotlin_ext = "0.0.3.6"
+    livedata_ext = "0.2.1"
 }
