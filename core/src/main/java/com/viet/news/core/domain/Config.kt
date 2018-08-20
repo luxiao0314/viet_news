@@ -47,6 +47,12 @@ object Config {
     val NETWORK_FEE_MAX = 20000000000000000L
     val ETHER_DECIMALS = 18
 
+    //语言切换
+
+    const val LANGUAGE_CHANGED = "language_changed"
+    const val LAST_LANGUAGE = "lastLanguage"
+    const val SELECTED_LANGUAGE = "selected_language"
+
     interface ErrorCode {
         companion object {
 
