@@ -34,48 +34,46 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
-    api deps.kotlin.stdlib
+    api "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 
 
-    api deps.support.app_compat
-    api deps.support.recyclerview
-    api deps.support.cardview
-    api deps.support.design
-    api deps.support.multidex
-    api deps.support.constraint
+    api "com.android.support:appcompat-v7:$rootProject.support"
+    api "com.android.support:recyclerview-v7:$rootProject.support"
+    api "com.android.support:cardview-v7:$rootProject.support"
+    api "com.android.support:design:$rootProject.support"
+    api "com.android.support:support-v4:$rootProject.support"
+    api "com.android.support:support-core-utils:$rootProject.support"
+    api "com.android.support:multidex:$rootProject.multidex"
+    api "com.android.support.constraint:constraint-layout:$rootProject.constraint"
 
-    // Http client
-    api deps.okhttp
-//    api deps.gson
-    api deps.retrofit.runtime
-    api deps.retrofit.gson
-    //gson没有？
+    api "android.arch.persistence.room:runtime:$rootProject.room"
+    api "android.arch.persistence.room:rxjava2:$rootProject.room"
+    api "android.arch.lifecycle:runtime:$rootProject.lifecycle"
+    api "android.arch.lifecycle:extensions:$rootProject.lifecycle"
+    //api "android.arch.lifecycle:common-java8:$rootProject.lifecycle"
+    api "android.arch.lifecycle:reactivestreams:$rootProject.lifecycle"
 
-    //Rxlife
-    api deps.room.runtime
-    api deps.room.rxjava2
-    api deps.lifecycle.runtime
-    api deps.lifecycle.extensions
-    api deps.lifecycle.reactivestreams
+    api "com.squareup.retrofit2:retrofit:$rootProject.retrofit"
+    api "com.squareup.retrofit2:converter-gson:$rootProject.retrofit"
+    api "com.squareup.retrofit2:retrofit-mock:$rootProject.retrofit"
+    //api = "com.squareup.okhttp3:logging-interceptor:${rootProject.okhttp_logging_interceptor}"
+    api "com.squareup.okhttp3:okhttp:$rootProject.okhttp"
+    //api "com.google.code.gson:gson:$rootProject.gson"
+    api "com.google.dagger:dagger:$rootProject.dagger"
+    api "com.google.dagger:dagger-android:$rootProject.dagger"
+    api "com.google.dagger:dagger-android-support:$rootProject.dagger"
+    api "com.github.bumptech.glide:glide:$rootProject.glide"
+    api "io.reactivex.rxjava2:rxjava:$rootProject.rxjava2"
+    api "io.reactivex.rxjava2:rxandroid:$rootProject.rx_android"
+    api 'android.arch.navigation:navigation-fragment-ktx:' + rootProject.navigationVersion
+    api 'android.arch.navigation:navigation-ui-ktx:' + rootProject.navigationVersion
 
-    api deps.glide.runtime
-    api deps.rxjava2
-    api deps.rx_android
+    kapt "com.google.dagger:dagger-android-processor:$rootProject.dagger"
+    kapt "com.google.dagger:dagger-compiler:$rootProject.dagger"
+    kapt "com.github.bumptech.glide:compiler:$rootProject.glide"
+    kapt "android.arch.persistence.room:compiler:$rootProject.room"
+    kapt "android.arch.lifecycle:compiler:$rootProject.lifecycle"
 
-    api deps.navigation.fragment
-    api deps.navigation.ui
-
-    api deps.dagger.runtime
-    api deps.dagger.android
-    api deps.dagger.android_support
-    api deps.constraint_layout
-
-    kapt deps.dagger.android_support_compiler
-    kapt deps.dagger.compiler
-    kapt deps.glide.compiler
-    kapt deps.room.compiler
-    kapt deps.lifecycle.compiler
-
-    debugApi deps.leakcanary.leakcanary
-    releaseApi deps.leakcanary.leakcanary_no_op
+    debugApi 'com.squareup.leakcanary:leakcanary-android:' + rootProject.leakcanary
+    releaseApi 'com.squareup.leakcanary:leakcanary-android-no-op:' + rootProject.leakcanary
 }

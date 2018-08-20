@@ -3,7 +3,6 @@ package com.viet.news.ui
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import androidx.navigation.Navigation
-import androidx.navigation.ui.NavigationUI
 import androidx.navigation.ui.setupWithNavController
 import com.viet.news.R
 import com.viet.news.core.ui.BaseActivity

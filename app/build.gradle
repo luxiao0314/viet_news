@@ -4,6 +4,8 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
 
 apply plugin: 'kotlin-android-extensions'
+//Apply Safe Args Plugin
+apply plugin: 'androidx.navigation.safeargs'
 
 android {
     compileSdkVersion 27
@@ -48,10 +50,11 @@ dependencies {
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
 
-    kapt deps.dagger.android_support_compiler
-    kapt deps.dagger.compiler
-    kapt deps.room.compiler
-    kapt deps.lifecycle.compiler
+    kapt "com.google.dagger:dagger-android-processor:$rootProject.dagger"
+    kapt "com.google.dagger:dagger-compiler:$rootProject.dagger"
+    kapt "com.github.bumptech.glide:compiler:$rootProject.glide"
+    kapt "android.arch.persistence.room:compiler:$rootProject.room"
+    kapt "android.arch.lifecycle:compiler:$rootProject.lifecycle"
     implementation project(path: ':core')
 
 }

@@ -85,7 +85,7 @@ dagger.android_support_compiler = "com.google.dagger:dagger-android-processor:$v
 deps.dagger = dagger
 
 def kotlin = [:]
-kotlin.stdlib = "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+//kotlin.stdlib = "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 //kotlin.test = "org.jetbrains.kotlin:kotlin-test-junit:$versions.kotlin"
 //kotlin.plugin = "org.jetbrains.kotlin:kotlin-gradle-plugin:$versions.kotlin"
 //kotlin.allopen = "org.jetbrains.kotlin:kotlin-allopen:$versions.kotlin"
@@ -114,11 +114,3 @@ leakcanary.leakcanary = 'com.squareup.leakcanary:leakcanary-android:' + versions
 leakcanary.leakcanary_no_op = 'com.squareup.leakcanary:leakcanary-android-no-op:' + versions.leakcanary
 //the end
 ext.deps = deps
-//
-//def addRepos(RepositoryHandler handler) {
-//    handler.google()
-//    handler.jcenter()
-//    handler.maven { url 'https://oss.sonatype.org/content/repositories/snapshots' }
-//}
-//
-//ext.addRepos = this.&addRepos
