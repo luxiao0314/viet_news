@@ -13,13 +13,9 @@
         android:layout_height="match_parent"
         android:layout_centerInParent="true"/>
 
-    <!--<com.mvvm.lux.widget.TitleView-->
-        <!--android:id="@+id/tv_title"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--app:title_back_src="@drawable/ic_back_white"-->
-        <!--app:title_text_color="@color/white"-->
-        <!--app:title_background="@color/transparent"/>-->
+    <com.viet.news.core.ui.widget.TitleBar
+        android:id="@+id/tv_title"
+        style="@style/title_bar.bg"/>
 
     <TextView
         android:id="@+id/tv_msg_title"

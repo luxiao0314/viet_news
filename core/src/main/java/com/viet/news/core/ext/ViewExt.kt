@@ -1,5 +1,6 @@
 package com.viet.news.core.ext
 
+import android.support.v4.view.ViewPager
 import android.view.View
 
 /**
@@ -66,4 +67,29 @@ private fun <T : View> T.clickEnable(): Boolean {
     }
     triggerLastTime = currentClickTime
     return flag
+}
+
+fun ViewPager.setOnPageChangeListener(init: PageChangeDelegate.() -> Unit){
+    val pageChangeDelegate = PageChangeDelegate()
+    pageChangeDelegate.init()
+    setOnPageChangeListener(pageChangeDelegate)
+}
+
+class PageChangeDelegate : ViewPager.OnPageChangeListener {
+
+    var onPageScrollStateChanged: ((state: Int) -> Unit)? = null
+    var onPageScrolled: ((position: Int, positionOffset: Float, positionOffsetPixels: Int) -> Unit)? = null
+    var onPageSelected: ((position: Int) -> Unit)? = null
+
+    override fun onPageScrollStateChanged(state: Int) {
+        onPageScrollStateChanged?.let { it(state) }
+    }
+
+    override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {
+        onPageScrolled?.let { it(position,positionOffset,positionOffsetPixels) }
+    }
+
+    override fun onPageSelected(position: Int) {
+        onPageSelected?.let { it(position) }
+    }
 }

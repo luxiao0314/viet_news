@@ -254,6 +254,27 @@
         <item name="android:background">@color/white_transparent</item>
     </style>
 
+    <style name="title_bar">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">75dp</item>
+        <item name="android:paddingTop">25dp</item>
+        <item name="android:paddingRight">10dp</item>
+        <item name="titlebar_isLeftTextBold">true</item>
+        <item name="titlebar_isLineVisiable">false</item>
+        <item name="titlebar_leftDrawable">@drawable/ic_back</item>
+        <item name="titlebar_leftDrawablePadding">10dp</item>
+        <item name="titlebar_leftMaxWidth">250dp</item>
+        <item name="titlebar_rightMaxWidth">250dp</item>
+        <item name="titlebar_leftTextColor">@color/white</item>
+        <item name="titlebar_rightTextColor">@color/white</item>
+        <item name="titlebar_titleTextColor">@color/white</item>
+        <item name="titlebar_rightTextSize">12sp</item>
+    </style>
+
+    <style name="title_bar.bg">
+        <item name="android:background">@drawable/shape_title_bg</item>
+    </style>
+
     <style name="button">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">50dp</item>
@@ -274,14 +295,6 @@
 
     <style name="line.darker_gray">
         <item name="android:background">@android:color/darker_gray</item>
-    </style>
-
-    <style name="line.white">
-        <item name="android:background">@color/white</item>
-    </style>
-
-    <style name="line.white.transparent">
-        <item name="android:background">@color/white_transparent</item>
     </style>
 
     <declare-styleable name="MultiStatusView">

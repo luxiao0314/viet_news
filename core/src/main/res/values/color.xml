@@ -29,6 +29,5 @@
     <color name="text_gray">#FF4A4A4A</color>
     <color name="text_light_gray">#9B9B9B</color>
     <!--规范设计End-->
-    <color name="white_transparent">#55ffffff</color>
 
 </resources>
