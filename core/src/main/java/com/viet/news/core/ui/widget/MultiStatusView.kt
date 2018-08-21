@@ -1,4 +1,4 @@
-package com.viet.news.core.ui
+package com.viet.news.core.ui.widget
 
 import android.annotation.SuppressLint
 import android.content.Context
@@ -16,6 +16,7 @@ import android.view.animation.RotateAnimation
 import android.widget.RelativeLayout
 import android.widget.TextView
 import com.viet.news.core.R
+import com.viet.news.core.ui.LoadingInterface
 import java.util.*
 
 /**

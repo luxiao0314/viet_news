@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#333"
+    android:fitsSystemWindows="true">
+
+    <com.viet.news.core.ui.widget.MultiTouchViewPager
+        android:id="@+id/pager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerInParent="true"/>
+
+    <!--<com.mvvm.lux.widget.TitleView-->
+        <!--android:id="@+id/tv_title"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--app:title_back_src="@drawable/ic_back_white"-->
+        <!--app:title_text_color="@color/white"-->
+        <!--app:title_background="@color/transparent"/>-->
+
+    <TextView
+        android:id="@+id/tv_msg_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/tv_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:textColor="#ffffffff"
+        android:textSize="15sp"/>
+
+    <TextView
+        android:id="@+id/tv_content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="25dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="15dp"
+        android:textColor="#ffffffff"
+        android:textSize="14sp"/>
+
+    <TextView
+        android:id="@+id/advert_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="15dp"
+        android:text="8/13"
+        android:textColor="#ffffffff"
+        android:textSize="15sp"/>
+
+</RelativeLayout>

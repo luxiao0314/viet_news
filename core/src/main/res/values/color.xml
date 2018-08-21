@@ -15,6 +15,9 @@
 
     <color name="btn_text">@color/white</color>
     <color name="btn_text_disable">#55F9DBCC</color>
+    <color name="color_bg_trans">#33000000</color>
+    <color name="gray_tran">#339B9B9B</color>
+    <color name="white_transparent">#55ffffff</color>
 
     <!--规范设计Start-->
     <color name="btn_start">#9361F8</color>

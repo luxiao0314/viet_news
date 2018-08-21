@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="SlidingTabLayout">
+        <!-- indicator -->
+        <attr name="tl_indicator_color"/>
+        <attr name="tl_indicator_height"/>
+        <attr name="tl_indicator_width"/>
+        <attr name="tl_indicator_margin_left"/>
+        <attr name="tl_indicator_margin_top"/>
+        <attr name="tl_indicator_margin_right"/>
+        <attr name="tl_indicator_margin_bottom"/>
+        <attr name="tl_indicator_corner_radius"/>
+        <attr name="tl_indicator_gravity"/>
+        <attr name="tl_indicator_style"/>
+        <attr name="tl_indicator_width_equal_title"/>
+
+        <!-- underline -->
+        <attr name="tl_underline_color"/>
+        <attr name="tl_underline_height"/>
+        <attr name="tl_underline_gravity"/>
+
+        <!-- divider -->
+        <attr name="tl_divider_color"/>
+        <attr name="tl_divider_width"/>
+        <attr name="tl_divider_padding"/>
+
+        <!-- tab -->
+        <attr name="tl_tab_padding"/>
+        <attr name="tl_tab_space_equal"/>
+        <attr name="tl_tab_width"/>
+
+        <!-- title -->
+        <attr name="tl_textsize"/>
+        <attr name="tl_textSelectColor"/>
+        <attr name="tl_textUnselectColor"/>
+        <attr name="tl_textBold"/>
+        <attr name="tl_textAllCaps"/>
+
+    </declare-styleable>
+
+    <declare-styleable name="CommonTabLayout">
+        <!-- indicator -->
+        <attr name="tl_indicator_color"/>
+        <attr name="tl_indicator_height"/>
+        <attr name="tl_indicator_width"/>
+        <attr name="tl_indicator_margin_left"/>
+        <attr name="tl_indicator_margin_top"/>
+        <attr name="tl_indicator_margin_right"/>
+        <attr name="tl_indicator_margin_bottom"/>
+        <attr name="tl_indicator_corner_radius"/>
+        <attr name="tl_indicator_gravity"/>
+        <attr name="tl_indicator_style"/>
+        <attr name="tl_indicator_anim_enable"/>
+        <attr name="tl_indicator_anim_duration"/>
+        <attr name="tl_indicator_bounce_enable"/>
+
+        <!-- underline -->
+        <attr name="tl_underline_color"/>
+        <attr name="tl_underline_height"/>
+        <attr name="tl_underline_gravity"/>
+
+        <!-- divider -->
+        <attr name="tl_divider_color"/>
+        <attr name="tl_divider_width"/>
+        <attr name="tl_divider_padding"/>
+
+        <!-- tab -->
+        <attr name="tl_tab_padding"/>
+        <attr name="tl_tab_space_equal"/>
+        <attr name="tl_tab_width"/>
+
+        <!-- title -->
+        <attr name="tl_textsize"/>
+        <attr name="tl_textSelectColor"/>
+        <attr name="tl_textUnselectColor"/>
+        <attr name="tl_textBold"/>
+        <attr name="tl_textAllCaps"/>
+        <!-- 设置text是否可见 -->
+        <attr name="tl_textVisible" format="boolean"/>
+        <!-- 设置第二行文字是否可见 -->
+        <attr name="tl_text2Visible" format="boolean"/>
+
+        <!-- icon -->
+        <!-- 设置icon宽度 -->
+        <attr name="tl_iconWidth" format="dimension"/>
+        <!-- 设置icon高度 -->
+        <attr name="tl_iconHeight" format="dimension"/>
+        <!-- 设置icon是否可见 -->
+        <attr name="tl_iconVisible" format="boolean"/>
+        <!-- 设置icon显示位置,对应Gravity中常量值 -->
+        <attr name="tl_iconGravity" format="enum">
+            <enum name="LEFT" value="3"/>
+            <enum name="TOP" value="48"/>
+            <enum name="RIGHT" value="5"/>
+            <enum name="BOTTOM" value="80"/>
+        </attr>
+        <!-- 设置icon与文字间距 -->
+        <attr name="tl_iconMargin" format="dimension"/>
+
+    </declare-styleable>
+
+    <declare-styleable name="SegmentTabLayout">
+        <!-- indicator -->
+        <attr name="tl_indicator_color"/>
+        <attr name="tl_indicator_height"/>
+        <attr name="tl_indicator_margin_left"/>
+        <attr name="tl_indicator_margin_top"/>
+        <attr name="tl_indicator_margin_right"/>
+        <attr name="tl_indicator_margin_bottom"/>
+        <attr name="tl_indicator_corner_radius"/>
+        <attr name="tl_indicator_anim_enable"/>
+        <attr name="tl_indicator_anim_duration"/>
+        <attr name="tl_indicator_bounce_enable"/>
+
+        <!-- divider -->
+        <attr name="tl_divider_color"/>
+        <attr name="tl_divider_width"/>
+        <attr name="tl_divider_padding"/>
+
+        <!-- tab -->
+        <attr name="tl_tab_padding"/>
+        <attr name="tl_tab_space_equal"/>
+        <attr name="tl_tab_width"/>
+
+        <!-- title -->
+        <attr name="tl_textsize"/>
+        <attr name="tl_textSelectColor"/>
+        <attr name="tl_textUnselectColor"/>
+        <attr name="tl_textBold"/>
+        <attr name="tl_textAllCaps"/>
+
+        <attr name="tl_bar_color" format="color"/>
+        <attr name="tl_bar_stroke_color" format="color"/>
+        <attr name="tl_bar_stroke_width" format="dimension"/>
+
+    </declare-styleable>
+
+    <declare-styleable name="MsgView">
+        <!-- 圆角矩形背景色 -->
+        <attr name="mv_backgroundColor" format="color"/>
+        <!-- 圆角弧度,单位dp-->
+        <attr name="mv_cornerRadius" format="dimension"/>
+        <!-- 圆角弧度,单位dp-->
+        <attr name="mv_strokeWidth" format="dimension"/>
+        <!-- 圆角边框颜色-->
+        <attr name="mv_strokeColor" format="color"/>
+        <!-- 圆角弧度是高度一半-->
+        <attr name="mv_isRadiusHalfHeight" format="boolean"/>
+        <!-- 圆角矩形宽高相等,取较宽高中大值-->
+        <attr name="mv_isWidthHeightEqual" format="boolean"/>
+    </declare-styleable>
+
+    <declare-styleable name="WheelView">
+
+        <!-- div line color-->
+        <attr name="div_line_color" format="color"/>
+
+    </declare-styleable>
+
+
+    <declare-styleable name="WaveProgressView">
+        <attr name="wave_color" format="color" />
+        <attr name="second_wave_color" format="color" />
+        <attr name="wave_bg_color" format="color" />
+        <attr name="wave_width" format="dimension" />
+        <attr name="wave_height" format="dimension" />
+    </declare-styleable>
+</resources>

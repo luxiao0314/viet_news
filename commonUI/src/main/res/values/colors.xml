@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="bottom_text">#FF4A4FDA</color>
+    <color name="white">#FFFFFF</color>
+    <color name="transparent">@android:color/transparent</color>
+
+    <color name="lable_blue">#3DB0FD</color>
+    <color name="lable_purple">#DDD3F0</color>
+
+
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+
+    <color name="gray_bg">#FFF0EFF5</color>
+    <color name="black">#000000</color>
+    <color name="bind_app_item_bg">#9079DB</color>
+</resources>

@@ -67,6 +67,8 @@ dependencies {
     api "io.reactivex.rxjava2:rxandroid:$rootProject.rx_android"
     api 'android.arch.navigation:navigation-fragment-ktx:' + rootProject.navigationVersion
     api 'android.arch.navigation:navigation-ui-ktx:' + rootProject.navigationVersion
+    api 'com.github.chrisbanes:PhotoView:2.1.4'
+    api "com.safframework.utils:saf-kotlin-ext:0.0.3.6"
 
     kapt "com.google.dagger:dagger-android-processor:$rootProject.dagger"
     kapt "com.google.dagger:dagger-compiler:$rootProject.dagger"

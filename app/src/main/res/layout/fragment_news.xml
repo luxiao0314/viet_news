@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.viet.news.core.ui.MultiStatusView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/multiStatusView"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<com.viet.news.core.ui.widget.MultiStatusView xmlns:android="http://schemas.android.com/apk/res/android"
+                                              android:id="@+id/multiStatusView"
+                                              android:layout_width="match_parent"
+                                              android:layout_height="match_parent">
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recyclerView"
@@ -11,4 +11,4 @@
 
     </android.support.v7.widget.RecyclerView>
 
-</com.viet.news.core.ui.MultiStatusView>
+</com.viet.news.core.ui.widget.MultiStatusView>
