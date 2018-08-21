@@ -2,6 +2,9 @@ package com.viet.news.core.domain
 
 object Config {
 
+    const val NETWORK_OK = 200
+    const val NETWORK_RESPONSE_OK = 0
+
     val IMPORT_REQUEST_CODE = 1001
     val EXPORT_REQUEST_CODE = 1002
     val SHARE_REQUEST_CODE = 1003
@@ -46,6 +49,12 @@ object Config {
     val GAS_PRICE_MIN = 1000000000L
     val NETWORK_FEE_MAX = 20000000000000000L
     val ETHER_DECIMALS = 18
+
+    //语言切换
+
+    const val LANGUAGE_CHANGED = "language_changed"
+    const val LAST_LANGUAGE = "lastLanguage"
+    const val SELECTED_LANGUAGE = "selected_language"
 
     interface ErrorCode {
         companion object {

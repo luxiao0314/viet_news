@@ -3,6 +3,7 @@ package com.viet.news.core.utils
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.SharedPreferences
+import com.viet.news.core.BaseApplication
 import java.util.*
 
 
@@ -228,11 +229,11 @@ class SPHelper private constructor(private val context: Context?) {
 
         val TRACKING_DEVICE_ID = "device_id"         //device_id
 
-        fun create(context: Context): SPHelper {
+        fun create(context: Context= BaseApplication.instance): SPHelper {
             if (defaultInstance == null) {
                 synchronized(SPHelper::class.java) {
                     if (defaultInstance == null) {
-                        defaultInstance = SPHelper(context.applicationContext)
+                        defaultInstance = SPHelper(context.applicationContext ?:context)
                     }
                 }
             }

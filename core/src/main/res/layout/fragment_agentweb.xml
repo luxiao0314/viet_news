@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/linearLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="75dp"
+        android:background="@drawable/shape_title_bg"
+        android:paddingTop="20dp"
+        android:titleTextColor="@android:color/white"
+        app:contentInsetLeft="0dp"
+        app:contentInsetStart="0dp"
+        app:titleTextColor="@android:color/black">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/iv_back"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_centerVertical="true"
+                android:clickable="true"
+                android:paddingLeft="14dp"
+                android:paddingRight="10dp"
+                android:scaleType="center"
+                android:src="@drawable/ic_back" />
+
+            <View
+                android:id="@+id/view_line"
+                style="@style/line.white.transparent"
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="15dp"
+                android:layout_marginTop="15dp"
+                android:layout_toRightOf="@+id/iv_back" />
+
+            <ImageView
+                android:id="@+id/iv_finish"
+                android:layout_width="55dp"
+                android:layout_height="match_parent"
+                android:layout_toRightOf="@+id/view_line"
+                android:scaleType="center"
+                android:src="@drawable/ic_close"
+                android:visibility="visible" />
+
+            <View
+                android:id="@+id/view_line2"
+                style="@style/line.white.transparent"
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="15dp"
+                android:layout_marginTop="15dp"
+                android:layout_toRightOf="@+id/iv_finish" />
+
+
+
+            <TextView
+                android:id="@+id/toolbar_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@+id/iv_finish"
+                android:paddingLeft="14dp"
+                android:singleLine="true"
+                android:textColor="@android:color/white"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:id="@+id/iv_more"
+                android:layout_width="55dp"
+                android:layout_height="match_parent"
+                android:layout_alignParentRight="true"
+                android:scaleType="center"
+                android:src="@drawable/ic_more"
+                android:visibility="gone" />
+        </RelativeLayout>
+
+    </android.support.v7.widget.Toolbar>
+
+</LinearLayout>

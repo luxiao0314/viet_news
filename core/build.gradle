@@ -70,6 +70,17 @@ dependencies {
     api 'com.github.chrisbanes:PhotoView:2.1.4'
     api "com.safframework.utils:saf-kotlin-ext:0.0.3.6"
 
+    api 'com.just.agentweb:agentweb:' + rootProject.agentweb  //webview
+
+    api "com.safframework.utils:saf-kotlin-ext:${rootProject.saf_kotlin_ext}"
+    api("com.safframework.log:saf-logginginterceptor:$rootProject.saf_okhttp_log", {
+        exclude group: 'com.android.support', module: 'appcompat-v7'
+    })
+    //[start]SAF
+    api("com.safframework.log:saf-log:$rootProject.saf_log", {
+        exclude group: "com.android.support", module: "appcompat-v7"
+    })
+
     kapt "com.google.dagger:dagger-android-processor:$rootProject.dagger"
     kapt "com.google.dagger:dagger-compiler:$rootProject.dagger"
     kapt "com.github.bumptech.glide:compiler:$rootProject.glide"
