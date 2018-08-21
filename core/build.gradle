@@ -80,6 +80,8 @@ dependencies {
     api("com.safframework.log:saf-log:$rootProject.saf_log", {
         exclude group: "com.android.support", module: "appcompat-v7"
     })
+    //facebook
+    api 'com.facebook.android:facebook-android-sdk:[4,5)'
 
     kapt "com.google.dagger:dagger-android-processor:$rootProject.dagger"
     kapt "com.google.dagger:dagger-compiler:$rootProject.dagger"

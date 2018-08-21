@@ -41,7 +41,7 @@ object AppInjector {
                 .inject(app)
 
         app.registerActivityLifecycleCallbacks(object : Application.ActivityLifecycleCallbacks {
-            override fun onActivityCreated(activity: Activity, savedInstanceState: Bundle) {
+            override fun onActivityCreated(activity: Activity, savedInstanceState: Bundle?) {
                 handleActivity(activity)
             }
 
@@ -61,7 +61,7 @@ object AppInjector {
 
             }
 
-            override fun onActivitySaveInstanceState(activity: Activity, outState: Bundle) {
+            override fun onActivitySaveInstanceState(activity: Activity, outState: Bundle?) {
 
             }
 

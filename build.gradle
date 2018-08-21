@@ -23,6 +23,7 @@ allprojects {
     repositories {
         google()
         jcenter()
+        mavenCentral()
         maven { url "https://jitpack.io" }
         //临时的解决方案
         maven { url 'https://dl.bintray.com/fengzhizi715/maven/' }

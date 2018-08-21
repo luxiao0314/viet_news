@@ -7,4 +7,9 @@
     <string name="retry">Try again</string>
     <string name="cancel">Cancel</string>
 
+    <!--facebook的key-->
+    <string name="facebook_app_id">225604058116921</string>
+    <string name="fb_login_protocol_scheme">fb225604058116921</string>
+
+
 </resources>

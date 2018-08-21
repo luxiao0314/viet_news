@@ -2,6 +2,8 @@ package com.viet.news.di
 
 import android.app.Activity
 import android.content.Context
+import com.facebook.FacebookSdk
+import com.facebook.appevents.AppEventsLogger
 import com.squareup.leakcanary.LeakCanary
 import com.viet.news.core.BaseApplication
 import com.viet.news.core.utils.LanguageUtil
@@ -30,8 +32,11 @@ class App : BaseApplication(), HasActivityInjector {
 
         if (LeakCanary.isInAnalyzerProcess(this)) return
         LeakCanary.install(this)
-LanguageUtil.setApplicationLanguage(this)
+        LanguageUtil.setApplicationLanguage(this)
         AppInjector.init(this)
+        //方法已过期 看注释说是会自动调用，暂时不删
+//        FacebookSdk.sdkInitialize(applicationContext);
+//        AppEventsLogger.activateApp(this);
 
     }
 
