@@ -1,4 +1,4 @@
-package com.lcorekit.channeldemo.fragment
+package com.viet.news.ui.fragment
 
 import android.content.Context
 import android.os.Bundle
