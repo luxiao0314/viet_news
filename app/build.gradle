@@ -56,6 +56,6 @@ dependencies {
     kapt "android.arch.persistence.room:compiler:$rootProject.room"
     kapt "android.arch.lifecycle:compiler:$rootProject.lifecycle"
     implementation project(path: ':core')
-    compile project(path: ':commonUI')
+    implementation project(path: ':commonUI')
 
 }
