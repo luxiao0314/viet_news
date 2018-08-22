@@ -166,4 +166,19 @@
         <attr name="wave_width" format="dimension" />
         <attr name="wave_height" format="dimension" />
     </declare-styleable>
+
+
+    <declare-styleable name="ChannelTabLayout">
+        <attr name="tab_normal_textSize" format="dimension"/>
+        <attr name="tab_select_textSize" format="dimension"/>
+        <attr name="tab_textColor" format="reference"/>
+        <attr name="tab_indicatorColor" format="color"/>
+        <attr name="tab_indicatorHeight" format="dimension"/>
+        <attr name="tab_min_width" format="dimension"/>
+        <attr name="tab_dividerWidth" format="dimension"/>
+        <attr name="tab_dividerColor" format="color"/>
+        <attr name="tab_dividerPadding" format="dimension"/>
+        <attr name="tab_Padding" format="dimension"/>
+        <attr name="tab_dividerShow" format="boolean"/>
+    </declare-styleable>
 </resources>

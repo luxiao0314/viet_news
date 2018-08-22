@@ -4,6 +4,7 @@ import android.content.Intent
 import android.content.res.Configuration
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.view.MenuItem
 import androidx.navigation.Navigation
 import androidx.navigation.ui.setupWithNavController
 import com.viet.news.R
@@ -24,7 +25,9 @@ class MainActivity : BaseActivity(), HasSupportFragmentInjector {
         super.onCreate(savedInstanceState ?: Bundle())
         setContentView(R.layout.activity_main)
         setBottomBar()
-
+        mBtnChannel.setOnClickListener{
+            startActivity(Intent(this, ChannelActivity::class.java))
+        }
     }
 
     //    override fun onBackPressed() {
@@ -67,4 +70,5 @@ class MainActivity : BaseActivity(), HasSupportFragmentInjector {
     override fun onSupportNavigateUp(): Boolean {
         return Navigation.findNavController(this, R.id.nav_host_fragment).navigateUp()
     }
+
 }

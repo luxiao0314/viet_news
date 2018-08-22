@@ -16,4 +16,7 @@
     <color name="gray_bg">#FFF0EFF5</color>
     <color name="black">#000000</color>
     <color name="bind_app_item_bg">#9079DB</color>
+
+    <color name="default_selector_color">#DC143C</color>
+    <color name="default_un_selector_color">#000000</color>
 </resources>
