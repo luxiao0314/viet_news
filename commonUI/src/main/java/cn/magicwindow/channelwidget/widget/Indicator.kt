@@ -1,4 +1,4 @@
-package com.lcorekit.channeldemo.widget
+package cn.magicwindow.channelwidget.widget
 
 import android.content.Context
 import android.graphics.Canvas
@@ -15,7 +15,7 @@ import android.widget.TextView
  * @author null
  */
 
-class IndicationTabLayout @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0) : LinearLayout(context, attrs, defStyleAttr) {
+class Indicator @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0) : LinearLayout(context, attrs, defStyleAttr) {
     //指示器
     private var mSelectedIndicatorHeight: Int = 0
     private val mSelectedIndicatorPaint: Paint

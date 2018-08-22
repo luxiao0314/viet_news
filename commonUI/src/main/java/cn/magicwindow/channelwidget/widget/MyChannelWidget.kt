@@ -1,4 +1,4 @@
-package com.lcorekit.channeldemo.widget
+package cn.magicwindow.channelwidget.widget
 
 import android.annotation.SuppressLint
 import android.graphics.Color
@@ -10,16 +10,17 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 
-import com.lcorekit.channeldemo.callback.EditModeHandler
-import com.lcorekit.channeldemo.callback.IChannelType
-import com.lcorekit.channeldemo.bean.ChannelBean
+import cn.magicwindow.channelwidget.callback.EditModeHandler
+import cn.magicwindow.channelwidget.callback.IChannelType
+import cn.magicwindow.channelwidget.entity.ChannelBean
 
 import cn.magicwindow.commonui.R
-import com.lcorekit.channeldemo.adapter.ChannelAdapter
+import cn.magicwindow.channelwidget.adapter.ChannelAdapter
 
 
 /**
  * @author null
+ * 我的频道 ViewHolder
  */
 class MyChannelWidget(private val editModeHandler: EditModeHandler?) : IChannelType {
     private var mRecyclerView: RecyclerView? = null

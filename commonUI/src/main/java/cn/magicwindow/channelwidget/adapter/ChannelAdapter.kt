@@ -1,4 +1,4 @@
-package com.lcorekit.channeldemo.adapter
+package cn.magicwindow.channelwidget.adapter
 
 
 import android.animation.AnimatorSet
@@ -19,27 +19,28 @@ import android.widget.TextView
 import cn.magicwindow.commonui.R
 
 
-import com.lcorekit.channeldemo.callback.EditModeHandler
-import com.lcorekit.channeldemo.callback.IChannelType
-import com.lcorekit.channeldemo.callback.ItemDragHelperCallback
-import com.lcorekit.channeldemo.callback.ItemDragListener
-import com.lcorekit.channeldemo.callback.ItemDragVHListener
-import com.lcorekit.channeldemo.bean.ChannelBean
-import com.lcorekit.channeldemo.widget.MyChannelHeaderWidget
-import com.lcorekit.channeldemo.widget.MyChannelWidget
-import com.lcorekit.channeldemo.widget.RecChannelHeaderWidget
-import com.lcorekit.channeldemo.widget.RecChannelWidget
+import cn.magicwindow.channelwidget.callback.EditModeHandler
+import cn.magicwindow.channelwidget.callback.IChannelType
+import cn.magicwindow.channelwidget.callback.ItemDragHelperCallback
+import cn.magicwindow.channelwidget.callback.ItemDragListener
+import cn.magicwindow.channelwidget.callback.ItemDragVHListener
+import cn.magicwindow.channelwidget.entity.ChannelBean
+import cn.magicwindow.channelwidget.widget.MyChannelHeaderWidget
+import cn.magicwindow.channelwidget.widget.MyChannelWidget
+import cn.magicwindow.channelwidget.widget.RecChannelHeaderWidget
+import cn.magicwindow.channelwidget.widget.RecChannelWidget
 
 
 @Suppress("DEPRECATION")
 /**
  * @author null
+ * 频道管理适配器
  */
-
 class ChannelAdapter(context: Context, recyclerView: RecyclerView, private val mMyChannelItems: MutableList<ChannelBean>, private val mOtherChannelItems: MutableList<ChannelBean>,
                      private val mMyHeaderCount: Int, private val mRecHeaderCount: Int) : RecyclerView.Adapter<ChannelAdapter.ChannelViewHolder>(), ItemDragListener {
     private val mInflater: LayoutInflater
     private val mTypeMap: SparseArray<IChannelType> = SparseArray()
+    // 是否是编辑状态
     private var isEditMode: Boolean = false
     private val mItemTouchHelper: ItemTouchHelper = ItemTouchHelper(ItemDragHelperCallback(this))
     // touch 点击开始时间
@@ -98,6 +99,9 @@ class ChannelAdapter(context: Context, recyclerView: RecyclerView, private val m
 
     override fun onItemSwiped(position: Int) {}
 
+    /**
+     * 频道条目
+     */
     open class ChannelViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView), ItemDragVHListener {
 
         override fun onItemSelected() {
@@ -124,6 +128,9 @@ class ChannelAdapter(context: Context, recyclerView: RecyclerView, private val m
         }
     }
 
+    /**
+     * 编辑状态捕获
+     */
     private inner class EditHandler : EditModeHandler() {
         override fun startEditMode(mRecyclerView: RecyclerView) {
             doStartEditMode(mRecyclerView)
@@ -133,7 +140,7 @@ class ChannelAdapter(context: Context, recyclerView: RecyclerView, private val m
             doCancelEditMode(mRecyclerView)
         }
 
-        override fun clickMyChannel(mRecyclerView: RecyclerView, holder: ChannelAdapter.ChannelViewHolder) {
+        override fun clickMyChannel(mRecyclerView: RecyclerView, holder: ChannelViewHolder) {
             val position = holder.adapterPosition
             if (isEditMode) {
                 moveMyToOther(position)
@@ -179,6 +186,9 @@ class ChannelAdapter(context: Context, recyclerView: RecyclerView, private val m
         }
     }
 
+    /**
+     * 开启编辑模式
+     */
     private fun doStartEditMode(parent: RecyclerView) {
         isEditMode = true
         val visibleChildCount = parent.childCount
@@ -196,6 +206,9 @@ class ChannelAdapter(context: Context, recyclerView: RecyclerView, private val m
         }
     }
 
+    /**
+     * 关闭编辑模式
+     */
     private fun doCancelEditMode(parent: RecyclerView) {
         isEditMode = false
         val visibleChildCount = parent.childCount
@@ -208,6 +221,9 @@ class ChannelAdapter(context: Context, recyclerView: RecyclerView, private val m
         }
     }
 
+    /**
+     * 我的频道 -> 推荐频道
+     */
     private fun moveMyToOther(position: Int) {
         val myPosition = position - mMyHeaderCount
         val item = mMyChannelItems[myPosition]
@@ -216,6 +232,9 @@ class ChannelAdapter(context: Context, recyclerView: RecyclerView, private val m
         notifyItemMoved(position, mMyChannelItems.size + mMyHeaderCount + mRecHeaderCount + mOtherChannelItems.size - 1)
     }
 
+    /**
+     * 推荐频道-> 我的频道
+     */
     private fun moveOtherToMy(position: Int) {
         val recPosition = processItemRemoveAdd(position)
         if (recPosition == -1) {

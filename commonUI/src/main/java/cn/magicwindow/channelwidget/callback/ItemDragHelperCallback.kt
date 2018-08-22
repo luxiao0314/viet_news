@@ -1,4 +1,4 @@
-package com.lcorekit.channeldemo.callback
+package cn.magicwindow.channelwidget.callback
 
 import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.RecyclerView
@@ -8,6 +8,7 @@ import android.support.v7.widget.helper.ItemTouchHelper
 
 /**
  * @author null
+ * ItemDragHelper的回调方法具体实现
  */
 class ItemDragHelperCallback(private val mDragMoveListener: ItemDragListener) : ItemTouchHelper.Callback() {
 

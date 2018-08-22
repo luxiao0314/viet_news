@@ -22,12 +22,11 @@ import android.widget.TextView
 import cn.magicwindow.commonui.R
 
 
-import com.lcorekit.channeldemo.bean.ChannelBean
+import cn.magicwindow.channelwidget.entity.ChannelBean
 
 import java.util.ArrayList
 
 import com.lcorekit.channeldemo.utlis.ResolutionUtils
-import com.lcorekit.channeldemo.widget.IndicationTabLayout
 
 /**
  * @author null
@@ -58,7 +57,7 @@ class ChannelTabLayout @JvmOverloads constructor(context: Context, attrs: Attrib
     //关联的viewpager
     private var mViewPager: ViewPager? = null
     //第一个子View
-    private val mTabContainer: IndicationTabLayout
+    private val mTabContainer: Indicator
     //Tab总数
     private var mTabCount: Int = 0
     //当前选中的Tab
@@ -92,7 +91,7 @@ class ChannelTabLayout @JvmOverloads constructor(context: Context, attrs: Attrib
         initStyle(context, attrs)
         isFillViewport = true
         isHorizontalScrollBarEnabled = false
-        mTabContainer = IndicationTabLayout(context)
+        mTabContainer = Indicator(context)
         mTabContainer.setSelectedIndicatorColor(mIndicatorColor)
         mTabContainer.setSelectedIndicatorHeight(mIndicatorHeight)
         addView(mTabContainer, 0, FrameLayout.LayoutParams(
@@ -105,6 +104,9 @@ class ChannelTabLayout @JvmOverloads constructor(context: Context, attrs: Attrib
         mMsgNumMap = SparseIntArray()
     }
 
+    /**
+     * 设置Style(自定义属性）
+     */
     private fun initStyle(context: Context, attrs: AttributeSet?) {
         val typedArray = context.theme.obtainStyledAttributes(attrs, R.styleable.ChannelTabLayout, 0, 0)
         mNormalTextSize = typedArray.getDimensionPixelSize(R.styleable.ChannelTabLayout_tab_normal_textSize, DEFAULT_NORMAL_TEXT_SIZE_SP)
@@ -238,6 +240,9 @@ class ChannelTabLayout @JvmOverloads constructor(context: Context, attrs: Attrib
         }
     }
 
+    /**
+     * 画出条目上的消息数目
+     */
     private fun drawMsg(canvas: Canvas, mMsgCircleX: Int, mMsgCircleY: Int, mMsgNum: Int) {
         mMsgPaint.style = Paint.Style.FILL
         mMsgPaint.color = mMsgRoundColor

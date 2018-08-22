@@ -1,4 +1,4 @@
-package com.lcorekit.channeldemo.widget
+package cn.magicwindow.channelwidget.widget
 
 
 import android.support.v7.widget.RecyclerView
@@ -8,16 +8,17 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 
-import com.lcorekit.channeldemo.callback.EditModeHandler
-import com.lcorekit.channeldemo.callback.IChannelType
-import com.lcorekit.channeldemo.bean.ChannelBean
+import cn.magicwindow.channelwidget.callback.EditModeHandler
+import cn.magicwindow.channelwidget.callback.IChannelType
 
 import cn.magicwindow.commonui.R
-import com.lcorekit.channeldemo.adapter.ChannelAdapter
+import cn.magicwindow.channelwidget.adapter.ChannelAdapter
+import cn.magicwindow.channelwidget.entity.ChannelBean
 
 
 /**
  * @author null
+ * 推荐频道 ViewHolder
  */
 
 class RecChannelWidget(private val editModeHandler: EditModeHandler?) : IChannelType {

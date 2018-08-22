@@ -1,7 +1,7 @@
-package com.lcorekit.channeldemo.callback
+package cn.magicwindow.channelwidget.callback
 
 interface APPConst {
     companion object {
-       const val ITEM_SPACE = 5
+        const val ITEM_SPACE = 5
     }
 }

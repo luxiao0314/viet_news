@@ -9,13 +9,13 @@ import android.view.*
 import cn.magicwindow.utils.GridItemDecoration
 
 
-import com.lcorekit.channeldemo.callback.APPConst
-import com.lcorekit.channeldemo.callback.IChannelType
-import com.lcorekit.channeldemo.bean.ChannelBean
+import cn.magicwindow.channelwidget.callback.APPConst
+import cn.magicwindow.channelwidget.callback.IChannelType
+import cn.magicwindow.channelwidget.entity.ChannelBean
 
 
 import java.util.ArrayList
-import com.lcorekit.channeldemo.adapter.ChannelAdapter
+import cn.magicwindow.channelwidget.adapter.ChannelAdapter
 import com.viet.news.R
 import com.viet.news.ui.ChannelActivity
 

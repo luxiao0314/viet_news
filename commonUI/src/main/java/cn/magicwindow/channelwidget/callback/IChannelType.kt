@@ -1,14 +1,14 @@
-package com.lcorekit.channeldemo.callback
+package cn.magicwindow.channelwidget.callback
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import com.lcorekit.channeldemo.adapter.ChannelAdapter
-
-import com.lcorekit.channeldemo.bean.ChannelBean
+import cn.magicwindow.channelwidget.adapter.ChannelAdapter
+import cn.magicwindow.channelwidget.entity.ChannelBean
 
 
 /**
  * @author null
+ * RecyclerView中类别
  */
 
 interface IChannelType {

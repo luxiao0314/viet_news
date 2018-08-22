@@ -1,4 +1,4 @@
-package com.lcorekit.channeldemo.bean
+package cn.magicwindow.channelwidget.entity
 
 /**
  * @author null

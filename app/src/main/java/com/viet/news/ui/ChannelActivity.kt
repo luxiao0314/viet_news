@@ -9,7 +9,7 @@ import android.support.v4.view.ViewPager
 import android.support.v7.app.AppCompatActivity
 import android.view.View
 import android.widget.ImageView
-import com.lcorekit.channeldemo.bean.ChannelBean
+import cn.magicwindow.channelwidget.entity.ChannelBean
 import com.viet.news.ui.fragment.AddChannelFragment
 import cn.magicwindow.channelwidget.widget.ChannelTabLayout
 import com.viet.news.R

@@ -1,4 +1,4 @@
-package com.lcorekit.channeldemo.callback
+package cn.magicwindow.channelwidget.callback
 
 /**
  * @author null

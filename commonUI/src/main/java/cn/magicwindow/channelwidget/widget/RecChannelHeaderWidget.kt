@@ -1,17 +1,18 @@
-package com.lcorekit.channeldemo.widget
+package cn.magicwindow.channelwidget.widget
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import cn.magicwindow.commonui.R
 
-import com.lcorekit.channeldemo.adapter.ChannelAdapter
-import com.lcorekit.channeldemo.bean.ChannelBean
-import com.lcorekit.channeldemo.callback.IChannelType
+import cn.magicwindow.channelwidget.adapter.ChannelAdapter
+import cn.magicwindow.channelwidget.entity.ChannelBean
+import cn.magicwindow.channelwidget.callback.IChannelType
 
 
 /**
  * @author null
+ * 推荐频道标题栏 ViewHolder
  */
 
 class RecChannelHeaderWidget : IChannelType {

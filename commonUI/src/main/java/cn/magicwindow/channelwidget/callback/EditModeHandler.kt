@@ -1,11 +1,14 @@
-package com.lcorekit.channeldemo.callback
+package cn.magicwindow.channelwidget.callback
 
 import android.support.v7.widget.RecyclerView
 import android.view.MotionEvent
 
-import com.lcorekit.channeldemo.adapter.ChannelAdapter
+import cn.magicwindow.channelwidget.adapter.ChannelAdapter
 
-
+/**
+ * @author null
+ * 编辑状态的回调
+ */
 abstract class EditModeHandler {
     open fun startEditMode(mRecyclerView: RecyclerView) {}
     open fun cancelEditMode(mRecyclerView: RecyclerView) {}
