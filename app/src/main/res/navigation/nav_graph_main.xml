@@ -41,7 +41,7 @@
 
     <fragment
         android:id="@+id/navigation_mine"
-        android:name="com.viet.news.ui.mine.fragment.MineFragment">
+        android:name="com.viet.mine.fragment.MineFragment">
         <action
             android:id="@+id/action_page1"
             app:enterAnim="@anim/slide_right_in"

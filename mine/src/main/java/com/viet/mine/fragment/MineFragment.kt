@@ -1,4 +1,4 @@
-package com.viet.news.ui.mine.fragment
+package com.viet.mine.fragment
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -21,5 +21,6 @@ class MineFragment : BaseFragment() {
     }
 
     override fun initView(view: View) {
+
     }
 }
