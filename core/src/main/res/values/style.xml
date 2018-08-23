@@ -287,6 +287,27 @@
         <item name="android:gravity">center</item>
     </style>
 
+    <style name="titleText">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">10dp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:layout_gravity">center_horizontal</item>
+        <item name="android:layout_centerHorizontal">true</item>
+    </style>
+
+    <style name="text.gray.16.mine">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:drawablePadding">@dimen/page_padding_left</item>
+        <item name="android:paddingTop">15dp</item>
+        <item name="android:paddingBottom">15dp</item>
+        <item name="android:paddingLeft">@dimen/page_padding_left</item>
+        <item name="android:paddingRight">@dimen/page_padding_right</item>
+        <item name="android:textStyle">bold</item>
+    </style>
 
     <style name="line">
         <item name="android:layout_width">match_parent</item>
@@ -370,5 +391,191 @@
         <!-- 标题下划线是否显示，默认为true -->
         <attr name="titlebar_isLineVisiable" format="boolean" />
     </declare-styleable>
+
+    <style name="text.light_gray">
+        <item name="android:textColor">@color/text_light_gray</item>
+    </style>
+
+    <style name="text.gray">
+        <item name="android:textColor">@color/text_gray</item>
+    </style>
+
+    <style name="text.white">
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="text.violet">
+        <item name="android:textColor">@color/violet</item>
+    </style>
+
+    <style name="text.violet.12">
+        <item name="android:textSize">12sp</item>
+    </style>
+
+    <style name="text.violet.12.bold">
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="text.violet.14">
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="text.violet.16">
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    <style name="text.violet.16.bold">
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="text.violet.18">
+        <item name="android:textSize">18sp</item>
+    </style>
+
+    <style name="text.violet.18.bold">
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <!--次要内容、补充内容、文字说明-->
+    <style name="text.gray.10">
+        <item name="android:textSize">@dimen/text_10sp</item>
+    </style>
+
+    <!--错误提示、二级内容-->
+    <style name="text.gray.12">
+        <item name="android:textSize">@dimen/text_12sp</item>
+    </style>
+
+    <!--正文，弹框内容（常规不加粗）-->
+    <style name="text.gray.14">
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <!--二级标题、输入框（加粗）-->
+    <style name="text.gray.14.bold">
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="text.gray.16">
+        <item name="android:textSize">@dimen/text_16sp</item>
+    </style>
+
+    <!--大标题，二级Tab，弹框标题（加粗）-->
+    <style name="text.gray.16.bold">
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="text.gray.18">
+        <item name="android:textSize">18sp</item>
+    </style>
+
+    <style name="text.gray.18.bold">
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="text.white.16.bold">
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="text.gray.22">
+        <item name="android:textSize">22sp</item>
+    </style>
+
+    <style name="text.gray.20">
+        <item name="android:textSize">20sp</item>
+    </style>
+
+    <style name="text.gray.20.bold">
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <!-- 重要的数值（发红包、首页资产、各种详情页一级数值） -->
+    <style name="text.gray.22.bold">
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="text.light_gray.10">
+        <item name="android:textSize">@dimen/text_10sp</item>
+    </style>
+
+    <!--错误提示、二级内容-->
+    <style name="text.light_gray.12">
+        <item name="android:textSize">@dimen/text_12sp</item>
+    </style>
+
+    <style name="text.white.12.bold">
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="text.light_gray.12.bold">
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <!--正文，弹框内容（常规不加粗）-->
+    <style name="text.light_gray.14">
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <!--二级标题、输入框（加粗）-->
+    <style name="text.light_gray.14.bold">
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="text.light_gray.16">
+        <item name="android:textSize">@dimen/text_16sp</item>
+    </style>
+
+    <style name="text.light_gray.16.bold">
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="text.white.10">
+        <item name="android:textSize">@dimen/text_10sp</item>
+    </style>
+
+    <style name="text.white.12">
+        <item name="android:textSize">@dimen/text_12sp</item>
+    </style>
+
+    <style name="text.white.14">
+        <item name="android:textSize">@dimen/text_14sp</item>
+    </style>
+
+    <style name="text.white.14.bold">
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="text.white.16">
+        <item name="android:textSize">@dimen/text_16sp</item>
+    </style>
+
+    <style name="text.white.18">
+        <item name="android:textSize">18sp</item>
+    </style>
+    <!-- 次要数值 （详情页二级数值 - 花溪钻奖励/明细） -->
+    <style name="text.white.18.bold">
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="text.white.22">
+        <item name="android:textSize">22sp</item>
+    </style>
+
+    <style name="text.white.22.bold">
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="text.white.30">
+        <item name="android:textSize">30sp</item>
+    </style>
+
+    <style name="text.white.30.bold">
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="text.white.22.length10">
+        <item name="android:maxLength">10</item>
+        <item name="android:ellipsize">end</item>
+    </style>
 
 </resources>

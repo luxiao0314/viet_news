@@ -11,4 +11,9 @@
         android:id="@+id/navigation_people"
         android:icon="@drawable/ic_group"
         android:title="@string/title_people" />
+
+    <item
+        android:id="@+id/navigation_mine"
+       android:icon="@drawable/ic_group"
+        android:title="@string/title_people" />
 </menu>

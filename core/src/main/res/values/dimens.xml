@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <dimen name="rippleStrokeWidth">2dp</dimen>
+    <dimen name="rippleRadius">32dp</dimen>
+
+    <dimen name="home_card_radius">12dp</dimen>
+
+    <!-- 描述性文字item项的高 -->
+    <dimen name="text_item_height">43dp</dimen>
+
+    <!--大标题，二级Tab，弹框标题（加粗）-->
+    <dimen name="text_16sp">16sp</dimen>
+    <!--二级标题、输入框（加粗），正文，弹框内容（常规不加粗）-->
+    <dimen name="text_14sp">14sp</dimen>
+    <!--错误提示、二级内容-->
+    <dimen name="text_12sp">12sp</dimen>
+    <!--次要内容、补充内容、文字说明-->
+    <dimen name="text_10sp">10sp</dimen>
+
+    <!--相同属性模块间隔-->
+    <dimen name="div_same_module">0.5dp</dimen>
+    <dimen name="div_different_module">10dp</dimen>
+
+    <!-- 普通页面间隔 -->
+    <dimen name="page_padding">20dp</dimen>
+    <dimen name="icon_padding">5dp</dimen>
+
+    <dimen name="top_padding_same_module">10dp</dimen>
+    <dimen name="top_padding_different_module">20dp</dimen>
+
+    <!--普通页面左右间隔-->
+    <dimen name="page_padding_left">20dp</dimen>
+    <dimen name="page_padding_right">20dp</dimen>
+
+    <!--list页面左右间隔-->
+    <dimen name="list_padding_left">20dp</dimen>
+    <dimen name="list_padding_right">20dp</dimen>
+
+
+    <!--状态栏的高度-->
+    <dimen name="statusbar_view_height" tools:keep="@dimen/statusbar_view_height">0dp</dimen>
+
+    <!--  密码点的大小 -->
+    <dimen name="passwd_point_width">5dp</dimen>
+
+    <!-- 类似首页和kol 首页这些card 布局的item间的间隔 -->
+    <dimen name="list_card_height_space">5dp</dimen>
+
+    <!-- 分割线高度 -->
+    <dimen name="split_line_height">0.5dp</dimen>
+
+</resources>
