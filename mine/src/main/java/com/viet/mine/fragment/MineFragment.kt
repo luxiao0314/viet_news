@@ -4,8 +4,11 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.Navigation
+import com.safframework.ext.clickWithTrigger
 import com.viet.mine.R
 import com.viet.news.core.ui.BaseFragment
+import kotlinx.android.synthetic.main.fragment_mine.*
 
 
 /**
@@ -21,6 +24,6 @@ class MineFragment : BaseFragment() {
     }
 
     override fun initView(view: View) {
-
+        click_to_login.clickWithTrigger { Navigation.findNavController(it).navigate(R.id.loginActivity) }
     }
 }

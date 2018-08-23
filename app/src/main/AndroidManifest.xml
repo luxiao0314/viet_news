@@ -40,7 +40,7 @@
         </activity>
         <activity android:name=".ui.MainActivity"
             android:launchMode="singleTask"/>
-        <activity android:name=".ui.LoginActivity"/>
+        <activity android:name="com.viet.mine.activity.LoginActivity"/>
         <activity android:name=".ui.ChannelActivity" />
 
     </application>

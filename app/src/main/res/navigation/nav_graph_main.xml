@@ -6,9 +6,7 @@
 
     <fragment
         android:id="@+id/navigation_home"
-        android:name="com.viet.news.ui.NewsFragment"
-        android:label="fragment_page1"
-        tools:layout="@layout/fragment_news">
+        android:name="com.viet.news.ui.NewsFragment">
         <action
             android:id="@+id/action_page2"
             app:destination="@id/navigation_people"
@@ -20,9 +18,7 @@
 
     <fragment
         android:id="@+id/navigation_people"
-        android:name="com.viet.news.ui.TestFragment"
-        android:label="fragment_page2"
-        tools:layout="@layout/fragment_news">
+        android:name="com.viet.news.ui.TestFragment">
         <action
             android:id="@+id/action_page1"
             app:enterAnim="@anim/slide_right_in"
@@ -63,9 +59,11 @@
         app:startDestination="@id/page3Fragment">
         <fragment
             android:id="@+id/page3Fragment"
-            android:name="com.viet.news.ui.NewsFragment"
-            android:label="fragment_page3"
-            tools:layout="@layout/fragment_news" />
+            android:name="com.viet.news.ui.NewsFragment" />
     </navigation>
+
+    <activity
+        android:id="@id/loginActivity"
+        android:name="com.viet.mine.activity.LoginActivity"/>
 
 </navigation>

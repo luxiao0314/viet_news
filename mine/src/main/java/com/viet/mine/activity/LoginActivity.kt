@@ -1,4 +1,4 @@
-package com.viet.news.ui
+package com.viet.mine.activity
 
 import android.content.Intent
 import android.os.Bundle
@@ -11,7 +11,7 @@ import com.facebook.login.LoginManager
 import com.facebook.login.LoginResult
 import com.safframework.ext.then
 import com.safframework.log.L
-import com.viet.news.R
+import com.viet.mine.R
 import com.viet.news.core.ui.BaseActivity
 import kotlinx.android.synthetic.main.activity_login.*
 
