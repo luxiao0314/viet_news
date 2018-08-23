@@ -20,7 +20,7 @@
 
     <fragment
         android:id="@+id/navigation_people"
-        android:name="com.viet.news.ui.NewsFragment"
+        android:name="com.viet.news.ui.TestFragment"
         android:label="fragment_page2"
         tools:layout="@layout/fragment_news">
         <action
