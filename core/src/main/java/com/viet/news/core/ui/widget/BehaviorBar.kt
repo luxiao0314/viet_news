@@ -11,6 +11,10 @@ import android.view.View
 import android.widget.RelativeLayout
 import com.viet.news.core.R
 
+/**
+ * @author null
+ * 社交互动行为工具栏
+ */
 class BehaviorBar @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0) : RelativeLayout(context, attrs, defStyleAttr) {
     lateinit var likeCtv: AppCompatCheckedTextView
         private set
@@ -150,7 +154,11 @@ class BehaviorBar @JvmOverloads constructor(context: Context, attrs: AttributeSe
         })
     }
 
-
+    /**
+     * 设置喜欢初始状态
+     * @param status 状态
+     * @param count 数量
+     */
     @SuppressLint("ResourceType")
     fun setLikedStatus(status: Boolean, count: Int) {
         likeCtv.text = count.toString()
@@ -163,6 +171,9 @@ class BehaviorBar @JvmOverloads constructor(context: Context, attrs: AttributeSe
         }
     }
 
+    /**
+     * 设置收藏初始状态
+     */
     @SuppressLint("ResourceType")
     fun setCollectedStatus(status: Boolean, count: Int) {
         collectCtv.text = count.toString()
@@ -174,7 +185,11 @@ class BehaviorBar @JvmOverloads constructor(context: Context, attrs: AttributeSe
             setStatus(collectCtv, R.drawable.ic_collect, R.color.behavior_normal)
         }
     }
-
+    /**
+     * 设置点赞初始状态
+     * @param status 状态
+     * @param count 数量
+     */
     @SuppressLint("ResourceType")
     fun setPraiseStatus(status: Boolean, count: Int) {
         praiseCtv.text = count.toString()
@@ -187,6 +202,12 @@ class BehaviorBar @JvmOverloads constructor(context: Context, attrs: AttributeSe
         }
     }
 
+    /**
+     * 设置状态
+     * @param view 控件
+     * @param status 状态
+     * @param count 数量
+     */
     @SuppressLint("ResourceType")
     private fun setStatus(view: AppCompatCheckedTextView, @IdRes id: Int, @IdRes color: Int) {
         view.setCompoundDrawables(getDrawable(id), null, null, null)
@@ -195,6 +216,7 @@ class BehaviorBar @JvmOverloads constructor(context: Context, attrs: AttributeSe
 
     /**
      * 重新设置图标
+     * @param id 资源id
      */
     @SuppressLint("ResourceType")
     private fun getDrawable(@IdRes id: Int): Drawable {
@@ -258,7 +280,7 @@ class BehaviorBar @JvmOverloads constructor(context: Context, attrs: AttributeSe
 
 
     private abstract class OnNoDoubleClickListener : View.OnClickListener {
-        private var mThrottleFirstTime = 10
+        private var mThrottleFirstTime = 300
         private var mLastClickTime: Long = 0
 
         constructor()
