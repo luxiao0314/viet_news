@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
+
+    <LinearLayout style="@style/behavior_bar">
+
+        <androidx.appcompat.widget.AppCompatCheckedTextView
+            android:id="@+id/tv_like_num"
+            style="@style/behavior_bar_text"
+            android:drawableLeft="@drawable/ic_like" />
+    </LinearLayout>
+
+    <LinearLayout style="@style/behavior_bar">
+
+        <androidx.appcompat.widget.AppCompatCheckedTextView
+            android:id="@+id/tv_collect_num"
+            style="@style/behavior_bar_text"
+            android:drawableLeft="@drawable/ic_collect" />
+    </LinearLayout>
+
+    <LinearLayout style="@style/behavior_bar">
+
+        <androidx.appcompat.widget.AppCompatCheckedTextView
+            android:id="@+id/tv_praise_num"
+            style="@style/behavior_bar_text"
+            android:drawableLeft="@drawable/ic_praise" />
+    </LinearLayout>
+</LinearLayout>

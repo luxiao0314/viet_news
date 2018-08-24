@@ -18,7 +18,6 @@
     <color name="color_bg_trans">#33000000</color>
     <color name="gray_tran">#339B9B9B</color>
     <color name="white_transparent">#55ffffff</color>
-    <color name="violet">#FF7E3EF4</color>
 
     <!--规范设计Start-->
     <color name="btn_start">#9361F8</color>
@@ -31,4 +30,6 @@
     <color name="text_light_gray">#9B9B9B</color>
     <!--规范设计End-->
 
+    <color name="behavior_enable">#fa845e</color>
+    <color name="behavior_normal">#FF000000</color>
 </resources>
