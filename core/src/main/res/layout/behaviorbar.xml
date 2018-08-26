@@ -6,7 +6,7 @@
 
     <LinearLayout style="@style/behavior_bar">
 
-        <androidx.appcompat.widget.AppCompatCheckedTextView
+        <android.support.v7.widget.AppCompatCheckedTextView
             android:id="@+id/tv_like_num"
             style="@style/behavior_bar_text"
             android:drawableLeft="@drawable/ic_like" />
@@ -14,7 +14,7 @@
 
     <LinearLayout style="@style/behavior_bar">
 
-        <androidx.appcompat.widget.AppCompatCheckedTextView
+        <android.support.v7.widget.AppCompatCheckedTextView
             android:id="@+id/tv_collect_num"
             style="@style/behavior_bar_text"
             android:drawableLeft="@drawable/ic_collect" />
@@ -22,7 +22,7 @@
 
     <LinearLayout style="@style/behavior_bar">
 
-        <androidx.appcompat.widget.AppCompatCheckedTextView
+        <android.support.v7.widget.AppCompatCheckedTextView
             android:id="@+id/tv_praise_num"
             style="@style/behavior_bar_text"
             android:drawableLeft="@drawable/ic_praise" />
