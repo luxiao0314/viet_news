@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-            xmlns:app="http://schemas.android.com/apk/res-auto"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            xmlns:tools="http://schemas.android.com/tools"
-            android:orientation="vertical"
-            android:scrollbars="none">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:scrollbars="none">
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
@@ -14,46 +14,46 @@
         <TextView
             android:id="@+id/title"
             style="@style/titleText"
-            android:textColor="@color/text_gray"
-            android:layout_marginBottom="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginRight="8dp"
             android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
             android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginBottom="8dp"
             android:text="@string/tab_mine_title"
+            android:textColor="@color/text_gray"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0"/>
+            app:layout_constraintVertical_bias="0.0" />
 
         <ImageView
             android:id="@+id/avatar"
             android:layout_width="80dp"
             android:layout_height="80dp"
             android:layout_gravity="center"
-            android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="30dp"
+            android:layout_marginEnd="8dp"
             android:scaleType="centerCrop"
-            tools:src="@drawable/shape_default_circle_bg"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.107"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/title"/>
+            app:layout_constraintTop_toBottomOf="@+id/title"
+            tools:src="@drawable/shape_default_circle_bg" />
 
         <TextView
             android:id="@+id/click_to_login"
-            style="@style/text.gray.16.bold"
+            style="@style/text.16.gray.bold"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:layout_marginBottom="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginRight="8dp"
             android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginBottom="8dp"
             android:layout_toEndOf="@id/avatar"
             android:layout_toRightOf="@id/avatar"
             android:singleLine="true"
@@ -63,7 +63,7 @@
             app:layout_constraintHorizontal_bias="0.057"
             app:layout_constraintStart_toEndOf="@+id/avatar"
             app:layout_constraintTop_toTopOf="@+id/avatar"
-            app:layout_constraintVertical_bias="0.54"/>
+            app:layout_constraintVertical_bias="0.54" />
 
         <LinearLayout
             android:id="@+id/login_layout"
@@ -81,7 +81,7 @@
                 android:layout_height="wrap_content"
                 android:singleLine="true"
                 android:textColor="@color/white"
-                android:textSize="16sp"/>
+                android:textSize="16sp" />
 
             <TextView
                 android:id="@+id/tv_phone"
@@ -89,28 +89,28 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
                 android:textColor="@color/white"
-                android:textSize="14sp"/>
+                android:textSize="14sp" />
         </LinearLayout>
 
         <!--去赚取暂时隐藏-->
         <TextView
             android:id="@+id/mine_assets"
-            style="@style/text.gray.16.mine"
+            style="@style/text.16.gray.mine"
             android:layout_width="wrap_content"
             android:layout_marginTop="@dimen/top_padding_different_module"
-            android:drawableLeft="@drawable/shape_default_circle_bg"
             android:drawableStart="@drawable/shape_default_circle_bg"
+            android:drawableLeft="@drawable/shape_default_circle_bg"
             android:visibility="gone"
             app:layout_constraintBottom_toTopOf="@+id/line5"
             app:layout_constraintEnd_toStartOf="@+id/go_to_earn"
             app:layout_constraintHorizontal_chainStyle="spread_inside"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/avatar"/>
+            app:layout_constraintTop_toBottomOf="@+id/avatar" />
 
         <!--去赚取暂时隐藏-->
         <TextView
             android:id="@+id/go_to_earn"
-            style="@style/text.gray.16.mine"
+            style="@style/text.16.gray.mine"
             android:layout_width="wrap_content"
             android:drawableEnd="@drawable/ic_next"
             android:drawableRight="@drawable/ic_next"
@@ -118,7 +118,7 @@
             android:visibility="gone"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/mine_assets"
-            app:layout_constraintTop_toTopOf="@+id/mine_assets"/>
+            app:layout_constraintTop_toTopOf="@+id/mine_assets" />
 
         <!--去赚取暂时隐藏-->
         <View
@@ -126,80 +126,80 @@
             style="@style/line.gray_tran"
             android:visibility="invisible"
             app:layout_constraintBottom_toTopOf="@+id/mine_group"
-            app:layout_constraintTop_toBottomOf="@+id/mine_about"/>
+            app:layout_constraintTop_toBottomOf="@+id/mine_about" />
 
         <TextView
             android:id="@+id/mine_group"
-            style="@style/text.gray.16.mine"
+            style="@style/text.16.gray.mine"
             android:layout_marginTop="@dimen/top_padding_different_module"
-            android:drawableLeft="@drawable/shape_default_circle_bg"
             android:drawableStart="@drawable/shape_default_circle_bg"
+            android:drawableLeft="@drawable/shape_default_circle_bg"
             android:text="邀请好友"
             app:layout_constraintBottom_toTopOf="@id/tv_media_type"
-            app:layout_constraintTop_toBottomOf="@+id/line5"/>
+            app:layout_constraintTop_toBottomOf="@+id/line5" />
 
 
         <View
             android:id="@+id/tv_media_type"
             style="@style/line.gray_tran"
             app:layout_constraintBottom_toTopOf="@+id/mine_cooperative"
-            app:layout_constraintTop_toBottomOf="@+id/mine_group"/>
+            app:layout_constraintTop_toBottomOf="@+id/mine_group" />
 
 
         <TextView
             android:id="@+id/mine_cooperative"
-            style="@style/text.gray.16.mine"
-            android:drawableLeft="@drawable/shape_default_circle_bg"
+            style="@style/text.16.gray.mine"
             android:drawableStart="@drawable/shape_default_circle_bg"
+            android:drawableLeft="@drawable/shape_default_circle_bg"
             android:text="收藏"
             app:layout_constraintBottom_toTopOf="@+id/line2"
-            app:layout_constraintTop_toBottomOf="@+id/tv_media_type"/>
+            app:layout_constraintTop_toBottomOf="@+id/tv_media_type" />
 
         <View
             android:id="@+id/line2"
             style="@style/line.gray_tran"
             app:layout_constraintBottom_toTopOf="@+id/mine_help"
-            app:layout_constraintTop_toBottomOf="@+id/mine_cooperative"/>
+            app:layout_constraintTop_toBottomOf="@+id/mine_cooperative" />
 
 
         <TextView
             android:id="@+id/mine_help"
-            style="@style/text.gray.16.mine"
-            android:drawableLeft="@drawable/shape_default_circle_bg"
+            style="@style/text.16.gray.mine"
             android:drawableStart="@drawable/shape_default_circle_bg"
+            android:drawableLeft="@drawable/shape_default_circle_bg"
             android:text="设置"
             app:layout_constraintBottom_toTopOf="@+id/line3"
-            app:layout_constraintTop_toBottomOf="@+id/line2"/>
+            app:layout_constraintTop_toBottomOf="@+id/line2" />
 
         <View
             android:id="@+id/line3"
             style="@style/line.gray_tran"
             app:layout_constraintBottom_toTopOf="@+id/mine_settings"
-            app:layout_constraintTop_toBottomOf="@+id/mine_help"/>
+            app:layout_constraintTop_toBottomOf="@+id/mine_help" />
 
         <TextView
             android:id="@+id/mine_settings"
-            style="@style/text.gray.16.mine"
-            android:drawableLeft="@drawable/shape_default_circle_bg"
+            style="@style/text.16.gray.mine"
             android:drawableStart="@drawable/shape_default_circle_bg"
+            android:drawableLeft="@drawable/shape_default_circle_bg"
             android:text="设置"
             app:layout_constraintBottom_toTopOf="@+id/line4"
-            app:layout_constraintTop_toBottomOf="@+id/line3"/>
+            app:layout_constraintTop_toBottomOf="@+id/line3" />
 
         <View
             android:id="@+id/line4"
             style="@style/line.gray_tran"
             app:layout_constraintBottom_toTopOf="@+id/mine_about"
-            app:layout_constraintTop_toBottomOf="@+id/mine_settings"/>
+            app:layout_constraintTop_toBottomOf="@+id/mine_settings" />
 
         <TextView
             android:id="@+id/mine_about"
-            style="@style/text.gray.16.mine"
-            android:drawableLeft="@drawable/shape_default_circle_bg"
+            style="@style/text.16.gray.mine"
             android:drawableStart="@drawable/shape_default_circle_bg"
+            android:drawableLeft="@drawable/shape_default_circle_bg"
             android:text="关于我们"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/line4"/>
+            app:layout_constraintTop_toBottomOf="@+id/line4" />
 
     </android.support.constraint.ConstraintLayout>
 </ScrollView>

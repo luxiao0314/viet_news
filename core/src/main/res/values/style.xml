@@ -371,6 +371,27 @@
         <attr name="titlebar_isLineVisiable" format="boolean" />
     </declare-styleable>
 
+    <style name="titleText">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">10dp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:layout_gravity">center_horizontal</item>
+        <item name="android:layout_centerHorizontal">true</item>
+    </style>
+
+    <style name="text.16.gray.mine">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:drawablePadding">@dimen/page_padding_left</item>
+        <item name="android:paddingTop">15dp</item>
+        <item name="android:paddingBottom">15dp</item>
+        <item name="android:paddingLeft">@dimen/page_padding_left</item>
+        <item name="android:paddingRight">@dimen/page_padding_right</item>
+        <item name="android:textStyle">bold</item>
+    </style>
 
     <declare-styleable name="BehaviorBar">
         <attr name="like_number" format="reference|integer" />
