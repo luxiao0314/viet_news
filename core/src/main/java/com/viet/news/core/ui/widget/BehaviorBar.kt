@@ -167,7 +167,7 @@ class BehaviorBar @JvmOverloads constructor(context: Context, attrs: AttributeSe
      * @param count 数量
      */
     @SuppressLint("ResourceType")
-    fun setLikedStatus(status: Boolean, count: Int) {
+    fun setLikedStatus(status: Boolean, count: Int): BehaviorBar {
         tv_like_num.text = count.toString()
         isLiked = status
         likedNum = count
@@ -176,13 +176,14 @@ class BehaviorBar @JvmOverloads constructor(context: Context, attrs: AttributeSe
         } else {
             setStatus(tv_like_num, R.drawable.ic_like, R.color.behavior_normal)
         }
+        return this
     }
 
     /**
      * 设置收藏初始状态
      */
     @SuppressLint("ResourceType")
-    fun setCollectedStatus(status: Boolean, count: Int) {
+    fun setCollectedStatus(status: Boolean, count: Int): BehaviorBar {
         tv_collect_num.text = count.toString()
         isCollected = status
         collectedNum = count
@@ -191,6 +192,7 @@ class BehaviorBar @JvmOverloads constructor(context: Context, attrs: AttributeSe
         } else {
             setStatus(tv_collect_num, R.drawable.ic_collect, R.color.behavior_normal)
         }
+        return this
     }
 
     /**
@@ -199,7 +201,7 @@ class BehaviorBar @JvmOverloads constructor(context: Context, attrs: AttributeSe
      * @param count 数量
      */
     @SuppressLint("ResourceType")
-    fun setPraiseStatus(status: Boolean, count: Int) {
+    fun setPraiseStatus(status: Boolean, count: Int): BehaviorBar {
         tv_praise_num.text = count.toString()
         isPraised = status
         praisedNum = count
@@ -208,6 +210,7 @@ class BehaviorBar @JvmOverloads constructor(context: Context, attrs: AttributeSe
         } else {
             setStatus(tv_praise_num, R.drawable.ic_praise, R.color.behavior_normal)
         }
+        return this
     }
 
     /**
