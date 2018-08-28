@@ -10,7 +10,7 @@ import android.support.v7.app.AppCompatActivity
 import android.view.View
 import android.widget.ImageView
 import cn.magicwindow.channelwidget.entity.ChannelBean
-import com.viet.news.ui.fragment.AddChannelFragment
+import cn.magicwindow.channelwidget.AddChannelFragment
 import cn.magicwindow.channelwidget.widget.ChannelTabLayout
 import com.viet.news.R
 import com.viet.news.ui.fragment.LazyFragment
@@ -21,7 +21,8 @@ import com.viet.news.ui.fragment.TwoFragment
 import java.util.ArrayList
 import java.util.HashMap
 
-class ChannelActivity : AppCompatActivity(), View.OnClickListener {
+class ChannelActivity : AppCompatActivity(), View.OnClickListener, AddChannelFragment.DataChangeListener {
+
     private var tabLayout: ChannelTabLayout? = null
     private var mViewPager: ViewPager? = null
     private var myViewPagerAdapter: MyViewPager? = null
@@ -63,11 +64,13 @@ class ChannelActivity : AppCompatActivity(), View.OnClickListener {
         tabLayout!!.setDataList(mDataList!!)
         mViewPager!!.adapter = myViewPagerAdapter
         tabLayout!!.setupWithViewPager(mViewPager)
-        mAddChannelFragment = AddChannelFragment()
-
+        val myStrs = arrayOf("热门", "关注", "技术", "科技", "商业", "互联网", "涨知识", "时尚").toList()
+        val recStrs = arrayOf("设计", "天文", "美食", "星座", "历史", "消费维权", "体育", "明星八卦").toList()
+        mAddChannelFragment = AddChannelFragment(myStrs, recStrs)
+        mAddChannelFragment!!.setOnDataChangeListener(this)
     }
 
-    fun notifyTabDataChange(list: List<ChannelBean>, position: Int) {
+    override fun onDataChanged(list: List<ChannelBean>, position: Int) {
         mDataList!!.clear()
         mDataList!!.addAll(list)
         myViewPagerAdapter!!.notifyDataSetChanged()
