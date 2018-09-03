@@ -1,5 +1,8 @@
 package com.viet.news.core.ext
 
+import android.app.Activity
+import android.app.Application
+import android.os.Bundle
 import android.support.v4.view.ViewPager
 import android.view.View
 
@@ -38,7 +41,7 @@ fun <T : View> T.click(block: (T) -> Unit) = setOnClickListener {
  * @param block: (T) -> Unit 函数
  * @return Unit
  */
-fun <T : View> T.clickWithTrigger(time: Long = 600, block: (T) -> Unit){
+fun <T : View> T.clickWithTrigger(time: Long = 600, block: (T) -> Unit) {
     triggerDelay = time
     setOnClickListener {
         if (clickEnable()) {
@@ -69,7 +72,7 @@ private fun <T : View> T.clickEnable(): Boolean {
     return flag
 }
 
-fun ViewPager.setOnPageChangeListener(init: PageChangeDelegate.() -> Unit){
+fun ViewPager.setOnPageChangeListener(init: PageChangeDelegate.() -> Unit) {
     val pageChangeDelegate = PageChangeDelegate()
     pageChangeDelegate.init()
     setOnPageChangeListener(pageChangeDelegate)
@@ -86,10 +89,55 @@ class PageChangeDelegate : ViewPager.OnPageChangeListener {
     }
 
     override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {
-        onPageScrolled?.let { it(position,positionOffset,positionOffsetPixels) }
+        onPageScrolled?.let { it(position, positionOffset, positionOffsetPixels) }
     }
 
     override fun onPageSelected(position: Int) {
         onPageSelected?.let { it(position) }
     }
+}
+
+fun Application.registerActivityLifecycleCallbacks(init: RegisterActivityLifecycleCallbacks.() -> Unit) {
+    val callback = RegisterActivityLifecycleCallbacks()
+    callback.init()
+    registerActivityLifecycleCallbacks(callback)
+}
+
+class RegisterActivityLifecycleCallbacks : Application.ActivityLifecycleCallbacks {
+    var onActivityPaused: ((p0: Activity?) -> Unit)? = null
+    var onActivityResumed: ((p0: Activity?) -> Unit)? = null
+    var onActivityStarted: ((p0: Activity?) -> Unit)? = null
+    var onActivityDestroyed: ((p0: Activity?) -> Unit)? = null
+    var onActivitySaveInstanceState: ((p0: Activity?, p1: Bundle?) -> Unit)? = null
+    var onActivityStopped: ((p0: Activity?) -> Unit)? = null
+    var onActivityCreated: ((p0: Activity?, p1: Bundle?) -> Unit)? = null
+
+    override fun onActivityPaused(p0: Activity?) {
+        onActivityPaused?.let { it(p0) }
+    }
+
+    override fun onActivityResumed(p0: Activity?) {
+        onActivityResumed?.let { it(p0) }
+    }
+
+    override fun onActivityStarted(p0: Activity?) {
+        onActivityStarted?.let { it(p0) }
+    }
+
+    override fun onActivityDestroyed(p0: Activity?) {
+        onActivityDestroyed?.let { it(p0) }
+    }
+
+    override fun onActivitySaveInstanceState(p0: Activity?, p1: Bundle?) {
+        onActivitySaveInstanceState?.let { it(p0, p1) }
+    }
+
+    override fun onActivityStopped(p0: Activity?) {
+        onActivityStopped?.let { it(p0) }
+    }
+
+    override fun onActivityCreated(p0: Activity?, p1: Bundle?) {
+        onActivityCreated?.let { it(p0, p1) }
+    }
+
 }

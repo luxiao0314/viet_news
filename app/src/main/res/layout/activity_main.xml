@@ -5,11 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.viet.news.ui.MainActivity">
-    <Button
-        android:id="@+id/mBtnChannel"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="频道测试"/>
 
     <fragment
         android:id="@+id/nav_host_fragment"

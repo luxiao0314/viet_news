@@ -3,14 +3,19 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
-        android:id="@+id/navigation_home"
+        android:id="@+id/navigation_find"
         android:icon="@drawable/ic_home"
-        android:title="@string/title_home" />
+        android:title="@string/title_find" />
 
     <item
-        android:id="@+id/navigation_people"
+        android:id="@+id/navigation_follow"
         android:icon="@drawable/ic_group"
-        android:title="@string/title_people" />
+        android:title="@string/title_follow" />
+
+    <item
+        android:id="@+id/navigation_task"
+        android:icon="@drawable/ic_group"
+        android:title="@string/title_task" />
 
     <item
         android:id="@+id/navigation_mine"

@@ -2,9 +2,12 @@
     <string name="app_name">NewsApp</string>
     <string name="attribution">powered by NewsAPI.org</string>
     <!--Main Activity-->
-    <string name="title_home">Home</string>
+    <string name="title_find">Find</string>
     <string name="title_people">Mine</string>
     <string name="add">频道</string>
+    <string name="title_follow">Follow</string>
+    <string name="title_task">Task</string>
+
     <string-array name="news_categories">
         <item>business</item>
         <item>entertainment</item>
