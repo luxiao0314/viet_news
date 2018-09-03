@@ -4,13 +4,16 @@ import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
+import android.support.v7.widget.RecyclerView
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AbsListView.OnScrollListener.SCROLL_STATE_TOUCH_SCROLL
 import com.viet.news.R
 import com.viet.news.adapter.NewsArticleAdapter
 import com.viet.news.adapter.NewsSourceAdapter
+import com.viet.news.core.ui.BaseFragment
 import com.viet.news.core.ui.InjectFragment
 import com.viet.news.db.SourceEntity
 import com.viet.news.viewmodel.NewsViewModel
@@ -42,6 +45,14 @@ class NewsFragment : InjectFragment(), (SourceEntity) -> Unit {
         newsSourceAdapter = NewsSourceAdapter(this, sourceList)
         recyclerView.adapter = newsSourceAdapter
         recyclerView.layoutManager = LinearLayoutManager(activity)
+
+        recyclerView.setOnScrollListener(object :RecyclerView.OnScrollListener(){
+            override fun onScrollStateChanged(recyclerView: RecyclerView?, newState: Int) {
+                if (newState == SCROLL_STATE_TOUCH_SCROLL) {
+                    newsSourceAdapter.closeAllItem();
+                }
+            }
+        })
 
         newsViewModel.getNewsSource(null, null, null)
                 .observe(this, Observer { newsSource ->
