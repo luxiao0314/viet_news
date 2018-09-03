@@ -1,9 +1,12 @@
 package com.viet.news.core.ui
 
 import android.content.Context
+import android.os.Build
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.view.MenuItem
+import com.jaeger.library.StatusBarUtil
+import com.safframework.utils.support
 import com.viet.news.core.utils.LanguageUtil
 
 
@@ -13,8 +16,16 @@ abstract class BaseActivity : AppCompatActivity() {
         //		AndroidInjection.inject(this);
         super.onCreate(savedInstanceState)
         LanguageUtil.checkLocalLanguage(this)
+        setStatusBar()
     }
 
+    protected open fun setStatusBar() {
+        support(Build.VERSION_CODES.M, {
+            StatusBarUtil.setTranslucentForImageViewInFragment(this, 0, null)
+        }, {
+            StatusBarUtil.setTranslucentForImageViewInFragment(this, 30, null)
+        })
+    }
 
     override fun attachBaseContext(newBase: Context) {
         super.attachBaseContext(LanguageUtil.setLocal(newBase))

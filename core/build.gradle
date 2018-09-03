@@ -80,6 +80,10 @@ dependencies {
     api("com.safframework.log:saf-log:$rootProject.saf_log", {
         exclude group: "com.android.support", module: "appcompat-v7"
     })
+    api("com.safframework.utils:saf-kotlin-utils:${rootProject.saf_kotlin_utils}", {
+        exclude group: 'com.android.support', module: 'appcompat-v7'
+        exclude group: 'tony-common', module: 'tony-common-utils'
+    })
     //facebook
     api 'com.facebook.android:facebook-android-sdk:[4,5)'
 
@@ -90,6 +94,10 @@ dependencies {
     kapt "android.arch.lifecycle:compiler:$rootProject.lifecycle"
 
     api 'com.flyco.tablayout:FlycoTabLayout_Lib:2.1.2@aar'
+    //沉浸模式状态栏
+    api('com.jaeger.statusbarutil:library:1.5.0', {
+        exclude group: 'com.android.support', module: 'design'
+    })
 
     debugApi 'com.squareup.leakcanary:leakcanary-android:' + rootProject.leakcanary
     releaseApi 'com.squareup.leakcanary:leakcanary-android-no-op:' + rootProject.leakcanary

@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <dimen name="statusbar_view_height" tools:keep="@dimen/statusbar_view_height">25dp</dimen>
+</resources>
