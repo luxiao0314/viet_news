@@ -22,7 +22,7 @@ import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentActivity
 import android.support.v4.app.FragmentManager
 import com.viet.news.core.di.FragmentInjectable
-import com.viet.news.core.ext.registerActivityLifecycleCallbacks
+import com.viet.news.core.dsl.registerActivityLifecycleCallbacks
 import dagger.android.AndroidInjection
 import dagger.android.support.AndroidSupportInjection
 import dagger.android.support.HasSupportFragmentInjector

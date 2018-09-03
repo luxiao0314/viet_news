@@ -20,7 +20,7 @@
                       </LayoutPositions>
                     </value>
                   </entry>
-                  <entry key="navigation_home">
+                  <entry key="navigation_find">
                     <value>
                       <LayoutPositions>
                         <option name="myPosition">
@@ -41,13 +41,13 @@
                       </LayoutPositions>
                     </value>
                   </entry>
-                  <entry key="navigation_mine">
+                  <entry key="navigation_follow">
                     <value>
                       <LayoutPositions>
                         <option name="myPosition">
                           <Point>
-                            <option name="x" value="377" />
-                            <option name="y" value="254" />
+                            <option name="x" value="272" />
+                            <option name="y" value="-46" />
                           </Point>
                         </option>
                         <option name="myPositions">
@@ -62,13 +62,13 @@
                       </LayoutPositions>
                     </value>
                   </entry>
-                  <entry key="navigation_people">
+                  <entry key="navigation_mine">
                     <value>
                       <LayoutPositions>
                         <option name="myPosition">
                           <Point>
-                            <option name="x" value="272" />
-                            <option name="y" value="-46" />
+                            <option name="x" value="377" />
+                            <option name="y" value="254" />
                           </Point>
                         </option>
                         <option name="myPositions">

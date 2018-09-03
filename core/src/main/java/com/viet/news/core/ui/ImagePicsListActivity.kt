@@ -19,7 +19,7 @@ import com.bumptech.glide.request.transition.Transition
 import com.github.chrisbanes.photoview.OnViewTapListener
 import com.github.chrisbanes.photoview.PhotoView
 import com.viet.news.core.R
-import com.viet.news.core.ext.setOnPageChangeListener
+import com.viet.news.core.dsl.setOnPageChangeListener
 import com.viet.news.core.ui.progress.CircleProgressView
 import com.viet.news.core.ui.progress.GlideImageLoader
 import kotlinx.android.synthetic.main.image_pics_list_layout.*
