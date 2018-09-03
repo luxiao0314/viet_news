@@ -6,11 +6,12 @@ import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentStatePagerAdapter
 import android.util.Log
+import javax.inject.Inject
 
 /**
  * Created by aaron on 02/11/2017.
  */
-class TabFragmentAdapter constructor(fm: FragmentManager?) : FragmentStatePagerAdapter(fm) {
+class TabFragmentAdapter @Inject constructor(fm: FragmentManager?) : FragmentStatePagerAdapter(fm) {
 
     companion object {
         private const val TAG = "TabFragmentAdapter"
@@ -66,28 +67,28 @@ class TabFragmentAdapter constructor(fm: FragmentManager?) : FragmentStatePagerA
 
 
     override fun getItem(position: Int): Fragment? {
-        if (fragmentList.size > 0) {
-            return fragmentList[position]
+        return if (fragmentList.size > 0) {
+            fragmentList[position]
         } else {
-            return null
+            null
         }
     }
 
     override fun getCount(): Int {
-        if (fragmentList.size > 0) {
-            return fragmentList.size
+        return if (fragmentList.size > 0) {
+            fragmentList.size
         } else {
-            return 0
+            0
         }
     }
 
     override fun getPageTitle(position: Int): CharSequence? {
 //        if (Preconditions.check(titleList)) {
-        if (titleList.size > 0) {
+        return if (titleList.size > 0) {
             Log.e(TAG, "page title:" + titleList[position])
-            return titleList[position]
+            titleList[position]
         } else {
-            return null
+            null
         }
     }
 }

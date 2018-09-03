@@ -1,5 +1,6 @@
 package cn.magicwindow.channelwidget
 
+
 import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Context
@@ -7,17 +8,15 @@ import android.os.Bundle
 import android.support.v4.app.DialogFragment
 import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.RecyclerView
-import android.view.*
-import cn.magicwindow.utils.GridItemDecoration
-
-
-import cn.magicwindow.channelwidget.viewholder.IChannelType
-import cn.magicwindow.channelwidget.entity.ChannelBean
-
-
-import java.util.ArrayList
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import cn.magicwindow.channelwidget.adapter.ChannelAdapter
+import cn.magicwindow.channelwidget.entity.ChannelBean
+import cn.magicwindow.channelwidget.viewholder.IChannelType
 import cn.magicwindow.commonui.R
+import cn.magicwindow.utils.GridItemDecoration
+import java.util.*
 
 @SuppressLint("ValidFragment")
 /**
@@ -30,7 +29,6 @@ class AddChannelFragment(private val myStrs: List<String>, private val recStrs: 
     private var channelActivity: Activity? = null
     private var mMyChannelList: MutableList<ChannelBean>? = null
     private var mRecChannelList: MutableList<ChannelBean>? = null
-
 
     override fun onAttach(context: Context?) {
         super.onAttach(context)

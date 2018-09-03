@@ -15,7 +15,7 @@ class FindViewModel : BaseViewModel() {
     val myStrs = listOf("推荐", "热点", "军事", "图片", "社会", "娱乐", "科技", "体育", "深圳", "财经")
     val recStrs = listOf("设计", "天文", "美食", "星座", "历史", "消费维权", "体育", "明星八卦")
 
-    fun setData() {
+    init {
         for (i in 0..9) {
             val channelBean = ChannelBean()
             channelBean.tabName = myStrs[i]
@@ -23,5 +23,4 @@ class FindViewModel : BaseViewModel() {
             dataList.add(channelBean)
         }
     }
-
 }

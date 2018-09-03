@@ -8,14 +8,17 @@ import com.viet.news.core.delegate.viewModelDelegate
 import com.viet.news.core.domain.Config
 import com.viet.news.core.dsl.addOnPageChangeListener
 import com.viet.news.core.dsl.setOnTabSelectListener
-import com.viet.news.core.ui.BaseActivity
+import com.viet.news.core.ui.InjectActivity
 import com.viet.news.core.ui.TabFragmentAdapter
 import com.viet.news.core.utils.LanguageUtil
 import com.viet.news.viewmodel.MainViewModel
 import kotlinx.android.synthetic.main.activity_main.*
+import javax.inject.Inject
 
-class MainActivity : BaseActivity() {
+class MainActivity : InjectActivity() {
 
+    @Inject
+    internal lateinit var pagerAdapter: TabFragmentAdapter
     private val model: MainViewModel by viewModelDelegate(MainViewModel::class)
     var fragmentType: Int = 0
 
@@ -26,11 +29,10 @@ class MainActivity : BaseActivity() {
     }
 
     private fun initView() {
-        val mSectionsPagerAdapter = TabFragmentAdapter(supportFragmentManager)
-        mSectionsPagerAdapter.setFragment(model.fragments)
-        mSectionsPagerAdapter.setTitles(model.titles)
-        mSectionsPagerAdapter.notifyDataSetChanged()
-        container.adapter = mSectionsPagerAdapter
+        pagerAdapter.setFragment(model.fragments)
+        pagerAdapter.setTitles(model.titles)
+        pagerAdapter.notifyDataSetChanged()
+        container.adapter = pagerAdapter
         bottomBar.setTabData(model.tabEntities)
 
         container.offscreenPageLimit = 1//缓存1个界面
