@@ -48,6 +48,8 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation project(path: ':core')
     implementation project(path: ':mine')
+    implementation project(path: ':follow')
+    implementation project(path: ':task')
     implementation project(path: ':commonUI')
 
     testImplementation 'junit:junit:4.12'

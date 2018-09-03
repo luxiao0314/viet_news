@@ -11,7 +11,9 @@
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/commonUI" />
             <option value="$PROJECT_DIR$/core" />
+            <option value="$PROJECT_DIR$/follow" />
             <option value="$PROJECT_DIR$/mine" />
+            <option value="$PROJECT_DIR$/task" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />

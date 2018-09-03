@@ -1,1 +1,1 @@
-include ':app', ':core', ':mine',":commonUI"
+include ':app', ':core', ':mine', ':task', ':follow',":commonUI"
