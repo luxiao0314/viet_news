@@ -41,7 +41,6 @@
         <activity android:name=".ui.activity.MainActivity"
             android:launchMode="singleTask"/>
         <activity android:name="com.viet.mine.activity.LoginActivity"/>
-        <activity android:name=".ui.activity.ChannelActivity" />
 
     </application>
 

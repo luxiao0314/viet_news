@@ -18,7 +18,7 @@ class OneFragment : LazyFragment() {
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        mContainerView = inflater.inflate(R.layout.fragment_task, container, false)
+        mContainerView = inflater.inflate(R.layout.fragment_one, container, false)
         return mContainerView
     }
 

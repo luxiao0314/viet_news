@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#e0e0e0"
+    android:orientation="vertical">
+
+
+    <RelativeLayout
+        android:id="@+id/layout_hide"
+        android:layout_width="match_parent"
+        android:layout_height="25dp"
+        android:background="@drawable/selector_item_pressed"
+        android:visibility="gone">
+
+        <ImageView
+            android:id="@+id/keyboard_hide"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_centerHorizontal="true"
+            android:padding="4dp"
+            android:src="@drawable/ic_arrow_down"
+            android:tag="hide" />
+
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/keyboard_1"
+            style="@style/Keyboard"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:tag="1"
+            android:text="1" />
+
+        <View
+            android:layout_width="1px"
+            android:layout_height="match_parent" />
+
+        <TextView
+            android:id="@+id/keyboard_2"
+            style="@style/Keyboard"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:tag="2"
+            android:text="2" />
+
+        <View
+            android:layout_width="1px"
+            android:layout_height="match_parent" />
+
+        <TextView
+            android:id="@+id/keyboard_3"
+            style="@style/Keyboard"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:tag="3"
+            android:text="3" />
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/keyboard_4"
+            style="@style/Keyboard"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:tag="4"
+            android:text="4" />
+
+        <View
+            android:layout_width="1px"
+            android:layout_height="match_parent" />
+
+        <TextView
+            android:id="@+id/keyboard_5"
+            style="@style/Keyboard"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:tag="5"
+            android:text="5" />
+
+        <View
+            android:layout_width="1px"
+            android:layout_height="match_parent" />
+
+        <TextView
+            android:id="@+id/keyboard_6"
+            style="@style/Keyboard"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:tag="6"
+            android:text="6" />
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/keyboard_7"
+            style="@style/Keyboard"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:tag="7"
+            android:text="7" />
+
+        <View
+            android:layout_width="1px"
+            android:layout_height="match_parent" />
+
+        <TextView
+            android:id="@+id/keyboard_8"
+            style="@style/Keyboard"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:tag="8"
+            android:text="8" />
+
+        <View
+            android:layout_width="1px"
+            android:layout_height="match_parent" />
+
+        <TextView
+            android:id="@+id/keyboard_9"
+            style="@style/Keyboard"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:tag="9"
+            android:text="9" />
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1" />
+
+        <View
+            android:layout_width="1px"
+            android:layout_height="match_parent" />
+
+        <TextView
+            android:id="@+id/keyboard_0"
+            style="@style/Keyboard"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:tag="0"
+            android:text="0" />
+
+        <View
+            android:layout_width="1px"
+            android:layout_height="match_parent" />
+
+        <ImageView
+            android:id="@+id/keyboard_delete"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:paddingLeft="53dp"
+            android:paddingRight="53dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/ic_close"
+            android:tag="delete" />
+
+    </LinearLayout>
+
+</LinearLayout>

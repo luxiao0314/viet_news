@@ -422,4 +422,33 @@
         <item name="android:adjustViewBounds">true</item>
     </style>
 
+
+    <declare-styleable name="CodeView">
+        <attr name="length" format="integer" />
+        <attr name="borderColor" format="color" />
+        <attr name="borderSelectColor" format="color" />
+        <attr name="borderWidth" format="dimension" />
+        <attr name="dividerColor" format="color" />
+        <attr name="dividerWidth" format="dimension" />
+        <attr name="padding" format="dimension" />
+        <attr name="code" format="string" />
+        <attr name="codeColor" format="color" />
+        <attr name="pointRadius" format="dimension" />
+        <attr name="textSize" format="dimension" />
+        <attr name="showType" format="integer" />
+        <attr name="pwdType" format="enum">
+            <enum name="word" value="1" />
+            <enum name="password" value="2" />
+        </attr>
+    </declare-styleable>
+
+    <style name="Keyboard">
+        <item name="android:textSize">24sp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:background">@drawable/keyboard_background</item>
+        <item name="android:textColor">#353535</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+
 </resources>
