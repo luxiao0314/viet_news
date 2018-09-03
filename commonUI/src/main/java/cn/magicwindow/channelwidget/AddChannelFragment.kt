@@ -1,5 +1,7 @@
-package com.viet.news.ui.fragment
+package cn.magicwindow.channelwidget
 
+import android.annotation.SuppressLint
+import android.app.Activity
 import android.content.Context
 import android.os.Bundle
 import android.support.v4.app.DialogFragment
@@ -9,33 +11,33 @@ import android.view.*
 import cn.magicwindow.utils.GridItemDecoration
 
 
-import cn.magicwindow.channelwidget.callback.APPConst
-import cn.magicwindow.channelwidget.callback.IChannelType
+import cn.magicwindow.channelwidget.viewholder.IChannelType
 import cn.magicwindow.channelwidget.entity.ChannelBean
 
 
 import java.util.ArrayList
 import cn.magicwindow.channelwidget.adapter.ChannelAdapter
-import com.viet.news.R
-import com.viet.news.ui.ChannelActivity
+import cn.magicwindow.commonui.R
 
+@SuppressLint("ValidFragment")
 /**
  * @author null
  */
-class AddChannelFragment : DialogFragment(), ChannelAdapter.ChannelItemClickListener {
+class AddChannelFragment(private val myStrs: List<String>, private val recStrs: List<String>) : DialogFragment(), ChannelAdapter.ChannelItemClickListener {
     private var mContainerView: View? = null
     private var mRecyclerView: RecyclerView? = null
     private var mRecyclerAdapter: ChannelAdapter? = null
-    private var channelActivity: ChannelActivity? = null
-    private val myStrs = arrayOf("热门", "关注", "技术", "科技", "商业", "互联网", "涨知识", "时尚")
-    private val recStrs = arrayOf("设计", "天文", "美食", "星座", "历史", "消费维权", "体育", "明星八卦")
+    private var channelActivity: Activity? = null
     private var mMyChannelList: MutableList<ChannelBean>? = null
     private var mRecChannelList: MutableList<ChannelBean>? = null
+
+
     override fun onAttach(context: Context?) {
         super.onAttach(context)
-        if (context is ChannelActivity)
+        if (context is Activity)
             this.channelActivity = context
     }
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -64,23 +66,24 @@ class AddChannelFragment : DialogFragment(), ChannelAdapter.ChannelItemClickList
             }
         }
         mRecyclerView!!.layoutManager = gridLayout
-        mRecyclerView!!.addItemDecoration(GridItemDecoration(APPConst.ITEM_SPACE))
+        mRecyclerView!!.addItemDecoration(GridItemDecoration(5))
         initData()
         mRecyclerAdapter = ChannelAdapter(context!!, mRecyclerView!!, mMyChannelList!!, mRecChannelList!!, 1, 1)
         mRecyclerAdapter!!.setChannelItemClickListener(this)
         mRecyclerView!!.adapter = mRecyclerAdapter
     }
 
+
     private fun initData() {
         mMyChannelList = ArrayList()
-        for (i in 0..7) {
+        for (i in 0..(myStrs.size - 1)) {
             val channelBean = ChannelBean()
             channelBean.tabName = myStrs[i]
             channelBean.tabType = if (i == 0) 0 else if (i == 1) 1 else 2
             mMyChannelList!!.add(channelBean)
         }
         mRecChannelList = ArrayList()
-        for (i in 0..7) {
+        for (i in 0..(recStrs.size - 1)) {
             val channelBean = ChannelBean()
             channelBean.tabName = recStrs[i]
             channelBean.tabType = 2
@@ -90,9 +93,20 @@ class AddChannelFragment : DialogFragment(), ChannelAdapter.ChannelItemClickList
     }
 
     override fun onChannelItemClick(list: List<ChannelBean>, position: Int) {
-        if (channelActivity != null) {
-            channelActivity!!.notifyTabDataChange(list, position)
+        listener?.let {
+            it.onDataChanged(list, position)
             dismiss()
         }
     }
+
+    interface DataChangeListener {
+        fun onDataChanged(list: List<ChannelBean>, position: Int)
+    }
+
+    fun setOnDataChangeListener(listener: DataChangeListener) {
+        this.listener = listener
+    }
+
+    var listener: DataChangeListener? = null
+
 }

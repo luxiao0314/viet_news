@@ -1,4 +1,4 @@
-package cn.magicwindow.channelwidget.widget
+package cn.magicwindow.channelwidget.viewholder
 
 import android.annotation.SuppressLint
 import android.graphics.Color
@@ -11,7 +11,6 @@ import android.widget.ImageView
 import android.widget.TextView
 
 import cn.magicwindow.channelwidget.callback.EditModeHandler
-import cn.magicwindow.channelwidget.callback.IChannelType
 import cn.magicwindow.channelwidget.entity.ChannelBean
 
 import cn.magicwindow.commonui.R
@@ -22,7 +21,7 @@ import cn.magicwindow.channelwidget.adapter.ChannelAdapter
  * @author null
  * 我的频道 ViewHolder
  */
-class MyChannelWidget(private val editModeHandler: EditModeHandler?) : IChannelType {
+class MyChannelViewHolder(private val editModeHandler: EditModeHandler?) : IChannelType {
     private var mRecyclerView: RecyclerView? = null
     override fun createViewHolder(mInflater: LayoutInflater, parent: ViewGroup): ChannelAdapter.ChannelViewHolder {
         mRecyclerView = parent as RecyclerView
@@ -33,17 +32,17 @@ class MyChannelWidget(private val editModeHandler: EditModeHandler?) : IChannelT
     override fun bindViewHolder(holder: ChannelAdapter.ChannelViewHolder, position: Int, data: ChannelBean?) {
         val myHolder = holder as MyChannelHeaderViewHolder
         data?.let {
-            myHolder.mChannelTitleTv.text = data.tabName
-            val textSize = if (data.tabName!!.length >= 4) 14 else 16
+            myHolder.mChannelTitleTv.text = it.tabName
+            val textSize = if (it.tabName!!.length >= 4) 14 else 16
             myHolder.mChannelTitleTv.setTextSize(TypedValue.COMPLEX_UNIT_SP, textSize.toFloat())
-            myHolder.mChannelTitleTv.setBackgroundResource(if (data.tabType == 0 || data.tabType == 1)
+            myHolder.mChannelTitleTv.setBackgroundResource(if (it.tabType == 0 || it.tabType == 1)
                 R.drawable.channel_fixed_bg_shape
             else
                 R.drawable.channel_my_bg_shape)
-            myHolder.mChannelTitleTv.setTextColor(if (data.tabType == 0)
+            myHolder.mChannelTitleTv.setTextColor(if (it.tabType == 0)
                 Color.RED
-            else if (data.tabType == 1) Color.parseColor("#666666") else Color.parseColor("#333333"))
-            myHolder.mDeleteIv.visibility = if (data.editStatus == 1) View.VISIBLE else View.INVISIBLE
+            else if (it.tabType == 1) Color.parseColor("#666666") else Color.parseColor("#333333"))
+            myHolder.mDeleteIv.visibility = if (it.editStatus == 1) View.VISIBLE else View.INVISIBLE
             myHolder.mChannelTitleTv.setOnClickListener {
                 if (editModeHandler != null && data.tabType == 2) {
                     editModeHandler.clickMyChannel(mRecyclerView!!, holder)

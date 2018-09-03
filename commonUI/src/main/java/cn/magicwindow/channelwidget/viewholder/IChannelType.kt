@@ -1,4 +1,4 @@
-package cn.magicwindow.channelwidget.callback
+package cn.magicwindow.channelwidget.viewholder
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

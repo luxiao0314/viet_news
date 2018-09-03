@@ -20,15 +20,15 @@ import cn.magicwindow.commonui.R
 
 
 import cn.magicwindow.channelwidget.callback.EditModeHandler
-import cn.magicwindow.channelwidget.callback.IChannelType
+import cn.magicwindow.channelwidget.viewholder.IChannelType
 import cn.magicwindow.channelwidget.callback.ItemDragHelperCallback
 import cn.magicwindow.channelwidget.callback.ItemDragListener
 import cn.magicwindow.channelwidget.callback.ItemDragVHListener
 import cn.magicwindow.channelwidget.entity.ChannelBean
-import cn.magicwindow.channelwidget.widget.MyChannelHeaderWidget
-import cn.magicwindow.channelwidget.widget.MyChannelWidget
-import cn.magicwindow.channelwidget.widget.RecChannelHeaderWidget
-import cn.magicwindow.channelwidget.widget.RecChannelWidget
+import cn.magicwindow.channelwidget.viewholder.MyChannelHeaderViewHolder
+import cn.magicwindow.channelwidget.viewholder.MyChannelViewHolder
+import cn.magicwindow.channelwidget.viewholder.RecChannelHeaderViewHolder
+import cn.magicwindow.channelwidget.viewholder.RecChannelViewHolder
 
 
 @Suppress("DEPRECATION")
@@ -50,10 +50,10 @@ class ChannelAdapter(context: Context, recyclerView: RecyclerView, private val m
     init {
         mItemTouchHelper.attachToRecyclerView(recyclerView)
         mInflater = LayoutInflater.from(context)
-        mTypeMap.put(IChannelType.TYPE_MY_CHANNEL_HEADER, MyChannelHeaderWidget(EditHandler()))
-        mTypeMap.put(IChannelType.TYPE_MY_CHANNEL, MyChannelWidget(EditHandler()))
-        mTypeMap.put(IChannelType.TYPE_REC_CHANNEL_HEADER, RecChannelHeaderWidget())
-        mTypeMap.put(IChannelType.TYPE_REC_CHANNEL, RecChannelWidget(EditHandler()))
+        mTypeMap.put(IChannelType.TYPE_MY_CHANNEL_HEADER, MyChannelHeaderViewHolder(EditHandler()))
+        mTypeMap.put(IChannelType.TYPE_MY_CHANNEL, MyChannelViewHolder(EditHandler()))
+        mTypeMap.put(IChannelType.TYPE_REC_CHANNEL_HEADER, RecChannelHeaderViewHolder())
+        mTypeMap.put(IChannelType.TYPE_REC_CHANNEL, RecChannelViewHolder(EditHandler()))
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ChannelViewHolder {

@@ -1,4 +1,4 @@
-package cn.magicwindow.channelwidget.widget
+package cn.magicwindow.channelwidget.viewholder
 
 
 import android.support.v7.widget.RecyclerView
@@ -12,14 +12,13 @@ import cn.magicwindow.commonui.R
 import cn.magicwindow.channelwidget.adapter.ChannelAdapter
 import cn.magicwindow.channelwidget.entity.ChannelBean
 import cn.magicwindow.channelwidget.callback.EditModeHandler
-import cn.magicwindow.channelwidget.callback.IChannelType
 
 
 /**
  * @author null
  * 我的频道标题栏 ViewHolder
  */
-class MyChannelHeaderWidget(private val editModeHandler: EditModeHandler?) : IChannelType {
+class MyChannelHeaderViewHolder(private val editModeHandler: EditModeHandler?) : IChannelType {
     private var mRecyclerView: RecyclerView? = null
     override fun createViewHolder(mInflater: LayoutInflater, parent: ViewGroup): ChannelAdapter.ChannelViewHolder {
         mRecyclerView = parent as RecyclerView

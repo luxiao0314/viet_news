@@ -1,4 +1,4 @@
-package cn.magicwindow.channelwidget.widget
+package cn.magicwindow.channelwidget.viewholder
 
 import android.view.LayoutInflater
 import android.view.View
@@ -7,7 +7,6 @@ import cn.magicwindow.commonui.R
 
 import cn.magicwindow.channelwidget.adapter.ChannelAdapter
 import cn.magicwindow.channelwidget.entity.ChannelBean
-import cn.magicwindow.channelwidget.callback.IChannelType
 
 
 /**
@@ -15,7 +14,7 @@ import cn.magicwindow.channelwidget.callback.IChannelType
  * 推荐频道标题栏 ViewHolder
  */
 
-class RecChannelHeaderWidget : IChannelType {
+class RecChannelHeaderViewHolder : IChannelType {
     override fun createViewHolder(mInflater: LayoutInflater, parent: ViewGroup): ChannelAdapter.ChannelViewHolder {
         return MyChannelHeaderViewHolder(mInflater.inflate(R.layout.layout_channel_rec_header, parent, false))
     }
