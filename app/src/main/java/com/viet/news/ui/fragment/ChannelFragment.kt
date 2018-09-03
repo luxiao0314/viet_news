@@ -1,11 +1,15 @@
 package com.viet.news.ui.fragment
 
 import android.os.Bundle
+import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.viet.news.R
+import com.viet.news.adapter.ChannelPageAdapter
+import com.viet.news.core.delegate.viewModelDelegate
 import com.viet.news.core.ui.RealVisibleHintBaseFragment
+import com.viet.news.viewmodel.FindViewModel
 import kotlinx.android.synthetic.main.fragment_channel.*
 
 /**
@@ -18,6 +22,8 @@ import kotlinx.android.synthetic.main.fragment_channel.*
 class ChannelFragment : RealVisibleHintBaseFragment() {
 
     private var tabName: String? = null
+    private val model: FindViewModel by viewModelDelegate(FindViewModel::class)
+    private var adapter: ChannelPageAdapter? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,7 +35,9 @@ class ChannelFragment : RealVisibleHintBaseFragment() {
     }
 
     override fun initView(view: View) {
-        id_fragment_two?.text = "布局2${tabName}"
+        adapter = ChannelPageAdapter()
+        recyclerView.adapter = adapter
+        recyclerView.layoutManager = LinearLayoutManager(activity)
     }
 
     companion object {

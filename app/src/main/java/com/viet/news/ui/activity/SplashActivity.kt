@@ -18,7 +18,7 @@ class SplashActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState?:Bundle())
         setContentView(R.layout.activity_splash)
-        Observable.interval(3, TimeUnit.SECONDS)
+        Observable.interval(1, TimeUnit.SECONDS)
                 .take(1)
                 .observeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())

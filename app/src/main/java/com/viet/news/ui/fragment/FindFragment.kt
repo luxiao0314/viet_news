@@ -17,7 +17,7 @@ import kotlinx.android.synthetic.main.activity_find.*
 import javax.inject.Inject
 
 /**
- * @Description 任务
+ * @Description 发现
  * @Author sean
  * @Email xiao.lu@magicwindow.cn
  * @Date 03/09/2018 11:13 AM

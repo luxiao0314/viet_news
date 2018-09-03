@@ -31,7 +31,9 @@
             </intent-filter>
         </activity>
         <!--Facebook end-->
-        <activity android:name=".ui.activity.SplashActivity">
+        <activity android:name=".ui.activity.SplashActivity"
+                  android:screenOrientation="portrait"
+                  android:theme="@style/Theme.Splash">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
