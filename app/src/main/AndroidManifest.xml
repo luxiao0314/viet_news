@@ -31,17 +31,17 @@
             </intent-filter>
         </activity>
         <!--Facebook end-->
-        <activity android:name=".ui.SplashActivity">
+        <activity android:name=".ui.activity.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.MainActivity"
+        <activity android:name=".ui.activity.MainActivity"
             android:launchMode="singleTask"/>
         <activity android:name="com.viet.mine.activity.LoginActivity"/>
-        <activity android:name=".ui.ChannelActivity" />
+        <activity android:name=".ui.activity.ChannelActivity" />
 
     </application>
 

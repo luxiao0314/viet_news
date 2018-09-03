@@ -1,4 +1,4 @@
-package com.viet.news.ui
+package com.viet.news.ui.fragment
 
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders

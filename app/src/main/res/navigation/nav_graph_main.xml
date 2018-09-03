@@ -6,7 +6,7 @@
 
     <fragment
         android:id="@+id/navigation_find"
-        android:name="com.viet.news.ui.FindFragment">
+        android:name="com.viet.news.ui.fragment.FindFragment">
         <action
             android:id="@+id/action_page2"
             app:enterAnim="@anim/slide_right_in"
@@ -17,7 +17,7 @@
 
     <fragment
         android:id="@+id/navigation_follow"
-        android:name="com.viet.news.ui.FollowFragment">
+        android:name="com.viet.follow.fragment.FollowFragment">
         <action
             android:id="@+id/action_page1"
             app:enterAnim="@anim/slide_right_in"
@@ -30,7 +30,7 @@
 
     <fragment
         android:id="@+id/navigation_task"
-        android:name="com.viet.news.ui.TaskFragment">
+        android:name="com.viet.task.fragment.TaskFragment">
         <action
             android:id="@+id/action_page1"
             app:enterAnim="@anim/slide_right_in"

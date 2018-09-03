@@ -9,5 +9,5 @@ import com.viet.news.core.viewmodel.BaseViewModel
  * @Date 03/09/2018 1:37 PM
  * @Version
  */
-class MineViewModel: BaseViewModel() {
+class FindViewModel: BaseViewModel() {
 }

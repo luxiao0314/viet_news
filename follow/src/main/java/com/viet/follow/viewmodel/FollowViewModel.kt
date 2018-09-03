@@ -1,4 +1,4 @@
-package com.viet.news.viewmodel
+package com.viet.follow.viewmodel
 
 import com.viet.news.core.viewmodel.BaseViewModel
 

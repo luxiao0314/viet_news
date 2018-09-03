@@ -1,7 +1,7 @@
 package com.viet.news.di
 
 import com.viet.news.core.di.ActivityScope
-import com.viet.news.ui.MainActivity
+import com.viet.news.ui.activity.MainActivity
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 

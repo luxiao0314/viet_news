@@ -1,4 +1,5 @@
-package com.viet.news.ui
+package com.viet.news.ui.activity
+
 
 import android.annotation.SuppressLint
 import android.os.Bundle
@@ -9,17 +10,14 @@ import android.support.v4.view.ViewPager
 import android.support.v7.app.AppCompatActivity
 import android.view.View
 import android.widget.ImageView
-import cn.magicwindow.channelwidget.entity.ChannelBean
 import cn.magicwindow.channelwidget.AddChannelFragment
+import cn.magicwindow.channelwidget.entity.ChannelBean
 import cn.magicwindow.channelwidget.widget.ChannelTabLayout
 import com.viet.news.R
 import com.viet.news.ui.fragment.LazyFragment
 import com.viet.news.ui.fragment.OneFragment
 import com.viet.news.ui.fragment.TwoFragment
-
-
-import java.util.ArrayList
-import java.util.HashMap
+import java.util.*
 
 class ChannelActivity : AppCompatActivity(), View.OnClickListener, AddChannelFragment.DataChangeListener {
 

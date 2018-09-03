@@ -1,4 +1,4 @@
-package com.viet.news.ui
+package com.viet.news.ui.fragment
 
 import android.arch.lifecycle.ViewModelProviders
 import android.content.Intent
@@ -9,7 +9,8 @@ import android.view.ViewGroup
 import com.viet.news.R
 import com.viet.news.core.ui.BaseFragment
 import com.viet.news.db.SourceEntity
-import com.viet.news.viewmodel.MineViewModel
+import com.viet.news.ui.activity.ChannelActivity
+import com.viet.news.viewmodel.FindViewModel
 import kotlinx.android.synthetic.main.fragment_find.*
 
 /**
@@ -21,11 +22,11 @@ import kotlinx.android.synthetic.main.fragment_find.*
  */
 class FindFragment : BaseFragment(), (SourceEntity) -> Unit {
 
-    private lateinit var model: MineViewModel
+    private lateinit var model: FindViewModel
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         val view: View = inflater.inflate(R.layout.fragment_find, container, false)
-        model = ViewModelProviders.of(this).get(MineViewModel::class.java)
+        model = ViewModelProviders.of(this).get(FindViewModel::class.java)
         return view
     }
 

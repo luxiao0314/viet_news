@@ -1,4 +1,4 @@
-package com.viet.news.ui
+package com.viet.news.ui.activity
 
 import android.content.Intent
 import android.content.res.Configuration
