@@ -3,14 +3,13 @@ package com.viet.news.ui
 import android.arch.lifecycle.ViewModelProviders
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.viet.news.R
 import com.viet.news.core.ui.BaseFragment
 import com.viet.news.db.SourceEntity
-import com.viet.news.viewmodel.NewsViewModel
+import com.viet.news.viewmodel.MineViewModel
 import kotlinx.android.synthetic.main.fragment_find.*
 
 /**
@@ -22,13 +21,11 @@ import kotlinx.android.synthetic.main.fragment_find.*
  */
 class FindFragment : BaseFragment(), (SourceEntity) -> Unit {
 
-    private lateinit var newsViewModel: NewsViewModel
+    private lateinit var model: MineViewModel
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         val view: View = inflater.inflate(R.layout.fragment_find, container, false)
-        newsViewModel = ViewModelProviders.of(this).get(NewsViewModel::class.java)
-//        progressDialog = ProgressDialog.show(activity, "News API", "Loading News Source from Web-Service")
-//        progressDialog.show()
+        model = ViewModelProviders.of(this).get(MineViewModel::class.java)
         return view
     }
 
@@ -40,7 +37,6 @@ class FindFragment : BaseFragment(), (SourceEntity) -> Unit {
 
     //点击事件
     override fun invoke(source: SourceEntity) {
-        Log.e("News", "invoke source:$source.id")
     }
 
 }

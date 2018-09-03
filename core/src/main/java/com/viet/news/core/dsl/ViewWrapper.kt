@@ -4,6 +4,8 @@ import android.app.Activity
 import android.app.Application
 import android.os.Bundle
 import android.support.v4.view.ViewPager
+import com.flyco.tablayout.CommonTabLayout
+import com.flyco.tablayout.listener.OnTabSelectListener
 
 /**
  * @Description
@@ -79,5 +81,49 @@ class RegisterActivityLifecycleCallbacks : Application.ActivityLifecycleCallback
     override fun onActivityCreated(p0: Activity?, p1: Bundle?) {
         onActivityCreated?.let { it(p0, p1) }
     }
+}
 
+fun ViewPager.addOnPageChangeListener(init: AddOnPageChangeListenerWrapper.() -> Unit) {
+    val callback = AddOnPageChangeListenerWrapper()
+    callback.init()
+    addOnPageChangeListener(callback)
+}
+
+class AddOnPageChangeListenerWrapper : ViewPager.OnPageChangeListener {
+
+    var onPageScrollStateChanged: ((state: Int) -> Unit)? = null
+    var onPageScrolled: ((position: Int, positionOffset: Float, positionOffsetPixels: Int) -> Unit)? = null
+    var onPageSelected: ((position: Int) -> Unit)? = null
+
+    override fun onPageScrollStateChanged(state: Int) {
+        onPageScrollStateChanged?.let { it(state) }
+    }
+
+    override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {
+        onPageScrolled?.let { it(position, positionOffset, positionOffsetPixels) }
+    }
+
+    override fun onPageSelected(position: Int) {
+        onPageSelected?.let { it(position) }
+    }
+}
+
+fun CommonTabLayout.setOnTabSelectListener(init: OnTabSelectListenerWrapper.() -> Unit) {
+    val callback = OnTabSelectListenerWrapper()
+    callback.init()
+    setOnTabSelectListener(callback)
+}
+
+class OnTabSelectListenerWrapper: OnTabSelectListener{
+
+    var onTabSelect: ((position: Int) -> Unit)? = null
+    var onTabReselect: ((position: Int) -> Unit)? = null
+
+    override fun onTabSelect(position: Int) {
+        onTabSelect?.let { it(position) }
+    }
+
+    override fun onTabReselect(position: Int) {
+        onTabReselect?.let { it(position) }
+    }
 }

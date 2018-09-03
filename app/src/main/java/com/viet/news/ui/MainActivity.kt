@@ -3,36 +3,40 @@ package com.viet.news.ui
 import android.content.Intent
 import android.content.res.Configuration
 import android.os.Bundle
-import android.support.v4.app.Fragment
-import androidx.navigation.Navigation
-import androidx.navigation.ui.setupWithNavController
 import com.viet.news.R
+import com.viet.news.core.delegate.viewModelDelegate
 import com.viet.news.core.domain.Config
+import com.viet.news.core.dsl.addOnPageChangeListener
+import com.viet.news.core.dsl.setOnTabSelectListener
 import com.viet.news.core.ui.BaseActivity
+import com.viet.news.core.ui.TabFragmentAdapter
 import com.viet.news.core.utils.LanguageUtil
-import dagger.android.DispatchingAndroidInjector
-import dagger.android.support.HasSupportFragmentInjector
+import com.viet.news.viewmodel.MainViewModel
 import kotlinx.android.synthetic.main.activity_main.*
-import javax.inject.Inject
 
-class MainActivity : BaseActivity(), HasSupportFragmentInjector {
-    private var newsFragment: NewsFragment? = null
-    @Inject
-    lateinit var dispatchingAndroidInjector: DispatchingAndroidInjector<Fragment>
+class MainActivity : BaseActivity() {
+
+    private val model: MainViewModel by viewModelDelegate(MainViewModel::class)
+    var fragmentType: Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState ?: Bundle())
         setContentView(R.layout.activity_main)
-        setBottomBar()
+        initView()
     }
 
-    //    override fun onBackPressed() {
-//        if (!newsFragment?.onBackPressed()!!)
-//            super.onBackPressed()
-//    }
-    private fun setBottomBar() {
-        navigation.setupWithNavController(Navigation.findNavController(this, R.id.nav_host_fragment))
-//        NavigationUI.setupActionBarWithNavController(this, Navigation.findNavController(this, R.id.nav_host_fragment))
+    private fun initView() {
+        val mSectionsPagerAdapter = TabFragmentAdapter(supportFragmentManager)
+        mSectionsPagerAdapter.setFragment(model.fragments)
+        mSectionsPagerAdapter.setTitles(model.titles)
+        mSectionsPagerAdapter.notifyDataSetChanged()
+        container.adapter = mSectionsPagerAdapter
+        bottomBar.setTabData(model.tabEntities)
+
+        container.offscreenPageLimit = 1//缓存1个界面
+        container.addOnPageChangeListener { onPageSelected = { bottomBar.currentTab = it } }
+        bottomBar.setOnTabSelectListener { onTabSelect = { container.currentItem = it } }
+        container.currentItem = fragmentType
     }
 
     /*
@@ -59,12 +63,4 @@ class MainActivity : BaseActivity(), HasSupportFragmentInjector {
     private fun reLoadView() {
         //TODO tsing 如果到时候要在App内切换语言 这里可能需要刷新一下当前界面
     }
-
-
-    override fun supportFragmentInjector() = dispatchingAndroidInjector
-
-    override fun onSupportNavigateUp(): Boolean {
-        return Navigation.findNavController(this, R.id.nav_host_fragment).navigateUp()
-    }
-
 }

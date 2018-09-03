@@ -89,6 +89,8 @@ dependencies {
     kapt "android.arch.persistence.room:compiler:$rootProject.room"
     kapt "android.arch.lifecycle:compiler:$rootProject.lifecycle"
 
+    api 'com.flyco.tablayout:FlycoTabLayout_Lib:2.1.2@aar'
+
     debugApi 'com.squareup.leakcanary:leakcanary-android:' + rootProject.leakcanary
     releaseApi 'com.squareup.leakcanary:leakcanary-android-no-op:' + rootProject.leakcanary
 }

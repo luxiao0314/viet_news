@@ -8,10 +8,10 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.viet.news.core.ui.BaseFragment
 import com.viet.news.R
 import com.viet.news.adapter.NewsArticleAdapter
 import com.viet.news.adapter.NewsSourceAdapter
+import com.viet.news.core.ui.InjectFragment
 import com.viet.news.db.SourceEntity
 import com.viet.news.viewmodel.NewsViewModel
 import kotlinx.android.synthetic.main.fragment_news.*
@@ -19,7 +19,7 @@ import kotlinx.android.synthetic.main.fragment_news.*
 /**
  * Created by abhinav.sharma on 01/11/17.
  */
-class NewsFragment : BaseFragment(), (SourceEntity) -> Unit {
+class NewsFragment : InjectFragment(), (SourceEntity) -> Unit {
 
 
     private lateinit var newsViewModel: NewsViewModel
