@@ -1,5 +1,6 @@
 package com.viet.mine.fragment
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -7,6 +8,7 @@ import android.view.ViewGroup
 import androidx.navigation.Navigation
 import com.safframework.ext.clickWithTrigger
 import com.viet.mine.R
+import com.viet.mine.activity.SettingActivity
 import com.viet.news.core.ui.BaseFragment
 import kotlinx.android.synthetic.main.fragment_mine.*
 
@@ -24,6 +26,9 @@ class MineFragment : BaseFragment() {
     }
 
     override fun initView(view: View) {
-        click_to_login.clickWithTrigger { Navigation.findNavController(it).navigate(R.id.loginActivity) }
+//        click_to_login.clickWithTrigger { Navigation.findNavController(it).navigate(R.id.loginActivity) }
+        mine_about.clickWithTrigger {
+            context!!.startActivity(Intent(activity, SettingActivity::class.java))
+        }
     }
 }
