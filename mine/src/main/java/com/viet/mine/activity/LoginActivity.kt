@@ -3,7 +3,6 @@ package com.viet.mine.activity
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
-import android.support.design.widget.AppBarLayout
 import android.support.v4.view.ViewPager
 import android.view.KeyEvent
 import com.safframework.ext.click
@@ -165,8 +164,7 @@ class LoginActivity : BaseActivity(), LoginAndSignInListener {
 
         val statusBarHeight = dimen2px(R.dimen.statusbar_view_height)
         val distance = appbarHeight - toolbarHeight - dimen2px(R.dimen.statusbar_view_height)
-        app_bar.addOnOffsetChangedListener(AppBarLayout.OnOffsetChangedListener { _, verticalOffset ->
-
+        app_bar.addOnOffsetChangedListener { _, verticalOffset ->
             //由于设置了snap 那么最终肯定会恢复为一个为0或者非0的负数 所以这里直接取0来比较，除非手快到松手的瞬间就点击返回键，那么 其实也无所谓 ，这么急切的点击返回那就返回吧。。
             isOpen = verticalOffset == 0
             //获取动画必备的初始参数
@@ -219,7 +217,7 @@ class LoginActivity : BaseActivity(), LoginAndSignInListener {
                 login_text.scaleX = scaleLogin
                 login_text.scaleY = scaleLogin
             }
-        })
+        }
     }
 
     private fun openTitle() {

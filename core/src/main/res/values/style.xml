@@ -162,6 +162,10 @@
         <item name="android:textStyle">bold</item>
     </style>
 
+    <style name="text.24.gray.bold" tools:keep="@style/text_24_gray_bold">
+        <item name="android:textStyle">bold</item>
+    </style>
+
     <style name="text.30.gray" tools:keep="@style/text_30_gray">
         <item name="android:textColor">@color/text_gray</item>
     </style>

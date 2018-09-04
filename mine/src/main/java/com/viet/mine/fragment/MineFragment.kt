@@ -27,11 +27,10 @@ class MineFragment : BaseFragment() {
     }
 
     override fun initView(view: View) {
-//        click_to_login.clickWithTrigger { Navigation.findNavController(it).navigate(R.id.loginActivity) }
+        btn_login.clickWithTrigger { context?.startActivity(Intent(activity, LoginActivity::class.java)) }
+        mine_wallet.clickWithTrigger { WebActivity.launch(context,"http://www.baidu.com") }
         mine_settings.setClickDelegate {
-            onItemClick = {
-                context!!.startActivity(Intent(activity, SettingActivity::class.java))
-            }
+            onItemClick = { context?.startActivity(Intent(activity, SettingActivity::class.java)) }
         }
     }
 }
