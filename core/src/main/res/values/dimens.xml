@@ -50,4 +50,11 @@
     <!-- 分割线高度 -->
     <dimen name="split_line_height">0.5dp</dimen>
 
+    <!--登录注册界面的appbar高度-->
+    <dimen name="login_appbar_height">150dp</dimen>
+
+    <dimen name="toolbar_height">75dp</dimen>
+
+    <dimen name="padding_top_large">50dp</dimen>
+
 </resources>

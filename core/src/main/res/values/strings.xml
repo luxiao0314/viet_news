@@ -21,5 +21,14 @@
     <string name="copy_the_link">Copy the link</string>
     <string name="facebook">Facebook</string>
     <string name="messenger">Messenger</string>
+    <string name="log_in">Log In</string>
+    <string name="sign_in">Sign In</string>
+    <string name="user_telephone">Mobile phone number</string>
+    <string name="password">Password</string>
+    <string name="forget_pwd_signed">Forgot password?</string>
+    <string name="login_with_verify_code">SMS verification code login</string>
+    <string name="agree">agree</string>
+    <string name="consent_user_agreement">User Agreement</string>
+    <string name="click_to_verification">Get verification</string>
 
 </resources>

@@ -6,8 +6,8 @@ import com.viet.follow.fragment.FollowFragment
 import com.viet.mine.fragment.MineFragment
 import com.viet.news.R
 import com.viet.news.core.domain.TabEntity
+import com.viet.news.core.ui.App
 import com.viet.news.core.viewmodel.BaseViewModel
-import com.viet.news.di.App
 import com.viet.news.ui.fragment.FindFragment
 import com.viet.task.fragment.TaskFragment
 import java.util.*

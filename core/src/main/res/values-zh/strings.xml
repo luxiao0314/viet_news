@@ -9,4 +9,13 @@
     <string name="copy_the_link">复制链接</string>
     <string name="facebook">Facebook</string>
     <string name="messenger">Messenger</string>
+    <string name="log_in">登录</string>
+    <string name="sign_in">注册</string>
+    <string name="user_telephone">手机号码</string>
+    <string name="password">密码</string>
+    <string name="forget_pwd_signed">忘记密码?</string>
+    <string name="login_with_verify_code">短信验证码登录</string>
+    <string name="agree">同意</string>
+    <string name="consent_user_agreement">用户协议</string>
+    <string name="click_to_verification">获取验证码</string>
 </resources>

@@ -71,4 +71,14 @@ object Config {
             val SHOULD_SHOW_SECURITY_WARNING = "should_show_security_warning"
         }
     }
+
+    //bundle
+    const val COUNTRY = "country_abbreviation"
+    const val USER_NAME = "user_name"
+    const val TEL_PHONE = "tel_phone"
+
+    const val PACT_URL = "http://magic.merculet.io/pact/zh-cn"
+
+    //登录-用户协议
+    const val login_userProtocol = "login_userProtocol"
 }

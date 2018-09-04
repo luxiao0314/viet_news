@@ -258,6 +258,16 @@
         <item name="android:singleLine">true</item>
     </style>
 
+    <style name="edit.number">
+        <item name="android:digits">1234567890</item>
+        <item name="android:inputType">number</item>
+    </style>
+
+    <style name="line.edit" tools:keep="@style/line_edit">
+        <item name="android:layout_height">1dp</item>
+        <item name="android:background">@color/gray_tran</item>
+    </style>
+
     <style name="edit.12" tools:keep="@style/edit_12">
         <item name="android:textSize">12sp</item>
     </style>
@@ -282,12 +292,23 @@
         <item name="android:layout_marginRight">14dp</item>
     </style>
 
+    <style name="line.vertical">
+        <item name="android:layout_width">2dp</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:paddingTop">4dp</item>
+        <item name="android:paddingBottom">4dp</item>
+    </style>
+
     <style name="line.white">
         <item name="android:background">@color/white</item>
     </style>
 
     <style name="line.white.transparent">
         <item name="android:background">@color/white_transparent</item>
+    </style>
+
+    <style name="line.vertical.gray">
+        <item name="android:background">@color/gray_tran</item>
     </style>
 
     <style name="button">
@@ -474,5 +495,12 @@
         <item name="android:textStyle">bold</item>
     </style>
 
+    <style name="textInputLayout">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="passwordToggleEnabled" type="attr">true</item>
+        <item name="passwordToggleDrawable" type="drawable">@drawable/pwd_eye</item>
+        <item name="passwordToggleTint" type="color">@color/white</item>
+    </style>
 
 </resources>

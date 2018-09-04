@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <!--enabled属性必须必须前面-->
+    <item android:drawable="@drawable/ic_eye_closed" android:state_checked="false"/>
+    <item android:drawable="@drawable/ic_eye" android:state_checked="true"/>
+
+</selector>

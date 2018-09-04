@@ -32,7 +32,7 @@ import dagger.android.support.HasSupportFragmentInjector
  */
 object AppInjector {
 
-    fun init(app: App) {
+    fun init(app: NewsApp) {
         DaggerAppComponent.create().inject(app)
         app.registerActivityLifecycleCallbacks { onActivityCreated = { activity: Activity?, _: Bundle? -> handleActivity(activity) } }
     }

@@ -48,6 +48,7 @@ dependencies {
 
     api "android.arch.persistence.room:runtime:$rootProject.room"
     api "android.arch.persistence.room:rxjava2:$rootProject.room"
+    api "com.jakewharton.rxrelay2:rxrelay:${rootProject.rxrelay}"
     api "android.arch.lifecycle:runtime:$rootProject.lifecycle"
     api "android.arch.lifecycle:extensions:$rootProject.lifecycle"
     //api "android.arch.lifecycle:common-java8:$rootProject.lifecycle"
@@ -65,6 +66,7 @@ dependencies {
     api "com.github.bumptech.glide:glide:$rootProject.glide"
     api "io.reactivex.rxjava2:rxjava:$rootProject.rxjava2"
     api "io.reactivex.rxjava2:rxandroid:$rootProject.rx_android"
+    api "com.jakewharton.rxbinding2:rxbinding:$rootProject.rxbinding"
     api 'android.arch.navigation:navigation-fragment-ktx:' + rootProject.navigationVersion
     api 'android.arch.navigation:navigation-ui-ktx:' + rootProject.navigationVersion
     api 'com.github.chrisbanes:PhotoView:2.1.4'
@@ -98,7 +100,7 @@ dependencies {
     api('com.jaeger.statusbarutil:library:1.5.0', {
         exclude group: 'com.android.support', module: 'design'
     })
-
+    api 'com.safframework.delegate:prefs-delegate:1.0.0'
     debugApi 'com.squareup.leakcanary:leakcanary-android:' + rootProject.leakcanary
     releaseApi 'com.squareup.leakcanary:leakcanary-android-no-op:' + rootProject.leakcanary
 }

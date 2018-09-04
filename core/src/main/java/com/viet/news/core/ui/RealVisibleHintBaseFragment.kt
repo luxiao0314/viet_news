@@ -170,7 +170,7 @@ abstract class RealVisibleHintBaseFragment : BaseFragment() {
 
     }
 
-    fun onFragmentResume() {
+    open fun onFragmentResume() {
 //        L.e(javaClass.simpleName + "  对用户可见")
     }
 

@@ -1,6 +1,7 @@
 package com.viet.news.core.domain
 
-import com.viet.news.core.domain.response.LoginResponse
+import com.viet.news.core.domain.response.LoginRegisterResponse
+import com.viet.news.core.utils.RxBus
 import java.io.Serializable
 
 /**
@@ -11,48 +12,90 @@ import java.io.Serializable
  */
 class User private constructor() : Serializable {
 
-    var access_token: String = ""
-    //todo: mock
-//    var access_token: String = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiaWF0IjoxNTIzMjQ0ODgzLCJleHAiOjE1MjM0MTc2ODMsInBob25lX25vIjoiMTIzNDU2Nzg5MDEiLCJvcyI6IjAiLCJvc192ZXJzaW9uIjoiNi4wLjEiLCJhcHBfdmVyc2lvbiI6IjEuMCIsImNoYW5uZWwiOiIifQ.RKT-W3eYH2yvnuIeBQezs-nShYJRrAkF9RD0zCSbFdE"
-    var userName: String = "User"
+    var accessToken: String = ""
+        set(value) {
+            Settings.create().token = value
+            field = value
+        }
+    var userName: String = ""
+        set(value) {
+            Settings.create().userName = value
+            field = value
+        }
+    var avatarUrl: String = ""
+        set(value) {
+            Settings.create().avatar = value
+            field = value
+        }
     var telephone: String = ""
-    var country: String = ""
-    var zondCode: String = ""
+        set(value) {
+            Settings.create().telephone = value
+            field = value
+        }
+
+    var userId: String = ""
+        set(value) {
+            Settings.create().userId = value
+            field = value
+        }
+
+    var zoneCode: String = ""
+        set(value) {
+            Settings.create().zoneCode = value
+            field = value
+        }
 
     init {
-        if (Settings.getUserName().isNotBlank())
-            this.userName = Settings.getUserName()
-        if (Settings.getToken().isNotBlank())
-            this.access_token = Settings.getToken()
-        if (Settings.getTelephone().isNotBlank())
-            this.telephone = Settings.getTelephone()
-        if (Settings.getCountry().isNotBlank())
-            this.country = Settings.getCountry()
-        if (Settings.getCountry().isNotBlank())
-            this.zondCode = Settings.getZoneCode()
+        if (Settings.create().userName.isNotBlank())
+            this.userName = Settings.create().userName
+        if (Settings.create().avatar.isNotBlank())
+            this.avatarUrl = Settings.create().avatar
+        if (Settings.create().token.isNotBlank())
+            this.accessToken = Settings.create().token
+        if (Settings.create().telephone.isNotBlank())
+            this.telephone = Settings.create().telephone
+        if (Settings.create().zoneCode.isNotBlank())
+            this.zoneCode = Settings.create().zoneCode
+        if (Settings.create().userId.isNotBlank())
+            this.userId = Settings.create().userId
     }
 
     companion object {
         var currentUser: User = User()
     }
 
-    fun isLogin(): Boolean = access_token.isNotBlank()
+    fun isLogin(): Boolean = accessToken.isNotBlank()
 
-    fun login(userLogin: LoginResponse.LoginItem) {
-        Settings.setToken(userLogin.token)
-        Settings.setUserName("User")
+    fun login(userLogin: LoginRegisterResponse) {
 
         //init
-        this.access_token = userLogin.token
-        this.userName = "User"
+        this.telephone = userLogin.phoneNo
+        this.avatarUrl = userLogin.imageUrl
+        this.accessToken = userLogin.token
+        this.userName = userLogin.nick
+        this.userId = userLogin.walletUserId
         currentUser = this@User
     }
 
     fun logout() {
-        Settings.setToken("")
-        Settings.setUserName("")
+        RxBus.get().post(LogoutEvent())
+        Settings.create().token = ""
+        Settings.create().userName = ""
+        Settings.create().avatar = ""
+        Settings.create().userId = ""
+
         currentUser = User()
 
     }
 
+//    fun setAvatarUrl(url: String) {
+//        Settings.create().avatar = url
+//        this.avatarUrl = url
+//    }
+
+    /**
+     * 获取手机尾数
+     */
+    fun getLast4Telephone() = if (telephone.isEmpty()) ""
+    else telephone.substring(telephone.length - 4, telephone.length)
 }

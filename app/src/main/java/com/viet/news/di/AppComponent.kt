@@ -9,5 +9,5 @@ import dagger.android.support.AndroidSupportInjectionModule
     BuildersModule::class,
     AndroidSupportInjectionModule::class])
 interface AppComponent {
-    fun inject(app: App)
+    fun inject(app: NewsApp)
 }

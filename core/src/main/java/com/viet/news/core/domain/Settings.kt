@@ -1,42 +1,59 @@
 package com.viet.news.core.domain
 
 import android.annotation.SuppressLint
-import com.viet.news.core.BaseApplication
-import com.viet.news.core.utils.SPHelper
+import android.content.Context
+import android.content.SharedPreferences
+import com.safframework.delegate.prefs.initKey
+import com.safframework.delegate.prefs.string
+import com.viet.news.core.ui.App
 
-/**
- * @author Aaron
- * @email aaron@magicwindow.cn
- * @date 30/03/2018 14:35
- * @description
- */
-object Settings {
-    @SuppressLint("StaticFieldLeak")
-    val spHelper = SPHelper.create(BaseApplication.instance)
+class Settings(prefs: SharedPreferences = App.instance.getSharedPreferences(SP_KEY_DEFAULT, preferenceMode)) {
 
-    val SP_TOKEN = "sp_token"
-    val SP_USERNAME = "sp_username"
-    val SP_TELEPHONE = "sp_telephone"
-    val SP_COUNTRY = "sp_country"
-    val SP_ZONECODE = "sp_zone_code"
 
-    fun setZoneCode(zoneCode: String) = if (zoneCode.isNotBlank()) spHelper.put(SP_ZONECODE, zoneCode) else spHelper.remove(SP_ZONECODE)
 
-    fun getZoneCode(): String = spHelper[SP_ZONECODE, ""]
+    init {
+        prefs.initKey("0b1r2a3v4o5o6n78") // 初始化密钥，且密钥是16位的
+    }
 
-    fun setCountry(country: String) = if (country.isNotBlank()) spHelper.put(SP_COUNTRY, country) else spHelper.remove(SP_COUNTRY)
+    var token by prefs.string(SP_TOKEN, isEncrypt = true)
 
-    fun getCountry(): String = spHelper[SP_COUNTRY, ""]
+    var userName  by prefs.string(SP_USERNAME, isEncrypt = true)
 
-    fun setTelephone(telephone: String) = if (telephone.isNotBlank()) spHelper.put(SP_TELEPHONE, telephone) else spHelper.remove(SP_TELEPHONE)
+    //只在User内使用，其他地方调用
+    var telephone by prefs.string(SP_TELEPHONE, isEncrypt = true)
+    var userId by prefs.string(SP_USER_ID, isEncrypt = true)
+    //只在User内使用
+    var zoneCode by prefs.string(SP_ZONECODE, isEncrypt = true)
+    var avatar by prefs.string(SP_AVATAR_URL, isEncrypt = true)
+//    var countryAbbreviation by prefs.string(SP_COUNTRY_ABBREVIATION, isEncrypt = true)
 
-    fun getTelephone(): String = spHelper[SP_TELEPHONE, ""]
 
-    fun setToken(token: String) = if (token.isNotBlank()) spHelper.put(SP_TOKEN, token) else spHelper.remove(SP_TOKEN)
+    companion object {
 
-    fun getToken(): String = spHelper[SP_TOKEN, ""]
 
-    fun setUserName(userName: String) = if (userName.isBlank()) spHelper.put(SP_USERNAME, userName) else spHelper.remove(SP_USERNAME)
+        const val SP_TOKEN = "sp_token"
+        const val SP_USERNAME = "sp_username"
+        const val SP_TELEPHONE = "sp_telephone"
+        const val SP_USER_ID = "sp_user_id"
+        const val SP_ZONECODE = "sp_zone_code"
+        const val SP_AVATAR_URL = "sp_avatar_url"
 
-    fun getUserName(): String = spHelper[SP_USERNAME, ""]
+
+        @SuppressLint("StaticFieldLeak")
+        @Volatile
+        private var defaultInstance: Settings? = null
+        private var preferenceMode = Context.MODE_PRIVATE
+        private const val SP_KEY_DEFAULT = "persistent_data"
+
+        fun create(context: Context = App.instance): Settings {
+            if (defaultInstance == null) {
+                synchronized(Settings::class.java) {
+                    if (defaultInstance == null) {
+                        defaultInstance = Settings()
+                    }
+                }
+            }
+            return defaultInstance!!
+        }
+    }
 }

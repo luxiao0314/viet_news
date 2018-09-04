@@ -5,6 +5,7 @@ import android.app.Application
 import android.os.Bundle
 import android.support.v4.view.ViewPager
 import android.view.View
+import com.safframework.ext.clickWithTrigger
 
 /**
  * View扩展类
@@ -70,4 +71,14 @@ private fun <T : View> T.clickEnable(): Boolean {
     }
     triggerLastTime = currentClickTime
     return flag
+}
+
+fun <T : View> T.clickWithTrack(eventName: String, time: Long = 600, block: (T) -> Unit) = this.clickWithTrigger(time) {
+//    TrackAgent.currentEvent().customEvent(eventName)
+    block(it)
+}
+
+fun <T : View> T.clickWithTrack(eventName: String, trackMap: HashMap<String, String>, time: Long = 600, block: (T) -> Unit) = this.clickWithTrigger(time) {
+//    TrackAgent.currentEvent().customEvent(eventName, trackMap)
+    block(it)
 }

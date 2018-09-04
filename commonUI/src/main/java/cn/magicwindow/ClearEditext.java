@@ -10,7 +10,6 @@ import android.view.MotionEvent;
 import android.view.View;
 
 import cn.magicwindow.commonui.R;
-
 import cn.magicwindow.interfaces.EditClearface;
 
 /**

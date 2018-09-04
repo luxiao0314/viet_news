@@ -4,13 +4,12 @@ import android.app.Activity
 import android.content.Context
 import android.support.multidex.MultiDex
 import com.squareup.leakcanary.LeakCanary
-import com.viet.news.core.BaseApplication
+import com.viet.news.core.ui.App
 import com.viet.news.core.utils.LanguageUtil
 import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.HasActivityInjector
 import javax.inject.Inject
-import kotlin.properties.Delegates
 
 /**
  * @Author Aaron
@@ -18,16 +17,13 @@ import kotlin.properties.Delegates
  * @Email aaron@magicwindow.cn
  * @Description
  */
-class App : BaseApplication(), HasActivityInjector {
-
+class NewsApp : App(), HasActivityInjector {
 
     @Inject
     lateinit var dispatchingAndroidInjector: DispatchingAndroidInjector<Activity>
 
     override fun onCreate() {
         super.onCreate()
-
-        instance = this
 
         if (LeakCanary.isInAnalyzerProcess(this)) return
         LeakCanary.install(this)
@@ -51,13 +47,6 @@ class App : BaseApplication(), HasActivityInjector {
 
     override fun activityInjector(): AndroidInjector<Activity>? {
         return dispatchingAndroidInjector
-    }
-
-    companion object {
-
-        //方式1.通过标准代理实现late init
-        var instance: BaseApplication by Delegates.notNull()
-            private set
     }
 
 }
