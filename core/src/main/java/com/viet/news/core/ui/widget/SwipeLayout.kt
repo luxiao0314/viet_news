@@ -22,7 +22,6 @@ class SwipeLayout : FrameLayout {
     private var mWidth: Int = 0
     private var mHeight: Int = 0
     private var mRange: Int = 0
-    private var isOpen = false
     private var status = Status.CLOSE
     private var downX: Int = 0
     private var downY: Int = 0
@@ -125,11 +124,7 @@ class SwipeLayout : FrameLayout {
     /**
      * 关闭条目
      */
-    private fun closeItem() {
-        close(true)
-    }
-
-    fun close(isSmooth: Boolean) {
+    fun closeItem(isSmooth: Boolean = true) {
         if (isSmooth) {
             if (helper!!.smoothSlideViewTo(mContent!!, 0, 0)) {
                 ViewCompat.postInvalidateOnAnimation(this)
@@ -142,11 +137,7 @@ class SwipeLayout : FrameLayout {
     /**
      * 打开条目
      */
-    private fun openItem() {
-        open(true)
-    }
-
-    private fun open(isSmooth: Boolean) {
+    private fun openItem(isSmooth: Boolean = true) {
         if (isSmooth) {
             if (helper!!.smoothSlideViewTo(mContent!!, -mRange, 0)) {
                 ViewCompat.postInvalidateOnAnimation(this)
@@ -214,7 +205,7 @@ class SwipeLayout : FrameLayout {
     }
 
     override fun onLayout(changed: Boolean, left: Int, top: Int, right: Int, bottom: Int) {
-        layoutContent(isOpen)
+        layoutContent(false)
     }
 
     /**

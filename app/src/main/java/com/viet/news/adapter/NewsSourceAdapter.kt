@@ -31,11 +31,11 @@ class NewsSourceAdapter(private val listener: (SourceEntity) -> Unit, private va
         val view =  holder.itemView as SwipeLayout
         view.tv_add.clickWithTrigger {
             Toast.makeText(it.context, "关注", Toast.LENGTH_SHORT).show()
-            view.close(true)
+            view.closeItem(true)
         }
         view.tv_delete.clickWithTrigger {
             Toast.makeText(it.context, "删除", Toast.LENGTH_SHORT).show()
-            view.close(true)
+            view.closeItem(true)
         }
     }
 
@@ -68,7 +68,7 @@ class NewsSourceAdapter(private val listener: (SourceEntity) -> Unit, private va
 
     fun closeAllItem() {
         for (layout in layouts) {
-            layout.close(true)
+            layout.closeItem(true)
         }
         layouts.clear()
     }
