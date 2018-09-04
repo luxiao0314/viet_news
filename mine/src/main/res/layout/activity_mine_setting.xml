@@ -18,10 +18,7 @@
         app:next_icon_visibility="false"
         app:right_text="3.25M" />
 
-    <View
-        style="@style/line.gray_tran"
-        app:layout_constraintBottom_toTopOf="@+id/mine_help"
-        app:layout_constraintTop_toBottomOf="@+id/ll_mine_cooperative" />
+    <View style="@style/line.gray_tran" />
 
     <com.viet.news.core.ui.widget.CommonItem
         android:layout_width="match_parent"
@@ -30,10 +27,7 @@
         app:next_icon_visibility="true"
         app:right_text="越南语" />
 
-    <View
-        style="@style/line.gray_tran"
-        app:layout_constraintBottom_toTopOf="@+id/mine_help"
-        app:layout_constraintTop_toBottomOf="@+id/ll_mine_cooperative" />
+    <View style="@style/line.gray_tran" />
 
     <com.viet.news.core.ui.widget.CommonItem
         android:layout_width="match_parent"
@@ -41,10 +35,7 @@
         app:left_text="帮助中心"
         app:next_icon_visibility="true" />
 
-    <View
-        style="@style/line.gray_tran"
-        app:layout_constraintBottom_toTopOf="@+id/mine_help"
-        app:layout_constraintTop_toBottomOf="@+id/ll_mine_cooperative" />
+    <View style="@style/line.gray_tran" />
 
     <com.viet.news.core.ui.widget.CommonItem
         android:layout_width="match_parent"
@@ -55,9 +46,7 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="@dimen/top_padding_same_module"
-        android:background="@color/gray_tran"
-        app:layout_constraintBottom_toTopOf="@+id/mine_group"
-        app:layout_constraintTop_toBottomOf="@+id/login" />
+        android:background="@color/gray_tran" />
 
     <com.viet.news.core.ui.widget.CommonItem
         android:layout_width="match_parent"
@@ -65,10 +54,8 @@
         app:left_text="关于MagicBox"
         app:next_icon_visibility="true" />
 
-    <View
-        style="@style/line.gray_tran"
-        app:layout_constraintBottom_toTopOf="@+id/mine_help"
-        app:layout_constraintTop_toBottomOf="@+id/ll_mine_cooperative" />
+
+    <View style="@style/line.gray_tran" />
 
     <com.viet.news.core.ui.widget.CommonItem
         android:layout_width="match_parent"
@@ -77,8 +64,5 @@
         app:next_icon_visibility="true"
         app:right_text="v1.0.0" />
 
-    <View
-        style="@style/line.gray_tran"
-        app:layout_constraintBottom_toTopOf="@+id/mine_help"
-        app:layout_constraintTop_toBottomOf="@+id/ll_mine_cooperative" />
+    <View style="@style/line.gray_tran" />
 </LinearLayout>
