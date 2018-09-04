@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/item"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal">
+
+    <TextView
+        android:id="@+id/tv_item_left"
+        android:layout_width="0dp"
+        android:layout_weight="5"
+        android:layout_height="match_parent"
+        android:background="@android:color/transparent"
+        android:clickable="true"
+        android:ellipsize="end"
+        android:gravity="left|center_vertical"
+        android:maxWidth="200dp"
+        android:singleLine="true"
+        android:textColor="@color/text_gray"
+        android:textSize="16sp"
+        android:paddingLeft="14dp"
+        android:paddingRight="10dp"
+        android:layout_alignParentLeft="true"
+        tools:text="Left"
+        tools:visibility="visible"/>
+
+    <TextView
+        android:id="@+id/tv_item_right"
+        android:layout_width="0dp"
+        android:layout_weight="3"
+        android:layout_height="match_parent"
+        android:background="@android:color/transparent"
+        android:clickable="true"
+        android:ellipsize="end"
+        android:gravity="right|center_vertical"
+        android:maxWidth="150dp"
+        android:singleLine="true"
+        android:textColor="@color/text_gray"
+        android:textSize="14sp"
+        android:paddingLeft="14dp"
+        android:paddingRight="10dp"
+        android:layout_alignParentRight="true"
+        tools:text="Right"
+        tools:visibility="visible"/>
+
+    <ImageView
+        android:id="@+id/iv_next"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:src="@drawable/ic_next"/>
+</LinearLayout>

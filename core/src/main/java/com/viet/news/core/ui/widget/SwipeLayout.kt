@@ -97,6 +97,9 @@ class SwipeLayout : FrameLayout {
 
     var swipingListener: OnSwipingListener? = null
 
+    /**
+     * 打开，关闭，滑动
+     */
     enum class Status {
         OPEN,
         CLOSE,
@@ -160,7 +163,7 @@ class SwipeLayout : FrameLayout {
     }
 
     /**
-     *
+     * 分发滑动事件
      */
     private fun dispatchEvent() {
         val lastStatus = status
@@ -197,7 +200,9 @@ class SwipeLayout : FrameLayout {
 
     override fun onFinishInflate() {
         super.onFinishInflate()
+        //获取主体布局
         mContent = getChildAt(1)
+        //获取隐藏布局
         mBehind = getChildAt(0)
     }
 
@@ -212,6 +217,9 @@ class SwipeLayout : FrameLayout {
         layoutContent(isOpen)
     }
 
+    /**
+     * 动态更新布局
+     */
     private fun layoutContent(isOpen: Boolean) {
         contentRect = computeContentRect(isOpen)
         mContent!!.layout(contentRect.left, contentRect.top, contentRect.right, contentRect.bottom)
@@ -219,6 +227,9 @@ class SwipeLayout : FrameLayout {
         mBehind!!.layout(behindRect.left, behindRect.top, behindRect.right, behindRect.bottom)
     }
 
+    /**
+     * 计算布局边界
+     */
     private fun computeBehindRect(contentRect: Rect): Rect {
         return Rect(contentRect.right, 0, contentRect.right + mRange, mHeight)
     }
@@ -276,6 +287,9 @@ class SwipeLayout : FrameLayout {
         this.swipingListener = swipingListener
     }
 
+    /**
+     * 相关状态监听
+     */
     interface OnSwipingListener {
         fun onOpened(layout: SwipeLayout)
 

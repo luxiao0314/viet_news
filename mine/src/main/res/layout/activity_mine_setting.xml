@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <com.viet.news.core.ui.widget.TitleBar
+        android:id="@+id/title_bar"
+        style="@style/title_bar_white"
+        app:titlebar_titleText="@string/title_setting" />
+
+    <com.viet.news.core.ui.widget.CommonItem
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        app:left_text="清除缓存"
+        app:next_icon_visibility="false"
+        app:right_text="3.25M" />
+
+    <View
+        style="@style/line.gray_tran"
+        app:layout_constraintBottom_toTopOf="@+id/mine_help"
+        app:layout_constraintTop_toBottomOf="@+id/ll_mine_cooperative" />
+
+    <com.viet.news.core.ui.widget.CommonItem
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        app:left_text="语言设置"
+        app:next_icon_visibility="true"
+        app:right_text="越南语" />
+
+    <View
+        style="@style/line.gray_tran"
+        app:layout_constraintBottom_toTopOf="@+id/mine_help"
+        app:layout_constraintTop_toBottomOf="@+id/ll_mine_cooperative" />
+
+    <com.viet.news.core.ui.widget.CommonItem
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        app:left_text="帮助中心"
+        app:next_icon_visibility="true" />
+
+    <View
+        style="@style/line.gray_tran"
+        app:layout_constraintBottom_toTopOf="@+id/mine_help"
+        app:layout_constraintTop_toBottomOf="@+id/ll_mine_cooperative" />
+
+    <com.viet.news.core.ui.widget.CommonItem
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        app:left_text="意见反馈"
+        app:next_icon_visibility="true" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/top_padding_same_module"
+        android:background="@color/gray_tran"
+        app:layout_constraintBottom_toTopOf="@+id/mine_group"
+        app:layout_constraintTop_toBottomOf="@+id/login" />
+
+    <com.viet.news.core.ui.widget.CommonItem
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        app:left_text="关于MagicBox"
+        app:next_icon_visibility="true" />
+
+    <View
+        style="@style/line.gray_tran"
+        app:layout_constraintBottom_toTopOf="@+id/mine_help"
+        app:layout_constraintTop_toBottomOf="@+id/ll_mine_cooperative" />
+
+    <com.viet.news.core.ui.widget.CommonItem
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        app:left_text="版本号"
+        app:next_icon_visibility="true"
+        app:right_text="v1.0.0" />
+
+    <View
+        style="@style/line.gray_tran"
+        app:layout_constraintBottom_toTopOf="@+id/mine_help"
+        app:layout_constraintTop_toBottomOf="@+id/ll_mine_cooperative" />
+</LinearLayout>

@@ -12,8 +12,7 @@
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
         android:paddingLeft="14dp"
-        android:paddingRight="10dp"
-        android:paddingBottom="14dp"/>
+        android:paddingRight="10dp" />
 
     <View
         android:id="@+id/view_line"
