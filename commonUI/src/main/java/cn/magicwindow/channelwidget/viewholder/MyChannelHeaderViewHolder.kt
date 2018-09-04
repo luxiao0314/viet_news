@@ -6,12 +6,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-
-
-import cn.magicwindow.commonui.R
 import cn.magicwindow.channelwidget.adapter.ChannelAdapter
-import cn.magicwindow.channelwidget.entity.ChannelBean
 import cn.magicwindow.channelwidget.callback.EditModeHandler
+import cn.magicwindow.channelwidget.entity.ChannelBean
+import cn.magicwindow.commonui.R
 
 
 /**
@@ -30,10 +28,10 @@ class MyChannelHeaderViewHolder(private val editModeHandler: EditModeHandler?) :
         viewHolder.mEditModeTv.setOnClickListener {
             if (!viewHolder.mEditModeTv.isSelected) {
                 editModeHandler?.startEditMode(mRecyclerView!!)
-                viewHolder.mEditModeTv.text = "完成"
+                viewHolder.mEditModeTv.text = mRecyclerView?.context?.getString(R.string.complete)
             } else {
                 editModeHandler?.cancelEditMode(mRecyclerView!!)
-                viewHolder.mEditModeTv.text = "编辑"
+                viewHolder.mEditModeTv.text =  mRecyclerView?.context?.getString(R.string.sort_or_delete)
             }
             viewHolder.mEditModeTv.isSelected = !viewHolder.mEditModeTv.isSelected
         }

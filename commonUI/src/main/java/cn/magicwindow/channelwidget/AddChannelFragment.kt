@@ -2,20 +2,21 @@ package cn.magicwindow.channelwidget
 
 
 import android.annotation.SuppressLint
-import android.app.Activity
-import android.content.Context
+import android.os.Build
 import android.os.Bundle
 import android.support.v4.app.DialogFragment
 import android.support.v7.widget.GridLayoutManager
-import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.WindowManager
 import cn.magicwindow.channelwidget.adapter.ChannelAdapter
 import cn.magicwindow.channelwidget.entity.ChannelBean
 import cn.magicwindow.channelwidget.viewholder.IChannelType
 import cn.magicwindow.commonui.R
 import cn.magicwindow.utils.GridItemDecoration
+import com.app.hubert.guide.util.ScreenUtils.getScreenWidth
+import kotlinx.android.synthetic.main.layout_tab_edit.*
 import java.util.*
 
 @SuppressLint("ValidFragment")
@@ -24,51 +25,57 @@ import java.util.*
  */
 class AddChannelFragment(private val myStrs: List<String>, private val recStrs: List<String>) : DialogFragment(), ChannelAdapter.ChannelItemClickListener {
     private var mContainerView: View? = null
-    private var mRecyclerView: RecyclerView? = null
-    private var mRecyclerAdapter: ChannelAdapter? = null
-    private var channelActivity: Activity? = null
-    private var mMyChannelList: MutableList<ChannelBean>? = null
-    private var mRecChannelList: MutableList<ChannelBean>? = null
+    private var mMyChannelList = mutableListOf<ChannelBean>()
+    private var mRecChannelList = mutableListOf<ChannelBean>()
 
-    override fun onAttach(context: Context?) {
-        super.onAttach(context)
-        if (context is Activity)
-            this.channelActivity = context
+    override fun onStart() {
+        super.onStart()
+        initParams()
     }
 
+    private fun initParams() {
+        val window = dialog?.window
+        val lp = window?.attributes
+        lp?.dimAmount = 0F
+        //占用屏幕宽度一定比例
+        lp?.width = getScreenWidth(context)
+        //设置dialog高度
+        lp?.height = WindowManager.LayoutParams.MATCH_PARENT
+        //设置dialog进入、退出的动画
+        window?.attributes = lp
+        window?.setWindowAnimations(R.style.inandoutAnimation)
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            window?.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
+            window?.statusBarColor = activity?.resources?.getColor(R.color.white)!!
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setStyle(DialogFragment.STYLE_NORMAL, android.R.style.Theme_Black_NoTitleBar)
+        setStyle(DialogFragment.STYLE_NO_FRAME, R.style.DialogTheme)
     }
-
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         mContainerView = inflater.inflate(R.layout.layout_tab_edit, container, false)
         return mContainerView
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        dialog.window!!.setWindowAnimations(R.style.inandoutAnimation)
-    }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        mRecyclerView = mContainerView!!.findViewById<View>(R.id.id_tab_recycler_view) as RecyclerView
+        initData()
+        val adapter = ChannelAdapter(context, id_tab_recycler_view, mMyChannelList, mRecChannelList, 1, 1)
+        adapter.setChannelItemClickListener(this)
+        id_tab_recycler_view.adapter = adapter
         val gridLayout = GridLayoutManager(context, 4)
         gridLayout.spanSizeLookup = object : GridLayoutManager.SpanSizeLookup() {
             override fun getSpanSize(position: Int): Int {
-                val isHeader = mRecyclerAdapter!!.getItemViewType(position) == IChannelType.TYPE_MY_CHANNEL_HEADER || mRecyclerAdapter!!.getItemViewType(position) == IChannelType.TYPE_REC_CHANNEL_HEADER
+                val isHeader = adapter.getItemViewType(position) == IChannelType.TYPE_MY_CHANNEL_HEADER || adapter.getItemViewType(position) == IChannelType.TYPE_REC_CHANNEL_HEADER
                 return if (isHeader) 4 else 1
             }
         }
-        mRecyclerView!!.layoutManager = gridLayout
-        mRecyclerView!!.addItemDecoration(GridItemDecoration(5))
-        initData()
-        mRecyclerAdapter = ChannelAdapter(context!!, mRecyclerView!!, mMyChannelList!!, mRecChannelList!!, 1, 1)
-        mRecyclerAdapter!!.setChannelItemClickListener(this)
-        mRecyclerView!!.adapter = mRecyclerAdapter
+        id_tab_recycler_view.layoutManager = gridLayout
+        id_tab_recycler_view.addItemDecoration(GridItemDecoration(5))
     }
 
 
@@ -78,14 +85,14 @@ class AddChannelFragment(private val myStrs: List<String>, private val recStrs: 
             val channelBean = ChannelBean()
             channelBean.tabName = myStrs[i]
             channelBean.tabType = if (i == 0) 0 else if (i == 1) 1 else 2
-            mMyChannelList!!.add(channelBean)
+            mMyChannelList.add(channelBean)
         }
         mRecChannelList = ArrayList()
         for (i in 0..(recStrs.size - 1)) {
             val channelBean = ChannelBean()
             channelBean.tabName = recStrs[i]
             channelBean.tabType = 2
-            mRecChannelList!!.add(channelBean)
+            mRecChannelList.add(channelBean)
         }
 
     }

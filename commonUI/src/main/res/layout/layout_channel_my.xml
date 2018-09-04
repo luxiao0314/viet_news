@@ -14,9 +14,8 @@
         android:layout_marginRight="4dp"
         android:background="@drawable/channel_my_bg_shape"
         android:text="热门"
-        android:textColor="#333333"
-        android:textSize="16sp"
-      />
+        android:textColor="#FF4A4A4A"
+        android:textSize="15sp"/>
     <ImageView
         android:id="@+id/id_delete_icon"
         android:layout_width="wrap_content"

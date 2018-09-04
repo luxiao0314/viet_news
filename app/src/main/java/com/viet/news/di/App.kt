@@ -2,8 +2,7 @@ package com.viet.news.di
 
 import android.app.Activity
 import android.content.Context
-import com.facebook.FacebookSdk
-import com.facebook.appevents.AppEventsLogger
+import android.support.multidex.MultiDex
 import com.squareup.leakcanary.LeakCanary
 import com.viet.news.core.BaseApplication
 import com.viet.news.core.utils.LanguageUtil
@@ -37,12 +36,11 @@ class App : BaseApplication(), HasActivityInjector {
         //方法已过期 看注释说是会自动调用，暂时不删
 //        FacebookSdk.sdkInitialize(applicationContext);
 //        AppEventsLogger.activateApp(this);
-
     }
 
     override fun attachBaseContext(base: Context) {
         super.attachBaseContext(LanguageUtil.setLocal(base))
-//        MultiDex.install(this)
+        MultiDex.install(this)
     }
 
     override fun onConfigurationChanged(newConfig: android.content.res.Configuration) {

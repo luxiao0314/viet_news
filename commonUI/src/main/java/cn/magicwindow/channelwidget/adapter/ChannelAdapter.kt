@@ -13,22 +13,15 @@ import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.LinearInterpolator
-
 import android.widget.ImageView
 import android.widget.TextView
-import cn.magicwindow.commonui.R
-
-
 import cn.magicwindow.channelwidget.callback.EditModeHandler
-import cn.magicwindow.channelwidget.viewholder.IChannelType
 import cn.magicwindow.channelwidget.callback.ItemDragHelperCallback
 import cn.magicwindow.channelwidget.callback.ItemDragListener
 import cn.magicwindow.channelwidget.callback.ItemDragVHListener
 import cn.magicwindow.channelwidget.entity.ChannelBean
-import cn.magicwindow.channelwidget.viewholder.MyChannelHeaderViewHolder
-import cn.magicwindow.channelwidget.viewholder.MyChannelViewHolder
-import cn.magicwindow.channelwidget.viewholder.RecChannelHeaderViewHolder
-import cn.magicwindow.channelwidget.viewholder.RecChannelViewHolder
+import cn.magicwindow.channelwidget.viewholder.*
+import cn.magicwindow.commonui.R
 
 
 @Suppress("DEPRECATION")
@@ -36,7 +29,7 @@ import cn.magicwindow.channelwidget.viewholder.RecChannelViewHolder
  * @author null
  * 频道管理适配器
  */
-class ChannelAdapter(context: Context, recyclerView: RecyclerView, private val mMyChannelItems: MutableList<ChannelBean>, private val mOtherChannelItems: MutableList<ChannelBean>,
+class ChannelAdapter(context: Context?, recyclerView: RecyclerView, private val mMyChannelItems: MutableList<ChannelBean>, private val mOtherChannelItems: MutableList<ChannelBean>,
                      private val mMyHeaderCount: Int, private val mRecHeaderCount: Int) : RecyclerView.Adapter<ChannelAdapter.ChannelViewHolder>(), ItemDragListener {
     private val mInflater: LayoutInflater
     private val mTypeMap: SparseArray<IChannelType> = SparseArray()
@@ -169,9 +162,6 @@ class ChannelAdapter(context: Context, recyclerView: RecyclerView, private val m
                 doStartEditMode(mRecyclerView)
                 val view = mRecyclerView.getChildAt(0)
                 if (view === mRecyclerView.layoutManager!!.findViewByPosition(0)) {
-                    val dragTip = view.findViewById<View>(R.id.id_my_header_tip_tv) as TextView
-                    dragTip.text = "拖拽可以排序"
-
                     val tvBtnEdit = view.findViewById<View>(R.id.id_edit_mode) as TextView
                     tvBtnEdit.text = "完成"
                     tvBtnEdit.isSelected = true

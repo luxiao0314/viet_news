@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="complete">完成</string>
+    <string name="sort_or_delete">排序/删除</string>
+    <string name="subscribed_channels">已订阅频道</string>
+</resources>

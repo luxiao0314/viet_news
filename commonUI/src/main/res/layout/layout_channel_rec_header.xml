@@ -7,15 +7,8 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="推荐频道"
-        android:textColor="#333333"
-        android:textSize="14sp"/>
-    <TextView
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="5dp"
-        android:layout_weight="1"
-        android:text="点击可添加频道"
-        android:textColor="#666666"
-        android:textSize="14sp"/>
+        android:text="未订阅频道"
+        android:textColor="#FF4A4A4A"
+        android:textStyle="bold"
+        android:textSize="15sp"/>
 </LinearLayout>
