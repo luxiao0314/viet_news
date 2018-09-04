@@ -27,8 +27,7 @@
 
     <style name="title_bar">
         <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">65dp</item>
-        <item name="android:paddingTop">@dimen/statusbar_view_height</item>
+        <item name="android:layout_height">45dp</item>
         <item name="android:paddingRight">10dp</item>
         <item name="titlebar_isLeftTextBold">true</item>
         <item name="titlebar_isLineVisiable">false</item>

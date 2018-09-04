@@ -2,7 +2,10 @@ package com.viet.news.ui.activity
 
 import android.content.Intent
 import android.content.res.Configuration
+import android.os.Build
 import android.os.Bundle
+import com.jaeger.library.StatusBarUtil
+import com.safframework.utils.support
 import com.viet.news.R
 import com.viet.news.core.delegate.viewModelDelegate
 import com.viet.news.core.domain.Config
@@ -20,7 +23,6 @@ class MainActivity : InjectActivity() {
     @Inject
     internal lateinit var pagerAdapter: TabFragmentAdapter
     private val model: MainViewModel by viewModelDelegate(MainViewModel::class)
-    var fragmentType: Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState ?: Bundle())
@@ -38,7 +40,6 @@ class MainActivity : InjectActivity() {
         container.offscreenPageLimit = 1//缓存1个界面
         container.addOnPageChangeListener { onPageSelected = { bottomBar.currentTab = it } }
         bottomBar.setOnTabSelectListener { onTabSelect = { container.currentItem = it } }
-        container.currentItem = fragmentType
     }
 
     /*
@@ -64,5 +65,13 @@ class MainActivity : InjectActivity() {
 
     private fun reLoadView() {
         //TODO tsing 如果到时候要在App内切换语言 这里可能需要刷新一下当前界面
+    }
+
+    override fun setStatusBar() {
+        support(Build.VERSION_CODES.M, {
+            StatusBarUtil.setTranslucentForImageViewInFragment(this, 0, null)
+        }, {
+            StatusBarUtil.setTranslucentForImageViewInFragment(this, 30, null)
+        })
     }
 }
