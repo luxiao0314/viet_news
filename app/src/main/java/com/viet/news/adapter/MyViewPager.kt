@@ -5,7 +5,7 @@ import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentStatePagerAdapter
 import cn.magicwindow.channelwidget.entity.ChannelBean
 import com.viet.news.core.ui.RealVisibleHintBaseFragment
-import com.viet.news.ui.fragment.ChannelFragment
+import com.viet.news.ui.fragment.NewsFragment
 import javax.inject.Inject
 
 class MyViewPager @Inject constructor(fm: FragmentManager?) : FragmentStatePagerAdapter(fm) {
@@ -23,7 +23,7 @@ class MyViewPager @Inject constructor(fm: FragmentManager?) : FragmentStatePager
     override fun getItem(position: Int): Fragment? {
         var fragment: RealVisibleHintBaseFragment? = baseFragmentMap[position]
         if (fragment == null) {
-            fragment = ChannelFragment.newInstance(mDataList[position].tabName!!)
+            fragment = NewsFragment.newInstance(mDataList[position].tabName!!)
             baseFragmentMap[position] = fragment
         }
         return fragment

@@ -2,6 +2,7 @@ package com.viet.news.adapter
 
 import com.viet.news.R
 import com.viet.news.core.ui.BaseAdapter
+import javax.inject.Inject
 
 /**
  * @Description
@@ -10,8 +11,7 @@ import com.viet.news.core.ui.BaseAdapter
  * @Date 03/09/2018 5:49 PM
  * @Version
  */
-class ChannelPageAdapter : BaseAdapter<Any>() {
-
+class NewsAdapter @Inject constructor() : BaseAdapter<Any>() {
 
     override fun getItemViewType(position: Int): Int {
         return super.getItemViewType(position)
@@ -19,9 +19,10 @@ class ChannelPageAdapter : BaseAdapter<Any>() {
 
     override fun getLayoutId(viewType: Int): Int {
         return when (viewType) {
-            1 -> R.layout.abc_action_bar_title_item
-            2 -> R.layout.abc_action_bar_title_item
-            else -> R.layout.abc_action_bar_title_item
+            1 -> R.layout.cell_news_picture_three
+            2 -> R.layout.cell_news_picture_one
+            3 -> R.layout.cell_news_picture_none
+            else -> R.layout.cell_news_picture_only
         }
     }
 

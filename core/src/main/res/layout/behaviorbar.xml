@@ -1,30 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="horizontal">
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:gravity="center"
+              android:orientation="horizontal">
 
-    <LinearLayout style="@style/behavior_bar">
+    <android.support.v7.widget.AppCompatCheckedTextView
+        android:id="@+id/tv_like_num"
+        style="@style/behavior_bar_text"
+        android:drawableStart="@drawable/ic_coin"
+        android:drawableLeft="@drawable/ic_coin"
+        android:gravity="center"/>
 
-        <android.support.v7.widget.AppCompatCheckedTextView
-            android:id="@+id/tv_like_num"
-            style="@style/behavior_bar_text"
-            android:drawableLeft="@drawable/ic_like" />
-    </LinearLayout>
+    <android.support.v7.widget.AppCompatCheckedTextView
+        android:id="@+id/tv_praise_num"
+        style="@style/behavior_bar_text"
+        android:layout_marginStart="65dp"
+        android:layout_marginLeft="65dp"
+        android:drawableStart="@drawable/ic_praise"
+        android:drawableLeft="@drawable/ic_praise"/>
 
-    <LinearLayout style="@style/behavior_bar">
-
-        <android.support.v7.widget.AppCompatCheckedTextView
-            android:id="@+id/tv_collect_num"
-            style="@style/behavior_bar_text"
-            android:drawableLeft="@drawable/ic_collect" />
-    </LinearLayout>
-
-    <LinearLayout style="@style/behavior_bar">
-
-        <android.support.v7.widget.AppCompatCheckedTextView
-            android:id="@+id/tv_praise_num"
-            style="@style/behavior_bar_text"
-            android:drawableLeft="@drawable/ic_praise" />
-    </LinearLayout>
+    <android.support.v7.widget.AppCompatCheckedTextView
+        android:id="@+id/tv_collect_num"
+        style="@style/behavior_bar_text"
+        android:layout_marginStart="65dp"
+        android:layout_marginLeft="65dp"
+        android:drawableStart="@drawable/ic_collect"
+        android:drawableLeft="@drawable/ic_collect"/>
 </LinearLayout>

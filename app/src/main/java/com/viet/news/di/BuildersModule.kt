@@ -6,6 +6,7 @@ import com.viet.news.di.module.FindModule
 import com.viet.news.di.module.MainModule
 import com.viet.news.ui.activity.MainActivity
 import com.viet.news.ui.fragment.FindFragment
+import com.viet.news.ui.fragment.NewsFragment
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 
@@ -19,4 +20,8 @@ abstract class BuildersModule {
     @FragmentScope
     @ContributesAndroidInjector(modules = [FindModule::class])
     internal abstract fun bindFindFragment(): FindFragment
+
+    @FragmentScope
+    @ContributesAndroidInjector()
+    internal abstract fun bindNewsFragment(): NewsFragment
 }
