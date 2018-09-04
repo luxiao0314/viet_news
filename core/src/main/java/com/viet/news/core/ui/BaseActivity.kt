@@ -5,6 +5,7 @@ import android.os.Build
 import android.os.Bundle
 import android.support.v4.content.ContextCompat
 import android.support.v7.app.AppCompatActivity
+import android.view.KeyEvent
 import android.view.MenuItem
 import com.jaeger.library.StatusBarUtil
 import com.safframework.utils.support
@@ -53,5 +54,20 @@ abstract class BaseActivity : AppCompatActivity() {
                 .add(layoutResId, fragment, tag)
                 .addToBackStack(tag)
                 .commit()
+    }
+
+    override fun onKeyDown(keyCode: Int, event: KeyEvent?): Boolean = if (KeyEvent.KEYCODE_BACK == keyCode) {
+        if (supportFragmentManager.backStackEntryCount == 0) {
+            finish()
+            true
+        } else {
+            try {
+                supportFragmentManager.popBackStackImmediate()
+            } catch (e: Exception) {
+            }
+            true
+        }
+    } else {
+        super.onKeyDown(keyCode, event)
     }
 }

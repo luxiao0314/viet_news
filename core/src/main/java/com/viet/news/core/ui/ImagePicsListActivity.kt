@@ -144,12 +144,11 @@ class ImagePicsListActivity : BaseActivity() {
 
     }
 
-    override fun onKeyDown(keyCode: Int, event: KeyEvent): Boolean {
+    override fun onKeyDown(keyCode: Int, event: KeyEvent?): Boolean {
         finish()
         overridePendingTransition(0, R.anim.a3)
         return super.onKeyDown(keyCode, event)
     }
-
     private fun refreshCurrentPosition(mPosition: Int) {
         advert_tv.text = (mPosition + 1).toString() + "/$urlistsize"
     }
