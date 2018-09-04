@@ -33,7 +33,7 @@
 
             <View
                 android:id="@+id/view_line"
-                style="@style/line.white.transparent"
+                style="@style/line.gray_tran"
                 android:layout_width="1dp"
                 android:layout_height="match_parent"
                 android:layout_marginBottom="15dp"

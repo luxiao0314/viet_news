@@ -10,6 +10,7 @@ import com.safframework.ext.clickWithTrigger
 import com.viet.mine.R
 import com.viet.mine.activity.SettingActivity
 import com.viet.news.core.ui.BaseFragment
+import com.viet.news.webview.WebActivity
 import kotlinx.android.synthetic.main.fragment_mine.*
 
 
@@ -26,8 +27,9 @@ class MineFragment : BaseFragment() {
     }
 
     override fun initView(view: View) {
-//        click_to_login.clickWithTrigger { Navigation.findNavController(it).navigate(R.id.loginActivity) }
-        mine_about.clickWithTrigger {
+        click_to_login.clickWithTrigger { Navigation.findNavController(it).navigate(R.id.loginActivity) }
+        mine_group.clickWithTrigger { WebActivity.launch(context, "https://www.baidu,com") }
+        mine_settings.clickWithTrigger {
             context!!.startActivity(Intent(activity, SettingActivity::class.java))
         }
     }

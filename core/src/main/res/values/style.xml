@@ -279,6 +279,7 @@
     <style name="line.gray_tran">
         <item name="android:background">@color/gray_tran</item>
         <item name="android:layout_marginLeft">14dp</item>
+        <item name="android:layout_marginRight">14dp</item>
     </style>
 
     <style name="line.white">

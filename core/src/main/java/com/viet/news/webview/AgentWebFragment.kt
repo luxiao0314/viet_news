@@ -25,6 +25,7 @@ import com.viet.news.core.R
 import com.viet.news.core.delegate.viewModelDelegate
 import com.viet.news.core.http.URLParser
 import com.viet.news.core.ui.BaseFragment
+import com.viet.news.dialog.ShareDialog
 import kotlinx.android.synthetic.main.fragment_agentweb.*
 import java.util.*
 
@@ -178,7 +179,8 @@ open class AgentWebFragment : BaseFragment(), FragmentKeyDown {
             }
         } else if (i == R.id.iv_finish) {
             this@AgentWebFragment.activity?.finish()
-        } else {
+        } else if (i == R.id.iv_more) {
+            ShareDialog.createBuilder(activity!!)
         }
     }
 
@@ -210,6 +212,7 @@ open class AgentWebFragment : BaseFragment(), FragmentKeyDown {
 
     protected fun initListener() {
         iv_back.setOnClickListener(mOnClickListener)
+        iv_more.setOnClickListener(mOnClickListener)
         iv_finish.setOnClickListener(mOnClickListener)
         pageNavigator(View.GONE)
     }

@@ -5,9 +5,9 @@ object Config {
     const val NETWORK_OK = 200
     const val NETWORK_RESPONSE_OK = 0
 
-    val IMPORT_REQUEST_CODE = 1001
-    val EXPORT_REQUEST_CODE = 1002
-    val SHARE_REQUEST_CODE = 1003
+    val SHARE_REQUEST_CODE_FACEBOOK = 1001
+    val SHARE_REQUEST_CODE_MESSENGER = 1002
+    val SHARE_REQUEST_CODE_COPY = 1003
 
     val ETHEREUM_NETWORK_NAME = "Ethereum"
     val CLASSIC_NETWORK_NAME = "Ethereum Classic"
