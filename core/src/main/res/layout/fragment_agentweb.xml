@@ -10,9 +10,8 @@
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="75dp"
-        android:background="@drawable/shape_title_bg"
         android:paddingTop="20dp"
-        android:titleTextColor="@android:color/white"
+        android:titleTextColor="@android:color/black"
         app:contentInsetLeft="0dp"
         app:contentInsetStart="0dp"
         app:titleTextColor="@android:color/black">
@@ -79,8 +78,7 @@
                 android:layout_height="match_parent"
                 android:layout_alignParentRight="true"
                 android:scaleType="center"
-                android:src="@drawable/ic_more"
-                android:visibility="gone" />
+                android:src="@drawable/ic_menu"/>
         </RelativeLayout>
 
     </android.support.v7.widget.Toolbar>
