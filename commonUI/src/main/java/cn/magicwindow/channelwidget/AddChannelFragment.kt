@@ -97,6 +97,10 @@ class AddChannelFragment(private val myStrs: List<String>, private val recStrs: 
 
     }
 
+    override fun onCloseClick() {
+        dismiss()
+    }
+
     override fun onChannelItemClick(list: List<ChannelBean>, position: Int) {
         listener?.let {
             it.onDataChanged(list, position)

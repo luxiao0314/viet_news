@@ -12,6 +12,7 @@ import cn.magicwindow.channelwidget.adapter.ChannelAdapter
 abstract class EditModeHandler {
     open fun startEditMode(mRecyclerView: RecyclerView) {}
     open fun cancelEditMode(mRecyclerView: RecyclerView) {}
+    open fun close() {}
     open fun clickMyChannel(mRecyclerView: RecyclerView, holder: ChannelAdapter.ChannelViewHolder) {}
     open fun clickLongMyChannel(mRecyclerView: RecyclerView, holder: ChannelAdapter.ChannelViewHolder) {}
     open fun touchMyChannel(motionEvent: MotionEvent, holder: ChannelAdapter.ChannelViewHolder) {}

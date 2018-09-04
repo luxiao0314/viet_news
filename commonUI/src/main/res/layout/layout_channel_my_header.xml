@@ -16,9 +16,9 @@
         android:src="@drawable/channel_close"/>
 
     <TextView
+        android:layout_alignBottom="@+id/id_edit_mode"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/iv_close"
         android:text="@string/subscribed_channels"
         android:textColor="#FF4A4A4A"
         android:textSize="15sp"

@@ -5,6 +5,7 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import cn.magicwindow.channelwidget.adapter.ChannelAdapter
 import cn.magicwindow.channelwidget.callback.EditModeHandler
@@ -35,9 +36,11 @@ class MyChannelHeaderViewHolder(private val editModeHandler: EditModeHandler?) :
             }
             viewHolder.mEditModeTv.isSelected = !viewHolder.mEditModeTv.isSelected
         }
+        viewHolder.mIvClose.setOnClickListener{ editModeHandler?.close() }
     }
 
     inner class MyChannelHeaderViewHolder(itemView: View) : ChannelAdapter.ChannelViewHolder(itemView) {
         val mEditModeTv: TextView = itemView.findViewById(R.id.id_edit_mode) as TextView
+        val mIvClose: ImageView = itemView.findViewById(R.id.iv_close)
     }
 }

@@ -138,10 +138,12 @@ class ChannelAdapter(context: Context?, recyclerView: RecyclerView, private val 
             if (isEditMode) {
                 moveMyToOther(position)
             } else {
-                if (channelItemClickListener != null) {
-                    channelItemClickListener!!.onChannelItemClick(mMyChannelItems, position - mMyHeaderCount)
-                }
+                channelItemClickListener?.onChannelItemClick(mMyChannelItems, position - mMyHeaderCount)
             }
+        }
+
+        override fun close() {
+            channelItemClickListener?.onCloseClick()
         }
 
         override fun touchMyChannel(motionEvent: MotionEvent, holder: ChannelViewHolder) {
@@ -253,6 +255,7 @@ class ChannelAdapter(context: Context?, recyclerView: RecyclerView, private val 
 
     interface ChannelItemClickListener {
         fun onChannelItemClick(list: List<ChannelBean>, position: Int)
+        fun onCloseClick()
     }
 
     companion object {
