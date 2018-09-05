@@ -7,6 +7,7 @@ import com.viet.news.R
 import com.viet.news.core.domain.response.NewsResponse
 import com.viet.news.core.ui.BaseAdapter
 import com.viet.news.load
+import com.viet.news.loadCircle
 import kotlinx.android.synthetic.main.cell_news_picture_three.view.*
 import javax.inject.Inject
 
@@ -43,16 +44,16 @@ class NewsAdapter @Inject constructor() : BaseAdapter<NewsResponse.ArticlesBean>
     override fun onBindViewHolderImpl(holder: BaseViewHolder, position: Int, t: NewsResponse.ArticlesBean) {
         when (getItemViewType(position)) {
             1 -> {
-                holder.itemView.iv_article_image.load(t.authorUrl)
+                holder.itemView.iv_article_image.loadCircle(t.authorUrl)
                 holder.itemView.tv_title.text = t.title
                 holder.itemView.tv_des.text = t.description
-                holder.itemView.rv_news_cell.layoutManager = GridLayoutManager(context,3)
+                holder.itemView.rv_news_cell.layoutManager = GridLayoutManager(context, 3)
                 val cellAdapter = NewsCellAdapter()
                 holder.itemView.rv_news_cell.adapter = cellAdapter
                 cellAdapter.addData(t.urlToImage)
             }
             2 -> {
-                holder.itemView.findViewById<ImageView>(R.id.iv_article_image).load(t.authorUrl)
+                holder.itemView.findViewById<ImageView>(R.id.iv_article_image).loadCircle(t.authorUrl)
                 holder.itemView.findViewById<ImageView>(R.id.iv_pic).load(t.urlToImage?.get(0)?.cover)
                 holder.itemView.findViewById<TextView>(R.id.tv_title).text = t.title
                 holder.itemView.findViewById<TextView>(R.id.tv_des).text = t.description
@@ -61,9 +62,7 @@ class NewsAdapter @Inject constructor() : BaseAdapter<NewsResponse.ArticlesBean>
                 holder.itemView.findViewById<TextView>(R.id.tv_title).text = t.title
                 holder.itemView.findViewById<TextView>(R.id.tv_des).text = t.description
             }
-            4 -> {
-                holder.itemView.findViewById<ImageView>(R.id.iv_pic).load(t.urlToImage?.get(0)?.cover)
-            }
+            4 -> holder.itemView.findViewById<ImageView>(R.id.iv_pic).load(t.urlToImage?.get(0)?.cover)
         }
     }
 }

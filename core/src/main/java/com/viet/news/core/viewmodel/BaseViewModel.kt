@@ -4,7 +4,7 @@ import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.ViewModel
 import android.util.Log
-import com.viet.news.core.domain.Config
+import com.viet.news.core.config.Config
 import com.viet.news.core.domain.ErrorEnvelope
 import com.viet.news.core.domain.ServiceException
 import io.reactivex.disposables.CompositeDisposable

@@ -1,4 +1,4 @@
-package com.viet.news.core.domain
+package com.viet.news.core.config
 
 object Config {
 

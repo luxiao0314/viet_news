@@ -3,6 +3,7 @@ package com.viet.news.viewmodel
 import android.arch.lifecycle.LiveData
 import cn.magicwindow.channelwidget.entity.ChannelBean
 import com.viet.news.core.domain.response.NewsResponse
+import com.viet.news.core.utils.FileUtils
 import com.viet.news.core.viewmodel.BaseViewModel
 import com.viet.news.repository.NewsRepository
 
@@ -28,6 +29,6 @@ class FindViewModel(var newsRepo: NewsRepository = NewsRepository()) : BaseViewM
     }
 
     fun getNewsArticles(): LiveData<NewsResponse> {
-        return newsRepo.getMockNewsArticles()
+        return FileUtils.handleVirtualData(NewsResponse::class.java)
     }
 }

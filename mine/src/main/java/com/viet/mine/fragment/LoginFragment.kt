@@ -12,7 +12,7 @@ import com.jakewharton.rxbinding2.widget.RxTextView
 import com.viet.mine.R
 import com.viet.mine.viewmodel.LoginViewModel
 import com.viet.news.core.delegate.viewModelDelegate
-import com.viet.news.core.domain.Config
+import com.viet.news.core.config.Config
 import com.viet.news.core.domain.User
 import com.viet.news.core.ext.click
 import com.viet.news.core.ext.clickWithTrack

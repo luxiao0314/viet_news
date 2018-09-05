@@ -6,7 +6,7 @@ import android.os.Build
 import android.os.LocaleList
 import android.text.TextUtils
 import com.viet.news.core.BaseApplication
-import com.viet.news.core.domain.Config
+import com.viet.news.core.config.Config
 import java.util.*
 
 

@@ -1,6 +1,6 @@
 package com.viet.news.core.http.interceptor
 
-import com.viet.news.core.domain.Config
+import com.viet.news.core.config.Config
 import okhttp3.Interceptor
 import okhttp3.Response
 import okhttp3.ResponseBody

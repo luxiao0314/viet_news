@@ -26,7 +26,7 @@ import cn.magicwindow.channelwidget.entity.ChannelBean
 
 import java.util.ArrayList
 
-import com.lcorekit.channeldemo.utlis.ResolutionUtils
+import cn.magicwindow.utils.ResolutionUtils
 
 /**
  * @author null

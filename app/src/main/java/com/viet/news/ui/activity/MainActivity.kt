@@ -8,7 +8,7 @@ import com.jaeger.library.StatusBarUtil
 import com.safframework.utils.support
 import com.viet.news.R
 import com.viet.news.core.delegate.viewModelDelegate
-import com.viet.news.core.domain.Config
+import com.viet.news.core.config.Config
 import com.viet.news.core.dsl.addOnPageChangeListener
 import com.viet.news.core.dsl.setOnTabSelectListener
 import com.viet.news.core.ui.InjectActivity

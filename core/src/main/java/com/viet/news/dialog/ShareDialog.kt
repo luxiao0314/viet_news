@@ -4,7 +4,7 @@ import android.support.v4.app.FragmentActivity
 import android.view.LayoutInflater
 import android.view.View
 import com.viet.news.core.R
-import com.viet.news.core.domain.Config
+import com.viet.news.core.config.Config
 import com.viet.news.core.ext.clickWithTrigger
 import kotlinx.android.synthetic.main.dialog_share.view.*
 

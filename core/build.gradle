@@ -64,6 +64,8 @@ dependencies {
     api "com.google.dagger:dagger-android:$rootProject.dagger"
     api "com.google.dagger:dagger-android-support:$rootProject.dagger"
     api "com.github.bumptech.glide:glide:$rootProject.glide"
+    kapt "com.github.bumptech.glide:compiler:$rootProject.glide"
+    api "com.github.bumptech.glide:okhttp3-integration:$rootProject.glide" //使用glide图片加载使用okhttp
     api "io.reactivex.rxjava2:rxjava:$rootProject.rxjava2"
     api "io.reactivex.rxjava2:rxandroid:$rootProject.rx_android"
     api "com.jakewharton.rxbinding2:rxbinding:$rootProject.rxbinding"

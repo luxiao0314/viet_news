@@ -1,4 +1,4 @@
-package com.lcorekit.channeldemo.utlis
+package cn.magicwindow.utils
 
 import android.app.Activity
 import android.content.Context
