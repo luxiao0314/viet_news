@@ -9,43 +9,46 @@
     <TextView
         android:id="@+id/tv_item_left"
         android:layout_width="0dp"
-        android:layout_weight="5"
         android:layout_height="match_parent"
+        android:layout_weight="5"
         android:background="@android:color/transparent"
         android:ellipsize="end"
-        android:gravity="left|center_vertical"
+        android:gravity="start|center_vertical"
         android:maxWidth="200dp"
+        android:paddingStart="@dimen/module_margin"
+        android:paddingLeft="@dimen/module_margin"
+        android:paddingEnd="@dimen/module_margin"
+        android:paddingRight="@dimen/module_margin"
         android:singleLine="true"
         android:textColor="@color/text_gray"
         android:textSize="16sp"
-        android:paddingLeft="14dp"
-        android:paddingRight="10dp"
-        android:layout_alignParentLeft="true"
         tools:text="Left"
-        tools:visibility="visible"/>
+        tools:visibility="visible" />
 
     <TextView
         android:id="@+id/tv_item_right"
         android:layout_width="0dp"
-        android:layout_weight="3"
         android:layout_height="match_parent"
+        android:layout_weight="3"
         android:background="@android:color/transparent"
         android:ellipsize="end"
-        android:gravity="right|center_vertical"
+        android:gravity="end|center_vertical"
         android:maxWidth="150dp"
+        android:paddingStart="@dimen/module_margin"
+        android:paddingLeft="@dimen/module_margin"
+        android:paddingEnd="@dimen/module_margin"
+        android:paddingRight="@dimen/module_margin"
         android:singleLine="true"
         android:textColor="@color/text_gray"
         android:textSize="14sp"
-        android:paddingLeft="14dp"
-        android:paddingRight="10dp"
-        android:layout_alignParentRight="true"
         tools:text="Right"
-        tools:visibility="visible"/>
+        tools:visibility="visible" />
 
     <ImageView
         android:id="@+id/iv_next"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
+        android:contentDescription="@null"
         android:scaleType="fitCenter"
-        android:src="@drawable/ic_next"/>
+        android:src="@drawable/ic_next" />
 </LinearLayout>

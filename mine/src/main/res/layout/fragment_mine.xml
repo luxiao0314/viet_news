@@ -25,7 +25,7 @@
         <RelativeLayout
             android:id="@+id/login_layout"
             android:layout_width="match_parent"
-            android:layout_height="150dp"
+            android:layout_height="130dp"
             android:layout_marginTop="8dp">
 
             <Button
@@ -44,6 +44,7 @@
                 android:id="@+id/iv_user_icon"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
+                android:contentDescription="@null"
                 android:layout_centerVertical="true"
                 android:layout_marginStart="@dimen/module_margin"
                 android:layout_marginLeft="@dimen/module_margin"
