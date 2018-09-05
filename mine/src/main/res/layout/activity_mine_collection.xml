@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
 
-</android.support.constraint.ConstraintLayout>
+    <com.viet.news.core.ui.widget.TitleBar
+        android:id="@+id/title_bar"
+        style="@style/title_bar_white"
+        app:titlebar_titleText="@string/title_collect" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rl_collection"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:splitMotionEvents="false"/>
+</LinearLayout>
