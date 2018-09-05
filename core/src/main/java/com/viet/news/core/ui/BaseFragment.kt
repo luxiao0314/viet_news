@@ -7,7 +7,6 @@ import android.os.Build
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.view.View
-import com.jaeger.library.StatusBarUtil
 import io.reactivex.disposables.CompositeDisposable
 
 /**
@@ -39,13 +38,11 @@ abstract class BaseFragment : Fragment() {
 //            this.mContext = context
 //        }
         this.mContext = context
-
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initView(view)
-        StatusBarUtil.setTranslucentForImageViewInFragment(activity, 70, null)
     }
 
     protected abstract fun initView(view: View)

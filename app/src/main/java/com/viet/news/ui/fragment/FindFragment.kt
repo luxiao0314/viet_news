@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import cn.magicwindow.channelwidget.AddChannelFragment
 import cn.magicwindow.channelwidget.entity.ChannelBean
+import com.jaeger.library.StatusBarUtil
 import com.safframework.ext.click
 import com.viet.news.R
 import com.viet.news.adapter.MyViewPager
@@ -32,6 +33,11 @@ class FindFragment : InjectFragment(), AddChannelFragment.DataChangeListener, (S
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         return inflater.inflate(R.layout.activity_find, container, false)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        StatusBarUtil.setTranslucentForImageViewInFragment(activity, 70, null)
     }
 
     override fun initView(view: View) {
