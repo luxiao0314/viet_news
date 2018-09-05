@@ -9,7 +9,7 @@
 
     <ImageView
         android:id="@+id/iv_task_icon"
-        android:layout_width="100dp"
+        android:layout_width="104dp"
         android:layout_height="80dp" />
 
     <TextView
@@ -44,7 +44,7 @@
         android:layout_marginLeft="@dimen/top_padding_same_module"
         android:layout_marginRight="@dimen/top_padding_same_module"
         android:ellipsize="end"
-        android:maxLines="2"
+        android:maxLines="1"
         app:layout_constraintLeft_toRightOf="@id/iv_task_icon"
         app:layout_constraintRight_toLeftOf="@id/btn_right"
         app:layout_constraintTop_toBottomOf="@id/tv_task_name"
@@ -62,6 +62,51 @@
         app:layout_constraintLeft_toRightOf="@id/iv_task_icon"
         tools:text="邀请新用户" />
 
+    <LinearLayout
+        android:id="@+id/ll_progress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/top_padding_same_module"
+        android:layout_marginLeft="@dimen/top_padding_same_module"
+        android:layout_marginBottom="@dimen/top_padding_same_module"
+        android:gravity="bottom"
+        android:orientation="horizontal"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toRightOf="@id/iv_task_icon">
+
+        <ProgressBar
+            android:id="@+id/progress_bar"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="70dp"
+            android:layout_height="5dp"
+            android:layout_gravity="center_vertical"
+            android:max="100"
+            android:progress="50" />
+
+        <TextView
+            android:layout_marginLeft="@dimen/top_padding_same_module"
+            android:id="@+id/tv_current_progress"
+            style="@style/text.12.gray"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="50" />
+
+        <TextView
+            style="@style/text.12.gray"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="/" />
+
+        <TextView
+            android:id="@+id/tv_max_progress"
+            style="@style/text.10.gray"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="100" />
+    </LinearLayout>
+
+
     <Button
         android:id="@+id/btn_right"
         style="@style/text.10.gray"
@@ -71,5 +116,6 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="去邀请" />
+
 
 </android.support.constraint.ConstraintLayout>
