@@ -5,8 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:focusable="true"
-    android:focusableInTouchMode="true"
+    android:background="@color/white"
     android:paddingStart="@dimen/page_padding_left"
     android:paddingLeft="@dimen/page_padding_left"
     android:paddingTop="@dimen/padding_top_large"
@@ -117,6 +116,7 @@
         android:layout_marginBottom="20dp"
         android:text="@string/consent_user_agreement"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toStartOf="parent"/>
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"/>
 
 </android.support.constraint.ConstraintLayout>

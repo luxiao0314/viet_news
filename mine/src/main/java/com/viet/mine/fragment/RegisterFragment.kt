@@ -2,6 +2,7 @@ package com.viet.mine.fragment
 
 import android.arch.lifecycle.Observer
 import android.os.Bundle
+import android.support.v4.app.FragmentTransaction
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -45,7 +46,7 @@ class RegisterFragment : RealVisibleHintBaseFragment() {
 
         //+86点击事件
         select_country_text.clickWithTrigger {
-//            routerWithAnim(Config.ROUTER_SELECT_COUNTRY_ACTIVITY)
+            //            routerWithAnim(Config.ROUTER_SELECT_COUNTRY_ACTIVITY)
 //                    .with(Config.BUNDLE_COUNTRIES, model.currentCountryResponse.value)
 //                    .with(Config.BUNDLE_SELECTED_COUNTRY, model.countryAbbreviation.value)
 //                    .requestCode(0).go(this)
@@ -64,12 +65,18 @@ class RegisterFragment : RealVisibleHintBaseFragment() {
         })
 
         //注册按钮能否点击更新
-        model.registerVCodeEnable.observe(this, Observer {
-            register_btn.isEnabled = it != null && it
-        })
+//        model.registerVCodeEnable.observe(this, Observer {
+//            register_btn.isEnabled = it != null && it
+//        })
 
         //注册按钮点击事件
         register_btn.clickWithTrigger { button ->
+            activity?.supportFragmentManager
+                    ?.beginTransaction()
+                    ?.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                    ?.replace(R.id.constraintLayout, RegisterNextFragment())
+                    ?.addToBackStack(null)
+                    ?.commit()
 //            if (model.verificationEnable()) {
 //                model.canRegister(this)
 //                        .subscribe {
@@ -89,6 +96,7 @@ class RegisterFragment : RealVisibleHintBaseFragment() {
 //                        }
 //            }
         }
+
 
     }
 }
