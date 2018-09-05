@@ -116,7 +116,7 @@
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="50dp"
         android:clickable="false"
-        android:text="@string/log_in"
+        android:text="@string/next"
         app:layout_constraintTop_toBottomOf="@+id/clearEditext"/>
 
     <com.facebook.login.widget.LoginButton

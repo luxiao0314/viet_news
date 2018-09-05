@@ -41,5 +41,6 @@
     <string name="feed_back">意见反馈</string>
     <string name="about">关于MagicBox</string>
     <string name="version">版本号</string>
+    <string name="next">下一步</string>
 
 </resources>

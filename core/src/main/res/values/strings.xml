@@ -51,5 +51,6 @@
     <string name="agree">agree</string>
     <string name="consent_user_agreement">User Agreement</string>
     <string name="click_to_verification">Get verification</string>
+    <string name="next">Next</string>
 
 </resources>

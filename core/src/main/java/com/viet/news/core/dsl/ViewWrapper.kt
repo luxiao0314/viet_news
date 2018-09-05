@@ -5,6 +5,7 @@ import android.app.Application
 import android.os.Bundle
 import android.support.v4.view.ViewPager
 import com.flyco.tablayout.CommonTabLayout
+import com.flyco.tablayout.SegmentTabLayout
 import com.flyco.tablayout.SlidingTabLayout
 import com.flyco.tablayout.listener.OnTabSelectListener
 
@@ -107,6 +108,12 @@ class AddOnPageChangeListenerWrapper : ViewPager.OnPageChangeListener {
     override fun onPageSelected(position: Int) {
         onPageSelected?.let { it(position) }
     }
+}
+
+fun SegmentTabLayout.setOnTabSelectListener(init: OnTabSelectListenerWrapper.() -> Unit) {
+    val callback = OnTabSelectListenerWrapper()
+    callback.init()
+    setOnTabSelectListener(callback)
 }
 
 fun CommonTabLayout.setOnTabSelectListener(init: OnTabSelectListenerWrapper.() -> Unit) {

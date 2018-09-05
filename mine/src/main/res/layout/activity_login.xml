@@ -2,9 +2,9 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="@color/white"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/white">
 
     <ImageView
         android:id="@+id/iv_close"
@@ -33,13 +33,19 @@
         app:tl_textUnselectColor="#66000000"
         app:tl_underline_color="@color/transparent"/>
 
-    <com.viet.news.core.ui.NoScrollViewPager
-        android:id="@+id/viewpager"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior"
-        app:layout_constraintTop_toBottomOf="@+id/tablayout"/>
+    <android.support.v4.view.ViewPager
+    android:id="@+id/viewpager"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="10dp"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    app:layout_constraintTop_toBottomOf="@+id/tablayout"/>
+
+    <!--<FrameLayout-->
+        <!--android:id="@+id/fl_content"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--app:layout_constraintTop_toBottomOf="@+id/tablayout"/>-->
 </android.support.constraint.ConstraintLayout>
 
 
