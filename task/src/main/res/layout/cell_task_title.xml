@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/tv_task_title_name"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/text.16.gray.bold"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="@dimen/top_padding_same_module"
+    android:layout_marginBottom="@dimen/top_padding_same_module"
+    android:background="@drawable/task_title_bg"
+    android:gravity="center"
+    android:padding="@dimen/top_padding_same_module"
+    tools:text="title" />
+

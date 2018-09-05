@@ -1,0 +1,87 @@
+{
+  "currentRange":111,
+  "taskGroups": [
+    {
+      "taskGroupName": "MB钻任务",
+      "tasks": [
+        {
+          "taskName": "邀请新用户",
+          "taskDesc": "更能获得相关收益",
+          "taskType": "invite",
+          "taskIcon": "http://img.sccnn.com/bimg/338/24556.jpg",
+          "taskScore": 2,
+          "taskStatus": {
+            "totalScore": 0,
+            "currentScore": 0,
+            "message": "已邀请100名"
+          }
+        },
+        {
+          "taskName": "首次绑定手机号",
+          "taskDesc": "我就看看你的帽子，什么也不做~我就看看你的帽子，什么也不做~我就看看你的帽子，什么也不做~",
+          "taskType": "bind_mobile_phone",
+          "taskIcon": "http://img.sccnn.com/bimg/338/24556.jpg",
+          "taskScore": 20,
+          "taskStatus": {
+            "totalScore": 0,
+            "currentScore": 0,
+            "message": ""
+          }
+        }
+      ]
+    },
+    {
+      "taskGroupName": "POWER任务",
+      "tasks": [
+        {
+          "taskName": "每天阅读文章",
+          "taskDesc": "每天最多获得200power",
+          "taskType": "reading",
+          "taskIcon": "http://img.sccnn.com/bimg/338/24556.jpg",
+          "taskScore": 2,
+          "taskStatus": {
+            "totalScore": 200,
+            "currentScore": 20,
+            "message": ""
+          }
+        },
+        {
+          "taskName": "内容创作奖励",
+          "taskDesc": "一分耕耘一分收获",
+          "taskType": "neirongchuangzuo",
+          "taskIcon": "http://img.sccnn.com/bimg/338/24556.jpg",
+          "taskScore": -1,
+          "taskStatus": {
+            "totalScore": 0,
+            "currentScore": 0,
+            "message": "内测中..."
+          }
+        },
+        {
+          "taskName": "点赞文章",
+          "taskDesc": "每天最多获得50power",
+          "taskType": "dianzan",
+          "taskIcon": "http://img.sccnn.com/bimg/338/24556.jpg",
+          "taskScore": 5,
+          "taskStatus": {
+            "totalScore": 50,
+            "currentScore": 20,
+            "message": ""
+          }
+        },
+        {
+          "taskName": "分享文章给好友",
+          "taskDesc": "每天最多获得20power",
+          "taskType": "share",
+          "taskIcon": "http://img.sccnn.com/bimg/338/24556.jpg",
+          "taskScore": 5,
+          "taskStatus": {
+            "totalScore": 20,
+            "currentScore": 20,
+            "message": ""
+          }
+        }
+      ]
+    }
+  ]
+}
