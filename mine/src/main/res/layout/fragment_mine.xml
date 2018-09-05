@@ -15,8 +15,8 @@
         <com.viet.news.core.ui.widget.TitleBar
             android:id="@+id/title_bar"
             style="@style/title_bar.bg"
-            android:layout_height="65dp"
-            android:background="@color/transparent"
+            android:layout_height="85dp"
+            android:background="@color/white"
             android:paddingTop="@dimen/statusbar_view_height"
             app:titlebar_leftDrawable="@null"
             app:titlebar_titleText="@string/title_mine"

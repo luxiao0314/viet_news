@@ -197,6 +197,9 @@
     <style name="text.14.white">
         <item name="android:textColor">@color/white</item>
     </style>
+    <style name="text.24.white">
+        <item name="android:textColor">@color/white</item>
+    </style>
 
     <style name="text.14.white.bold">
         <item name="android:textStyle">bold</item>

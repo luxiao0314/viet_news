@@ -8,7 +8,7 @@
     <com.viet.news.core.ui.widget.TitleBar
         android:id="@+id/title_bar"
         style="@style/title_bar.bg"
-        android:layout_height="65dp"
+        android:layout_height="85dp"
         android:paddingTop="@dimen/statusbar_view_height"
         app:titlebar_leftDrawable="@null"
         app:titlebar_titleText="@string/title_find"/>

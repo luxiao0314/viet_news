@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="@dimen/top_padding_same_module"
+    android:layout_marginBottom="@dimen/top_padding_same_module">
+
+    <ImageView
+        android:id="@+id/iv_task_icon"
+        android:layout_width="100dp"
+        android:layout_height="80dp" />
+
+    <TextView
+        android:id="@+id/tv_task_name"
+        style="@style/text.14.gray"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/top_padding_same_module"
+        android:layout_marginLeft="@dimen/top_padding_same_module"
+        android:layout_marginTop="@dimen/top_padding_same_module"
+        app:layout_constraintLeft_toRightOf="@id/iv_task_icon"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="邀请新用户" />
+
+    <TextView
+        android:id="@+id/tv_task_score"
+        style="@style/text.14.gray"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/top_padding_same_module"
+        android:layout_marginLeft="@dimen/top_padding_same_module"
+        app:layout_constraintBaseline_toBaselineOf="@id/tv_task_name"
+        app:layout_constraintLeft_toRightOf="@id/tv_task_name"
+        tools:text="+2" />
+
+    <TextView
+        android:id="@+id/tv_task_desc"
+        style="@style/text.12.light_gray"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/top_padding_same_module"
+        android:layout_marginLeft="@dimen/top_padding_same_module"
+        android:layout_marginRight="@dimen/top_padding_same_module"
+        android:ellipsize="end"
+        android:maxLines="2"
+        app:layout_constraintLeft_toRightOf="@id/iv_task_icon"
+        app:layout_constraintRight_toLeftOf="@id/btn_right"
+        app:layout_constraintTop_toBottomOf="@id/tv_task_name"
+        tools:text="desc" />
+
+    <TextView
+        android:id="@+id/tv_task_msg"
+        style="@style/text.10.gray"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/top_padding_same_module"
+        android:layout_marginLeft="@dimen/top_padding_same_module"
+        android:layout_marginBottom="@dimen/top_padding_same_module"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toRightOf="@id/iv_task_icon"
+        tools:text="邀请新用户" />
+
+    <Button
+        android:id="@+id/btn_right"
+        style="@style/text.10.gray"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="去邀请" />
+
+</android.support.constraint.ConstraintLayout>
