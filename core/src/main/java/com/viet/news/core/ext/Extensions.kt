@@ -70,5 +70,6 @@ fun ViewGroup.inflate(layoutRes: Int): View {
 }
 
 fun dp2px(value: Int, context: Context): Int {
-    return (context.applicationContext.resources.displayMetrics.density * value).toInt()
+    val scale = context.resources.displayMetrics.density
+    return (value * scale + 0.5f).toInt()
 }

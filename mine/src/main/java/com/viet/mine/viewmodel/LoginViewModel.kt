@@ -21,6 +21,7 @@ class LoginViewModel : BaseViewModel() {
 
     val titles = mutableListOf(App.instance.resources.getString(R.string.sign_in), App.instance.resources.getString(R.string.log_in))
     val fragments = mutableListOf<BaseFragment>(RegisterFragment(), LoginFragment())
+    var currentTab = 0
     var phoneNumber: MutableLiveData<String> = MutableLiveData()
     var password: MutableLiveData<String> = MutableLiveData()
     var countDown: MutableLiveData<Int> = MutableLiveData()

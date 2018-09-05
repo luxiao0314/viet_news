@@ -1,6 +1,7 @@
 package com.viet.mine.activity
 
 import android.os.Bundle
+import com.safframework.ext.click
 import com.viet.mine.R
 import com.viet.mine.viewmodel.LoginViewModel
 import com.viet.news.core.delegate.viewModelDelegate
@@ -21,6 +22,7 @@ class LoginActivity : InjectActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
         initView()
+        initListener()
     }
 
     private fun initView() {
@@ -29,10 +31,17 @@ class LoginActivity : InjectActivity() {
         viewpager.adapter = adapter
         tablayout.setViewPager(viewpager)
         adapter.notifyDataSetChanged()
-        tablayout.setOnTabSelectListener {
-            onTabSelect = {
-//                tablayout.getTitleView(it).textSize = ResolutionUtils.dp2px(24, this@LoginActivity).toFloat()
-            }
-        }
+        setTabText(0, 1)
+    }
+
+    private fun initListener() {
+        iv_close.click { finish() }
+        tablayout.setOnTabSelectListener { onTabSelect = { setTabText(it, model.currentTab) } }
+    }
+
+    private fun setTabText(currentTab: Int, otherTab: Int) {
+        tablayout.getTitleView(currentTab).textSize = 25F
+        tablayout.getTitleView(otherTab).textSize = 15F
+        model.currentTab = currentTab
     }
 }
