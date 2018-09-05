@@ -16,46 +16,21 @@
         android:src="@drawable/ic_close" app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"/>
 
-    <TextView
-        android:id="@+id/login_text"
-        style="@style/text.24.gray.bold"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginRight="15dp"
-        android:text="@string/log_in"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toLeftOf="@+id/register_text"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/iv_close"
-        app:layout_constraintVertical_bias="0.011"/>
-
-    <View
-        android:id="@+id/login_line"
-        style="@style/line.vertical.gray"
-        android:layout_height="25dp"
-        android:layout_marginStart="15dp"
-        android:layout_marginLeft="15dp"
-        android:layout_marginEnd="15dp"
-        android:layout_marginRight="15dp"
-        app:layout_constraintBottom_toBottomOf="@id/login_text"
-        app:layout_constraintEnd_toStartOf="@+id/register_text"
-        app:layout_constraintStart_toEndOf="@+id/login_text"
-        app:layout_constraintTop_toTopOf="@id/login_text"/>
-
-    <TextView
-        android:id="@+id/register_text"
-        style="@style/text.18.gray"
-        android:layout_width="wrap_content"
-        android:layout_marginEnd="208dp"
-        android:layout_marginRight="208dp" android:text="@string/sign_in"
-        app:layout_constraintBottom_toBottomOf="@+id/login_text"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/login_line"
-        app:layout_constraintTop_toTopOf="@+id/login_text"/>
+    <com.flyco.tablayout.SlidingTabLayout
+        android:id="@+id/tablayout"
+        android:layout_width="200dp"
+        android:layout_height="48dp"
+        app:tl_divider_color="#1A000000"
+        app:tl_divider_padding="13dp"
+        app:tl_divider_width="1dp"
+        app:tl_indicator_color="#000000"
+        app:tl_indicator_height="0dp"
+        app:tl_indicator_width_equal_title="true"
+        app:tl_tab_padding="22dp"
+        app:tl_tab_space_equal="true"
+        app:tl_textSelectColor="#000000"
+        app:tl_textUnselectColor="#66000000"
+        app:tl_underline_color="@color/transparent"/>
 
     <com.viet.news.core.ui.NoScrollViewPager
         android:id="@+id/viewpager"
@@ -63,7 +38,7 @@
         android:layout_height="695dp"
         android:layout_marginTop="10dp"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
-        app:layout_constraintTop_toBottomOf="@+id/login_line"/>
+        app:layout_constraintTop_toBottomOf="@+id/tablayout"/>
 </android.support.constraint.ConstraintLayout>
 
 

@@ -5,6 +5,7 @@ import android.app.Application
 import android.os.Bundle
 import android.support.v4.view.ViewPager
 import com.flyco.tablayout.CommonTabLayout
+import com.flyco.tablayout.SlidingTabLayout
 import com.flyco.tablayout.listener.OnTabSelectListener
 
 /**
@@ -109,6 +110,12 @@ class AddOnPageChangeListenerWrapper : ViewPager.OnPageChangeListener {
 }
 
 fun CommonTabLayout.setOnTabSelectListener(init: OnTabSelectListenerWrapper.() -> Unit) {
+    val callback = OnTabSelectListenerWrapper()
+    callback.init()
+    setOnTabSelectListener(callback)
+}
+
+fun SlidingTabLayout.setOnTabSelectListener(init: OnTabSelectListenerWrapper.() -> Unit) {
     val callback = OnTabSelectListenerWrapper()
     callback.init()
     setOnTabSelectListener(callback)
