@@ -1,99 +1,69 @@
-<android.support.design.widget.CoordinatorLayout
+<android.support.constraint.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <android.support.design.widget.AppBarLayout
-        android:id="@+id/app_bar"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/login_appbar_height"
-        android:background="@color/white"
-        android:fitsSystemWindows="true">
+    <ImageView
+        android:id="@+id/iv_close"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp" android:padding="10dp"
+        android:src="@drawable/ic_close" app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
 
-        <android.support.design.widget.CollapsingToolbarLayout
-            android:id="@+id/collapsing_toolbar_layout"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:contentScrim="@color/white"
-            app:layout_scrollFlags="scroll|snap|exitUntilCollapsed"
-            app:statusBarScrim="@drawable/shape_title_bg">
+    <TextView
+        android:id="@+id/login_text"
+        style="@style/text.24.gray.bold"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginRight="15dp"
+        android:text="@string/log_in"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@+id/register_text"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/iv_close"
+        app:layout_constraintVertical_bias="0.011"/>
 
-            <android.support.v7.widget.Toolbar
-                android:id="@+id/toolbar"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/toolbar_height"
-                app:contentInsetStart="0dp"
-                app:layout_collapseMode="pin">
+    <View
+        android:id="@+id/login_line"
+        style="@style/line.vertical.gray"
+        android:layout_height="25dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginRight="15dp"
+        app:layout_constraintBottom_toBottomOf="@id/login_text"
+        app:layout_constraintEnd_toStartOf="@+id/register_text"
+        app:layout_constraintStart_toEndOf="@+id/login_text"
+        app:layout_constraintTop_toTopOf="@id/login_text"/>
 
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <ImageView
-                        android:id="@+id/iv_close"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentRight="true"
-                        android:padding="10dp"
-                        android:src="@drawable/ic_close"/>
-                </RelativeLayout>
-
-            </android.support.v7.widget.Toolbar>
-
-        </android.support.design.widget.CollapsingToolbarLayout>
-
-    </android.support.design.widget.AppBarLayout>
+    <TextView
+        android:id="@+id/register_text"
+        style="@style/text.18.gray"
+        android:layout_width="wrap_content"
+        android:layout_marginEnd="208dp"
+        android:layout_marginRight="208dp" android:text="@string/sign_in"
+        app:layout_constraintBottom_toBottomOf="@+id/login_text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/login_line"
+        app:layout_constraintTop_toTopOf="@+id/login_text"/>
 
     <com.viet.news.core.ui.NoScrollViewPager
         android:id="@+id/viewpager"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="@dimen/padding_top_large"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
-
-    <android.support.constraint.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/login_appbar_height"
-        android:gravity="center|bottom"
-        android:orientation="horizontal">
-
-        <TextView
-            android:id="@+id/login_text"
-            style="@style/text.20.gray.bold"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/log_in"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toLeftOf="@+id/register_text"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.866"/>
-
-        <View
-            android:id="@+id/login_line"
-            style="@style/line.vertical.gray"
-            android:layout_height="25dp"
-            app:layout_constraintBottom_toBottomOf="@id/login_text"
-            app:layout_constraintHorizontal_bias="0.494"
-            app:layout_constraintLeft_toRightOf="@id/login_text"
-            app:layout_constraintRight_toLeftOf="@id/register_text"
-            app:layout_constraintTop_toTopOf="@id/login_text"
-            app:layout_constraintVertical_bias="0.875"/>
-
-        <TextView
-            android:id="@+id/register_text"
-            style="@style/text.20.gray.bold"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/sign_in"
-            app:layout_constraintLeft_toRightOf="@id/login_text"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="@id/login_text"
-            tools:layout_editor_absoluteX="241dp"
-            tools:layout_editor_absoluteY="104dp"/>
-    </android.support.constraint.ConstraintLayout>
-</android.support.design.widget.CoordinatorLayout>
+        android:layout_height="695dp"
+        android:layout_marginTop="10dp"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        app:layout_constraintTop_toBottomOf="@+id/login_line"/>
+</android.support.constraint.ConstraintLayout>
 
 

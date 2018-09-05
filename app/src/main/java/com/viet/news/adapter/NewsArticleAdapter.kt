@@ -4,7 +4,7 @@ import android.support.v7.widget.RecyclerView
 import android.view.ViewGroup
 import com.viet.news.R
 import com.viet.news.adapter.viewholder.NewsArticleViewHolder
-import com.viet.news.inflate
+import com.viet.news.core.ext.inflate
 import com.viet.news.core.domain.response.Article
 
 /**

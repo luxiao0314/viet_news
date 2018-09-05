@@ -1,4 +1,4 @@
-package com.viet.news
+package com.viet.news.core.ext
 
 import android.graphics.drawable.Drawable
 import android.view.LayoutInflater

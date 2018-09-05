@@ -3,7 +3,9 @@ package com.viet.mine.viewmodel
 import android.arch.lifecycle.LifecycleOwner
 import android.arch.lifecycle.MutableLiveData
 import android.os.CountDownTimer
+import com.viet.mine.R
 import com.viet.mine.viewmodel.LoginViewModel.StaticFiled.countValue
+import com.viet.news.core.ui.App
 import com.viet.news.core.viewmodel.BaseViewModel
 
 /**
@@ -14,6 +16,7 @@ import com.viet.news.core.viewmodel.BaseViewModel
  */
 class LoginViewModel : BaseViewModel() {
 
+    val titleList = listOf(App.instance.resources.getString(R.string.sign_in), App.instance.resources.getString(R.string.log_in))
     var phoneNumber: MutableLiveData<String> = MutableLiveData()
     var password: MutableLiveData<String> = MutableLiveData()
     var countDown: MutableLiveData<Int> = MutableLiveData()

@@ -6,7 +6,7 @@ import com.viet.news.adapter.viewholder.NewsSourceViewHolder
 import com.viet.news.db.SourceEntity
 import com.viet.news.R
 import com.viet.news.core.ui.widget.SwipeLayout
-import com.viet.news.inflate
+import com.viet.news.core.ext.inflate
 import android.widget.Toast
 import com.safframework.ext.clickWithTrigger
 import kotlinx.android.synthetic.main.layout_news_source_single.view.*
