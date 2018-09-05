@@ -18,7 +18,7 @@
         app:next_icon_visibility="false"
         app:right_text="3.25M" />
 
-    <View style="@style/line.gray_tran" />
+    <View style="@style/line.gray_tran.margin_left" />
 
     <com.viet.news.core.ui.widget.CommonItem
         android:layout_width="match_parent"
@@ -27,7 +27,7 @@
         app:next_icon_visibility="true"
         app:right_text="越南语" />
 
-    <View style="@style/line.gray_tran" />
+    <View style="@style/line.gray_tran.margin_left" />
 
     <com.viet.news.core.ui.widget.CommonItem
         android:layout_width="match_parent"
@@ -35,7 +35,7 @@
         app:left_text="@string/help"
         app:next_icon_visibility="true" />
 
-    <View style="@style/line.gray_tran" />
+    <View style="@style/line.gray_tran.margin_left" />
 
     <com.viet.news.core.ui.widget.CommonItem
         android:layout_width="match_parent"
@@ -55,7 +55,7 @@
         app:next_icon_visibility="true" />
 
 
-    <View style="@style/line.gray_tran" />
+    <View style="@style/line.gray_tran.margin_left" />
 
     <com.viet.news.core.ui.widget.CommonItem
         android:layout_width="match_parent"

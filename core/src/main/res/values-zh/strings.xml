@@ -6,6 +6,7 @@
     <string name="title_mine">我的</string>
     <string name="title_setting">设置</string>
     <string name="title_collect">收藏</string>
+    <string name="title_account_info">个人信息</string>
 
     <!--登录相关-->
     <string name="cancel">取消</string>
@@ -42,5 +43,14 @@
     <string name="about">关于MagicBox</string>
     <string name="version">版本号</string>
     <string name="next">下一步</string>
+
+    <!--个人信息-->
+    <string name="user_icon">头像</string>
+    <string name="magicbox_num">MagicBox号</string>
+    <string name="nick_name">昵称</string>
+    <string name="phone_num">手机</string>
+    <string name="login_pwd">登录密码</string>
+    <string name="unbind">未绑定</string>
+    <string name="to_setting">去设置</string>
 
 </resources>
