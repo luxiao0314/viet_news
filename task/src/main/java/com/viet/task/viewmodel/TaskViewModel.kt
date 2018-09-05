@@ -1,5 +1,9 @@
 package com.viet.task.viewmodel
 
+import android.arch.lifecycle.LiveData
+import com.viet.news.core.domain.response.NewsResponse
+import com.viet.news.core.domain.response.TaskResponse
+import com.viet.news.core.utils.FileUtils
 import com.viet.news.core.viewmodel.BaseViewModel
 
 /**
@@ -10,4 +14,9 @@ import com.viet.news.core.viewmodel.BaseViewModel
  * @Version
  */
 class TaskViewModel: BaseViewModel() {
+
+
+    fun getTaskGroupList(): LiveData<TaskResponse> {
+        return FileUtils.handleVirtualData(TaskResponse::class.java)
+    }
 }

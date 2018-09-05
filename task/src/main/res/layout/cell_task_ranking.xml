@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="@dimen/top_padding_same_module"
+    android:layout_marginBottom="@dimen/top_padding_same_module"
+    android:background="@drawable/ic_task_rank_bg">
+
+    <TextView
+        android:id="@+id/tv_text1"
+        style="@style/text.16.white"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/page_padding"
+        android:layout_marginTop="@dimen/page_padding"
+        android:text="每周前100名"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_text2"
+        style="@style/text.24.white"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/page_padding"
+        android:layout_marginBottom="@dimen/page_padding"
+        android:text="瓜分2000000"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_text1" />
+
+    <TextView
+        android:id="@+id/tv_rank"
+        style="@style/text.12.gray"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="@dimen/page_padding"
+        app:layout_constraintRight_toRightOf="parent"
+        tools:text="当前排名123" />
+
+    <TextView
+        android:id="@+id/tv_view"
+        style="@style/text.14.gray"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="@dimen/page_padding"
+        android:text="查看"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_text1" />
+
+</android.support.constraint.ConstraintLayout>
