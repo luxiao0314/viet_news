@@ -23,12 +23,12 @@ import kotlinx.android.synthetic.main.fragment_register.*
  */
 
 //@Route(value = [(Config.ROUTER_REGISTER_FRAGMENT)])
-class RegisterFragment : RealVisibleHintBaseFragment() {
+class RegisterNextFragment : RealVisibleHintBaseFragment() {
 
     private val model by viewModelDelegate(LoginViewModel::class, true)
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? =
-            inflater.inflate(R.layout.fragment_register, container, false)
+            inflater.inflate(R.layout.fragment_register_next, container, false)
 
     override fun initView(view: View) {
         //手机号

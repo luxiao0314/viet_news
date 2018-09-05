@@ -293,7 +293,6 @@
 
     <style name="line.gray_tran">
         <item name="android:background">@color/gray_tran</item>
-        <item name="android:layout_marginLeft">14dp</item>
     </style>
 
     <style name="line.vertical">
@@ -323,7 +322,7 @@
         <item name="android:textSize">16sp</item>
         <item name="android:textStyle">bold</item>
         <item name="android:textColor">@drawable/selector_btn_text_color</item>
-        <item name="android:background">@drawable/shape_btn_bg</item>
+        <item name="android:background">@drawable/shape_login_btn_bg</item>
         <item name="android:gravity">center</item>
     </style>
 
