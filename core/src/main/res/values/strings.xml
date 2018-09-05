@@ -5,6 +5,7 @@
     <string name="title_mine">Mine</string>
     <string name="title_follow">Follow</string>
     <string name="title_task">Task</string>
+    <string name="title_collect">Collections</string>
 
     <!--mine-->
     <string name="title_setting">Setting</string>

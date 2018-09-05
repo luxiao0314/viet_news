@@ -3,5 +3,6 @@
 
     <application>
         <activity android:name=".activity.SettingActivity" />
+        <activity android:name=".activity.CollectionActivity" />
     </application>
 </manifest>

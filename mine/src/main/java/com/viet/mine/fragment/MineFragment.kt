@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import com.safframework.ext.clickWithTrigger
 import com.viet.mine.R
 import com.viet.mine.activity.AccountInfoActivity
+import com.viet.mine.activity.CollectionActivity
 import com.viet.mine.activity.LoginActivity
 import com.viet.mine.activity.SettingActivity
 import com.viet.news.core.domain.User
@@ -40,6 +41,12 @@ class MineFragment : BaseFragment() {
                 startActivityForResult(Intent(activity, LoginActivity::class.java), 0)
             } else {
                 startActivity(Intent(activity, AccountInfoActivity::class.java))
+            }
+        }
+
+        mine_collection.setClickDelegate {
+            onItemClick = {
+                context?.startActivity(Intent(activity, CollectionActivity::class.java))
             }
         }
     }
