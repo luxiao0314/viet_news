@@ -46,5 +46,6 @@
         android:id="@+id/iv_next"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
+        android:scaleType="fitCenter"
         android:src="@drawable/ic_next"/>
 </LinearLayout>

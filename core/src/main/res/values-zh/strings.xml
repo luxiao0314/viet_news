@@ -18,4 +18,23 @@
     <string name="agree">同意</string>
     <string name="consent_user_agreement">用户协议</string>
     <string name="click_to_verification">获取验证码</string>
+
+    <!--我的-->
+    <string name="login_or_register">登录/注册</string>
+    <string name="fans">粉丝</string>
+    <string name="follow">关注</string>
+    <string name="edit">编辑</string>
+    <string name="my_wallet">我的钱包</string>
+    <string name="invite_friends">邀请好友</string>
+    <string name="collection">收藏</string>
+    <string name="settings">设置</string>
+
+    <!--我的,设置-->
+    <string name="clear_cache">清除缓存</string>
+    <string name="language_setting">语言设置</string>
+    <string name="help">帮助中心</string>
+    <string name="feed_back">意见反馈</string>
+    <string name="about">关于MagicBox</string>
+    <string name="version">版本号</string>
+
 </resources>

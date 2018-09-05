@@ -5,7 +5,25 @@
     <string name="title_mine">Mine</string>
     <string name="title_follow">Follow</string>
     <string name="title_task">Task</string>
+
+    <!--mine-->
     <string name="title_setting">Setting</string>
+    <string name="login_or_register">Login/Register</string>
+    <string name="fans">fans</string>
+    <string name="follow">follow</string>
+    <string name="edit">edit</string>
+    <string name="my_wallet">My Wallet</string>
+    <string name="invite_friends">Invite Friend</string>
+    <string name="collection">Collection</string>
+    <string name="settings">Setting</string>
+
+    <!--mine settings-->
+    <string name="clear_cache">Clear Cache</string>
+    <string name="language_setting">Language Setting</string>
+    <string name="help">Help</string>
+    <string name="feed_back">Feed Back</string>
+    <string name="about">About MagicBox</string>
+    <string name="version">Version</string>
 
     <string name="loading_msg">Loading</string><!-- 正在加载 -->
     <string name="empty_msg">There is noting here！</string><!-- 没有数据 -->

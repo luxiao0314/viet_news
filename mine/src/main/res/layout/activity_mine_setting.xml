@@ -14,7 +14,7 @@
     <com.viet.news.core.ui.widget.CommonItem
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        app:left_text="清除缓存"
+        app:left_text="@string/clear_cache"
         app:next_icon_visibility="false"
         app:right_text="3.25M" />
 
@@ -23,7 +23,7 @@
     <com.viet.news.core.ui.widget.CommonItem
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        app:left_text="语言设置"
+        app:left_text="@string/language_setting"
         app:next_icon_visibility="true"
         app:right_text="越南语" />
 
@@ -32,7 +32,7 @@
     <com.viet.news.core.ui.widget.CommonItem
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        app:left_text="帮助中心"
+        app:left_text="@string/help"
         app:next_icon_visibility="true" />
 
     <View style="@style/line.gray_tran" />
@@ -40,7 +40,7 @@
     <com.viet.news.core.ui.widget.CommonItem
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        app:left_text="意见反馈"
+        app:left_text="@string/feed_back"
         app:next_icon_visibility="true" />
 
     <View
@@ -51,7 +51,7 @@
     <com.viet.news.core.ui.widget.CommonItem
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        app:left_text="关于MagicBox"
+        app:left_text="@string/about"
         app:next_icon_visibility="true" />
 
 
@@ -60,9 +60,8 @@
     <com.viet.news.core.ui.widget.CommonItem
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        app:left_text="版本号"
+        app:left_text="@string/version"
         app:next_icon_visibility="true"
         app:right_text="v1.0.0" />
 
-    <View style="@style/line.gray_tran" />
 </LinearLayout>
