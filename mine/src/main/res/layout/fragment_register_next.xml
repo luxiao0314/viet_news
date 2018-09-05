@@ -5,12 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
-    android:paddingStart="@dimen/page_padding_left"
-    android:paddingLeft="@dimen/page_padding_left"
-    android:paddingTop="@dimen/padding_top_large"
-    android:paddingEnd="@dimen/page_padding_right"
-    android:paddingRight="@dimen/page_padding_right">
+    android:background="@color/white">
 
     <TextView
         android:id="@+id/tv_hint"

@@ -71,7 +71,8 @@ class RegisterFragment : RealVisibleHintBaseFragment() {
 
         //注册按钮点击事件
         register_btn.clickWithTrigger { button ->
-            activity?.supportFragmentManager
+//            FragmentExchangeManager.addFragment(fragmentManager,RegisterNextFragment(),R.id.constraintLayout,"RegisterNextFragment")
+            fragmentManager
                     ?.beginTransaction()
                     ?.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
                     ?.replace(R.id.constraintLayout, RegisterNextFragment())
