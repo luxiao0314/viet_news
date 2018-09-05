@@ -11,4 +11,9 @@
         android:paddingTop="@dimen/statusbar_view_height"
         app:titlebar_leftDrawable="@null"
         app:titlebar_titleText="@string/title_follow"/>
+
+    <FrameLayout
+        android:id="@+id/framelayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
 </LinearLayout>

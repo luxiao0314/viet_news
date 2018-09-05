@@ -27,5 +27,6 @@ class FollowFragment : BaseFragment() {
     }
 
     override fun initView(view: View) {
+
     }
 }
