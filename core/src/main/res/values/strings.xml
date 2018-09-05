@@ -6,6 +6,7 @@
     <string name="title_follow">Follow</string>
     <string name="title_task">Task</string>
     <string name="title_collect">Collections</string>
+    <string name="title_account_info">Personal Info</string>
 
     <!--mine-->
     <string name="title_setting">Setting</string>
@@ -25,6 +26,15 @@
     <string name="feed_back">Feed Back</string>
     <string name="about">About MagicBox</string>
     <string name="version">Version</string>
+
+    <!--Account info-->
+    <string name="user_icon">Head Portrait</string>
+    <string name="magicbox_num">MagicBox Number</string>
+    <string name="nick_name">Nick Name</string>
+    <string name="phone_num">Moblie</string>
+    <string name="login_pwd">Password</string>
+    <string name="unbind">Unbind</string>
+    <string name="to_setting">To Set Up</string>
 
     <string name="loading_msg">Loading</string><!-- 正在加载 -->
     <string name="empty_msg">There is noting here！</string><!-- 没有数据 -->
@@ -51,5 +61,6 @@
     <string name="agree">agree</string>
     <string name="consent_user_agreement">User Agreement</string>
     <string name="click_to_verification">Get verification</string>
+    <string name="next">Next</string>
 
 </resources>

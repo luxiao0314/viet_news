@@ -2,13 +2,10 @@ package com.viet.news.ui.activity
 
 import android.content.Intent
 import android.content.res.Configuration
-import android.os.Build
 import android.os.Bundle
-import com.jaeger.library.StatusBarUtil
-import com.safframework.utils.support
 import com.viet.news.R
-import com.viet.news.core.delegate.viewModelDelegate
 import com.viet.news.core.config.Config
+import com.viet.news.core.delegate.viewModelDelegate
 import com.viet.news.core.dsl.addOnPageChangeListener
 import com.viet.news.core.dsl.setOnTabSelectListener
 import com.viet.news.core.ui.InjectActivity
@@ -65,13 +62,5 @@ class MainActivity : InjectActivity() {
 
     private fun reLoadView() {
         //TODO tsing 如果到时候要在App内切换语言 这里可能需要刷新一下当前界面
-    }
-
-    override fun setStatusBar() {
-        support(Build.VERSION_CODES.M, {
-            StatusBarUtil.setTranslucentForImageViewInFragment(this, 0, null)
-        }, {
-            StatusBarUtil.setTranslucentForImageViewInFragment(this, 30, null)
-        })
     }
 }

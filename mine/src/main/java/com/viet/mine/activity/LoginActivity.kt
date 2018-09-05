@@ -5,6 +5,7 @@ import com.safframework.ext.click
 import com.viet.mine.R
 import com.viet.mine.viewmodel.LoginViewModel
 import com.viet.news.core.delegate.viewModelDelegate
+import com.viet.news.core.dsl.addOnPageChangeListener
 import com.viet.news.core.dsl.setOnTabSelectListener
 import com.viet.news.core.ui.InjectActivity
 import com.viet.news.core.ui.TabFragmentAdapter
@@ -36,6 +37,7 @@ class LoginActivity : InjectActivity() {
     private fun initListener() {
         iv_close.click { finish() }
         tablayout.setOnTabSelectListener { onTabSelect = { setTabText(it, model.currentTab) } }
+        viewpager.addOnPageChangeListener { onPageSelected = { setTabText(it, model.currentTab) } }
     }
 
     private fun setTabText(currentTab: Int, otherTab: Int) {

@@ -11,15 +11,15 @@
         android:layout_width="match_parent"
         android:layout_height="40dp"
         app:tl_divider_color="#1A000000"
-        app:tl_divider_width="1dp"
-        app:tl_indicator_color="#000000"
-        app:tl_indicator_height="0dp"
+        app:tl_divider_width="0dp"
+        app:tl_indicator_color="@color/title_red"
+        app:tl_indicator_height="1dp"
         app:tl_indicator_width_equal_title="true"
-        app:tl_textSelectColor="#000000"
+        app:tl_textSelectColor="@color/title_red"
         app:tl_textUnselectColor="#66000000"
         app:tl_underline_color="@color/transparent"/>
 
-    <com.viet.news.core.ui.NoScrollViewPager
+    <android.support.v4.view.ViewPager
         android:id="@+id/viewpager"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

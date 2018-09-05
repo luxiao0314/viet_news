@@ -15,7 +15,7 @@
         <com.viet.news.core.ui.widget.TitleBar
             android:id="@+id/title_bar"
             style="@style/title_bar.bg"
-            android:layout_height="85dp"
+            android:layout_height="70dp"
             android:background="@color/white"
             android:paddingTop="@dimen/statusbar_view_height"
             app:titlebar_leftDrawable="@null"
@@ -167,7 +167,7 @@
             app:left_text="@string/my_wallet"
             app:next_icon_visibility="true" />
 
-        <View style="@style/line.gray_tran" />
+        <View style="@style/line.gray_tran.margin_left" />
 
         <com.viet.news.core.ui.widget.CommonItem
             android:id="@+id/mine_invite"
@@ -176,7 +176,7 @@
             app:left_text="@string/invite_friends"
             app:next_icon_visibility="true" />
 
-        <View style="@style/line.gray_tran" />
+        <View style="@style/line.gray_tran.margin_left" />
 
         <com.viet.news.core.ui.widget.CommonItem
             android:id="@+id/mine_collection"
@@ -185,7 +185,7 @@
             app:left_text="@string/collection"
             app:next_icon_visibility="true" />
 
-        <View style="@style/line.gray_tran" />
+        <View style="@style/line.gray_tran.margin_left" />
 
         <com.viet.news.core.ui.widget.CommonItem
             android:id="@+id/mine_settings"

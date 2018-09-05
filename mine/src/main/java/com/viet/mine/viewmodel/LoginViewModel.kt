@@ -21,9 +21,9 @@ import com.viet.news.core.viewmodel.BaseViewModel
  */
 class LoginViewModel : BaseViewModel() {
 
-    val titles = mutableListOf(App.instance.resources.getString(R.string.sign_in), App.instance.resources.getString(R.string.log_in))
+    val titles = arrayListOf(App.instance.resources.getString(R.string.sign_in), App.instance.resources.getString(R.string.log_in))
+    val fragments = arrayListOf<BaseFragment>(RegisterFragment(), LoginFragment())
     val subTitles = mutableListOf(App.instance.resources.getString(R.string.password_to_login), App.instance.resources.getString(R.string.verify_the_login))
-    val fragments = mutableListOf<BaseFragment>(RegisterFragment(), LoginFragment())
     val subFragments = mutableListOf<BaseFragment>(PwdToLoginFragment(), VerifyToLoginFragment())
     var currentTab = 0
 
