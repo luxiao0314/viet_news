@@ -49,5 +49,9 @@ class MineFragment : BaseFragment() {
                 context?.startActivity(Intent(activity, CollectionActivity::class.java))
             }
         }
+
+        edit.clickWithTrigger {
+            context?.startActivity(Intent(activity, AccountInfoActivity::class.java))
+        }
     }
 }

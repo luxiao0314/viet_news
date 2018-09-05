@@ -4,5 +4,6 @@
     <application>
         <activity android:name=".activity.SettingActivity" />
         <activity android:name=".activity.CollectionActivity" />
+        <activity android:name=".activity.AccountInfoActivity" />
     </application>
 </manifest>
