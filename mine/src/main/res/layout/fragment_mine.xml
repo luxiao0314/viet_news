@@ -25,19 +25,132 @@
         <RelativeLayout
             android:id="@+id/login_layout"
             android:layout_width="match_parent"
-            android:layout_height="200dp"
+            android:layout_height="130dp"
             android:layout_marginTop="8dp">
 
             <Button
                 android:id="@+id/btn_login"
                 android:layout_width="wrap_content"
-                android:layout_height="30dp"
+                android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
                 android:background="@drawable/shape_login_btn_bg"
                 android:paddingLeft="30dp"
                 android:paddingRight="30dp"
-                android:text="登录/注册"
-                android:textColor="@color/white" />
+                android:text="@string/login_or_register"
+                android:textColor="@color/white"
+                android:visibility="gone" />
+
+            <ImageView
+                android:id="@+id/iv_user_icon"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:contentDescription="@null"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="@dimen/module_margin"
+                android:layout_marginLeft="@dimen/module_margin"
+                android:layout_marginEnd="@dimen/module_margin"
+                android:layout_marginRight="@dimen/module_margin"
+                android:src="@drawable/shape_default_circle_bg" />
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toEndOf="@id/iv_user_icon"
+                android:layout_toRightOf="@id/iv_user_icon">
+
+                <TextView
+                    android:id="@+id/tv_nickname"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="6dp"
+                    android:text="李晓明"
+                    android:textColor="@color/text_gray"
+                    android:textSize="@dimen/text_16sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tv_fans"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/tv_nickname"
+                    android:layout_alignStart="@id/tv_nickname"
+                    android:layout_alignLeft="@id/tv_nickname"
+                    android:text="@string/fans"
+                    android:textColor="@color/text_gray"
+                    android:textSize="@dimen/text_14sp" />
+
+                <TextView
+                    android:id="@+id/tv_fans_count"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignTop="@id/tv_fans"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_toEndOf="@id/tv_fans"
+                    android:layout_toRightOf="@id/tv_fans"
+                    android:text="1.2w"
+                    android:textColor="@color/text_gray"
+                    android:textSize="@dimen/text_14sp" />
+
+                <View
+                    android:id="@+id/line"
+                    android:layout_width="1dp"
+                    android:layout_height="10dp"
+                    android:layout_alignTop="@id/tv_fans_count"
+                    android:layout_alignBottom="@id/tv_fans_count"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginBottom="2dp"
+                    android:layout_toEndOf="@id/tv_fans_count"
+                    android:layout_toRightOf="@id/tv_fans_count"
+                    android:background="@color/text_gray" />
+
+                <TextView
+                    android:id="@+id/attention"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignTop="@id/tv_fans_count"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_toEndOf="@id/line"
+                    android:layout_toRightOf="@id/line"
+                    android:text="@string/follow"
+                    android:textColor="@color/text_gray"
+                    android:textSize="@dimen/text_14sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignTop="@id/attention"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_toEndOf="@id/attention"
+                    android:layout_toRightOf="@id/attention"
+                    android:text="10"
+                    android:textColor="@color/text_gray"
+                    android:textSize="@dimen/text_14sp" />
+            </RelativeLayout>
+
+            <Button
+                android:id="@+id/edit"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="@dimen/module_margin"
+                android:layout_marginRight="@dimen/module_margin"
+                android:background="@drawable/shape_login_btn_bg"
+                android:drawableStart="@drawable/edit"
+                android:drawableLeft="@drawable/edit"
+                android:drawablePadding="5dp"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                android:text="@string/edit"
+                android:textColor="@color/white"
+                android:visibility="visible" />
         </RelativeLayout>
 
 
@@ -50,8 +163,8 @@
         <com.viet.news.core.ui.widget.CommonItem
             android:id="@+id/mine_wallet"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
-            app:left_text="我的钱包"
+            android:layout_height="@dimen/item_height"
+            app:left_text="@string/my_wallet"
             app:next_icon_visibility="true" />
 
         <View style="@style/line.gray_tran" />
@@ -59,8 +172,8 @@
         <com.viet.news.core.ui.widget.CommonItem
             android:id="@+id/mine_invite"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
-            app:left_text="邀请好友"
+            android:layout_height="@dimen/item_height"
+            app:left_text="@string/invite_friends"
             app:next_icon_visibility="true" />
 
         <View style="@style/line.gray_tran" />
@@ -68,8 +181,8 @@
         <com.viet.news.core.ui.widget.CommonItem
             android:id="@+id/mine_collection"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
-            app:left_text="收藏"
+            android:layout_height="@dimen/item_height"
+            app:left_text="@string/collection"
             app:next_icon_visibility="true" />
 
         <View style="@style/line.gray_tran" />
@@ -77,8 +190,8 @@
         <com.viet.news.core.ui.widget.CommonItem
             android:id="@+id/mine_settings"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
-            app:left_text="设置"
+            android:layout_height="@dimen/item_height"
+            app:left_text="@string/settings"
             app:next_icon_visibility="true" />
 
     </LinearLayout>

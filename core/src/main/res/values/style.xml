@@ -447,6 +447,8 @@
         <attr name="next_icon_visibility" format="boolean" />
         <attr name="right_text_visibility" format="boolean" />
         <attr name="left_text_visibility" format="boolean" />
+        <attr name="left_text_color" format="reference|color" />
+        <attr name="right_text_color" format="reference|color" />
     </declare-styleable>
 
 

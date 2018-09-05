@@ -5,6 +5,7 @@ import android.content.res.TypedArray
 import android.support.annotation.IdRes
 import android.util.AttributeSet
 import android.view.View
+import android.view.WindowId
 import android.widget.RelativeLayout
 import com.safframework.ext.clickWithTrigger
 import com.viet.news.core.R
@@ -49,6 +50,14 @@ class CommonItem @JvmOverloads constructor(context: Context, attrs: AttributeSet
                 val isShowNext = typedArray.getBoolean(index, true)
                 setStatus(iv_next, isShowNext)
             }
+            R.styleable.CommonItem_left_text_color -> {
+                val color = typedArray.getColor(index, resources.getColor(R.color.text_gray))
+                tv_item_left.setTextColor(color)
+            }
+            R.styleable.CommonItem_right_text_color -> {
+                val color = typedArray.getColor(index, resources.getColor(R.color.text_gray))
+                tv_item_right.setTextColor(color)
+            }
         }
     }
 
@@ -89,6 +98,17 @@ class CommonItem @JvmOverloads constructor(context: Context, attrs: AttributeSet
 
     fun setNextIconVisibility(status: Boolean): CommonItem {
         setStatus(iv_next, status)
+        return this
+    }
+
+
+    fun setLeftTextColor(@IdRes color: Int): CommonItem {
+        tv_item_left.setTextColor(color)
+        return this
+    }
+
+    fun setRightTextColor(@IdRes color: Int): CommonItem {
+        tv_item_right.setTextColor(color)
         return this
     }
 

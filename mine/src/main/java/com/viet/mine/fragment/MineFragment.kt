@@ -7,8 +7,10 @@ import android.view.View
 import android.view.ViewGroup
 import com.safframework.ext.clickWithTrigger
 import com.viet.mine.R
+import com.viet.mine.activity.AccountInfoActivity
 import com.viet.mine.activity.LoginActivity
 import com.viet.mine.activity.SettingActivity
+import com.viet.news.core.domain.User
 import com.viet.news.core.ui.BaseFragment
 import com.viet.news.webview.WebActivity
 import kotlinx.android.synthetic.main.fragment_mine.*
@@ -28,9 +30,17 @@ class MineFragment : BaseFragment() {
 
     override fun initView(view: View) {
         btn_login.clickWithTrigger { context?.startActivity(Intent(activity, LoginActivity::class.java)) }
-        mine_wallet.clickWithTrigger { WebActivity.launch(context,"http://www.baidu.com") }
+        mine_wallet.clickWithTrigger { WebActivity.launch(context, "http://www.baidu.com") }
         mine_settings.setClickDelegate {
             onItemClick = { context?.startActivity(Intent(activity, SettingActivity::class.java)) }
+        }
+
+        iv_user_icon.clickWithTrigger {
+            if (!User.currentUser.isLogin()) {
+                startActivityForResult(Intent(activity, LoginActivity::class.java), 0)
+            } else {
+                startActivity(Intent(activity, AccountInfoActivity::class.java))
+            }
         }
     }
 }

@@ -4,11 +4,11 @@ import android.os.Bundle
 import com.viet.mine.R
 import com.viet.news.core.ui.BaseActivity
 
-class PersonalInfoActivity : BaseActivity() {
+class AccountInfoActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_mine_personal_info)
+        setContentView(R.layout.activity_mine_account_info)
         initView()
         initData()
     }
