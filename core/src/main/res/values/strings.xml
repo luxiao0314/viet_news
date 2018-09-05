@@ -42,6 +42,8 @@
     <string name="messenger">Messenger</string>
     <string name="log_in">Log In</string>
     <string name="sign_in">Sign In</string>
+    <string name="password_to_login">Password to login</string>
+    <string name="verify_the_login">Verify the login</string>
     <string name="user_telephone">Mobile phone number</string>
     <string name="password">Password</string>
     <string name="forget_pwd_signed">Forgot password?</string>

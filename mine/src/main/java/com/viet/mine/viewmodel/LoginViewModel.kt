@@ -5,7 +5,9 @@ import android.arch.lifecycle.MutableLiveData
 import android.os.CountDownTimer
 import com.viet.mine.R
 import com.viet.mine.fragment.LoginFragment
+import com.viet.mine.fragment.PwdToLoginFragment
 import com.viet.mine.fragment.RegisterFragment
+import com.viet.mine.fragment.VerifyToLoginFragment
 import com.viet.mine.viewmodel.LoginViewModel.StaticFiled.countValue
 import com.viet.news.core.ui.App
 import com.viet.news.core.ui.BaseFragment
@@ -20,8 +22,11 @@ import com.viet.news.core.viewmodel.BaseViewModel
 class LoginViewModel : BaseViewModel() {
 
     val titles = mutableListOf(App.instance.resources.getString(R.string.sign_in), App.instance.resources.getString(R.string.log_in))
+    val subTitles = mutableListOf(App.instance.resources.getString(R.string.password_to_login), App.instance.resources.getString(R.string.verify_the_login))
     val fragments = mutableListOf<BaseFragment>(RegisterFragment(), LoginFragment())
+    val subFragments = mutableListOf<BaseFragment>(PwdToLoginFragment(), VerifyToLoginFragment())
     var currentTab = 0
+
     var phoneNumber: MutableLiveData<String> = MutableLiveData()
     var password: MutableLiveData<String> = MutableLiveData()
     var countDown: MutableLiveData<Int> = MutableLiveData()

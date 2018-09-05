@@ -83,30 +83,10 @@
     </LinearLayout>
 
     <View
+        android:id="@+id/view"
         style="@style/line.gray_tran"
         android:layout_marginTop="10dp"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout2"/>
-
-    <cn.magicwindow.ClearEditext
-        android:id="@+id/clearEditext"
-        style="@style/edit.number"
-        android:layout_width="match_parent"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="40dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:hint="输入邀请码（非必填）"
-        android:textColor="@color/text_gray"
-        android:textSize="@dimen/text_14sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout2"/>
-
-    <View
-        style="@style/line.gray_tran"
-        android:layout_marginTop="10dp"
-        app:layout_constraintTop_toBottomOf="@+id/clearEditext"/>
 
     <Button
         android:id="@+id/register_btn"
@@ -117,7 +97,7 @@
         android:layout_marginTop="50dp"
         android:clickable="false"
         android:text="@string/log_in"
-        app:layout_constraintTop_toBottomOf="@+id/clearEditext"/>
+        app:layout_constraintTop_toBottomOf="@+id/view"/>
 
     <com.facebook.login.widget.LoginButton
         android:id="@+id/login_button"

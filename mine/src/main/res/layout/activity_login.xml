@@ -2,6 +2,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/white"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -12,8 +13,10 @@
         android:layout_alignParentRight="true"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp" android:padding="10dp"
-        android:src="@drawable/ic_close" app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginRight="8dp"
+        android:padding="10dp"
+        android:src="@drawable/ic_close"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"/>
 
     <com.flyco.tablayout.SlidingTabLayout
@@ -33,7 +36,7 @@
     <com.viet.news.core.ui.NoScrollViewPager
         android:id="@+id/viewpager"
         android:layout_width="match_parent"
-        android:layout_height="695dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
         app:layout_constraintTop_toBottomOf="@+id/tablayout"/>

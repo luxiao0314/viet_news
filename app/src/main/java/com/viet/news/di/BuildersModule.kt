@@ -1,9 +1,11 @@
 package com.viet.news.di
 
 import com.viet.mine.activity.LoginActivity
+import com.viet.mine.fragment.LoginFragment
 import com.viet.news.core.di.ActivityScope
 import com.viet.news.core.di.FragmentScope
 import com.viet.news.di.module.FindModule
+import com.viet.news.di.module.LoginFragmentModule
 import com.viet.news.di.module.LoginModule
 import com.viet.news.di.module.MainModule
 import com.viet.news.ui.activity.MainActivity
@@ -25,6 +27,10 @@ abstract class BuildersModule {
     @ActivityScope
     @ContributesAndroidInjector(modules = [LoginModule::class])
     internal abstract fun bindLoginActivity(): LoginActivity
+
+    @FragmentScope
+    @ContributesAndroidInjector(modules = [LoginFragmentModule::class])
+    internal abstract fun bindLoginFragment(): LoginFragment
 
     @FragmentScope
     @ContributesAndroidInjector(modules = [FindModule::class])

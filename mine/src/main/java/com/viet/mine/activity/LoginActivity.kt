@@ -30,7 +30,6 @@ class LoginActivity : InjectActivity() {
         adapter.setFragment(model.fragments)
         viewpager.adapter = adapter
         tablayout.setViewPager(viewpager)
-        adapter.notifyDataSetChanged()
         setTabText(0, 1)
     }
 

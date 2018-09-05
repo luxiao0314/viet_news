@@ -7,11 +7,14 @@
     <string name="title_setting">设置</string>
     <string name="title_collect">收藏</string>
 
+    <!--登录相关-->
     <string name="cancel">取消</string>
     <string name="copy_the_link">复制链接</string>
     <string name="facebook">Facebook</string>
     <string name="messenger">Messenger</string>
     <string name="log_in">登录</string>
+    <string name="password_to_login">密码登录</string>
+    <string name="verify_the_login">验证登录</string>
     <string name="sign_in">注册</string>
     <string name="user_telephone">手机号码</string>
     <string name="password">密码</string>
