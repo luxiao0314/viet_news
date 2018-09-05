@@ -2,11 +2,10 @@ package com.viet.news.viewmodel
 
 import android.arch.lifecycle.AndroidViewModel
 import android.arch.lifecycle.LiveData
+import com.viet.news.core.domain.response.ArticlesResponse
 import com.viet.news.core.ui.App
 import com.viet.news.core.vo.Resource
 import com.viet.news.db.SourceEntity
-import com.viet.news.di.NewsApp
-import com.viet.news.rac.ui.model.ArticlesResponse
 import com.viet.news.repository.NewsRepository
 
 /**

@@ -3,24 +3,19 @@ package com.viet.mine.fragment
 import android.annotation.SuppressLint
 import android.app.Activity
 import android.arch.lifecycle.Observer
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.EditText
-import cn.magicwindow.interfaces.EditClearfaceImpl
 import com.jakewharton.rxbinding2.widget.RxTextView
 import com.viet.mine.R
-import com.viet.mine.activity.LoginAndSignInListener
 import com.viet.mine.viewmodel.LoginViewModel
 import com.viet.news.core.delegate.viewModelDelegate
 import com.viet.news.core.domain.Config
 import com.viet.news.core.domain.User
 import com.viet.news.core.ext.click
 import com.viet.news.core.ext.clickWithTrack
-import com.viet.news.core.ext.clickWithTrigger
 import com.viet.news.core.ui.RealVisibleHintBaseFragment
 import com.viet.news.webview.WebActivity
 import kotlinx.android.synthetic.main.fragment_login.*
@@ -76,31 +71,6 @@ class LoginFragment : RealVisibleHintBaseFragment() {
             WebActivity.launch(context!!, Config.PACT_URL)
         }
 
-        //手机号输入框获取到焦点
-        phone_input.setCusEditClearface(object : EditClearfaceImpl() {
-            override fun focusChangeCallBack(editext: EditText, isFocus: Boolean) {
-                if (isFocus) {
-                    listener?.onEditTextHasFocus()
-                }
-            }
-        })
-        //密码输入框获取到焦点
-        password_input.setCusEditClearface(object : EditClearfaceImpl() {
-            override fun focusChangeCallBack(editext: EditText, isFocus: Boolean) {
-                if (isFocus) {
-                    listener?.onEditTextHasFocus()
-                }
-            }
-        })
-
-        //点击登录
-        register_btn.clickWithTrigger {
-            if (model.loginEnable())
-                model.loginByPassword(this) {
-                    listener?.onLoginResult()
-                }
-        }
-
         //+86点击
 //        select_country_text.clickWithTrigger {
 //            routerWithAnim(Config.ROUTER_SELECT_COUNTRY_ACTIVITY)
@@ -154,22 +124,5 @@ class LoginFragment : RealVisibleHintBaseFragment() {
 //            model.countryAbbreviation.value = result.countryAbbreviation
 //            model.countryEnglishName.value = result.countryEnglishName
         }
-    }
-
-    //用于打开关闭AppBarLayout和登录成功关闭界面
-    private var listener: LoginAndSignInListener? = null
-
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-        if (context is LoginAndSignInListener) {
-            listener = context
-        } else {
-            throw RuntimeException(context.toString() + " must implement LoginAndSignInListener")
-        }
-    }
-
-    override fun onDetach() {
-        super.onDetach()
-        listener = null
     }
 }

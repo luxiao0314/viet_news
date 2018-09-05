@@ -1,7 +1,7 @@
 package com.viet.news.core.api
 
 import android.arch.lifecycle.LiveData
-import com.viet.news.rac.ui.model.ArticlesResponse
+import com.viet.news.core.domain.response.ArticlesResponse
 import com.viet.news.rac.ui.model.SourceResponse
 import retrofit2.http.GET
 import retrofit2.http.Query

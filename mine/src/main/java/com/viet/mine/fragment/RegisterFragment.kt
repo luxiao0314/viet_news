@@ -1,17 +1,13 @@
 package com.viet.mine.fragment
 
 import android.arch.lifecycle.Observer
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.EditText
-import cn.magicwindow.interfaces.EditClearfaceImpl
 import com.jakewharton.rxbinding2.widget.RxTextView
 import com.viet.mine.R
-import com.viet.mine.activity.LoginAndSignInListener
 import com.viet.mine.viewmodel.LoginViewModel
 import com.viet.news.core.delegate.viewModelDelegate
 import com.viet.news.core.domain.Config
@@ -32,7 +28,6 @@ import kotlinx.android.synthetic.main.fragment_register.*
 class RegisterFragment : RealVisibleHintBaseFragment() {
 
     private val model by viewModelDelegate(LoginViewModel::class, true)
-    private var listener: LoginAndSignInListener? = null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? =
             inflater.inflate(R.layout.fragment_register, container, false)
@@ -44,15 +39,6 @@ class RegisterFragment : RealVisibleHintBaseFragment() {
                     model.registerPhoneNumber.value = it.toString()
                     model.checkRegisterVCodeBtnEnable()
                 }
-
-        //获取到焦点则滚动隐藏title
-        phone_input.setCusEditClearface(object : EditClearfaceImpl() {
-            override fun focusChangeCallBack(editext: EditText, isFocus: Boolean) {
-                if (isFocus) {
-                    listener?.onEditTextHasFocus()
-                }
-            }
-        })
 
         //同意
         agreement_checkbox.click {
@@ -127,20 +113,5 @@ class RegisterFragment : RealVisibleHintBaseFragment() {
 //            model.countryAbbreviation.value = result.countryAbbreviation
 //            model.countryEnglishName.value = result.countryEnglishName
 //        }
-    }
-
-
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-        if (context is LoginAndSignInListener) {
-            listener = context
-        } else {
-            throw RuntimeException(context.toString() + " must implement LoginAndSignInListener")
-        }
-    }
-
-    override fun onDetach() {
-        super.onDetach()
-        listener = null
     }
 }

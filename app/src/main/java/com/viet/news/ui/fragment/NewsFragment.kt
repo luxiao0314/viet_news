@@ -1,5 +1,6 @@
 package com.viet.news.ui.fragment
 
+import android.arch.lifecycle.Observer
 import android.content.Context
 import android.os.Bundle
 import android.support.v4.app.Fragment
@@ -46,6 +47,13 @@ class NewsFragment : RealVisibleHintBaseFragment(), HasSupportFragmentInjector {
         val dividerItemDecoration = DividerItemDecoration(activity, DividerItemDecoration.VERTICAL)
         dividerItemDecoration.setDrawable(ContextCompat.getDrawable(context!!, R.drawable.shape_list_divider_gray_05dp)!!)
         recyclerView.addItemDecoration(dividerItemDecoration)
+        initData()
+    }
+
+    private fun initData() {
+        model.getNewsArticles().observe(this, Observer {
+            adapter.addData(it?.articles)
+        })
     }
 
     companion object {

@@ -79,7 +79,7 @@ fun Toast.setBackground(@ColorInt messageColor: Int = Color.WHITE, @DrawableRes 
 }
 
 @SuppressLint("ShowToast")
-fun toast(text: CharSequence): Toast = Toast.makeText(App.instance, text, Toast.LENGTH_SHORT)
+fun toast(text: CharSequence?): Toast = Toast.makeText(App.instance, text, Toast.LENGTH_SHORT)
         .setGravityCenter()
         .setBackground()
 //需要的地方调用withErrorIcon，默认不要添加

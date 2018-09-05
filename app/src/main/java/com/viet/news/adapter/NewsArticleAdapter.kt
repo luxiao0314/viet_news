@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import com.viet.news.R
 import com.viet.news.adapter.viewholder.NewsArticleViewHolder
 import com.viet.news.inflate
-import com.viet.news.rac.ui.model.Article
+import com.viet.news.core.domain.response.Article
 
 /**
  * Created by abhinav.sharma on 02/11/17.

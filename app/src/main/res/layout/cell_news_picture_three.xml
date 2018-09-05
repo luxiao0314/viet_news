@@ -8,7 +8,7 @@
     android:padding="15dp">
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/iv_article_image"
         android:layout_width="25dp"
         android:layout_height="25dp"
         android:src="@drawable/shape_default_circle_bg"
@@ -16,14 +16,14 @@
         app:layout_constraintTop_toTopOf="parent"/>
 
     <TextView
-        android:id="@+id/tv_source_name"
+        android:id="@+id/tv_title"
         style="@style/text.12.light_gray"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:layout_marginLeft="10dp"
         android:layout_marginTop="3dp"
-        app:layout_constraintStart_toEndOf="@+id/imageView"
+        app:layout_constraintStart_toEndOf="@+id/iv_article_image"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="李晓明"/>
 
