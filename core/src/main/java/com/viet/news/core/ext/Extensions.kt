@@ -1,12 +1,13 @@
 package com.viet.news.core.ext
 
+import android.content.Context
 import android.graphics.drawable.Drawable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
-import cn.magicwindow.utils.ResolutionUtils
 import com.bumptech.glide.request.RequestOptions
+import com.viet.news.core.R
 import com.viet.news.core.config.GlideApp
 import com.viet.news.core.config.GlideRequest
 import jp.wasabeef.glide.transformations.RoundedCornersTransformation
@@ -32,7 +33,7 @@ fun ImageView.load(url: String?, placeholderRes: Int = R.drawable.shape_default_
 fun ImageView.loadRound(url: String?, centerCrop: Boolean = false) {
     get(url).placeholder(R.drawable.shape_default_round_bg)
             .error(R.drawable.shape_default_round_bg)
-            .transform(RoundedCornersTransformation(ResolutionUtils.dp2px(10, context), 0, centerCrop = centerCrop))
+            .transform(RoundedCornersTransformation(dp2px(10, context), 0, centerCrop = centerCrop))
             .into(this)
 }
 
@@ -66,4 +67,8 @@ fun ImageView.get(drawable: Drawable?): GlideRequest<Drawable> = GlideApp.with(c
 
 fun ViewGroup.inflate(layoutRes: Int): View {
     return LayoutInflater.from(context).inflate(layoutRes, this, false)
+}
+
+fun dp2px(value: Int, context: Context): Int {
+    return (context.applicationContext.resources.displayMetrics.density * value).toInt()
 }
