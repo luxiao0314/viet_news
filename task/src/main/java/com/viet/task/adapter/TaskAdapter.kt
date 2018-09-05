@@ -1,6 +1,7 @@
 package com.viet.task.adapter
 
 import android.annotation.SuppressLint
+import android.view.View
 import com.bumptech.glide.Glide
 import com.viet.news.core.domain.response.TaskResponse
 import com.viet.news.core.ui.BaseAdapter
@@ -50,14 +51,35 @@ class TaskAdapter @Inject constructor() : BaseAdapter<TaskResponse.TaskGroupsBea
                     Glide.with(context).load(t.taskIcon).into(iv_task_icon)
                     tv_task_name.text = t.taskName
                     if (t.taskScore > 0) {
+                        //能加多少分
                         tv_task_score.text = "+${t.taskScore}"
                     }
+                    //描述
                     tv_task_desc.text = t.taskDesc
+                    //
                     if (t.taskStatus?.message.isNullOrEmpty().not()) {
+                        ll_progress.visibility = View.GONE
+                        tv_task_msg.visibility = View.VISIBLE
                         tv_task_msg.text = t.taskStatus?.message
+                    } else {
+                        tv_task_msg.visibility = View.GONE
+                        t.taskStatus?.let {
+                            if (it.totalScore > 0) {
+                                //有总进度才显示进度条
+                                ll_progress.visibility = View.VISIBLE
+                                progress_bar.max = it.totalScore
+                                progress_bar.progress = it.currentScore
+                                tv_max_progress.text = it.totalScore.toString()
+                                tv_current_progress.text = it.currentScore.toString()
+                            }
+                        }
                     }
 
-                    btn_right.text = t.taskType
+                    when (t.taskType) {
+                        "XXX" -> {
+                        }
+                        else -> btn_right.text = "去邀请"
+                    }
 
                 }
             }
