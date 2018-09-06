@@ -19,13 +19,15 @@
     <string name="sign_in">注册</string>
     <string name="user_telephone">手机号码</string>
     <string name="password">密码</string>
+    <string name="set_password">设置密码</string>
     <string name="forget_pwd_signed">忘记密码?</string>
     <string name="login_with_verify_code">短信验证码登录</string>
     <string name="agree">同意</string>
-    <string name="consent_user_agreement">用户协议</string>
+    <string name="consent_user_agreement">注册/登录即代表您同意</string>
     <string name="click_to_verification">获取验证码</string>
     <string name="verification_code">验证码</string>
     <string name="enter_invitation_code">输入邀请码（非必填）</string>
+    <string name="enter_password_again">再次输入密码</string>
 
     <!--我的-->
     <string name="login_or_register">登录/注册</string>

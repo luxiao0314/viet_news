@@ -5,10 +5,13 @@ import android.view.KeyEvent
 import com.safframework.ext.click
 import com.viet.mine.R
 import com.viet.mine.viewmodel.LoginViewModel
+import com.viet.news.core.config.Config
 import com.viet.news.core.delegate.viewModelDelegate
 import com.viet.news.core.dsl.addOnPageChangeListener
+import com.viet.news.core.ext.clickWithTrack
 import com.viet.news.core.ui.InjectActivity
 import com.viet.news.core.ui.TabFragmentAdapter
+import com.viet.news.webview.WebActivity
 import kotlinx.android.synthetic.main.activity_login.*
 import javax.inject.Inject
 
@@ -39,6 +42,11 @@ class LoginActivity : InjectActivity() {
         viewpager.adapter = adapter
         tablayout.setViewPager(viewpager)
         setTabText(0, 1)
+
+        //点击协议
+        agreement_text.clickWithTrack(Config.login_userProtocol, 2000) {
+            WebActivity.launch(this, Config.PACT_URL)
+        }
     }
 
     private fun initListener() {
