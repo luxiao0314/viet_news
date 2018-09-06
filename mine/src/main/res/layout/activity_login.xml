@@ -1,4 +1,4 @@
-<android.support.constraint.ConstraintLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -23,7 +23,7 @@
         android:id="@+id/tablayout"
         android:layout_width="250dp"
         android:layout_height="40dp"
-        app:layout_constraintTop_toBottomOf="@+id/iv_close"
+        android:layout_below="@+id/iv_close"
         app:tl_divider_color="#1A000000"
         app:tl_divider_width="1dp"
         app:tl_indicator_color="#000000"
@@ -37,9 +37,8 @@
         android:id="@+id/viewpager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="10dp"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior"
-        app:layout_constraintTop_toBottomOf="@+id/tablayout"/>
-</android.support.constraint.ConstraintLayout>
+        android:layout_below="@+id/tablayout"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
+</RelativeLayout>
 
 
