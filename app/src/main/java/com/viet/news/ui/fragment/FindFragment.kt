@@ -11,12 +11,13 @@ import cn.magicwindow.channelwidget.AddChannelFragment
 import cn.magicwindow.channelwidget.entity.ChannelBean
 import com.jaeger.library.StatusBarUtil
 import com.safframework.ext.click
+import com.viet.follow.fragment.NewsFragment
+import com.viet.follow.viewmodel.FindViewModel
 import com.viet.news.R
 import com.viet.news.core.delegate.viewModelDelegate
 import com.viet.news.core.ui.BaseFragment
 import com.viet.news.core.ui.InjectFragment
 import com.viet.news.db.SourceEntity
-import com.viet.news.viewmodel.FindViewModel
 import kotlinx.android.synthetic.main.activity_find.*
 import javax.inject.Inject
 
@@ -44,6 +45,7 @@ class FindFragment : InjectFragment(), AddChannelFragment.DataChangeListener, (S
     }
 
     override fun initView(view: View) {
+        id_view_Pager.offscreenPageLimit = 5
         pagerAdapter.setData(model.dataList)
         id_tab_pager_indicator.setDataList(model.dataList)
         id_view_Pager.adapter = pagerAdapter

@@ -1,4 +1,4 @@
-package com.viet.news.ui.fragment
+package com.viet.follow.fragment
 
 import android.arch.lifecycle.Observer
 import android.content.Context
@@ -11,11 +11,11 @@ import android.support.v7.widget.OrientationHelper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.viet.news.R
-import com.viet.news.adapter.NewsAdapter
+import com.viet.follow.R
+import com.viet.follow.adapter.NewsAdapter
+import com.viet.follow.viewmodel.FindViewModel
 import com.viet.news.core.delegate.viewModelDelegate
 import com.viet.news.core.ui.RealVisibleHintBaseFragment
-import com.viet.news.viewmodel.FindViewModel
 import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.support.AndroidSupportInjection

@@ -1,13 +1,13 @@
-package com.viet.news.adapter
+package com.viet.follow.adapter
 
 import android.support.v7.widget.GridLayoutManager
 import android.widget.ImageView
 import android.widget.TextView
-import com.viet.news.R
+import com.viet.follow.R
 import com.viet.news.core.domain.response.NewsResponse
-import com.viet.news.core.ui.BaseAdapter
 import com.viet.news.core.ext.load
 import com.viet.news.core.ext.loadCircle
+import com.viet.news.core.ui.BaseAdapter
 import kotlinx.android.synthetic.main.cell_news_picture_three.view.*
 import javax.inject.Inject
 

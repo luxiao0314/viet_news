@@ -1,9 +1,9 @@
-package com.viet.news.adapter
+package com.viet.follow.adapter
 
-import com.viet.news.R
+import com.viet.follow.R
 import com.viet.news.core.domain.response.NewsResponse
-import com.viet.news.core.ui.BaseAdapter
 import com.viet.news.core.ext.load
+import com.viet.news.core.ui.BaseAdapter
 import kotlinx.android.synthetic.main.cell_news_picture.view.*
 
 /**

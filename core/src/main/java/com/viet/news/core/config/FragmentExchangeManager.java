@@ -12,6 +12,10 @@ public class FragmentExchangeManager {
         replaceFragment(fragmentManager, targetFragment, tag, android.R.id.content);
     }
 
+    public static void replaceFragment(FragmentManager fragmentManager, Fragment targetFragment, int content) {
+        replaceFragment(fragmentManager, targetFragment, targetFragment.getClass().getName(), content);
+    }
+
     public static void replaceFragment(FragmentManager fragmentManager, Fragment targetFragment, String tag, int postion) {
         FragmentTransaction transaction = fragmentManager.beginTransaction();
         transaction.replace(postion, targetFragment, tag);

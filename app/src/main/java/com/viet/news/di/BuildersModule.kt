@@ -10,7 +10,7 @@ import com.viet.news.di.module.LoginModule
 import com.viet.news.di.module.MainModule
 import com.viet.news.ui.activity.MainActivity
 import com.viet.news.ui.fragment.FindFragment
-import com.viet.news.ui.fragment.NewsFragment
+import com.viet.follow.fragment.NewsFragment
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 
