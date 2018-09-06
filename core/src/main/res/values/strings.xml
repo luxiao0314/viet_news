@@ -62,5 +62,8 @@
     <string name="consent_user_agreement">User Agreement</string>
     <string name="click_to_verification">Get verification</string>
     <string name="next">Next</string>
+    <string name="verification_code">Verification Code</string>
+    <string name="get_vcode">Get the verification code</string>
+    <string name="title_find_pwd">Find password</string>
 
 </resources>

@@ -29,7 +29,8 @@
     <color name="btn_disable_end">#7D6B65E1</color>
     <color name="text_gray">#FF4A4A4A</color>
     <color name="text_light_gray">#9B9B9B</color>
-    <color name="title_red">#F24B4F</color>
+    <color name="red_title">#F24B4F</color>
+    <color name="red_warn">#FF0032</color>
     <!--规范设计End-->
 
     <color name="behavior_enable">#fa845e</color>

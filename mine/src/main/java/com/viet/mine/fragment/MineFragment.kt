@@ -12,6 +12,7 @@ import com.viet.mine.activity.CollectionActivity
 import com.viet.mine.activity.LoginActivity
 import com.viet.mine.activity.SettingActivity
 import com.viet.news.core.domain.User
+import com.viet.news.core.ext.loadCircle
 import com.viet.news.core.ui.BaseFragment
 import com.viet.news.webview.WebActivity
 import kotlinx.android.synthetic.main.fragment_mine.*
@@ -30,6 +31,7 @@ class MineFragment : BaseFragment() {
     }
 
     override fun initView(view: View) {
+        iv_user_icon.loadCircle("")
         btn_login.clickWithTrigger { context?.startActivity(Intent(activity, LoginActivity::class.java)) }
         mine_wallet.clickWithTrigger { WebActivity.launch(context, "http://www.baidu.com") }
         mine_settings.setClickDelegate {

@@ -50,7 +50,7 @@
                 android:layout_marginLeft="@dimen/module_margin"
                 android:layout_marginEnd="@dimen/module_margin"
                 android:layout_marginRight="@dimen/module_margin"
-                android:src="@drawable/shape_default_circle_bg" />
+                android:src="@drawable/ic_default_article" />
 
             <RelativeLayout
                 android:layout_width="wrap_content"

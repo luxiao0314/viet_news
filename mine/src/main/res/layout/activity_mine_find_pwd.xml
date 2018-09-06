@@ -5,13 +5,30 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:focusable="true"
-    android:focusableInTouchMode="true"
-    android:paddingStart="@dimen/page_padding_left"
-    android:paddingLeft="@dimen/page_padding_left"
-    android:paddingTop="@dimen/padding_top_large"
-    android:paddingEnd="@dimen/page_padding_right"
-    android:paddingRight="@dimen/page_padding_right">
+    android:background="@color/white">
+
+    <com.viet.news.core.ui.widget.TitleBar
+        android:id="@+id/title_bar"
+        style="@style/title_bar_white"
+        app:titlebar_titleText="@string/title_find_pwd"/>
+
+    <TextView
+        android:id="@+id/tv_hint"
+        style="@style/text.12.gray"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:drawableLeft="@drawable/ic_warning"
+        android:drawablePadding="5dp"
+        android:paddingStart="@dimen/page_padding_left"
+        android:paddingLeft="@dimen/page_padding_left"
+        android:paddingEnd="@dimen/page_padding_right"
+        android:paddingRight="@dimen/page_padding_right"
+        android:text="此手机号码尚未注册"
+        android:textColor="@color/red_warn"
+        app:layout_constraintBottom_toTopOf="@+id/phone_input"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/title_bar"/>
 
     <cn.magicwindow.ClearEditext
         android:id="@+id/phone_input"
@@ -19,19 +36,28 @@
         android:layout_width="match_parent"
         android:layout_marginStart="80dp"
         android:layout_marginLeft="80dp"
-        android:hint="@string/user_telephone" android:textColor="@color/text_gray"
-        app:layout_constraintStart_toEndOf="@+id/line"/>
+        android:layout_marginTop="20dp"
+        android:hint="@string/user_telephone"
+        android:paddingEnd="@dimen/page_padding_right"
+        android:paddingRight="@dimen/page_padding_right"
+        android:textColor="@color/text_gray"
+        app:layout_constraintStart_toEndOf="@+id/line"
+        app:layout_constraintTop_toBottomOf="@+id/tv_hint"/>
 
     <TextView
         android:id="@+id/select_country_text"
         style="@style/text.16.gray"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:paddingLeft="6dp"
+        android:layout_marginTop="20dp"
+        android:paddingStart="@dimen/page_padding_left"
+        android:paddingLeft="@dimen/page_padding_left"
         android:paddingTop="2dp"
-        android:paddingRight="6dp" android:paddingBottom="2dp"
-        android:text="+86" app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        android:paddingRight="6dp"
+        android:paddingBottom="2dp"
+        android:text="+86"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_hint"/>
 
     <View
         android:id="@+id/line"
@@ -39,21 +65,31 @@
         android:layout_height="25dp"
         android:layout_marginStart="15dp"
         android:layout_marginLeft="15dp"
-        android:layout_marginBottom="4dp"
+        android:layout_marginTop="20dp"
         app:layout_constraintBottom_toTopOf="@id/line2"
-        app:layout_constraintStart_toEndOf="@+id/select_country_text"/>
+        app:layout_constraintStart_toEndOf="@+id/select_country_text"
+        app:layout_constraintTop_toBottomOf="@+id/tv_hint"/>
 
     <View
         style="@style/line.gray_tran"
+        android:layout_marginStart="@dimen/page_padding_left"
+        android:layout_marginLeft="@dimen/page_padding_left"
         android:layout_marginTop="10dp"
-        app:layout_constraintTop_toBottomOf="@+id/line"/>
+        android:layout_marginEnd="@dimen/page_padding_right"
+        android:layout_marginRight="@dimen/page_padding_right"
+        app:layout_constraintTop_toBottomOf="@+id/phone_input"/>
 
     <LinearLayout
+
         android:id="@+id/linearLayout2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
         android:orientation="horizontal"
+        android:paddingStart="@dimen/page_padding_left"
+        android:paddingLeft="@dimen/page_padding_left"
+        android:paddingEnd="@dimen/page_padding_right"
+        android:paddingRight="@dimen/page_padding_right"
         app:layout_constraintTop_toBottomOf="@+id/phone_input">
 
         <cn.magicwindow.ClearEditext
@@ -87,7 +123,11 @@
     <View
         android:id="@+id/view"
         style="@style/line.gray_tran"
+        android:layout_marginStart="@dimen/page_padding_left"
+        android:layout_marginLeft="@dimen/page_padding_left"
         android:layout_marginTop="10dp"
+        android:layout_marginEnd="@dimen/page_padding_right"
+        android:layout_marginRight="@dimen/page_padding_right"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout2"/>
 
     <Button
@@ -96,36 +136,13 @@
         android:layout_width="match_parent"
         android:layout_height="45dp"
         android:layout_gravity="center_horizontal"
+        android:layout_marginStart="@dimen/page_padding_left"
+        android:layout_marginLeft="@dimen/page_padding_left"
         android:layout_marginTop="50dp"
+        android:layout_marginEnd="@dimen/page_padding_right"
+        android:layout_marginRight="@dimen/page_padding_right"
         android:clickable="false"
-        android:text="@string/log_in"
+        android:text="@string/next"
         app:layout_constraintTop_toBottomOf="@+id/view"/>
-
-    <com.facebook.login.widget.LoginButton
-        android:id="@+id/login_button"
-        android:layout_width="240dp"
-        android:layout_height="45dp"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="25dp"
-        app:layout_constraintBottom_toTopOf="@+id/agreement_text"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.545"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/register_btn"
-        app:layout_constraintVertical_bias="1.0"/>
-
-    <TextView
-        android:id="@+id/agreement_text"
-        style="@style/text.14.gray"
-        android:layout_width="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginBottom="20dp"
-        android:text="@string/consent_user_agreement"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toStartOf="parent"/>
 
 </android.support.constraint.ConstraintLayout>
