@@ -33,6 +33,9 @@
     <color name="red_warn">#FF0032</color>
     <!--规范设计End-->
 
+    <!--用于红色按钮按下时的颜色，设计规范出来后修改具体色值。不要用于其他地方-->
+    <color name="btn_pressed_red">#aaF24B4F</color>
+
     <color name="behavior_enable">#fa845e</color>
     <color name="behavior_normal">#FF000000</color>
 </resources>
