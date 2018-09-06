@@ -106,15 +106,15 @@
 
     <!--红色-->
     <style name="text.10.red" tools:keep="@style/text_10_gray">
-        <item name="android:textColor">@color/text_red</item>
+        <item name="android:textColor">@color/red_text</item>
     </style>
 
     <style name="text.12.red">
-        <item name="android:textColor">@color/text_red</item>
+        <item name="android:textColor">@color/red_text</item>
     </style>
 
     <style name="text.14.red">
-        <item name="android:textColor">@color/text_red</item>
+        <item name="android:textColor">@color/red_text</item>
     </style>
 
     <style name="text.14.red.bold">
@@ -122,7 +122,7 @@
     </style>
 
     <style name="text.16.red">
-        <item name="android:textColor">@color/text_red</item>
+        <item name="android:textColor">@color/red_text</item>
     </style>
 
     <style name="text.16.red.bold">
@@ -130,7 +130,7 @@
     </style>
 
     <style name="text.18.red">
-        <item name="android:textColor">@color/text_red</item>
+        <item name="android:textColor">@color/red_text</item>
     </style>
 
     <style name="text.18.red.bold" tools:keep="@style/text_18_gray_bold">
