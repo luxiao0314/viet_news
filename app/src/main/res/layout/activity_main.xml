@@ -25,7 +25,7 @@
         app:tl_iconWidth="23dp"
         app:tl_indicator_height="0dp"
         app:tl_textBold="SELECT"
-        app:tl_textSelectColor="@color/title_red"
+        app:tl_textSelectColor="@color/text_red"
         app:tl_textUnselectColor="#787878"
         app:tl_textsize="12sp"
         app:tl_underline_color="#FFDBDBDB"

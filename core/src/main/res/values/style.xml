@@ -42,7 +42,7 @@
     </style>
 
     <style name="title_bar.bg">
-        <item name="android:background">@color/title_red</item>
+        <item name="android:background">@color/text_red</item>
     </style>
 
     <style name="title_bar_white">
