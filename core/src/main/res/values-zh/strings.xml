@@ -25,6 +25,7 @@
     <string name="consent_user_agreement">用户协议</string>
     <string name="click_to_verification">获取验证码</string>
     <string name="verification_code">验证码</string>
+    <string name="enter_invitation_code">输入邀请码（非必填）</string>
 
     <!--我的-->
     <string name="login_or_register">登录/注册</string>
@@ -55,6 +56,5 @@
     <string name="to_setting">去设置</string>
     <string name="get_vcode">获取验证码</string>
     <string name="title_find_pwd">找回密码</string>
-
 
 </resources>

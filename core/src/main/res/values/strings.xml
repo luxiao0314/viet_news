@@ -65,5 +65,6 @@
     <string name="verification_code">Verification Code</string>
     <string name="get_vcode">Get the verification code</string>
     <string name="title_find_pwd">Find password</string>
+    <string name="enter_invitation_code">输入邀请码（非必填）</string>
 
 </resources>
