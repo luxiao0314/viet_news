@@ -7,7 +7,6 @@ import com.viet.mine.R
 import com.viet.mine.viewmodel.LoginViewModel
 import com.viet.news.core.delegate.viewModelDelegate
 import com.viet.news.core.dsl.addOnPageChangeListener
-import com.viet.news.core.dsl.setOnTabSelectListener
 import com.viet.news.core.ui.InjectActivity
 import com.viet.news.core.ui.TabFragmentAdapter
 import kotlinx.android.synthetic.main.activity_login.*
@@ -44,7 +43,6 @@ class LoginActivity : InjectActivity() {
 
     private fun initListener() {
         iv_close.click { finish() }
-        tablayout.setOnTabSelectListener { onTabSelect = { setTabText(it, model.currentTab) } }
         viewpager.addOnPageChangeListener { onPageSelected = { setTabText(it, model.currentTab) } }
     }
 
@@ -53,21 +51,6 @@ class LoginActivity : InjectActivity() {
         tablayout.getTitleView(otherTab).textSize = 15F
         model.currentTab = currentTab
     }
-
-//    override fun onKeyDown(keyCode: Int, event: KeyEvent?): Boolean = if (KeyEvent.KEYCODE_BACK == keyCode) {
-//        if (supportFragmentManager.backStackEntryCount == 0) {
-//            finish()
-//            true
-//        } else {
-//            try {
-//                supportFragmentManager.popBackStackImmediate()
-//            } catch (e: Exception) {
-//            }
-//            true
-//        }
-//    } else {
-//        super.onKeyDown(keyCode, event)
-//    }
 
     /**
      * 双击返回键退出

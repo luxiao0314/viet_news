@@ -1,16 +1,17 @@
-<RelativeLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white">
+    android:background="@color/white"
+    android:orientation="vertical">
 
     <ImageView
         android:id="@+id/iv_close"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
+        android:layout_gravity="end"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
@@ -23,7 +24,6 @@
         android:id="@+id/tablayout"
         android:layout_width="250dp"
         android:layout_height="40dp"
-        android:layout_below="@+id/iv_close"
         app:tl_divider_color="#1A000000"
         app:tl_divider_width="1dp"
         app:tl_indicator_color="#000000"
@@ -39,6 +39,6 @@
         android:layout_height="match_parent"
         android:layout_below="@+id/tablayout"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
-</RelativeLayout>
+</LinearLayout>
 
 
