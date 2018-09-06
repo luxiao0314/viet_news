@@ -4,6 +4,8 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 
+import com.viet.news.core.R;
+
 /**
  * fragment操作类
  */
@@ -52,8 +54,7 @@ public class FragmentExchangeManager {
 
     public static void addFragment(FragmentManager supportFragmentManager, Fragment baseDialogFragment, int content, String tag, boolean needAnimotion) {
         if (needAnimotion) {
-//            addFragment(supportFragmentManager, baseDialogFragment, content, tag, R.anim.anim_fragment_in, R.anim.anim_fragment_out, R.anim.anim_fragment_close_in, R.anim.anim_fragment_close_out);
-            addFragment(supportFragmentManager, baseDialogFragment, content, tag);
+            addFragment(supportFragmentManager, baseDialogFragment, content, tag, R.anim.dialog_push_bottom_in, R.anim.dialog_push_bottom_out, R.anim.dialog_push_top_in, R.anim.dialog_push_top_out);
         } else {
             addFragment(supportFragmentManager, baseDialogFragment, content, tag);
         }

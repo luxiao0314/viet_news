@@ -81,7 +81,7 @@ class ImagePicsListActivity : BaseActivity() {
                 view.setScale(view.minimumScale, true)
             } else {
                 finish()
-                overridePendingTransition(0, R.anim.a3)
+                overridePendingTransition(0, R.anim.scale_in)
             }
         }
     }
@@ -91,7 +91,7 @@ class ImagePicsListActivity : BaseActivity() {
             true
         } else {
             finish()
-            overridePendingTransition(0, R.anim.a3)
+            overridePendingTransition(0, R.anim.scale_in)
             false
         }
     }
@@ -146,7 +146,7 @@ class ImagePicsListActivity : BaseActivity() {
 
     override fun onKeyDown(keyCode: Int, event: KeyEvent?): Boolean {
         finish()
-        overridePendingTransition(0, R.anim.a3)
+        overridePendingTransition(0, R.anim.scale_in)
         return super.onKeyDown(keyCode, event)
     }
     private fun refreshCurrentPosition(mPosition: Int) {
@@ -176,7 +176,7 @@ class ImagePicsListActivity : BaseActivity() {
             intent.putStringArrayListExtra(KEY_INTENT_DATA_URL, urls)
             intent.putExtra(KEY_INTENT_DATA_POS, position)
             context.startActivity(intent)
-            (context as Activity).overridePendingTransition(R.anim.a5, 0)
+            (context as Activity).overridePendingTransition(R.anim.scale_out, 0)
         }
 
         /**
@@ -192,7 +192,7 @@ class ImagePicsListActivity : BaseActivity() {
             intent.putStringArrayListExtra(KEY_INTENT_DATA_URL, urls)
             intent.putExtra(KEY_INTENT_DATA_POS, 0)
             context.startActivity(intent)
-            (context as Activity).overridePendingTransition(R.anim.a5, 0)
+            (context as Activity).overridePendingTransition(R.anim.scale_out, 0)
         }
 
         /**
@@ -210,7 +210,7 @@ class ImagePicsListActivity : BaseActivity() {
             intent.putExtra(KEY_INTENT_DATA_TITLE, title)
             intent.putExtra(KEY_INTENT_DATA_CONTENT, content)
             context.startActivity(intent)
-            (context as Activity).overridePendingTransition(R.anim.a5, 0)
+            (context as Activity).overridePendingTransition(R.anim.scale_out, 0)
         }
 
         fun getUriFromNet(url: String): Uri {
