@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <com.viet.news.core.ui.widget.TitleBar
+        android:id="@+id/title_bar"
+        style="@style/title_bar_white"
+        app:titlebar_titleText="@string/select_language" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_language"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="13.5dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="13.5dp"
+        android:overScrollMode="never" />
+</LinearLayout>

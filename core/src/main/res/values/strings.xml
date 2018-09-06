@@ -7,6 +7,9 @@
     <string name="title_task">Task</string>
     <string name="title_collect">Collections</string>
     <string name="title_account_info">Personal Info</string>
+    <string name="title_nickname">Nick Name</string>
+    <string name="title_change_phone_num">Change Phone Number</string>
+    <string name="title_help">Help Center</string>
 
     <!--mine-->
     <string name="title_setting">Setting</string>
@@ -26,6 +29,14 @@
     <string name="feed_back">Feed Back</string>
     <string name="about">About MagicBox</string>
     <string name="version">Version</string>
+    <string name="description">What is MagicBox</string>
+    <string name="choose_country">Please select Country/Region code</string>
+    <!-- 选择国家 -->
+    <string name="country_region">Country/Region</string>
+    <!-- 国家地区 -->
+    <string name="select_country">Select Country/Region</string>
+    <string name="select_language">Select Language</string>
+    <string name="follow_system_language">Auto</string>
 
     <!--Account info-->
     <string name="user_icon">Head Portrait</string>
@@ -35,6 +46,7 @@
     <string name="login_pwd">Password</string>
     <string name="unbind">Unbind</string>
     <string name="to_setting">To Set Up</string>
+    <string name="input_nick_name">Input Nick Name</string>
 
     <string name="loading_msg">Loading</string><!-- 正在加载 -->
     <string name="empty_msg">There is noting here！</string><!-- 没有数据 -->
@@ -69,4 +81,6 @@
     <string name="enter_invitation_code">输入邀请码（非必填）</string>
     <string name="enter_password_again">Enter password again</string>
 
+    <!--common-->
+    <string name="confirm">Confirm</string>
 </resources>

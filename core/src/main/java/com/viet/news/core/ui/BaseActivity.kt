@@ -56,18 +56,22 @@ abstract class BaseActivity : AppCompatActivity() {
                 .commit()
     }
 
-    override fun onKeyDown(keyCode: Int, event: KeyEvent?): Boolean = if (KeyEvent.KEYCODE_BACK == keyCode) {
-        if (supportFragmentManager.backStackEntryCount == 0) {
-            finish()
-            true
-        } else {
-            try {
-                supportFragmentManager.popBackStackImmediate()
-            } catch (e: Exception) {
-            }
-            true
-        }
-    } else {
-        super.onKeyDown(keyCode, event)
+//    override fun onKeyDown(keyCode: Int, event: KeyEvent?): Boolean = if (KeyEvent.KEYCODE_BACK == keyCode) {
+//        if (supportFragmentManager.backStackEntryCount == 0) {
+//            finish()
+//            true
+//        } else {
+//            try {
+//                supportFragmentManager.popBackStackImmediate()
+//            } catch (e: Exception) {
+//            }
+//            true
+//        }
+//    } else {
+//        super.onKeyDown(keyCode, event)
+//    }
+
+    override fun onKeyDown(keyCode: Int, event: KeyEvent?): Boolean {
+        return super.onKeyDown(keyCode, event)
     }
 }
