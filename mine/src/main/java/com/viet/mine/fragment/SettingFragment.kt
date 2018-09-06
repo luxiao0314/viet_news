@@ -12,7 +12,7 @@ import com.viet.news.core.ui.widget.CommonItem
 /**
  * 设置页面
  */
-class SettingFragment :BaseFragment(){
+class SettingFragment : BaseFragment() {
 
     private var mContainerView: View? = null
 
@@ -24,6 +24,7 @@ class SettingFragment :BaseFragment(){
     override fun initView(view: View) {
         val languageSettingItem = view.findViewById<CommonItem>(R.id.item_language_setting)
         val helpItem = view.findViewById<CommonItem>(R.id.item_help)
+        val feedBackItem = view.findViewById<CommonItem>(R.id.item_feed_back)
 
         languageSettingItem.setClickDelegate {
             onItemClick = {
@@ -36,6 +37,13 @@ class SettingFragment :BaseFragment(){
                 Navigation.findNavController(helpItem).navigate(R.id.action_page2)
             }
         }
+
+        feedBackItem.setClickDelegate {
+            onItemClick = {
+                Navigation.findNavController(feedBackItem).navigate(R.id.action_page3)
+            }
+        }
+
 
     }
 }

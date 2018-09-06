@@ -7,11 +7,11 @@ import android.view.ViewGroup
 import com.viet.mine.R
 import com.viet.news.core.ui.BaseFragment
 
-class ChangNickNameFragment : BaseFragment() {
+class ResetPasswordFragment : BaseFragment() {
     private var mContainerView: View? = null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        mContainerView = inflater.inflate(R.layout.fragment_setting_nickname, container, false)
+        mContainerView = inflater.inflate(R.layout.fragment_setting_resetpwd, container, false)
         return mContainerView
     }
 

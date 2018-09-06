@@ -11,9 +11,41 @@
         style="@style/title_bar_white"
         app:titlebar_titleText="@string/title_help" />
 
-    <com.viet.news.core.ui.widget.CommonItem
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        app:left_text="@string/description"
-        app:next_icon_visibility="true" />
+
+        <EditText
+            android:id="@+id/edit_content"
+            style="@style/edit_layout.feedback"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:layout_marginLeft="@dimen/page_padding_left"
+            android:layout_marginStart="@dimen/page_padding_left"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="@dimen/page_padding_right"
+            android:layout_marginEnd="@dimen/page_padding_right"
+            android:layout_marginBottom="10dp"
+            android:gravity="top"
+            android:hint="@string/feedback_des"
+            android:lineSpacingMultiplier="1.2"
+            android:maxLength="100"
+            android:minHeight="174dp"
+            android:minLines="10"
+            android:padding="10dp"
+            android:textColor="@color/text_gray"
+            android:textColorHint="@color/darker_gray"
+            android:textCursorDrawable="@null"
+            android:textSize="14sp" />
+
+        <Button
+            android:id="@+id/confirm_btn"
+            style="@style/button"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginStart="@dimen/page_padding_left"
+            android:layout_marginLeft="@dimen/page_padding_left"
+            android:layout_marginTop="@dimen/top_padding_different_module"
+            android:layout_marginEnd="@dimen/page_padding_right"
+            android:layout_marginRight="@dimen/page_padding_right"
+            android:clickable="false"
+            android:text="@string/title_change_phone_num" />
 </LinearLayout>

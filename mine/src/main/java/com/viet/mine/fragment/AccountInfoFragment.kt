@@ -21,6 +21,7 @@ class AccountInfoFragment : BaseFragment() {
     override fun initView(view: View) {
         val changeNameItem = view.findViewById<CommonItem>(R.id.item_change_name)
         val changePhoneNumItem = view.findViewById<CommonItem>(R.id.item_change_phone_num)
+        val resetPwdItem = view.findViewById<CommonItem>(R.id.item_reset_pwd)
         changeNameItem.setClickDelegate {
             onItemClick = {
                 Navigation.findNavController(changeNameItem).navigate(R.id.action_page_1)
@@ -29,6 +30,12 @@ class AccountInfoFragment : BaseFragment() {
         changePhoneNumItem.setClickDelegate {
             onItemClick = {
                 Navigation.findNavController(changePhoneNumItem).navigate(R.id.action_page_2)
+            }
+        }
+
+        resetPwdItem.setClickDelegate {
+            onItemClick={
+                Navigation.findNavController(resetPwdItem).navigate(R.id.action_page_3)
             }
         }
     }

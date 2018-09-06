@@ -38,4 +38,6 @@
 
     <color name="behavior_enable">#fa845e</color>
     <color name="behavior_normal">#FF000000</color>
+
+    <color name="edit_underline" tools:keep="@color/edit_underline">@color/darker_gray</color>
 </resources>

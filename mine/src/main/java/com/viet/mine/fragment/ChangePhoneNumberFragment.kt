@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import com.viet.mine.R
 import com.viet.news.core.ui.BaseFragment
 
-class ChangPhoneNumberFragment : BaseFragment() {
+class ChangePhoneNumberFragment : BaseFragment() {
     private var mContainerView: View? = null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
