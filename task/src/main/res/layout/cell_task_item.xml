@@ -10,7 +10,8 @@
     <ImageView
         android:id="@+id/iv_task_icon"
         android:layout_width="104dp"
-        android:layout_height="80dp" />
+        android:layout_height="80dp"
+        tools:ignore="ContentDescription" />
 
     <TextView
         android:id="@+id/tv_task_name"
@@ -82,13 +83,15 @@
             android:layout_height="5dp"
             android:layout_gravity="center_vertical"
             android:max="100"
-            android:progress="50" />
+            android:progress="50"
+            android:progressDrawable="@drawable/task_progressbar" />
 
         <TextView
             android:id="@+id/tv_current_progress"
             style="@style/text.12.gray"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/top_padding_same_module"
             android:layout_marginLeft="@dimen/top_padding_same_module"
             tools:text="50" />
 
@@ -96,7 +99,8 @@
             style="@style/text.12.gray"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="/" />
+            android:text="/"
+            tools:ignore="HardcodedText" />
 
         <TextView
             android:id="@+id/tv_max_progress"
