@@ -12,10 +12,17 @@
         android:layout_height="40dp"
         app:tl_divider_color="#1A000000"
         app:tl_divider_width="0dp"
+<<<<<<< HEAD
         app:tl_indicator_color="@color/red_title"
         app:tl_indicator_height="1dp"
         app:tl_indicator_width_equal_title="true"
         app:tl_textSelectColor="@color/red_title"
+=======
+        app:tl_indicator_color="@color/text_red"
+        app:tl_indicator_height="1dp"
+        app:tl_indicator_width_equal_title="true"
+        app:tl_textSelectColor="@color/text_red"
+>>>>>>> 9536dbc02eaa2c9e6c7acb4043d0a2cf2ad5f93e
         app:tl_textUnselectColor="#66000000"
         app:tl_underline_color="@color/transparent"/>
 

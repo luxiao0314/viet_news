@@ -26,7 +26,7 @@
 
     <TextView
         android:id="@+id/tv_task_score"
-        style="@style/text.14.gray"
+        style="@style/text.14.red"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/top_padding_same_module"
@@ -52,7 +52,7 @@
 
     <TextView
         android:id="@+id/tv_task_msg"
-        style="@style/text.10.gray"
+        style="@style/text.10.red"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/top_padding_same_module"
@@ -60,7 +60,7 @@
         android:layout_marginBottom="@dimen/top_padding_same_module"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toRightOf="@id/iv_task_icon"
-        tools:text="邀请新用户" />
+        tools:text="已邀请100名" />
 
     <LinearLayout
         android:id="@+id/ll_progress"
@@ -78,18 +78,18 @@
         <ProgressBar
             android:id="@+id/progress_bar"
             style="?android:attr/progressBarStyleHorizontal"
-            android:layout_width="70dp"
+            android:layout_width="76dp"
             android:layout_height="5dp"
             android:layout_gravity="center_vertical"
             android:max="100"
             android:progress="50" />
 
         <TextView
-            android:layout_marginLeft="@dimen/top_padding_same_module"
             android:id="@+id/tv_current_progress"
             style="@style/text.12.gray"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/top_padding_same_module"
             tools:text="50" />
 
         <TextView
@@ -109,7 +109,7 @@
 
     <Button
         android:id="@+id/btn_right"
-        style="@style/text.10.gray"
+        style="@style/text.12.white"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"

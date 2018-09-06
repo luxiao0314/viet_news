@@ -33,7 +33,7 @@
 
     <TextView
         android:id="@+id/tv_rank"
-        style="@style/text.12.gray"
+        style="@style/text.10.red"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginRight="@dimen/page_padding"
@@ -42,7 +42,7 @@
 
     <TextView
         android:id="@+id/tv_view"
-        style="@style/text.14.gray"
+        style="@style/text.14.red"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginRight="@dimen/page_padding"
