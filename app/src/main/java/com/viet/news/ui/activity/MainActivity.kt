@@ -36,7 +36,7 @@ class MainActivity : InjectActivity() {
 
         container.offscreenPageLimit = 3//缓存3个界面
         container.addOnPageChangeListener { onPageSelected = { bottomBar.currentTab = it } }
-        bottomBar.setOnTabSelectListener { onTabSelect = { container.currentItem = it } }
+        bottomBar.setOnTabSelectListener { onTabSelect = { container.setCurrentItem(it,false) } }
     }
 
     /*
