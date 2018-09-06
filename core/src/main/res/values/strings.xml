@@ -7,6 +7,8 @@
     <string name="title_task">Task</string>
     <string name="title_collect">Collections</string>
     <string name="title_account_info">Personal Info</string>
+    <string name="title_nickname">Nick Name</string>
+    <string name="title_change_phone_num">Change Phone Number</string>
 
     <!--mine-->
     <string name="title_setting">Setting</string>
@@ -35,6 +37,7 @@
     <string name="login_pwd">Password</string>
     <string name="unbind">Unbind</string>
     <string name="to_setting">To Set Up</string>
+    <string name="input_nick_name">Input Nick Name</string>
 
     <string name="loading_msg">Loading</string><!-- 正在加载 -->
     <string name="empty_msg">There is noting here！</string><!-- 没有数据 -->
@@ -67,4 +70,6 @@
     <string name="title_find_pwd">Find password</string>
     <string name="enter_invitation_code">输入邀请码（非必填）</string>
 
+    <!--common-->
+    <string name="confirm">Confirm</string>
 </resources>
