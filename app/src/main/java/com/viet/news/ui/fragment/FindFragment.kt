@@ -1,6 +1,9 @@
 package com.viet.news.ui.fragment
 
 import android.os.Bundle
+import android.support.v4.app.Fragment
+import android.support.v4.app.FragmentManager
+import android.support.v4.app.FragmentStatePagerAdapter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,8 +12,8 @@ import cn.magicwindow.channelwidget.entity.ChannelBean
 import com.jaeger.library.StatusBarUtil
 import com.safframework.ext.click
 import com.viet.news.R
-import com.viet.news.adapter.MyViewPager
 import com.viet.news.core.delegate.viewModelDelegate
+import com.viet.news.core.ui.BaseFragment
 import com.viet.news.core.ui.InjectFragment
 import com.viet.news.db.SourceEntity
 import com.viet.news.viewmodel.FindViewModel
@@ -62,5 +65,27 @@ class FindFragment : InjectFragment(), AddChannelFragment.DataChangeListener, (S
 
     //点击事件
     override fun invoke(source: SourceEntity) {
+    }
+}
+
+class MyViewPager @Inject constructor(fm: FragmentManager?) : FragmentStatePagerAdapter(fm) {
+
+    private val baseFragmentMap = hashMapOf<Int, BaseFragment>()
+
+    private var mDataList = listOf<ChannelBean>()
+
+    fun setData(list: List<ChannelBean>) {
+        mDataList = list
+    }
+
+    override fun getCount(): Int = mDataList.size
+
+    override fun getItem(position: Int): Fragment? {
+        var fragment: BaseFragment? = baseFragmentMap[position]
+        if (fragment == null) {
+            fragment = NewsFragment.newInstance(mDataList[position].tabName!!)
+            baseFragmentMap[position] = fragment
+        }
+        return fragment
     }
 }

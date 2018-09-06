@@ -165,7 +165,7 @@ abstract class RealVisibleHintBaseFragment : BaseFragment() {
         }
     }
 
-    fun onFragmentFirstVisible() {
+    open fun onFragmentFirstVisible() {
 //        L.e(javaClass.simpleName + "  对用户第一次可见")
 
     }
@@ -174,7 +174,7 @@ abstract class RealVisibleHintBaseFragment : BaseFragment() {
 //        L.e(javaClass.simpleName + "  对用户可见")
     }
 
-    fun onFragmentPause() {
+    open fun onFragmentPause() {
 //        L.e(javaClass.simpleName + "  对用户不可见")
     }
 

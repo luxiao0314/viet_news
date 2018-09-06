@@ -47,10 +47,9 @@ class NewsFragment : RealVisibleHintBaseFragment(), HasSupportFragmentInjector {
         val dividerItemDecoration = DividerItemDecoration(activity, DividerItemDecoration.VERTICAL)
         dividerItemDecoration.setDrawable(ContextCompat.getDrawable(context!!, R.drawable.shape_list_divider_gray_05dp)!!)
         recyclerView.addItemDecoration(dividerItemDecoration)
-        initData()
     }
 
-    private fun initData() {
+    override fun onFragmentFirstVisible() {
         model.getNewsArticles().observe(this, Observer {
             adapter.addData(it?.articles)
         })
