@@ -110,16 +110,22 @@
         android:layout_marginTop="10dp"
         app:layout_constraintTop_toBottomOf="@+id/clearEditext"/>
 
-    <Button
-        android:id="@+id/register_btn"
-        style="@style/button"
+    <FrameLayout
+        android:id="@+id/register_frame"
         android:layout_width="match_parent"
-        android:layout_height="45dp"
-        android:layout_gravity="center_horizontal"
+        android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
-        android:clickable="false"
-        android:text="@string/next"
-        app:layout_constraintTop_toBottomOf="@+id/clearEditext"/>
+        app:layout_constraintTop_toBottomOf="@+id/clearEditext">
+
+        <Button
+            android:id="@+id/register_btn"
+            style="@style/button"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_gravity="center_horizontal"
+            android:clickable="false"
+            android:text="@string/next"/>
+    </FrameLayout>
 
     <com.facebook.login.widget.LoginButton
         android:id="@+id/login_button"
@@ -132,7 +138,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.545"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/register_btn"
+        app:layout_constraintTop_toBottomOf="@+id/register_frame"
         app:layout_constraintVertical_bias="1.0"/>
 
     <TextView
@@ -148,5 +154,4 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"/>
-
 </android.support.constraint.ConstraintLayout>
