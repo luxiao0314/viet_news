@@ -560,7 +560,7 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="passwordToggleEnabled" type="attr">true</item>
         <item name="passwordToggleDrawable" type="drawable">@drawable/pwd_eye</item>
-        <item name="passwordToggleTint" type="color">@color/white</item>
+        <item name="passwordToggleTint" type="color">@color/black</item>
     </style>
 
 </resources>
