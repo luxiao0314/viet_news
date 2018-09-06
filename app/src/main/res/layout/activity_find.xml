@@ -22,7 +22,8 @@
             android:id="@+id/id_tab_pager_indicator"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="1"/>
+            android:layout_weight="1"
+            app:tab_indicatorHeight="0dp"/>
         <ImageView
             android:id="@+id/id_add_channel_entry_iv"
             android:layout_width="wrap_content"
