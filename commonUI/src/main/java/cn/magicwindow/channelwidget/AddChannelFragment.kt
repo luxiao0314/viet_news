@@ -2,7 +2,6 @@ package cn.magicwindow.channelwidget
 
 
 import android.annotation.SuppressLint
-import android.os.Build
 import android.os.Bundle
 import android.support.v4.app.DialogFragment
 import android.support.v7.widget.GridLayoutManager
@@ -36,7 +35,7 @@ class AddChannelFragment(private val myStrs: List<String>, private val recStrs: 
     private fun initParams() {
         val window = dialog?.window
         val lp = window?.attributes
-        lp?.dimAmount = 0F
+//        lp?.dimAmount = 0F
         //占用屏幕宽度一定比例
         lp?.width = getScreenWidth(context)
         //设置dialog高度
@@ -44,11 +43,6 @@ class AddChannelFragment(private val myStrs: List<String>, private val recStrs: 
         //设置dialog进入、退出的动画
         window?.attributes = lp
         window?.setWindowAnimations(R.style.inandoutAnimation)
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            window?.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
-            window?.statusBarColor = activity?.resources?.getColor(R.color.white)!!
-        }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

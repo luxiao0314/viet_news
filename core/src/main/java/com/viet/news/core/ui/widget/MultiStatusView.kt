@@ -44,7 +44,7 @@ class MultiStatusView @JvmOverloads constructor(context: Context, attrs: Attribu
     private var mErrorMessage: CharSequence? = null
     private var mEmptyMessage: CharSequence? = null
     private var mErrorDrawable = R.drawable.ic_error
-    private var mEmptyDrawable = R.drawable.ic_wait
+    private var mEmptyDrawable = R.drawable.shape_default_circle_bg
     // ---------------------------
     // static variables
     // ---------------------------

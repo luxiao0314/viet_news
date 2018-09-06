@@ -56,7 +56,7 @@ abstract class BaseActivity : AppCompatActivity() {
                 .commit()
     }
 
-//    override fun onKeyDown(keyCode: Int, event: KeyEvent?): Boolean = if (KeyEvent.KEYCODE_BACK == keyCode) {
+    override fun onKeyDown(keyCode: Int, event: KeyEvent?): Boolean = if (KeyEvent.KEYCODE_BACK == keyCode) {
 //        if (supportFragmentManager.backStackEntryCount == 0) {
 //            finish()
 //            true
@@ -67,11 +67,15 @@ abstract class BaseActivity : AppCompatActivity() {
 //            }
 //            true
 //        }
-//    } else {
-//        super.onKeyDown(keyCode, event)
-//    }
 
-    override fun onKeyDown(keyCode: Int, event: KeyEvent?): Boolean {
-        return super.onKeyDown(keyCode, event)
+//
+//        if (!Navigation.findNavController(this,android.R.id.content).popBackStack()) {
+//            finish()
+//            true
+//        } else {
+//        }
+        super.onKeyDown(keyCode, event)
+    } else {
+        super.onKeyDown(keyCode, event)
     }
 }

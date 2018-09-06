@@ -55,7 +55,7 @@
                 android:layout_height="30dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginLeft="8dp"
-                android:src="@drawable/ic_wait"
+                android:src="@drawable/shape_default_circle_bg"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
