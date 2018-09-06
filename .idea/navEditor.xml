@@ -174,13 +174,25 @@
             <LayoutPositions>
               <option name="myPositions">
                 <map>
+                  <entry key="fr_feed_back">
+                    <value>
+                      <LayoutPositions>
+                        <option name="myPosition">
+                          <Point>
+                            <option name="x" value="43" />
+                            <option name="y" value="-110" />
+                          </Point>
+                        </option>
+                      </LayoutPositions>
+                    </value>
+                  </entry>
                   <entry key="fr_help">
                     <value>
                       <LayoutPositions>
                         <option name="myPosition">
                           <Point>
-                            <option name="x" value="316" />
-                            <option name="y" value="-187" />
+                            <option name="x" value="34" />
+                            <option name="y" value="406" />
                           </Point>
                         </option>
                       </LayoutPositions>
@@ -191,8 +203,8 @@
                       <LayoutPositions>
                         <option name="myPosition">
                           <Point>
-                            <option name="x" value="327" />
-                            <option name="y" value="211" />
+                            <option name="x" value="291" />
+                            <option name="y" value="44" />
                           </Point>
                         </option>
                       </LayoutPositions>
@@ -203,8 +215,8 @@
                       <LayoutPositions>
                         <option name="myPosition">
                           <Point>
-                            <option name="x" value="-50" />
-                            <option name="y" value="33" />
+                            <option name="x" value="-231" />
+                            <option name="y" value="80" />
                           </Point>
                         </option>
                         <option name="myPositions">
@@ -215,6 +227,11 @@
                               </value>
                             </entry>
                             <entry key="action_page2">
+                              <value>
+                                <LayoutPositions />
+                              </value>
+                            </entry>
+                            <entry key="action_page3">
                               <value>
                                 <LayoutPositions />
                               </value>

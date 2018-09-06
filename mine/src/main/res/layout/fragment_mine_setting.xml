@@ -40,6 +40,7 @@
     <View style="@style/line.gray_tran.margin_left" />
 
     <com.viet.news.core.ui.widget.CommonItem
+        android:id="@+id/item_feed_back"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         app:left_text="@string/feed_back"

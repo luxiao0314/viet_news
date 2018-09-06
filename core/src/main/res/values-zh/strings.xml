@@ -71,4 +71,7 @@
 
     <!--通用-->
     <string name="confirm">确定</string>
+
+    <!--用户反馈-->
+    <string name="feedback_des">请写下您的意见或反馈，谢谢！</string>
 </resources>

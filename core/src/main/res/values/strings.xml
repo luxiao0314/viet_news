@@ -38,6 +38,9 @@
     <string name="select_language">Select Language</string>
     <string name="follow_system_language">Auto</string>
 
+    <!--用户反馈-->
+    <string name="feedback_des">Please write down your comments or feedback. Thank you!</string>
+
     <!--Account info-->
     <string name="user_icon">Head Portrait</string>
     <string name="magicbox_num">MagicBox Number</string>

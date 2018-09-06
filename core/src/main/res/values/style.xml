@@ -391,6 +391,25 @@
         <item name="android:background">@android:color/darker_gray</item>
     </style>
 
+
+    <style name="edit_layout">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:paddingLeft">15dp</item>
+        <item name="android:paddingRight">15dp</item>
+        <item name="android:layout_centerVertical">true</item>
+        <item name="android:background">@drawable/shape_edittext_bg</item>
+    </style>
+
+    <style name="edit_layout.pwd">
+        <item name="android:paddingRight">0dp</item>
+    </style>
+
+    <!-- chulong.xu 新增-->
+    <style name="edit_layout.feedback">
+        <item name="android:background">@drawable/shape_feedback_edittext_bg</item>
+    </style>
+
     <declare-styleable name="MultiStatusView">
         <attr name="loadingView" format="reference" />
         <attr name="errorView" format="reference" />
