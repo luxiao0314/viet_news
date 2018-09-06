@@ -9,13 +9,10 @@ import android.view.ViewGroup
 import com.jakewharton.rxbinding2.widget.RxTextView
 import com.viet.mine.R
 import com.viet.mine.viewmodel.LoginViewModel
-import com.viet.news.core.config.Config
 import com.viet.news.core.delegate.viewModelDelegate
-import com.viet.news.core.ext.clickWithTrack
 import com.viet.news.core.ext.clickWithTrigger
 import com.viet.news.core.ext.toast
 import com.viet.news.core.ui.RealVisibleHintBaseFragment
-import com.viet.news.webview.WebActivity
 import kotlinx.android.synthetic.main.fragment_register.*
 
 /**
@@ -38,11 +35,6 @@ class RegisterFragment : RealVisibleHintBaseFragment() {
                     model.registerPhoneNumber.value = it.toString()
                     model.checkRegisterVCodeBtnEnable()
                 }
-
-        //点击协议
-        agreement_text.clickWithTrack(Config.login_userProtocol, 2000) {
-            WebActivity.launch(context!!, Config.PACT_URL)
-        }
 
         //+86点击事件
         select_country_text.clickWithTrigger {

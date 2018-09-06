@@ -6,7 +6,7 @@
     android:id="@+id/constraintLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
+    android:layout_marginTop="@dimen/page_padding_left"
     android:paddingStart="@dimen/page_padding_left"
     android:paddingLeft="@dimen/page_padding_left"
     android:paddingTop="@dimen/padding_top_large"
@@ -30,7 +30,8 @@
         android:layout_height="wrap_content"
         android:paddingLeft="6dp"
         android:paddingTop="2dp"
-        android:paddingRight="6dp" android:paddingBottom="2dp"
+        android:paddingRight="6dp"
+        android:paddingBottom="2dp"
         android:text="+86" app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"/>
 
@@ -45,8 +46,9 @@
         app:layout_constraintStart_toEndOf="@+id/select_country_text"/>
 
     <View
+        android:id="@+id/line4"
         style="@style/line.gray_tran"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="15dp"
         app:layout_constraintTop_toBottomOf="@+id/line"/>
 
     <LinearLayout
@@ -55,7 +57,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
         android:orientation="horizontal"
-        app:layout_constraintTop_toBottomOf="@+id/phone_input">
+        app:layout_constraintTop_toBottomOf="@+id/line4">
 
         <cn.magicwindow.ClearEditext
             android:id="@+id/password_input"
@@ -66,7 +68,7 @@
             android:hint="@string/verification_code"
             android:padding="5dp"
             android:textColor="@color/text_gray"
-            android:textSize="@dimen/text_14sp"/>
+            android:textSize="@dimen/text_16sp"/>
 
         <Button
             android:id="@+id/btn_send_vcode"
@@ -86,8 +88,9 @@
     </LinearLayout>
 
     <View
+        android:id="@+id/line3"
         style="@style/line.gray_tran"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="15dp"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout2"/>
 
     <cn.magicwindow.ClearEditext
@@ -101,21 +104,21 @@
         android:layout_marginRight="8dp"
         android:hint="@string/enter_invitation_code"
         android:textColor="@color/text_gray"
-        android:textSize="@dimen/text_14sp"
+        android:textSize="@dimen/text_16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout2"/>
+        app:layout_constraintTop_toBottomOf="@+id/line3"/>
 
     <View
         style="@style/line.gray_tran"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="15dp"
         app:layout_constraintTop_toBottomOf="@+id/clearEditext"/>
 
     <FrameLayout
         android:id="@+id/register_frame"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="60dp"
         app:layout_constraintTop_toBottomOf="@+id/clearEditext">
 
         <Button
@@ -127,32 +130,4 @@
             android:clickable="false"
             android:text="@string/next"/>
     </FrameLayout>
-
-    <com.facebook.login.widget.LoginButton
-        android:id="@+id/login_button"
-        android:layout_width="240dp"
-        android:layout_height="45dp"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="25dp"
-        app:layout_constraintBottom_toTopOf="@+id/agreement_text"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.545"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/register_frame"
-        app:layout_constraintVertical_bias="1.0"/>
-
-    <TextView
-        android:id="@+id/agreement_text"
-        style="@style/text.14.gray"
-        android:layout_width="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginBottom="20dp"
-        android:text="@string/consent_user_agreement"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"/>
 </android.support.constraint.ConstraintLayout>
