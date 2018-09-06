@@ -9,6 +9,7 @@
     <string name="title_account_info">Personal Info</string>
     <string name="title_nickname">Nick Name</string>
     <string name="title_change_phone_num">Change Phone Number</string>
+    <string name="title_help">Help Center</string>
 
     <!--mine-->
     <string name="title_setting">Setting</string>
@@ -28,6 +29,14 @@
     <string name="feed_back">Feed Back</string>
     <string name="about">About MagicBox</string>
     <string name="version">Version</string>
+    <string name="description">What is MagicBox</string>
+    <string name="choose_country">Please select Country/Region code</string>
+    <!-- 选择国家 -->
+    <string name="country_region">Country/Region</string>
+    <!-- 国家地区 -->
+    <string name="select_country">Select Country/Region</string>
+    <string name="select_language">Select Language</string>
+    <string name="follow_system_language">Auto</string>
 
     <!--Account info-->
     <string name="user_icon">Head Portrait</string>

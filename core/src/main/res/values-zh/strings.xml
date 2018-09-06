@@ -9,6 +9,7 @@
     <string name="title_account_info">个人信息</string>
     <string name="title_nickname">昵称</string>
     <string name="title_change_phone_num">更换手机号</string>
+    <string name="title_help">帮助中心</string>
 
     <!--登录相关-->
     <string name="cancel">取消</string>
@@ -49,6 +50,12 @@
     <string name="about">关于MagicBox</string>
     <string name="version">版本号</string>
     <string name="next">下一步</string>
+    <string name="description">什么是MagicBox</string>
+    <string name="choose_country">请选择 国家/地区 码</string><!-- 选择国家 -->
+    <string name="country_region">国家/地区</string><!-- 国家地区 -->
+    <string name="select_country">选择国家/地区</string><!--选择国家-->
+    <string name="select_language">选择语言</string>
+    <string name="follow_system_language">跟随系统语言</string><!--激活账号-->
 
     <!--个人信息-->
     <string name="user_icon">头像</string>

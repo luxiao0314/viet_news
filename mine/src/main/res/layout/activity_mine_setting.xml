@@ -6,62 +6,13 @@
     android:background="@color/white"
     android:orientation="vertical">
 
-    <com.viet.news.core.ui.widget.TitleBar
-        android:id="@+id/title_bar"
-        style="@style/title_bar_white"
-        app:titlebar_titleText="@string/title_setting" />
-
-    <com.viet.news.core.ui.widget.CommonItem
+    <fragment
+        android:id="@+id/my_nav_setting_host_fragment"
+        android:name="androidx.navigation.fragment.NavHostFragment"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        app:left_text="@string/clear_cache"
-        app:next_icon_visibility="false"
-        app:right_text="3.25M" />
-
-    <View style="@style/line.gray_tran.margin_left" />
-
-    <com.viet.news.core.ui.widget.CommonItem
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        app:left_text="@string/language_setting"
-        app:next_icon_visibility="true"
-        app:right_text="越南语" />
-
-    <View style="@style/line.gray_tran.margin_left" />
-
-    <com.viet.news.core.ui.widget.CommonItem
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        app:left_text="@string/help"
-        app:next_icon_visibility="true" />
-
-    <View style="@style/line.gray_tran.margin_left" />
-
-    <com.viet.news.core.ui.widget.CommonItem
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        app:left_text="@string/feed_back"
-        app:next_icon_visibility="true" />
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/top_padding_same_module"
-        android:background="@color/gray_tran" />
-
-    <com.viet.news.core.ui.widget.CommonItem
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        app:left_text="@string/about"
-        app:next_icon_visibility="true" />
-
-
-    <View style="@style/line.gray_tran.margin_left" />
-
-    <com.viet.news.core.ui.widget.CommonItem
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        app:left_text="@string/version"
-        app:next_icon_visibility="true"
-        app:right_text="v1.0.0" />
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        app:defaultNavHost="true"
+        app:navGraph="@navigation/nav_graph_mine_setting" />
 
 </LinearLayout>
