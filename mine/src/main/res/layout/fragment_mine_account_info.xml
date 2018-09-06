@@ -29,19 +29,19 @@
             android:paddingEnd="@dimen/module_margin"
             android:paddingRight="@dimen/module_margin"
             android:singleLine="true"
+            android:text="@string/user_icon"
             android:textColor="@color/text_gray"
-            android:textSize="@dimen/text_16sp"
-            android:text="@string/user_icon" />
+            android:textSize="@dimen/text_16sp" />
 
         <ImageView
             android:id="@+id/iv_user_icon"
             android:layout_width="60dp"
             android:layout_height="60dp"
-            android:layout_marginStart="@dimen/module_margin"
             android:layout_gravity="end|center_vertical"
+            android:layout_marginStart="@dimen/module_margin"
             android:layout_marginLeft="@dimen/module_margin"
             android:layout_marginEnd="@dimen/module_margin"
-            android:layout_marginRight="@dimen/module_margin"
+            android:layout_marginRight="8dp"
             android:contentDescription="@null"
             android:src="@drawable/shape_default_circle_bg" />
 
@@ -50,6 +50,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="end|center_vertical"
+            android:layout_marginRight="8dp"
             android:contentDescription="@null"
             android:scaleType="fitCenter"
             android:src="@drawable/ic_next" />
