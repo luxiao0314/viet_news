@@ -68,7 +68,7 @@ fun Toast.setToastColor(@ColorInt messageColor: Int, @ColorInt backgroundColor: 
  * @param background
  * @return
  */
-fun Toast.setBackground(@ColorInt messageColor: Int = Color.WHITE, @DrawableRes background: Int = R.color.white): Toast {
+fun Toast.setBackground(@ColorInt messageColor: Int = Color.WHITE, @DrawableRes background: Int = R.color.gray_tran): Toast {
     val view = view
     if (view != null) {
         val message = view.findViewById(android.R.id.message) as TextView

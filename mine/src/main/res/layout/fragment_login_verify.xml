@@ -60,12 +60,13 @@
         app:layout_constraintTop_toBottomOf="@+id/line2">
 
         <cn.magicwindow.ClearEditext
-            android:id="@+id/password_input"
+            android:id="@+id/vcode_input"
             style="@style/edit"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:hint="@string/verification_code"
+            android:inputType="number"
             android:padding="5dp"
             android:textColor="@color/text_gray"
             android:textSize="@dimen/text_16sp"/>
@@ -84,7 +85,7 @@
             android:paddingRight="10dp"
             android:text="@string/get_vcode"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/password_input"/>
+            app:layout_constraintStart_toEndOf="@+id/vcode_input"/>
     </LinearLayout>
 
     <View
@@ -94,7 +95,7 @@
         app:layout_constraintTop_toBottomOf="@+id/linearLayout2"/>
 
     <Button
-        android:id="@+id/register_btn"
+        android:id="@+id/login_btn"
         style="@style/button"
         android:layout_width="match_parent"
         android:layout_height="45dp"
