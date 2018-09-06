@@ -51,7 +51,7 @@
         android:text="为确保账户安全换绑前需要验证当前手机号"
         android:textColor="@color/text_gray"
         android:textSize="@dimen/text_14sp"
-        android:layout_marginTop="@dimen/div_different_module"
+        android:layout_marginTop="@dimen/module_margin"
         android:drawableLeft="@drawable/safe_logo"
         android:drawablePadding="5dp"
         android:layout_gravity="center_horizontal"/>

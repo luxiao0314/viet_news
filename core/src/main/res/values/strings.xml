@@ -8,6 +8,7 @@
     <string name="title_collect">Collections</string>
     <string name="title_account_info">Personal Info</string>
     <string name="title_nickname">Nick Name</string>
+    <string name="title_resetpwd">Reset Password</string>
     <string name="title_change_phone_num">Change Phone Number</string>
     <string name="title_help">Help Center</string>
 

@@ -9,7 +9,7 @@
     <com.viet.news.core.ui.widget.TitleBar
         android:id="@+id/title_bar"
         style="@style/title_bar_white"
-        app:titlebar_titleText="@string/title_nickname" />
+        app:titlebar_titleText="@string/title_resetpwd" />
 
     <TextView
         android:id="@+id/tv_hint"
@@ -24,13 +24,11 @@
         android:height="40dp"
         android:background="@drawable/shape_gray_round_bg"
         android:gravity="center"
-        android:text="昵称每月仅能修改1次，请谨慎"
+        android:text="密码可使用字母、数字、字符两者组合，限8～20位"
         android:textColor="@color/text_blue"
         app:layout_constraintTop_toTopOf="parent" />
 
-
     <android.support.design.widget.TextInputLayout
-        android:id="@+id/input_layout"
         style="@style/textInputLayout"
         android:layout_width="match_parent"
         android:layout_marginStart="@dimen/page_padding_left"
@@ -40,15 +38,77 @@
         android:layout_marginRight="@dimen/page_padding_right">
 
         <cn.magicwindow.ClearEditext
-            android:id="@+id/nickname_input"
+            android:id="@+id/old_password_input"
             style="@style/edit"
             android:layout_width="match_parent"
             android:layout_marginStart="5dp"
             android:layout_marginLeft="5dp"
+            android:hint="原登录密码"
+            android:inputType="textPassword"
             android:paddingTop="10dp"
             android:paddingBottom="10dp"
-            android:hint="@string/input_nick_name"
-            android:inputType="text"
+            android:textColor="@color/text_gray"
+            android:textSize="@dimen/text_14sp" />
+    </android.support.design.widget.TextInputLayout>
+
+    <View
+        style="@style/line.edit"
+        android:layout_marginStart="@dimen/page_padding_left"
+        android:layout_marginLeft="@dimen/page_padding_left"
+        android:layout_marginEnd="@dimen/page_padding_right"
+        android:layout_marginRight="@dimen/page_padding_right" />
+
+
+    <android.support.design.widget.TextInputLayout
+        style="@style/textInputLayout"
+        android:layout_width="match_parent"
+        android:layout_marginStart="@dimen/page_padding_left"
+        android:layout_marginLeft="@dimen/page_padding_left"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="@dimen/page_padding_right"
+        android:layout_marginRight="@dimen/page_padding_right">
+
+        <cn.magicwindow.ClearEditext
+            android:id="@+id/password_input"
+            style="@style/edit"
+            android:layout_width="match_parent"
+            android:layout_marginStart="5dp"
+            android:layout_marginLeft="5dp"
+            android:hint="新密码"
+            android:inputType="textPassword"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:textColor="@color/text_gray"
+            android:textSize="@dimen/text_14sp" />
+    </android.support.design.widget.TextInputLayout>
+
+    <View
+        style="@style/line.edit"
+        android:layout_marginStart="@dimen/page_padding_left"
+        android:layout_marginLeft="@dimen/page_padding_left"
+        android:layout_marginEnd="@dimen/page_padding_right"
+        android:layout_marginRight="@dimen/page_padding_right" />
+
+
+    <android.support.design.widget.TextInputLayout
+        style="@style/textInputLayout"
+        android:layout_width="match_parent"
+        android:layout_marginStart="@dimen/page_padding_left"
+        android:layout_marginLeft="@dimen/page_padding_left"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="@dimen/page_padding_right"
+        android:layout_marginRight="@dimen/page_padding_right">
+
+        <cn.magicwindow.ClearEditext
+            android:id="@+id/password_input_confirm"
+            style="@style/edit"
+            android:layout_width="match_parent"
+            android:layout_marginStart="5dp"
+            android:layout_marginLeft="5dp"
+            android:hint="再次确认登录密码"
+            android:inputType="textPassword"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
             android:textColor="@color/text_gray"
             android:textSize="@dimen/text_14sp" />
     </android.support.design.widget.TextInputLayout>

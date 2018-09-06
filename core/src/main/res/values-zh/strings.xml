@@ -8,6 +8,7 @@
     <string name="title_collect">收藏</string>
     <string name="title_account_info">个人信息</string>
     <string name="title_nickname">昵称</string>
+    <string name="title_resetpwd">修改登录密码</string>
     <string name="title_change_phone_num">更换手机号</string>
     <string name="title_help">帮助中心</string>
 

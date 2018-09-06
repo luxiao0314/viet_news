@@ -90,6 +90,7 @@
     <View style="@style/line.gray_tran.margin_left" />
 
     <com.viet.news.core.ui.widget.CommonItem
+        android:id="@+id/item_reset_pwd"
         android:layout_width="match_parent"
         android:layout_height="@dimen/item_height"
         app:left_text="@string/login_pwd"
