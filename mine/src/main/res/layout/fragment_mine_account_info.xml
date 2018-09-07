@@ -4,13 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     android:orientation="vertical">
 
     <com.viet.news.core.ui.widget.TitleBar
         android:id="@+id/title_bar"
         style="@style/title_bar_white"
-        android:layout_height="70dp"
-        android:paddingTop="@dimen/statusbar_view_height"
         app:titlebar_titleText="@string/title_account_info" />
 
     <LinearLayout

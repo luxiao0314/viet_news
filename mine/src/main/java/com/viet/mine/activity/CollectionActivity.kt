@@ -31,7 +31,6 @@ class CollectionActivity : BaseActivity() {
     }
 
     private fun initView() {
-        StatusBarUtil.setTranslucentForImageViewInFragment(this, 70, null)
         rl_collection.adapter = adapter
         rl_collection.layoutManager = LinearLayoutManager(this, OrientationHelper.VERTICAL, false)
         val dividerItemDecoration = DividerItemDecoration(this, DividerItemDecoration.VERTICAL)

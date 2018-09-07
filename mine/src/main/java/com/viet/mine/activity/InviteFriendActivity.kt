@@ -16,7 +16,7 @@ class InviteFriendActivity : InjectActivity() {
     }
 
     private fun initView() {
-        StatusBarUtil.setTranslucentForImageViewInFragment(this, 70, null)
+        StatusBarUtil.setTranslucentForImageViewInFragment(this, 0, null)
     }
 
     private fun initData() {

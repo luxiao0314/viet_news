@@ -9,8 +9,6 @@
     <com.viet.news.core.ui.widget.TitleBar
         android:id="@+id/title_bar"
         style="@style/title_bar_white"
-        android:layout_height="70dp"
-        android:paddingTop="@dimen/statusbar_view_height"
         app:titlebar_titleText="@string/select_language" />
 
     <android.support.v7.widget.RecyclerView
