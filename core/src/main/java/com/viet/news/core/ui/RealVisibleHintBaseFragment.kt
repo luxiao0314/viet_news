@@ -101,7 +101,7 @@ abstract class RealVisibleHintBaseFragment : BaseFragment() {
         }
     }
 
-    private fun isFragmentVisible(fragment: Fragment): Boolean {
+    fun isFragmentVisible(fragment: Fragment): Boolean {
         return !fragment.isHidden && fragment.userVisibleHint
     }
 

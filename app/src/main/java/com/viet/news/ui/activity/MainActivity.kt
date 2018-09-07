@@ -6,11 +6,14 @@ import android.os.Bundle
 import com.viet.news.R
 import com.viet.news.core.config.Config
 import com.viet.news.core.delegate.viewModelDelegate
+import com.viet.news.core.domain.RefreshNewsEvent
 import com.viet.news.core.dsl.addOnPageChangeListener
 import com.viet.news.core.dsl.setOnTabSelectListener
+import com.viet.news.core.ext.click
 import com.viet.news.core.ui.InjectActivity
 import com.viet.news.core.ui.TabFragmentAdapter
 import com.viet.news.core.utils.LanguageUtil
+import com.viet.news.core.utils.RxBus
 import com.viet.news.viewmodel.MainViewModel
 import kotlinx.android.synthetic.main.activity_main.*
 import javax.inject.Inject
@@ -36,7 +39,8 @@ class MainActivity : InjectActivity() {
 
         container.offscreenPageLimit = 3//缓存3个界面
         container.addOnPageChangeListener { onPageSelected = { bottomBar.currentTab = it } }
-        bottomBar.setOnTabSelectListener { onTabSelect = { container.setCurrentItem(it,false) } }
+        bottomBar.setOnTabSelectListener { onTabSelect = { container.setCurrentItem(it, false) } }
+        bottomBar.getIconView(0).click { if (bottomBar.currentTab == 0) RxBus.get().post(RefreshNewsEvent()) }
     }
 
     /*

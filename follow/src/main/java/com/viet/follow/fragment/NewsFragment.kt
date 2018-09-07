@@ -18,7 +18,9 @@ import com.viet.follow.R
 import com.viet.follow.adapter.NewsAdapter
 import com.viet.follow.viewmodel.FindViewModel
 import com.viet.news.core.delegate.viewModelDelegate
+import com.viet.news.core.domain.RefreshNewsEvent
 import com.viet.news.core.ui.RealVisibleHintBaseFragment
+import com.viet.news.core.utils.RxBus
 import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.support.AndroidSupportInjection
@@ -43,6 +45,11 @@ class NewsFragment : RealVisibleHintBaseFragment(), HasSupportFragmentInjector {
         return inflater.inflate(R.layout.fragment_news, container, false)
     }
 
+    override fun onFragmentFirstVisible() {
+        refreshLayout.autoRefresh()
+        initEvent()
+    }
+
     override fun initView(view: View) {
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(activity, OrientationHelper.VERTICAL, false)
@@ -52,8 +59,8 @@ class NewsFragment : RealVisibleHintBaseFragment(), HasSupportFragmentInjector {
         initListener()
     }
 
-    override fun onFragmentFirstVisible() {
-        refreshLayout.autoRefresh()
+    private fun initEvent() {
+        compositeDisposable.add(RxBus.get().register(RefreshNewsEvent::class.java) { if (isFragmentVisible(this)) refreshLayout.autoRefresh() })
     }
 
     private fun initListener() {

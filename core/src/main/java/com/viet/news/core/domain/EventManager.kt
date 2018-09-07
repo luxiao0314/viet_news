@@ -8,3 +8,5 @@ package com.viet.news.core.domain
  * @Version
  */
 open class LogoutEvent
+
+open class RefreshNewsEvent
