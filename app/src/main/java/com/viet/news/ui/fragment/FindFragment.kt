@@ -41,7 +41,7 @@ class FindFragment : InjectFragment(), AddChannelFragment.DataChangeListener, (S
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        StatusBarUtil.setTranslucentForImageViewInFragment(activity, 70, null)
+        StatusBarUtil.setTranslucentForImageViewInFragment(activity, 30, null)
     }
 
     override fun initView(view: View) {

@@ -2,11 +2,14 @@ package com.viet.follow.activity
 
 import android.arch.lifecycle.Observer
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.support.v4.content.ContextCompat
 import android.support.v7.widget.DividerItemDecoration
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.OrientationHelper
+import com.jaeger.library.StatusBarUtil
+import com.safframework.utils.support
 import com.viet.follow.R
 import com.viet.follow.adapter.PersonalPageAdapter
 import com.viet.follow.viewmodel.PersonalPageModel
@@ -52,5 +55,13 @@ class PersonalPageActivity : InjectActivity() {
 
     private fun initData() {
         model.getNewsArticles().observe(this, Observer { adapter.addData(it?.articles) })
+    }
+
+    override fun setStatusBar() {
+        support(Build.VERSION_CODES.M, {
+            StatusBarUtil.setTranslucentForImageViewInFragment(this, 0, null)
+        }, {
+            StatusBarUtil.setTranslucentForImageViewInFragment(this, 30, null)
+        })
     }
 }
