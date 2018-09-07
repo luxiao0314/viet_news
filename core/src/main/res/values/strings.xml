@@ -18,6 +18,7 @@
     <string name="login_or_register">Login/Register</string>
     <string name="fans">fans</string>
     <string name="follow">follow</string>
+    <string name="add_follow">+ follow</string>
     <string name="edit">edit</string>
     <string name="my_wallet">My Wallet</string>
     <string name="invite_friends">Invite Friend</string>
@@ -88,4 +89,7 @@
 
     <!--common-->
     <string name="confirm">Confirm</string>
+
+    <!--个人主页-->
+    <string name="funs">Funs</string>
 </resources>

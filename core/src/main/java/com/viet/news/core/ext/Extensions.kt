@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import com.bumptech.glide.request.RequestOptions
 import com.viet.news.core.R
+import com.viet.news.core.config.BlurTransformation
 import com.viet.news.core.config.GlideApp
 import com.viet.news.core.config.GlideRequest
 import jp.wasabeef.glide.transformations.RoundedCornersTransformation
@@ -58,6 +59,13 @@ fun ImageView.loadCircle(url: String?) {
     get(url).placeholder(R.drawable.ic_default_article)
             .apply(RequestOptions.circleCropTransform())
             .error(R.drawable.ic_error_article)
+            .into(this)
+}
+
+fun ImageView.loadBlur(url: String?) {
+    get(url).placeholder(R.drawable.shape_default_rec_bg)
+            .apply(RequestOptions.bitmapTransform(BlurTransformation(5, 10)))
+            .error(R.drawable.shape_default_rec_bg)
             .into(this)
 }
 

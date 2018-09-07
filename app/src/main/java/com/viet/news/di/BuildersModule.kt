@@ -31,6 +31,10 @@ abstract class BuildersModule {
 
     @ActivityScope
     @ContributesAndroidInjector()
+    internal abstract fun bindPersonalHomePageActivity(): PersonalPageActivity
+
+    @ActivityScope
+    @ContributesAndroidInjector()
     internal abstract fun bindInviteFriendActivity(): InviteFriendActivity
 
     @FragmentScope
