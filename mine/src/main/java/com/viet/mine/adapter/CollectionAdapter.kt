@@ -5,13 +5,13 @@ import android.widget.TextView
 import android.widget.Toast
 import com.safframework.ext.clickWithTrigger
 import com.viet.mine.R
-import com.viet.news.core.config.GlideApp
-import com.viet.news.core.domain.response.NewsResponse
+import com.viet.news.core.domain.response.ArticlesBean
+import com.viet.news.core.ext.load
 import com.viet.news.core.ui.BaseAdapter
 import com.viet.news.core.ui.widget.SwipeLayout
 
 
-class CollectionAdapter : BaseAdapter<NewsResponse.ArticlesBean>(), SwipeLayout.OnSwipingListener {
+class CollectionAdapter : BaseAdapter<ArticlesBean>(), SwipeLayout.OnSwipingListener {
     private var layouts: HashSet<SwipeLayout> = HashSet()
 
     override fun getItemViewType(position: Int): Int {
@@ -29,16 +29,13 @@ class CollectionAdapter : BaseAdapter<NewsResponse.ArticlesBean>(), SwipeLayout.
         }
     }
 
-    override fun onBindViewHolderImpl(holder: BaseViewHolder, position: Int, t: NewsResponse.ArticlesBean) {
+    override fun onBindViewHolderImpl(holder: BaseViewHolder, position: Int, t: ArticlesBean) {
         when (getItemViewType(position)) {
-
             1 -> {
                 holder.itemView.findViewById<TextView>(R.id.tv_des).text = t.description
             }
             2 -> {
-                GlideApp.with(context).load(t.urlToImage?.get(0)?.cover).placeholder(R.drawable.shape_default_rec_bg)
-                        .error(R.drawable.shape_default_rec_bg)
-                        .into(holder.itemView.findViewById<ImageView>(R.id.iv_pic))
+                holder.itemView.findViewById<ImageView>(R.id.iv_pic).load(t.urlToImage?.get(0)?.cover)
                 holder.itemView.findViewById<TextView>(R.id.tv_des).text = t.description
             }
         }
@@ -50,7 +47,7 @@ class CollectionAdapter : BaseAdapter<NewsResponse.ArticlesBean>(), SwipeLayout.
         val swipeLayout = holder.itemView.findViewById<SwipeLayout>(R.id.swipe)
         swipeLayout.setOnSwipingListener(this)
         holder.itemView.findViewById<TextView>(R.id.tv_delete).clickWithTrigger {
-            Toast.makeText(context, "删除", Toast.LENGTH_SHORT).show();
+            Toast.makeText(context, "删除", Toast.LENGTH_SHORT).show()
             swipeLayout.closeItem(true)
         }
     }

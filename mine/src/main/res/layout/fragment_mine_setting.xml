@@ -8,7 +8,7 @@
 
     <com.viet.news.core.ui.widget.TitleBar
         android:id="@+id/title_bar"
-        style="@style/title_bar_white"
+        style="@style/title_bar.white_bg"
         app:titlebar_titleText="@string/title_setting" />
 
     <com.viet.news.core.ui.widget.CommonItem

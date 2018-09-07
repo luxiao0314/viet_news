@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/iv_header"
+        android:layout_width="match_parent"
+        android:layout_height="180dp"
+        android:scaleType="centerCrop"/>
+
+    <com.viet.news.core.ui.widget.TitleBar
+        android:id="@+id/title_bar"
+        style="@style/title_bar.white_bg"
+        android:background="@color/transparent"/>
+
+    <ImageView
+        android:id="@+id/iv_article_image"
+        android:layout_width="65dp"
+        android:layout_height="65dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="20dp"
+        android:src="@drawable/ic_default_article"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/title_bar"/>
+
+    <TextView
+        android:id="@+id/tv_title"
+        style="@style/text.18.white.bold"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="30dp"
+        app:layout_constraintStart_toEndOf="@+id/iv_article_image"
+        app:layout_constraintTop_toBottomOf="@+id/title_bar"
+        tools:text="李晓明"/>
+
+    <TextView
+        android:id="@+id/tv_coin"
+        style="@style/text.14.white"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginLeft="15dp"
+        android:drawableLeft="@drawable/ic_coin_yellow"
+        android:drawablePadding="5dp"
+        android:gravity="center"
+        app:layout_constraintStart_toEndOf="@+id/iv_article_image"
+        app:layout_constraintTop_toBottomOf="@+id/tv_title"
+        tools:text="10.67w"/>
+
+    <Button
+        style="@style/button.small"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginRight="15dp"
+        android:text="@string/add_follow"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/title_bar"/>
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="15dp"
+        android:background="@drawable/shape_white_round_bg"
+        app:layout_constraintTop_toBottomOf="@+id/iv_article_image">
+
+        <TextView
+            style="@style/text.14.gray"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toLeftOf="@+id/tv_fans_num"
+            android:text="@string/funs"/>
+
+        <TextView
+            android:id="@+id/tv_fans_num"
+            style="@style/text.18.gray.bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="50dp"
+            android:layout_toLeftOf="@+id/line"
+            tools:text="1.2w"/>
+
+        <View
+            android:id="@+id/line"
+            style="@style/line.vertical.gray"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="15dp"/>
+
+        <TextView
+            android:id="@+id/tv_follow"
+            style="@style/text.14.gray"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="10dp"
+            android:layout_toRightOf="@+id/line"
+            android:text="@string/follow"/>
+
+        <TextView
+            android:id="@+id/tv_follow_num"
+            style="@style/text.18.gray.bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/tv_follow"
+            tools:text="10"/>
+    </RelativeLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/relativeLayout"/>
+
+</android.support.constraint.ConstraintLayout>

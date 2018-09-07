@@ -1,5 +1,7 @@
 package com.viet.news.di
 
+import com.viet.follow.activity.PersonalPageActivity
+import com.viet.follow.fragment.NewsFragment
 import com.viet.mine.activity.LoginActivity
 import com.viet.mine.fragment.LoginFragment
 import com.viet.news.core.di.ActivityScope
@@ -10,7 +12,6 @@ import com.viet.news.di.module.LoginModule
 import com.viet.news.di.module.MainModule
 import com.viet.news.ui.activity.MainActivity
 import com.viet.news.ui.fragment.FindFragment
-import com.viet.follow.fragment.NewsFragment
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 
@@ -27,6 +28,10 @@ abstract class BuildersModule {
     @ActivityScope
     @ContributesAndroidInjector(modules = [LoginModule::class])
     internal abstract fun bindLoginActivity(): LoginActivity
+
+    @ActivityScope
+    @ContributesAndroidInjector()
+    internal abstract fun bindPersonalHomePageActivity(): PersonalPageActivity
 
     @FragmentScope
     @ContributesAndroidInjector(modules = [LoginFragmentModule::class])

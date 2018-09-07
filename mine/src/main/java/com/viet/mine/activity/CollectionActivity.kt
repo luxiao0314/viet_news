@@ -13,7 +13,6 @@ import com.viet.mine.adapter.CollectionAdapter
 import com.viet.mine.viewmodel.CollectionViewModel
 import com.viet.news.core.delegate.viewModelDelegate
 import com.viet.news.core.ui.BaseActivity
-import com.viet.news.core.ui.InjectActivity
 import kotlinx.android.synthetic.main.activity_mine_collection.*
 
 class CollectionActivity : BaseActivity() {
@@ -39,7 +38,7 @@ class CollectionActivity : BaseActivity() {
         rl_collection.setOnScrollListener(object : RecyclerView.OnScrollListener() {
             override fun onScrollStateChanged(recyclerView: RecyclerView?, newState: Int) {
                 if (newState == SCROLL_STATE_TOUCH_SCROLL) {
-                    adapter.closeAllItem();
+                    adapter.closeAllItem()
                 }
             }
         })
