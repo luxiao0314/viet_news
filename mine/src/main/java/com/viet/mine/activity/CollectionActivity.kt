@@ -8,6 +8,7 @@ import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.OrientationHelper
 import android.support.v7.widget.RecyclerView
 import android.widget.AbsListView.OnScrollListener.SCROLL_STATE_TOUCH_SCROLL
+import com.jaeger.library.StatusBarUtil
 import com.viet.mine.R
 import com.viet.mine.adapter.CollectionAdapter
 import com.viet.mine.viewmodel.CollectionViewModel
@@ -30,6 +31,7 @@ class CollectionActivity : BaseActivity() {
     }
 
     private fun initView() {
+        StatusBarUtil.setTranslucentForImageViewInFragment(this, 70, null)
         rl_collection.adapter = adapter
         rl_collection.layoutManager = LinearLayoutManager(this, OrientationHelper.VERTICAL, false)
         val dividerItemDecoration = DividerItemDecoration(this, DividerItemDecoration.VERTICAL)
