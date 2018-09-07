@@ -38,17 +38,17 @@
         android:id="@+id/fr_change_nick_name"
         android:name="com.viet.mine.fragment.ChangeNickNameFragment"
         android:label="Change Nick Name"
-        tools:layout="@layout/fragment_setting_nickname" />
+        tools:layout="@layout/fragment_mine_setting_nickname" />
 
     <fragment
         android:id="@+id/fr_change_phone_number"
         android:name="com.viet.mine.fragment.ChangePhoneNumberFragment"
         android:label="Change Phone Number"
-        tools:layout="@layout/fragment_setting_change_phone" />
+        tools:layout="@layout/fragment_mine_setting_change_phone" />
 
     <fragment
         android:id="@+id/fr_reset_password"
         android:name="com.viet.mine.fragment.ResetPasswordFragment"
         android:label="Reset Password"
-        tools:layout="@layout/fragment_setting_resetpwd" />
+        tools:layout="@layout/fragment_mine_setting_resetpwd" />
 </navigation>

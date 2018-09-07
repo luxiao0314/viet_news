@@ -51,6 +51,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="end|center_vertical"
             android:layout_marginRight="8dp"
+            android:layout_marginEnd="8dp"
             android:contentDescription="@null"
             android:scaleType="fitCenter"
             android:src="@drawable/ic_next" />
@@ -62,7 +63,8 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/item_height"
         app:left_text="@string/magicbox_num"
-        app:next_icon_visibility="false" />
+        app:next_icon_visibility="false"
+        app:right_text="MagicBox _aaa0"/>
 
     <View style="@style/line.gray_tran.margin_left" />
 

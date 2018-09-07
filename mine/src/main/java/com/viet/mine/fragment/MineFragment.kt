@@ -7,10 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.safframework.ext.clickWithTrigger
 import com.viet.mine.R
-import com.viet.mine.activity.AccountInfoActivity
-import com.viet.mine.activity.CollectionActivity
-import com.viet.mine.activity.LoginActivity
-import com.viet.mine.activity.SettingActivity
+import com.viet.mine.activity.*
 import com.viet.news.core.domain.User
 import com.viet.news.core.ext.loadCircle
 import com.viet.news.core.ui.BaseFragment
@@ -54,6 +51,12 @@ class MineFragment : BaseFragment() {
 
         edit.clickWithTrigger {
             context?.startActivity(Intent(activity, AccountInfoActivity::class.java))
+        }
+
+        mine_invite.setClickDelegate {
+            onItemClick = {
+                context?.startActivity(Intent(activity, InviteFriendActivity::class.java))
+            }
         }
     }
 }

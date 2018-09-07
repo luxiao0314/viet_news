@@ -11,6 +11,7 @@ import com.viet.news.di.module.MainModule
 import com.viet.news.ui.activity.MainActivity
 import com.viet.news.ui.fragment.FindFragment
 import com.viet.follow.fragment.NewsFragment
+import com.viet.mine.activity.InviteFriendActivity
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 
@@ -27,6 +28,10 @@ abstract class BuildersModule {
     @ActivityScope
     @ContributesAndroidInjector(modules = [LoginModule::class])
     internal abstract fun bindLoginActivity(): LoginActivity
+
+    @ActivityScope
+    @ContributesAndroidInjector()
+    internal abstract fun bindInviteFriendActivity(): InviteFriendActivity
 
     @FragmentScope
     @ContributesAndroidInjector(modules = [LoginFragmentModule::class])
