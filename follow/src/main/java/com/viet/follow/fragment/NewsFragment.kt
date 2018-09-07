@@ -60,7 +60,12 @@ class NewsFragment : RealVisibleHintBaseFragment(), HasSupportFragmentInjector {
     }
 
     private fun initEvent() {
-        compositeDisposable.add(RxBus.get().register(RefreshNewsEvent::class.java) { if (isFragmentVisible(this)) refreshLayout.autoRefresh() })
+        compositeDisposable.add(RxBus.get().register(RefreshNewsEvent::class.java) {
+            if (isFragmentVisible(this)) {
+                recyclerView.scrollToPosition(0)
+                refreshLayout.autoRefresh()
+            }
+        })
     }
 
     private fun initListener() {
