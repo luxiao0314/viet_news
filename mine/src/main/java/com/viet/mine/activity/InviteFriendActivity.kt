@@ -2,6 +2,7 @@ package com.viet.mine.activity
 
 import android.os.Bundle
 import androidx.navigation.Navigation.findNavController
+import com.jaeger.library.StatusBarUtil
 import com.viet.mine.R
 import com.viet.news.core.ui.InjectActivity
 
@@ -15,7 +16,7 @@ class InviteFriendActivity : InjectActivity() {
     }
 
     private fun initView() {
-
+        StatusBarUtil.setTranslucentForImageViewInFragment(this, 70, null)
     }
 
     private fun initData() {

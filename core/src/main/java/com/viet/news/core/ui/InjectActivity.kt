@@ -30,6 +30,5 @@ open class InjectActivity : BaseActivity(), HasSupportFragmentInjector {
         //一处声明，处处依赖注入，before calling super.onCreate()
         AndroidInjection.inject(this)
         super.onCreate(savedInstanceState)
-        StatusBarUtil.setTranslucentForImageViewInFragment(this, 70, null)
     }
 }
