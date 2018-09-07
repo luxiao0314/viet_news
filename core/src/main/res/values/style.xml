@@ -70,6 +70,8 @@
         <item name="titlebar_leftDrawable">@drawable/ic_back</item>
         <item name="titlebar_leftDrawablePadding">10dp</item>
         <item name="titlebar_titleTextColor">@color/text_gray</item>
+    </style>
+
     <style name="title_bar.white_bg">
         <item name="android:background">@color/white</item>
         <item name="android:layout_width">match_parent</item>
@@ -247,9 +249,11 @@
     <style name="text.12.white">
         <item name="android:textColor">@color/white</item>
     </style>
+
     <style name="text.14.white">
         <item name="android:textColor">@color/white</item>
     </style>
+
     <style name="text.24.white">
         <item name="android:textColor">@color/white</item>
     </style>
