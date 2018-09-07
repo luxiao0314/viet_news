@@ -92,4 +92,5 @@
 
     <!--个人主页-->
     <string name="funs">Funs</string>
+    <string name="has_follow">Has Follow</string>
 </resources>

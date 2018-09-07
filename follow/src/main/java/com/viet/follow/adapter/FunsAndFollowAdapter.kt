@@ -24,12 +24,12 @@ class FunsAndFollowAdapter @Inject constructor() : BaseAdapter<DataBean>() {
         holder.itemView.tv_funs.text = context.resources.getString(R.string.funs) + t.funsNum
         if (t.follow!!) {
             holder.itemView.btn_follow.isEnabled = false
-            holder.itemView.btn_follow.text = "已关注"
+            holder.itemView.btn_follow.text = context.getString(R.string.has_follow)
             holder.itemView.btn_follow.setCompoundDrawablesWithIntrinsicBounds(context.resources.getDrawable(R.drawable.ic_hook), null, null, null)
             holder.itemView.btn_follow.compoundDrawablePadding = 4
         } else {
             holder.itemView.btn_follow.isEnabled = true
-            holder.itemView.btn_follow.text = "+ 关注"
+            holder.itemView.btn_follow.text = context.getString(R.string.add_follow)
         }
     }
 }
