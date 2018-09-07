@@ -16,7 +16,6 @@ class AccountInfoActivity : BaseActivity() {
     }
 
     private fun initView() {
-        StatusBarUtil.setTranslucentForImageViewInFragment(this, 70, null)
     }
 
     private fun initData() {
