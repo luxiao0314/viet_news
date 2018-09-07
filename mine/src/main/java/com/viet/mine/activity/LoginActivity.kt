@@ -1,5 +1,6 @@
 package com.viet.mine.activity
 
+import android.graphics.Typeface
 import android.os.Bundle
 import android.view.KeyEvent
 import com.safframework.ext.click
@@ -57,6 +58,8 @@ class LoginActivity : InjectActivity() {
     private fun setTabText(currentTab: Int, otherTab: Int) {
         tablayout.getTitleView(currentTab).textSize = 25F
         tablayout.getTitleView(otherTab).textSize = 15F
+        tablayout.getTitleView(currentTab).typeface = Typeface.DEFAULT_BOLD
+        tablayout.getTitleView(otherTab).typeface = Typeface.DEFAULT
         model.currentTab = currentTab
     }
 

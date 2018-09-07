@@ -1,18 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@drawable/invite_bg"
-    android:orientation="vertical">
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@drawable/invite_bg"
+              android:orientation="vertical">
 
     <com.viet.news.core.ui.widget.TitleBar
         android:id="@+id/title_bar"
-        style="@style/title_bar_transparent"
-        android:layout_height="70dp"
-        android:paddingTop="@dimen/statusbar_view_height"
-        app:titlebar_titleText="@string/title_invite" />
+        style="@style/title_bar.transparent"
+        app:titlebar_titleText="@string/title_invite"/>
 
 
     <RelativeLayout
@@ -28,7 +26,7 @@
             android:layout_centerInParent="true"
             android:contentDescription="@null"
             android:scaleType="center"
-            android:src="@drawable/invite_card" />
+            android:src="@drawable/invite_card"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -53,7 +51,7 @@
                     app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.15" />
+                    app:layout_constraintVertical_bias="0.15"/>
 
                 <TextView
                     android:id="@+id/textView2"
@@ -69,36 +67,33 @@
                     app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.5" />
+                    app:layout_constraintVertical_bias="0.5"/>
 
                 <Button
                     android:id="@+id/textView3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="30dp"
-                    android:background="@drawable/shape_login_btn_bg"
+                    style="@style/button.small"
+                    android:layout_width="90dp"
                     android:text="复制链接"
-                    android:textColor="@color/white"
                     android:textSize="@dimen/text_14sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.2"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.8" />
+                    app:layout_constraintVertical_bias="0.8"/>
 
                 <Button
                     android:id="@+id/textView4"
-                    android:layout_width="wrap_content"
-                    android:layout_height="30dp"
-                    android:background="@drawable/shape_login_btn_bg"
+                    style="@style/button.small"
+                    android:layout_width="90dp"
                     android:text="分享"
-                    android:textColor="@color/white"
+                    android:textSize="@dimen/text_14sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.8"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.8" />
+                    app:layout_constraintVertical_bias="0.8"/>
             </android.support.constraint.ConstraintLayout>
 
             <android.support.constraint.ConstraintLayout
@@ -116,7 +111,7 @@
         android:layout_gravity="center_horizontal"
         android:text="邀请好友即可获得奖励40MB钻"
         android:textColor="@color/white"
-        android:textSize="@dimen/text_16sp" />
+        android:textSize="@dimen/text_16sp"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -124,5 +119,5 @@
         android:layout_gravity="center_horizontal"
         android:text="后续可获得更多关联收益"
         android:textColor="@color/white"
-        android:textSize="@dimen/text_16sp" />
+        android:textSize="@dimen/text_16sp"/>
 </LinearLayout>

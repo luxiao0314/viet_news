@@ -1,6 +1,7 @@
 package com.viet.follow.activity
 
 import android.arch.lifecycle.Observer
+import android.content.Intent
 import android.os.Bundle
 import android.support.v4.content.ContextCompat
 import android.support.v7.widget.DividerItemDecoration
@@ -10,6 +11,7 @@ import com.viet.follow.R
 import com.viet.follow.adapter.PersonalPageAdapter
 import com.viet.follow.viewmodel.PersonalPageModel
 import com.viet.news.core.delegate.viewModelDelegate
+import com.viet.news.core.ext.click
 import com.viet.news.core.ext.loadBlur
 import com.viet.news.core.ext.loadCircle
 import com.viet.news.core.ui.InjectActivity
@@ -45,6 +47,7 @@ class PersonalPageActivity : InjectActivity() {
 
         iv_article_image.loadCircle("https://og3jro9lh.qnssl.com/Flym8MUqtOAQMBkBPPCbjokZ3xZN")
         iv_header.loadBlur("https://og3jro9lh.qnssl.com/Flym8MUqtOAQMBkBPPCbjokZ3xZN")
+        relativeLayout.click { startActivity(Intent(this,FunsAndFollowActivity::class.java)) }
     }
 
     private fun initData() {

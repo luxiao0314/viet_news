@@ -69,6 +69,9 @@
         <activity android:name="com.viet.follow.activity.PersonalPageActivity"
                   android:configChanges="orientation|keyboardHidden"
                   android:screenOrientation="portrait"/>
+        <activity android:name="com.viet.follow.activity.FunsAndFollowActivity"
+                  android:configChanges="orientation|keyboardHidden"
+                  android:screenOrientation="portrait"/>
 
     </application>
 

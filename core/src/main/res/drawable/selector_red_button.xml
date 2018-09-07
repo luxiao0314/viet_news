@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!--enabled属性必须必须前面-->
+    <item android:state_enabled="false">
+        <shape>
+            <solid android:color="#CCCCCC"/>
+            <corners android:radius="25dp"/>
+        </shape>
+    </item>
+    <item android:state_pressed="true">
+        <shape>
+            <solid android:color="@color/red_text"/>
+            <corners android:radius="25dp" />
+        </shape>
+    </item>
+    <item android:state_pressed="false">
+        <shape>
+            <solid android:color="@color/red_text"/>
+            <corners android:radius="25dp" />
+        </shape>
+    </item>
+</selector>

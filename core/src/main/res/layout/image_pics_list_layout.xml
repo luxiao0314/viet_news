@@ -15,7 +15,7 @@
 
     <com.viet.news.core.ui.widget.TitleBar
         android:id="@+id/tv_title"
-        style="@style/title_bar.bg"/>
+        style="@style/title_bar.red"/>
 
     <TextView
         android:id="@+id/tv_msg_title"

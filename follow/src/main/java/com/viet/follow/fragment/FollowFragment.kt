@@ -1,6 +1,5 @@
 package com.viet.follow.fragment
 
-import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -8,6 +7,7 @@ import android.view.ViewGroup
 import com.viet.follow.R
 import com.viet.follow.viewmodel.FollowViewModel
 import com.viet.news.core.config.FragmentExchangeManager
+import com.viet.news.core.delegate.viewModelDelegate
 import com.viet.news.core.ui.BaseFragment
 
 /**
@@ -19,12 +19,10 @@ import com.viet.news.core.ui.BaseFragment
  */
 class FollowFragment : BaseFragment() {
 
-    private lateinit var model: FollowViewModel
+    private val model by viewModelDelegate(FollowViewModel::class)
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
-        val view: View = inflater.inflate(R.layout.fragment_follow, container, false)
-        model = ViewModelProviders.of(this).get(FollowViewModel::class.java)
-        return view
+        return inflater.inflate(R.layout.fragment_follow, container, false)
     }
 
     override fun initView(view: View) {

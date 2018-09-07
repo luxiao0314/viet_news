@@ -116,11 +116,9 @@
         style="@style/button.small"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@drawable/selector_red_button_pressed"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="去邀请" />
-
 
 </android.support.constraint.ConstraintLayout>

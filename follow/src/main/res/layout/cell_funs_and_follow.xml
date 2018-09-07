@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="10dp">
+
+    <ImageView
+        android:id="@+id/iv_article_image"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:src="@drawable/shape_default_circle_bg"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <TextView
+        android:id="@+id/tv_title"
+        style="@style/text.16.gray.bold"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp" android:layout_marginLeft="15dp"
+        android:layout_marginTop="6dp"
+        app:layout_constraintStart_toEndOf="@+id/iv_article_image"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="李晓明"/>
+
+    <TextView
+        android:id="@+id/tv_funs"
+        style="@style/text.12.light_gray"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginLeft="15dp"
+        app:layout_constraintStart_toEndOf="@+id/iv_article_image"
+        app:layout_constraintTop_toBottomOf="@+id/tv_title"
+        tools:text="李晓明"/>
+
+    <Button
+        android:id="@+id/btn_follow"
+        style="@style/button.small"
+        android:text="@string/add_follow"
+        app:layout_constraintBottom_toBottomOf="@+id/iv_article_image"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/iv_article_image"/>
+
+</android.support.constraint.ConstraintLayout>

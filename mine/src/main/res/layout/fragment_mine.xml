@@ -15,7 +15,7 @@
 
         <com.viet.news.core.ui.widget.TitleBar
             android:id="@+id/title_bar"
-            style="@style/title_bar.bg"
+            style="@style/title_bar.red"
             android:layout_height="70dp"
             android:background="@color/white"
             android:paddingTop="@dimen/statusbar_view_height"
@@ -31,10 +31,8 @@
 
             <Button
                 android:id="@+id/btn_login"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                style="@style/button.small"
                 android:layout_centerInParent="true"
-                android:background="@drawable/shape_login_btn_bg"
                 android:paddingLeft="30dp"
                 android:paddingRight="30dp"
                 android:text="@string/login_or_register"
@@ -136,19 +134,15 @@
 
             <Button
                 android:id="@+id/edit"
-                android:layout_width="wrap_content"
-                android:layout_height="30dp"
+                style="@style/button.small"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
                 android:layout_marginEnd="@dimen/module_margin"
                 android:layout_marginRight="@dimen/module_margin"
-                android:background="@drawable/shape_login_btn_bg"
                 android:drawableStart="@drawable/edit"
                 android:drawableLeft="@drawable/edit"
                 android:drawablePadding="5dp"
-                android:paddingLeft="20dp"
-                android:paddingRight="20dp"
                 android:text="@string/edit"
                 android:textColor="@color/white"
                 android:visibility="visible"/>
