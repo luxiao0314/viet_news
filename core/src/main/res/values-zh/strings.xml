@@ -81,4 +81,5 @@
     <!--个人主页-->
     <string name="funs">粉丝</string>
     <string name="has_follow">已关注</string>
+    <string name="refreshing">正在加载内容</string>
 </resources>

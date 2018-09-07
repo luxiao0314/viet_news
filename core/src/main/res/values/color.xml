@@ -30,6 +30,7 @@
     <color name="text_gray">#FF4A4A4A</color>
     <color name="text_light_gray">#9B9B9B</color>
     <color name="red_text">#F24B4F</color>
+    <color name="red_hint">#F77276</color>
     <color name="red_warn">#FF0032</color>
     <!--规范设计End-->
 

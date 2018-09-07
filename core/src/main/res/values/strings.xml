@@ -93,4 +93,5 @@
     <!--个人主页-->
     <string name="funs">Funs</string>
     <string name="has_follow">Has Follow</string>
+    <string name="refreshing">正在加载内容</string>
 </resources>

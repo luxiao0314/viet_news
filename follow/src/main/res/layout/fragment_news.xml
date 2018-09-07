@@ -1,15 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.viet.news.core.ui.widget.MultiStatusView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/multiStatusView"
+<com.scwang.smartrefresh.layout.SmartRefreshLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/refreshLayout"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/white">
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/recyclerView"
+    <com.viet.news.core.ui.widget.MultiStatusView
+        android:id="@+id/multiStatusView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:splitMotionEvents="false">
+        android:layout_height="match_parent">
 
-    </android.support.v7.widget.RecyclerView>
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:splitMotionEvents="false"/>
+    </com.viet.news.core.ui.widget.MultiStatusView>
 
-</com.viet.news.core.ui.widget.MultiStatusView>
+</com.scwang.smartrefresh.layout.SmartRefreshLayout>

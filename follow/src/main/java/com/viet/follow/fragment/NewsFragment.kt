@@ -11,6 +11,9 @@ import android.support.v7.widget.OrientationHelper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.scwang.smartrefresh.layout.api.RefreshHeader
+import com.scwang.smartrefresh.layout.header.ClassicsHeader
+import com.scwang.smartrefresh.layout.listener.SimpleMultiPurposeListener
 import com.viet.follow.R
 import com.viet.follow.adapter.NewsAdapter
 import com.viet.follow.viewmodel.FindViewModel
@@ -32,10 +35,9 @@ import javax.inject.Inject
  */
 class NewsFragment : RealVisibleHintBaseFragment(), HasSupportFragmentInjector {
 
-    private val model: FindViewModel by viewModelDelegate(FindViewModel::class)
-
     @Inject
     internal lateinit var adapter: NewsAdapter
+    private val model: FindViewModel by viewModelDelegate(FindViewModel::class)
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_news, container, false)
@@ -47,10 +49,33 @@ class NewsFragment : RealVisibleHintBaseFragment(), HasSupportFragmentInjector {
         val dividerItemDecoration = DividerItemDecoration(activity, DividerItemDecoration.VERTICAL)
         dividerItemDecoration.setDrawable(ContextCompat.getDrawable(context!!, R.drawable.shape_list_divider_gray_05dp)!!)
         recyclerView.addItemDecoration(dividerItemDecoration)
+        initListener()
     }
 
     override fun onFragmentFirstVisible() {
-        model.getNewsArticles().observe(this, Observer { adapter.addData(it?.articles) })
+        refreshLayout.autoRefresh()
+    }
+
+    private fun initListener() {
+        refreshLayout.setOnRefreshListener {
+            model.getNewsArticles().observe(this, Observer { adapter.addData(it?.articles) })
+            it.finishRefresh()
+        }
+        refreshLayout.setOnLoadMoreListener {
+            it.finishLoadMore(2000/*,false*/)//传入false表示加载失败
+            model.getNewsArticles().observe(this, Observer { adapter.addData(it?.articles) })
+        }
+        refreshLayout.setOnMultiPurposeListener(object : SimpleMultiPurposeListener() {
+            override fun onHeaderFinish(header: RefreshHeader?, success: Boolean) {
+                refreshLayout.setPrimaryColorsId(R.color.red_hint, android.R.color.white)
+                ClassicsHeader.REFRESH_HEADER_FINISH = "已更新2篇文章"
+//                ClassicsHeader.REFRESH_HEADER_FINISH = "暂无更新内容"
+            }
+
+            override fun onHeaderMoving(header: RefreshHeader?, isDragging: Boolean, percent: Float, offset: Int, headerHeight: Int, maxDragHeight: Int) {
+                refreshLayout.setPrimaryColorsId(R.color.white, R.color.text_gray)
+            }
+        })
     }
 
     companion object {
