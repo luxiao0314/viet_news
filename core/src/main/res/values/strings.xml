@@ -11,6 +11,7 @@
     <string name="title_resetpwd">Reset Password</string>
     <string name="title_change_phone_num">Change Phone Number</string>
     <string name="title_help">Help Center</string>
+    <string name="title_invite">Invite Friend</string>
 
     <!--mine-->
     <string name="title_setting">Setting</string>

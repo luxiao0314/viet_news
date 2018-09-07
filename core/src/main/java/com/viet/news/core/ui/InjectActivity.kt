@@ -2,6 +2,7 @@ package com.viet.news.core.ui
 
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import com.jaeger.library.StatusBarUtil
 import dagger.android.AndroidInjection
 import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
@@ -29,5 +30,6 @@ open class InjectActivity : BaseActivity(), HasSupportFragmentInjector {
         //一处声明，处处依赖注入，before calling super.onCreate()
         AndroidInjection.inject(this)
         super.onCreate(savedInstanceState)
+        StatusBarUtil.setTranslucentForImageViewInFragment(this, 70, null)
     }
 }

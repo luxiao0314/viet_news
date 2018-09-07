@@ -41,12 +41,45 @@
         <item name="titlebar_rightTextSize">12sp</item>
     </style>
 
-    <style name="title_bar.red_bg">
+    <style name="title_bar.bg">
         <item name="android:background">@color/red_text</item>
+    </style>
+
+    <style name="title_bar_transparent">
+        <item name="android:layout_height">45dp</item>
+        <item name="android:paddingRight">10dp</item>
+        <item name="titlebar_isLeftTextBold">true</item>
+        <item name="titlebar_isLineVisiable">false</item>
+        <item name="titlebar_leftDrawable">@drawable/ic_back_white</item>
+        <item name="titlebar_leftDrawablePadding">10dp</item>
+        <item name="titlebar_titleTextColor">@color/white</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="titlebar_leftMaxWidth">250dp</item>
+        <item name="titlebar_rightMaxWidth">250dp</item>
+        <item name="titlebar_leftTextColor">@color/white</item>
+        <item name="titlebar_rightTextColor">@color/white</item>
+        <item name="titlebar_rightTextSize">12sp</item>
+        <item name="android:background">@android:color/transparent</item>
+    </style>
+
+    <style name="title_bar_white">
+        <item name="android:layout_height">45dp</item>
+        <item name="android:paddingRight">10dp</item>
+        <item name="titlebar_isLeftTextBold">true</item>
+        <item name="titlebar_isLineVisiable">false</item>
+        <item name="titlebar_leftDrawable">@drawable/ic_back</item>
+        <item name="titlebar_leftDrawablePadding">10dp</item>
+        <item name="titlebar_titleTextColor">@color/text_gray</item>
     </style>
 
     <style name="title_bar.white_bg">
         <item name="android:background">@color/white</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="titlebar_leftMaxWidth">250dp</item>
+        <item name="titlebar_rightMaxWidth">250dp</item>
+        <item name="titlebar_leftTextColor">@color/text_gray</item>
+        <item name="titlebar_rightTextColor">@color/text_gray</item>
+        <item name="titlebar_rightTextSize">12sp</item>
     </style>
 
     <style name="text">
@@ -216,9 +249,11 @@
     <style name="text.12.white">
         <item name="android:textColor">@color/white</item>
     </style>
+
     <style name="text.14.white">
         <item name="android:textColor">@color/white</item>
     </style>
+
     <style name="text.24.white">
         <item name="android:textColor">@color/white</item>
     </style>

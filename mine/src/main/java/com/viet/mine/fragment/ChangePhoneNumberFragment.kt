@@ -11,7 +11,7 @@ class ChangePhoneNumberFragment : BaseFragment() {
     private var mContainerView: View? = null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        mContainerView = inflater.inflate(R.layout.fragment_setting_change_phone, container, false)
+        mContainerView = inflater.inflate(R.layout.fragment_mine_setting_change_phone, container, false)
         return mContainerView
     }
 
