@@ -15,7 +15,7 @@
 
         <com.viet.news.core.ui.widget.TitleBar
             android:id="@+id/title_bar"
-            style="@style/title_bar.red_bg"
+            style="@style/title_bar.bg"
             android:layout_height="70dp"
             android:background="@color/white"
             android:paddingTop="@dimen/statusbar_view_height"

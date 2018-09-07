@@ -1,5 +1,6 @@
 package com.viet.news.di
 
+import com.viet.follow.activity.PersonalPageActivity
 import com.viet.mine.activity.LoginActivity
 import com.viet.mine.fragment.LoginFragment
 import com.viet.news.core.di.ActivityScope
