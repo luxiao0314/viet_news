@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.Navigation
 import com.viet.mine.R
+import com.viet.news.core.ui.BaseFragment
 import com.viet.news.core.ui.RealVisibleHintBaseFragment
 import com.viet.news.core.ui.widget.CommonItem
 
@@ -15,7 +16,7 @@ import com.viet.news.core.ui.widget.CommonItem
  * @Email zongjia.long@merculet.io
  * @Version
  */
-class AccountInfoFragment : RealVisibleHintBaseFragment(){
+class AccountInfoFragment : BaseFragment() {
 
     private var mContainerView: View? = null
 
@@ -40,7 +41,7 @@ class AccountInfoFragment : RealVisibleHintBaseFragment(){
         }
 
         resetPwdItem.setClickDelegate {
-            onItemClick={
+            onItemClick = {
                 Navigation.findNavController(resetPwdItem).navigate(R.id.action_page_3)
             }
         }
