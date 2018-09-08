@@ -8,11 +8,25 @@ import kotlinx.android.synthetic.main.activity_mine_wallet.*
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import com.viet.mine.adapter.CustomSnapHelper
+import com.viet.mine.viewmodel.LoginViewModel
+import com.viet.mine.viewmodel.MineWalletViewModel
+import com.viet.news.core.delegate.viewModelDelegate
+import com.viet.news.core.ui.TabFragmentAdapter
+import javax.inject.Inject
 
-
+/**
+ * @Description 我的钱包
+ * @Author null
+ * @Email zongjia.long@merculet.io
+ * @Version
+ */
 class MineWalletActivity : InjectActivity() {
 
+    @Inject
+    internal lateinit var tabAdapter: TabFragmentAdapter
     lateinit var adapter: CardRvAdapter
+
+    private val model by viewModelDelegate(MineWalletViewModel::class)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -68,6 +82,9 @@ class MineWalletActivity : InjectActivity() {
 //        vp_card.offscreenPageLimit = 3
 //        vp_card.adapter = adapter
 //        vp_card.setPageTransformer(false, ScaleTransformer())
+
+        tabAdapter.setFragment(model.fragments)
+        vp_content.adapter = tabAdapter
     }
 
     private fun initData() {

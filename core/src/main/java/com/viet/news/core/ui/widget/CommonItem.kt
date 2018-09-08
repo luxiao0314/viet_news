@@ -11,6 +11,12 @@ import com.safframework.ext.clickWithTrigger
 import com.viet.news.core.R
 import kotlinx.android.synthetic.main.core_item.view.*
 
+/**
+ * @Description 公共的Item条目
+ * @Author null
+ * @Email zongjia.long@merculet.io
+ * @Version
+ */
 class CommonItem @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0) : RelativeLayout(context, attrs, defStyleAttr) {
 
     private var mDelegate: CommonItem.Delegate? = null

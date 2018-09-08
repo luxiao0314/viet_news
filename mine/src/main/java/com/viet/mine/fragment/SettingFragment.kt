@@ -10,7 +10,10 @@ import com.viet.news.core.ui.BaseFragment
 import com.viet.news.core.ui.widget.CommonItem
 
 /**
- * 设置页面
+ * @Description 设置
+ * @Author null
+ * @Email zongjia.long@merculet.io
+ * @Version
  */
 class SettingFragment : BaseFragment() {
 

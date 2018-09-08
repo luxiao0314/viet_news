@@ -10,6 +10,12 @@ import com.viet.mine.R
 import com.viet.news.core.ui.BaseFragment
 import kotlinx.android.synthetic.main.fragment_mine_setting_feedback.*
 
+/**
+ * @Description 用户反馈
+ * @Author null
+ * @Email zongjia.long@merculet.io
+ * @Version
+ */
 class FeedBackFragment : BaseFragment() {
     private var mContainerView: View? = null
 //    lateinit var scrollView:ScrollView

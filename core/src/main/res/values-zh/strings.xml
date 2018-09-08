@@ -61,6 +61,10 @@
     <string name="select_language">选择语言</string>
     <string name="follow_system_language">跟随系统语言</string><!--激活账号-->
 
+    <!--我的，账户-->
+    <string name="coin_in">转入</string>
+    <string name="coin_out">转出</string>
+
     <!--个人信息-->
     <string name="user_icon">头像</string>
     <string name="magicbox_num">MagicBox号</string>

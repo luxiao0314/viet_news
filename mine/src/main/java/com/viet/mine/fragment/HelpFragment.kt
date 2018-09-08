@@ -7,6 +7,12 @@ import android.view.ViewGroup
 import com.viet.mine.R
 import com.viet.news.core.ui.BaseFragment
 
+/**
+ * @Description 帮助
+ * @Author null
+ * @Email zongjia.long@merculet.io
+ * @Version
+ */
 class HelpFragment:BaseFragment() {
     private var mContainerView: View? = null
 

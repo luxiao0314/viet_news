@@ -14,9 +14,11 @@ import com.viet.mine.activity.MineWalletActivity
 
 
 /**
- * Created by longzongjia on 2018/3/17.
+ * @Description 卡片适配器
+ * @Author null
+ * @Email zongjia.long@merculet.io
+ * @Version
  */
-
 class ItemAdapter(private val context: Context, private val list: List<MineWalletActivity.Entity>) : PagerAdapter() {
     private val inflater: LayoutInflater = LayoutInflater.from(context)
 

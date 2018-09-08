@@ -4,9 +4,11 @@ import android.support.v4.view.ViewPager
 import android.view.View
 
 /**
- * Created by longzongjia on 2018/3/17.
+ * @Description 卡片缩放类
+ * @Author null
+ * @Email zongjia.long@merculet.io
+ * @Version
  */
-
 class ScaleTransformer : ViewPager.PageTransformer {
 
     override fun transformPage(page: View, position: Float) {

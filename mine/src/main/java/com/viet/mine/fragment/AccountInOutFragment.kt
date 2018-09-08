@@ -5,18 +5,20 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.viet.mine.R
-import com.viet.news.core.ui.BaseFragment
+import com.viet.news.core.ui.RealVisibleHintBaseFragment
+
 /**
- * @Description 修改手机号
- * @Author null
+ * @Description
+ * @author null
+ * @date 2018/9/8
  * @Email zongjia.long@merculet.io
  * @Version
  */
-class ChangePhoneNumberFragment : BaseFragment() {
+class AccountInOutFragment : RealVisibleHintBaseFragment(){
     private var mContainerView: View? = null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        mContainerView = inflater.inflate(R.layout.fragment_mine_setting_change_phone, container, false)
+        mContainerView = inflater.inflate(R.layout.fragment_mine_wallet_in_out_sub, container, false)
         return mContainerView
     }
 

@@ -35,6 +35,10 @@
     <string name="version">Version</string>
     <string name="description">What is MagicBox</string>
     <string name="choose_country">Please select Country/Region code</string>
+
+    <!--mine wallet-->
+    <string name="coin_in">roll-in</string>
+    <string name="coin_out">roll-out</string>
     <!-- 选择国家 -->
     <string name="country_region">Country/Region</string>
     <!-- 国家地区 -->

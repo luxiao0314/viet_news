@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+    <com.flyco.tablayout.SlidingTabLayout
+        android:id="@+id/tablayout_wallet"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:fillViewport="true"
+        app:tl_divider_color="#1A000000"
+        app:tl_divider_width="0dp"
+        app:tl_indicator_color="@color/indicator_yellow"
+        app:tl_indicator_height="3dp"
+        app:tl_tab_space_equal = "true"
+        app:tl_indicator_width_equal_title="true"
+        app:tabMode="fixed"
+        app:tabGravity="center"
+        app:tl_textSelectColor="@color/text_gray"
+        app:tl_textUnselectColor="#CCCCCC"
+        app:tl_underline_color="@color/transparent"/>
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/viewpager"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tablayout"
+        android:layout_marginTop="10dp"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
+</RelativeLayout>
+
+

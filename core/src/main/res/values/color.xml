@@ -32,6 +32,7 @@
     <color name="red_text">#F24B4F</color>
     <color name="red_hint">#F77276</color>
     <color name="red_warn">#FF0032</color>
+    <color name="indicator_yellow">#FFAE28</color>
     <!--规范设计End-->
 
     <!--用于红色按钮按下时的颜色，设计规范出来后修改具体色值。不要用于其他地方-->

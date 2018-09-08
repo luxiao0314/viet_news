@@ -17,6 +17,12 @@ import com.viet.news.core.ui.BaseActivity
 import com.viet.news.core.ui.InjectActivity
 import kotlinx.android.synthetic.main.activity_mine_collection.*
 
+/**
+ * @Description 用户收藏
+ * @Author null
+ * @Email zongjia.long@merculet.io
+ * @Version
+ */
 class CollectionActivity : InjectActivity() {
 
     private val model: CollectionViewModel by viewModelDelegate(CollectionViewModel::class)

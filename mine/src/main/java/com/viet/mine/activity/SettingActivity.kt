@@ -8,7 +8,10 @@ import com.viet.news.core.ui.BaseActivity
 import com.viet.news.core.ui.InjectActivity
 
 /**
- * 设置板块
+ * @Description 设置
+ * @Author null
+ * @Email zongjia.long@merculet.io
+ * @Version
  */
 class SettingActivity : InjectActivity() {
 

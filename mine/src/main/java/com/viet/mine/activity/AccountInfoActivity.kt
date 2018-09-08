@@ -7,6 +7,12 @@ import com.viet.mine.R
 import com.viet.news.core.ui.BaseActivity
 import com.viet.news.core.ui.InjectActivity
 
+/**
+ * @Description 用户信息承载Activity
+ * @Author null
+ * @Email zongjia.long@merculet.io
+ * @Version
+ */
 class AccountInfoActivity : InjectActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {

@@ -6,10 +6,16 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.Navigation
 import com.viet.mine.R
-import com.viet.news.core.ui.BaseFragment
+import com.viet.news.core.ui.RealVisibleHintBaseFragment
 import com.viet.news.core.ui.widget.CommonItem
 
-class AccountInfoFragment : BaseFragment() {
+/**
+ * @Description 用户信息
+ * @Author null
+ * @Email zongjia.long@merculet.io
+ * @Version
+ */
+class AccountInfoFragment : RealVisibleHintBaseFragment(){
 
     private var mContainerView: View? = null
 

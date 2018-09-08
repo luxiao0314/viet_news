@@ -5,9 +5,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.viet.mine.R
-import com.viet.news.core.ui.BaseFragment
+import com.viet.news.core.ui.RealVisibleHintBaseFragment
 
-class ChangeNickNameFragment : BaseFragment() {
+/**
+ * @Description 修改昵称
+ * @Author null
+ * @Email zongjia.long@merculet.io
+ * @Version
+ */
+class ChangeNickNameFragment : RealVisibleHintBaseFragment() {
     private var mContainerView: View? = null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {

@@ -16,7 +16,10 @@ import kotlinx.android.synthetic.main.fragment_mine.*
 
 
 /**
- * @author null
+ * @Description 我的
+ * @Author null
+ * @Email zongjia.long@merculet.io
+ * @Version
  */
 class MineFragment : BaseFragment() {
 

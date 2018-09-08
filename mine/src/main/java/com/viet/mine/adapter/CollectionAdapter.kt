@@ -10,7 +10,12 @@ import com.viet.news.core.ext.load
 import com.viet.news.core.ui.BaseAdapter
 import com.viet.news.core.ui.widget.SwipeLayout
 
-
+/**
+ * @Description 用户收藏适配器
+ * @Author null
+ * @Email zongjia.long@merculet.io
+ * @Version
+ */
 class CollectionAdapter : BaseAdapter<ArticlesBean>(), SwipeLayout.OnSwipingListener {
     private var layouts: HashSet<SwipeLayout> = HashSet()
 

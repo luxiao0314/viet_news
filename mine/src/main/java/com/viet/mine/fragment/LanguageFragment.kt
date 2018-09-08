@@ -18,6 +18,12 @@ import com.viet.news.core.ui.BaseFragment
 import com.viet.news.core.utils.LanguageUtil
 import com.viet.news.core.utils.SPHelper
 
+/**
+ * @Description 语言选择
+ * @Author null
+ * @Email zongjia.long@merculet.io
+ * @Version
+ */
 class LanguageFragment : BaseFragment() {
     private lateinit var adapter: LanguageAdapter
     private var mContainerView: View? = null
