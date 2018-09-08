@@ -4,8 +4,7 @@ import com.viet.follow.activity.FunsAndFollowActivity
 import com.viet.follow.activity.PersonalPageActivity
 import com.viet.follow.fragment.FunsAndFollowFragment
 import com.viet.follow.fragment.NewsFragment
-import com.viet.mine.activity.InviteFriendActivity
-import com.viet.mine.activity.LoginActivity
+import com.viet.mine.activity.*
 import com.viet.mine.fragment.LoginFragment
 import com.viet.news.core.di.ActivityScope
 import com.viet.news.core.di.FragmentScope
@@ -40,6 +39,26 @@ abstract class BuildersModule {
     @ActivityScope
     @ContributesAndroidInjector()
     internal abstract fun bindInviteFriendActivity(): InviteFriendActivity
+
+    @ActivityScope
+    @ContributesAndroidInjector()
+    internal abstract fun bindMineWalletActivity(): MineWalletActivity
+
+    @ActivityScope
+    @ContributesAndroidInjector()
+    internal abstract fun bindSettingActivity(): SettingActivity
+
+    @ActivityScope
+    @ContributesAndroidInjector()
+    internal abstract fun bindCollectionActivity(): CollectionActivity
+
+    @ActivityScope
+    @ContributesAndroidInjector()
+    internal abstract fun bindAccountInfoActivity(): AccountInfoActivity
+
+    @ActivityScope
+    @ContributesAndroidInjector()
+    internal abstract fun bindFindPwdActivity(): FindPwdActivity
 
     @FragmentScope
     @ContributesAndroidInjector(modules = [LoginFragmentModule::class])

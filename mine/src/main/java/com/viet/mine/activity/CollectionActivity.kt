@@ -14,9 +14,10 @@ import com.viet.mine.adapter.CollectionAdapter
 import com.viet.mine.viewmodel.CollectionViewModel
 import com.viet.news.core.delegate.viewModelDelegate
 import com.viet.news.core.ui.BaseActivity
+import com.viet.news.core.ui.InjectActivity
 import kotlinx.android.synthetic.main.activity_mine_collection.*
 
-class CollectionActivity : BaseActivity() {
+class CollectionActivity : InjectActivity() {
 
     private val model: CollectionViewModel by viewModelDelegate(CollectionViewModel::class)
 

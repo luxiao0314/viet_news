@@ -58,5 +58,11 @@ class MineFragment : BaseFragment() {
                 context?.startActivity(Intent(activity, InviteFriendActivity::class.java))
             }
         }
+
+        mine_wallet.setClickDelegate {
+            onItemClick = {
+                context?.startActivity(Intent(activity, MineWalletActivity::class.java))
+            }
+        }
     }
 }

@@ -1,19 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:background="@color/white"
+    android:orientation="vertical">
 
     <com.viet.news.core.ui.widget.TitleBar
         android:id="@+id/title_bar"
         style="@style/title_bar_white"
-        app:titlebar_titleText="@string/title_help" />
+        app:titlebar_titleText="@string/title_wallet" />
 
 
-    <android.support.v4.view.ViewPager
-        android:id="@+id/vp_card"
+    <!--<android.support.v4.view.ViewPager-->
+        <!--android:id="@+id/vp_card"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="200dp"-->
+        <!--android:clipChildren="false"-->
+        <!--android:clipToPadding="false"-->
+        <!--android:paddingBottom="24dp"-->
+        <!--android:paddingLeft="48dp"-->
+        <!--android:paddingRight="48dp"-->
+        <!--android:paddingTop="24dp" />-->
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv"
         android:layout_width="match_parent"
+        android:layout_marginTop="@dimen/top_padding_different_module"
         android:layout_height="200dp" />
 
+    <android.support.v4.view.ViewPager
+        android:id="@+id/vp_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 
-</android.support.constraint.ConstraintLayout>
+
+</LinearLayout>

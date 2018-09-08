@@ -10,6 +10,7 @@ import com.viet.news.core.delegate.viewModelDelegate
 import com.viet.news.core.ext.clickWithTrigger
 import com.viet.news.core.ext.toast
 import com.viet.news.core.ui.BaseActivity
+import com.viet.news.core.ui.InjectActivity
 import kotlinx.android.synthetic.main.activity_mine_find_pwd.*
 
 /**
@@ -19,7 +20,7 @@ import kotlinx.android.synthetic.main.activity_mine_find_pwd.*
  * @Date 06/09/2018 10:33 AM
  * @Version
  */
-class FindPwdActivity : BaseActivity() {
+class FindPwdActivity : InjectActivity() {
 
     private val model by viewModelDelegate(LoginViewModel::class)
 

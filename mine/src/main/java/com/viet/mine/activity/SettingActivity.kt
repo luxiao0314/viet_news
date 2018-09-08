@@ -5,11 +5,12 @@ import androidx.navigation.Navigation
 import com.jaeger.library.StatusBarUtil
 import com.viet.mine.R
 import com.viet.news.core.ui.BaseActivity
+import com.viet.news.core.ui.InjectActivity
 
 /**
  * 设置板块
  */
-class SettingActivity : BaseActivity() {
+class SettingActivity : InjectActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

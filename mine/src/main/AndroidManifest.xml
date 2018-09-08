@@ -6,5 +6,6 @@
         <activity android:name=".activity.CollectionActivity" />
         <activity android:name=".activity.AccountInfoActivity" />
         <activity android:name=".activity.InviteFriendActivity" />
+        <activity android:name=".activity.MineWalletActivity" />
     </application>
 </manifest>
