@@ -13,7 +13,6 @@ android {
         targetSdkVersion 27
         versionCode 1
         versionName "1.0"
-
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
     }
@@ -106,4 +105,10 @@ dependencies {
     api 'com.safframework.delegate:prefs-delegate:1.0.0'
     debugApi 'com.squareup.leakcanary:leakcanary-android:' + rootProject.leakcanary
     releaseApi 'com.squareup.leakcanary:leakcanary-android-no-op:' + rootProject.leakcanary
+
+    //相册
+    api('com.github.LuckSiege.PictureSelector:picture_library:v2.2.2', {
+        //排除recyclerview-v7
+        exclude group: 'com.android.support', module: 'recyclerview-v7'
+    })
 }

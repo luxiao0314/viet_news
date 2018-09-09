@@ -14,6 +14,7 @@ import android.view.View
  */
 class CustomSnapHelper : LinearSnapHelper() {
     private var mHorizontalHelper: OrientationHelper? = null
+    private var mDelegate: Delegate? = null
 
     override fun calculateDistanceToFinalSnap(layoutManager: RecyclerView.LayoutManager, targetView: View): IntArray? {
         val out = IntArray(2)
@@ -31,19 +32,21 @@ class CustomSnapHelper : LinearSnapHelper() {
     }
 
     override fun findSnapView(layoutManager: RecyclerView.LayoutManager): View? {
+        findStartView(layoutManager, getHorizontalHelper(layoutManager))?.let {
+            val position = (it.parent as RecyclerView).getChildAdapterPosition(it)
+            mDelegate?.onItemChanged(position)
+        }
         return findStartView(layoutManager, getHorizontalHelper(layoutManager))
     }
 
     private fun findStartView(layoutManager: RecyclerView.LayoutManager,
                               helper: OrientationHelper): View? {
-
         if (layoutManager is LinearLayoutManager) {
             val firstChild = layoutManager.findFirstVisibleItemPosition()
-            val lastChild = layoutManager.findLastVisibleItemPosition()
+
             if (firstChild == RecyclerView.NO_POSITION) {
                 return null
             }
-
             val child = layoutManager.findViewByPosition(firstChild)
             //获取偏左显示的Item
             return if (helper.getDecoratedEnd(child) >= helper.getDecoratedMeasurement(child) / 2 && helper.getDecoratedEnd(child) > 0) {
@@ -62,5 +65,31 @@ class CustomSnapHelper : LinearSnapHelper() {
             mHorizontalHelper = OrientationHelper.createHorizontalHelper(layoutManager)
         }
         return mHorizontalHelper!!
+    }
+
+    private fun setDelegate(delegate: ItemChangedDelegate) {
+        mDelegate = delegate
+    }
+
+    fun setItemChangedDelegate(init: ItemChangedDelegate.() -> Unit) {
+        val delegate = ItemChangedDelegate()
+        delegate.init()
+        setDelegate(delegate)
+    }
+
+
+    /**
+     * 条目改变监听代理
+     */
+    interface Delegate {
+        fun onItemChanged(position: Int)
+    }
+
+    class ItemChangedDelegate : Delegate {
+        var onItemChanged: ((Int) -> Unit)? = null
+
+        override fun onItemChanged(position: Int) {
+            onItemChanged?.let { it(position) }
+        }
     }
 }

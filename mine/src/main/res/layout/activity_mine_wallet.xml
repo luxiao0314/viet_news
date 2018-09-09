@@ -31,6 +31,7 @@
         android:layout_height="wrap_content" />
 
     <android.support.v4.view.ViewPager
+        android:layout_marginTop="@dimen/page_padding"
         android:id="@+id/vp_content"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />

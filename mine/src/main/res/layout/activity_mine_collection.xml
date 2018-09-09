@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/white"
     android:orientation="vertical">
 
@@ -11,9 +11,23 @@
         style="@style/title_bar_white"
         app:titlebar_titleText="@string/title_collect" />
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/rl_collection"
+    <com.scwang.smartrefresh.layout.SmartRefreshLayout
+        android:id="@+id/refreshLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:splitMotionEvents="false"/>
+        android:background="@color/white">
+
+        <com.viet.news.core.ui.widget.MultiStatusView
+            android:id="@+id/multiStatusView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rl_collection"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:splitMotionEvents="false" />
+        </com.viet.news.core.ui.widget.MultiStatusView>
+
+    </com.scwang.smartrefresh.layout.SmartRefreshLayout>
 </LinearLayout>

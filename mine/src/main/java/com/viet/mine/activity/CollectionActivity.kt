@@ -9,12 +9,17 @@ import android.support.v7.widget.OrientationHelper
 import android.support.v7.widget.RecyclerView
 import android.widget.AbsListView.OnScrollListener.SCROLL_STATE_TOUCH_SCROLL
 import com.jaeger.library.StatusBarUtil
+import com.scwang.smartrefresh.layout.api.RefreshHeader
+import com.scwang.smartrefresh.layout.header.ClassicsHeader
+import com.scwang.smartrefresh.layout.listener.SimpleMultiPurposeListener
 import com.viet.mine.R
 import com.viet.mine.adapter.CollectionAdapter
 import com.viet.mine.viewmodel.CollectionViewModel
 import com.viet.news.core.delegate.viewModelDelegate
+import com.viet.news.core.domain.RefreshNewsEvent
 import com.viet.news.core.ui.BaseActivity
 import com.viet.news.core.ui.InjectActivity
+import com.viet.news.core.utils.RxBus
 import kotlinx.android.synthetic.main.activity_mine_collection.*
 
 /**
@@ -35,6 +40,30 @@ class CollectionActivity : InjectActivity() {
         adapter = CollectionAdapter()
         initData()
         initView()
+        initListener()
+        refreshLayout.autoRefresh()
+    }
+
+    private fun initListener() {
+        refreshLayout.setOnRefreshListener {
+            model.getNewsArticles().observe(this, Observer { adapter.addData(it?.articles) })
+            it.finishRefresh()
+        }
+        refreshLayout.setOnLoadMoreListener {
+            it.finishLoadMore(2000/*,false*/)//传入false表示加载失败
+            model.getNewsArticles().observe(this, Observer { adapter.addData(it?.articles) })
+        }
+        refreshLayout.setOnMultiPurposeListener(object : SimpleMultiPurposeListener() {
+            override fun onHeaderFinish(header: RefreshHeader?, success: Boolean) {
+                refreshLayout.setPrimaryColorsId(R.color.red_hint, android.R.color.white)
+                ClassicsHeader.REFRESH_HEADER_FINISH = "已更新2篇文章"
+//                ClassicsHeader.REFRESH_HEADER_FINISH = "暂无更新内容"
+            }
+
+            override fun onHeaderMoving(header: RefreshHeader?, isDragging: Boolean, percent: Float, offset: Int, headerHeight: Int, maxDragHeight: Int) {
+                refreshLayout.setPrimaryColorsId(R.color.white, R.color.text_gray)
+            }
+        })
     }
 
     private fun initView() {
