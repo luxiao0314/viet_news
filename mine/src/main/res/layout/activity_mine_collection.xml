@@ -26,6 +26,7 @@
                 android:id="@+id/rl_collection"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:overScrollMode="never"
                 android:splitMotionEvents="false" />
         </com.viet.news.core.ui.widget.MultiStatusView>
 

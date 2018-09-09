@@ -27,11 +27,13 @@
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rv"
         android:layout_width="match_parent"
+        android:overScrollMode="never"
         android:layout_marginTop="@dimen/top_padding_different_module"
         android:layout_height="wrap_content" />
 
     <android.support.v4.view.ViewPager
         android:layout_marginTop="@dimen/page_padding"
+        android:overScrollMode="never"
         android:id="@+id/vp_content"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />

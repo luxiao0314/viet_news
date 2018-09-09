@@ -1,29 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="@color/white">
+    android:background="@color/white"
+    android:orientation="vertical">
 
     <com.flyco.tablayout.SlidingTabLayout
         android:id="@+id/tablayout_wallet"
         android:layout_width="200dp"
-        android:layout_gravity="center_horizontal"
         android:layout_height="40dp"
+        android:layout_gravity="center_horizontal"
         android:fillViewport="true"
-        app:tabMode="fixed"
         app:tabGravity="center"
+        app:tabMode="fixed"
         app:tl_divider_color="#1A000000"
         app:tl_divider_width="0dp"
         app:tl_indicator_color="@color/indicator_yellow"
         app:tl_indicator_height="3dp"
-        app:tl_tab_space_equal = "true"
         app:tl_indicator_width_equal_title="true"
+        app:tl_tab_space_equal="true"
         app:tl_textSelectColor="@color/text_gray"
         app:tl_textUnselectColor="#CCCCCC"
-        app:tl_underline_color="@color/transparent"/>
+        app:tl_underline_color="@color/transparent" />
     <!--居中显示属性
     app:tabMode="fixed"
         app:tabGravity="center"
@@ -39,7 +38,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/tablayout"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
+        android:overScrollMode="never"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 </LinearLayout>
 
 
