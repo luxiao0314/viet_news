@@ -64,7 +64,11 @@ class MainActivity : InjectActivity() {
         }
     }
 
+    // tsing 在App内切换语言 需要重新加载当前界面
     private fun reLoadView() {
-        //TODO tsing 如果到时候要在App内切换语言 这里可能需要刷新一下当前界面
+        pagerAdapter = TabFragmentAdapter(supportFragmentManager)
+        model.reLoadData()
+        initView()
+        bottomBar.currentTab = 0
     }
 }

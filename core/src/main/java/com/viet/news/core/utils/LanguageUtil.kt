@@ -1,6 +1,7 @@
 package com.viet.news.core.utils
 
 import android.content.Context
+import android.content.Intent
 import android.content.res.Resources
 import android.os.Build
 import android.os.LocaleList
@@ -46,9 +47,11 @@ object LanguageUtil {
      */
     fun  routToMain(context: Context = BaseApplication.instance) {
         //TODO tsing 如果将来需要在应用内实现语言切换，则需要实现此方法来跳转到主界面 重新加载一遍UI，需要确保主界面是singleTask 或者用CLEAR_TASK与NEW_TASK的flag启动
-//        val intent = Intent(context, MainActivity::class.java)
-//        intent.putExtra(Config.LANGUAGE_CHANGED, true)
-//        context.startActivity(intent)
+        val intent = Intent()
+        intent.setClassName("com.viet.news","com.viet.news.ui.activity.MainActivity")
+        intent.putExtra(Config.LANGUAGE_CHANGED, true)
+        context.startActivity(intent)
+        //TODO  END  你们用router或者navigation。。到时候自己换。。
     }
 
 //            = Router.build(Config.ROUTER_MAIN_ACTIVITY)

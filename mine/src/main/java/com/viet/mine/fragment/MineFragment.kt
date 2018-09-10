@@ -79,10 +79,10 @@ class MineFragment : BaseFragment() {
     }
 
     private fun startActivity(cls: Class<*>) {
-        if (!User.currentUser.isLogin()) {
-            context?.startActivity(Intent(activity, LoginActivity::class.java))
-        } else {
+//        if (!User.currentUser.isLogin()) {
+//            context?.startActivity(Intent(activity, LoginActivity::class.java))
+//        } else {
             context?.startActivity(Intent(activity, cls))
-        }
+//        }
     }
 }
