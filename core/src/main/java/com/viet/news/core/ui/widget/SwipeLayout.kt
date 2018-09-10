@@ -16,7 +16,7 @@ import android.widget.FrameLayout
 
 class SwipeLayout : FrameLayout {
 
-    private var helper: ViewDragHelper? = null
+    private lateinit var helper: ViewDragHelper
     private var mContent: View? = null
     private var mBehind: View? = null
     private var mWidth: Int = 0
@@ -126,7 +126,7 @@ class SwipeLayout : FrameLayout {
      */
     fun closeItem(isSmooth: Boolean = true) {
         if (isSmooth) {
-            if (helper!!.smoothSlideViewTo(mContent!!, 0, 0)) {
+            if (helper.smoothSlideViewTo(mContent!!, 0, 0)) {
                 ViewCompat.postInvalidateOnAnimation(this)
             }
         } else {
@@ -139,7 +139,7 @@ class SwipeLayout : FrameLayout {
      */
     private fun openItem(isSmooth: Boolean = true) {
         if (isSmooth) {
-            if (helper!!.smoothSlideViewTo(mContent!!, -mRange, 0)) {
+            if (helper.smoothSlideViewTo(mContent!!, -mRange, 0)) {
                 ViewCompat.postInvalidateOnAnimation(this)
             }
         } else {
@@ -148,7 +148,7 @@ class SwipeLayout : FrameLayout {
     }
 
     override fun computeScroll() {
-        if (helper!!.continueSettling(true)) {
+        if (helper.continueSettling(true)) {
             ViewCompat.postInvalidateOnAnimation(this)
         }
     }
@@ -261,13 +261,13 @@ class SwipeLayout : FrameLayout {
     }
 
     override fun onInterceptTouchEvent(event: MotionEvent): Boolean {
-        return helper!!.shouldInterceptTouchEvent(event)
+        return helper.shouldInterceptTouchEvent(event)
     }
 
     @SuppressLint("ClickableViewAccessibility")
     override fun onTouchEvent(event: MotionEvent): Boolean {
         try {
-            helper!!.processTouchEvent(event)
+            helper.processTouchEvent(event)
         } catch (e: Exception) {
             e.printStackTrace()
         }

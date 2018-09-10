@@ -13,9 +13,11 @@ import com.viet.news.core.api.ApiResponse
  */
 abstract class NetworkOnlyResource<RequestType> @MainThread constructor() : NetworkBoundResource<RequestType, RequestType>() {
 
+
     // 将网络获取的数据存储到db
     @WorkerThread
     override fun saveCallResult(item: RequestType) {
+        liveData.postValue(item)
     }
 
 
@@ -28,7 +30,7 @@ abstract class NetworkOnlyResource<RequestType> @MainThread constructor() : Netw
     // 从db内获取cache数据
     @MainThread
     override fun loadFromDb(): LiveData<RequestType> {
-        return MutableLiveData<RequestType>()
+        return liveData
     }
 
     // 从网络中获取

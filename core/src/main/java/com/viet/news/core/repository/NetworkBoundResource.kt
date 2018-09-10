@@ -2,6 +2,7 @@ package com.viet.news.core.repository
 
 import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.MediatorLiveData
+import android.arch.lifecycle.MutableLiveData
 import android.support.annotation.MainThread
 import android.support.annotation.WorkerThread
 import com.viet.news.core.api.ApiEmptyResponse
@@ -22,6 +23,8 @@ abstract class NetworkBoundResource<ResultType, RequestType> @MainThread constru
     private val result = MediatorLiveData<Resource<ResultType>>()
 
     fun asLiveData(): LiveData<Resource<ResultType>> = result
+
+    protected val liveData: MutableLiveData<RequestType> = MutableLiveData()
 
     init {
         result.value = Resource.loading(null)
