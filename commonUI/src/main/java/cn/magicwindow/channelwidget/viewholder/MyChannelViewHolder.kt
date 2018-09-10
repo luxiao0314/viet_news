@@ -30,8 +30,8 @@ class MyChannelViewHolder(private val editModeHandler: EditModeHandler?) : IChan
     override fun bindViewHolder(holder: ChannelAdapter.ChannelViewHolder, position: Int, data: ChannelBean?) {
         val myHolder = holder as MyChannelHeaderViewHolder
         data?.let {
-            myHolder.mChannelTitleTv.text = it.tabName
-            val textSize = if (it.tabName!!.length >= 4) 14 else 16
+            myHolder.mChannelTitleTv.text = it.channelName
+            val textSize = if (it.channelName!!.length >= 4) 14 else 16
             myHolder.mChannelTitleTv.setTextSize(TypedValue.COMPLEX_UNIT_SP, textSize.toFloat())
             myHolder.mChannelTitleTv.setBackgroundResource(if (it.tabType == 0 || it.tabType == 1)
                 R.drawable.channel_fixed_bg_shape

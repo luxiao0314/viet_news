@@ -27,7 +27,7 @@ class RecChannelViewHolder(private val editModeHandler: EditModeHandler?) : ICha
 
     override fun bindViewHolder(holder: ChannelAdapter.ChannelViewHolder, position: Int, data: ChannelBean?) {
         val recHolder = holder as RecChannelHeaderViewHolder
-        val name = data!!.tabName
+        val name = data!!.channelName
         recHolder.mChannelTitleTv.text = "+  $name"
         val textSize = if (name!!.length >= 4) 14 else 16
         recHolder.mChannelTitleTv.setTextSize(TypedValue.COMPLEX_UNIT_SP, textSize.toFloat())

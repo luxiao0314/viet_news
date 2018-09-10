@@ -16,16 +16,13 @@ import cn.magicwindow.commonui.R
 import cn.magicwindow.utils.GridItemDecoration
 import com.app.hubert.guide.util.ScreenUtils.getScreenWidth
 import kotlinx.android.synthetic.main.layout_tab_edit.*
-import java.util.*
 
 @SuppressLint("ValidFragment")
 /**
  * @author null
  */
-class AddChannelFragment(private val myStrs: List<String>, private val recStrs: List<String>) : DialogFragment(), ChannelAdapter.ChannelItemClickListener {
+class AddChannelFragment(private var mMyChannelList: MutableList<ChannelBean>, private var mRecChannelList:  MutableList<ChannelBean>) : DialogFragment(), ChannelAdapter.ChannelItemClickListener {
     private var mContainerView: View? = null
-    private var mMyChannelList = mutableListOf<ChannelBean>()
-    private var mRecChannelList = mutableListOf<ChannelBean>()
 
     override fun onStart() {
         super.onStart()
@@ -57,7 +54,6 @@ class AddChannelFragment(private val myStrs: List<String>, private val recStrs: 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        initData()
         val adapter = ChannelAdapter(context, id_tab_recycler_view, mMyChannelList, mRecChannelList, 1, 1)
         adapter.setChannelItemClickListener(this)
         id_tab_recycler_view.adapter = adapter
@@ -70,25 +66,6 @@ class AddChannelFragment(private val myStrs: List<String>, private val recStrs: 
         }
         id_tab_recycler_view.layoutManager = gridLayout
         id_tab_recycler_view.addItemDecoration(GridItemDecoration(5))
-    }
-
-
-    private fun initData() {
-        mMyChannelList = ArrayList()
-        for (i in 0..(myStrs.size - 1)) {
-            val channelBean = ChannelBean()
-            channelBean.tabName = myStrs[i]
-            channelBean.tabType = if (i == 0) 0 else if (i == 1) 1 else 2
-            mMyChannelList.add(channelBean)
-        }
-        mRecChannelList = ArrayList()
-        for (i in 0..(recStrs.size - 1)) {
-            val channelBean = ChannelBean()
-            channelBean.tabName = recStrs[i]
-            channelBean.tabType = 2
-            mRecChannelList.add(channelBean)
-        }
-
     }
 
     override fun onCloseClick() {

@@ -94,7 +94,7 @@ class NewsFragment : RealVisibleHintBaseFragment(), HasSupportFragmentInjector {
         fun newInstance(tabTitle: String): NewsFragment {
             val twoFragment = NewsFragment()
             val bundle = Bundle()
-            bundle.putString("tabName", tabTitle)
+            bundle.putString("channelName", tabTitle)
             twoFragment.arguments = bundle
             return twoFragment
         }

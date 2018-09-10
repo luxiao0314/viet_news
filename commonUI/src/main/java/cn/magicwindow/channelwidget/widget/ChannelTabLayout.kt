@@ -151,7 +151,7 @@ class ChannelTabLayout @JvmOverloads constructor(context: Context, attrs: Attrib
             val currentPosition = i
             val tabTextView = createTextView()
             tabTextView.setPadding(mTabPadding, 0, mTabPadding, 0)
-            tabTextView.text = mDataList[i].tabName
+            tabTextView.text = mDataList[i].channelName
             tabTextView.setOnClickListener { mViewPager!!.currentItem = currentPosition }
             mTabContainer.addView(tabTextView, LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.MATCH_PARENT, 1f))
         }

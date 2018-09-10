@@ -1,12 +1,20 @@
 package com.viet.news.core.domain.response
 
+import com.google.gson.annotations.SerializedName
+
 class ChannelList(
         var id: String?,
         var createDateTime: Long?,
         var updateDateTime: Long?,
         var version: String?,
-        var channel_key: String?,
-        var channel_name: String?,
+        @SerializedName("channel_key")
+        var channelKey: String?,
+        @SerializedName("channel_name")
+        var channelName: String?,
+        @SerializedName("follow_Status")
+        var followStatus: Boolean,
         var sort: Int?,
-        var can_delete: Boolean,
-        var default_channel: Boolean)
+        @SerializedName("can_delete")
+        var canDelete: Boolean,
+        @SerializedName("default_channel")
+        var defaultChannel: Boolean)
