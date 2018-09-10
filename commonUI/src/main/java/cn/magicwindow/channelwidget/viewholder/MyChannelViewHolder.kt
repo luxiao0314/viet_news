@@ -9,12 +9,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-
+import cn.magicwindow.channelwidget.adapter.ChannelAdapter
 import cn.magicwindow.channelwidget.callback.EditModeHandler
 import cn.magicwindow.channelwidget.entity.ChannelBean
-
 import cn.magicwindow.commonui.R
-import cn.magicwindow.channelwidget.adapter.ChannelAdapter
 
 
 /**
@@ -39,9 +37,11 @@ class MyChannelViewHolder(private val editModeHandler: EditModeHandler?) : IChan
                 R.drawable.channel_fixed_bg_shape
             else
                 R.drawable.channel_my_bg_shape)
-            myHolder.mChannelTitleTv.setTextColor(if (it.tabType == 0)
-                Color.RED
-            else if (it.tabType == 1) Color.parseColor("#666666") else Color.parseColor("#333333"))
+            myHolder.mChannelTitleTv.setTextColor(when {
+                it.tabType == 0 -> Color.RED
+                it.tabType == 1 -> Color.parseColor("#666666")
+                else -> Color.parseColor("#333333")
+            })
             myHolder.mDeleteIv.visibility = if (it.editStatus == 1) View.VISIBLE else View.INVISIBLE
             myHolder.mChannelTitleTv.setOnClickListener {
                 if (editModeHandler != null && data.tabType == 2) {

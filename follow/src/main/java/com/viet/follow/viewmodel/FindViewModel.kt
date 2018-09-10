@@ -25,12 +25,12 @@ class FindViewModel(var repository: FindRepository = FindRepository()) : BaseVie
     val recStrs = listOf("设计", "天文", "美食", "星座", "历史", "消费维权", "体育", "明星八卦")
 
     init {
-        for (i in 0..9) {
-            val channelBean = ChannelBean()
-            channelBean.tabName = myStrs[i]
-            channelBean.tabType = if (i == 0) 0 else if (i == 1) 1 else 2
-            dataList.add(channelBean)
-        }
+//        for (i in 0..9) {
+//            val channelBean = ChannelBean()
+//            channelBean.tabName = myStrs[i]
+//            channelBean.tabType = if (i == 0) 0 else if (i == 1) 1 else 2
+//            dataList.add(channelBean)
+//        }
     }
 
     fun getNewsArticles(): LiveData<NewsResponse> {
