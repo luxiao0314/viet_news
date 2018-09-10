@@ -1,9 +1,13 @@
 package com.viet.follow.repository
 
+import android.arch.lifecycle.LiveData
 import com.safframework.utils.RxJavaUtils
 import com.viet.news.core.api.ApiRepository
+import com.viet.news.core.api.ApiResponse
 import com.viet.news.core.api.HttpResponse
 import com.viet.news.core.domain.response.ChannelListResponse
+import com.viet.news.core.repository.NetworkOnlyResource
+import com.viet.news.core.vo.Resource
 import io.reactivex.Maybe
 
 /**
@@ -15,16 +19,20 @@ import io.reactivex.Maybe
  */
 class FindRepository : ApiRepository() {
 
-//    fun getChannelList(): LiveData<Resource<List<ChannelListResponse>>> {
-//        return object : NetworkOnlyResource<List<ChannelListResponse>>() {
-//            override fun createCall(): LiveData<ApiResponse<List<ChannelListResponse>>> {
-//                return apiInterface.getChannelList()
-//            }
-//        }.asLiveData()
-//    }
+    fun getChannelAllList(): LiveData<Resource<ChannelListResponse>> {
+        return object : NetworkOnlyResource<ChannelListResponse>() {
+            override fun createCall(): LiveData<ApiResponse<ChannelListResponse>> {
+                return apiInterface.getChannelAllList()
+            }
+        }.asLiveData()
+    }
 
-    fun getChannelList(): Maybe<HttpResponse<List<ChannelListResponse>>> {
-        return apiInterface.getChannelList().compose(RxJavaUtils.maybeToMain())
+    fun getChannelList(): LiveData<Resource<ChannelListResponse>> {
+        return object : NetworkOnlyResource<ChannelListResponse>() {
+            override fun createCall(): LiveData<ApiResponse<ChannelListResponse>> {
+                return apiInterface.getChannelList()
+            }
+        }.asLiveData()
     }
 
 }

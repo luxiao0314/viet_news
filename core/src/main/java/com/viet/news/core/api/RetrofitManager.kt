@@ -3,10 +3,9 @@ package com.viet.news.core.api
 import com.viet.news.core.BuildConfig
 import com.viet.news.core.http.interceptor.HeaderInterceptor
 import com.viet.news.core.http.interceptor.LoggingInterceptor
-import io.reactivex.schedulers.Schedulers
+import com.viet.news.core.utils.LiveDataCallAdapterFactory
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
-import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 
@@ -36,8 +35,8 @@ class RetrofitManager private constructor() {
         retrofit = Retrofit.Builder()
                 .baseUrl(ApiService.MAGICBOX_API)
                 .addConverterFactory(GsonConverterFactory.create())
-//                .addCallAdapterFactory(LiveDataCallAdapterFactory())
-                .addCallAdapterFactory(RxJava2CallAdapterFactory.createWithScheduler(Schedulers.io()))
+                .addCallAdapterFactory(LiveDataCallAdapterFactory())
+//                .addCallAdapterFactory(RxJava2CallAdapterFactory.createWithScheduler(Schedulers.io()))
                 .client(okHttpClient)
                 .build()
 

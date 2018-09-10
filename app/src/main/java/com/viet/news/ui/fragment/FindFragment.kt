@@ -1,5 +1,6 @@
 package com.viet.news.ui.fragment
 
+import android.arch.lifecycle.Observer
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
@@ -15,6 +16,7 @@ import com.viet.follow.fragment.NewsFragment
 import com.viet.follow.viewmodel.FindViewModel
 import com.viet.news.R
 import com.viet.news.core.delegate.viewModelDelegate
+import com.viet.news.core.ext.toast
 import com.viet.news.core.ui.BaseFragment
 import com.viet.news.core.ui.InjectFragment
 import com.viet.news.db.SourceEntity
@@ -48,6 +50,8 @@ class FindFragment : InjectFragment(), AddChannelFragment.DataChangeListener, (S
 
     override fun initView(view: View) {
         id_view_Pager.offscreenPageLimit = 5
+        pagerAdapter.setData(model.dataList)
+        id_tab_pager_indicator.setDataList(model.dataList)
         id_view_Pager.adapter = pagerAdapter
         id_tab_pager_indicator.setupWithViewPager(id_view_Pager)
 
@@ -59,11 +63,11 @@ class FindFragment : InjectFragment(), AddChannelFragment.DataChangeListener, (S
     private fun initData() {
         pagerAdapter.setData(model.dataList)
         id_tab_pager_indicator.setDataList(model.dataList)
-//        model.getChannelList(this) {
-//            pagerAdapter.setData(model.dataList)
-//            id_tab_pager_indicator.setDataList(model.dataList)
-//            pagerAdapter.notifyDataSetChanged()
-//        }
+        model.getChannelList(this) {
+            pagerAdapter.setData(model.dataList)
+            id_tab_pager_indicator.setDataList(model.dataList)
+            pagerAdapter.notifyDataSetChanged()
+        }
     }
 
     override fun onDataChanged(list: List<ChannelBean>, position: Int) {
@@ -71,6 +75,7 @@ class FindFragment : InjectFragment(), AddChannelFragment.DataChangeListener, (S
         model.dataList.addAll(list)
         pagerAdapter.notifyDataSetChanged()
         id_tab_pager_indicator.setDataList(model.dataList)
+        id_tab_pager_indicator.notifyDataSetChanged()
         id_view_Pager.currentItem = position
     }
 
@@ -87,7 +92,6 @@ class MyViewPager @Inject constructor(fm: FragmentManager?) : FragmentStatePager
 
     fun setData(list: List<ChannelBean>) {
         mDataList = list
-        notifyDataSetChanged()
     }
 
     override fun getCount(): Int = mDataList.size
