@@ -14,7 +14,7 @@ import com.viet.news.core.ui.RealVisibleHintBaseFragment
  * @Email zongjia.long@merculet.io
  * @Version
  */
-class AccountoutFragment : RealVisibleHintBaseFragment(){
+class AccountOutFragment : RealVisibleHintBaseFragment(){
     private var mContainerView: View? = null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {

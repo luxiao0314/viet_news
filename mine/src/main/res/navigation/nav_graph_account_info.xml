@@ -44,7 +44,36 @@
         android:id="@+id/fr_change_phone_number"
         android:name="com.viet.mine.fragment.ChangePhoneNumberFragment"
         android:label="Change Phone Number"
-        tools:layout="@layout/fragment_mine_setting_change_phone" />
+        tools:layout="@layout/fragment_mine_setting_change_phone">
+        <action
+            android:id="@+id/action_page_2_1"
+            app:destination="@id/fr_verify_code"
+            app:enterAnim="@anim/slide_right_in"
+            app:exitAnim="@anim/slide_left_out"
+            app:popEnterAnim="@anim/slide_left_in"
+            app:popExitAnim="@anim/slide_right_out" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/fr_verify_code"
+        android:name="com.viet.mine.fragment.VerifyCodeFragment"
+        android:label="Reset Password"
+        tools:layout="@layout/fragment_mine_verify_code">
+        <action
+            android:id="@+id/action_page_2_1_1"
+            app:destination="@id/fr_bind_phone_num"
+            app:enterAnim="@anim/slide_right_in"
+            app:exitAnim="@anim/slide_left_out"
+            app:popEnterAnim="@anim/slide_left_in"
+            app:popExitAnim="@anim/slide_right_out" />
+    </fragment>
+
+
+    <fragment
+        android:id="@+id/fr_bind_phone_num"
+        android:name="com.viet.mine.fragment.BindNewPhoneNumFragment"
+        android:label="Reset Password"
+        tools:layout="@layout/fragment_mine_bind_new_phone_num" />
 
     <fragment
         android:id="@+id/fr_reset_password"
