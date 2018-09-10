@@ -1,14 +1,13 @@
 package com.viet.follow.viewmodel
 
-import android.annotation.SuppressLint
-import android.arch.lifecycle.LifecycleOwner
 import android.arch.lifecycle.LiveData
 import cn.magicwindow.channelwidget.entity.ChannelBean
-import com.safframework.livedata.bindLifecycle
 import com.viet.follow.repository.FindRepository
+import com.viet.news.core.domain.response.ChannelListResponse
 import com.viet.news.core.domain.response.NewsResponse
 import com.viet.news.core.utils.FileUtils
 import com.viet.news.core.viewmodel.BaseViewModel
+import com.viet.news.core.vo.Resource
 
 /**
  * @Description
@@ -17,7 +16,7 @@ import com.viet.news.core.viewmodel.BaseViewModel
  * @Date 03/09/2018 1:37 PM
  * @Version
  */
-class FindViewModel(var repository: FindRepository = FindRepository()) : BaseViewModel() {
+class FindViewModel (var repository: FindRepository = FindRepository()) : BaseViewModel() {
     var dataList = arrayListOf<ChannelBean>()
     val myStrs = listOf("推荐", "热点", "军事", "图片", "社会", "娱乐", "科技", "体育", "深圳", "财经")
     val recStrs = listOf("设计", "天文", "美食", "星座", "历史", "消费维权", "体育", "明星八卦")
@@ -37,16 +36,7 @@ class FindViewModel(var repository: FindRepository = FindRepository()) : BaseVie
         return FileUtils.handleVirtualData(NewsResponse::class.java)
     }
 
-    @SuppressLint("CheckResult")
-    fun getChannelAllList(owner: LifecycleOwner, function: () -> Unit) {
-        repository.getChannelAllList()
-                .bindLifecycle(owner)
-                .subscribe({
-                    if (it.isOkStatus) {
-                        function()
-                    }
-                }, {
-                    it.printStackTrace()
-                })
+    fun getChannelAllList(): LiveData<Resource<ChannelListResponse>> {
+        return repository.getChannelAllList()
     }
 }

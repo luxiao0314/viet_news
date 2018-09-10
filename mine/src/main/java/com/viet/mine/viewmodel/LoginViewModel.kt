@@ -3,8 +3,8 @@ package com.viet.mine.viewmodel
 import android.annotation.SuppressLint
 import android.arch.lifecycle.LifecycleOwner
 import android.arch.lifecycle.MutableLiveData
+import android.arch.lifecycle.Observer
 import android.os.CountDownTimer
-import com.safframework.livedata.bindLifecycle
 import com.viet.mine.R
 import com.viet.mine.fragment.LoginFragment
 import com.viet.mine.fragment.PwdToLoginFragment
@@ -134,20 +134,14 @@ class LoginViewModel(var repository: LoginRepository = LoginRepository()) : Base
     }
 
     @SuppressLint("CheckResult")
-    fun login(owner: LifecycleOwner, func: () -> Unit) {
-        repository.login(phoneNumber.value, password.value)
-                .bindLifecycle(owner)
-                .subscribe({
-                    if (it.isOkStatus) {
-                        phoneNumber.value?.let { phoneNumber -> User.currentUser.telephone = phoneNumber }
-                        zoneCode.value?.let { zoneCode -> User.currentUser.zoneCode = zoneCode }
-                        User.currentUser.login(it.data!!)
-                        stopCountdown()//登录成功后结束本次倒计时
-                        func()
-                    }
-                }, {
-                    it.printStackTrace()
-                })
-
+    fun login(owner: LifecycleOwner) {
+        repository.login(phoneNumber.value, password.value).observe(owner, Observer {
+            if (it?.data != null) {
+                phoneNumber.value?.let { phoneNumber -> User.currentUser.telephone = phoneNumber }
+                zoneCode.value?.let { zoneCode -> User.currentUser.zoneCode = zoneCode }
+                User.currentUser.login(it.data!!.data!!)
+                stopCountdown()//登录成功后结束本次倒计时
+            }
+        })
     }
 }

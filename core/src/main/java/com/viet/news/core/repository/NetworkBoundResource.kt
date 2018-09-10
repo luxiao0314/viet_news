@@ -64,7 +64,9 @@ abstract class NetworkBoundResource<ResultType, RequestType> @MainThread constru
             when (response) {
                 is ApiSuccessResponse -> {
                     processResponse(response).let {
-                        Observable.fromCallable { saveCallResult(it!!) }
+                        Observable.fromCallable {
+                            saveCallResult(it!!)
+                        }
                                 .subscribeOn(Schedulers.io())
                                 .subscribe()
                     }

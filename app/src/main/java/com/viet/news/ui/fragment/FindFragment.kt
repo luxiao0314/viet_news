@@ -1,5 +1,6 @@
 package com.viet.news.ui.fragment
 
+import android.arch.lifecycle.Observer
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
@@ -15,6 +16,7 @@ import com.viet.follow.fragment.NewsFragment
 import com.viet.follow.viewmodel.FindViewModel
 import com.viet.news.R
 import com.viet.news.core.delegate.viewModelDelegate
+import com.viet.news.core.ext.toast
 import com.viet.news.core.ui.BaseFragment
 import com.viet.news.core.ui.InjectFragment
 import com.viet.news.db.SourceEntity
@@ -58,11 +60,10 @@ class FindFragment : InjectFragment(), AddChannelFragment.DataChangeListener, (S
         id_add_channel_entry_iv.click { mAddChannelFragment?.show(fragmentManager, "addChannel") }
     }
 
-
     private fun initData() {
-        model.getChannelAllList(this){
-
-        }
+        model.getChannelAllList().observe(this, Observer {
+            toast(it?.data?.data?.get(0)?.channel_name).show()
+        })
     }
 
     override fun onDataChanged(list: List<ChannelBean>, position: Int) {

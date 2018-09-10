@@ -66,7 +66,7 @@ class User private constructor() : Serializable {
 
     fun isLogin(): Boolean = accessToken.isNotBlank()
 
-    fun login(userLogin: LoginRegisterResponse) {
+    fun login(userLogin: LoginRegisterResponse.LoginRegister) {
         //init
         this.telephone = userLogin.phoneNumber
         this.avatarUrl = userLogin.imageUrl
