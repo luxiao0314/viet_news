@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <com.viet.news.core.ui.widget.TitleBar
+        android:id="@+id/title_bar"
+        style="@style/title_bar_white"
+        app:titlebar_titleText="@string/title_verify_code" />
+
+    <TextView
+        style="@style/text.14.gray.bold"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="40dp"
+        android:text="验证码已经发送至 187***4320" />
+
+    <com.viet.news.core.ui.code.CodeView
+        android:id="@+id/password_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/iv_next"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="30dp"
+        app:borderColor="@color/text_gray"
+        app:borderWidth="1dp"
+        app:dividerWidth="1dp"
+        app:padding="10dp"
+        app:pointRadius="@dimen/passwd_point_width"
+        app:showType="3" />
+
+    <TextView
+        style="@style/text.14.blue.bold"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="10dp"
+        android:text="重新发送验证码" />
+
+</LinearLayout>

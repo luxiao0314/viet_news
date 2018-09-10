@@ -93,7 +93,7 @@ class MineWalletActivity : InjectActivity() {
                     var interpretateScale = 1 - percent
 
 
-                    //                    这个if不走的话，得到的是多级渐变模式
+                    //这个if不走的话，得到的是多级渐变模式
                     if (interpretateScale < scale) {
                         interpretateScale = scale
                     }

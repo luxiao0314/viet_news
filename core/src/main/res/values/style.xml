@@ -164,6 +164,14 @@
         <item name="android:textStyle">bold</item>
     </style>
 
+    <style name="text.14.blue">
+        <item name="android:textColor">@color/text_blue</item>
+    </style>
+
+    <style name="text.14.blue.bold">
+        <item name="android:textStyle">bold</item>
+    </style>
+
     <style name="text.16.gray">
         <item name="android:textColor">@color/text_gray</item>
     </style>

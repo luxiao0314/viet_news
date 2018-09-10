@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+    <com.viet.news.core.ui.widget.TitleBar
+        android:id="@+id/title_bar"
+        style="@style/title_bar.white_bg"
+        app:titlebar_titleText="@string/title_find_pwd"/>
+
+
+    <cn.magicwindow.ClearEditext
+        android:id="@+id/phone_input"
+        style="@style/edit.number"
+        android:layout_width="match_parent"
+        android:layout_marginStart="80dp"
+        android:layout_marginLeft="80dp"
+        android:layout_marginTop="20dp"
+        android:hint="@string/user_telephone"
+        android:paddingEnd="@dimen/page_padding_right"
+        android:paddingRight="@dimen/page_padding_right"
+        android:textColor="@color/text_gray"
+        app:layout_constraintStart_toEndOf="@+id/line"
+        app:layout_constraintTop_toBottomOf="@+id/title_bar"/>
+
+    <TextView
+        android:id="@+id/select_country_text"
+        style="@style/text.16.gray"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:paddingStart="@dimen/page_padding_left"
+        android:paddingLeft="@dimen/page_padding_left"
+        android:paddingTop="2dp"
+        android:paddingRight="6dp"
+        android:paddingBottom="2dp"
+        android:text="+86"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/title_bar"/>
+
+    <View
+        android:id="@+id/line"
+        style="@style/line.vertical.gray"
+        android:layout_height="25dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="20dp"
+        app:layout_constraintBottom_toTopOf="@id/line2"
+        app:layout_constraintStart_toEndOf="@+id/select_country_text"
+        app:layout_constraintTop_toBottomOf="@+id/title_bar"/>
+
+    <View
+        android:id="@+id/view"
+        style="@style/line.gray_tran"
+        android:layout_marginStart="@dimen/page_padding_left"
+        android:layout_marginLeft="@dimen/page_padding_left"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="@dimen/page_padding_right"
+        android:layout_marginRight="@dimen/page_padding_right"
+        app:layout_constraintTop_toBottomOf="@+id/phone_input"/>
+
+
+    <Button
+        android:id="@+id/bind_phone_next_btn"
+        style="@style/button"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginStart="@dimen/page_padding_left"
+        android:layout_marginLeft="@dimen/page_padding_left"
+        android:layout_marginTop="50dp"
+        android:layout_marginEnd="@dimen/page_padding_right"
+        android:layout_marginRight="@dimen/page_padding_right"
+        android:clickable="false"
+        android:text="@string/next"
+        app:layout_constraintTop_toBottomOf="@+id/view"/>
+
+</android.support.constraint.ConstraintLayout>
