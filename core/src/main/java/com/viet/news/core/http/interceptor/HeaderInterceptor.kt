@@ -21,7 +21,7 @@ class HeaderInterceptor : Interceptor {
         val requestBuilder = request.newBuilder()
 //       requestBuilder.addHeader("Accept-Language", LanguageUtil.getHttpLanguageHeader())   TODO tsing 如果需要传递header指定接口返回语言类型，从这里下手
         requestBuilder.addHeader("os_type", "0")
-        requestBuilder.addHeader("mw-token", User.currentUser.accessToken)
+        requestBuilder.addHeader("Authorization", User.currentUser.accessToken)
 
         return chain.proceed(requestBuilder.build())
     }

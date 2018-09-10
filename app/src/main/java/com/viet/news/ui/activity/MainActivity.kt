@@ -40,7 +40,13 @@ class MainActivity : InjectActivity() {
         container.offscreenPageLimit = 3//缓存3个界面
         container.addOnPageChangeListener { onPageSelected = { bottomBar.currentTab = it } }
         bottomBar.setOnTabSelectListener { onTabSelect = { container.setCurrentItem(it, false) } }
-        bottomBar.getIconView(0).click { if (bottomBar.currentTab == 0) RxBus.get().post(RefreshNewsEvent()) }
+        bottomBar.getIconView(0).click {
+            if (bottomBar.currentTab == 0) {
+                RxBus.get().post(RefreshNewsEvent())
+            } else {
+                container.setCurrentItem(0, false)
+            }
+        }
     }
 
     /*

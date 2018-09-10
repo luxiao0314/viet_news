@@ -7,6 +7,7 @@ package cn.magicwindow.channelwidget.entity
 class ChannelBean {
 
     var editStatus: Int = 0
-    var tabName: String? = null
+    var tabName: String? = ""
     var tabType: Int = 0
+    var channel_key: String? = ""
 }

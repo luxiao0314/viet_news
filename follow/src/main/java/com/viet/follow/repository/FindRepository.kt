@@ -15,16 +15,16 @@ import io.reactivex.Maybe
  */
 class FindRepository : ApiRepository() {
 
-//    fun getChannelAllList(): LiveData<Resource<List<ChannelListResponse>>> {
+//    fun getChannelList(): LiveData<Resource<List<ChannelListResponse>>> {
 //        return object : NetworkOnlyResource<List<ChannelListResponse>>() {
 //            override fun createCall(): LiveData<ApiResponse<List<ChannelListResponse>>> {
-//                return apiInterface.getChannelAllList()
+//                return apiInterface.getChannelList()
 //            }
 //        }.asLiveData()
 //    }
 
-    fun getChannelAllList(): Maybe<HttpResponse<List<ChannelListResponse>>> {
-        return apiInterface.getChannelAllList().compose(RxJavaUtils.maybeToMain())
+    fun getChannelList(): Maybe<HttpResponse<List<ChannelListResponse>>> {
+        return apiInterface.getChannelList().compose(RxJavaUtils.maybeToMain())
     }
 
 }

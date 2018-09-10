@@ -6,7 +6,6 @@ import android.arch.lifecycle.LiveData
 import cn.magicwindow.channelwidget.entity.ChannelBean
 import com.safframework.livedata.bindLifecycle
 import com.viet.follow.repository.FindRepository
-import com.viet.news.core.domain.response.ChannelListResponse
 import com.viet.news.core.domain.response.NewsResponse
 import com.viet.news.core.utils.FileUtils
 import com.viet.news.core.viewmodel.BaseViewModel
@@ -39,17 +38,18 @@ class FindViewModel(var repository: FindRepository = FindRepository()) : BaseVie
     }
 
     @SuppressLint("CheckResult")
-    fun getChannelAllList(owner: LifecycleOwner, function: (list: List<ChannelListResponse>) -> Unit) {
-        repository.getChannelAllList()
+    fun getChannelList(owner: LifecycleOwner, function: () -> Unit) {
+        repository.getChannelList()
                 .bindLifecycle(owner)
                 .subscribe({
                     if (it.isOkStatus) {
-                        it.data?.let { it1 -> function(it1) }
                         it.data?.forEach {
                             val channelBean = ChannelBean()
                             channelBean.tabName = it.channel_name
+                            channelBean.tabName = it.channel_name
                             channelBean.tabType = if (it.default_channel) 1 else 0
                             dataList.add(channelBean)
+                            function()
                         }
                     }
                 }, {

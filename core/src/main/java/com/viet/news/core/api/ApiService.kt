@@ -26,6 +26,9 @@ interface ApiService {
     @POST("v1/channel/allList")
     fun getChannelAllList(): Maybe<HttpResponse<List<ChannelListResponse>>>
 
+    @POST("v1/channel/list")
+    fun getChannelList(): Maybe<HttpResponse<List<ChannelListResponse>>>
+
     @POST("v1/login/login")
     fun login(@Body param: LoginParams): Maybe<HttpResponse<LoginRegisterResponse>>
 

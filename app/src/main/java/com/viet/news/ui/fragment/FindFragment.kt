@@ -56,13 +56,13 @@ class FindFragment : InjectFragment(), AddChannelFragment.DataChangeListener, (S
         id_add_channel_entry_iv.click { mAddChannelFragment?.show(fragmentManager, "addChannel") }
     }
 
-
     private fun initData() {
         pagerAdapter.setData(model.dataList)
         id_tab_pager_indicator.setDataList(model.dataList)
-//        model.getChannelAllList(this) {
+//        model.getChannelList(this) {
 //            pagerAdapter.setData(model.dataList)
 //            id_tab_pager_indicator.setDataList(model.dataList)
+//            pagerAdapter.notifyDataSetChanged()
 //        }
     }
 
