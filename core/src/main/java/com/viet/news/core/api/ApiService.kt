@@ -22,7 +22,7 @@ interface ApiService {
         val MAGICBOX_API = "http://magicbox.liaoyantech.cn/magicbox/api/"
     }
 
-    @POST
+    @POST("v1/channel/allList")
     fun getChannelAllList(): LiveData<ApiResponse<List<ChannelListResponse>>>
 
     @POST("v1/login/login")

@@ -3,6 +3,7 @@ package com.viet.mine.repository
 import android.arch.lifecycle.LiveData
 import com.viet.news.core.api.ApiRepository
 import com.viet.news.core.api.ApiResponse
+import com.viet.news.core.config.LoginEnum
 import com.viet.news.core.domain.request.LoginParams
 import com.viet.news.core.domain.response.LoginRegisterResponse
 import com.viet.news.core.repository.NetworkOnlyResource
@@ -24,7 +25,7 @@ class LoginRepository : ApiRepository() {
         val params = LoginParams()
         params.phone_number = phoneNumber
         params.password = password
-        params.login_type = "1"
+        params.login_type = LoginEnum.PASSWORD.toString()
         return object : NetworkOnlyResource<LoginRegisterResponse>() {
             override fun createCall(): LiveData<ApiResponse<LoginRegisterResponse>> = apiInterface.login(params)
         }.asLiveData()

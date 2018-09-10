@@ -1,12 +1,10 @@
 package com.viet.news.core.repository
 
 import android.arch.lifecycle.LiveData
-import android.arch.lifecycle.MediatorLiveData
 import android.arch.lifecycle.MutableLiveData
 import android.support.annotation.MainThread
 import android.support.annotation.WorkerThread
 import com.viet.news.core.api.ApiResponse
-import com.viet.news.core.vo.Resource
 
 /**
  * @Author Aaron
@@ -14,7 +12,6 @@ import com.viet.news.core.vo.Resource
  * @Description  如果不需要DB存储，则用此类。可以省略部分相关代码
  */
 abstract class NetworkOnlyResource<RequestType> @MainThread constructor() : NetworkBoundResource<RequestType, RequestType>() {
-    private val result = MediatorLiveData<Resource<RequestType>>()
 
     // 将网络获取的数据存储到db
     @WorkerThread
