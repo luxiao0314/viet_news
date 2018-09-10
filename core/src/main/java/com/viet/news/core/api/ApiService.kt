@@ -1,9 +1,14 @@
 package com.viet.news.core.api
 
 import android.arch.lifecycle.LiveData
+import com.viet.news.core.domain.request.LoginParams
 import com.viet.news.core.domain.response.ArticlesResponse
+import com.viet.news.core.domain.response.ChannelListResponse
+import com.viet.news.core.domain.response.LoginRegisterResponse
 import com.viet.news.rac.ui.model.SourceResponse
+import retrofit2.http.Body
 import retrofit2.http.GET
+import retrofit2.http.POST
 import retrofit2.http.Query
 
 /**
@@ -14,8 +19,14 @@ interface ApiService {
 
     companion object {
         val NEWSAPI_URL = "https://newsapi.org/v1/"
-
+        val MAGICBOX_API = "http://magicbox.liaoyantech.cn/magicbox/api/"
     }
+
+    @POST
+    fun getChannelAllList(): LiveData<ApiResponse<List<ChannelListResponse>>>
+
+    @POST("v1/login/login")
+    fun login(@Body param: LoginParams): LiveData<ApiResponse<LoginRegisterResponse>>
 
     @GET("sources")
     fun getSources(@Query("language") language: String?,

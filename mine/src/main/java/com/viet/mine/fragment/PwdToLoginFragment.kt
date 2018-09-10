@@ -48,7 +48,7 @@ class PwdToLoginFragment : RealVisibleHintBaseFragment() {
 
         login_btn.clickWithTrigger {
             if (model.loginEnable()) {
-                activity?.finish()
+                model.login(this@PwdToLoginFragment)
             }
         }
 

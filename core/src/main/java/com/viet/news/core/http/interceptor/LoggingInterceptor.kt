@@ -1,4 +1,4 @@
-package com.viet.news.core.api.interceptor
+package com.viet.news.core.http.interceptor
 import okhttp3.*
 import java.io.IOException
 import java.util.concurrent.TimeUnit

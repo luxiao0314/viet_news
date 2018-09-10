@@ -4,9 +4,8 @@ import android.arch.lifecycle.LiveData
 import android.content.Context
 import com.viet.news.BuildConfig
 import com.viet.news.RateLimiter
+import com.viet.news.core.api.ApiRepository
 import com.viet.news.core.api.ApiResponse
-import com.viet.news.core.api.ApiService
-import com.viet.news.core.api.RetrofitManager
 import com.viet.news.core.domain.response.ArticlesResponse
 import com.viet.news.core.repository.NetworkBoundResource
 import com.viet.news.core.repository.NetworkOnlyResource
@@ -22,7 +21,7 @@ import java.util.concurrent.TimeUnit
  * @Email aaron@magicwindow.cn
  * @Description
  */
-public class NewsRepository constructor(private val apiInterface: ApiService = RetrofitManager.get().apiService()) {
+public class NewsRepository : ApiRepository() {
 
     val repoRateLimiter = RateLimiter<String>(10, TimeUnit.MINUTES)
 

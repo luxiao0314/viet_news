@@ -16,7 +16,13 @@ import dagger.Provides
 @Module
 class FindModule {
 
+    lateinit var fragment: FindFragment
+
     @FragmentScope
     @Provides
     internal fun providesFragmentManager(fragment: FindFragment): FragmentManager? = fragment.fragmentManager
+
+//    @FragmentScope
+//    @Provides
+//    internal fun providesViewModel(fragment: FindFragment): FindViewModel = fragment.viewModelDelegate(FindViewModel::class).getValue(fragment,null)
 }

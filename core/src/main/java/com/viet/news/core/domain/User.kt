@@ -67,13 +67,12 @@ class User private constructor() : Serializable {
     fun isLogin(): Boolean = accessToken.isNotBlank()
 
     fun login(userLogin: LoginRegisterResponse) {
-
         //init
-        this.telephone = userLogin.phoneNo
+        this.telephone = userLogin.phoneNumber
         this.avatarUrl = userLogin.imageUrl
         this.accessToken = userLogin.token
-        this.userName = userLogin.nick
-        this.userId = userLogin.walletUserId
+        this.userName = userLogin.nickName
+        this.userId = userLogin.userId
         currentUser = this@User
     }
 

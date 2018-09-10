@@ -2,13 +2,16 @@ package com.viet.mine.viewmodel
 
 import android.arch.lifecycle.LifecycleOwner
 import android.arch.lifecycle.MutableLiveData
+import android.arch.lifecycle.Observer
 import android.os.CountDownTimer
 import com.viet.mine.R
 import com.viet.mine.fragment.LoginFragment
 import com.viet.mine.fragment.PwdToLoginFragment
 import com.viet.mine.fragment.RegisterFragment
 import com.viet.mine.fragment.VerifyToLoginFragment
+import com.viet.mine.repository.LoginRepository
 import com.viet.mine.viewmodel.LoginViewModel.StaticFiled.countValue
+import com.viet.news.core.domain.User
 import com.viet.news.core.ui.App
 import com.viet.news.core.ui.BaseFragment
 import com.viet.news.core.viewmodel.BaseViewModel
@@ -19,7 +22,7 @@ import com.viet.news.core.viewmodel.BaseViewModel
  * @date 29/03/2018 17:17
  * @description
  */
-class LoginViewModel : BaseViewModel() {
+class LoginViewModel(var repository: LoginRepository = LoginRepository()) : BaseViewModel() {
 
     val titles = arrayListOf(App.instance.resources.getString(R.string.sign_in), App.instance.resources.getString(R.string.log_in))
     val fragments = arrayListOf<BaseFragment>(RegisterFragment(), LoginFragment())
@@ -27,14 +30,17 @@ class LoginViewModel : BaseViewModel() {
     val subFragments = mutableListOf<BaseFragment>(PwdToLoginFragment(), VerifyToLoginFragment())
     var currentTab = 0
 
+    //Pwd To Login tab
     var password: MutableLiveData<String> = MutableLiveData()   //登录密码
     var phoneNumber: MutableLiveData<String> = MutableLiveData()    //登录手机号
     var loginEnable: MutableLiveData<Boolean> = MutableLiveData()   //登录按钮是否可用
 
+    //sign in tab / verify To Login tab
     var registerPhoneNumber: MutableLiveData<String> = MutableLiveData()    //注册账号
     var registerVCode: MutableLiveData<String> = MutableLiveData()  //注册验证码
     var registerVCodeEnable: MutableLiveData<Boolean> = MutableLiveData()   //注册下一步按钮是否可用
 
+    //sign in next
     var registerPwd: MutableLiveData<String> = MutableLiveData()    //注册密码输入
     var registerConfirmPwd: MutableLiveData<String> = MutableLiveData() //注册密码确认
     var registerBtnEnable: MutableLiveData<Boolean> = MutableLiveData() //注册按钮是否可用
@@ -71,37 +77,6 @@ class LoginViewModel : BaseViewModel() {
         countDown.value = 0
         countValue = -1L
     }
-
-//    fun getVerificationCode(owner: LifecycleOwner): Maybe<HttpResponse<Any>> =
-//            apiService.verification(phoneNumber.value.toString(), zoneCode.value.toString())
-//                    .compose(RxJavaUtils.maybeToMain())
-//                    .bindLifecycle(owner)
-
-    fun loginByPassword(owner: LifecycleOwner, onLoginSuccess: () -> Unit) {
-//        val param = LoginParam()
-//        param.phoneNo = phoneNumber.value.toString()
-//        param.zoneCode = zoneCode.value.toString()
-////        param.validationCode = verificationCode.value.toString()
-//        param.password = password.value.toString()
-//
-//        apiService.loginByPassword(param)
-//                .compose(RxJavaUtils.observableToMain())
-//                .bindLifecycle(owner)
-//                .subscribe({
-//                    if (it.isOkStatus) {
-//                        phoneNumber.value?.let { phoneNumber -> User.currentUser.telephone = phoneNumber }
-//                        zoneCode.value?.let { zoneCode -> User.currentUser.zoneCode = zoneCode }
-//                        User.currentUser.login(it.data!!)
-//                        stopCountdown()//登录成功后结束本次倒计时
-//                        onLoginSuccess()
-//                    }
-//                }, { it.printStackTrace() })
-    }
-
-//    fun currentCountryByIp(): Maybe<HttpResponse<CurrentCountryResponse>> =
-//            apiService.currentCountryByIp()
-//                    .compose(RxJavaUtils.maybeToMain())
-
 
     internal object StaticFiled {
         var countValue = -1L
@@ -142,10 +117,10 @@ class LoginViewModel : BaseViewModel() {
     }
 
     fun loginEnable(): Boolean = when {
-        zoneCode.value == null || zoneCode.value.isNullOrBlank() -> {
-            statusMsg.value = R.string.verify_the_login
-            false
-        }
+//        zoneCode.value == null || zoneCode.value.isNullOrBlank() -> {
+//            statusMsg.value = R.string.verify_the_login
+//            false
+//        }
         phoneNumber.value == null || phoneNumber.value.isNullOrBlank() -> {
             statusMsg.value = R.string.verify_the_login
             false
@@ -157,7 +132,14 @@ class LoginViewModel : BaseViewModel() {
         else -> true
     }
 
-    fun canRegister(): MutableLiveData<Boolean> {
-        return MutableLiveData()
+    fun login(owner: LifecycleOwner) {
+        repository.login(phoneNumber.value, password.value).observe(owner, Observer {
+            if (it?.data != null) {
+                phoneNumber.value?.let { phoneNumber -> User.currentUser.telephone = phoneNumber }
+                zoneCode.value?.let { zoneCode -> User.currentUser.zoneCode = zoneCode }
+                User.currentUser.login(it.data!!)
+                stopCountdown()//登录成功后结束本次倒计时
+            }
+        })
     }
 }
