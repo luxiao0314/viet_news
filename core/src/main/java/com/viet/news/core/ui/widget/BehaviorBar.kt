@@ -64,9 +64,9 @@ class BehaviorBar @JvmOverloads constructor(context: Context, attrs: AttributeSe
             R.styleable.BehaviorBar_is_liked -> {
                 isLiked = typedArray.getBoolean(index, false)
                 if (isLiked) {
-                    setStatus(tv_like_num, R.drawable.ic_like_enable, R.color.behavior_enable)
+                    setStatus(tv_like_num, R.drawable.ic_coin_enable, R.color.behavior_enable)
                 } else {
-                    setStatus(tv_like_num, R.drawable.ic_like, R.color.behavior_normal)
+                    setStatus(tv_like_num, R.drawable.ic_coin, R.color.behavior_normal)
                 }
             }
             R.styleable.BehaviorBar_is_collected -> {
@@ -97,11 +97,11 @@ class BehaviorBar @JvmOverloads constructor(context: Context, attrs: AttributeSe
         tv_like_num.clickWithTrigger {
             if (isLiked) {
                 tv_like_num.text = if (likedNum == 0) "0" else (--likedNum).toString()
-                setStatus(tv_like_num, R.drawable.ic_like, R.color.behavior_normal)
+                setStatus(tv_like_num, R.drawable.ic_coin, R.color.behavior_normal)
                 isLiked = false
             } else {
                 tv_like_num.text = (++likedNum).toString()
-                setStatus(tv_like_num, R.drawable.ic_like_enable, R.color.behavior_enable)
+                setStatus(tv_like_num, R.drawable.ic_coin_enable, R.color.behavior_enable)
                 isLiked = true
             }
             mDelegate?.onLikeClick(isLiked, likedNum)
@@ -172,9 +172,9 @@ class BehaviorBar @JvmOverloads constructor(context: Context, attrs: AttributeSe
         isLiked = status
         likedNum = count
         if (status) {
-            setStatus(tv_like_num, R.drawable.ic_like_enable, R.color.behavior_enable)
+            setStatus(tv_like_num, R.drawable.ic_coin_enable, R.color.behavior_enable)
         } else {
-            setStatus(tv_like_num, R.drawable.ic_like, R.color.behavior_normal)
+            setStatus(tv_like_num, R.drawable.ic_coin, R.color.behavior_normal)
         }
         return this
     }

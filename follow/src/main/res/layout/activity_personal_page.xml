@@ -46,7 +46,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="15dp"
         android:layout_marginLeft="15dp"
-        android:drawableLeft="@drawable/ic_coin_yellow"
+        android:drawableLeft="@drawable/ic_coin_enable"
         android:drawablePadding="5dp"
         android:gravity="center"
         app:layout_constraintStart_toEndOf="@+id/iv_article_image"
