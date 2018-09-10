@@ -64,4 +64,5 @@ ext {
     saf_kotlin_utils = "0.0.4.7"
     rxbinding = "2.0.0"
     rxrelay = "2.0.0"
+    livedata_ext = "0.2.1"
 }

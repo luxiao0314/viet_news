@@ -56,6 +56,7 @@ dependencies {
     api "com.squareup.retrofit2:retrofit:$rootProject.retrofit"
     api "com.squareup.retrofit2:converter-gson:$rootProject.retrofit"
     api "com.squareup.retrofit2:retrofit-mock:$rootProject.retrofit"
+    api "com.squareup.retrofit2:adapter-rxjava2:$rootProject.retrofit"
     //api = "com.squareup.okhttp3:logging-interceptor:${rootProject.okhttp_logging_interceptor}"
     api "com.squareup.okhttp3:okhttp:$rootProject.okhttp"
     //api "com.google.code.gson:gson:$rootProject.gson"
@@ -72,6 +73,7 @@ dependencies {
     api 'android.arch.navigation:navigation-ui-ktx:' + rootProject.navigationVersion
     api 'com.github.chrisbanes:PhotoView:2.1.4'
     api "com.safframework.utils:saf-kotlin-ext:0.0.3.6"
+    api "com.safframework.livedata:livedata-ext:${rootProject.livedata_ext}"
 
     api 'com.just.agentweb:agentweb:' + rootProject.agentweb  //webview
 

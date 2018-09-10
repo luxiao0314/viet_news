@@ -6,6 +6,7 @@ import com.viet.news.core.domain.response.ArticlesResponse
 import com.viet.news.core.domain.response.ChannelListResponse
 import com.viet.news.core.domain.response.LoginRegisterResponse
 import com.viet.news.rac.ui.model.SourceResponse
+import io.reactivex.Maybe
 import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.POST
@@ -23,10 +24,10 @@ interface ApiService {
     }
 
     @POST("v1/channel/allList")
-    fun getChannelAllList(): LiveData<ApiResponse<List<ChannelListResponse>>>
+    fun getChannelAllList(): Maybe<HttpResponse<List<ChannelListResponse>>>
 
     @POST("v1/login/login")
-    fun login(@Body param: LoginParams): LiveData<ApiResponse<LoginRegisterResponse>>
+    fun login(@Body param: LoginParams): Maybe<HttpResponse<LoginRegisterResponse>>
 
     @GET("sources")
     fun getSources(@Query("language") language: String?,
