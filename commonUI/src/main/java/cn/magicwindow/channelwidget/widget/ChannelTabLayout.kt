@@ -1,5 +1,6 @@
 package cn.magicwindow.channelwidget.widget
 
+
 import android.content.Context
 import android.content.res.ColorStateList
 import android.graphics.Canvas
@@ -8,7 +9,6 @@ import android.graphics.Paint
 import android.graphics.Typeface
 import android.support.v4.view.ViewCompat
 import android.support.v4.view.ViewPager
-
 import android.util.AttributeSet
 import android.util.SparseBooleanArray
 import android.util.SparseIntArray
@@ -19,14 +19,10 @@ import android.widget.FrameLayout
 import android.widget.HorizontalScrollView
 import android.widget.LinearLayout
 import android.widget.TextView
-import cn.magicwindow.commonui.R
-
-
 import cn.magicwindow.channelwidget.entity.ChannelBean
-
-import java.util.ArrayList
-
+import cn.magicwindow.commonui.R
 import cn.magicwindow.utils.ResolutionUtils
+import java.util.*
 
 /**
  * @author null
@@ -133,6 +129,7 @@ class ChannelTabLayout @JvmOverloads constructor(context: Context, attrs: Attrib
     fun setDataList(dataList: List<ChannelBean>) {
         this.mDataList.clear()
         this.mDataList.addAll(dataList)
+        notifyDataSetChanged()
     }
 
     fun setupWithViewPager(viewPager: ViewPager?) {

@@ -9,10 +9,12 @@ import com.safframework.ext.clickWithTrigger
 import com.viet.follow.activity.PersonalPageActivity
 import com.viet.mine.R
 import com.viet.mine.activity.*
+import com.viet.news.core.domain.LoginEvent
+import com.viet.news.core.domain.LogoutEvent
 import com.viet.news.core.domain.User
 import com.viet.news.core.ext.loadCircle
 import com.viet.news.core.ui.BaseFragment
-import com.viet.news.webview.WebActivity
+import com.viet.news.core.utils.RxBus
 import kotlinx.android.synthetic.main.fragment_mine.*
 
 
@@ -31,7 +33,17 @@ class MineFragment : BaseFragment() {
         return mContainerView
     }
 
-    override fun initView(view: View) {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        initEvent()
+    }
+
+    private fun initEvent() {
+        compositeDisposable.add(RxBus.get().register(LogoutEvent::class.java) { refresh() })
+        compositeDisposable.add(RxBus.get().register(LoginEvent::class.java) { refresh() })
+    }
+
+    private fun refresh() {
         if (!User.currentUser.isLogin()) {
             btn_login.visibility = View.VISIBLE
             iv_user_icon.visibility = View.GONE
@@ -44,12 +56,18 @@ class MineFragment : BaseFragment() {
             rl_user.visibility = View.VISIBLE
             edit.visibility = View.VISIBLE
             iv_user_icon.loadCircle("")
-            iv_user_icon.clickWithTrigger {
-                startActivity(Intent(activity, PersonalPageActivity::class.java))
-            }
-            edit.clickWithTrigger {
-                context?.startActivity(Intent(activity, AccountInfoActivity::class.java))
-            }
+        }
+    }
+
+    override fun initView(view: View) {
+        refresh()
+
+        iv_user_icon.clickWithTrigger {
+            startActivity(Intent(activity, PersonalPageActivity::class.java))
+        }
+
+        edit.clickWithTrigger {
+            context?.startActivity(Intent(activity, AccountInfoActivity::class.java))
         }
 
         mine_settings.setClickDelegate {
@@ -79,10 +97,6 @@ class MineFragment : BaseFragment() {
     }
 
     private fun startActivity(cls: Class<*>) {
-//        if (!User.currentUser.isLogin()) {
-//            context?.startActivity(Intent(activity, LoginActivity::class.java))
-//        } else {
-            context?.startActivity(Intent(activity, cls))
-//        }
+        context?.startActivity(Intent(activity, cls))
     }
 }

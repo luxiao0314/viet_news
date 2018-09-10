@@ -48,8 +48,6 @@ class FindFragment : InjectFragment(), AddChannelFragment.DataChangeListener, (S
 
     override fun initView(view: View) {
         id_view_Pager.offscreenPageLimit = 5
-        pagerAdapter.setData(model.dataList)
-        id_tab_pager_indicator.setDataList(model.dataList)
         id_view_Pager.adapter = pagerAdapter
         id_tab_pager_indicator.setupWithViewPager(id_view_Pager)
 
@@ -60,9 +58,12 @@ class FindFragment : InjectFragment(), AddChannelFragment.DataChangeListener, (S
 
 
     private fun initData() {
-        model.getChannelAllList(this){
-
-        }
+        pagerAdapter.setData(model.dataList)
+        id_tab_pager_indicator.setDataList(model.dataList)
+//        model.getChannelAllList(this) {
+//            pagerAdapter.setData(model.dataList)
+//            id_tab_pager_indicator.setDataList(model.dataList)
+//        }
     }
 
     override fun onDataChanged(list: List<ChannelBean>, position: Int) {
@@ -70,7 +71,6 @@ class FindFragment : InjectFragment(), AddChannelFragment.DataChangeListener, (S
         model.dataList.addAll(list)
         pagerAdapter.notifyDataSetChanged()
         id_tab_pager_indicator.setDataList(model.dataList)
-        id_tab_pager_indicator.notifyDataSetChanged()
         id_view_Pager.currentItem = position
     }
 
@@ -87,6 +87,7 @@ class MyViewPager @Inject constructor(fm: FragmentManager?) : FragmentStatePager
 
     fun setData(list: List<ChannelBean>) {
         mDataList = list
+        notifyDataSetChanged()
     }
 
     override fun getCount(): Int = mDataList.size

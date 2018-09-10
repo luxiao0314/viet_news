@@ -12,9 +12,11 @@ import com.viet.mine.fragment.RegisterFragment
 import com.viet.mine.fragment.VerifyToLoginFragment
 import com.viet.mine.repository.LoginRepository
 import com.viet.mine.viewmodel.LoginViewModel.StaticFiled.countValue
+import com.viet.news.core.domain.LoginEvent
 import com.viet.news.core.domain.User
 import com.viet.news.core.ui.App
 import com.viet.news.core.ui.BaseFragment
+import com.viet.news.core.utils.RxBus
 import com.viet.news.core.viewmodel.BaseViewModel
 
 /**
@@ -143,6 +145,7 @@ class LoginViewModel(var repository: LoginRepository = LoginRepository()) : Base
                         zoneCode.value?.let { zoneCode -> User.currentUser.zoneCode = zoneCode }
                         User.currentUser.login(it.data!!)
                         stopCountdown()//登录成功后结束本次倒计时
+                        RxBus.get().post(LoginEvent())
                         func()
                     }
                 }, {

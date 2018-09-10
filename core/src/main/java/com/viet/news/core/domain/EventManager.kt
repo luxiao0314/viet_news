@@ -9,4 +9,6 @@ package com.viet.news.core.domain
  */
 open class LogoutEvent
 
+open class LoginEvent
+
 open class RefreshNewsEvent
