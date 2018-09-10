@@ -6,8 +6,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.Navigation
 import com.viet.mine.R
+import com.viet.news.core.domain.User
+import com.viet.news.core.ext.click
 import com.viet.news.core.ui.BaseFragment
 import com.viet.news.core.ui.widget.CommonItem
+import kotlinx.android.synthetic.main.fragment_mine_setting.*
 
 /**
  * @Description 设置
@@ -47,6 +50,9 @@ class SettingFragment : BaseFragment() {
             }
         }
 
-
+        btn_logout.click {
+            User.currentUser.logout()
+            activity?.finish()
+        }
     }
 }
