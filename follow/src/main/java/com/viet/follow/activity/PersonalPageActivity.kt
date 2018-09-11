@@ -8,11 +8,13 @@ import android.support.v4.content.ContextCompat
 import android.support.v7.widget.DividerItemDecoration
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.OrientationHelper
+import com.chenenyu.router.annotation.Route
 import com.jaeger.library.StatusBarUtil
 import com.safframework.utils.support
 import com.viet.follow.R
 import com.viet.follow.adapter.PersonalPageAdapter
 import com.viet.follow.viewmodel.PersonalPageModel
+import com.viet.news.core.config.Config
 import com.viet.news.core.delegate.viewModelDelegate
 import com.viet.news.core.ext.click
 import com.viet.news.core.ext.loadBlur
@@ -28,6 +30,7 @@ import javax.inject.Inject
  * @Date 07/09/2018 10:45 AM
  * @Version 1.0.0
  */
+@Route(value = [Config.ROUTER_PERSONAL_PAGE_ACTIVITY])
 class PersonalPageActivity : InjectActivity() {
 
     @Inject

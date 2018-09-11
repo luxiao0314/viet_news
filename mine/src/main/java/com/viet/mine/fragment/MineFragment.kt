@@ -56,7 +56,7 @@ class MineFragment : BaseFragment() {
             iv_user_icon.visibility = View.GONE
             rl_user.visibility = View.GONE
             edit.visibility = View.GONE
-            btn_login.clickWithTrigger { routerWithAnim(Config.ROUTER_LOGIN_ACTIVITY) }
+            btn_login.clickWithTrigger { routerWithAnim(Config.ROUTER_LOGIN_ACTIVITY).go(this) }
         } else {
             btn_login.visibility = View.GONE
             iv_user_icon.visibility = View.VISIBLE
@@ -71,6 +71,7 @@ class MineFragment : BaseFragment() {
 
         iv_user_icon.clickWithTrigger {
             startActivity(Intent(activity, PersonalPageActivity::class.java))
+            routerWithAnim(Config.ROUTER_PERSONAL_PAGE_ACTIVITY).go(this)
         }
 
         edit.clickWithTrigger {
@@ -107,7 +108,7 @@ class MineFragment : BaseFragment() {
         if (User.currentUser.isLogin()) {
             routerWithAnim(path).go(context)
         } else {
-            context?.startActivity(Intent(activity, LoginActivity::class.java))
+            routerWithAnim(Config.ROUTER_LOGIN_ACTIVITY)
         }
     }
 }

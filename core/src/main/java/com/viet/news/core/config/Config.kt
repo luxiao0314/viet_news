@@ -9,8 +9,7 @@ object Config {
     val SHARE_REQUEST_CODE_MESSENGER = 1002
     val SHARE_REQUEST_CODE_COPY = 1003
 
-    // Router URI
-    const val ROUTER_LOGIN_ACTIVITY = "/login/activity"
+
 
     //语言切换
     const val LANGUAGE_CHANGED = "language_changed"
@@ -37,7 +36,8 @@ object Config {
 
 
     // Router URI
-
+    const val ROUTER_LOGIN_ACTIVITY = "/login/activity"
+    const val ROUTER_PERSONAL_PAGE_ACTIVITY = "/personal_page/activity"
     //我的->activity
     const val ROUTER_MINE_WALLET_ACTIVITY = "/mine/wallet/activity"
     const val ROUTER_MINE_INVITE_ACTIVITY = "/mine/invite/activity"
@@ -56,6 +56,8 @@ object Config {
     const val ROUTER_MINE_EDIT_CHANGE_PHONE_FRAGMENT = "/mine/edit/change/phone/fragment"
     const val ROUTER_MINE_EDIT_CHANGE_PWD_FRAGMENT = "/mine/edit/change/pwd/fragment"
     const val ROUTER_MINE_EDIT_VERIFY_CODE_FRAGMENT = "/mine/edit/verify_code/fragment"
+
+
 
 
 }
