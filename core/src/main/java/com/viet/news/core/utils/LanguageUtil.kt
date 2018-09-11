@@ -1,5 +1,6 @@
 package com.viet.news.core.utils
 
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.content.res.Resources
@@ -45,7 +46,7 @@ object LanguageUtil {
     /**
      * 无动画模式，打开MainActivity
      */
-    fun routToMain(context: Context = BaseApplication.instance) {
+    fun routToMain(activity: Activity? ) {
         //TODO tsing 如果将来需要在应用内实现语言切换，则需要实现此方法来跳转到主界面 重新加载一遍UI，需要确保主界面是singleTask 或者用CLEAR_TASK与NEW_TASK的flag启动
         val intent = Intent()
         intent.setClassName("com.viet.news", "com.viet.news.ui.activity.MainActivity")
@@ -55,7 +56,8 @@ object LanguageUtil {
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
         }
-        context.startActivity(intent)
+        activity?.startActivity(intent)
+        activity?. overridePendingTransition(0, 0)
         //TODO  END  你们用router或者navigation。。到时候自己换。。
     }
 
@@ -122,7 +124,7 @@ object LanguageUtil {
      * 若App进入后台，此时系统语言被修改，再次进入App需要在onCreate方法中调用此方法
      * @description 在打开app状态下系统语言被修改，再次进入app则切换到相应语言后跳转到MainActivity
      */
-    fun checkLocalLanguage(context: Context) {
+    fun checkLocalLanguage(activity: Activity) {
         //获取本机语言
         val locale = getSystemLocale() ?: return
         //获取缓存中的本地语言
@@ -137,14 +139,14 @@ object LanguageUtil {
             if (cacheStr != localeStr) {
                 //不同则将当前存入缓存后重启界面
                 SPHelper.create().putString(Config.LAST_LANGUAGE, localeStr)
-                routToMain(context)
+                routToMain(activity)
             } else {
                 //缓存与本机相同。
                 // 若为跟随系统，则检查App语言和系统语言是否一致，若不一致 则重新进
                 if (getSelectedLanguage(BaseApplication.instance) == AUTO) {
                     val appLocaleStr = combineHeader(getAppLocale())
                     if (appLocaleStr != localeStr) {
-                        routToMain(context)
+                        routToMain(activity)
                     }
                 }
             }

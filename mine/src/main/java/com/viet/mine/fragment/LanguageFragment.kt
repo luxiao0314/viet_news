@@ -49,7 +49,7 @@ class LanguageFragment : BaseFragment() {
             override fun onItemClicked(recyclerView: RecyclerView, position: Int, v: View) {
                 if (LanguageUtil.needChange(position)) {
                     LanguageUtil.saveSelectLanguage(context!!, position)
-                    LanguageUtil.routToMain(context!!)
+                    LanguageUtil.routToMain(activity)
                 } else {
                     //当不需要切换语言时，判断是否是【跟随】 与【系统语言】之间的切换
                     val localIndex = SPHelper.create().getInt(Config.SELECTED_LANGUAGE)
