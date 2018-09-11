@@ -2,28 +2,24 @@ package com.viet.news.core.api
 
 import android.arch.lifecycle.LiveData
 import com.viet.news.core.domain.request.LoginParams
-import com.viet.news.core.domain.response.ArticlesResponse
+import com.viet.news.core.domain.request.RegisterParams
+import com.viet.news.core.domain.response.ChannelAllListResponse
 import com.viet.news.core.domain.response.ChannelListResponse
 import com.viet.news.core.domain.response.LoginRegisterResponse
-import com.viet.news.rac.ui.model.SourceResponse
 import retrofit2.http.Body
-import retrofit2.http.GET
 import retrofit2.http.POST
-import retrofit2.http.Query
 
 /**
  * Created by Tony Shen on 2017/8/15.
  */
 interface ApiService {
 
-
     companion object {
-        val NEWSAPI_URL = "https://newsapi.org/v1/"
-        val MAGICBOX_API = "http://magicbox.liaoyantech.cn/magicbox/api/"
+        const val MAGICBOX_API = "http://magicbox.liaoyantech.cn/magicbox/api/"
     }
 
     @POST("v1/channel/allList")
-    fun getChannelAllList(): LiveData<ApiResponse<ChannelListResponse>>
+    fun getChannelAllList(): LiveData<ApiResponse<ChannelAllListResponse>>
 
     @POST("v1/channel/list")
     fun getChannelList(): LiveData<ApiResponse<ChannelListResponse>>
@@ -31,15 +27,9 @@ interface ApiService {
     @POST("v1/login/login")
     fun login(@Body param: LoginParams): LiveData<ApiResponse<LoginRegisterResponse>>
 
-    @GET("sources")
-    fun getSources(@Query("language") language: String?,
-                   @Query("category") category: String?,
-                   @Query("country") country: String?): LiveData<ApiResponse<SourceResponse>>
-
-    @GET("articles")
-    fun getArticles(@Query("source") source: String,
-                    @Query("sortBy") sortBy: String?,
-                    @Query("apiKey") apiKey: String):  LiveData<ApiResponse<ArticlesResponse>>
+    //POST /v1/login/register
+    @POST("v1/login/login")
+    fun register(@Body param: RegisterParams): LiveData<ApiResponse<LoginRegisterResponse>>
     /**
      * 检查token过期接口
      * @param param

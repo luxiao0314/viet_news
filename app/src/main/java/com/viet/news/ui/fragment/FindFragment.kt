@@ -55,7 +55,10 @@ class FindFragment : InjectFragment(), AddChannelFragment.DataChangeListener {
     }
 
     private fun initData() {
-        model.getChannelAllList(this)
+        model.getChannelAllList(this) {
+            mAddChannelFragment = AddChannelFragment(model.followList, model.unFollowList)
+            mAddChannelFragment?.setOnDataChangeListener(this)
+        }
         model.getChannelList(this) {
             id_tab_pager_indicator.setDataList(model.normalList)
             pagerAdapter.setData(model.normalList)
@@ -67,9 +70,9 @@ class FindFragment : InjectFragment(), AddChannelFragment.DataChangeListener {
         id_view_Pager.adapter = pagerAdapter
         id_tab_pager_indicator.setupWithViewPager(id_view_Pager)
 
-        mAddChannelFragment = AddChannelFragment(model.followList, model.notFollowList)
-        mAddChannelFragment?.setOnDataChangeListener(this)
-        id_add_channel_entry_iv.click { mAddChannelFragment?.show(fragmentManager, "addChannel") }
+        id_add_channel_entry_iv.click {
+            mAddChannelFragment?.show(fragmentManager, "addChannel")
+        }
     }
 
     override fun onDataChanged(list: List<ChannelBean>, position: Int) {

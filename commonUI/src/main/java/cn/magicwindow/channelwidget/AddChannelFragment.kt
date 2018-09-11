@@ -21,15 +21,10 @@ import kotlinx.android.synthetic.main.layout_tab_edit.*
 /**
  * @author null
  */
-class AddChannelFragment(private var mMyChannelList: MutableList<ChannelBean>, private var mRecChannelList:  MutableList<ChannelBean>) : DialogFragment(), ChannelAdapter.ChannelItemClickListener {
-    private var mContainerView: View? = null
+class AddChannelFragment(private var mMyChannelList: MutableList<ChannelBean>, private var mRecChannelList: MutableList<ChannelBean>) : DialogFragment(), ChannelAdapter.ChannelItemClickListener {
 
     override fun onStart() {
         super.onStart()
-        initParams()
-    }
-
-    private fun initParams() {
         val window = dialog?.window
         val lp = window?.attributes
 //        lp?.dimAmount = 0F
@@ -48,8 +43,7 @@ class AddChannelFragment(private var mMyChannelList: MutableList<ChannelBean>, p
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        mContainerView = inflater.inflate(R.layout.layout_tab_edit, container, false)
-        return mContainerView
+        return inflater.inflate(R.layout.layout_tab_edit, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
