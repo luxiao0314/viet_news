@@ -26,4 +26,10 @@ class SettingRepository : ApiRepository() {
             override fun createCall(): LiveData<ApiResponse<Any>> = apiInterface.feedback(params)
         }.asLiveData()
     }
+
+    fun updateNickName(nickname:String): LiveData<Resource<Any>>{
+        return object : NetworkOnlyResource<Any>(){
+            override fun createCall(): LiveData<ApiResponse<Any>> = apiInterface.updateNickName(nickname)
+        }.asLiveData()
+    }
 }
