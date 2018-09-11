@@ -4,6 +4,8 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
 apply plugin: 'kotlin-android-extensions'
 
+apply plugin: 'com.chenenyu.router'
+
 android {
     compileSdkVersion 28
     defaultConfig {
@@ -26,5 +28,5 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation project(path: ':core')
     implementation project(path: ':commonUI')
-    kapt "com.chenenyu.router:compiler:$rootProject.router_compiler"
+//    kapt "com.chenenyu.router:compiler:$rootProject.router_compiler"
 }

@@ -4,6 +4,8 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
 apply plugin: 'kotlin-android-extensions'
 
+apply plugin: 'com.chenenyu.router'
+
 android {
     compileSdkVersion 28
 
@@ -39,5 +41,5 @@ dependencies {
     kapt "com.google.dagger:dagger-compiler:$rootProject.dagger"
     kapt "com.google.dagger:dagger-android-processor:$rootProject.dagger"
     implementation "com.chenenyu.router:router:$rootProject.router"
-    kapt "com.chenenyu.router:compiler:$rootProject.router_compiler"
+//    kapt "com.chenenyu.router:compiler:$rootProject.router_compiler"
 }

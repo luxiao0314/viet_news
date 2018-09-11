@@ -5,6 +5,8 @@ apply plugin: 'kotlin-android-extensions'
 //Apply Safe Args Plugin
 apply plugin: 'androidx.navigation.safeargs'
 
+apply plugin: 'com.chenenyu.router'
+
 android {
     compileSdkVersion 28
     defaultConfig {
@@ -60,6 +62,6 @@ dependencies {
     kapt "com.github.bumptech.glide:compiler:$rootProject.glide"
     kapt "android.arch.persistence.room:compiler:$rootProject.room"
     kapt "android.arch.lifecycle:compiler:$rootProject.lifecycle"
-    kapt "com.chenenyu.router:compiler:$rootProject.router_compiler"
+//    kapt "com.chenenyu.router:compiler:$rootProject.router_compiler"
 
 }

@@ -5,7 +5,7 @@ buildscript {
 //    apply from: 'versions.gradle'
     repositories {
         google()
-        maven{ url 'http://maven.aliyun.com/nexus/content/groups/public/'}
+        maven { url 'http://maven.aliyun.com/nexus/content/groups/public/' }
         jcenter()
     }
     dependencies {
@@ -17,13 +17,15 @@ buildscript {
 
         //Apply Safe Args Plugin
         classpath "android.arch.navigation:navigation-safe-args-gradle-plugin:1.0.0-alpha05"
+
+        classpath "com.chenenyu.router:gradle-plugin:1.6.0-beta1"
     }
 }
 
 allprojects {
     repositories {
         google()
-        maven{ url 'http://maven.aliyun.com/nexus/content/groups/public/'}
+        maven { url 'http://maven.aliyun.com/nexus/content/groups/public/' }
         jcenter()
         mavenCentral()
         maven { url "https://jitpack.io" }
@@ -67,6 +69,6 @@ ext {
     tony_common_utils = "1.2.5"
     saf_extras_delegate = "0.1.0"
     livedata_ext = "0.2.1"
-    router = "1.5.1"
-    router_compiler = "1.5.0"
+    router = "1.6.0"
+//    router_compiler = "1.5.0"
 }

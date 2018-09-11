@@ -3,6 +3,8 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
 apply plugin: 'kotlin-android-extensions'
 
+apply plugin: 'com.chenenyu.router'
+
 android {
     compileSdkVersion 27
 
@@ -115,5 +117,5 @@ dependencies {
     })
 
     api "com.chenenyu.router:router:$rootProject.router"
-    kapt "com.chenenyu.router:compiler:$rootProject.router_compiler"
+//    kapt "com.chenenyu.router:compiler:$rootProject.router_compiler"
 }
