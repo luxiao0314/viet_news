@@ -47,12 +47,12 @@ class TaskFragment : RealVisibleHintBaseFragment() {
     private fun initEvent() {
         refreshLayout.setOnRefreshListener {
             loadTaskListData()
+            refreshLayout.setPrimaryColorsId(R.color.red_hint, android.R.color.white)
+            ClassicsHeader.REFRESH_HEADER_FINISH = "任务列表已更新"
             it.finishRefresh()
         }
         refreshLayout.setOnMultiPurposeListener(object : SimpleMultiPurposeListener() {
             override fun onHeaderFinish(header: RefreshHeader?, success: Boolean) {
-                refreshLayout.setPrimaryColorsId(R.color.red_hint, android.R.color.white)
-                ClassicsHeader.REFRESH_HEADER_FINISH = "任务列表已更新"
 //                ClassicsHeader.REFRESH_HEADER_FINISH = "暂无更新内容"
             }
 
