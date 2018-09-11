@@ -8,14 +8,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.navigation.Navigation
-import com.jakewharton.rxbinding2.view.RxView
 import com.jakewharton.rxbinding2.widget.RxTextView
 import com.viet.mine.R
 import com.viet.mine.viewmodel.SettingViewModel
 import com.viet.news.core.delegate.viewModelDelegate
 import com.viet.news.core.ext.clickWithTrigger
 import com.viet.news.core.ui.BaseFragment
-import kotlinx.android.synthetic.main.fragment_login_pwd.*
 import kotlinx.android.synthetic.main.fragment_mine_setting_feedback.*
 
 /**
@@ -45,12 +43,12 @@ class FeedBackFragment : BaseFragment() {
                 .subscribe {
                     model.feedback.value = it.toString()
                     model.count.value = it.toString().trim().length
-                    model.checkSubmitBtnEnable()
+                    model.checkFeedBackSubmitBtnEnable()
                 }
 
         confirm_btn.clickWithTrigger {
             val feedback = edit_content.text.toString()
-            if (model.submitEnable()) {
+            if (model.feedBackSubmitEnable()) {
                 model.feedBack(this, feedback) { isOk ->
                     if (isOk) {
                         Navigation.findNavController(view).navigateUp()
