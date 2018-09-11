@@ -11,8 +11,10 @@ import android.support.v7.widget.OrientationHelper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import com.scwang.smartrefresh.layout.api.RefreshHeader
 import com.scwang.smartrefresh.layout.header.ClassicsHeader
+import com.scwang.smartrefresh.layout.internal.InternalClassics
 import com.scwang.smartrefresh.layout.listener.SimpleMultiPurposeListener
 import com.viet.follow.R
 import com.viet.follow.adapter.NewsAdapter
@@ -69,25 +71,33 @@ class NewsFragment : RealVisibleHintBaseFragment(), HasSupportFragmentInjector {
     }
 
     private fun initListener() {
-        refreshLayout.setOnRefreshListener {
-            model.getNewsArticles().observe(this, Observer { adapter.addData(it?.articles) })
-            refreshLayout.setPrimaryColorsId(R.color.red_hint, android.R.color.white)
-            ClassicsHeader.REFRESH_HEADER_FINISH = "已更新2篇文章"
-            it.finishRefresh()
+        refreshLayout.setOnRefreshListener { layout->
+            model.getNewsArticles().observe(this, Observer {
+                adapter.addData(it?.articles)
+                layout.finishRefresh()
+            })
         }
         refreshLayout.setOnLoadMoreListener {
             it.finishLoadMore(2000/*,false*/)//传入false表示加载失败
             model.getNewsArticles().observe(this, Observer { adapter.addData(it?.articles) })
         }
-        refreshLayout.setOnMultiPurposeListener(object : SimpleMultiPurposeListener() {
-            override fun onHeaderFinish(header: RefreshHeader?, success: Boolean) {
-//                ClassicsHeader.REFRESH_HEADER_FINISH = "暂无更新内容"
-            }
+        refreshLayout.setOnMultiPurposeListener(listener)
+    }
 
-            override fun onHeaderMoving(header: RefreshHeader?, isDragging: Boolean, percent: Float, offset: Int, headerHeight: Int, maxDragHeight: Int) {
-                refreshLayout.setPrimaryColorsId(R.color.white, R.color.text_gray)
-            }
-        })
+    private val listener = object : SimpleMultiPurposeListener() {
+
+        override fun onHeaderFinish(header: RefreshHeader?, success: Boolean) {
+            header as ClassicsHeader
+            header.findViewById<TextView>(InternalClassics.ID_TEXT_TITLE.toInt()).text = "已更新2篇文章"
+            header.setPrimaryColor(resources.getColor(R.color.red_hint))
+            header.setAccentColor(resources.getColor(R.color.white))
+        }
+
+        override fun onHeaderMoving(header: RefreshHeader?, isDragging: Boolean, percent: Float, offset: Int, headerHeight: Int, maxDragHeight: Int) {
+            header as ClassicsHeader
+            header.setPrimaryColor(resources.getColor(R.color.white))
+            header.setAccentColor(resources.getColor(R.color.text_gray))
+        }
     }
 
     companion object {

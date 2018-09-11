@@ -7,9 +7,6 @@ import android.support.v7.widget.OrientationHelper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.scwang.smartrefresh.layout.api.RefreshHeader
-import com.scwang.smartrefresh.layout.header.ClassicsHeader
-import com.scwang.smartrefresh.layout.listener.SimpleMultiPurposeListener
 import com.viet.news.core.delegate.viewModelDelegate
 import com.viet.news.core.ui.RealVisibleHintBaseFragment
 import com.viet.task.R
@@ -47,19 +44,8 @@ class TaskFragment : RealVisibleHintBaseFragment() {
     private fun initEvent() {
         refreshLayout.setOnRefreshListener {
             loadTaskListData()
-            refreshLayout.setPrimaryColorsId(R.color.red_hint, android.R.color.white)
-            ClassicsHeader.REFRESH_HEADER_FINISH = "任务列表已更新"
             it.finishRefresh()
         }
-        refreshLayout.setOnMultiPurposeListener(object : SimpleMultiPurposeListener() {
-            override fun onHeaderFinish(header: RefreshHeader?, success: Boolean) {
-//                ClassicsHeader.REFRESH_HEADER_FINISH = "暂无更新内容"
-            }
-
-            override fun onHeaderMoving(header: RefreshHeader?, isDragging: Boolean, percent: Float, offset: Int, headerHeight: Int, maxDragHeight: Int) {
-                refreshLayout.setPrimaryColorsId(R.color.white, R.color.text_gray)
-            }
-        })
     }
 
     override fun onFragmentFirstVisible() {
