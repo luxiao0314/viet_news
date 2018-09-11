@@ -10,6 +10,7 @@ import android.view.MenuItem
 import com.jaeger.library.StatusBarUtil
 import com.safframework.utils.support
 import com.viet.news.core.R
+import com.viet.news.core.ext.finishWithAnim
 import com.viet.news.core.utils.LanguageUtil
 
 
@@ -58,7 +59,7 @@ abstract class BaseActivity : AppCompatActivity() {
 
     override fun onKeyDown(keyCode: Int, event: KeyEvent?): Boolean = if (KeyEvent.KEYCODE_BACK == keyCode) {
         if (supportFragmentManager.backStackEntryCount == 0) {
-            finish()
+            finishWithAnim()
             true
         } else {
             try {
