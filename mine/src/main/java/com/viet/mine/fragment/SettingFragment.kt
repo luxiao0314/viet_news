@@ -50,9 +50,15 @@ class SettingFragment : BaseFragment() {
             }
         }
 
-        btn_logout.click {
-            User.currentUser.logout()
-            activity?.finish()
+        if (User.currentUser.isLogin()){
+            btn_logout.visibility = View.VISIBLE
+            btn_logout.click {
+                User.currentUser.logout()
+                activity?.finish()
+            }
+        }else{
+            btn_logout.visibility = View.GONE
         }
+
     }
 }
