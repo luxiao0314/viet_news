@@ -47,5 +47,5 @@
             android:layout_marginEnd="@dimen/page_padding_right"
             android:layout_marginRight="@dimen/page_padding_right"
             android:clickable="false"
-            android:text="@string/title_change_phone_num" />
+            android:text="@string/submit" />
 </LinearLayout>
