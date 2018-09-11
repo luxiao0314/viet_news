@@ -6,7 +6,9 @@ import com.viet.news.core.domain.response.ChannelAllListResponse
 import com.viet.news.core.domain.response.ChannelListResponse
 import com.viet.news.core.domain.response.LoginRegisterResponse
 import retrofit2.http.Body
+import retrofit2.http.GET
 import retrofit2.http.POST
+import retrofit2.http.Path
 
 
 /**
@@ -53,11 +55,11 @@ interface ApiService {
     @POST("v1/feedback/add")
     fun feedback(@Body param: FeedBackParams): LiveData<ApiResponse<Any>>
 
-    @POST("v1/content/collection")
-    fun collection(@Body param: CollectionParams): LiveData<ApiResponse<Any>>
+    @GET("v1/content/collection/{contentId}")
+    fun collection(@Path("contentId") contentId: String): LiveData<ApiResponse<Any>>
 
-    @POST("v1/content/like")
-    fun like(@Body param: LikeParams): LiveData<ApiResponse<Any>>
+    @GET("v1/content/like/{contentId}")
+    fun like(@Path("contentId") contentId: String): LiveData<ApiResponse<Any>>
 
 
 
