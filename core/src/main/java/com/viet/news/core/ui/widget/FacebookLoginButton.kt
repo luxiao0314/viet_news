@@ -103,18 +103,15 @@ class FacebookLoginButton @JvmOverloads constructor(
         var onCancel: (() -> Unit)? = null
         var onError: ((error: FacebookException?) -> Unit)? = null
         override fun onSuccess(result: LoginResult?) {
-            L.e("onSuccess")
             loginSuccess()
             onSuccess?.let { it(result) }
         }
 
         override fun onCancel() {
-            L.e("onSuccess")
             onCancel?.let { it() }
         }
 
         override fun onError(error: FacebookException?) {
-            L.e("onSuccess")
             onError?.let { it(error) }
         }
     }

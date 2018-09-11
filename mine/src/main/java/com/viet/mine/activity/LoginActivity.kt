@@ -31,7 +31,7 @@ class LoginActivity : InjectActivity() {
     @Inject
     internal lateinit var adapter: TabFragmentAdapter
     private val model by viewModelDelegate(LoginViewModel::class)
-    val callbackManager = CallbackManager.Factory.create()
+    private val callbackManager = CallbackManager.Factory.create()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)

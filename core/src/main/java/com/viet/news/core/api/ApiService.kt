@@ -34,18 +34,18 @@ interface ApiService {
     @POST("v1/login/login")
     fun login(@Body param: LoginParams): LiveData<ApiResponse<LoginRegisterResponse>>
 
-    //POST /v1/login/register
-    @POST("v1/login/login")
+    @POST("v1/login/register")
     fun register(@Body param: RegisterParams): LiveData<ApiResponse<LoginRegisterResponse>>
 
     @POST("v1/feedback/add")
     fun feedback(@Body param: FeedBackParams): LiveData<ApiResponse<Any>>
 
-    @POST("/v1/content/collection")
+    @POST("v1/content/collection")
     fun collection(@Body param: CollectionParams): LiveData<ApiResponse<Any>>
 
-    @POST("/v1/content/like")
+    @POST("v1/content/like")
     fun like(@Body param: LikeParams): LiveData<ApiResponse<Any>>
+
 
 
     /**
