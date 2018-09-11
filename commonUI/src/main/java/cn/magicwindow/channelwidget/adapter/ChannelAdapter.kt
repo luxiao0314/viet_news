@@ -35,6 +35,7 @@ class ChannelAdapter(context: Context?, recyclerView: RecyclerView, private val 
     private val mTypeMap: SparseArray<IChannelType> = SparseArray()
     // 是否是编辑状态
     private var isEditMode: Boolean = false
+    private var dataChanged: Boolean = false
     private val mItemTouchHelper: ItemTouchHelper = ItemTouchHelper(ItemDragHelperCallback(this))
     // touch 点击开始时间
     private var startTime: Long = 0
@@ -136,14 +137,14 @@ class ChannelAdapter(context: Context?, recyclerView: RecyclerView, private val 
         override fun clickMyChannel(mRecyclerView: RecyclerView, holder: ChannelViewHolder) {
             val position = holder.adapterPosition
             if (isEditMode) {
-                moveMyToOther(position)
+                channelItemClickListener?.moveMyToOther(position) { moveMyToOther(position) }
             } else {
                 channelItemClickListener?.onChannelItemClick(mMyChannelItems, position - mMyHeaderCount)
             }
         }
 
         override fun close() {
-            channelItemClickListener?.onCloseClick()
+            channelItemClickListener?.onCloseClick(mMyChannelItems, dataChanged)
         }
 
         override fun touchMyChannel(motionEvent: MotionEvent, holder: ChannelViewHolder) {
@@ -174,7 +175,7 @@ class ChannelAdapter(context: Context?, recyclerView: RecyclerView, private val 
 
         override fun clickRecChannel(mRecyclerView: RecyclerView, holder: ChannelViewHolder) {
             val position = holder.adapterPosition
-            moveOtherToMy(position)
+            channelItemClickListener?.moveOtherToMy(position) { moveOtherToMy(position) }
         }
     }
 
@@ -214,9 +215,10 @@ class ChannelAdapter(context: Context?, recyclerView: RecyclerView, private val 
     }
 
     /**
-     * 我的频道 -> 推荐频道
+     * 已订阅 -> 未订阅
      */
     private fun moveMyToOther(position: Int) {
+        dataChanged = true
         val myPosition = position - mMyHeaderCount
         val item = mMyChannelItems[myPosition]
         mMyChannelItems.removeAt(myPosition)
@@ -225,9 +227,10 @@ class ChannelAdapter(context: Context?, recyclerView: RecyclerView, private val 
     }
 
     /**
-     * 推荐频道-> 我的频道
+     * 未订阅-> 已订阅
      */
     private fun moveOtherToMy(position: Int) {
+        dataChanged = true
         val recPosition = processItemRemoveAdd(position)
         if (recPosition == -1) {
             return
@@ -255,7 +258,9 @@ class ChannelAdapter(context: Context?, recyclerView: RecyclerView, private val 
 
     interface ChannelItemClickListener {
         fun onChannelItemClick(list: List<ChannelBean>, position: Int)
-        fun onCloseClick()
+        fun onCloseClick(list: List<ChannelBean>, dataChange: Boolean)
+        fun moveMyToOther(position: Int, function: () -> Unit)
+        fun moveOtherToMy(position: Int, function: () -> Unit)
     }
 
     companion object {

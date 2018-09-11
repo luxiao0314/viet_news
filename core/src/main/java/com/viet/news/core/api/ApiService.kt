@@ -1,16 +1,14 @@
 package com.viet.news.core.api
 
 import android.arch.lifecycle.LiveData
+import com.viet.news.core.domain.request.ChannelParams
 import com.viet.news.core.domain.request.FeedBackParams
 import com.viet.news.core.domain.request.LoginParams
 import com.viet.news.core.domain.request.RegisterParams
-import com.viet.news.core.domain.response.ArticlesResponse
 import com.viet.news.core.domain.response.ChannelAllListResponse
 import com.viet.news.core.domain.response.ChannelListResponse
 import com.viet.news.core.domain.response.LoginRegisterResponse
-import com.viet.news.rac.ui.model.SourceResponse
 import retrofit2.http.Body
-import retrofit2.http.GET
 import retrofit2.http.POST
 
 
@@ -22,6 +20,12 @@ interface ApiService {
     companion object {
         const val MAGICBOX_API = "http://magicbox.liaoyantech.cn/magicbox/api/"
     }
+
+    @POST("v1/channel/add")
+    fun channelAdd(@Body param: ChannelParams): LiveData<ApiResponse<Any>>
+
+    @POST("v1/channel/remove")
+    fun channelRemove(@Body param: ChannelParams): LiveData<ApiResponse<Any>>
 
     @POST("v1/channel/allList")
     fun getChannelAllList(): LiveData<ApiResponse<ChannelAllListResponse>>

@@ -3,6 +3,7 @@ package com.viet.follow.repository
 import android.arch.lifecycle.LiveData
 import com.viet.news.core.api.ApiRepository
 import com.viet.news.core.api.ApiResponse
+import com.viet.news.core.domain.request.ChannelParams
 import com.viet.news.core.domain.response.ChannelAllListResponse
 import com.viet.news.core.domain.response.ChannelListResponse
 import com.viet.news.core.repository.NetworkOnlyResource
@@ -29,6 +30,22 @@ class FindRepository : ApiRepository() {
         return object : NetworkOnlyResource<ChannelListResponse>() {
             override fun createCall(): LiveData<ApiResponse<ChannelListResponse>> {
                 return apiInterface.getChannelList()
+            }
+        }.asLiveData()
+    }
+
+    fun channelAdd(id: String?): LiveData<Resource<Any>> {
+        return object : NetworkOnlyResource<Any>() {
+            override fun createCall(): LiveData<ApiResponse<Any>> {
+                return apiInterface.channelAdd(ChannelParams(id))
+            }
+        }.asLiveData()
+    }
+
+    fun channelRemove(id: String?): LiveData<Resource<Any>> {
+        return object : NetworkOnlyResource<Any>() {
+            override fun createCall(): LiveData<ApiResponse<Any>> {
+                return apiInterface.channelRemove(ChannelParams(id))
             }
         }.asLiveData()
     }

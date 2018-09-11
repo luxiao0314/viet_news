@@ -62,8 +62,11 @@ class AddChannelFragment(private var mMyChannelList: MutableList<ChannelBean>, p
         id_tab_recycler_view.addItemDecoration(GridItemDecoration(5))
     }
 
-    override fun onCloseClick() {
-        dismiss()
+    override fun onCloseClick(list: List<ChannelBean>, dataChange: Boolean) {
+        listener?.let {
+            if (dataChange) it.onDataChanged(list, 100000)
+            dismiss()
+        }
     }
 
     override fun onChannelItemClick(list: List<ChannelBean>, position: Int) {
@@ -73,8 +76,18 @@ class AddChannelFragment(private var mMyChannelList: MutableList<ChannelBean>, p
         }
     }
 
+    override fun moveMyToOther(position: Int, function: () -> Unit) {
+        listener?.moveMyToOther(position, function)
+    }
+
+    override fun moveOtherToMy(position: Int, function: () -> Unit) {
+        listener?.moveOtherToMy(position, function)
+    }
+
     interface DataChangeListener {
         fun onDataChanged(list: List<ChannelBean>, position: Int)
+        fun moveMyToOther(position: Int, function: () -> Unit)
+        fun moveOtherToMy(position: Int, function: () -> Unit)
     }
 
     fun setOnDataChangeListener(listener: DataChangeListener) {

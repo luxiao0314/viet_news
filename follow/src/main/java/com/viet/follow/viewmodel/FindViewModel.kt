@@ -45,13 +45,25 @@ class FindViewModel(var repository: FindRepository = FindRepository()) : BaseVie
                 it.data?.data?.unFollowChannelList?.forEach { unFollowList.add(ChannelBean(it.channelName, it.channelKey)) }
                 it.data?.data?.followChannelList?.forEachIndexed { index, list ->
                     if (index == 0) {
-                        followList.add(ChannelBean(list.channelName, list.channelKey, 0))
+                        followList.add(ChannelBean(list.channelName, list.id, 0))
                     } else {
-                        followList.add(ChannelBean(list.channelName, list.channelKey, 2))
+                        followList.add(ChannelBean(list.channelName, list.id, 2))
                     }
                 }
                 function()
             }
+        })
+    }
+
+    fun channelAdd(owner: LifecycleOwner, id: String?, function: () -> Unit) {
+        repository.channelAdd(id).observe(owner, Observer {
+            if (it?.data != null) function()
+        })
+    }
+
+    fun channelRemove(owner: LifecycleOwner, id: String?, function: () -> Unit) {
+        repository.channelRemove(id).observe(owner, Observer {
+            if (it?.data != null) function()
         })
     }
 }

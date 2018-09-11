@@ -55,10 +55,6 @@ class FindFragment : InjectFragment(), AddChannelFragment.DataChangeListener {
     }
 
     private fun initData() {
-        model.getChannelAllList(this) {
-            mAddChannelFragment = AddChannelFragment(model.followList, model.unFollowList)
-            mAddChannelFragment?.setOnDataChangeListener(this)
-        }
         model.getChannelList(this) {
             id_tab_pager_indicator.setDataList(model.normalList)
             pagerAdapter.setData(model.normalList)
@@ -71,7 +67,11 @@ class FindFragment : InjectFragment(), AddChannelFragment.DataChangeListener {
         id_tab_pager_indicator.setupWithViewPager(id_view_Pager)
 
         id_add_channel_entry_iv.click {
-            mAddChannelFragment?.show(fragmentManager, "addChannel")
+            model.getChannelAllList(this) {
+                mAddChannelFragment = AddChannelFragment(model.followList, model.unFollowList)
+                mAddChannelFragment?.setOnDataChangeListener(this)
+                mAddChannelFragment?.show(fragmentManager, "addChannel")
+            }
         }
     }
 
@@ -81,7 +81,17 @@ class FindFragment : InjectFragment(), AddChannelFragment.DataChangeListener {
         pagerAdapter.notifyDataSetChanged()
         id_tab_pager_indicator.setDataList(model.normalList)
         id_tab_pager_indicator.notifyDataSetChanged()
-        id_view_Pager.currentItem = position
+        if (position != 100000) {
+            id_view_Pager.currentItem = position
+        }
+    }
+
+    override fun moveMyToOther(position: Int, function: () -> Unit) {
+        model.channelAdd(this, model.followList[position].id) { function() }
+    }
+
+    override fun moveOtherToMy(position: Int, function: () -> Unit) {
+        model.channelRemove(this, model.unFollowList[position].id) { function() }
     }
 }
 
