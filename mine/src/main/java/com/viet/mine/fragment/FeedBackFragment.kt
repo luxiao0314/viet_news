@@ -8,9 +8,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.navigation.Navigation
+import com.chenenyu.router.annotation.Route
 import com.jakewharton.rxbinding2.widget.RxTextView
 import com.viet.mine.R
 import com.viet.mine.viewmodel.SettingViewModel
+import com.viet.news.core.config.Config
 import com.viet.news.core.delegate.viewModelDelegate
 import com.viet.news.core.ext.clickWithTrigger
 import com.viet.news.core.ui.BaseFragment
@@ -22,6 +24,7 @@ import kotlinx.android.synthetic.main.fragment_mine_setting_feedback.*
  * @Email zongjia.long@merculet.io
  * @Version
  */
+@Route(value = [Config.ROUTER_MINE_SETTING_FEEDBACK_FRAGMENT])
 class FeedBackFragment : BaseFragment() {
     private var mContainerView: View? = null
     //    lateinit var scrollView:ScrollView

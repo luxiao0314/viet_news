@@ -8,6 +8,7 @@ import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.OrientationHelper
 import android.support.v7.widget.RecyclerView
 import android.widget.AbsListView.OnScrollListener.SCROLL_STATE_TOUCH_SCROLL
+import com.chenenyu.router.annotation.Route
 import com.jaeger.library.StatusBarUtil
 import com.scwang.smartrefresh.layout.api.RefreshHeader
 import com.scwang.smartrefresh.layout.header.ClassicsHeader
@@ -15,6 +16,7 @@ import com.scwang.smartrefresh.layout.listener.SimpleMultiPurposeListener
 import com.viet.mine.R
 import com.viet.mine.adapter.CollectionAdapter
 import com.viet.mine.viewmodel.CollectionViewModel
+import com.viet.news.core.config.Config
 import com.viet.news.core.delegate.viewModelDelegate
 import com.viet.news.core.domain.RefreshNewsEvent
 import com.viet.news.core.ui.BaseActivity
@@ -28,6 +30,7 @@ import kotlinx.android.synthetic.main.activity_mine_collection.*
  * @Email zongjia.long@merculet.io
  * @Version
  */
+@Route(value = [Config.ROUTER_MINE_COLLECTION_ACTIVITY])
 class CollectionActivity : InjectActivity() {
 
     private val model: CollectionViewModel by viewModelDelegate(CollectionViewModel::class)

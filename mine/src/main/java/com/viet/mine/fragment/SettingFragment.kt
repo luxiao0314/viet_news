@@ -5,9 +5,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.Navigation
+import com.chenenyu.router.annotation.Route
 import com.viet.mine.R
+import com.viet.news.core.config.Config
 import com.viet.news.core.domain.User
 import com.viet.news.core.ext.click
+import com.viet.news.core.ext.finishWithAnim
+import com.viet.news.core.ext.goFragment
+import com.viet.news.core.ext.routerWithAnim
+import com.viet.news.core.ui.BaseActivity
 import com.viet.news.core.ui.BaseFragment
 import com.viet.news.core.ui.widget.CommonItem
 import kotlinx.android.synthetic.main.fragment_mine_setting.*
@@ -18,6 +24,7 @@ import kotlinx.android.synthetic.main.fragment_mine_setting.*
  * @Email zongjia.long@merculet.io
  * @Version
  */
+@Route(value = [Config.ROUTER_MINE_SETTING_FRAGMENT])
 class SettingFragment : BaseFragment() {
 
     private var mContainerView: View? = null
@@ -34,31 +41,35 @@ class SettingFragment : BaseFragment() {
 
         languageSettingItem.setClickDelegate {
             onItemClick = {
-                Navigation.findNavController(languageSettingItem).navigate(R.id.action_page1)
+                openPage(Config.ROUTER_MINE_SETTING_LANGUAGE_FRAGMENT)
             }
         }
 
         helpItem.setClickDelegate {
             onItemClick = {
-                Navigation.findNavController(helpItem).navigate(R.id.action_page2)
+                openPage(Config.ROUTER_MINE_SETTING_HELP_FRAGMENT)
             }
         }
 
         feedBackItem.setClickDelegate {
             onItemClick = {
-                Navigation.findNavController(feedBackItem).navigate(R.id.action_page3)
+                openPage(Config.ROUTER_MINE_SETTING_FEEDBACK_FRAGMENT)
             }
         }
 
-        if (User.currentUser.isLogin()){
+        if (User.currentUser.isLogin()) {
             btn_logout.visibility = View.VISIBLE
             btn_logout.click {
                 User.currentUser.logout()
-                activity?.finish()
+                (activity as BaseActivity).finishWithAnim()
             }
-        }else{
+        } else {
             btn_logout.visibility = View.GONE
         }
 
+    }
+
+    private fun openPage(path: String) {
+        routerWithAnim(path).goFragment(this@SettingFragment, R.id.container_framelayout)
     }
 }

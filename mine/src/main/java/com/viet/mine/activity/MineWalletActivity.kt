@@ -9,9 +9,11 @@ import kotlinx.android.synthetic.main.activity_mine_wallet.*
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import com.app.hubert.guide.listener.OnPageChangedListener
+import com.chenenyu.router.annotation.Route
 import com.viet.mine.adapter.CustomSnapHelper
 import com.viet.mine.viewmodel.LoginViewModel
 import com.viet.mine.viewmodel.MineWalletViewModel
+import com.viet.news.core.config.Config
 import com.viet.news.core.delegate.viewModelDelegate
 import com.viet.news.core.dsl.addOnPageChangeListener
 import com.viet.news.core.dsl.setOnPageChangeListener
@@ -24,6 +26,7 @@ import javax.inject.Inject
  * @Email zongjia.long@merculet.io
  * @Version
  */
+@Route(value = [Config.ROUTER_MINE_WALLET_ACTIVITY])
 class MineWalletActivity : InjectActivity() {
 
     @Inject

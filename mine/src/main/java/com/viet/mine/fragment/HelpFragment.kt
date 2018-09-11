@@ -4,7 +4,9 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.chenenyu.router.annotation.Route
 import com.viet.mine.R
+import com.viet.news.core.config.Config
 import com.viet.news.core.ui.BaseFragment
 
 /**
@@ -13,7 +15,8 @@ import com.viet.news.core.ui.BaseFragment
  * @Email zongjia.long@merculet.io
  * @Version
  */
-class HelpFragment:BaseFragment() {
+@Route(value = [Config.ROUTER_MINE_SETTING_HELP_FRAGMENT])
+class HelpFragment : BaseFragment() {
     private var mContainerView: View? = null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {

@@ -74,38 +74,38 @@ class MineFragment : BaseFragment() {
         }
 
         edit.clickWithTrigger {
-            context?.startActivity(Intent(activity, AccountInfoActivity::class.java))
+            routerWithAnim(Config.ROUTER_MINE_EDIT_INFO_ACTIVITY).go(this)
         }
 
         mine_settings.setClickDelegate {
             onItemClick = {
-                startActivity(SettingActivity::class.java)
+                startActivity(Config.ROUTER_MINE_SETTING_ACTIVITY)
             }
         }
 
         mine_collection.setClickDelegate {
             onItemClick = {
-                startActivity(CollectionActivity::class.java)
+                startActivity(Config.ROUTER_MINE_COLLECTION_ACTIVITY)
             }
         }
 
         mine_invite.setClickDelegate {
             onItemClick = {
-                startActivity(InviteFriendActivity::class.java)
+                startActivity(Config.ROUTER_MINE_INVITE_ACTIVITY)
             }
         }
 
         mine_wallet.setClickDelegate {
             onItemClick = {
-                startActivity(MineWalletActivity::class.java)
+                startActivity(Config.ROUTER_MINE_WALLET_ACTIVITY)
             }
         }
 
     }
 
-    private fun startActivity(cls: Class<*>) {
+    private fun startActivity(path: String) {
         if (User.currentUser.isLogin()) {
-            context?.startActivity(Intent(activity, cls))
+            routerWithAnim(path).go(context)
         } else {
             context?.startActivity(Intent(activity, LoginActivity::class.java))
         }

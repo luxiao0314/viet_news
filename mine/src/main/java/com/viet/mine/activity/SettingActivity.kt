@@ -2,8 +2,12 @@ package com.viet.mine.activity
 
 import android.os.Bundle
 import androidx.navigation.Navigation
+import com.chenenyu.router.annotation.Route
 import com.jaeger.library.StatusBarUtil
 import com.viet.mine.R
+import com.viet.news.core.config.Config
+import com.viet.news.core.ext.goFragment
+import com.viet.news.core.ext.routerWithAnim
 import com.viet.news.core.ui.BaseActivity
 import com.viet.news.core.ui.InjectActivity
 
@@ -13,6 +17,7 @@ import com.viet.news.core.ui.InjectActivity
  * @Email zongjia.long@merculet.io
  * @Version
  */
+@Route(value = [Config.ROUTER_MINE_SETTING_ACTIVITY])
 class SettingActivity : InjectActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -23,13 +28,11 @@ class SettingActivity : InjectActivity() {
     }
 
     private fun initView() {
+        routerWithAnim(Config.ROUTER_MINE_SETTING_FRAGMENT).goFragment(this, R.id.container_framelayout)
     }
 
     private fun initData() {
 
     }
 
-
-    override fun onSupportNavigateUp() =
-            Navigation.findNavController(this, R.id.my_nav_setting_host_fragment).navigateUp()
 }

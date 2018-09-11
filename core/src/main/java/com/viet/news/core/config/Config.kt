@@ -34,4 +34,23 @@ object Config {
 
     //登录-用户协议
     const val login_userProtocol = "login_userProtocol"
+
+
+    // Router URI
+
+    //我的->activity
+    const val ROUTER_MINE_WALLET_ACTIVITY = "/mine/wallet/activity"
+    const val ROUTER_MINE_INVITE_ACTIVITY = "/mine/invite/activity"
+    const val ROUTER_MINE_COLLECTION_ACTIVITY = "/mine/collection/activity"
+    const val ROUTER_MINE_SETTING_ACTIVITY = "/mine/setting/activity"
+    const val ROUTER_MINE_EDIT_INFO_ACTIVITY = "/mine/edit_info/activity"
+
+    //我的->fragment
+    const val ROUTER_MINE_SETTING_FRAGMENT = "/mine/setting/fragment"
+    const val ROUTER_MINE_SETTING_LANGUAGE_FRAGMENT = "/mine/setting/language/fragment"
+    const val ROUTER_MINE_SETTING_HELP_FRAGMENT = "/mine/setting/help/fragment"
+    const val ROUTER_MINE_SETTING_FEEDBACK_FRAGMENT = "/mine/setting/feedback/fragment"
+    const val ROUTER_MINE_EDIT_NICKNAME_FRAGMENT = "/mine/edit/nickname/fragment"
+    const val ROUTER_MINE_EDIT_PHONE_FRAGMENT = "/mine/edit/phone/fragment"
+    const val ROUTER_MINE_EDIT_PWD_FRAGMENT = "/mine/edit/pwd/fragment"
 }
