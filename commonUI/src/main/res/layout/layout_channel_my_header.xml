@@ -3,8 +3,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
-                android:paddingBottom="5dp"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:paddingBottom="10dp">
 
     <ImageView
         android:id="@+id/iv_close"
@@ -12,17 +12,26 @@
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:layout_marginBottom="20dp"
-        android:padding="10dp"
         android:src="@drawable/channel_close"/>
 
     <TextView
-        android:layout_alignBottom="@+id/id_edit_mode"
+        android:id="@+id/tv_des"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/id_edit_mode"
         android:text="@string/subscribed_channels"
         android:textColor="#FF4A4A4A"
         android:textSize="15sp"
         android:textStyle="bold"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/id_edit_mode"
+        android:layout_toRightOf="@+id/tv_des"
+        android:text="（拖动可排序）"
+        android:textColor="#787878"
+        android:textSize="13sp"/>
 
     <TextView
         android:id="@+id/id_edit_mode"
@@ -31,6 +40,8 @@
         android:layout_below="@+id/iv_close"
         android:layout_alignParentRight="true"
         android:background="@drawable/channel_edit_shape"
+        android:gravity="center"
+        android:minWidth="80dp"
         android:paddingLeft="10dp"
         android:paddingTop="3dp"
         android:paddingRight="10dp"

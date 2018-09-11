@@ -51,11 +51,11 @@ class AddChannelFragment(private var mMyChannelList: MutableList<ChannelBean>, p
         val adapter = ChannelAdapter(context, id_tab_recycler_view, mMyChannelList, mRecChannelList, 1, 1)
         adapter.setChannelItemClickListener(this)
         id_tab_recycler_view.adapter = adapter
-        val gridLayout = GridLayoutManager(context, 4)
+        val gridLayout = GridLayoutManager(context, 3)
         gridLayout.spanSizeLookup = object : GridLayoutManager.SpanSizeLookup() {
             override fun getSpanSize(position: Int): Int {
                 val isHeader = adapter.getItemViewType(position) == IChannelType.TYPE_MY_CHANNEL_HEADER || adapter.getItemViewType(position) == IChannelType.TYPE_REC_CHANNEL_HEADER
-                return if (isHeader) 4 else 1
+                return if (isHeader) 3 else 1
             }
         }
         id_tab_recycler_view.layoutManager = gridLayout
