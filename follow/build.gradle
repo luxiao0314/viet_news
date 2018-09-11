@@ -40,6 +40,4 @@ dependencies {
     implementation "com.google.dagger:dagger-android-support:$rootProject.dagger"
     kapt "com.google.dagger:dagger-compiler:$rootProject.dagger"
     kapt "com.google.dagger:dagger-android-processor:$rootProject.dagger"
-    implementation "com.chenenyu.router:router:$rootProject.router"
-//    kapt "com.chenenyu.router:compiler:$rootProject.router_compiler"
 }

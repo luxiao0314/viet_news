@@ -25,16 +25,6 @@ open class App : BaseApplication() {
         super.onCreate()
         instance = this
         LanguageUtil.setApplicationLanguage(this)
-        initRouter()
-    }
-
-    private fun initRouter() {
-//        Router.initialize(Configuration.Builder()
-//                // 调试模式，开启后会打印log
-//                .setDebuggable(BuildConfig.DEBUG)
-//                // 模块名，每个使用Router的module都要在这里注册
-//                .registerModules("app", "follow", "task", "mine")
-//                .build())
     }
 
     companion object {

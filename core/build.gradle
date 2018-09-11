@@ -117,5 +117,4 @@ dependencies {
     })
 
     api "com.chenenyu.router:router:$rootProject.router"
-//    kapt "com.chenenyu.router:compiler:$rootProject.router_compiler"
 }

@@ -28,5 +28,4 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation project(path: ':core')
     implementation project(path: ':commonUI')
-//    kapt "com.chenenyu.router:compiler:$rootProject.router_compiler"
 }

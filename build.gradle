@@ -70,5 +70,4 @@ ext {
     saf_extras_delegate = "0.1.0"
     livedata_ext = "0.2.1"
     router = "1.6.0"
-//    router_compiler = "1.5.0"
 }
