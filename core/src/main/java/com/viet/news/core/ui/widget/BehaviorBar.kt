@@ -5,6 +5,7 @@ import android.content.Context
 import android.content.res.TypedArray
 import android.graphics.drawable.Drawable
 import android.support.annotation.IdRes
+import android.support.v4.content.ContextCompat
 import android.support.v7.widget.AppCompatCheckedTextView
 import android.util.AttributeSet
 import android.view.View
@@ -142,7 +143,7 @@ class BehaviorBar @JvmOverloads constructor(context: Context, attrs: AttributeSe
     @SuppressLint("ResourceType")
     private fun setStatus(view: AppCompatCheckedTextView, @IdRes id: Int, @IdRes color: Int) {
         view.setCompoundDrawables(getDrawable(id), null, null, null)
-        view.setTextColor(context.resources.getColor(color))
+        view.setTextColor(ContextCompat.getColor(context, color))
     }
 
     /**
@@ -150,9 +151,9 @@ class BehaviorBar @JvmOverloads constructor(context: Context, attrs: AttributeSe
      * @param id 资源id
      */
     @SuppressLint("ResourceType")
-    private fun getDrawable(@IdRes id: Int): Drawable {
-        val drawable = context.resources.getDrawable(id)
-        drawable.setBounds(0, 0, drawable.minimumWidth, drawable.minimumHeight)
+    private fun getDrawable(@IdRes id: Int): Drawable? {
+        val drawable = ContextCompat.getDrawable(context, id)
+        drawable?.setBounds(0, 0, drawable.minimumWidth, drawable.minimumHeight)
         return drawable
     }
 

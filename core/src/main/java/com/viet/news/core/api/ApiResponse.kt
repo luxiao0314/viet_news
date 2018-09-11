@@ -32,9 +32,9 @@ sealed class ApiResponse<T> {
         }
 
         fun <T> create(response: Response<T>): ApiResponse<T> {
-            return if (response.isSuccessful) {
+            if (response.isSuccessful) {
                 val body = response.body()
-                if (body == null || response.code() == 204) {
+                return if (body == null || response.code() == 204) {
                     ApiEmptyResponse()
                 } else {
                     ApiSuccessResponse(
@@ -49,7 +49,7 @@ sealed class ApiResponse<T> {
                 } else {
                     msg
                 }
-                ApiErrorResponse(errorMsg ?: "unknown error")
+                return ApiErrorResponse(errorMsg ?: "unknown error")
             }
         }
     }
