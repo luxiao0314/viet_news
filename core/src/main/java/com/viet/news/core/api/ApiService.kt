@@ -5,7 +5,11 @@ import com.viet.news.core.domain.request.*
 import com.viet.news.core.domain.response.ChannelAllListResponse
 import com.viet.news.core.domain.response.ChannelListResponse
 import com.viet.news.core.domain.response.LoginRegisterResponse
-import retrofit2.http.*
+import com.viet.news.core.domain.response.NewsListResponse
+import retrofit2.http.Body
+import retrofit2.http.GET
+import retrofit2.http.POST
+import retrofit2.http.Path
 
 
 /**
@@ -34,7 +38,7 @@ interface ApiService {
 
     //根据频道查询文章列表
     @POST("v1/content/list4Channel")
-    fun getlist4Channel(): LiveData<ApiResponse<ChannelListResponse>>
+    fun getlist4Channel(@Body param: List4ChannelParams): LiveData<ApiResponse<NewsListResponse>>
 
     //查询当前关注用户发表的文章列表
     @POST("v1/content/list4follow")
@@ -60,8 +64,6 @@ interface ApiService {
 
     @GET("v1/content/like/{contentId}")
     fun like(@Path("contentId") contentId: String): LiveData<ApiResponse<Any>>
-
-
 
     /**
      * 检查token过期接口

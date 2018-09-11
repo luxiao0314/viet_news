@@ -6,7 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import com.viet.follow.R
 import com.viet.follow.viewmodel.FollowViewModel
-import com.viet.news.core.config.FragmentExchangeManager
 import com.viet.news.core.delegate.viewModelDelegate
 import com.viet.news.core.ui.BaseFragment
 
@@ -26,6 +25,6 @@ class FollowFragment : BaseFragment() {
     }
 
     override fun initView(view: View) {
-        FragmentExchangeManager.replaceFragment(fragmentManager,NewsFragment(),R.id.framelayout)
+//        FragmentExchangeManager.replaceFragment(fragmentManager,NewsFragment(),R.id.framelayout)
     }
 }

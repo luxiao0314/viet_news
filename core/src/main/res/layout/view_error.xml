@@ -7,31 +7,30 @@
     android:orientation="vertical"
     android:padding="16dp">
 
-    <Button
-        android:id="@+id/btn_error"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="16dp"
-        android:text="@string/retry"
-        android:visibility="gone" />
-
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:contentDescription="TODO"
-        android:src="@drawable/ic_error" />
+        android:src="@drawable/ic_error_view" />
 
     <TextView
         android:id="@+id/text_error_msg"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="40dp"
         android:gravity="center"
         android:text="@string/error_msg"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:textColor="@color/text_gray" />
 
+    <Button
+        style="@style/button.small"
+        android:id="@+id/btn_error"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="30dp"
+        android:text="@string/refresh"/>
 
 </LinearLayout>

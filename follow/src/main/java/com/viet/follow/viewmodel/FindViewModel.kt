@@ -5,9 +5,11 @@ import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.Observer
 import cn.magicwindow.channelwidget.entity.ChannelBean
 import com.viet.follow.repository.FindRepository
-import com.viet.news.core.domain.response.NewsResponse
-import com.viet.news.core.utils.FileUtils
+import com.viet.news.core.domain.response.NewsListBean
+import com.viet.news.core.domain.response.NewsListResponse
 import com.viet.news.core.viewmodel.BaseViewModel
+import com.viet.news.core.vo.Resource
+import com.viet.news.core.vo.Status
 
 /**
  * @Description
@@ -18,27 +20,27 @@ import com.viet.news.core.viewmodel.BaseViewModel
  */
 class FindViewModel(var repository: FindRepository = FindRepository()) : BaseViewModel() {
     var normalList = arrayListOf<ChannelBean>()
-
     var followList = arrayListOf<ChannelBean>()
     var unFollowList = arrayListOf<ChannelBean>()
+    var newsList = arrayListOf<NewsListBean>()
+    var page_number = 0
+    var id: Int? = 0
 
-    fun getNewsArticles(): LiveData<NewsResponse> {
-        return FileUtils.handleVirtualData(NewsResponse::class.java)
+    fun getlist4Channel(): LiveData<Resource<NewsListResponse>> {
+        return repository.getlist4Channel(page_number, id)
     }
 
     fun getChannelList(owner: LifecycleOwner, function: () -> Unit) {
-        repository.getChannelList().observe(owner, Observer {
-            if (it?.data != null) {
-                it.data?.data?.forEach {
-                    normalList.add(ChannelBean(it.channelName, it.channelKey))
-                    function()
-                }
+        repository.getChannelList().observe(owner, Observer { it ->
+            if (it?.status == Status.SUCCESS) {
+                it.data?.data?.forEach { normalList.add(ChannelBean(it.channelName, it.channelKey)) }
+                function()
             }
         })
     }
 
     fun getChannelAllList(owner: LifecycleOwner, function: () -> Unit) {
-        repository.getChannelAllList().observe(owner, Observer {
+        repository.getChannelAllList().observe(owner, Observer { it ->
             if (it?.data != null) {
                 unFollowList.clear()
                 followList.clear()

@@ -4,8 +4,10 @@ import android.arch.lifecycle.LiveData
 import com.viet.news.core.api.ApiRepository
 import com.viet.news.core.api.ApiResponse
 import com.viet.news.core.domain.request.ChannelParams
+import com.viet.news.core.domain.request.List4ChannelParams
 import com.viet.news.core.domain.response.ChannelAllListResponse
 import com.viet.news.core.domain.response.ChannelListResponse
+import com.viet.news.core.domain.response.NewsListResponse
 import com.viet.news.core.repository.NetworkOnlyResource
 import com.viet.news.core.vo.Resource
 
@@ -17,6 +19,18 @@ import com.viet.news.core.vo.Resource
  * @Version
  */
 class FindRepository : ApiRepository() {
+
+    fun getlist4Channel(page_number: Int, id: Int?): LiveData<Resource<NewsListResponse>> {
+        val params = List4ChannelParams()
+        params.page_number = page_number
+        params.page_size = 2
+        params.id = id
+        return object : NetworkOnlyResource<NewsListResponse>() {
+            override fun createCall(): LiveData<ApiResponse<NewsListResponse>> {
+                return apiInterface.getlist4Channel(params)
+            }
+        }.asLiveData()
+    }
 
     fun getChannelAllList(): LiveData<Resource<ChannelAllListResponse>> {
         return object : NetworkOnlyResource<ChannelAllListResponse>() {
