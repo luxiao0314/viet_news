@@ -137,7 +137,7 @@ class ChannelAdapter(context: Context?, recyclerView: RecyclerView, private val 
         override fun clickMyChannel(mRecyclerView: RecyclerView, holder: ChannelViewHolder) {
             val position = holder.adapterPosition
             if (isEditMode) {
-                channelItemClickListener?.moveMyToOther(position) { moveMyToOther(position) }
+                channelItemClickListener?.moveMyToOther(mMyChannelItems, position - mMyHeaderCount) { moveMyToOther(position) }
             } else {
                 channelItemClickListener?.onChannelItemClick(mMyChannelItems, position - mMyHeaderCount)
             }
@@ -175,7 +175,7 @@ class ChannelAdapter(context: Context?, recyclerView: RecyclerView, private val 
 
         override fun clickRecChannel(mRecyclerView: RecyclerView, holder: ChannelViewHolder) {
             val position = holder.adapterPosition
-            channelItemClickListener?.moveOtherToMy(position) { moveOtherToMy(position) }
+            channelItemClickListener?.moveOtherToMy(mOtherChannelItems, position - mMyChannelItems.size - mRecHeaderCount - mMyHeaderCount) { moveOtherToMy(position) }
         }
     }
 
@@ -238,7 +238,6 @@ class ChannelAdapter(context: Context?, recyclerView: RecyclerView, private val 
         notifyItemMoved(position, mMyChannelItems.size + mMyHeaderCount - 1)
     }
 
-
     private fun processItemRemoveAdd(position: Int): Int {
         val startPosition = position - mMyChannelItems.size - mRecHeaderCount - mMyHeaderCount
         if (startPosition > mOtherChannelItems.size - 1) {
@@ -259,8 +258,8 @@ class ChannelAdapter(context: Context?, recyclerView: RecyclerView, private val 
     interface ChannelItemClickListener {
         fun onChannelItemClick(list: List<ChannelBean>, position: Int)
         fun onCloseClick(list: List<ChannelBean>, dataChange: Boolean)
-        fun moveMyToOther(position: Int, function: () -> Unit)
-        fun moveOtherToMy(position: Int, function: () -> Unit)
+        fun moveMyToOther(list: List<ChannelBean>, position: Int, function: () -> Unit)
+        fun moveOtherToMy(list: List<ChannelBean>, position: Int, function: () -> Unit)
     }
 
     companion object {

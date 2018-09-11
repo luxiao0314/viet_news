@@ -55,6 +55,7 @@ class FindFragment : InjectFragment(), AddChannelFragment.DataChangeListener {
     }
 
     private fun initData() {
+        model.getChannelAllList(this){}
         model.getChannelList(this) {
             id_tab_pager_indicator.setDataList(model.normalList)
             pagerAdapter.setData(model.normalList)
@@ -67,11 +68,9 @@ class FindFragment : InjectFragment(), AddChannelFragment.DataChangeListener {
         id_tab_pager_indicator.setupWithViewPager(id_view_Pager)
 
         id_add_channel_entry_iv.click {
-            model.getChannelAllList(this) {
-                mAddChannelFragment = AddChannelFragment(model.followList, model.unFollowList)
-                mAddChannelFragment?.setOnDataChangeListener(this)
-                mAddChannelFragment?.show(fragmentManager, "addChannel")
-            }
+            mAddChannelFragment = AddChannelFragment(model.followList, model.unFollowList)
+            mAddChannelFragment?.setOnDataChangeListener(this)
+            mAddChannelFragment?.show(fragmentManager, "addChannel")
         }
     }
 
@@ -86,12 +85,12 @@ class FindFragment : InjectFragment(), AddChannelFragment.DataChangeListener {
         }
     }
 
-    override fun moveMyToOther(position: Int, function: () -> Unit) {
-        model.channelAdd(this, model.followList[position].id) { function() }
+    override fun moveMyToOther(list: List<ChannelBean>, position: Int, function: () -> Unit) {
+        model.channelAdd(this, list, position) { function() }
     }
 
-    override fun moveOtherToMy(position: Int, function: () -> Unit) {
-        model.channelRemove(this, model.unFollowList[position].id) { function() }
+    override fun moveOtherToMy(list: List<ChannelBean>, position: Int, function: () -> Unit) {
+        model.channelRemove(this, list, position) { function() }
     }
 }
 

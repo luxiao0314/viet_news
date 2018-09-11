@@ -9,7 +9,6 @@ import retrofit2.http.Body
 import retrofit2.http.POST
 
 
-
 /**
  * Created by Tony Shen on 2017/8/15.
  */
@@ -19,6 +18,9 @@ interface ApiService {
         const val MAGICBOX_API = "http://magicbox.liaoyantech.cn/magicbox/api/"
     }
 
+    /**
+     * 频道文章列表相关
+     */
     @POST("v1/channel/add")
     fun channelAdd(@Body param: ChannelParams): LiveData<ApiResponse<Any>>
 
@@ -31,6 +33,17 @@ interface ApiService {
     @POST("v1/channel/list")
     fun getChannelList(): LiveData<ApiResponse<ChannelListResponse>>
 
+    //根据频道查询文章列表
+    @POST("v1/content/list4Channel")
+    fun getlist4Channel(): LiveData<ApiResponse<ChannelListResponse>>
+
+    //查询当前关注用户发表的文章列表
+    @POST("v1/content/list4follow")
+    fun list4follow(): LiveData<ApiResponse<ChannelListResponse>>
+
+    /**
+     * 登录注册相关
+     */
     @POST("v1/login/login")
     fun login(@Body param: LoginParams): LiveData<ApiResponse<LoginRegisterResponse>>
 

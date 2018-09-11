@@ -55,15 +55,19 @@ class FindViewModel(var repository: FindRepository = FindRepository()) : BaseVie
         })
     }
 
-    fun channelAdd(owner: LifecycleOwner, id: String?, function: () -> Unit) {
-        repository.channelAdd(id).observe(owner, Observer {
-            if (it?.data != null) function()
+    fun channelAdd(owner: LifecycleOwner, list: List<ChannelBean>, position: Int, function: () -> Unit) {
+        repository.channelAdd(list[position].id).observe(owner, Observer {
+            if (it?.data != null) {
+                function()
+            }
         })
     }
 
-    fun channelRemove(owner: LifecycleOwner, id: String?, function: () -> Unit) {
-        repository.channelRemove(id).observe(owner, Observer {
-            if (it?.data != null) function()
+    fun channelRemove(owner: LifecycleOwner, list: List<ChannelBean>, position: Int, function: () -> Unit) {
+        repository.channelRemove(list[position].id).observe(owner, Observer {
+            if (it?.data != null) {
+                function()
+            }
         })
     }
 }
