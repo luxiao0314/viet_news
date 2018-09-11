@@ -12,8 +12,12 @@ import android.view.ViewGroup
 import androidx.navigation.Navigation
 import cn.magicwindow.core.ui.ItemClickSupport
 import cn.magicwindow.mine.adapter.LanguageAdapter
+import com.chenenyu.router.Router
+import com.chenenyu.router.annotation.Route
 import com.viet.mine.R
 import com.viet.news.core.config.Config
+import com.viet.news.core.ext.finishWithAnim
+import com.viet.news.core.ui.BaseActivity
 import com.viet.news.core.ui.BaseFragment
 import com.viet.news.core.utils.LanguageUtil
 import com.viet.news.core.utils.SPHelper
@@ -24,6 +28,7 @@ import com.viet.news.core.utils.SPHelper
  * @Email zongjia.long@merculet.io
  * @Version
  */
+@Route(Config.ROUTER_MINE_SETTING_LANGUAGE_FRAGMENT)
 class LanguageFragment : BaseFragment() {
     private lateinit var adapter: LanguageAdapter
     private var mContainerView: View? = null
@@ -56,7 +61,7 @@ class LanguageFragment : BaseFragment() {
                     if ((localIndex == 0 || position == 0) && localIndex != position) {
                         SPHelper.create().putInt(Config.SELECTED_LANGUAGE, position)
                     }
-                    Navigation.findNavController(view).navigateUp()
+                    (activity!! as BaseActivity).finishWithAnim()
                 }
             }
         })

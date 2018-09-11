@@ -8,14 +8,16 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.navigation.Navigation
-import com.jakewharton.rxbinding2.view.RxView
+import com.chenenyu.router.annotation.Route
 import com.jakewharton.rxbinding2.widget.RxTextView
 import com.viet.mine.R
 import com.viet.mine.viewmodel.SettingViewModel
+import com.viet.news.core.config.Config
 import com.viet.news.core.delegate.viewModelDelegate
 import com.viet.news.core.ext.clickWithTrigger
+import com.viet.news.core.ext.finishWithAnim
+import com.viet.news.core.ui.BaseActivity
 import com.viet.news.core.ui.BaseFragment
-import kotlinx.android.synthetic.main.fragment_login_pwd.*
 import kotlinx.android.synthetic.main.fragment_mine_setting_feedback.*
 
 /**
@@ -24,6 +26,7 @@ import kotlinx.android.synthetic.main.fragment_mine_setting_feedback.*
  * @Email zongjia.long@merculet.io
  * @Version
  */
+@Route(value = [Config.ROUTER_MINE_SETTING_FEEDBACK_FRAGMENT])
 class FeedBackFragment : BaseFragment() {
     private var mContainerView: View? = null
     //    lateinit var scrollView:ScrollView
@@ -45,15 +48,15 @@ class FeedBackFragment : BaseFragment() {
                 .subscribe {
                     model.feedback.value = it.toString()
                     model.count.value = it.toString().trim().length
-                    model.checkSubmitBtnEnable()
+                    model.checkFeedBackSubmitBtnEnable()
                 }
 
         confirm_btn.clickWithTrigger {
             val feedback = edit_content.text.toString()
-            if (model.submitEnable()) {
+            if (model.feedBackSubmitEnable()) {
                 model.feedBack(this, feedback) { isOk ->
                     if (isOk) {
-                        Navigation.findNavController(view).navigateUp()
+                        (activity as BaseActivity).finishWithAnim()
                         Toast.makeText(context, "提交成功", Toast.LENGTH_SHORT).show()
                     } else {
                         Toast.makeText(context, "提交失败", Toast.LENGTH_SHORT).show()

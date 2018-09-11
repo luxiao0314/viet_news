@@ -9,8 +9,7 @@ object Config {
     val SHARE_REQUEST_CODE_MESSENGER = 1002
     val SHARE_REQUEST_CODE_COPY = 1003
 
-    // Router URI
-    const val ROUTER_LOGIN_ACTIVITY = "/login/activity"
+
 
     //语言切换
     const val LANGUAGE_CHANGED = "language_changed"
@@ -35,4 +34,31 @@ object Config {
 
     //登录-用户协议
     const val login_userProtocol = "login_userProtocol"
+
+
+    // Router URI
+    const val ROUTER_LOGIN_ACTIVITY = "/login/activity"
+    const val ROUTER_PERSONAL_PAGE_ACTIVITY = "/personal_page/activity"
+    //我的->activity
+    const val ROUTER_MINE_WALLET_ACTIVITY = "/mine/wallet/activity"
+    const val ROUTER_MINE_INVITE_ACTIVITY = "/mine/invite/activity"
+    const val ROUTER_MINE_COLLECTION_ACTIVITY = "/mine/collection/activity"
+    const val ROUTER_MINE_SETTING_ACTIVITY = "/mine/setting/activity"
+    const val ROUTER_MINE_EDIT_INFO_ACTIVITY = "/mine/edit_info/activity"
+
+    //我的->fragment
+    const val ROUTER_MINE_SETTING_FRAGMENT = "/mine/setting/fragment"
+    const val ROUTER_MINE_SETTING_LANGUAGE_FRAGMENT = "/mine/setting/language/fragment"
+    const val ROUTER_MINE_SETTING_HELP_FRAGMENT = "/mine/setting/help/fragment"
+    const val ROUTER_MINE_SETTING_FEEDBACK_FRAGMENT = "/mine/setting/feedback/fragment"
+
+    const val ROUTER_MINE_EDIT_INFO_FRAGMENT = "/mine/edit_info/fragment"
+    const val ROUTER_MINE_EDIT_CHANGE_NICKNAME_FRAGMENT = "/mine/edit/change/nickname/fragment"
+    const val ROUTER_MINE_EDIT_CHANGE_PHONE_FRAGMENT = "/mine/edit/change/phone/fragment"
+    const val ROUTER_MINE_EDIT_CHANGE_PWD_FRAGMENT = "/mine/edit/change/pwd/fragment"
+    const val ROUTER_MINE_EDIT_VERIFY_CODE_FRAGMENT = "/mine/edit/verify_code/fragment"
+
+
+
+
 }
