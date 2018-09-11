@@ -44,25 +44,27 @@ class FeedBackFragment : BaseFragment() {
         RxTextView.textChanges(edit_content)
                 .subscribe {
                     model.feedback.value = it.toString()
+                    model.count.value = it.toString().trim().length
                     model.checkSubmitBtnEnable()
                 }
 
         confirm_btn.clickWithTrigger {
             val feedback = edit_content.text.toString()
-           if (feedback.isNotEmpty()){
-               model.feedBack(this, feedback) { isOk->
-                   if (isOk) {
-                       Navigation.findNavController(view).navigateUp()
-                       Toast.makeText(context, "提交成功", Toast.LENGTH_SHORT).show()
-                   } else {
-                       Toast.makeText(context, "提交失败", Toast.LENGTH_SHORT).show()
-                   }
-               }
-           }
+            if (model.submitEnable()) {
+                model.feedBack(this, feedback) { isOk ->
+                    if (isOk) {
+                        Navigation.findNavController(view).navigateUp()
+                        Toast.makeText(context, "提交成功", Toast.LENGTH_SHORT).show()
+                    } else {
+                        Toast.makeText(context, "提交失败", Toast.LENGTH_SHORT).show()
+                    }
+                }
+            }
         }
 
         //注册按钮能否点击更新
         model.submitEnable.observe(this, Observer { confirm_btn.isEnabled = it != null && it })
+        model.count.observe(this, Observer { tv_count.text = if (it!!.toInt() > 300) "300/300" else "${it.toString()}/300" })
 //        SoftKeyInputVisibleUtils().registerFragment(this) { keyboardVisible ->
 //            if (edit_content.hasFocus()) {//焦点在描述输入框上
 //                if (keyboardVisible) {//键盘已经弹出

@@ -10,6 +10,7 @@ import com.viet.news.core.vo.Status
 class SettingViewModel(var repository: SettingRepository = SettingRepository()) : BaseViewModel() {
     var feedback: MutableLiveData<String> = MutableLiveData()    //提交反馈内容
     var submitEnable: MutableLiveData<Boolean> = MutableLiveData()   //提交按钮是否可用
+    var count: MutableLiveData<Int> = MutableLiveData()   //剩余字数
 
     fun checkSubmitBtnEnable(){
         submitEnable.value = feedback.value != null && feedback.value!!.isNotEmpty()

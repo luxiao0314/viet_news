@@ -426,7 +426,7 @@
 
     <!-- chulong.xu 新增-->
     <style name="edit_layout.feedback">
-        <item name="android:background">@drawable/shape_feedback_edittext_bg</item>
+        <item name="android:background">@android:color/transparent</item>
     </style>
 
     <declare-styleable name="MultiStatusView">
