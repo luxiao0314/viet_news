@@ -45,11 +45,16 @@ object LanguageUtil {
     /**
      * 无动画模式，打开MainActivity
      */
-    fun  routToMain(context: Context = BaseApplication.instance) {
+    fun routToMain(context: Context = BaseApplication.instance) {
         //TODO tsing 如果将来需要在应用内实现语言切换，则需要实现此方法来跳转到主界面 重新加载一遍UI，需要确保主界面是singleTask 或者用CLEAR_TASK与NEW_TASK的flag启动
         val intent = Intent()
-        intent.setClassName("com.viet.news","com.viet.news.ui.activity.MainActivity")
+        intent.setClassName("com.viet.news", "com.viet.news.ui.activity.MainActivity")
         intent.putExtra(Config.LANGUAGE_CHANGED, true)
+        if (Build.VERSION.SDK_INT > Build.VERSION_CODES.O_MR1) {
+            //android 28 需要重新创建，否则无法切换语言
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+        }
         context.startActivity(intent)
         //TODO  END  你们用router或者navigation。。到时候自己换。。
     }
