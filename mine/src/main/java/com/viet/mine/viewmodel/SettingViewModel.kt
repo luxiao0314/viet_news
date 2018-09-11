@@ -12,7 +12,7 @@ class SettingViewModel(var repository: SettingRepository = SettingRepository()) 
     var submitEnable: MutableLiveData<Boolean> = MutableLiveData()   //提交按钮是否可用
     var count: MutableLiveData<Int> = MutableLiveData()   //剩余字数
 
-    fun checkSubmitBtnEnable(){
+    fun checkSubmitBtnEnable() {
         submitEnable.value = feedback.value != null && feedback.value!!.isNotEmpty()
     }
 
@@ -25,11 +25,26 @@ class SettingViewModel(var repository: SettingRepository = SettingRepository()) 
 
     fun feedBack(owner: LifecycleOwner, feedback: String, finish: (isSuccess: Boolean) -> Unit) {
         return repository.feedBack(feedback).observe(owner, Observer {
-            if (it!!.status == Status.SUCCESS) {
-                finish(true)
-            } else {
-                finish(false)
+            when (it!!.status) {
+                Status.SUCCESS -> finish(true)
+                Status.ERROR -> finish(false)
+                else -> {
+                    // TODO: 正在加载
+                }
             }
         })
     }
+
+    fun updateNickName(owner: LifecycleOwner, nickname: String, finish: (isSuccess: Boolean) -> Unit) {
+        return repository.updateNickName(nickname).observe(owner, Observer {
+            when (it!!.status) {
+                Status.SUCCESS -> finish(true)
+                Status.ERROR -> finish(false)
+                else -> {
+                    // TODO: 正在加载
+                }
+            }
+        })
+    }
+
 }
