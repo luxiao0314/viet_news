@@ -107,7 +107,7 @@ class MineFragment : BaseFragment() {
         if (User.currentUser.isLogin()) {
             routerWithAnim(path).go(context)
         } else {
-            routerWithAnim(Config.ROUTER_LOGIN_ACTIVITY)
+            routerWithAnim(Config.ROUTER_LOGIN_ACTIVITY).go(this)
         }
     }
 }
