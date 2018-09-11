@@ -19,19 +19,11 @@ import io.reactivex.Maybe
  * @Version
  */
 class SettingRepository : ApiRepository() {
-//    fun feedBack(feedback: String): Maybe<HttpResponse<Any>> {
-//        val params = FeedBackParams()
-//        params.feedback = feedback
-//        return apiInterface.feedback(params)
-//                .compose(RxJavaUtils.maybeToMain())
-//
-//    }
     fun feedBack(feedback: String): LiveData<Resource<Any>>{
         val params = FeedBackParams()
         params.feedback = feedback
         return object : NetworkOnlyResource<Any>(){
             override fun createCall(): LiveData<ApiResponse<Any>> = apiInterface.feedback(params)
         }.asLiveData()
-
     }
 }
