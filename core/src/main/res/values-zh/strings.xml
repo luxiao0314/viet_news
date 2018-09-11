@@ -54,6 +54,7 @@
     <string name="language_setting">语言设置</string>
     <string name="help">帮助中心</string>
     <string name="feed_back">意见反馈</string>
+    <string name="submit">提交</string>
     <string name="about">关于MagicBox</string>
     <string name="version">版本号</string>
     <string name="next">下一步</string>
@@ -90,5 +91,8 @@
     <string name="funs">粉丝</string>
     <string name="has_follow">已关注</string>
     <string name="refreshing">正在加载内容</string>
+
+
+    <string name="login_with_facebook">Facebook登录</string>
     <string name="logout">退出</string>
 </resources>

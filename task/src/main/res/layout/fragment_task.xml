@@ -13,10 +13,6 @@
         app:titlebar_leftDrawable="@null"
         app:titlebar_titleText="@string/title_task" />
 
-    <Button
-        android:layout_width="match_parent"
-        android:id="@+id/btn_test"
-        android:layout_height="wrap_content" />
     <com.viet.news.core.ui.widget.MultiStatusView
         android:id="@+id/multi_status_view"
         android:layout_width="match_parent"

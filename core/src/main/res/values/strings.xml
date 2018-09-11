@@ -33,6 +33,7 @@
     <string name="language_setting">Language Setting</string>
     <string name="help">Help</string>
     <string name="feed_back">Feed Back</string>
+    <string name="submit">Submit</string>
     <string name="about">About MagicBox</string>
     <string name="version">Version</string>
     <string name="description">What is MagicBox</string>
@@ -101,5 +102,7 @@
     <string name="funs">Funs</string>
     <string name="has_follow">Has Follow</string>
     <string name="refreshing">正在加载内容</string>
+
+    <string name="login_with_facebook">Continue with Facebook</string>
     <string name="logout">退出</string>
 </resources>

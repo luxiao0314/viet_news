@@ -1,13 +1,18 @@
 package com.viet.news.core.api
 
 import android.arch.lifecycle.LiveData
+import com.viet.news.core.domain.request.FeedBackParams
 import com.viet.news.core.domain.request.LoginParams
 import com.viet.news.core.domain.request.RegisterParams
+import com.viet.news.core.domain.response.ArticlesResponse
 import com.viet.news.core.domain.response.ChannelAllListResponse
 import com.viet.news.core.domain.response.ChannelListResponse
 import com.viet.news.core.domain.response.LoginRegisterResponse
+import com.viet.news.rac.ui.model.SourceResponse
 import retrofit2.http.Body
+import retrofit2.http.GET
 import retrofit2.http.POST
+
 
 /**
  * Created by Tony Shen on 2017/8/15.
@@ -30,6 +35,9 @@ interface ApiService {
     //POST /v1/login/register
     @POST("v1/login/login")
     fun register(@Body param: RegisterParams): LiveData<ApiResponse<LoginRegisterResponse>>
+
+    @POST("v1/feedback/add")
+    fun feedback(@Body param: FeedBackParams): LiveData<ApiResponse<Any>>
     /**
      * 检查token过期接口
      * @param param
