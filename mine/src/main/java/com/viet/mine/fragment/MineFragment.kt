@@ -70,7 +70,6 @@ class MineFragment : BaseFragment() {
         refresh()
 
         iv_user_icon.clickWithTrigger {
-            startActivity(Intent(activity, PersonalPageActivity::class.java))
             routerWithAnim(Config.ROUTER_PERSONAL_PAGE_ACTIVITY).go(this)
         }
 
