@@ -60,7 +60,6 @@ dependencies {
     kapt "com.github.bumptech.glide:compiler:$rootProject.glide"
     kapt "android.arch.persistence.room:compiler:$rootProject.room"
     kapt "android.arch.lifecycle:compiler:$rootProject.lifecycle"
-    implementation "com.chenenyu.router:router:$rootProject.router"
     kapt "com.chenenyu.router:compiler:$rootProject.router_compiler"
 
 }

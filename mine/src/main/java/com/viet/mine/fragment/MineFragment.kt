@@ -9,10 +9,12 @@ import com.safframework.ext.clickWithTrigger
 import com.viet.follow.activity.PersonalPageActivity
 import com.viet.mine.R
 import com.viet.mine.activity.*
+import com.viet.news.core.config.Config
 import com.viet.news.core.domain.LoginEvent
 import com.viet.news.core.domain.LogoutEvent
 import com.viet.news.core.domain.User
 import com.viet.news.core.ext.loadCircle
+import com.viet.news.core.ext.routerWithAnim
 import com.viet.news.core.ui.BaseFragment
 import com.viet.news.core.utils.RxBus
 import kotlinx.android.synthetic.main.fragment_mine.*
@@ -54,7 +56,7 @@ class MineFragment : BaseFragment() {
             iv_user_icon.visibility = View.GONE
             rl_user.visibility = View.GONE
             edit.visibility = View.GONE
-            btn_login.clickWithTrigger { context?.startActivity(Intent(activity, LoginActivity::class.java)) }
+            btn_login.clickWithTrigger { routerWithAnim(Config.ROUTER_LOGIN_ACTIVITY) }
         } else {
             btn_login.visibility = View.GONE
             iv_user_icon.visibility = View.VISIBLE

@@ -2,11 +2,14 @@ package com.viet.news.core.ui
 
 import android.content.Context
 import android.support.multidex.MultiDex
+import com.chenenyu.router.Configuration
+import com.chenenyu.router.Router
 import com.scwang.smartrefresh.layout.SmartRefreshLayout
 import com.scwang.smartrefresh.layout.constant.SpinnerStyle
 import com.scwang.smartrefresh.layout.footer.ClassicsFooter
 import com.scwang.smartrefresh.layout.header.ClassicsHeader
 import com.viet.news.core.BaseApplication
+import com.viet.news.core.BuildConfig
 import com.viet.news.core.R
 import com.viet.news.core.utils.LanguageUtil
 import kotlin.properties.Delegates
@@ -25,6 +28,16 @@ open class App : BaseApplication() {
         super.onCreate()
         instance = this
         LanguageUtil.setApplicationLanguage(this)
+        initRouter()
+    }
+
+    private fun initRouter() {
+        Router.initialize(Configuration.Builder()
+                // 调试模式，开启后会打印log
+                .setDebuggable(BuildConfig.DEBUG)
+                // 模块名，每个使用Router的module都要在这里注册
+                .registerModules("app", "follow", "task", "mine")
+                .build())
     }
 
     companion object {
