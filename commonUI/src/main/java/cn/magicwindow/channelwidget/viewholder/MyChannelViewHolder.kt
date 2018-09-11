@@ -33,15 +33,8 @@ class MyChannelViewHolder(private val editModeHandler: EditModeHandler?) : IChan
             myHolder.mChannelTitleTv.text = it.channelName
             val textSize = if (it.channelName!!.length >= 4) 14 else 16
             myHolder.mChannelTitleTv.setTextSize(TypedValue.COMPLEX_UNIT_SP, textSize.toFloat())
-            myHolder.mChannelTitleTv.setBackgroundResource(if (it.tabType == 0 || it.tabType == 1)
-                R.drawable.channel_fixed_bg_shape
-            else
-                R.drawable.channel_my_bg_shape)
-            myHolder.mChannelTitleTv.setTextColor(when {
-                it.tabType == 0 -> Color.RED
-                it.tabType == 1 -> Color.parseColor("#666666")
-                else -> Color.parseColor("#333333")
-            })
+            myHolder.mChannelTitleTv.setBackgroundResource(R.drawable.channel_my_bg_shape)
+            myHolder.mChannelTitleTv.setTextColor(Color.parseColor("#333333"))
             myHolder.mDeleteIv.visibility = if (it.editStatus == 1) View.VISIBLE else View.INVISIBLE
             myHolder.mChannelTitleTv.setOnClickListener {
                 if (editModeHandler != null && data.tabType == 2) {

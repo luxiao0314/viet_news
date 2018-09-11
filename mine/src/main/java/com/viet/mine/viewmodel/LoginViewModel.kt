@@ -136,7 +136,7 @@ class LoginViewModel(var repository: LoginRepository = LoginRepository()) : Base
     }
 
     @SuppressLint("CheckResult")
-    fun login(owner: LifecycleOwner) {
+    fun login(owner: LifecycleOwner, func: () -> Unit) {
         repository.login(phoneNumber.value, password.value).observe(owner, Observer {
             if (it?.data != null) {
                 phoneNumber.value?.let { phoneNumber -> User.currentUser.telephone = phoneNumber }
@@ -144,6 +144,7 @@ class LoginViewModel(var repository: LoginRepository = LoginRepository()) : Base
                 User.currentUser.login(it.data!!.data!!)
                 stopCountdown()//登录成功后结束本次倒计时
                 RxBus.get().post(LoginEvent())
+                func()
             }
         })
     }
