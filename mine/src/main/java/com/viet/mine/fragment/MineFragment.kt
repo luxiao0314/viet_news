@@ -36,6 +36,11 @@ class MineFragment : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initEvent()
+        initData()
+    }
+
+    private fun initData() {
+        tv_nickname.text = User.currentUser.userName
     }
 
     private fun initEvent() {
@@ -97,6 +102,10 @@ class MineFragment : BaseFragment() {
     }
 
     private fun startActivity(cls: Class<*>) {
-        context?.startActivity(Intent(activity, cls))
+        if (User.currentUser.isLogin()) {
+            context?.startActivity(Intent(activity, cls))
+        } else {
+            context?.startActivity(Intent(activity, LoginActivity::class.java))
+        }
     }
 }
