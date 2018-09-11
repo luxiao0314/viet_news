@@ -71,6 +71,8 @@ class NewsFragment : RealVisibleHintBaseFragment(), HasSupportFragmentInjector {
     private fun initListener() {
         refreshLayout.setOnRefreshListener {
             model.getNewsArticles().observe(this, Observer { adapter.addData(it?.articles) })
+            refreshLayout.setPrimaryColorsId(R.color.red_hint, android.R.color.white)
+            ClassicsHeader.REFRESH_HEADER_FINISH = "已更新2篇文章"
             it.finishRefresh()
         }
         refreshLayout.setOnLoadMoreListener {
@@ -79,8 +81,6 @@ class NewsFragment : RealVisibleHintBaseFragment(), HasSupportFragmentInjector {
         }
         refreshLayout.setOnMultiPurposeListener(object : SimpleMultiPurposeListener() {
             override fun onHeaderFinish(header: RefreshHeader?, success: Boolean) {
-                refreshLayout.setPrimaryColorsId(R.color.red_hint, android.R.color.white)
-                ClassicsHeader.REFRESH_HEADER_FINISH = "已更新2篇文章"
 //                ClassicsHeader.REFRESH_HEADER_FINISH = "暂无更新内容"
             }
 
