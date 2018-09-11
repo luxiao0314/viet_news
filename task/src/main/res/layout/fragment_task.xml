@@ -13,24 +13,32 @@
         app:titlebar_leftDrawable="@null"
         app:titlebar_titleText="@string/title_task" />
 
-    <com.viet.news.core.ui.widget.MultiStatusView
-        android:id="@+id/multi_status_view"
+
+    <com.scwang.smartrefresh.layout.SmartRefreshLayout
+        android:id="@+id/refreshLayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:emptyView="@layout/view_empty"
-        app:errorView="@layout/view_error">
+        android:layout_height="match_parent"
+        android:background="@color/white">
 
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/recycler_view_task"
+        <com.viet.news.core.ui.widget.MultiStatusView
+            android:id="@+id/multi_status_view"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@color/white"
-            android:overScrollMode="never"
-            android:paddingStart="@dimen/page_padding_left"
-            android:paddingLeft="@dimen/page_padding_left"
-            android:paddingEnd="@dimen/page_padding_right"
-            android:paddingRight="@dimen/page_padding_right" />
+            android:layout_height="wrap_content"
+            app:emptyView="@layout/view_empty"
+            app:errorView="@layout/view_error">
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recycler_view_task"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/white"
+                android:overScrollMode="never"
+                android:paddingStart="@dimen/page_padding_left"
+                android:paddingLeft="@dimen/page_padding_left"
+                android:paddingEnd="@dimen/page_padding_right"
+                android:paddingRight="@dimen/page_padding_right" />
 
 
-    </com.viet.news.core.ui.widget.MultiStatusView>
+        </com.viet.news.core.ui.widget.MultiStatusView>
+    </com.scwang.smartrefresh.layout.SmartRefreshLayout>
 </LinearLayout>
