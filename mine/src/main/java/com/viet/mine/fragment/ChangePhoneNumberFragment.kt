@@ -5,7 +5,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.Navigation
+import com.chenenyu.router.annotation.Route
 import com.viet.mine.R
+import com.viet.news.core.config.Config
 import com.viet.news.core.ext.clickWithTrigger
 import com.viet.news.core.ui.BaseFragment
 import kotlinx.android.synthetic.main.fragment_mine_setting_change_phone.*
@@ -16,6 +18,7 @@ import kotlinx.android.synthetic.main.fragment_mine_setting_change_phone.*
  * @Email zongjia.long@merculet.io
  * @Version
  */
+@Route(value = [Config.ROUTER_MINE_EDIT_CHANGE_PHONE_FRAGMENT])
 class ChangePhoneNumberFragment : BaseFragment() {
     private var mContainerView: View? = null
 
@@ -26,7 +29,7 @@ class ChangePhoneNumberFragment : BaseFragment() {
 
     override fun initView(view: View) {
         confirm_btn.clickWithTrigger {
-            Navigation.findNavController(confirm_btn).navigate(R.id.action_page_2_1)
+            openPage(this@ChangePhoneNumberFragment, Config.ROUTER_MINE_EDIT_VERIFY_CODE_FRAGMENT, R.id.container_framelayout)
         }
     }
 }

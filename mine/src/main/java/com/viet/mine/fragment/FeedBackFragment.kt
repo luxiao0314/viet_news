@@ -15,6 +15,8 @@ import com.viet.mine.viewmodel.SettingViewModel
 import com.viet.news.core.config.Config
 import com.viet.news.core.delegate.viewModelDelegate
 import com.viet.news.core.ext.clickWithTrigger
+import com.viet.news.core.ext.finishWithAnim
+import com.viet.news.core.ui.BaseActivity
 import com.viet.news.core.ui.BaseFragment
 import kotlinx.android.synthetic.main.fragment_mine_setting_feedback.*
 
@@ -54,7 +56,7 @@ class FeedBackFragment : BaseFragment() {
             if (model.feedBackSubmitEnable()) {
                 model.feedBack(this, feedback) { isOk ->
                     if (isOk) {
-                        Navigation.findNavController(view).navigateUp()
+                        (activity as BaseActivity).finishWithAnim()
                         Toast.makeText(context, "提交成功", Toast.LENGTH_SHORT).show()
                     } else {
                         Toast.makeText(context, "提交失败", Toast.LENGTH_SHORT).show()

@@ -5,8 +5,11 @@ import android.app.Activity
 import android.content.Context
 import android.os.Build
 import android.os.Bundle
+import android.support.annotation.IdRes
 import android.support.v4.app.Fragment
 import android.view.View
+import com.viet.news.core.ext.goFragment
+import com.viet.news.core.ext.routerWithAnim
 import io.reactivex.disposables.CompositeDisposable
 
 /**
@@ -50,5 +53,9 @@ abstract class BaseFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         compositeDisposable.clear() // 防止内存泄露
+    }
+
+    protected fun openPage(context: BaseFragment, path: String, @IdRes id: Int) {
+        routerWithAnim(path).goFragment(context, id)
     }
 }

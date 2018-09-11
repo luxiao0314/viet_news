@@ -41,19 +41,19 @@ class SettingFragment : BaseFragment() {
 
         languageSettingItem.setClickDelegate {
             onItemClick = {
-                openPage(Config.ROUTER_MINE_SETTING_LANGUAGE_FRAGMENT)
+                openPage(this@SettingFragment, Config.ROUTER_MINE_SETTING_LANGUAGE_FRAGMENT, R.id.container_framelayout)
             }
         }
 
         helpItem.setClickDelegate {
             onItemClick = {
-                openPage(Config.ROUTER_MINE_SETTING_HELP_FRAGMENT)
+                openPage(this@SettingFragment, Config.ROUTER_MINE_SETTING_HELP_FRAGMENT, R.id.container_framelayout)
             }
         }
 
         feedBackItem.setClickDelegate {
             onItemClick = {
-                openPage(Config.ROUTER_MINE_SETTING_FEEDBACK_FRAGMENT)
+                openPage(this@SettingFragment, Config.ROUTER_MINE_SETTING_FEEDBACK_FRAGMENT, R.id.container_framelayout)
             }
         }
 
@@ -69,7 +69,4 @@ class SettingFragment : BaseFragment() {
 
     }
 
-    private fun openPage(path: String) {
-        routerWithAnim(path).goFragment(this@SettingFragment, R.id.container_framelayout)
-    }
 }

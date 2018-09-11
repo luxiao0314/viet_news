@@ -6,7 +6,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.navigation.Navigation
+import com.chenenyu.router.annotation.Route
 import com.luck.picture.lib.PictureSelector
 import com.luck.picture.lib.config.PictureConfig
 import com.luck.picture.lib.entity.LocalMedia
@@ -15,6 +15,7 @@ import com.viet.mine.viewmodel.AccountInfoViewModel
 import com.viet.news.core.delegate.viewModelDelegate
 import com.viet.news.core.domain.User
 import com.viet.mine.utils.updateHeader
+import com.viet.news.core.config.Config
 import com.viet.news.core.ext.clickWithTrigger
 import com.viet.news.core.ext.loadCircle
 import com.viet.news.core.ui.BaseFragment
@@ -27,6 +28,7 @@ import kotlinx.android.synthetic.main.fragment_mine_account_info.*
  * @Email zongjia.long@merculet.io
  * @Version
  */
+@Route(value = [Config.ROUTER_MINE_EDIT_INFO_FRAGMENT])
 class AccountInfoFragment : BaseFragment() {
 
     private var mContainerView: View? = null
@@ -47,25 +49,25 @@ class AccountInfoFragment : BaseFragment() {
         } else {
             iv_user_icon.loadCircle(R.drawable.shape_default_circle_bg)
         }
-        ll_update_avatar.clickWithTrigger {updateHeader(model.selectList)}
+        ll_update_avatar.clickWithTrigger { updateHeader(model.selectList) }
 
         val changeNameItem = view.findViewById<CommonItem>(R.id.item_change_name)
         val changePhoneNumItem = view.findViewById<CommonItem>(R.id.item_change_phone_num)
         val resetPwdItem = view.findViewById<CommonItem>(R.id.item_reset_pwd)
         changeNameItem.setClickDelegate {
             onItemClick = {
-                Navigation.findNavController(changeNameItem).navigate(R.id.action_page_1)
+                openPage(this@AccountInfoFragment, Config.ROUTER_MINE_EDIT_CHANGE_NICKNAME_FRAGMENT, R.id.container_framelayout)
             }
         }
         changePhoneNumItem.setClickDelegate {
             onItemClick = {
-                Navigation.findNavController(changePhoneNumItem).navigate(R.id.action_page_2)
+                openPage(this@AccountInfoFragment, Config.ROUTER_MINE_EDIT_CHANGE_PHONE_FRAGMENT, R.id.container_framelayout)
             }
         }
 
         resetPwdItem.setClickDelegate {
             onItemClick = {
-                Navigation.findNavController(resetPwdItem).navigate(R.id.action_page_3)
+                openPage(this@AccountInfoFragment, Config.ROUTER_MINE_EDIT_CHANGE_PWD_FRAGMENT, R.id.container_framelayout)
             }
         }
     }

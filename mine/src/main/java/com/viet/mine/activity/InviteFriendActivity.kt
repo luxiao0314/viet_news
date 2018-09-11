@@ -26,6 +26,4 @@ class InviteFriendActivity : InjectActivity() {
 
     }
 
-    override fun onSupportNavigateUp() =
-            findNavController(this, R.id.my_nav_host_fragment).navigateUp()
 }
