@@ -27,23 +27,13 @@ class NewsApp : App(), HasActivityInjector {
 
         if (LeakCanary.isInAnalyzerProcess(this)) return
         LeakCanary.install(this)
-        LanguageUtil.setApplicationLanguage(this)
+
         AppInjector.init(this)
         //方法已过期 看注释说是会自动调用，暂时不删
 //        FacebookSdk.sdkInitialize(applicationContext);
 //        AppEventsLogger.activateApp(this);
     }
 
-    override fun attachBaseContext(base: Context) {
-        super.attachBaseContext(LanguageUtil.setLocal(base))
-        MultiDex.install(this)
-    }
-
-    override fun onConfigurationChanged(newConfig: android.content.res.Configuration) {
-        super.onConfigurationChanged(newConfig)
-        //保存系统选择语言
-        LanguageUtil.onConfigurationChanged(applicationContext)
-    }
 
     override fun activityInjector(): AndroidInjector<Activity>? {
         return dispatchingAndroidInjector

@@ -101,8 +101,8 @@
     <!--个人主页-->
     <string name="funs">Funs</string>
     <string name="has_follow">Has Follow</string>
-    <string name="refreshing">正在加载内容</string>
+    <string name="refreshing">loading</string>
 
     <string name="login_with_facebook">Continue with Facebook</string>
-    <string name="logout">退出</string>
+    <string name="logout">Log Out</string>
 </resources>

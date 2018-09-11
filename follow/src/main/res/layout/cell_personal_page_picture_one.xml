@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -15,7 +14,7 @@
         android:scaleType="centerCrop"
         android:src="@drawable/shape_default_rec_bg"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/iv_article_image"/>
+        app:layout_constraintTop_toBottomOf="@+id/iv_article_image" />
 
     <TextView
         android:id="@+id/tv_des"
@@ -29,7 +28,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/iv_pic"
         app:layout_constraintTop_toBottomOf="@+id/iv_article_image"
-        tools:text=" 过去十年，中共铺设的高铁线路占去了全世界的2/3。 过去十年，中共铺设的高铁线路占去了全世界的2/3。已经成了世界上最大的高铁网络"/>
+        tools:text=" 过去十年，中共铺设的高铁线路占去了全世界的2/3。 过去十年，中共铺设的高铁线路占去了全世界的2/3。已经成了世界上最大的高铁网络" />
 
     <TextView
         android:id="@+id/tv_time"
@@ -39,7 +38,8 @@
         android:textAllCaps="true"
         app:layout_constraintBottom_toBottomOf="@+id/behaviorBar"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/behaviorBar" tools:text="10分钟以前"/>
+        app:layout_constraintTop_toTopOf="@+id/behaviorBar"
+        tools:text="10分钟以前" />
 
     <com.viet.news.core.ui.widget.BehaviorBar
         android:id="@+id/behaviorBar"
@@ -49,6 +49,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.987"
         app:layout_constraintStart_toEndOf="@+id/tv_time"
-        app:layout_constraintTop_toBottomOf="@+id/iv_pic"/>
+        app:layout_constraintTop_toBottomOf="@+id/iv_pic" />
 
 </android.support.constraint.ConstraintLayout>

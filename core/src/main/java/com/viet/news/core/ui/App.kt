@@ -1,11 +1,14 @@
 package com.viet.news.core.ui
 
+import android.content.Context
+import android.support.multidex.MultiDex
 import com.scwang.smartrefresh.layout.SmartRefreshLayout
 import com.scwang.smartrefresh.layout.constant.SpinnerStyle
 import com.scwang.smartrefresh.layout.footer.ClassicsFooter
 import com.scwang.smartrefresh.layout.header.ClassicsHeader
 import com.viet.news.core.BaseApplication
 import com.viet.news.core.R
+import com.viet.news.core.utils.LanguageUtil
 import kotlin.properties.Delegates
 
 
@@ -21,6 +24,7 @@ open class App : BaseApplication() {
     override fun onCreate() {
         super.onCreate()
         instance = this
+        LanguageUtil.setApplicationLanguage(this)
     }
 
     companion object {
@@ -30,6 +34,25 @@ open class App : BaseApplication() {
     }
 
     init {
+        initRefreshLayout()
+    }
+
+    //------------切换语言 start--------------------------------------
+    override fun attachBaseContext(base: Context) {
+        super.attachBaseContext(LanguageUtil.setLocal(base))
+        MultiDex.install(this)
+    }
+
+    override fun onConfigurationChanged(newConfig: android.content.res.Configuration) {
+        super.onConfigurationChanged(newConfig)
+        //保存系统选择语言
+        LanguageUtil.onConfigurationChanged(applicationContext)
+        initRefreshLayout()
+    }
+    //------------切换语言 end--------------------------------------
+
+
+    private fun initRefreshLayout() {
         //设置全局的Header构建器
         SmartRefreshLayout.setDefaultRefreshHeaderCreator { context, layout ->
             layout.setHeaderHeight(40F)

@@ -11,22 +11,29 @@
         style="@style/title_bar_white"
         app:titlebar_titleText="@string/title_help" />
 
+    <LinearLayout
+        android:id="@+id/rl_content"
+        android:layout_width="match_parent"
+        android:background="@drawable/shape_feedback_edittext_bg"
+        android:layout_marginStart="@dimen/page_padding_left"
+        android:layout_marginLeft="@dimen/page_padding_left"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="@dimen/page_padding_right"
+        android:layout_marginRight="@dimen/page_padding_right"
+        android:layout_marginBottom="10dp"
+        android:orientation="vertical"
+        android:layout_height="300dp">
 
         <EditText
             android:id="@+id/edit_content"
             style="@style/edit_layout.feedback"
             android:layout_width="match_parent"
-            android:layout_height="300dp"
-            android:layout_marginLeft="@dimen/page_padding_left"
-            android:layout_marginStart="@dimen/page_padding_left"
-            android:layout_marginTop="20dp"
-            android:layout_marginRight="@dimen/page_padding_right"
-            android:layout_marginEnd="@dimen/page_padding_right"
-            android:layout_marginBottom="10dp"
+            android:layout_height="0dp"
+            android:layout_weight="1"
             android:gravity="top"
             android:hint="@string/feedback_des"
             android:lineSpacingMultiplier="1.2"
-            android:maxLength="100"
+            android:maxLength="300"
             android:minHeight="174dp"
             android:minLines="10"
             android:padding="10dp"
@@ -35,17 +42,26 @@
             android:textCursorDrawable="@null"
             android:textSize="14sp" />
 
-        <Button
-            android:id="@+id/confirm_btn"
-            style="@style/button"
-            android:layout_width="match_parent"
-            android:layout_height="45dp"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginStart="@dimen/page_padding_left"
-            android:layout_marginLeft="@dimen/page_padding_left"
-            android:layout_marginTop="@dimen/top_padding_different_module"
-            android:layout_marginEnd="@dimen/page_padding_right"
-            android:layout_marginRight="@dimen/page_padding_right"
-            android:clickable="false"
-            android:text="@string/submit" />
+        <TextView
+            android:id="@+id/tv_count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:layout_gravity="end"
+            android:text="0/300" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/confirm_btn"
+        style="@style/button"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginStart="@dimen/page_padding_left"
+        android:layout_marginLeft="@dimen/page_padding_left"
+        android:layout_marginTop="@dimen/top_padding_different_module"
+        android:layout_marginEnd="@dimen/page_padding_right"
+        android:layout_marginRight="@dimen/page_padding_right"
+        android:clickable="false"
+        android:text="@string/submit" />
 </LinearLayout>

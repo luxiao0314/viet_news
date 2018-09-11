@@ -1,15 +1,13 @@
 package com.viet.news.core.api
 
 import android.arch.lifecycle.LiveData
-import com.viet.news.core.domain.request.ChannelParams
-import com.viet.news.core.domain.request.FeedBackParams
-import com.viet.news.core.domain.request.LoginParams
-import com.viet.news.core.domain.request.RegisterParams
+import com.viet.news.core.domain.request.*
 import com.viet.news.core.domain.response.ChannelAllListResponse
 import com.viet.news.core.domain.response.ChannelListResponse
 import com.viet.news.core.domain.response.LoginRegisterResponse
 import retrofit2.http.Body
 import retrofit2.http.POST
+
 
 
 /**
@@ -42,6 +40,14 @@ interface ApiService {
 
     @POST("v1/feedback/add")
     fun feedback(@Body param: FeedBackParams): LiveData<ApiResponse<Any>>
+
+    @POST("/v1/content/collection")
+    fun collection(@Body param: CollectionParams): LiveData<ApiResponse<Any>>
+
+    @POST("/v1/content/like")
+    fun like(@Body param: LikeParams): LiveData<ApiResponse<Any>>
+
+
     /**
      * 检查token过期接口
      * @param param
