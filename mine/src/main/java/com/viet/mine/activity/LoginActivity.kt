@@ -4,6 +4,7 @@ import android.content.Intent
 import android.graphics.Typeface
 import android.os.Bundle
 import android.view.KeyEvent
+import com.chenenyu.router.annotation.Route
 import com.facebook.CallbackManager
 import com.safframework.ext.click
 import com.viet.mine.R
@@ -25,7 +26,7 @@ import javax.inject.Inject
  * @Date 06/09/2018 1:42 PM
  * @Version 1.0.0
  */
-//@Route(value = [(Config.ROUTER_LOGIN_ACTIVITY)])
+@Route(value = [(Config.ROUTER_LOGIN_ACTIVITY)])
 class LoginActivity : InjectActivity() {
 
     @Inject

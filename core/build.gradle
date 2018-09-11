@@ -113,4 +113,7 @@ dependencies {
         //排除recyclerview-v7
         exclude group: 'com.android.support', module: 'recyclerview-v7'
     })
+
+    implementation "com.chenenyu.router:router:$rootProject.router"
+    kapt "com.chenenyu.router:compiler:$rootProject.router_compiler"
 }

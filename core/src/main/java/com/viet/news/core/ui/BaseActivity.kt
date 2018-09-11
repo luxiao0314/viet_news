@@ -7,6 +7,7 @@ import android.support.v4.content.ContextCompat
 import android.support.v7.app.AppCompatActivity
 import android.view.KeyEvent
 import android.view.MenuItem
+import androidx.navigation.Navigation
 import com.jaeger.library.StatusBarUtil
 import com.safframework.utils.support
 import com.viet.news.core.R
@@ -74,6 +75,7 @@ abstract class BaseActivity : AppCompatActivity() {
 //            true
 //        } else {
 //        }
+        Navigation.findNavController(this,android.R.id.content)
         super.onKeyDown(keyCode, event)
     } else {
         super.onKeyDown(keyCode, event)
