@@ -1,8 +1,10 @@
 package com.viet.mine.activity
 
+import android.content.Intent
 import android.graphics.Typeface
 import android.os.Bundle
 import android.view.KeyEvent
+import com.facebook.CallbackManager
 import com.safframework.ext.click
 import com.viet.mine.R
 import com.viet.mine.viewmodel.LoginViewModel
@@ -29,7 +31,7 @@ class LoginActivity : InjectActivity() {
     @Inject
     internal lateinit var adapter: TabFragmentAdapter
     private val model by viewModelDelegate(LoginViewModel::class)
-
+    val callbackManager = CallbackManager.Factory.create()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
@@ -47,6 +49,18 @@ class LoginActivity : InjectActivity() {
         //点击协议
         agreement_text.clickWithTrack(Config.login_userProtocol, 2000) {
             WebActivity.launch(this, Config.PACT_URL)
+        }
+
+        login_button.setOnLoginListener(this, callbackManager) {
+            onSuccess = {
+                //...
+            }
+            onCancel = {
+                //...
+            }
+            onError = {
+                //...
+            }
         }
     }
 
@@ -76,5 +90,10 @@ class LoginActivity : InjectActivity() {
             }
         }
         return super.onKeyDown(keyCode, event)
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        callbackManager.onActivityResult(requestCode, resultCode, data)
+        super.onActivityResult(requestCode, resultCode, data)
     }
 }

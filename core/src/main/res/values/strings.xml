@@ -102,5 +102,7 @@
     <string name="funs">Funs</string>
     <string name="has_follow">Has Follow</string>
     <string name="refreshing">正在加载内容</string>
+
+    <string name="login_with_facebook">Continue with Facebook</string>
     <string name="logout">退出</string>
 </resources>
