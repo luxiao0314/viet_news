@@ -9,12 +9,7 @@ import android.support.v7.widget.OrientationHelper
 import android.support.v7.widget.RecyclerView
 import android.view.View
 import android.widget.AbsListView.OnScrollListener.SCROLL_STATE_TOUCH_SCROLL
-import android.widget.TextView
 import com.chenenyu.router.annotation.Route
-import com.scwang.smartrefresh.layout.api.RefreshHeader
-import com.scwang.smartrefresh.layout.header.ClassicsHeader
-import com.scwang.smartrefresh.layout.internal.InternalClassics
-import com.scwang.smartrefresh.layout.listener.SimpleMultiPurposeListener
 import com.viet.mine.R
 import com.viet.mine.adapter.CollectionAdapter
 import com.viet.mine.viewmodel.CollectionViewModel
@@ -48,7 +43,6 @@ class CollectionActivity : InjectActivity() {
     }
 
     private fun initListener() {
-        refreshLayout.setOnMultiPurposeListener(listener)
         refreshLayout.setOnRefreshListener { initData(false) }
         refreshLayout.setOnLoadMoreListener { initData(false) }
         multiStatusView.setLoadingButtonClickListener(View.OnClickListener { refreshLayout.autoRefresh() })
@@ -111,25 +105,4 @@ class CollectionActivity : InjectActivity() {
             }
         })
     }
-
-    private val listener = object : SimpleMultiPurposeListener() {
-
-        override fun onHeaderFinish(header: RefreshHeader?, success: Boolean) {
-            header as ClassicsHeader
-            if (model.collectionList.isEmpty()) {
-                header.findViewById<TextView>(InternalClassics.ID_TEXT_TITLE.toInt()).text = "暂无更新内容"
-            } else {
-                header.findViewById<TextView>(InternalClassics.ID_TEXT_TITLE.toInt()).text = "已更新2篇文章"
-            }
-            header.setPrimaryColor(resources.getColor(R.color.red_hint))
-            header.setAccentColor(resources.getColor(R.color.white))
-        }
-
-        override fun onHeaderMoving(header: RefreshHeader?, isDragging: Boolean, percent: Float, offset: Int, headerHeight: Int, maxDragHeight: Int) {
-            header as ClassicsHeader
-            header.setPrimaryColor(resources.getColor(R.color.white))
-            header.setAccentColor(resources.getColor(R.color.text_gray))
-        }
-    }
-
 }
