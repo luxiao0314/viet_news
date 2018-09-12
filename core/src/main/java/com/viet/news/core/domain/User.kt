@@ -68,6 +68,8 @@ class User private constructor() : Serializable {
             this.avatarUrl = Settings.create().avatar
         if (Settings.create().token.isNotBlank())
             this.accessToken = Settings.create().token
+        if (Settings.create().roleId.isNotBlank())
+            this.roleId = Settings.create().roleId
         if (Settings.create().telephone.isNotBlank())
             this.telephone = Settings.create().telephone
         if (Settings.create().zoneCode.isNotBlank())

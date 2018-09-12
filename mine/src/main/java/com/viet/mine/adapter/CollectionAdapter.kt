@@ -9,6 +9,7 @@ import com.viet.news.core.domain.response.CollectionListBean
 import com.viet.news.core.ext.load
 import com.viet.news.core.ui.BaseAdapter
 import com.viet.news.core.ui.widget.SwipeLayout
+import javax.inject.Inject
 
 /**
  * @Description 用户收藏适配器
@@ -16,7 +17,7 @@ import com.viet.news.core.ui.widget.SwipeLayout
  * @Email zongjia.long@merculet.io
  * @Version
  */
-class CollectionAdapter constructor() : BaseAdapter<CollectionListBean>(), SwipeLayout.OnSwipingListener {
+class CollectionAdapter @Inject constructor() : BaseAdapter<CollectionListBean>(), SwipeLayout.OnSwipingListener {
 
 
     private var layouts: HashSet<SwipeLayout> = HashSet()

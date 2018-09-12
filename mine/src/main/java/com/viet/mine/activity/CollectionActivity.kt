@@ -25,6 +25,7 @@ import com.viet.news.core.domain.response.CollectionListBean
 import com.viet.news.core.ui.InjectActivity
 import com.viet.news.core.vo.Status
 import kotlinx.android.synthetic.main.activity_mine_collection.*
+import javax.inject.Inject
 
 /**
  * @Description 用户收藏
@@ -32,13 +33,11 @@ import kotlinx.android.synthetic.main.activity_mine_collection.*
  * @Email zongjia.long@merculet.io
  * @Version
  */
-@Route(value = [Config.ROUTER_MINE_COLLECTION_ACTIVITY],interceptors = [(Config.LOGIN_INTERCEPTOR)])
+@Route(value = [Config.ROUTER_MINE_COLLECTION_ACTIVITY], interceptors = [(Config.LOGIN_INTERCEPTOR)])
 class CollectionActivity : InjectActivity() {
 
+    @Inject internal lateinit var adapter: CollectionAdapter
     private val model: CollectionViewModel by viewModelDelegate(CollectionViewModel::class)
-
-//    @Inject
-    private lateinit var adapter: CollectionAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -56,7 +55,6 @@ class CollectionActivity : InjectActivity() {
     }
 
     private fun initView() {
-        adapter = CollectionAdapter()
         rl_collection.adapter = adapter
         rl_collection.layoutManager = LinearLayoutManager(this, OrientationHelper.VERTICAL, false)
         val dividerItemDecoration = DividerItemDecoration(this, DividerItemDecoration.VERTICAL)
