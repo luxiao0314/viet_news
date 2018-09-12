@@ -742,7 +742,8 @@ object DateUtils {
         r = when {
             result < 60000 -> { // 一分钟内
                 val seconds = result / 1000
-                seconds.toString() + "秒钟前"
+//                seconds.toString() + "秒钟前"
+                "刚刚"
             }
             result in 60000..3599999 -> {  // 一小时内
                 val seconds = result / 60000

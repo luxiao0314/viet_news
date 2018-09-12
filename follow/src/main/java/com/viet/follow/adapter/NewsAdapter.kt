@@ -41,7 +41,6 @@ class NewsAdapter @Inject constructor() : BaseAdapter<NewsListBean>() {
         }
     }
 
-    var behaviorBar: BehaviorBar? = null
     override fun onBindViewHolderImpl(holder: BaseViewHolder, position: Int, t: NewsListBean) {
         holder.itemView.tv_title.text = t.author.nick_name
         holder.itemView.tv_time.text = DateUtils.getTimestamp(Date(t.content.createDateTime))
@@ -49,10 +48,9 @@ class NewsAdapter @Inject constructor() : BaseAdapter<NewsListBean>() {
         holder.itemView.findViewById<ImageView>(R.id.iv_article_image).loadCircle(t.author.avatar)
         holder.itemView.findViewById<ImageView>(R.id.iv_article_image).click { routerWithAnim(Config.ROUTER_PERSONAL_PAGE_ACTIVITY).go(context) }
         holder.itemView.click { WebActivity.launch(context, t.content.contentDetail) }
-        holder.itemView.behaviorBar.setClickDelegate {
+        holder.itemView.behaviorBar?.setClickDelegate {
             onLikeClick = { isLiked, num, id -> delegate?.onLikeClick(isLiked, num, t.content.id) }
-            onCollectClick = { isCollected, num, id -> delegate?.onLikeClick(isCollected, num, t.content.id) }
-            onPraiseClick = { isPraise, num, id -> delegate?.onPraiseClick(isPraise, num, t.content.id) }
+            onFavoriteClick = { isFavorite, num, id -> delegate?.onLikeClick(isFavorite, num, t.content.id) }
         }
 
         when (getItemViewType(position)) {

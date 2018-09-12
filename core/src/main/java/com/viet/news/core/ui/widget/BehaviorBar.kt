@@ -222,32 +222,20 @@ class BehaviorBar @JvmOverloads constructor(context: Context, attrs: AttributeSe
      */
     interface Delegate {
         fun onLikeClick(isLiked: Boolean, likedNum: Int, id: Int? = 0)
-        fun onCollectClick(isCollected: Boolean, collectedNum: Int, id: Int? = 0)
-        fun onPraiseClick(isPraise: Boolean, praiseNum: Int, id: Int? = 0)
-        fun onFavoriteClick(isFavorite: Boolean, favoriteNum: Int)
+        fun onFavoriteClick(isFavorite: Boolean, favoriteNum: Int, id: Int? = 0)
     }
 
     class ClickDelegate : Delegate {
 
         var onLikeClick: ((Boolean, Int, Int?) -> Unit)? = null
-        var onCollectClick: ((Boolean, Int, Int?) -> Unit)? = null
-        var onPraiseClick: ((Boolean, Int, Int?) -> Unit)? = null
-        var onFavoriteClick: ((Boolean, Int) -> Unit)? = null
+        var onFavoriteClick: ((Boolean, Int, Int?) -> Unit)? = null
 
         override fun onLikeClick(isLiked: Boolean, likedNum: Int, id: Int?) {
             onLikeClick?.let { it(isLiked, likedNum, id) }
         }
 
-        override fun onCollectClick(isCollected: Boolean, collectedNum: Int, id: Int?) {
-            onCollectClick?.let { it(isCollected, collectedNum, id) }
-        }
-
-        override fun onPraiseClick(isPraise: Boolean, praiseNum: Int, id: Int?) {
-            onPraiseClick?.let { it(isPraise, praiseNum, id) }
-        }
-
-        override fun onFavoriteClick(isFavorite: Boolean, favoriteNum: Int) {
-            onFavoriteClick?.let { it(isFavorite, favoriteNum) }
+        override fun onFavoriteClick(isFavorite: Boolean, favoriteNum: Int, id: Int?) {
+            onFavoriteClick?.let { it(isFavorite, favoriteNum, id) }
         }
     }
 }

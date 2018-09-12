@@ -76,8 +76,20 @@ class FindViewModel(var repository: FindRepository = FindRepository()) : BaseVie
             }
         })
     }
-    fun favorite(owner: LifecycleOwner, contentId: String, function: () -> Unit) {
+
+    /**
+     * 点赞
+     */
+    fun like(owner: LifecycleOwner, contentId: String, function: () -> Unit) {
         repository.like(contentId).observe(owner, Observer {
+            if (it?.data != null) {
+                function()
+            }
+        })
+    }
+
+    fun collection(owner: LifecycleOwner, contentId: String, function: () -> Unit) {
+        repository.collection(contentId).observe(owner, Observer {
             if (it?.data != null) {
                 function()
             }
