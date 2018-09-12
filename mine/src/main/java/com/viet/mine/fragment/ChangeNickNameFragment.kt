@@ -1,6 +1,7 @@
 package com.viet.mine.fragment
 
 import android.annotation.SuppressLint
+import android.arch.lifecycle.Observer
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -57,6 +58,8 @@ class ChangeNickNameFragment : BaseFragment() {
                 }
             }
         }
+        //注册按钮能否点击更新
+        model.submitEnable.observe(this, Observer { confirm_btn.isEnabled = it != null && it })
     }
 
 

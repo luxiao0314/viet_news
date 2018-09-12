@@ -38,7 +38,7 @@ class SettingViewModel(var repository: SettingRepository = SettingRepository()) 
 
     fun feedBack(owner: LifecycleOwner, feedback: String, finish: (isSuccess: Boolean) -> Unit) {
         return repository.feedBack(feedback).observe(owner, Observer {
-            when (it!!.status) {
+            when (it?.status) {
                 Status.SUCCESS -> finish(true)
                 Status.ERROR -> finish(false)
                 else -> {
@@ -50,7 +50,7 @@ class SettingViewModel(var repository: SettingRepository = SettingRepository()) 
 
     fun updateNickName(owner: LifecycleOwner, nickname: String, finish: (isSuccess: Boolean) -> Unit) {
         return repository.updateNickName(nickname).observe(owner, Observer {
-            when (it!!.status) {
+            when (it?.status) {
                 Status.SUCCESS -> finish(true)
                 Status.ERROR -> finish(false)
                 else -> {
