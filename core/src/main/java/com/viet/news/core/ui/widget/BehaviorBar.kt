@@ -157,7 +157,7 @@ class BehaviorBar @JvmOverloads constructor(context: Context, attrs: AttributeSe
         return drawable
     }
 
-    private fun setDelegate(delegate: ClickDelegate): BehaviorBar {
+    fun setDelegate(delegate: ClickDelegate): BehaviorBar {
         mDelegate = delegate
         return this
     }
@@ -228,27 +228,27 @@ class BehaviorBar @JvmOverloads constructor(context: Context, attrs: AttributeSe
      * 点击事件监听代理
      */
     interface Delegate {
-        fun onLikeClick(isLiked: Boolean, likedNum: Int)
-        fun onCollectClick(isCollected: Boolean, collectedNum: Int)
-        fun onPraiseClick(isPraise: Boolean, praiseNum: Int)
+        fun onLikeClick(isLiked: Boolean, likedNum: Int, id: Int? = 0)
+        fun onCollectClick(isCollected: Boolean, collectedNum: Int, id: Int? = 0)
+        fun onPraiseClick(isPraise: Boolean, praiseNum: Int, id: Int? = 0)
     }
 
     class ClickDelegate : Delegate {
 
-        var onLikeClick: ((Boolean, Int) -> Unit)? = null
-        var onCollectClick: ((Boolean, Int) -> Unit)? = null
-        var onPraiseClick: ((Boolean, Int) -> Unit)? = null
+        var onLikeClick: ((Boolean, Int, Int?) -> Unit)? = null
+        var onCollectClick: ((Boolean, Int, Int?) -> Unit)? = null
+        var onPraiseClick: ((Boolean, Int, Int?) -> Unit)? = null
 
-        override fun onLikeClick(isLiked: Boolean, likedNum: Int) {
-            onLikeClick?.let { it(isLiked, likedNum) }
+        override fun onLikeClick(isLiked: Boolean, likedNum: Int, id: Int?) {
+            onLikeClick?.let { it(isLiked, likedNum, id) }
         }
 
-        override fun onCollectClick(isCollected: Boolean, collectedNum: Int) {
-            onCollectClick?.let { it(isCollected, collectedNum) }
+        override fun onCollectClick(isCollected: Boolean, collectedNum: Int, id: Int?) {
+            onCollectClick?.let { it(isCollected, collectedNum, id) }
         }
 
-        override fun onPraiseClick(isPraise: Boolean, praiseNum: Int) {
-            onPraiseClick?.let { it(isPraise, praiseNum) }
+        override fun onPraiseClick(isPraise: Boolean, praiseNum: Int, id: Int?) {
+            onPraiseClick?.let { it(isPraise, praiseNum, id) }
         }
 
     }

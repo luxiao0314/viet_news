@@ -18,7 +18,7 @@ data class NewsList(var total_count: String?,
 
 data class NewsListBean(var content: ContentBean, var author: UserInfo, var image_array: List<ImageEntity>)
 
-data class ContentBean(var id: String?,
+data class ContentBean(var id: Int,
                        var createDateTime: Long,
                        var updateDateTime: Long,
                        var version: String?,

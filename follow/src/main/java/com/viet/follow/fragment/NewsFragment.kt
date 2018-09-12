@@ -83,6 +83,11 @@ class NewsFragment : RealVisibleHintBaseFragment(), HasSupportFragmentInjector {
         refreshLayout.setOnRefreshListener { initData(false) }
         refreshLayout.setOnLoadMoreListener { initData(true) }
         multiStatusView.setLoadingButtonClickListener(View.OnClickListener { refreshLayout.autoRefresh() })
+        adapter.setClickDelegate {
+            onLikeClick = { isLiked, num, id ->  }
+            onCollectClick = { isCollected, num, id ->  }
+            onPraiseClick = { isPraise, num, id ->  }
+        }
     }
 
     private fun initData(loadMore: Boolean) {
