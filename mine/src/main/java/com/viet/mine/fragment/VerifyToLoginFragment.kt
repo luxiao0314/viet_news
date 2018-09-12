@@ -9,6 +9,8 @@ import android.view.ViewGroup
 import com.jakewharton.rxbinding2.widget.RxTextView
 import com.viet.mine.R
 import com.viet.mine.viewmodel.LoginViewModel
+import com.viet.news.core.config.Config
+import com.viet.news.core.config.VerifyCodeTypeEnum
 import com.viet.news.core.delegate.viewModelDelegate
 import com.viet.news.core.ext.clickWithTrigger
 import com.viet.news.core.ext.toast
@@ -42,6 +44,23 @@ class VerifyToLoginFragment : RealVisibleHintBaseFragment() {
                     model.registerVCode.value = it.toString()
                     model.checkRegisterVCodeBtnEnable()
                 }
+        // 判断是否倒计时内
+        model.loginCountDown.observe(this, Observer<Int> {
+            if (it != null && it > 0 && it < (Config.COUNT_DOWN_TIMER / 1000).toInt()) {
+                //正在倒计时
+                btn_send_vcode.isEnabled = false
+                btn_send_vcode.text = String.format(getString(R.string.sending_code_s), it.toString())
+            } else {
+                btn_send_vcode.isEnabled = true
+                btn_send_vcode.text = getString(R.string.get_vcode)
+                //倒计时未开始/已结束
+            }
+        })
+        btn_send_vcode.setOnClickListener {
+
+            model.sendSMS(this, type = VerifyCodeTypeEnum.LOGIN) {
+            }
+        }
 
         //错误信息展示
         model.statusMsg.observe(this, Observer { it?.let { msg -> toast(msg).show() } })

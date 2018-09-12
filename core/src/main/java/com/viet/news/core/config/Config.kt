@@ -8,6 +8,8 @@ object Config {
     val SHARE_REQUEST_CODE_FACEBOOK = 1001
     val SHARE_REQUEST_CODE_MESSENGER = 1002
     val SHARE_REQUEST_CODE_COPY = 1003
+    //倒计时1分钟
+    val COUNT_DOWN_TIMER = 60*1000L
 
 
 
@@ -38,6 +40,7 @@ object Config {
 
     // Router URI
     const val ROUTER_LOGIN_ACTIVITY = "/login/activity"
+    const val ROUTER_MAIN_ACTIVITY = "/main/activity"
     const val ROUTER_PERSONAL_PAGE_ACTIVITY = "/personal_page/activity"
     //我的->activity
     const val ROUTER_MINE_WALLET_ACTIVITY = "/mine/wallet/activity"

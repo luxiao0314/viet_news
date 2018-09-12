@@ -1,10 +1,7 @@
 package com.viet.news.core.api
 
 import android.arch.lifecycle.LiveData
-import com.viet.news.core.domain.request.FeedBackParams
-import com.viet.news.core.domain.request.List4ChannelParams
-import com.viet.news.core.domain.request.LoginParams
-import com.viet.news.core.domain.request.RegisterParams
+import com.viet.news.core.domain.request.*
 import com.viet.news.core.domain.response.ChannelAllListResponse
 import com.viet.news.core.domain.response.ChannelListResponse
 import com.viet.news.core.domain.response.LoginRegisterResponse
@@ -56,6 +53,12 @@ interface ApiService {
     @POST("v1/login/register")
     fun register(@Body param: RegisterParams): LiveData<ApiResponse<LoginRegisterResponse>>
 
+    @POST("v1/login/sendSms")
+    fun sendSMS(@Body param: VerifyCodeParams): LiveData<ApiResponse<Any>>
+
+    @POST("v1/login/checkValidationCode")
+    fun checkVerifyCode(@Body param: VerifyCodeParams):LiveData<ApiResponse<Any>>
+
     @POST("v1/feedback/add")
     fun feedback(@Body param: FeedBackParams): LiveData<ApiResponse<Any>>
 
@@ -67,6 +70,7 @@ interface ApiService {
 
     @GET("v1/content/like/{contentId}")
     fun like(@Path("contentId") contentId: String): LiveData<ApiResponse<Any>>
+
 
     /**
      * 检查token过期接口

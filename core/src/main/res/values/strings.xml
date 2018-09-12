@@ -105,4 +105,5 @@
 
     <string name="login_with_facebook">Continue with Facebook</string>
     <string name="logout">Log Out</string>
+    <string name="sending_code_s">Sending verification code%sS</string>
 </resources>
