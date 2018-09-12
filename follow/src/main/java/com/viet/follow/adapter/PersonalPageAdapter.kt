@@ -20,7 +20,7 @@ import javax.inject.Inject
 class PersonalPageAdapter @Inject constructor() : BaseAdapter<NewsListBean>() {
 
     override fun getItemViewType(position: Int): Int {
-        return getData()[position].contentType
+        return getData()[position].content.contentType
     }
 
     override fun getLayoutId(viewType: Int): Int {
@@ -33,17 +33,17 @@ class PersonalPageAdapter @Inject constructor() : BaseAdapter<NewsListBean>() {
     override fun onBindViewHolderImpl(holder: BaseViewHolder, position: Int, t: NewsListBean) {
         when (getItemViewType(position)) {
             1 -> {
-                holder.itemView.tv_des.text = t.contentTitle
-                holder.itemView.tv_time.text = t.createDateTime
+                holder.itemView.tv_des.text = t.content.contentTitle
+                holder.itemView.tv_time.text = t.content.createDateTime
                 holder.itemView.rv_news_cell.layoutManager = GridLayoutManager(context, 3)
                 val cellAdapter = NewsCellAdapter()
                 holder.itemView.rv_news_cell.adapter = cellAdapter
 //                cellAdapter.addData(t.urlToImage)
             }
             else -> {
-                holder.itemView.findViewById<ImageView>(R.id.iv_pic).load(t.contentDetail)
-                holder.itemView.findViewById<TextView>(R.id.tv_des).text = t.contentTitle
-                holder.itemView.findViewById<TextView>(R.id.tv_time).text = t.createDateTime
+                holder.itemView.findViewById<ImageView>(R.id.iv_pic).load(t.content.contentDetail)
+                holder.itemView.findViewById<TextView>(R.id.tv_des).text = t.content.contentTitle
+                holder.itemView.findViewById<TextView>(R.id.tv_time).text = t.content.createDateTime
             }
         }
     }

@@ -111,7 +111,7 @@ class MyViewPager @Inject constructor(fm: FragmentManager?) : FragmentStatePager
         var fragment: BaseFragment? = baseFragmentMap[position]
         if (fragment == null) {
             if (position == 0) {
-                fragment = NewsFragment.newInstance("4")
+                fragment = NewsFragment.newInstance("3")
             } else {
                 fragment = NewsFragment.newInstance(mDataList[position].id)
             }

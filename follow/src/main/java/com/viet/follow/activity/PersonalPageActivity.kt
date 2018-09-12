@@ -43,6 +43,7 @@ class PersonalPageActivity : InjectActivity() {
         super.onCreate(savedInstanceState ?: Bundle())
         setContentView(R.layout.activity_personal_page)
         initView()
+        initData(false)
         initInfoData()
     }
 
@@ -67,6 +68,7 @@ class PersonalPageActivity : InjectActivity() {
     }
 
     private fun initListener() {
+        refreshLayout.setEnableRefresh(false)   //关闭下拉刷新
         refreshLayout.setOnRefreshListener { initData(false) }
         refreshLayout.setOnLoadMoreListener { initData(true) }
         multiStatusView.setLoadingButtonClickListener(View.OnClickListener { refreshLayout.autoRefresh() })

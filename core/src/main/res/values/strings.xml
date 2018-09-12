@@ -19,6 +19,9 @@
     <string name="device_offline_tips">Your account is already logged in on another device, please secure your mobile device and try again.</string>
     <string name="you_hava_not_been_logged_in_yet">Please login first to process you further actions.</string>
     <string name="not_yet_logged_in">Not logged in</string>
+    <string name="today">Today</string>
+    <string name="tomorrow">Tomorrow</string>
+    <string name="yesterday">Yesterday</string>
 
     <!--mine-->
     <string name="title_setting">Setting</string>

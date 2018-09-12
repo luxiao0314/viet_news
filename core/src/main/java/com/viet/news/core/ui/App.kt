@@ -57,13 +57,14 @@ open class App : BaseApplication() {
         SmartRefreshLayout.setDefaultRefreshHeaderCreator { context, layout ->
             layout.setHeaderHeight(40F)
             layout.setEnableAutoLoadMore(true)
+            layout.setEnableFooterFollowWhenLoadFinished(true)
             ClassicsHeader.REFRESH_HEADER_REFRESHING = getString(R.string.refreshing)
             ClassicsHeader(context).setEnableLastTime(false).setTextSizeTitle(14F).setSpinnerStyle(SpinnerStyle.Translate)
         }
         //设置全局的Footer构建器
         SmartRefreshLayout.setDefaultRefreshFooterCreator { context, layout ->
             layout.setFooterHeight(40F)
-            ClassicsFooter(context).setDrawableSize(20f).setTextSizeTitle(14F)
+            ClassicsFooter(context).setDrawableSize(20f).setTextSizeTitle(14F).setSpinnerStyle(SpinnerStyle.FixedBehind)
         }
     }
 }

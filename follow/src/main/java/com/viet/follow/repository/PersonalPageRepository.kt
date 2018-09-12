@@ -22,7 +22,7 @@ class PersonalPageRepository: ApiRepository() {
         val params = List4ChannelParams()
         params.page_number = page_number
         params.page_size = 2
-        params.id = id
+        params.channel_id = id
         return object : NetworkOnlyResource<NewsListResponse>() {
             override fun createCall(): LiveData<ApiResponse<NewsListResponse>> {
                 return apiInterface.getlist4User(params)

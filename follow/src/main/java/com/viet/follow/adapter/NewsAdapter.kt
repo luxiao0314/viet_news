@@ -3,7 +3,6 @@ package com.viet.follow.adapter
 import android.content.Intent
 import android.support.v7.widget.GridLayoutManager
 import android.widget.ImageView
-import android.widget.TextView
 import com.viet.follow.R
 import com.viet.follow.activity.PersonalPageActivity
 import com.viet.news.core.config.Config
@@ -13,8 +12,10 @@ import com.viet.news.core.ext.load
 import com.viet.news.core.ext.loadCircle
 import com.viet.news.core.ext.routerWithAnim
 import com.viet.news.core.ui.BaseAdapter
+import com.viet.news.core.utils.DateUtils
 import com.viet.news.webview.WebActivity
 import kotlinx.android.synthetic.main.cell_news_picture_three.view.*
+import java.util.*
 import javax.inject.Inject
 
 /**
@@ -27,7 +28,7 @@ import javax.inject.Inject
 class NewsAdapter @Inject constructor() : BaseAdapter<NewsListBean>() {
 
     override fun getItemViewType(position: Int): Int {
-        return getData()[position].contentType
+        return getData()[position].content.contentType
     }
 
     override fun getLayoutId(viewType: Int): Int {
@@ -41,12 +42,13 @@ class NewsAdapter @Inject constructor() : BaseAdapter<NewsListBean>() {
     }
 
     override fun onBindViewHolderImpl(holder: BaseViewHolder, position: Int, t: NewsListBean) {
+
+        holder.itemView.tv_title.text = t.author.nick_name
+        holder.itemView.tv_time.text = t.content.createDateTime
+        holder.itemView.tv_des.text = DateUtils.getTimestamp(Date(t.content.contentTitle))
         when (getItemViewType(position)) {
             1 -> {
-                holder.itemView.iv_article_image.loadCircle(t.contentDetail)
-                holder.itemView.tv_title.text = t.contentTitle
-                holder.itemView.tv_time.text = t.createDateTime
-                holder.itemView.tv_des.text = t.contentTitle
+                holder.itemView.iv_article_image.loadCircle(t.author.avatar)
                 holder.itemView.rv_news_cell.layoutManager = GridLayoutManager(context, 3)
                 val cellAdapter = NewsCellAdapter()
                 holder.itemView.rv_news_cell.adapter = cellAdapter
@@ -54,27 +56,16 @@ class NewsAdapter @Inject constructor() : BaseAdapter<NewsListBean>() {
                 holder.itemView.iv_article_image.click { context.startActivity(Intent(context, PersonalPageActivity::class.java)) }
             }
             2 -> {
-                holder.itemView.findViewById<ImageView>(R.id.iv_article_image).loadCircle(t.contentDetail)
-                holder.itemView.findViewById<ImageView>(R.id.iv_pic).load(t.contentDetail)
-                holder.itemView.findViewById<TextView>(R.id.tv_title).text = t.contentTitle
-                holder.itemView.findViewById<TextView>(R.id.tv_time).text = t.createDateTime
-                holder.itemView.findViewById<TextView>(R.id.tv_des).text = t.contentTitle
+                holder.itemView.findViewById<ImageView>(R.id.iv_article_image).loadCircle(t.author.avatar)
+                holder.itemView.findViewById<ImageView>(R.id.iv_pic).load(t.author.avatar)
                 holder.itemView.findViewById<ImageView>(R.id.iv_article_image).click { context.startActivity(Intent(context, PersonalPageActivity::class.java)) }
             }
-            3 -> {
-                holder.itemView.findViewById<TextView>(R.id.tv_title).text = t.contentTitle
-                holder.itemView.findViewById<TextView>(R.id.tv_time).text = t.createDateTime
-                holder.itemView.findViewById<TextView>(R.id.tv_des).text = t.contentTitle
-            }
+            3 -> {}
             4 -> {
-//                holder.itemView.findViewById<ImageView>(R.id.iv_pic).load(t.contentDetail)
-                holder.itemView.findViewById<ImageView>(R.id.iv_article_image).loadCircle(t.contentDetail)
-                holder.itemView.findViewById<ImageView>(R.id.iv_pic).load(t.contentDetail)
-                holder.itemView.findViewById<TextView>(R.id.tv_title).text = t.contentTitle
-                holder.itemView.findViewById<TextView>(R.id.tv_time).text = t.createDateTime
-                holder.itemView.findViewById<TextView>(R.id.tv_des).text = t.contentTitle
+                holder.itemView.findViewById<ImageView>(R.id.iv_article_image).loadCircle(t.author.avatar)
+                holder.itemView.findViewById<ImageView>(R.id.iv_pic).load(t.author.avatar)
                 holder.itemView.findViewById<ImageView>(R.id.iv_article_image).click { routerWithAnim(Config.ROUTER_PERSONAL_PAGE_ACTIVITY).go(context) }
-                holder.itemView.click { WebActivity.launch(context, t.contentDetail) }
+                holder.itemView.click { WebActivity.launch(context, t.content.contentDetail) }
             }
         }
     }
