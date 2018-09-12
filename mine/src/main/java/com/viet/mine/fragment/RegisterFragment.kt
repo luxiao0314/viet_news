@@ -41,26 +41,28 @@ class RegisterFragment : RealVisibleHintBaseFragment() {
         //手机号
         RxTextView.textChanges(phone_input)
                 .subscribe {
-                    model.registerPhoneNumber.value = it.toString()
-                    model.checkRegisterNextBtnEnable()
-                    model.checkRegisterVCodeBtnEnable()
+                    model.signInPhoneNumber.value = it.toString()
+                    model.checkSignInSendVCodeEnable()
+                    model.checkSignInNextButtonEnable()
                 }
 
         //验证码
         RxTextView.textChanges(vcode_input)
                 .subscribe {
-                    model.registerVCode.value = it.toString()
-                    model.checkRegisterNextBtnEnable()
+                    model.signInVCode.value = it.toString()
+                    model.checkSignInNextButtonEnable()
                 }
         //邀请码
         RxTextView.textChanges(vcode_input)
                 .subscribe {
-                    model.registerInviteCode.value = it.toString()
+                    model.signInInviteCode.value = it.toString()
                 }
 
         //发送验证码
         btn_send_vcode.setOnClickListener {
-            model.sendSMS(this,  type = VerifyCodeTypeEnum.REGISTER) {
+            if (model.canSendSignInVCode()) {
+                model.sendSMS(this, type = VerifyCodeTypeEnum.REGISTER) {
+                }
             }
         }
 
@@ -69,9 +71,11 @@ class RegisterFragment : RealVisibleHintBaseFragment() {
 
         //注册按钮点击事件
         register_btn.clickWithTrigger {
-            //校验验证码，然后跳转到设置密码
-            model.checkVerifyCode(this, type = VerifyCodeTypeEnum.REGISTER) {
-                FragmentExchangeManager.addFragment(fragmentManager, RegisterNextFragment(), R.id.constraintLayout, "RegisterNextFragment", true)
+            if (model.canNextSign()) {
+                //校验验证码，然后跳转到设置密码
+                model.checkVerifyCode(this, type = VerifyCodeTypeEnum.REGISTER) {
+                    FragmentExchangeManager.addFragment(fragmentManager, RegisterNextFragment(), R.id.constraintLayout, "RegisterNextFragment", true)
+                }
             }
         }
     }
@@ -81,21 +85,19 @@ class RegisterFragment : RealVisibleHintBaseFragment() {
         model.zoneCode.observe(this, Observer {
             select_country_text.text = "+$it"
         })
-        //错误信息展示
-        model.statusMsg.observe(this, Observer { it?.let { msg -> toast(msg).show() } })
-        //注册下一步按钮能否点击更新
-        model.registerNextButtonEnable.observe(this, Observer { register_btn.isEnabled = it != null && it })
         //发送验证码可否点击
-        model.registerVCodeEnable.observe(this, Observer { btn_send_vcode.isEnabled = it != null && it })
+        model.signInSendVCodeEnable.observe(this, Observer { btn_send_vcode.isEnabled = it != null && it })
+        //注册下一步按钮能否点击更新
+        model.signInNextButtonEnable.observe(this, Observer { register_btn.isEnabled = it != null && it })
         // 判断是否倒计时内
-        model.signInCountDown.observe(this, Observer<Int> {
+        model.countDown4SignIn.observe(this, Observer<Int> {
             if (it != null && it > 0 && it < (Config.COUNT_DOWN_TIMER / 1000).toInt()) {
                 //正在倒计时
-                model.registerVCodeEnable.value = false
+                model.signInSendVCodeEnable.value = false
                 btn_send_vcode.text = String.format(getString(R.string.sending_code_s), it.toString())
             } else {
                 //倒计时未开始/已结束
-                model.registerVCodeEnable.value = true
+                model.signInSendVCodeEnable.value = true
                 btn_send_vcode.text = getString(R.string.get_vcode)
             }
         })

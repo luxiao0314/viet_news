@@ -11,14 +11,6 @@ import java.io.Serializable
  * @Version
  */
 class VerifyCodeParams : Serializable {
-    companion object {
-        // 验证码类型 = ['LOGIN', 'RESET_PASSWORD', 'REGISTER', 'BIND_PHONE', 'SET_PASSWORD']
-        const val LOGIN = "LOGIN"
-        const val REGISTER = "REGISTER"
-        const val RESET_PASSWORD = "RESET_PASSWORD"
-        const val BIND_PHONE = "BIND_PHONE"
-        const val SET_PASSWORD = "SET_PASSWORD"
-    }
 
     private var validation_code_type: String = ""
     var validation_code: String? = null

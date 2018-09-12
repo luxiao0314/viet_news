@@ -11,7 +11,7 @@ import java.io.Serializable
  * @Date 11/09/2018 10:21 AM
  * @Version
  */
-class RegisterParams : Serializable {
+class SignInParams : Serializable {
     private var device_id: String? = DeviceInfoUtils.getDeviceId(App.instance)
     private var os_type: String? =  DeviceInfoUtils.os
     var invite_code: String? = ""
