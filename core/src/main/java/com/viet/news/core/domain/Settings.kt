@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.content.SharedPreferences
 import com.safframework.delegate.prefs.initKey
+import com.safframework.delegate.prefs.int
 import com.safframework.delegate.prefs.string
 import com.viet.news.core.ui.App
 
@@ -25,6 +26,8 @@ class Settings(prefs: SharedPreferences = App.instance.getSharedPreferences(SP_K
     //只在User内使用
     var zoneCode by prefs.string(SP_ZONECODE, isEncrypt = true)
     var avatar by prefs.string(SP_AVATAR_URL, isEncrypt = true)
+    var fansCount by prefs.int(SP_FANS_COUNT, isEncrypt = true)
+    var followCount by prefs.int(SP_FOLLOW_COUNT, isEncrypt = true)
 //    var countryAbbreviation by prefs.string(SP_COUNTRY_ABBREVIATION, isEncrypt = true)
 
 
@@ -37,6 +40,8 @@ class Settings(prefs: SharedPreferences = App.instance.getSharedPreferences(SP_K
         const val SP_USER_ID = "sp_user_id"
         const val SP_ZONECODE = "sp_zone_code"
         const val SP_AVATAR_URL = "sp_avatar_url"
+        const val SP_FANS_COUNT = "sp_fans_count"
+        const val SP_FOLLOW_COUNT = "sp_follow_count"
 
 
         @SuppressLint("StaticFieldLeak")

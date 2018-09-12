@@ -45,6 +45,17 @@ class User private constructor() : Serializable {
             field = value
         }
 
+    var fansCount: Int = 0
+        set(value) {
+            Settings.create().fansCount = value
+            field = value
+        }
+    var followCount: Int = 0
+        set(value) {
+            Settings.create().followCount = value
+            field = value
+        }
+
     init {
         if (Settings.create().userName.isNotBlank())
             this.userName = Settings.create().userName
@@ -58,6 +69,11 @@ class User private constructor() : Serializable {
             this.zoneCode = Settings.create().zoneCode
         if (Settings.create().userId.isNotBlank())
             this.userId = Settings.create().userId
+
+        this.fansCount = Settings.create().fansCount
+
+        this.fansCount = Settings.create().followCount
+
     }
 
     companion object {
@@ -73,6 +89,9 @@ class User private constructor() : Serializable {
         this.accessToken = userLogin.token
         this.userName = userLogin.nickName
         this.userId = userLogin.userId
+        this.fansCount = userLogin.fansCount
+        this.followCount = userLogin.followCount
+
         currentUser = this@User
     }
 
@@ -82,6 +101,8 @@ class User private constructor() : Serializable {
         Settings.create().userName = ""
         Settings.create().avatar = ""
         Settings.create().userId = ""
+        Settings.create().fansCount = 0
+        Settings.create().followCount = 0
 
         currentUser = User()
 

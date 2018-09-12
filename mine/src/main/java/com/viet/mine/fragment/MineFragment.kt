@@ -1,14 +1,11 @@
 package com.viet.mine.fragment
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.safframework.ext.clickWithTrigger
-import com.viet.follow.activity.PersonalPageActivity
 import com.viet.mine.R
-import com.viet.mine.activity.*
 import com.viet.news.core.config.Config
 import com.viet.news.core.domain.LoginEvent
 import com.viet.news.core.domain.LogoutEvent
@@ -43,6 +40,8 @@ class MineFragment : BaseFragment() {
 
     private fun initData() {
         tv_nickname.text = User.currentUser.userName
+        tv_fans_count.text = User.currentUser.fansCount.toString()
+        tv_follow_count.text = User.currentUser.followCount.toString()
     }
 
     private fun initEvent() {
