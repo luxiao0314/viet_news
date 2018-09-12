@@ -2,7 +2,7 @@ package com.viet.news.db
 
 import android.arch.lifecycle.LiveData
 import android.arch.persistence.room.*
-import com.viet.news.NewsConstants
+import com.viet.news.core.config.Config
 
 /**
  * Created by abhinav.sharma on 04/11/17.
@@ -10,7 +10,7 @@ import com.viet.news.NewsConstants
 @Dao
 interface SourceDao {
 
-    @Query("SELECT * FROM " + NewsConstants.T_SOURCE)
+    @Query("SELECT * FROM " + Config.T_SOURCE)
     fun getAllNewsSource(): LiveData<List<SourceEntity>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)

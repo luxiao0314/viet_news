@@ -4,14 +4,13 @@ import android.arch.persistence.room.Database
 import android.arch.persistence.room.Room
 import android.arch.persistence.room.RoomDatabase
 import android.content.Context
-import com.viet.news.NewsConstants
+import com.viet.news.core.config.Config
 
 /**
  * Created by abhinav.sharma on 04/11/17.
  */
-@Database(entities = [SourceEntity::class, ArticleEntity::class], version = 1)
+@Database(entities = [SourceEntity::class], version = 1)
 abstract class NewsDBHelper : RoomDatabase() {
-    abstract fun getArticleDao(): ArticleDao
     abstract fun getSourceDao(): SourceDao
 
     companion object {
@@ -19,7 +18,7 @@ abstract class NewsDBHelper : RoomDatabase() {
 
         fun getInstance(context: Context): NewsDBHelper {
             if (db == null) {
-                db = Room.databaseBuilder(context, NewsDBHelper::class.java, NewsConstants.DB_NAME).build()
+                db = Room.databaseBuilder(context, NewsDBHelper::class.java, Config.DB_NAME).build()
             }
             return db!!
         }
