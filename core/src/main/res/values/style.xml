@@ -601,4 +601,8 @@
         <item name="passwordToggleTint" type="color">@color/black</item>
     </style>
 
+    <style name="AnimScaleCenter" parent="@android:style/Animation">
+        <item name="android:windowEnterAnimation">@anim/scale_center_in</item>
+        <item name="android:windowExitAnimation">@anim/scale_center_out</item>
+    </style>
 </resources>

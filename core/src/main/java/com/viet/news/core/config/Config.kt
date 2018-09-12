@@ -37,7 +37,8 @@ object Config {
     //登录-用户协议
     const val login_userProtocol = "login_userProtocol"
 
-
+    // Router Interceptor
+    const val LOGIN_INTERCEPTOR = "LoginInterceptor"
     // Router URI
     const val ROUTER_LOGIN_ACTIVITY = "/login/activity"
     const val ROUTER_MAIN_ACTIVITY = "/main/activity"
