@@ -17,7 +17,6 @@ import com.viet.news.core.config.VerifyCodeTypeEnum
 import com.viet.news.core.domain.LoginEvent
 import com.viet.news.core.domain.User
 import com.viet.news.core.domain.request.SignInParams
-import com.viet.news.core.ext.toast
 import com.viet.news.core.ui.App
 import com.viet.news.core.ui.BaseFragment
 import com.viet.news.core.utils.RxBus
@@ -219,7 +218,7 @@ class LoginViewModel(private var repository: LoginRepository = LoginRepository()
         //开始倒计时
             VerifyCodeTypeEnum.LOGIN -> {
                 startLoginCountdown(Config.COUNT_DOWN_TIMER)
-                phone = pwdLoginPhoneNumber.value
+                phone = vCodeLoginPhoneNumber.value
             }
             VerifyCodeTypeEnum.REGISTER -> {
                 startSignInCountdown(Config.COUNT_DOWN_TIMER)
@@ -327,7 +326,7 @@ class LoginViewModel(private var repository: LoginRepository = LoginRepository()
 
     @SuppressLint("CheckResult")
     fun loginBySMS(owner: LifecycleOwner, onLoginSuccess: () -> Unit) {
-        repository.loginBySMS(pwdLoginPhoneNumber.value, vCodeLoginVCode.value).observe(owner, Observer { resource ->
+        repository.loginBySMS(vCodeLoginPhoneNumber.value, vCodeLoginVCode.value).observe(owner, Observer { resource ->
             resource?.apply {
                 if (status == Status.SUCCESS) {
                     data?.isOkStatus?.then(

@@ -24,6 +24,7 @@ class PersonalPageModel(var repository: PersonalPageRepository = PersonalPageRep
 
     var page_number = 0
     var userId: String? = "1"
+    var followId: String? = "1"
 
     fun getlist4User(): LiveData<Resource<NewsListResponse>> {
         return repository.getlist4User(page_number, userId)
@@ -33,6 +34,16 @@ class PersonalPageModel(var repository: PersonalPageRepository = PersonalPageRep
         repository.getUserInfo(userId).observe(owner, Observer {
             if (it?.status == Status.SUCCESS) {
                 function(it.data?.data)
+            } else if (it?.status == Status.ERROR) {
+                toast(App.instance.resources.getString(R.string.error_msg)).show()
+            }
+        })
+    }
+
+    fun follow(owner: LifecycleOwner, function: () -> Unit) {
+        repository.follow(followId).observe(owner, Observer {
+            if (it?.status == Status.SUCCESS) {
+                function()
             } else if (it?.status == Status.ERROR) {
                 toast(App.instance.resources.getString(R.string.error_msg)).show()
             }

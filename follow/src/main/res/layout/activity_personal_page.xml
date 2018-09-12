@@ -55,6 +55,7 @@
         tools:text="10.67w"/>
 
     <Button
+        android:id="@+id/btn_follow"
         style="@style/button.small"
         android:layout_marginTop="40dp"
         android:layout_marginEnd="15dp"

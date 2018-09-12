@@ -37,4 +37,12 @@ class PersonalPageRepository: ApiRepository() {
             }
         }.asLiveData()
     }
+
+    fun follow(followUserId: String?): LiveData<Resource<Any>> {
+        return object : NetworkOnlyResource<Any>() {
+            override fun createCall(): LiveData<ApiResponse<Any>> {
+                return apiInterface.follow(followUserId)
+            }
+        }.asLiveData()
+    }
 }

@@ -48,13 +48,15 @@ class PersonalPageActivity : InjectActivity() {
     }
 
     private fun initInfoData() {
-        model.getUserInfo(this){
+        model.getUserInfo(this) {
             iv_article_image.loadCircle(it?.avatar)
             iv_header.loadBlur(it?.avatar)
             tv_title.text = it?.nick_name
             tv_coin.text = it?.follow_count.toString()
             tv_fans_num.text = it?.fans_count.toString()
             tv_follow_num.text = it?.follow_count.toString()
+            btn_follow.isEnabled = it?.follow_flag != "1"
+            btn_follow.text = if (it?.follow_flag != "1") resources.getString(R.string.follow) else resources.getString(R.string.has_follow)
         }
     }
 
@@ -73,6 +75,12 @@ class PersonalPageActivity : InjectActivity() {
         refreshLayout.setOnLoadMoreListener { initData(true) }
         multiStatusView.setLoadingButtonClickListener(View.OnClickListener { refreshLayout.autoRefresh() })
         relativeLayout.click { routerWithAnim(Config.ROUTER_FUNS_AND_FOLLOW_ACTIVITY).go(this) }
+        btn_follow.click {
+            model.follow(this) {
+                btn_follow.isEnabled = false
+                btn_follow.text = resources.getString(R.string.has_follow)
+            }
+        }
     }
 
     private fun initData(loadMore: Boolean) {

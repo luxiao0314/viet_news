@@ -18,6 +18,8 @@ class Settings(prefs: SharedPreferences = App.instance.getSharedPreferences(SP_K
 
     var token by prefs.string(SP_TOKEN, isEncrypt = true)
 
+    var roleId by prefs.string(SP_ROLE_ID, isEncrypt = true)
+
     var userName  by prefs.string(SP_USERNAME, isEncrypt = true)
 
     //只在User内使用，其他地方调用
@@ -35,6 +37,7 @@ class Settings(prefs: SharedPreferences = App.instance.getSharedPreferences(SP_K
 
 
         const val SP_TOKEN = "sp_token"
+        const val SP_ROLE_ID = "sp_roleId"
         const val SP_USERNAME = "sp_username"
         const val SP_TELEPHONE = "sp_telephone"
         const val SP_USER_ID = "sp_user_id"

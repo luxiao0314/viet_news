@@ -3,11 +3,10 @@ package com.viet.news.core.api
 import android.arch.lifecycle.LiveData
 import com.viet.news.core.domain.request.*
 import com.viet.news.core.domain.response.*
+import io.reactivex.Maybe
+import okhttp3.MultipartBody
 import retrofit2.Call
-import retrofit2.http.Body
-import retrofit2.http.GET
-import retrofit2.http.POST
-import retrofit2.http.Path
+import retrofit2.http.*
 
 
 /**
@@ -87,15 +86,8 @@ interface ApiService {
     @GET("v1/content/like/{contentId}")
     fun like(@Path("contentId") contentId: String): LiveData<ApiResponse<Any>>
 
-
-    /**
-     * 检查token过期接口
-     * @param param
-     *
-     * @return
-     */
-    /*@GET("register/checkTokenExpired")
-    fun checkTokenExpired(): Observable<LoginResponse>
+    @GET("v1/user/follow/{followUserId}")
+    fun follow(@Path("followUserId") followUserId: String?): LiveData<ApiResponse<Any>>
 
 
     //多参数上传+多图片上传
@@ -112,6 +104,6 @@ interface ApiService {
     fun uploadFileVisitor(@Part("email") email: String?,
                    @Part("subject") subject: String?,
                    @Part("content") content: String?,
-                   @Part part: List<MultipartBody.Part>?): Maybe<HttpResponse<Any>>*/
+                   @Part part: List<MultipartBody.Part>?): Maybe<HttpResponse<Any>>
 
 }

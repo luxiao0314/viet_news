@@ -17,6 +17,11 @@ class User private constructor() : Serializable {
             Settings.create().token = value
             field = value
         }
+    var roleId: String = ""
+        set(value) {
+            Settings.create().roleId = value
+            field = value
+        }
     var userName: String = ""
         set(value) {
             Settings.create().userName = value
@@ -80,13 +85,16 @@ class User private constructor() : Serializable {
         var currentUser: User = User()
     }
 
-    fun isLogin(): Boolean = accessToken.isNotBlank()
+    fun isLogin(): Boolean = roleId == "1"  //2:设备登录 1:常规登录
+
+    fun isDeviceLogin(): Boolean = roleId == "2"  //2:设备登录 1:常规登录
 
     fun login(userLogin: LoginRegisterResponse.LoginRegister) {
         //init
         this.telephone = userLogin.phoneNumber
         this.avatarUrl = userLogin.imageUrl
         this.accessToken = userLogin.token
+        this.roleId = userLogin.roleId
         this.userName = userLogin.nickName
         this.userId = userLogin.userId
         this.fansCount = userLogin.fansCount
