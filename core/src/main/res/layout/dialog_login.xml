@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:gravity="center"
+              android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/shape_dialog_bg"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_title"
+            style="@style/text.16.gray.bold"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="10dp"
+            android:text="@string/not_yet_logged_in"/>
+
+        <View style="@style/line.gray_tran"/>
+
+        <TextView
+            style="@style/text.14.light_gray"
+            android:layout_marginTop="@dimen/top_padding_different_module"
+            android:gravity="center"
+            android:lineSpacingMultiplier="1.2"
+            android:text="@string/you_hava_not_been_logged_in_yet"/>
+
+        <Button
+            android:id="@+id/btn_login"
+            style="@style/button.small"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/page_padding_left"
+            android:layout_marginLeft="@dimen/page_padding_left"
+            android:layout_marginTop="75dp"
+            android:layout_marginEnd="@dimen/page_padding_right"
+            android:layout_marginRight="@dimen/page_padding_right"
+            android:layout_marginBottom="30dp"
+            android:text="@string/log_in"/>
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/iv_cancle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:src="@drawable/ic_close"/>
+
+</LinearLayout>

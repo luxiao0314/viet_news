@@ -5,6 +5,7 @@ import android.arch.lifecycle.LifecycleOwner
 import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.Observer
 import android.os.CountDownTimer
+import com.safframework.ext.then
 import com.viet.mine.R
 import com.viet.mine.fragment.LoginFragment
 import com.viet.mine.fragment.PwdToLoginFragment
@@ -151,7 +152,6 @@ class LoginViewModel(private var repository: LoginRepository = LoginRepository()
 
 
     /* --------------------以下为输入框文字变化监听相关-----------------------------------------------------
-     * 一般用于判断手机号\密码长度等异常信息。暂不处理
      */
 
     //检查【注册发送验证码】按钮是否可点击
@@ -194,13 +194,14 @@ class LoginViewModel(private var repository: LoginRepository = LoginRepository()
      * TODO tsing 根据需求修改，例如密码长度最少6位最大xx位。暂不处理，都返回的true，使用实例如下第一个，注释部分
      */
     fun canSendLoginVCode(): Boolean = when {
-        //检查手机号码长度，格式，区号 等信息。
+    //检查手机号码长度，格式，区号 等信息。
 //        signInerVCodeEnable.value!!.not() -> {
 //            statusMsg.value = R.string.verify_the_login
 //            false
 //        }
         else -> true
     }
+
     fun canVCodeLogin(): Boolean = true
 
     fun canPwdLogin(): Boolean = true
@@ -231,19 +232,19 @@ class LoginViewModel(private var repository: LoginRepository = LoginRepository()
         repository.sendSMS(phone, zoneCode.value, type).observe(owner, Observer { resource ->
             resource?.apply {
                 if (status == Status.SUCCESS) {
-                    onSent()
-                } else {
-                    message?.let { msg ->
-                        toast(msg).show()
-                        //TODO tsing 放这里不对，要放到请求失败的地方。暂时注释掉
-//                        when (type) {
-//                        //发送验证码失败，结束倒计时
-//                            VerifyCodeTypeEnum.LOGIN -> stopLoginCountdown()
-//                            VerifyCodeTypeEnum.REGISTER -> stopSignInCountdown()
-//                            else -> {
-//                            }
-//                        }
-                    }
+                    data?.isOkStatus?.then(
+                            { onSent() },
+                            {
+                                //发送验证码失败，结束倒计时
+                                when (type) {
+                                    VerifyCodeTypeEnum.LOGIN -> stopLoginCountdown()
+                                    VerifyCodeTypeEnum.REGISTER -> stopSignInCountdown()
+                                    else -> {
+                                    }
+                                }
+                            })
+
+
                 }
             }
         })
@@ -270,11 +271,7 @@ class LoginViewModel(private var repository: LoginRepository = LoginRepository()
         repository.checkVerifyCode(phoneNumber = phone, verifyCode = verifyCode, zone_code = zoneCode.value, type = type).observe(owner, Observer { resource ->
             resource?.apply {
                 if (status == Status.SUCCESS) {
-                    onValidate()
-                } else {
-                    message?.let { msg ->
-                        toast(msg).show()
-                    }
+                    data?.isOkStatus?.then({ onValidate() }, {})
                 }
             }
         })
@@ -289,18 +286,18 @@ class LoginViewModel(private var repository: LoginRepository = LoginRepository()
         repository.signIn(params).observe(owner, Observer { resource ->
             resource?.apply {
                 if (status == Status.SUCCESS) {
-                    if (data != null) {
-                        signInPhoneNumber.value?.let { phoneNumber -> User.currentUser.telephone = phoneNumber }
-                        zoneCode.value?.let { zoneCode -> User.currentUser.zoneCode = zoneCode }
-                        User.currentUser.login(data!!.data!!)
-                        stopSignInCountdown()//注册成功后结束本次倒计时
-                        RxBus.get().post(LoginEvent())
-                        onSignInSuccess()
-                    }
-                } else {
-                    message?.let { msg ->
-                        toast(msg).show()
-                    }
+                    data?.isOkStatus?.then(
+                            {
+                                data?.data?.let {
+                                    signInPhoneNumber.value?.let { phoneNumber -> User.currentUser.telephone = phoneNumber }
+                                    zoneCode.value?.let { zoneCode -> User.currentUser.zoneCode = zoneCode }
+                                    User.currentUser.login(it)
+                                    stopSignInCountdown()//注册成功后结束本次倒计时
+                                    RxBus.get().post(LoginEvent())
+                                    onSignInSuccess()
+                                }
+                            },
+                            {})
                 }
             }
         })
@@ -311,18 +308,18 @@ class LoginViewModel(private var repository: LoginRepository = LoginRepository()
         repository.loginByPwd(pwdLoginPhoneNumber.value, pwdLoginPassword.value).observe(owner, Observer { resource ->
             resource?.apply {
                 if (status == Status.SUCCESS) {
-                    if (data != null) {
-                        pwdLoginPhoneNumber.value?.let { phoneNumber -> User.currentUser.telephone = phoneNumber }
-                        zoneCode.value?.let { zoneCode -> User.currentUser.zoneCode = zoneCode }
-                        User.currentUser.login(data!!.data!!)
-                        stopLoginCountdown()//登录成功后结束本次倒计时
-                        RxBus.get().post(LoginEvent())
-                        onLoginSuccess()
-                    }
-                } else {
-                    message?.let { msg ->
-                        toast(msg).show()
-                    }
+                    data?.isOkStatus?.then(
+                            {
+                                data?.data?.let {
+                                    signInPhoneNumber.value?.let { phoneNumber -> User.currentUser.telephone = phoneNumber }
+                                    zoneCode.value?.let { zoneCode -> User.currentUser.zoneCode = zoneCode }
+                                    User.currentUser.login(it)
+                                    stopSignInCountdown()//注册成功后结束本次倒计时
+                                    RxBus.get().post(LoginEvent())
+                                    onLoginSuccess()
+                                }
+                            },
+                            {})
                 }
             }
         })
@@ -333,18 +330,18 @@ class LoginViewModel(private var repository: LoginRepository = LoginRepository()
         repository.loginBySMS(pwdLoginPhoneNumber.value, vCodeLoginVCode.value).observe(owner, Observer { resource ->
             resource?.apply {
                 if (status == Status.SUCCESS) {
-                    if (data != null) {
-                        pwdLoginPhoneNumber.value?.let { phoneNumber -> User.currentUser.telephone = phoneNumber }
-                        zoneCode.value?.let { zoneCode -> User.currentUser.zoneCode = zoneCode }
-                        User.currentUser.login(data!!.data!!)
-                        stopLoginCountdown()//登录成功后结束本次倒计时
-                        RxBus.get().post(LoginEvent())
-                        onLoginSuccess()
-                    }
-                } else {
-                    message?.let { msg ->
-                        toast(msg).show()
-                    }
+                    data?.isOkStatus?.then(
+                            {
+                                data?.data?.let {
+                                    signInPhoneNumber.value?.let { phoneNumber -> User.currentUser.telephone = phoneNumber }
+                                    zoneCode.value?.let { zoneCode -> User.currentUser.zoneCode = zoneCode }
+                                    User.currentUser.login(it)
+                                    stopSignInCountdown()//注册成功后结束本次倒计时
+                                    RxBus.get().post(LoginEvent())
+                                    onLoginSuccess()
+                                }
+                            },
+                            {})
                 }
             }
         })

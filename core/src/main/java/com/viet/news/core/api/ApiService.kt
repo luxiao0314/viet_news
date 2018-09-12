@@ -2,10 +2,7 @@ package com.viet.news.core.api
 
 import android.arch.lifecycle.LiveData
 import com.viet.news.core.domain.request.*
-import com.viet.news.core.domain.response.ChannelAllListResponse
-import com.viet.news.core.domain.response.ChannelListResponse
-import com.viet.news.core.domain.response.LoginRegisterResponse
-import com.viet.news.core.domain.response.NewsListResponse
+import com.viet.news.core.domain.response.*
 import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.POST
@@ -44,6 +41,18 @@ interface ApiService {
     @POST("v1/content/list4follow")
     fun getlist4Follow(@Body param: List4ChannelParams): LiveData<ApiResponse<NewsListResponse>>
 
+    //查询收藏列表
+    @POST("v1/user/collectionList")
+    fun getCollectionList(@Body param: CollectionListParams): LiveData<ApiResponse<CollectionListResponse>>
+
+    //查询指定用户发布的文章列表
+    @POST("v1/content/list4user")
+    fun getlist4User(@Body param: List4ChannelParams): LiveData<ApiResponse<NewsListResponse>>
+
+    //查询指定用户发布的文章列表
+    @GET("v1/user/info/{userId}")
+    fun getUserInfo(@Path("userId") userId: Int?): LiveData<ApiResponse<UserInfoResponse>>
+
     /**
      * 登录注册相关
      */
@@ -54,10 +63,13 @@ interface ApiService {
     fun register(@Body param: SignInParams): LiveData<ApiResponse<LoginRegisterResponse>>
 
     @POST("v1/login/sendSms")
-    fun sendSMS(@Body param: VerifyCodeParams): LiveData<ApiResponse<Any>>
+    fun sendSMS(@Body param: VerifyCodeParams): LiveData<ApiResponse<HttpResponse<Any>>>
 
     @POST("v1/login/checkValidationCode")
-    fun checkVerifyCode(@Body param: VerifyCodeParams):LiveData<ApiResponse<Any>>
+    fun checkVerifyCode(@Body param: VerifyCodeParams):LiveData<ApiResponse<HttpResponse<Any>>>
+
+    @POST("v1/login/resetPassword")
+    fun setPassword(@Body param: ResetPwdParams):LiveData<ApiResponse<LoginRegisterResponse>>
 
     @POST("v1/feedback/add")
     fun feedback(@Body param: FeedBackParams): LiveData<ApiResponse<Any>>

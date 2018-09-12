@@ -6,6 +6,7 @@ import android.widget.Toast
 import com.safframework.ext.clickWithTrigger
 import com.viet.mine.R
 import com.viet.news.core.domain.response.ArticlesBean
+import com.viet.news.core.domain.response.CollectionListBean
 import com.viet.news.core.ext.load
 import com.viet.news.core.ui.BaseAdapter
 import com.viet.news.core.ui.widget.SwipeLayout
@@ -16,11 +17,13 @@ import com.viet.news.core.ui.widget.SwipeLayout
  * @Email zongjia.long@merculet.io
  * @Version
  */
-class CollectionAdapter : BaseAdapter<ArticlesBean>(), SwipeLayout.OnSwipingListener {
+class CollectionAdapter : BaseAdapter<CollectionListBean>(), SwipeLayout.OnSwipingListener {
+
+
     private var layouts: HashSet<SwipeLayout> = HashSet()
 
     override fun getItemViewType(position: Int): Int {
-        return if (getData()[position].urlToImage?.size == 0) {
+        return if (getData()[position].contentImage.isEmpty()) {
             1
         } else {
             2
@@ -34,14 +37,14 @@ class CollectionAdapter : BaseAdapter<ArticlesBean>(), SwipeLayout.OnSwipingList
         }
     }
 
-    override fun onBindViewHolderImpl(holder: BaseViewHolder, position: Int, t: ArticlesBean) {
+    override fun onBindViewHolderImpl(holder: BaseViewHolder, position: Int, t: CollectionListBean) {
         when (getItemViewType(position)) {
             1 -> {
-                holder.itemView.findViewById<TextView>(R.id.tv_des).text = t.description
+                holder.itemView.findViewById<TextView>(R.id.tv_des).text = t.contentDetail
             }
             2 -> {
-                holder.itemView.findViewById<ImageView>(R.id.iv_pic).load(t.urlToImage?.get(0)?.cover)
-                holder.itemView.findViewById<TextView>(R.id.tv_des).text = t.description
+                holder.itemView.findViewById<ImageView>(R.id.iv_pic).load(t.contentImage)
+                holder.itemView.findViewById<TextView>(R.id.tv_des).text = t.contentDetail
             }
         }
     }

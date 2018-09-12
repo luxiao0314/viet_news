@@ -9,10 +9,8 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.navigation.Navigation
 import cn.magicwindow.core.ui.ItemClickSupport
 import cn.magicwindow.mine.adapter.LanguageAdapter
-import com.chenenyu.router.Router
 import com.chenenyu.router.annotation.Route
 import com.viet.mine.R
 import com.viet.news.core.config.Config
@@ -54,7 +52,7 @@ class LanguageFragment : BaseFragment() {
             override fun onItemClicked(recyclerView: RecyclerView, position: Int, v: View) {
                 if (LanguageUtil.needChange(position)) {
                     LanguageUtil.saveSelectLanguage(context!!, position)
-                    LanguageUtil.routToMain(activity)
+                    LanguageUtil.routToMainForce(activity)
                 } else {
                     //当不需要切换语言时，判断是否是【跟随】 与【系统语言】之间的切换
                     val localIndex = SPHelper.create().getInt(Config.SELECTED_LANGUAGE)

@@ -3,9 +3,11 @@ package com.viet.mine.repository
 import android.arch.lifecycle.LiveData
 import com.viet.news.core.api.ApiRepository
 import com.viet.news.core.api.ApiResponse
+import com.viet.news.core.api.HttpResponse
 import com.viet.news.core.config.LoginEnum
 import com.viet.news.core.config.VerifyCodeTypeEnum
 import com.viet.news.core.domain.request.LoginParams
+import com.viet.news.core.domain.request.ResetPwdParams
 import com.viet.news.core.domain.request.SignInParams
 import com.viet.news.core.domain.request.VerifyCodeParams
 import com.viet.news.core.domain.response.LoginRegisterResponse
@@ -61,42 +63,49 @@ class LoginRepository : ApiRepository() {
     }
 
     /**
-     * 发送 验证码
+     * 【发送】 验证码
      */
-    fun sendSMS(phoneNumber: String?, zone_code: String?, enum: VerifyCodeTypeEnum): LiveData<Resource<Any>> {
+    fun sendSMS(phoneNumber: String?, zone_code: String?, type: VerifyCodeTypeEnum): LiveData<Resource<HttpResponse<Any>>> {
         val params = VerifyCodeParams()
         params.phone_number = phoneNumber
         params.zone_code = zone_code
-        params.setType(enum)
-        return object : NetworkOnlyResource<Any>() {
-            override fun createCall(): LiveData<ApiResponse<Any>> = apiInterface.sendSMS(params)
+        params.setType(type)
+        return object : NetworkOnlyResource<HttpResponse<Any>>() {
+            override fun createCall(): LiveData<ApiResponse<HttpResponse<Any>>> = apiInterface.sendSMS(params)
         }.asLiveData()
     }
 
     /**
-     * 校验 验证码
+     * 【校验】 验证码
      */
-    fun checkVerifyCode(phoneNumber: String?, verifyCode: String?, zone_code: String?, type: VerifyCodeTypeEnum): LiveData<Resource<Any>> {
+    fun checkVerifyCode(phoneNumber: String?, verifyCode: String?, zone_code: String?, type: VerifyCodeTypeEnum): LiveData<Resource<HttpResponse<Any>>> {
         val params = VerifyCodeParams()
         params.phone_number = phoneNumber
         params.validation_code = verifyCode
         params.zone_code = zone_code
         params.setType(type)
-        return object : NetworkOnlyResource<Any>() {
-            override fun createCall(): LiveData<ApiResponse<Any>> = apiInterface.checkVerifyCode(params)
+        return object : NetworkOnlyResource<HttpResponse<Any>>() {
+            override fun createCall(): LiveData<ApiResponse<HttpResponse<Any>>> = apiInterface.checkVerifyCode(params)
         }.asLiveData()
     }
 
     /**
      * 注册
      */
-    fun signIn(params: SignInParams): LiveData<Resource<LoginRegisterResponse>> {
-//        val params = SignInParams()
-//        params.phone_number = phoneNumber
-//        params.zone_code = zone_code
-//        params.setType(type)
+    fun signIn(params: SignInParams): LiveData<Resource<LoginRegisterResponse>> =
+            object : NetworkOnlyResource<LoginRegisterResponse>() {
+                override fun createCall(): LiveData<ApiResponse<LoginRegisterResponse>> = apiInterface.register(params)
+            }.asLiveData()
+    /**
+     * 设置密码
+     */
+    fun setPassword(phoneNumber: String?, verifyCode: String?, password: String?): LiveData<Resource<LoginRegisterResponse>> {
+        val params = ResetPwdParams()
+        params.phone_number = phoneNumber
+        params.validation_code = verifyCode
+        params.password = password
         return object : NetworkOnlyResource<LoginRegisterResponse>() {
-            override fun createCall(): LiveData<ApiResponse<LoginRegisterResponse>> = apiInterface.register(params)
+            override fun createCall(): LiveData<ApiResponse<LoginRegisterResponse>> = apiInterface.setPassword(params)
         }.asLiveData()
     }
 }

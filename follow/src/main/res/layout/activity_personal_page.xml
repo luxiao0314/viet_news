@@ -14,6 +14,7 @@
 
     <com.viet.news.core.ui.widget.TitleBar
         android:id="@+id/title_bar"
+        app:titlebar_leftDrawable="@drawable/ic_back"
         style="@style/title_bar.transparent"/>
 
     <ImageView
@@ -119,12 +120,27 @@
             tools:text="10"/>
     </RelativeLayout>
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/recyclerView"
+    <com.scwang.smartrefresh.layout.SmartRefreshLayout
+        android:id="@+id/refreshLayout"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginTop="10dp"
+        android:background="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/relativeLayout"/>
+        app:layout_constraintTop_toBottomOf="@+id/relativeLayout">
+
+        <com.viet.news.core.ui.widget.MultiStatusView
+            android:id="@+id/multiStatusView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:splitMotionEvents="false"/>
+        </com.viet.news.core.ui.widget.MultiStatusView>
+
+    </com.scwang.smartrefresh.layout.SmartRefreshLayout>
 
 </android.support.constraint.ConstraintLayout>

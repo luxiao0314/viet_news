@@ -10,6 +10,7 @@ import android.view.MenuItem
 import com.jaeger.library.StatusBarUtil
 import com.safframework.utils.support
 import com.viet.news.core.R
+import com.viet.news.core.config.IActivityManager
 import com.viet.news.core.ext.finishWithAnim
 import com.viet.news.core.utils.LanguageUtil
 
@@ -20,6 +21,7 @@ abstract class BaseActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         LanguageUtil.checkLocalLanguage(this)
         setStatusBar()
+        IActivityManager.instance.registerActivity(this)
     }
 
     protected open fun setStatusBar() {
@@ -42,6 +44,11 @@ abstract class BaseActivity : AppCompatActivity() {
             android.R.id.home -> finish()
         }
         return true
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        IActivityManager.instance.unregisterActivity(this)
     }
 
     fun addFragment(fragment: BaseFragment, layoutResId: Int, tag: String) {

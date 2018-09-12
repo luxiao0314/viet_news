@@ -15,6 +15,13 @@
     <string name="title_wallet">My Wallet</string>
     <string name="title_verify_code">Verify Mobile</string>
     <string name="title_bind_phone_num">Bind New Phone Number</string>
+    <string name="device_offline">Device Offline</string>
+    <string name="device_offline_tips">Your account is already logged in on another device, please secure your mobile device and try again.</string>
+    <string name="you_hava_not_been_logged_in_yet">Please login first to process you further actions.</string>
+    <string name="not_yet_logged_in">Not logged in</string>
+    <string name="today">Today</string>
+    <string name="tomorrow">Tomorrow</string>
+    <string name="yesterday">Yesterday</string>
 
     <!--mine-->
     <string name="title_setting">Setting</string>
@@ -83,6 +90,8 @@
     <string name="user_telephone">Mobile phone number</string>
     <string name="password">Password</string>
     <string name="set_password">Set the password</string>
+    <string name="set_password_and_login">Set and Login</string>
+    <string name="set_login_password">Set the Login password</string>
     <string name="forget_pwd_signed">Forgot password?</string>
     <string name="login_with_verify_code">SMS verification code login</string>
     <string name="agree">agree</string>

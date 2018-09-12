@@ -51,7 +51,9 @@ class PwdToLoginFragment : RealVisibleHintBaseFragment() {
                 }
 
         //忘记密码
-        tv_forget_password.clickWithTrigger { startActivity(Intent(context, FindPwdActivity::class.java)) }
+        tv_forget_password.clickWithTrigger {
+
+            startActivity(Intent(context, FindPwdActivity::class.java)) }
 
         //登录
         login_btn.clickWithTrigger {

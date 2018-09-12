@@ -23,8 +23,8 @@ class FindRepository : ApiRepository() {
     fun getlist4Channel(page_number: Int, id: Int?): LiveData<Resource<NewsListResponse>> {
         val params = List4ChannelParams()
         params.page_number = page_number
-        params.page_size = 2
-        params.id = id
+        params.page_size = 5
+        params.channel_id = id
         return object : NetworkOnlyResource<NewsListResponse>() {
             override fun createCall(): LiveData<ApiResponse<NewsListResponse>> {
                 return apiInterface.getlist4Channel(params)
@@ -36,7 +36,7 @@ class FindRepository : ApiRepository() {
         val params = List4ChannelParams()
         params.page_number = page_number
         params.page_size = 2
-        params.id = id
+        params.channel_id = id
         return object : NetworkOnlyResource<NewsListResponse>() {
             override fun createCall(): LiveData<ApiResponse<NewsListResponse>> {
                 return apiInterface.getlist4Follow(params)

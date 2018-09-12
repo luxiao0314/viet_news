@@ -79,7 +79,7 @@ class AccountInfoFragment : BaseFragment() {
                 PictureConfig.CHOOSE_REQUEST -> {
                     // 图片选择结果回调
                     model.selectList = PictureSelector.obtainMultipleResult(data) as ArrayList<LocalMedia>
-//                    dialogFragment = ProgressDialogFragment.createBuilder(this)
+//                    dialogFragment = ProgressDialogFragment.create(this)
 //                            .setCancelableOnTouchOutside(false) //点击屏幕不取消
 //                            .showAllowingStateLoss()
 //                    model.uploadFile()

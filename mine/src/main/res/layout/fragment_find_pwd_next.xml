@@ -1,11 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white">
+    android:background="@color/white"
+    android:paddingStart="@dimen/page_padding_left"
+    android:paddingLeft="@dimen/page_padding_left"
+    android:paddingEnd="@dimen/page_padding_right"
+    android:paddingRight="@dimen/page_padding_right">
+
+
+    <com.viet.news.core.ui.widget.TitleBar
+        android:id="@+id/title_bar"
+        style="@style/title_bar_white"
+        app:titlebar_titleText="@string/set_login_password" />
 
     <TextView
         android:id="@+id/tv_hint"
@@ -17,7 +25,7 @@
         android:gravity="center"
         android:text="密码可使用字母、数字、字符两者组合，限8～20位"
         android:textColor="@color/text_blue"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintTop_toBottomOf="@+id/title_bar" />
 
     <android.support.design.widget.TextInputLayout
         android:id="@+id/password_input_layout"
@@ -35,13 +43,13 @@
             android:hint="@string/set_password"
             android:inputType="textPassword"
             android:textColor="@color/text_gray"
-            android:textSize="@dimen/text_16sp"/>
+            android:textSize="@dimen/text_16sp" />
     </android.support.design.widget.TextInputLayout>
 
     <View
         android:id="@+id/line"
         style="@style/line.edit"
-        app:layout_constraintTop_toBottomOf="@id/password_input_layout"/>
+        app:layout_constraintTop_toBottomOf="@id/password_input_layout" />
 
     <android.support.design.widget.TextInputLayout
         android:id="@+id/password_input_layout_again"
@@ -59,13 +67,13 @@
             android:hint="@string/enter_password_again"
             android:inputType="textPassword"
             android:textColor="@color/text_gray"
-            android:textSize="@dimen/text_16sp"/>
+            android:textSize="@dimen/text_16sp" />
     </android.support.design.widget.TextInputLayout>
 
     <View
         android:id="@+id/line2"
         style="@style/line.edit"
-        app:layout_constraintTop_toBottomOf="@id/password_input_layout_again"/>
+        app:layout_constraintTop_toBottomOf="@id/password_input_layout_again" />
 
     <Button
         android:id="@+id/register_btn"
@@ -75,7 +83,7 @@
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="50dp"
         android:clickable="false"
-        android:text="@string/sign_in"
-        app:layout_constraintTop_toBottomOf="@+id/line2"/>
+        android:text="@string/set_password_and_login"
+        app:layout_constraintTop_toBottomOf="@+id/line2" />
 
 </android.support.constraint.ConstraintLayout>

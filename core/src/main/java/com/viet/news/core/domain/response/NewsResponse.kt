@@ -9,5 +9,4 @@ class ArticlesBean(
         var url: String? = null,
         var time: String? = null,
         var publishedAt: String? = null,
-        var urlToImage: List<UrlToImageBean>? = null)
-class UrlToImageBean(var cover: String? = null)
+        var urlToImage: List<ImageEntity>? = null)
