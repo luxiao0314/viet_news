@@ -97,28 +97,30 @@ class BehaviorBar @JvmOverloads constructor(context: Context, attrs: AttributeSe
     private fun setListener() {
 
         tv_favorite_num.clickWithTrigger {
-            if (hasFavorite) {
-                tv_favorite_num.text = if (favoriteNum == 0) "0" else (--favoriteNum).toString()
-                setStatus(tv_favorite_num, R.drawable.ic_favorite, R.color.behavior_normal)
-                hasFavorite = false
-            } else {
-                tv_favorite_num.text = (++favoriteNum).toString()
-                setStatus(tv_favorite_num, R.drawable.ic_favorite_enable, R.color.behavior_enable)
-                hasFavorite = true
+            mDelegate?.onFavoriteClick(hasFavorite, favoriteNum) {
+                if (hasFavorite) {
+                    tv_favorite_num.text = if (favoriteNum == 0) "0" else (--favoriteNum).toString()
+                    setStatus(tv_favorite_num, R.drawable.ic_favorite, R.color.behavior_normal)
+                    hasFavorite = false
+                } else {
+                    tv_favorite_num.text = (++favoriteNum).toString()
+                    setStatus(tv_favorite_num, R.drawable.ic_favorite_enable, R.color.behavior_enable)
+                    hasFavorite = true
+                }
             }
-            mDelegate?.onFavoriteClick(hasFavorite, favoriteNum)
         }
         tv_like_num.clickWithTrigger {
-            if (hasLike) {
-                tv_like_num.text = if (likeNum == 0) "0" else (--likeNum).toString()
-                setStatus(tv_like_num, R.drawable.ic_like, R.color.behavior_normal)
-                hasLike = false
-            } else {
-                tv_like_num.text = (++likeNum).toString()
-                setStatus(tv_like_num, R.drawable.ic_like_enable, R.color.behavior_enable)
-                hasLike = true
+            mDelegate?.onLikeClick(hasLike, likeNum) {
+                if (hasLike) {
+                    tv_like_num.text = if (likeNum == 0) "0" else (--likeNum).toString()
+                    setStatus(tv_like_num, R.drawable.ic_like, R.color.behavior_normal)
+                    hasLike = false
+                } else {
+                    tv_like_num.text = (++likeNum).toString()
+                    setStatus(tv_like_num, R.drawable.ic_like_enable, R.color.behavior_enable)
+                    hasLike = true
+                }
             }
-            mDelegate?.onLikeClick(hasLike, likeNum)
         }
     }
 
@@ -221,21 +223,21 @@ class BehaviorBar @JvmOverloads constructor(context: Context, attrs: AttributeSe
      * 点击事件监听代理
      */
     interface Delegate {
-        fun onLikeClick(isLiked: Boolean, likedNum: Int, id: Int? = 0)
-        fun onFavoriteClick(isFavorite: Boolean, favoriteNum: Int, id: Int? = 0)
+        fun onLikeClick(isLiked: Boolean, likedNum: Int, id: Int? = 0, func: () -> Unit)
+        fun onFavoriteClick(isFavorite: Boolean, favoriteNum: Int, id: Int? = 0, func: () -> Unit)
     }
 
     class ClickDelegate : Delegate {
 
-        var onLikeClick: ((Boolean, Int, Int?) -> Unit)? = null
-        var onFavoriteClick: ((Boolean, Int, Int?) -> Unit)? = null
+        var onLikeClick: ((Boolean, Int, Int?, func: () -> Unit) -> Unit)? = null
+        var onFavoriteClick: ((Boolean, Int, Int?, func: () -> Unit) -> Unit)? = null
 
-        override fun onLikeClick(isLiked: Boolean, likedNum: Int, id: Int?) {
-            onLikeClick?.let { it(isLiked, likedNum, id) }
+        override fun onLikeClick(isLiked: Boolean, likedNum: Int, id: Int?, func: () -> Unit) {
+            onLikeClick?.let { it(isLiked, likedNum, id, func) }
         }
 
-        override fun onFavoriteClick(isFavorite: Boolean, favoriteNum: Int, id: Int?) {
-            onFavoriteClick?.let { it(isFavorite, favoriteNum, id) }
+        override fun onFavoriteClick(isFavorite: Boolean, favoriteNum: Int, id: Int?, func: () -> Unit) {
+            onFavoriteClick?.let { it(isFavorite, favoriteNum, id, func) }
         }
     }
 }

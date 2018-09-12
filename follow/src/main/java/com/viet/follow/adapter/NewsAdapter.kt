@@ -49,8 +49,8 @@ class NewsAdapter @Inject constructor() : BaseAdapter<NewsListBean>() {
         holder.itemView.findViewById<ImageView>(R.id.iv_article_image).click { routerWithAnim(Config.ROUTER_PERSONAL_PAGE_ACTIVITY).go(context) }
         holder.itemView.click { WebActivity.launch(context, t.content.contentDetail) }
         holder.itemView.behaviorBar?.setClickDelegate {
-            onLikeClick = { isLiked, num, id -> delegate?.onLikeClick(isLiked, num, t.content.id) }
-            onFavoriteClick = { isFavorite, num, id -> delegate?.onLikeClick(isFavorite, num, t.content.id) }
+            onLikeClick = { isLiked, num, id, func -> delegate?.onLikeClick(isLiked, num, t.content.id, func) }
+            onFavoriteClick = { isFavorite, num, id, func -> delegate?.onLikeClick(isFavorite, num, t.content.id, func) }
         }
 
         when (getItemViewType(position)) {

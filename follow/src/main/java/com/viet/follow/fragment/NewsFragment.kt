@@ -23,7 +23,6 @@ import com.viet.news.core.config.Config
 import com.viet.news.core.delegate.viewModelDelegate
 import com.viet.news.core.domain.RefreshNewsEvent
 import com.viet.news.core.domain.response.NewsListBean
-import com.viet.news.core.ext.toast
 import com.viet.news.core.ui.RealVisibleHintBaseFragment
 import com.viet.news.core.utils.RxBus
 import com.viet.news.core.vo.Status
@@ -85,11 +84,11 @@ class NewsFragment : RealVisibleHintBaseFragment(), HasSupportFragmentInjector {
         refreshLayout.setOnLoadMoreListener { initData(true) }
         multiStatusView.setLoadingButtonClickListener(View.OnClickListener { refreshLayout.autoRefresh() })
         adapter.setClickDelegate {
-            onLikeClick = { isLiked, num, id ->
-                model.like(this@NewsFragment, id.toString()) { toast("success").show() }
+            onLikeClick = { isLiked, num, id, func ->
+                model.like(this@NewsFragment, id.toString()) { func() }
             }
-            onFavoriteClick = { isFavorite, num, id ->
-                model.collection(this@NewsFragment, id.toString()) { toast("success").show() }
+            onFavoriteClick = { isFavorite, num, id, func ->
+                model.collection(this@NewsFragment, id.toString()) { func() }
             }
         }
     }
