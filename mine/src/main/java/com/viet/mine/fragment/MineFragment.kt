@@ -6,10 +6,14 @@ import android.view.View
 import android.view.ViewGroup
 import com.safframework.ext.clickWithTrigger
 import com.viet.mine.R
+import com.viet.mine.viewmodel.MineViewModel
 import com.viet.news.core.config.Config
+import com.viet.news.core.delegate.viewModelDelegate
 import com.viet.news.core.domain.LoginEvent
 import com.viet.news.core.domain.LogoutEvent
+import com.viet.news.core.domain.RefreshUserInfoEvent
 import com.viet.news.core.domain.User
+import com.viet.news.core.ext.loadBlur
 import com.viet.news.core.ext.loadCircle
 import com.viet.news.core.ext.routerWithAnim
 import com.viet.news.core.ui.BaseFragment
@@ -26,6 +30,7 @@ import kotlinx.android.synthetic.main.fragment_mine.*
 class MineFragment : BaseFragment() {
 
     private var mContainerView: View? = null
+    private val model: MineViewModel by viewModelDelegate(MineViewModel::class)
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         mContainerView = inflater.inflate(R.layout.fragment_mine, container, false)
@@ -39,14 +44,22 @@ class MineFragment : BaseFragment() {
     }
 
     private fun initData() {
-        tv_nickname.text = User.currentUser.userName
-        tv_fans_count.text = User.currentUser.fansCount.toString()
-        tv_follow_count.text = User.currentUser.followCount.toString()
+        model.getUserInfo(User.currentUser.userId.toInt(), this) {
+            iv_user_icon.loadCircle(it?.avatar)
+            tv_nickname.text = it?.nick_name
+            tv_fans_count.text = it?.fans_count.toString()
+            tv_follow_count.text = it?.follow_count.toString()
+            User.currentUser.userName = it?.nick_name!!
+            User.currentUser.fansCount = it.fans_count
+            User.currentUser.followCount = it.follow_count
+            User.currentUser.avatarUrl = it.avatar!!
+        }
     }
 
     private fun initEvent() {
         compositeDisposable.add(RxBus.get().register(LogoutEvent::class.java) { refresh() })
         compositeDisposable.add(RxBus.get().register(LoginEvent::class.java) { refresh() })
+        compositeDisposable.add(RxBus.get().register(RefreshUserInfoEvent::class.java) { refresh() })
     }
 
     private fun refresh() {

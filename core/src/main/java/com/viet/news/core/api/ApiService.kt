@@ -43,7 +43,7 @@ interface ApiService {
     fun getlist4Follow(@Body param: List4ChannelParams): LiveData<ApiResponse<NewsListResponse>>
 
     //查询收藏列表
-    @POST("v1/user/collectionList")
+    @POST("v1/content/collectionList")
     fun getCollectionList(@Body param: CollectionListParams): LiveData<ApiResponse<CollectionListResponse>>
 
     //查询指定用户发布的文章列表

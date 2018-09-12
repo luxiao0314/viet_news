@@ -5,7 +5,6 @@ import android.widget.TextView
 import android.widget.Toast
 import com.safframework.ext.clickWithTrigger
 import com.viet.mine.R
-import com.viet.news.core.domain.response.ArticlesBean
 import com.viet.news.core.domain.response.CollectionListBean
 import com.viet.news.core.ext.load
 import com.viet.news.core.ui.BaseAdapter
@@ -17,34 +16,30 @@ import com.viet.news.core.ui.widget.SwipeLayout
  * @Email zongjia.long@merculet.io
  * @Version
  */
-class CollectionAdapter : BaseAdapter<CollectionListBean>(), SwipeLayout.OnSwipingListener {
+class CollectionAdapter constructor() : BaseAdapter<CollectionListBean>(), SwipeLayout.OnSwipingListener {
 
 
     private var layouts: HashSet<SwipeLayout> = HashSet()
 
     override fun getItemViewType(position: Int): Int {
-        return if (getData()[position].contentImage.isEmpty()) {
-            1
-        } else {
-            2
-        }
+        return getData()[position].content.contentType
     }
 
     override fun getLayoutId(viewType: Int): Int {
         return when (viewType) {
-            1 -> R.layout.collection_cell_news_text
+            0 -> R.layout.collection_cell_news_text
             else -> R.layout.collection_cell_news_picture
         }
     }
 
     override fun onBindViewHolderImpl(holder: BaseViewHolder, position: Int, t: CollectionListBean) {
         when (getItemViewType(position)) {
-            1 -> {
-                holder.itemView.findViewById<TextView>(R.id.tv_des).text = t.contentDetail
+            0 -> {
+                holder.itemView.findViewById<TextView>(R.id.tv_des).text = t.content.contentTitle
             }
-            2 -> {
-                holder.itemView.findViewById<ImageView>(R.id.iv_pic).load(t.contentImage)
-                holder.itemView.findViewById<TextView>(R.id.tv_des).text = t.contentDetail
+            else -> {
+                holder.itemView.findViewById<ImageView>(R.id.iv_pic).load(t.image_array[0].cover)
+                holder.itemView.findViewById<TextView>(R.id.tv_des).text = t.content.contentTitle
             }
         }
     }

@@ -1,17 +1,14 @@
 package com.viet.mine.repository
 
 import android.arch.lifecycle.LiveData
-import com.safframework.utils.RxJavaUtils
 import com.viet.news.core.api.ApiRepository
 import com.viet.news.core.api.ApiResponse
-import com.viet.news.core.api.HttpResponse
 import com.viet.news.core.domain.request.CollectionListParams
 import com.viet.news.core.domain.request.FeedBackParams
 import com.viet.news.core.domain.response.CollectionListResponse
-import com.viet.news.core.domain.response.LoginRegisterResponse
+import com.viet.news.core.domain.response.UserInfoResponse
 import com.viet.news.core.repository.NetworkOnlyResource
 import com.viet.news.core.vo.Resource
-import io.reactivex.Maybe
 
 /**
  * @Description
@@ -38,10 +35,18 @@ class MineRepository : ApiRepository() {
     fun getCollectionList(page: Int, id: Int?): LiveData<Resource<CollectionListResponse>> {
         val params = CollectionListParams()
         params.page_number = page
-        params.page_size = 2
+        params.page_size = 5
         params.user_id = id
         return object : NetworkOnlyResource<CollectionListResponse>() {
             override fun createCall(): LiveData<ApiResponse<CollectionListResponse>> = apiInterface.getCollectionList(params)
+        }.asLiveData()
+    }
+
+    fun getUserInfo(userId: Int?): LiveData<Resource<UserInfoResponse>> {
+        return object : NetworkOnlyResource<UserInfoResponse>() {
+            override fun createCall(): LiveData<ApiResponse<UserInfoResponse>> {
+                return apiInterface.getUserInfo(userId)
+            }
         }.asLiveData()
     }
 }

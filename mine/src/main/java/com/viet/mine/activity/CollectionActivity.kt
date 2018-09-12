@@ -20,10 +20,13 @@ import com.viet.mine.adapter.CollectionAdapter
 import com.viet.mine.viewmodel.CollectionViewModel
 import com.viet.news.core.config.Config
 import com.viet.news.core.delegate.viewModelDelegate
+import com.viet.news.core.domain.User
+import com.viet.news.core.domain.response.CollectionBean
 import com.viet.news.core.domain.response.CollectionListBean
 import com.viet.news.core.ui.InjectActivity
 import com.viet.news.core.vo.Status
 import kotlinx.android.synthetic.main.activity_mine_collection.*
+import javax.inject.Inject
 
 /**
  * @Description 用户收藏
@@ -36,15 +39,14 @@ class CollectionActivity : InjectActivity() {
 
     private val model: CollectionViewModel by viewModelDelegate(CollectionViewModel::class)
 
+//    @Inject
     private lateinit var adapter: CollectionAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_mine_collection)
-        adapter = CollectionAdapter()
-
-        initView()
         initListener()
+        initView()
         refreshLayout.autoRefresh()
     }
 
@@ -56,6 +58,7 @@ class CollectionActivity : InjectActivity() {
     }
 
     private fun initView() {
+        adapter = CollectionAdapter()
         rl_collection.adapter = adapter
         rl_collection.layoutManager = LinearLayoutManager(this, OrientationHelper.VERTICAL, false)
         val dividerItemDecoration = DividerItemDecoration(this, DividerItemDecoration.VERTICAL)
@@ -77,7 +80,7 @@ class CollectionActivity : InjectActivity() {
             model.page_number = 1
         }
 
-        model.getCollectionList().observe(this, Observer {
+        model.getCollectionList(User.currentUser.userId.toInt()).observe(this, Observer {
             when (it?.status) {
                 Status.SUCCESS -> {
                     model.collectionList = it.data?.data?.list as ArrayList<CollectionListBean>
