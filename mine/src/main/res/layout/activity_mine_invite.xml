@@ -53,6 +53,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:text="A00001"
+            app:layout_constraintHorizontal_bias="0.5"
             android:textColor="#F24B4F"
             android:textSize="36sp"
             android:textStyle="bold"
@@ -64,27 +65,25 @@
             android:id="@+id/textView3"
             style="@style/button.small"
             android:layout_width="90dp"
+            android:layout_marginTop="28dp"
             android:text="复制链接"
             android:textSize="@dimen/text_14sp"
-            app:layout_constraintBottom_toBottomOf="@+id/imageView"
-            app:layout_constraintEnd_toStartOf="@+id/textView4"
-            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintEnd_toEndOf="@+id/imageView"
+            app:layout_constraintHorizontal_bias="0.2"
             app:layout_constraintStart_toStartOf="@+id/imageView"
-            app:layout_constraintTop_toBottomOf="@+id/textView2"
-            app:layout_constraintVertical_bias="0.1" />
+            app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
         <Button
             android:id="@+id/textView4"
             style="@style/button.small"
             android:layout_width="90dp"
-            android:layout_marginEnd="44dp"
-            android:layout_marginRight="44dp"
+            android:layout_marginTop="28dp"
             android:text="分享"
             android:textSize="@dimen/text_14sp"
-            app:layout_constraintBottom_toBottomOf="@+id/imageView"
             app:layout_constraintEnd_toEndOf="@+id/imageView"
-            app:layout_constraintTop_toBottomOf="@+id/textView2"
-            app:layout_constraintVertical_bias="0.1" />
+            app:layout_constraintHorizontal_bias="0.8"
+            app:layout_constraintStart_toStartOf="@+id/imageView"
+            app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
 
         <ImageView
@@ -99,7 +98,7 @@
             android:contentDescription="@null"
             app:layout_constraintEnd_toEndOf="@+id/imageView"
             app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/imageView"
             app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
 
@@ -129,9 +128,9 @@
             android:text="邀请好友即可获得奖励40MB钻"
             android:textColor="@color/white"
             android:textSize="@dimen/text_16sp"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/imageView"
             app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/imageView"
             app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
         <TextView
@@ -143,9 +142,9 @@
             android:textColor="@color/white"
             android:textSize="@dimen/text_16sp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/imageView"
             app:layout_constraintHorizontal_bias="0.497"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/imageView"
             app:layout_constraintTop_toBottomOf="@+id/textView5"
             app:layout_constraintVertical_bias="0.0" />
     </android.support.constraint.ConstraintLayout>

@@ -15,6 +15,8 @@ import com.viet.mine.viewmodel.SettingViewModel
 import com.viet.news.core.config.Config
 import com.viet.news.core.delegate.viewModelDelegate
 import com.viet.news.core.ext.clickWithTrigger
+import com.viet.news.core.ext.finishWithAnim
+import com.viet.news.core.ui.BaseActivity
 import com.viet.news.core.ui.BaseFragment
 import kotlinx.android.synthetic.main.fragment_mine_setting_nickname.*
 
@@ -50,11 +52,11 @@ class ChangeNickNameFragment : BaseFragment() {
             if (model.nickNameSubmitEnable()){
                 model.updateNickName(this, nickname_input.text.toString()) { isOk ->
                     if (isOk) {
-                        Navigation.findNavController(view).navigateUp()
                         Toast.makeText(context, "修改成功", Toast.LENGTH_SHORT).show()
                     } else {
                         Toast.makeText(context, "修改失败", Toast.LENGTH_SHORT).show()
                     }
+                    (activity as BaseActivity).finishWithAnim()
                 }
             }
         }
