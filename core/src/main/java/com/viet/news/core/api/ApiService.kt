@@ -3,6 +3,7 @@ package com.viet.news.core.api
 import android.arch.lifecycle.LiveData
 import com.viet.news.core.domain.request.*
 import com.viet.news.core.domain.response.*
+import retrofit2.Call
 import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.POST
@@ -58,6 +59,9 @@ interface ApiService {
      */
     @POST("v1/login/login")
     fun login(@Body param: LoginParams): LiveData<ApiResponse<LoginRegisterResponse>>
+
+    @POST("v1/login/login")
+    fun logins(@Body param: LoginParams): Call<HttpResponse<LoginRegisterResponse>>
 
     @POST("v1/login/register")
     fun register(@Body param: SignInParams): LiveData<ApiResponse<LoginRegisterResponse>>

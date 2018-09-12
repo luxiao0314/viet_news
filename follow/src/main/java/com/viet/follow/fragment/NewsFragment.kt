@@ -45,17 +45,14 @@ class NewsFragment : RealVisibleHintBaseFragment(), HasSupportFragmentInjector {
     @Inject
     internal lateinit var adapter: NewsAdapter
     private val model: FindViewModel by viewModelDelegate(FindViewModel::class)
+    var id: Int? = 0
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_news, container, false)
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-    }
-
     override fun onFragmentFirstVisible() {
-        model.id = arguments?.getString(Config.BUNDLE_ID)?.toInt()
+        id = arguments?.getString(Config.BUNDLE_ID)?.toInt()
         refreshLayout.autoRefresh()
         initEvent()
     }
@@ -99,7 +96,7 @@ class NewsFragment : RealVisibleHintBaseFragment(), HasSupportFragmentInjector {
         } else {
             model.page_number = 1
         }
-        model.getlist4Channel()
+        model.getlist4Channel(id)
                 .observe(this, Observer {
                     when (it?.status) {
                         Status.SUCCESS -> {

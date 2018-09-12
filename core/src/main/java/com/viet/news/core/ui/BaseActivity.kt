@@ -13,9 +13,12 @@ import com.viet.news.core.R
 import com.viet.news.core.config.IActivityManager
 import com.viet.news.core.ext.finishWithAnim
 import com.viet.news.core.utils.LanguageUtil
+import io.reactivex.disposables.CompositeDisposable
 
 
 abstract class BaseActivity : AppCompatActivity() {
+
+    protected var compositeDisposable = CompositeDisposable()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -48,6 +51,7 @@ abstract class BaseActivity : AppCompatActivity() {
 
     override fun onDestroy() {
         super.onDestroy()
+        compositeDisposable.clear() // 防止内存泄露
         IActivityManager.instance.unregisterActivity(this)
     }
 

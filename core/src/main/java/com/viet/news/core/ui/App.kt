@@ -64,7 +64,7 @@ open class App : BaseApplication() {
         //设置全局的Footer构建器
         SmartRefreshLayout.setDefaultRefreshFooterCreator { context, layout ->
             layout.setFooterHeight(40F)
-            ClassicsFooter(context).setDrawableSize(20f).setTextSizeTitle(14F).setSpinnerStyle(SpinnerStyle.FixedBehind)
+            ClassicsFooter(context).setDrawableSize(20f).setTextSizeTitle(14F)
         }
     }
 }

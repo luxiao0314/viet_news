@@ -26,7 +26,7 @@ class FindViewModel(var repository: FindRepository = FindRepository()) : BaseVie
     var page_number = 0
     var id: Int? = 0
 
-    fun getlist4Channel(): LiveData<Resource<NewsListResponse>> {
+    fun getlist4Channel(id:Int?): LiveData<Resource<NewsListResponse>> {
         return repository.getlist4Channel(page_number, id)
     }
 

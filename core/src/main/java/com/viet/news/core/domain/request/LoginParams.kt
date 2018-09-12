@@ -1,6 +1,8 @@
 package com.viet.news.core.domain.request
 
+import cn.magicwindow.core.utils.DeviceInfoUtils
 import com.viet.news.core.config.LoginEnum
+import com.viet.news.core.ui.App
 import java.io.Serializable
 
 /**
@@ -14,6 +16,9 @@ class LoginParams : Serializable {
     var phone_number: String? = ""
     var validation_code: String? = ""
     var password: String? = ""
+    var invite_code: String? = ""
+    var device_id: String = DeviceInfoUtils.getDeviceId(App.instance)
+    var os_type: String = DeviceInfoUtils.os
     private var login_type: String? = ""
     fun setType(enum: LoginEnum) {
         login_type = enum.toString()

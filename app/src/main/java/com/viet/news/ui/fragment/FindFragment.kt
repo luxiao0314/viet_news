@@ -110,10 +110,10 @@ class MyViewPager @Inject constructor(fm: FragmentManager?) : FragmentStatePager
     override fun getItem(position: Int): Fragment? {
         var fragment: BaseFragment? = baseFragmentMap[position]
         if (fragment == null) {
-            if (position == 0) {
-                fragment = NewsFragment.newInstance("3")
+            fragment = if (position == 0) {
+                NewsFragment.newInstance("3")
             } else {
-                fragment = NewsFragment.newInstance(mDataList[position].id)
+                NewsFragment.newInstance(mDataList[position].id)
             }
             baseFragmentMap[position] = fragment
         }

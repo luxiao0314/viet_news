@@ -21,8 +21,8 @@ object Config {
     interface ErrorCode {
         companion object {
             val UNKNOWN = 1
-            val CANT_GET_STORE_PASSWORD = 2
-            val NETWORK_RESPONSE_LOGIN_INVALIDATE = 403
+            val NETWORK_RESPONSE_LOGIN_FORBIDDEN = 403
+            val NETWORK_RESPONSE_LOGIN_UNAUTHORIZED = 401
         }
     }
 
