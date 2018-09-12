@@ -2,6 +2,7 @@ package com.viet.news.di
 
 import com.viet.follow.activity.FunsAndFollowActivity
 import com.viet.follow.activity.PersonalPageActivity
+import com.viet.follow.fragment.FollowFragment
 import com.viet.follow.fragment.FunsAndFollowFragment
 import com.viet.follow.fragment.NewsFragment
 import com.viet.mine.activity.*
@@ -72,6 +73,10 @@ abstract class BuildersModule {
     @FragmentScope
     @ContributesAndroidInjector()
     internal abstract fun bindNewsFragment(): NewsFragment
+
+    @FragmentScope
+    @ContributesAndroidInjector()
+    internal abstract fun bindFollowFragment(): FollowFragment
 
     @FragmentScope
     @ContributesAndroidInjector()

@@ -24,11 +24,11 @@ interface ApiService {
     /**
      * 频道文章列表相关
      */
-    @POST("v1/channel/add")
-    fun channelAdd(@Body param: ChannelParams): LiveData<ApiResponse<Any>>
+    @GET("v1/channel/add/{channelId}")
+    fun channelAdd(@Path("channelId") channelId: String?): LiveData<ApiResponse<Any>>
 
-    @POST("v1/channel/remove")
-    fun channelRemove(@Body param: ChannelParams): LiveData<ApiResponse<Any>>
+    @GET("v1/channel/remove/{channelId}")
+    fun channelRemove(@Path("channelId") channelId: String?): LiveData<ApiResponse<Any>>
 
     @POST("v1/channel/allList")
     fun getChannelAllList(): LiveData<ApiResponse<ChannelAllListResponse>>
@@ -42,7 +42,7 @@ interface ApiService {
 
     //查询当前关注用户发表的文章列表
     @POST("v1/content/list4follow")
-    fun list4follow(): LiveData<ApiResponse<ChannelListResponse>>
+    fun getlist4Follow(@Body param: List4ChannelParams): LiveData<ApiResponse<NewsListResponse>>
 
     /**
      * 登录注册相关
@@ -51,7 +51,13 @@ interface ApiService {
     fun login(@Body param: LoginParams): LiveData<ApiResponse<LoginRegisterResponse>>
 
     @POST("v1/login/register")
-    fun register(@Body param: RegisterParams): LiveData<ApiResponse<LoginRegisterResponse>>
+    fun register(@Body param: SignInParams): LiveData<ApiResponse<LoginRegisterResponse>>
+
+    @POST("v1/login/sendSms")
+    fun sendSMS(@Body param: VerifyCodeParams): LiveData<ApiResponse<Any>>
+
+    @POST("v1/login/checkValidationCode")
+    fun checkVerifyCode(@Body param: VerifyCodeParams):LiveData<ApiResponse<Any>>
 
     @POST("v1/feedback/add")
     fun feedback(@Body param: FeedBackParams): LiveData<ApiResponse<Any>>
@@ -64,6 +70,7 @@ interface ApiService {
 
     @GET("v1/content/like/{contentId}")
     fun like(@Path("contentId") contentId: String): LiveData<ApiResponse<Any>>
+
 
     /**
      * 检查token过期接口

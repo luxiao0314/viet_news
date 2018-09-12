@@ -1,5 +1,6 @@
 package com.viet.mine.activity
 
+import android.arch.lifecycle.Observer
 import android.content.Intent
 import android.graphics.Typeface
 import android.os.Bundle
@@ -13,6 +14,7 @@ import com.viet.news.core.config.Config
 import com.viet.news.core.delegate.viewModelDelegate
 import com.viet.news.core.dsl.addOnPageChangeListener
 import com.viet.news.core.ext.clickWithTrack
+import com.viet.news.core.ext.toast
 import com.viet.news.core.ui.InjectActivity
 import com.viet.news.core.ui.TabFragmentAdapter
 import com.viet.news.webview.WebActivity
@@ -66,6 +68,9 @@ class LoginActivity : InjectActivity() {
     }
 
     private fun initListener() {
+        //错误信息展示
+        model.statusMsg.observe(this, Observer { it?.let { msg -> toast(msg).show() } })
+
         iv_close.click { finish() }
         viewpager.addOnPageChangeListener { onPageSelected = { setTabText(it, model.currentTab) } }
     }

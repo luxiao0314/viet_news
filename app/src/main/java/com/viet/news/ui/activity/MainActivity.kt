@@ -3,6 +3,7 @@ package com.viet.news.ui.activity
 import android.content.Intent
 import android.content.res.Configuration
 import android.os.Bundle
+import com.chenenyu.router.annotation.Route
 import com.viet.news.R
 import com.viet.news.core.config.Config
 import com.viet.news.core.delegate.viewModelDelegate
@@ -18,6 +19,8 @@ import com.viet.news.viewmodel.MainViewModel
 import kotlinx.android.synthetic.main.activity_main.*
 import javax.inject.Inject
 
+
+@Route(value = [(Config.ROUTER_MAIN_ACTIVITY)])
 class MainActivity : InjectActivity() {
 
     @Inject

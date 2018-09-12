@@ -34,27 +34,33 @@ class RegisterNextFragment : RealVisibleHintBaseFragment() {
 
     @SuppressLint("CheckResult")
     override fun initView(view: View) {
+        //密码1
         RxTextView.textChanges(password_input)
                 .subscribe {
-                    model.registerPwd.value = it.toString()
-                    model.checkRegisterBtnEnable()
+                    model.signInPwd.value = it.toString()
+                    model.checkSignInButtonEnable()
                 }
 
+        //密码2
         RxTextView.textChanges(password_input_again)
                 .subscribe {
-                    model.registerConfirmPwd.value = it.toString()
-                    model.checkRegisterBtnEnable()
+                    model.signInConfirmPwd.value = it.toString()
+                    model.checkSignInButtonEnable()
                 }
 
+        //注册
         register_btn.clickWithTrigger {
-            if (model.registerBtnEnable()) {
-                activity?.finish()
+            if (model.canSign()) {
+                model.signIn(this) {
+                    //注册成功
+                    activity?.finish()
+                }
             }
         }
     }
 
     private fun initEvent() {
         //注册按钮能否点击更新
-        model.registerBtnEnable.observe(this, Observer { register_btn.isEnabled = it != null && it })
+        model.signInButtonEnable.observe(this, Observer { register_btn.isEnabled = it != null && it })
     }
 }

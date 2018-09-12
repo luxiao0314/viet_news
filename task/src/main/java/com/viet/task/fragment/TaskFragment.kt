@@ -38,7 +38,6 @@ class TaskFragment : RealVisibleHintBaseFragment() {
         recycler_view_task.layoutManager = LinearLayoutManager(activity, OrientationHelper.VERTICAL, false)
         loadTaskListData()
         initEvent()
-
     }
 
     private fun initEvent() {

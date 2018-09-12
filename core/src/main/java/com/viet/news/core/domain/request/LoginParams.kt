@@ -1,5 +1,6 @@
 package com.viet.news.core.domain.request
 
+import com.viet.news.core.config.LoginEnum
 import java.io.Serializable
 
 /**
@@ -11,6 +12,10 @@ import java.io.Serializable
  */
 class LoginParams : Serializable {
     var phone_number: String? = ""
+    var validation_code: String? = ""
     var password: String? = ""
-    var login_type: String? = ""
+    private var login_type: String? = ""
+    fun setType(enum: LoginEnum) {
+        login_type = enum.toString()
+    }
 }

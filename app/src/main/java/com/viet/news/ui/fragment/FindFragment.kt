@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentStatePagerAdapter
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -18,7 +17,6 @@ import com.viet.news.R
 import com.viet.news.core.delegate.viewModelDelegate
 import com.viet.news.core.domain.LoginEvent
 import com.viet.news.core.domain.LogoutEvent
-import com.viet.news.core.dsl.addOnPageChangeListener
 import com.viet.news.core.ui.BaseFragment
 import com.viet.news.core.ui.InjectFragment
 import com.viet.news.core.utils.RxBus
@@ -74,12 +72,6 @@ class FindFragment : InjectFragment(), AddChannelFragment.DataChangeListener {
             mAddChannelFragment?.setOnDataChangeListener(this)
             mAddChannelFragment?.show(fragmentManager, "addChannel")
         }
-
-        id_view_Pager.addOnPageChangeListener {
-            onPageSelected = {
-                Log.e("11",it.toString())
-            }
-        }
     }
 
     override fun onDataChanged(list: List<ChannelBean>, position: Int) {
@@ -118,7 +110,11 @@ class MyViewPager @Inject constructor(fm: FragmentManager?) : FragmentStatePager
     override fun getItem(position: Int): Fragment? {
         var fragment: BaseFragment? = baseFragmentMap[position]
         if (fragment == null) {
-            fragment = NewsFragment.newInstance(mDataList[position].id)
+            if (position == 0) {
+                fragment = NewsFragment.newInstance("4")
+            } else {
+                fragment = NewsFragment.newInstance(mDataList[position].id)
+            }
             baseFragmentMap[position] = fragment
         }
         return fragment
