@@ -76,4 +76,11 @@ class FindViewModel(var repository: FindRepository = FindRepository()) : BaseVie
             }
         })
     }
+    fun favorite(owner: LifecycleOwner, contentId: String, function: () -> Unit) {
+        repository.favorite(contentId).observe(owner, Observer {
+            if (it?.data != null) {
+                function()
+            }
+        })
+    }
 }

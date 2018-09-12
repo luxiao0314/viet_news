@@ -525,12 +525,12 @@
     </style>
 
     <declare-styleable name="BehaviorBar">
+        <attr name="read_number" format="reference|integer" />
+        <attr name="favorite_number" format="reference|integer" />
         <attr name="like_number" format="reference|integer" />
-        <attr name="collect_number" format="reference|integer" />
-        <attr name="praise_number" format="reference|integer" />
-        <attr name="is_liked" format="boolean" />
-        <attr name="is_collected" format="boolean" />
-        <attr name="is_praised" format="boolean" />
+        <attr name="has_read" format="boolean" />
+        <attr name="has_favorite" format="boolean" />
+        <attr name="has_like" format="boolean" />
     </declare-styleable>
 
     <declare-styleable name="CommonItem">
