@@ -39,7 +39,7 @@ class FollowFragment : RealVisibleHintBaseFragment(), HasSupportFragmentInjector
     }
 
     override fun initView(view: View) {
-        model.id = 1//userId
+        model.id = "1"//userId
         initListener()
     }
 

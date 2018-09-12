@@ -30,7 +30,6 @@ class SSOInterceptor : Interceptor {
     @SuppressLint("CheckResult")
     @Throws(IOException::class)
     override fun intercept(chain: Interceptor.Chain): Response? {
-        val request = chain.request()
         val response = chain.proceed(chain.request())
         return when {
             response.code() == Config.ErrorCode.NETWORK_RESPONSE_LOGIN_FORBIDDEN -> {
@@ -54,18 +53,6 @@ class SSOInterceptor : Interceptor {
                 }
                 response
             }
-//            response.code() == Config.ErrorCode.NETWORK_RESPONSE_LOGIN_UNAUTHORIZED -> {    //设备登录:传os_type,device_id,login_type
-//                val param = LoginParams()
-//                param.setType(LoginEnum.HARDWARE)
-//                val data = RetrofitManager.get().apiService()
-//                        .logins(param)
-//                        .execute()
-//                        .body()?.data?.data?.token.toString()
-//                User.currentUser.accessToken = data
-//                response?.body()?.close()
-//                chain.proceed(request.newBuilder().header("Authorization", data).build())
-//                response
-//            }
             else -> {
                 isLoginInvalidate = false
                 response.newBuilder()

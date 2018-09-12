@@ -52,7 +52,7 @@ interface ApiService {
 
     //查询指定用户发布的文章列表
     @GET("v1/user/info/{userId}")
-    fun getUserInfo(@Path("userId") userId: Int?): LiveData<ApiResponse<UserInfoResponse>>
+    fun getUserInfo(@Path("userId") userId: String?): LiveData<ApiResponse<UserInfoResponse>>
 
     /**
      * 登录注册相关
@@ -61,7 +61,7 @@ interface ApiService {
     fun login(@Body param: LoginParams): LiveData<ApiResponse<LoginRegisterResponse>>
 
     @POST("v1/login/login")
-    fun logins(@Body param: LoginParams): Call<HttpResponse<LoginRegisterResponse>>
+    fun logins(@Body param: LoginParams): Call<HttpResponse<LoginRegisterResponse.LoginRegister>>
 
     @POST("v1/login/register")
     fun register(@Body param: SignInParams): LiveData<ApiResponse<LoginRegisterResponse>>

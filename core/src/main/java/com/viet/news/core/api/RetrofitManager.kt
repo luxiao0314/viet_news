@@ -8,7 +8,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 
-import com.viet.news.core.http.interceptor.RefreshTokenAuthenticator
+import com.viet.news.core.http.interceptor.TokenAuthenticator
 import com.viet.news.core.http.interceptor.SSOInterceptor
 import com.viet.news.core.http.interceptor.NetworkExceptionInterceptor
 
@@ -33,7 +33,7 @@ class RetrofitManager private constructor() {
                 .connectTimeout((10 * 1000).toLong(), TimeUnit.MILLISECONDS)
                 .addInterceptor(HeaderInterceptor())
                 .addInterceptor(SSOInterceptor())
-                .authenticator(RefreshTokenAuthenticator())
+                .authenticator(TokenAuthenticator())
                 .addInterceptor(NetworkExceptionInterceptor())
                 .addInterceptor(loggingInterceptor.build())
                 .build()

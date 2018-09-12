@@ -20,7 +20,7 @@ import com.viet.news.core.vo.Resource
  */
 class FindRepository : ApiRepository() {
 
-    fun getlist4Channel(page_number: Int, id: Int?): LiveData<Resource<NewsListResponse>> {
+    fun getlist4Channel(page_number: Int, id: String?): LiveData<Resource<NewsListResponse>> {
         val params = List4ChannelParams()
         params.page_number = page_number
         params.page_size = 5
@@ -32,7 +32,7 @@ class FindRepository : ApiRepository() {
         }.asLiveData()
     }
 
-    fun getlist4Follow(page_number: Int, id: Int?): LiveData<Resource<NewsListResponse>> {
+    fun getlist4Follow(page_number: Int, id: String?): LiveData<Resource<NewsListResponse>> {
         val params = List4ChannelParams()
         params.page_number = page_number
         params.page_size = 2

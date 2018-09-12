@@ -13,7 +13,6 @@ import com.viet.news.core.domain.LoginEvent
 import com.viet.news.core.domain.LogoutEvent
 import com.viet.news.core.domain.RefreshUserInfoEvent
 import com.viet.news.core.domain.User
-import com.viet.news.core.ext.loadBlur
 import com.viet.news.core.ext.loadCircle
 import com.viet.news.core.ext.routerWithAnim
 import com.viet.news.core.ui.BaseFragment
@@ -44,15 +43,15 @@ class MineFragment : BaseFragment() {
     }
 
     private fun initData() {
-        model.getUserInfo(User.currentUser.userId.toInt(), this) {
+        model.getUserInfo(User.currentUser.userId, this) {
             iv_user_icon.loadCircle(it?.avatar)
             tv_nickname.text = it?.nick_name
             tv_fans_count.text = it?.fans_count.toString()
             tv_follow_count.text = it?.follow_count.toString()
-            User.currentUser.userName = it?.nick_name!!
-            User.currentUser.fansCount = it.fans_count
+            User.currentUser.userName = it?.nick_name.toString()
+            User.currentUser.avatarUrl = it?.avatar.toString()
+            User.currentUser.fansCount = it!!.fans_count
             User.currentUser.followCount = it.follow_count
-            User.currentUser.avatarUrl = it.avatar!!
         }
     }
 

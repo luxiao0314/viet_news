@@ -42,7 +42,7 @@ class MineRepository : ApiRepository() {
         }.asLiveData()
     }
 
-    fun getUserInfo(userId: Int?): LiveData<Resource<UserInfoResponse>> {
+    fun getUserInfo(userId: String?): LiveData<Resource<UserInfoResponse>> {
         return object : NetworkOnlyResource<UserInfoResponse>() {
             override fun createCall(): LiveData<ApiResponse<UserInfoResponse>> {
                 return apiInterface.getUserInfo(userId)

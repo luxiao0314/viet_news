@@ -45,14 +45,14 @@ class NewsFragment : RealVisibleHintBaseFragment(), HasSupportFragmentInjector {
     @Inject
     internal lateinit var adapter: NewsAdapter
     private val model: FindViewModel by viewModelDelegate(FindViewModel::class)
-    var id: Int? = 0
+    var id: String? = ""
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_news, container, false)
     }
 
     override fun onFragmentFirstVisible() {
-        id = arguments?.getString(Config.BUNDLE_ID)?.toInt()
+        id = arguments?.getString(Config.BUNDLE_ID)
         refreshLayout.autoRefresh()
         initEvent()
     }

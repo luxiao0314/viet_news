@@ -23,7 +23,7 @@ import com.viet.news.core.vo.Status
 class PersonalPageModel(var repository: PersonalPageRepository = PersonalPageRepository()) : BaseViewModel() {
 
     var page_number = 0
-    var userId: Int? = 1
+    var userId: String? = "1"
 
     fun getlist4User(): LiveData<Resource<NewsListResponse>> {
         return repository.getlist4User(page_number, userId)

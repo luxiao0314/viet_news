@@ -12,5 +12,5 @@ import java.io.Serializable
 class List4ChannelParams:Serializable {
     var page_number:Int = 0
     var page_size:Int = 0
-    var channel_id:Int? = 0
+    var channel_id:String? = ""
 }

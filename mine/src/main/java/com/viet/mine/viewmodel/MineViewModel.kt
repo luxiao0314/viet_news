@@ -12,7 +12,7 @@ import com.viet.news.core.vo.Status
 
 class MineViewModel(var repository: MineRepository = MineRepository()) : BaseViewModel() {
 
-    fun getUserInfo(userId: Int, owner: LifecycleOwner, function: (user: UserInfo?) -> Unit) {
+    fun getUserInfo(userId: String, owner: LifecycleOwner, function: (user: UserInfo?) -> Unit) {
         repository.getUserInfo(userId).observe(owner, Observer {
             if (it?.status == Status.SUCCESS) {
                 function(it.data?.data)

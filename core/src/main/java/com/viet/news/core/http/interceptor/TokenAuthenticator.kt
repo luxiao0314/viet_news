@@ -10,7 +10,11 @@ import okhttp3.Response
 import okhttp3.Route
 import java.io.IOException
 
-class RefreshTokenAuthenticator : Authenticator {
+/**
+ * http status 返回401 处理,需要更新设备token
+ * 设备登录:传os_type,device_id,login_type
+ */
+class TokenAuthenticator : Authenticator {
     @Throws(IOException::class)
     override fun authenticate(route: Route, response: Response): Request? {
         val param = LoginParams()
@@ -19,9 +23,8 @@ class RefreshTokenAuthenticator : Authenticator {
                 .logins(param)
                 .execute()
                 .body()
-        val token = data?.data?.data?.token.toString()
+        val token = data?.data?.token.toString()
         User.currentUser.accessToken = token
-//        val credential = Credentials.basic("jesse", "password1")
         return response.request().newBuilder()
                 .addHeader("Authorization", token)
                 .build()
