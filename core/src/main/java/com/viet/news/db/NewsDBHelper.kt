@@ -9,7 +9,7 @@ import com.viet.news.core.config.Config
 /**
  * Created by abhinav.sharma on 04/11/17.
  */
-@Database(entities = [SourceEntity::class], version = 1)
+@Database(entities = [FavoriteEntity::class], version = 1)
 abstract class NewsDBHelper : RoomDatabase() {
     abstract fun getSourceDao(): SourceDao
 
