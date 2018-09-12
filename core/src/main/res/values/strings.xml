@@ -87,6 +87,8 @@
     <string name="user_telephone">Mobile phone number</string>
     <string name="password">Password</string>
     <string name="set_password">Set the password</string>
+    <string name="set_password_and_login">Set and Login</string>
+    <string name="set_login_password">Set the Login password</string>
     <string name="forget_pwd_signed">Forgot password?</string>
     <string name="login_with_verify_code">SMS verification code login</string>
     <string name="agree">agree</string>

@@ -36,6 +36,8 @@
     <string name="user_telephone">手机号码</string>
     <string name="password">密码</string>
     <string name="set_password">设置密码</string>
+    <string name="set_login_password">设置登录密码</string>
+    <string name="set_password_and_login">设置并登录</string>
     <string name="forget_pwd_signed">忘记密码?</string>
     <string name="login_with_verify_code">短信验证码登录</string>
     <string name="agree">同意</string>

@@ -55,9 +55,9 @@ class MineFragment : BaseFragment() {
             iv_user_icon.visibility = View.GONE
             rl_user.visibility = View.GONE
             edit.visibility = View.GONE
-            initData()
             btn_login.clickWithTrigger { routerWithAnim(Config.ROUTER_LOGIN_ACTIVITY).go(this) }
         } else {
+            initData()
             btn_login.visibility = View.GONE
             iv_user_icon.visibility = View.VISIBLE
             rl_user.visibility = View.VISIBLE

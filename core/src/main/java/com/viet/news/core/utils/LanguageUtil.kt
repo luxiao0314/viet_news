@@ -46,8 +46,9 @@ object LanguageUtil {
 
     /**
      * 无动画模式，打开MainActivity
+     * 有可能会清空栈，如果不是语言切换，一般不需要使用这个方式!!!
      */
-    fun routToMain(activity: Activity? ) = Router.build(Config.ROUTER_MAIN_ACTIVITY)
+    fun routToMainForce(activity: Activity? ) = Router.build(Config.ROUTER_MAIN_ACTIVITY)
             .anim(0, 0)//不使用跳转动画
             .with(Config.LANGUAGE_CHANGED, true)
             .also {
@@ -132,14 +133,14 @@ object LanguageUtil {
             if (cacheStr != localeStr) {
                 //不同则将当前存入缓存后重启界面
                 SPHelper.create().putString(Config.LAST_LANGUAGE, localeStr)
-                routToMain(activity)
+                routToMainForce(activity)
             } else {
                 //缓存与本机相同。
                 // 若为跟随系统，则检查App语言和系统语言是否一致，若不一致 则重新进
                 if (getSelectedLanguage(BaseApplication.instance) == AUTO) {
                     val appLocaleStr = combineHeader(getAppLocale())
                     if (appLocaleStr != localeStr) {
-                        routToMain(activity)
+                        routToMainForce(activity)
                     }
                 }
             }
