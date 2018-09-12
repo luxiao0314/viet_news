@@ -1,148 +1,152 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/white">
+    android:id="@+id/container_frame_layout"
+    android:layout_height="match_parent">
 
-    <com.viet.news.core.ui.widget.TitleBar
-        android:id="@+id/title_bar"
-        style="@style/title_bar.white_bg"
-        app:titlebar_titleText="@string/title_find_pwd"/>
-
-    <TextView
-        android:id="@+id/tv_hint"
-        style="@style/text.12.gray"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
-        android:drawableLeft="@drawable/ic_warning"
-        android:drawablePadding="5dp"
-        android:paddingStart="@dimen/page_padding_left"
-        android:paddingLeft="@dimen/page_padding_left"
-        android:paddingEnd="@dimen/page_padding_right"
-        android:paddingRight="@dimen/page_padding_right"
-        android:text="此手机号码尚未注册"
-        android:textColor="@color/red_warn"
-        app:layout_constraintBottom_toTopOf="@+id/phone_input"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/title_bar"/>
-
-    <cn.magicwindow.ClearEditext
-        android:id="@+id/phone_input"
-        style="@style/edit.number"
+    <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_marginStart="80dp"
-        android:layout_marginLeft="80dp"
-        android:layout_marginTop="20dp"
-        android:hint="@string/user_telephone"
-        android:paddingEnd="@dimen/page_padding_right"
-        android:paddingRight="@dimen/page_padding_right"
-        android:textColor="@color/text_gray"
-        app:layout_constraintStart_toEndOf="@+id/line"
-        app:layout_constraintTop_toBottomOf="@+id/tv_hint"/>
+        android:layout_height="match_parent"
+        android:background="@color/white">
 
-    <TextView
-        android:id="@+id/select_country_text"
-        style="@style/text.16.gray"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:paddingStart="@dimen/page_padding_left"
-        android:paddingLeft="@dimen/page_padding_left"
-        android:paddingTop="2dp"
-        android:paddingRight="6dp"
-        android:paddingBottom="2dp"
-        android:text="+86"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_hint"/>
+        <com.viet.news.core.ui.widget.TitleBar
+            android:id="@+id/title_bar"
+            style="@style/title_bar.white_bg"
+            app:titlebar_titleText="@string/title_find_pwd" />
 
-    <View
-        android:id="@+id/line"
-        style="@style/line.vertical.gray"
-        android:layout_height="25dp"
-        android:layout_marginStart="15dp"
-        android:layout_marginLeft="15dp"
-        android:layout_marginTop="20dp"
-        app:layout_constraintBottom_toTopOf="@id/line2"
-        app:layout_constraintStart_toEndOf="@+id/select_country_text"
-        app:layout_constraintTop_toBottomOf="@+id/tv_hint"/>
-
-    <View
-        style="@style/line.gray_tran"
-        android:layout_marginStart="@dimen/page_padding_left"
-        android:layout_marginLeft="@dimen/page_padding_left"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="@dimen/page_padding_right"
-        android:layout_marginRight="@dimen/page_padding_right"
-        app:layout_constraintTop_toBottomOf="@+id/phone_input"/>
-
-    <LinearLayout
-
-        android:id="@+id/linearLayout2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:orientation="horizontal"
-        android:paddingStart="@dimen/page_padding_left"
-        android:paddingLeft="@dimen/page_padding_left"
-        android:paddingEnd="@dimen/page_padding_right"
-        android:paddingRight="@dimen/page_padding_right"
-        app:layout_constraintTop_toBottomOf="@+id/phone_input">
-
-        <cn.magicwindow.ClearEditext
-            android:id="@+id/vcode_input"
-            style="@style/edit"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:hint="@string/verification_code"
-            android:padding="5dp"
-            android:textColor="@color/text_gray"
-            android:textSize="@dimen/text_14sp"/>
-
-        <Button
-            android:id="@+id/btn_send_vcode"
+        <TextView
+            android:id="@+id/tv_hint"
             style="@style/text.12.gray"
             android:layout_width="wrap_content"
-            android:layout_height="30dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginEnd="10dp"
-            android:layout_marginRight="10dp"
-            android:background="@drawable/shape_white_round_bg"
-            android:paddingLeft="10dp"
-            android:paddingRight="10dp"
-            android:text="@string/get_vcode"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/vcode_input"/>
-    </LinearLayout>
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:drawableLeft="@drawable/ic_warning"
+            android:drawablePadding="5dp"
+            android:paddingStart="@dimen/page_padding_left"
+            android:paddingLeft="@dimen/page_padding_left"
+            android:paddingEnd="@dimen/page_padding_right"
+            android:paddingRight="@dimen/page_padding_right"
+            android:text="此手机号码尚未注册"
+            android:textColor="@color/red_warn"
+            app:layout_constraintBottom_toTopOf="@+id/phone_input"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/title_bar" />
 
-    <View
-        android:id="@+id/view"
-        style="@style/line.gray_tran"
-        android:layout_marginStart="@dimen/page_padding_left"
-        android:layout_marginLeft="@dimen/page_padding_left"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="@dimen/page_padding_right"
-        android:layout_marginRight="@dimen/page_padding_right"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout2"/>
+        <cn.magicwindow.ClearEditext
+            android:id="@+id/phone_input"
+            style="@style/edit.number"
+            android:layout_width="match_parent"
+            android:layout_marginStart="80dp"
+            android:layout_marginLeft="80dp"
+            android:layout_marginTop="20dp"
+            android:hint="@string/user_telephone"
+            android:paddingEnd="@dimen/page_padding_right"
+            android:paddingRight="@dimen/page_padding_right"
+            android:textColor="@color/text_gray"
+            app:layout_constraintStart_toEndOf="@+id/line"
+            app:layout_constraintTop_toBottomOf="@+id/tv_hint" />
 
-    <Button
-        android:id="@+id/next_btn"
-        style="@style/button"
-        android:layout_width="match_parent"
-        android:layout_height="45dp"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginStart="@dimen/page_padding_left"
-        android:layout_marginLeft="@dimen/page_padding_left"
-        android:layout_marginTop="50dp"
-        android:layout_marginEnd="@dimen/page_padding_right"
-        android:layout_marginRight="@dimen/page_padding_right"
-        android:clickable="false"
-        android:text="@string/next"
-        app:layout_constraintTop_toBottomOf="@+id/view"/>
+        <TextView
+            android:id="@+id/select_country_text"
+            style="@style/text.16.gray"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:paddingStart="@dimen/page_padding_left"
+            android:paddingLeft="@dimen/page_padding_left"
+            android:paddingTop="2dp"
+            android:paddingRight="6dp"
+            android:paddingBottom="2dp"
+            android:text="+86"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_hint" />
 
-</android.support.constraint.ConstraintLayout>
+        <View
+            android:id="@+id/line"
+            style="@style/line.vertical.gray"
+            android:layout_height="25dp"
+            android:layout_marginStart="15dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="20dp"
+            app:layout_constraintBottom_toTopOf="@id/line2"
+            app:layout_constraintStart_toEndOf="@+id/select_country_text"
+            app:layout_constraintTop_toBottomOf="@+id/tv_hint" />
+
+        <View
+            style="@style/line.gray_tran"
+            android:layout_marginStart="@dimen/page_padding_left"
+            android:layout_marginLeft="@dimen/page_padding_left"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="@dimen/page_padding_right"
+            android:layout_marginRight="@dimen/page_padding_right"
+            app:layout_constraintTop_toBottomOf="@+id/phone_input" />
+
+        <LinearLayout
+
+            android:id="@+id/linearLayout2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:orientation="horizontal"
+            android:paddingStart="@dimen/page_padding_left"
+            android:paddingLeft="@dimen/page_padding_left"
+            android:paddingEnd="@dimen/page_padding_right"
+            android:paddingRight="@dimen/page_padding_right"
+            app:layout_constraintTop_toBottomOf="@+id/phone_input">
+
+            <cn.magicwindow.ClearEditext
+                android:id="@+id/vcode_input"
+                style="@style/edit"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="@string/verification_code"
+                android:padding="5dp"
+                android:textColor="@color/text_gray"
+                android:textSize="@dimen/text_14sp" />
+
+            <Button
+                android:id="@+id/btn_send_vcode"
+                style="@style/text.12.gray"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/shape_white_round_bg"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:text="@string/get_vcode"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/vcode_input" />
+        </LinearLayout>
+
+        <View
+            android:id="@+id/view"
+            style="@style/line.gray_tran"
+            android:layout_marginStart="@dimen/page_padding_left"
+            android:layout_marginLeft="@dimen/page_padding_left"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="@dimen/page_padding_right"
+            android:layout_marginRight="@dimen/page_padding_right"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
+
+        <Button
+            android:id="@+id/next_btn"
+            style="@style/button"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginStart="@dimen/page_padding_left"
+            android:layout_marginLeft="@dimen/page_padding_left"
+            android:layout_marginTop="50dp"
+            android:layout_marginEnd="@dimen/page_padding_right"
+            android:layout_marginRight="@dimen/page_padding_right"
+            android:clickable="false"
+            android:text="@string/next"
+            app:layout_constraintTop_toBottomOf="@+id/view" />
+
+    </android.support.constraint.ConstraintLayout>
+</FrameLayout>

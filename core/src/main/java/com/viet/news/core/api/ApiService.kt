@@ -63,10 +63,13 @@ interface ApiService {
     fun register(@Body param: SignInParams): LiveData<ApiResponse<LoginRegisterResponse>>
 
     @POST("v1/login/sendSms")
-    fun sendSMS(@Body param: VerifyCodeParams): LiveData<ApiResponse<Any>>
+    fun sendSMS(@Body param: VerifyCodeParams): LiveData<ApiResponse<HttpResponse<Any>>>
 
     @POST("v1/login/checkValidationCode")
-    fun checkVerifyCode(@Body param: VerifyCodeParams):LiveData<ApiResponse<Any>>
+    fun checkVerifyCode(@Body param: VerifyCodeParams):LiveData<ApiResponse<HttpResponse<Any>>>
+
+    @POST("v1/login/resetPassword")
+    fun setPassword(@Body param: ResetPwdParams):LiveData<ApiResponse<LoginRegisterResponse>>
 
     @POST("v1/feedback/add")
     fun feedback(@Body param: FeedBackParams): LiveData<ApiResponse<Any>>
