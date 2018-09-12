@@ -43,6 +43,7 @@ class PersonalPageActivity : InjectActivity() {
         super.onCreate(savedInstanceState ?: Bundle())
         setContentView(R.layout.activity_personal_page)
         initView()
+        model.userId = intent?.getStringExtra(Config.BUNDLE_USER_ID)
         initData(false)
         initInfoData()
     }

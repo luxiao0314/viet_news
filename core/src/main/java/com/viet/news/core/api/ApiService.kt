@@ -35,19 +35,19 @@ interface ApiService {
 
     //根据频道查询文章列表
     @POST("v1/content/list4Channel")
-    fun getlist4Channel(@Body param: List4ChannelParams): LiveData<ApiResponse<NewsListResponse>>
+    fun getlist4Channel(@Body param: ListParams): LiveData<ApiResponse<NewsListResponse>>
 
     //查询当前关注用户发表的文章列表
     @POST("v1/content/list4follow")
-    fun getlist4Follow(@Body param: List4ChannelParams): LiveData<ApiResponse<NewsListResponse>>
+    fun getlist4Follow(@Body param: ListParams): LiveData<ApiResponse<NewsListResponse>>
 
     //查询收藏列表
     @POST("v1/content/collectionList")
-    fun getCollectionList(@Body param: CollectionListParams): LiveData<ApiResponse<CollectionListResponse>>
+    fun getCollectionList(@Body param: ListParams): LiveData<ApiResponse<CollectionListResponse>>
 
     //查询指定用户发布的文章列表
     @POST("v1/content/list4user")
-    fun getlist4User(@Body param: List4ChannelParams): LiveData<ApiResponse<NewsListResponse>>
+    fun getlist4User(@Body param: ListParams): LiveData<ApiResponse<NewsListResponse>>
 
     //查询指定用户发布的文章列表
     @GET("v1/user/info/{userId}")

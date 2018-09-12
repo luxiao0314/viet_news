@@ -4,15 +4,13 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.navigation.Navigation
 import com.chenenyu.router.annotation.Route
 import com.viet.mine.R
 import com.viet.news.core.config.Config
 import com.viet.news.core.domain.User
 import com.viet.news.core.ext.click
+import com.viet.news.core.ext.clickWithTrigger
 import com.viet.news.core.ext.finishWithAnim
-import com.viet.news.core.ext.goFragment
-import com.viet.news.core.ext.routerWithAnim
 import com.viet.news.core.ui.BaseActivity
 import com.viet.news.core.ui.BaseFragment
 import com.viet.news.core.ui.widget.CommonItem
@@ -39,23 +37,9 @@ class SettingFragment : BaseFragment() {
         val helpItem = view.findViewById<CommonItem>(R.id.item_help)
         val feedBackItem = view.findViewById<CommonItem>(R.id.item_feed_back)
 
-        languageSettingItem.setClickDelegate {
-            onItemClick = {
-                openPage(this@SettingFragment, Config.ROUTER_MINE_SETTING_LANGUAGE_FRAGMENT, R.id.container_framelayout)
-            }
-        }
-
-        helpItem.setClickDelegate {
-            onItemClick = {
-                openPage(this@SettingFragment, Config.ROUTER_MINE_SETTING_HELP_FRAGMENT, R.id.container_framelayout)
-            }
-        }
-
-        feedBackItem.setClickDelegate {
-            onItemClick = {
-                openPage(this@SettingFragment, Config.ROUTER_MINE_SETTING_FEEDBACK_FRAGMENT, R.id.container_framelayout)
-            }
-        }
+        languageSettingItem.clickWithTrigger { openPage(this@SettingFragment, Config.ROUTER_MINE_SETTING_LANGUAGE_FRAGMENT, R.id.container_framelayout) }
+        helpItem.clickWithTrigger { openPage(this@SettingFragment, Config.ROUTER_MINE_SETTING_HELP_FRAGMENT, R.id.container_framelayout) }
+        feedBackItem.clickWithTrigger { openPage(this@SettingFragment, Config.ROUTER_MINE_SETTING_FEEDBACK_FRAGMENT, R.id.container_framelayout) }
 
         if (User.currentUser.isLogin()) {
             btn_logout.visibility = View.VISIBLE

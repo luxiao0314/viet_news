@@ -3,8 +3,9 @@ package com.viet.mine.repository
 import android.arch.lifecycle.LiveData
 import com.viet.news.core.api.ApiRepository
 import com.viet.news.core.api.ApiResponse
-import com.viet.news.core.domain.request.CollectionListParams
+import com.viet.news.core.config.Config
 import com.viet.news.core.domain.request.FeedBackParams
+import com.viet.news.core.domain.request.ListParams
 import com.viet.news.core.domain.response.CollectionListResponse
 import com.viet.news.core.domain.response.UserInfoResponse
 import com.viet.news.core.repository.NetworkOnlyResource
@@ -32,10 +33,10 @@ class MineRepository : ApiRepository() {
         }.asLiveData()
     }
 
-    fun getCollectionList(page: Int, id: Int?): LiveData<Resource<CollectionListResponse>> {
-        val params = CollectionListParams()
+    fun getCollectionList(page: Int, id: String?): LiveData<Resource<CollectionListResponse>> {
+        val params = ListParams()
         params.page_number = page
-        params.page_size = 5
+        params.page_size = Config.page_size
         params.user_id = id
         return object : NetworkOnlyResource<CollectionListResponse>() {
             override fun createCall(): LiveData<ApiResponse<CollectionListResponse>> = apiInterface.getCollectionList(params)

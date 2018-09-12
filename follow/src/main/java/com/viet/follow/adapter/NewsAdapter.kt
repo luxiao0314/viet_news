@@ -46,7 +46,7 @@ class NewsAdapter @Inject constructor() : BaseAdapter<NewsListBean>() {
         holder.itemView.tv_time.text = DateUtils.getTimestamp(Date(t.content.createDateTime))
         holder.itemView.tv_des.text = t.content.contentTitle
         holder.itemView.findViewById<ImageView>(R.id.iv_article_image).loadCircle(t.author.avatar)
-        holder.itemView.findViewById<ImageView>(R.id.iv_article_image).click { routerWithAnim(Config.ROUTER_PERSONAL_PAGE_ACTIVITY).go(context) }
+        holder.itemView.findViewById<ImageView>(R.id.iv_article_image).click { routerWithAnim(Config.ROUTER_PERSONAL_PAGE_ACTIVITY).with(Config.BUNDLE_USER_ID,t.content.userId).go(context) }
         holder.itemView.click { WebActivity.launch(context, t.content.contentDetail) }
         holder.itemView.behaviorBar?.setClickDelegate {
             onLikeClick = { isLiked, num, id, func -> delegate?.onLikeClick(isLiked, num, t.content.id, func) }

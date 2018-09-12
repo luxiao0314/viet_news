@@ -2,22 +2,18 @@ package com.viet.mine.activity
 
 import android.os.Bundle
 import android.support.v4.view.ViewPager
-import com.viet.mine.R
-import com.viet.mine.adapter.CardRvAdapter
-import com.viet.news.core.ui.InjectActivity
-import kotlinx.android.synthetic.main.activity_mine_wallet.*
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
-import com.app.hubert.guide.listener.OnPageChangedListener
 import com.chenenyu.router.annotation.Route
+import com.viet.mine.R
+import com.viet.mine.adapter.CardRvAdapter
 import com.viet.mine.adapter.CustomSnapHelper
-import com.viet.mine.viewmodel.LoginViewModel
 import com.viet.mine.viewmodel.MineWalletViewModel
 import com.viet.news.core.config.Config
 import com.viet.news.core.delegate.viewModelDelegate
-import com.viet.news.core.dsl.addOnPageChangeListener
-import com.viet.news.core.dsl.setOnPageChangeListener
+import com.viet.news.core.ui.InjectActivity
 import com.viet.news.core.ui.TabFragmentAdapter
+import kotlinx.android.synthetic.main.activity_mine_wallet.*
 import javax.inject.Inject
 
 /**
@@ -26,7 +22,7 @@ import javax.inject.Inject
  * @Email zongjia.long@merculet.io
  * @Version
  */
-@Route(value = [Config.ROUTER_MINE_WALLET_ACTIVITY])
+@Route(value = [Config.ROUTER_MINE_WALLET_ACTIVITY],interceptors = [(Config.LOGIN_INTERCEPTOR)])
 class MineWalletActivity : InjectActivity() {
 
     @Inject

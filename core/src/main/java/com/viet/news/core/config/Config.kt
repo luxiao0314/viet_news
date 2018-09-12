@@ -26,11 +26,14 @@ object Config {
         }
     }
 
+    const val page_size = 10
+
     //bundle
     const val COUNTRY = "country_abbreviation"
     const val USER_NAME = "user_name"
     const val TEL_PHONE = "tel_phone"
     const val BUNDLE_ID = "bundle_id"
+    const val BUNDLE_USER_ID = "bundle_user_id"
 
     const val PACT_URL = "http://magic.merculet.io/pact/zh-cn"
 

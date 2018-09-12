@@ -3,8 +3,8 @@
 
     <!--底部弹框-->
     <style name="inandoutAnimation" parent="@android:style/Animation.Dialog">
-        <item name="android:windowEnterAnimation">@anim/slide_vertical_in</item>
-        <item name="android:windowExitAnimation">@anim/slide_vertical_out</item>
+        <item name="android:windowEnterAnimation">@anim/slide_vertical_top_in</item>
+        <item name="android:windowExitAnimation">@anim/slide_vertical_top_out</item>
     </style>
 
     <style name="DialogTheme" parent="android:style/Theme.Dialog">

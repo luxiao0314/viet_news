@@ -21,12 +21,10 @@ import com.viet.mine.viewmodel.CollectionViewModel
 import com.viet.news.core.config.Config
 import com.viet.news.core.delegate.viewModelDelegate
 import com.viet.news.core.domain.User
-import com.viet.news.core.domain.response.CollectionBean
 import com.viet.news.core.domain.response.CollectionListBean
 import com.viet.news.core.ui.InjectActivity
 import com.viet.news.core.vo.Status
 import kotlinx.android.synthetic.main.activity_mine_collection.*
-import javax.inject.Inject
 
 /**
  * @Description 用户收藏
@@ -34,7 +32,7 @@ import javax.inject.Inject
  * @Email zongjia.long@merculet.io
  * @Version
  */
-@Route(value = [Config.ROUTER_MINE_COLLECTION_ACTIVITY])
+@Route(value = [Config.ROUTER_MINE_COLLECTION_ACTIVITY],interceptors = [(Config.LOGIN_INTERCEPTOR)])
 class CollectionActivity : InjectActivity() {
 
     private val model: CollectionViewModel by viewModelDelegate(CollectionViewModel::class)
@@ -80,7 +78,7 @@ class CollectionActivity : InjectActivity() {
             model.page_number = 1
         }
 
-        model.getCollectionList(User.currentUser.userId.toInt()).observe(this, Observer {
+        model.getCollectionList(User.currentUser.userId).observe(this, Observer {
             when (it?.status) {
                 Status.SUCCESS -> {
                     model.collectionList = it.data?.data?.list as ArrayList<CollectionListBean>

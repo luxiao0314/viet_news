@@ -67,7 +67,7 @@ class MineFragment : BaseFragment() {
             iv_user_icon.visibility = View.GONE
             rl_user.visibility = View.GONE
             edit.visibility = View.GONE
-            btn_login.clickWithTrigger { routerWithAnim(Config.ROUTER_LOGIN_ACTIVITY).go(this) }
+            btn_login.clickWithTrigger { routerWithAnim(Config.ROUTER_LOGIN_ACTIVITY).anim(R.anim.dialog_push_bottom_in, R.anim.dialog_push_bottom_out).go(this) }
         } else {
             initData()
             btn_login.visibility = View.GONE
@@ -80,46 +80,11 @@ class MineFragment : BaseFragment() {
 
     override fun initView(view: View) {
         refresh()
-
-        iv_user_icon.clickWithTrigger {
-            routerWithAnim(Config.ROUTER_PERSONAL_PAGE_ACTIVITY).go(this)
-        }
-
-        edit.clickWithTrigger {
-            routerWithAnim(Config.ROUTER_MINE_EDIT_INFO_ACTIVITY).go(this)
-        }
-
-        mine_settings.setClickDelegate {
-            onItemClick = {
-                startActivity(Config.ROUTER_MINE_SETTING_ACTIVITY)
-            }
-        }
-
-        mine_collection.setClickDelegate {
-            onItemClick = {
-                startActivity(Config.ROUTER_MINE_COLLECTION_ACTIVITY)
-            }
-        }
-
-        mine_invite.setClickDelegate {
-            onItemClick = {
-                startActivity(Config.ROUTER_MINE_INVITE_ACTIVITY)
-            }
-        }
-
-        mine_wallet.setClickDelegate {
-            onItemClick = {
-                startActivity(Config.ROUTER_MINE_WALLET_ACTIVITY)
-            }
-        }
-
-    }
-
-    private fun startActivity(path: String) {
-        if (User.currentUser.isLogin()) {
-            routerWithAnim(path).go(context)
-        } else {
-            routerWithAnim(Config.ROUTER_LOGIN_ACTIVITY).go(this)
-        }
+        iv_user_icon.clickWithTrigger { routerWithAnim(Config.ROUTER_PERSONAL_PAGE_ACTIVITY).go(this) }
+        edit.clickWithTrigger { routerWithAnim(Config.ROUTER_MINE_EDIT_INFO_ACTIVITY).go(this) }
+        mine_settings.clickWithTrigger { routerWithAnim(Config.ROUTER_MINE_SETTING_ACTIVITY).go(context) }
+        mine_collection.clickWithTrigger { routerWithAnim(Config.ROUTER_MINE_COLLECTION_ACTIVITY).go(context) }
+        mine_invite.clickWithTrigger { routerWithAnim(Config.ROUTER_MINE_INVITE_ACTIVITY).go(context) }
+        mine_wallet.clickWithTrigger { routerWithAnim(Config.ROUTER_MINE_WALLET_ACTIVITY).go(context) }
     }
 }

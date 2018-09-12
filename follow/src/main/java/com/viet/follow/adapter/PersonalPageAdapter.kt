@@ -33,9 +33,9 @@ class PersonalPageAdapter @Inject constructor() : BaseAdapter<NewsListBean>() {
     }
 
     override fun onBindViewHolderImpl(holder: BaseViewHolder, position: Int, t: NewsListBean) {
-        holder.itemView.findViewById<ImageView>(R.id.iv_pic).load(t.image_array[0].cover)
-        holder.itemView.findViewById<TextView>(R.id.tv_des).text = t.content.contentTitle
-        holder.itemView.findViewById<TextView>(R.id.tv_time).text = DateUtils.getTimestamp(Date(t.content.createDateTime))
+        holder.itemView.findViewById<ImageView>(R.id.iv_pic)?.load(t.image_array[0].cover)
+        holder.itemView.findViewById<TextView>(R.id.tv_des)?.text = t.content.contentTitle
+        holder.itemView.findViewById<TextView>(R.id.tv_time)?.text = DateUtils.getTimestamp(Date(t.content.createDateTime))
         when (getItemViewType(position)) {
             1 -> {
                 holder.itemView.rv_news_cell.layoutManager = GridLayoutManager(context, 3)

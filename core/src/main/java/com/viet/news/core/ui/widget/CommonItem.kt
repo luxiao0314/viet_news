@@ -5,7 +5,6 @@ import android.content.res.TypedArray
 import android.support.annotation.IdRes
 import android.util.AttributeSet
 import android.view.View
-import android.view.WindowId
 import android.widget.RelativeLayout
 import com.safframework.ext.clickWithTrigger
 import com.viet.news.core.R
@@ -24,7 +23,6 @@ class CommonItem @JvmOverloads constructor(context: Context, attrs: AttributeSet
     init {
         View.inflate(context, R.layout.core_item, this)
         initAttrs(context, attrs)
-        setListener()
     }
 
     private fun initAttrs(context: Context, attrs: AttributeSet?) {

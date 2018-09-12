@@ -4,6 +4,10 @@ import android.arch.lifecycle.Observer
 import android.content.Context
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.support.v4.content.ContextCompat
+import android.support.v7.widget.DividerItemDecoration
+import android.support.v7.widget.LinearLayoutManager
+import android.support.v7.widget.OrientationHelper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -18,7 +22,7 @@ import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.support.AndroidSupportInjection
 import dagger.android.support.HasSupportFragmentInjector
-import kotlinx.android.synthetic.main.fragment_news.*
+import kotlinx.android.synthetic.main.fragment_follow.*
 import javax.inject.Inject
 
 /**
@@ -39,7 +43,11 @@ class FollowFragment : RealVisibleHintBaseFragment(), HasSupportFragmentInjector
     }
 
     override fun initView(view: View) {
-        model.id = "1"//userId
+        recyclerView.adapter = adapter
+        recyclerView.layoutManager = LinearLayoutManager(activity, OrientationHelper.VERTICAL, false)
+        val dividerItemDecoration = DividerItemDecoration(activity, DividerItemDecoration.VERTICAL)
+        dividerItemDecoration.setDrawable(ContextCompat.getDrawable(context!!, R.drawable.shape_list_divider_gray_05dp)!!)
+        recyclerView.addItemDecoration(dividerItemDecoration)
         initListener()
     }
 

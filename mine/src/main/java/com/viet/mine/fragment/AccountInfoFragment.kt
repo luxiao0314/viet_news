@@ -11,11 +11,11 @@ import com.luck.picture.lib.PictureSelector
 import com.luck.picture.lib.config.PictureConfig
 import com.luck.picture.lib.entity.LocalMedia
 import com.viet.mine.R
+import com.viet.mine.utils.updateHeader
 import com.viet.mine.viewmodel.AccountInfoViewModel
+import com.viet.news.core.config.Config
 import com.viet.news.core.delegate.viewModelDelegate
 import com.viet.news.core.domain.User
-import com.viet.mine.utils.updateHeader
-import com.viet.news.core.config.Config
 import com.viet.news.core.ext.clickWithTrigger
 import com.viet.news.core.ext.loadCircle
 import com.viet.news.core.ui.BaseFragment
@@ -54,22 +54,9 @@ class AccountInfoFragment : BaseFragment() {
         val changeNameItem = view.findViewById<CommonItem>(R.id.item_change_name)
         val changePhoneNumItem = view.findViewById<CommonItem>(R.id.item_change_phone_num)
         val resetPwdItem = view.findViewById<CommonItem>(R.id.item_reset_pwd)
-        changeNameItem.setClickDelegate {
-            onItemClick = {
-                openPage(this@AccountInfoFragment, Config.ROUTER_MINE_EDIT_CHANGE_NICKNAME_FRAGMENT, R.id.container_framelayout)
-            }
-        }
-        changePhoneNumItem.setClickDelegate {
-            onItemClick = {
-                openPage(this@AccountInfoFragment, Config.ROUTER_MINE_EDIT_CHANGE_PHONE_FRAGMENT, R.id.container_framelayout)
-            }
-        }
-
-        resetPwdItem.setClickDelegate {
-            onItemClick = {
-                openPage(this@AccountInfoFragment, Config.ROUTER_MINE_EDIT_CHANGE_PWD_FRAGMENT, R.id.container_framelayout)
-            }
-        }
+        changeNameItem.clickWithTrigger { openPage(this@AccountInfoFragment, Config.ROUTER_MINE_EDIT_CHANGE_NICKNAME_FRAGMENT, R.id.container_framelayout) }
+        changePhoneNumItem.clickWithTrigger { openPage(this@AccountInfoFragment, Config.ROUTER_MINE_EDIT_CHANGE_PHONE_FRAGMENT, R.id.container_framelayout) }
+        resetPwdItem.clickWithTrigger { openPage(this@AccountInfoFragment, Config.ROUTER_MINE_EDIT_CHANGE_PWD_FRAGMENT, R.id.container_framelayout) }
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

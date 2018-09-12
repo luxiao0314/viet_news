@@ -2,7 +2,6 @@ package com.viet.mine.viewmodel
 
 import android.arch.lifecycle.LiveData
 import com.viet.mine.repository.MineRepository
-import com.viet.news.core.domain.response.CollectionBean
 import com.viet.news.core.domain.response.CollectionListBean
 import com.viet.news.core.domain.response.CollectionListResponse
 import com.viet.news.core.viewmodel.BaseViewModel
@@ -13,7 +12,7 @@ class CollectionViewModel(var repository: MineRepository = MineRepository()) : B
     var collectionList = arrayListOf<CollectionListBean>()
 
 
-    fun getCollectionList(userId:Int): LiveData<Resource<CollectionListResponse>> {
+    fun getCollectionList(userId:String): LiveData<Resource<CollectionListResponse>> {
         return repository.getCollectionList(page_number, userId)
     }
 

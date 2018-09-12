@@ -3,7 +3,8 @@ package com.viet.follow.repository
 import android.arch.lifecycle.LiveData
 import com.viet.news.core.api.ApiRepository
 import com.viet.news.core.api.ApiResponse
-import com.viet.news.core.domain.request.List4ChannelParams
+import com.viet.news.core.config.Config
+import com.viet.news.core.domain.request.ListParams
 import com.viet.news.core.domain.response.ChannelAllListResponse
 import com.viet.news.core.domain.response.ChannelListResponse
 import com.viet.news.core.domain.response.NewsListResponse
@@ -21,9 +22,9 @@ import com.viet.news.core.vo.Resource
 class FindRepository : ApiRepository() {
 
     fun getlist4Channel(page_number: Int, id: String?): LiveData<Resource<NewsListResponse>> {
-        val params = List4ChannelParams()
+        val params = ListParams()
         params.page_number = page_number
-        params.page_size = 5
+        params.page_size = Config.page_size
         params.channel_id = id
         return object : NetworkOnlyResource<NewsListResponse>() {
             override fun createCall(): LiveData<ApiResponse<NewsListResponse>> {
@@ -33,10 +34,10 @@ class FindRepository : ApiRepository() {
     }
 
     fun getlist4Follow(page_number: Int, id: String?): LiveData<Resource<NewsListResponse>> {
-        val params = List4ChannelParams()
+        val params = ListParams()
         params.page_number = page_number
-        params.page_size = 2
-        params.channel_id = id
+        params.page_size = Config.page_size
+        params.user_id = id
         return object : NetworkOnlyResource<NewsListResponse>() {
             override fun createCall(): LiveData<ApiResponse<NewsListResponse>> {
                 return apiInterface.getlist4Follow(params)

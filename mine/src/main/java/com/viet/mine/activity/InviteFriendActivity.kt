@@ -1,6 +1,7 @@
 package com.viet.mine.activity
 
 import android.os.Bundle
+import com.chenenyu.router.annotation.Interceptor
 import com.chenenyu.router.annotation.Route
 import com.jaeger.library.StatusBarUtil
 import com.safframework.ext.dp2px
@@ -10,7 +11,7 @@ import com.viet.news.core.ui.InjectActivity
 import com.viet.news.core.utils.QRCodeUtil
 import kotlinx.android.synthetic.main.activity_mine_invite.*
 
-@Route(value = [Config.ROUTER_MINE_INVITE_ACTIVITY])
+@Route(value = [Config.ROUTER_MINE_INVITE_ACTIVITY], interceptors = [Config.LOGIN_INTERCEPTOR])
 class InviteFriendActivity : InjectActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {

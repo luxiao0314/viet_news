@@ -24,7 +24,6 @@ class PersonalPageModel(var repository: PersonalPageRepository = PersonalPageRep
 
     var page_number = 0
     var userId: String? = "1"
-    var followId: String? = "1"
 
     fun getlist4User(): LiveData<Resource<NewsListResponse>> {
         return repository.getlist4User(page_number, userId)
@@ -41,7 +40,7 @@ class PersonalPageModel(var repository: PersonalPageRepository = PersonalPageRep
     }
 
     fun follow(owner: LifecycleOwner, function: () -> Unit) {
-        repository.follow(followId).observe(owner, Observer {
+        repository.follow(userId).observe(owner, Observer {
             if (it?.status == Status.SUCCESS) {
                 function()
             } else if (it?.status == Status.ERROR) {
