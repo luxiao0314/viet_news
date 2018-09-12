@@ -3,11 +3,11 @@ package com.viet.mine.viewmodel
 import android.arch.lifecycle.LifecycleOwner
 import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.Observer
-import com.viet.mine.repository.SettingRepository
+import com.viet.mine.repository.MineRepository
 import com.viet.news.core.viewmodel.BaseViewModel
 import com.viet.news.core.vo.Status
 
-class SettingViewModel(var repository: SettingRepository = SettingRepository()) : BaseViewModel() {
+class SettingViewModel(var repository: MineRepository = MineRepository()) : BaseViewModel() {
     var feedback: MutableLiveData<String> = MutableLiveData()    //提交反馈内容
     var submitEnable: MutableLiveData<Boolean> = MutableLiveData()   //提交按钮是否可用
     var count: MutableLiveData<Int> = MutableLiveData()   //剩余字数
@@ -28,6 +28,7 @@ class SettingViewModel(var repository: SettingRepository = SettingRepository()) 
         }
         else -> true
     }
+
     fun nickNameSubmitEnable(): Boolean = when {
         nickName.value == null || nickName.value.isNullOrBlank() -> {
             false
@@ -35,7 +36,7 @@ class SettingViewModel(var repository: SettingRepository = SettingRepository()) 
         else -> true
     }
 
-
+    //反馈
     fun feedBack(owner: LifecycleOwner, feedback: String, finish: (isSuccess: Boolean) -> Unit) {
         return repository.feedBack(feedback).observe(owner, Observer {
             when (it?.status) {
@@ -48,6 +49,7 @@ class SettingViewModel(var repository: SettingRepository = SettingRepository()) 
         })
     }
 
+    //修改昵称
     fun updateNickName(owner: LifecycleOwner, nickname: String, finish: (isSuccess: Boolean) -> Unit) {
         return repository.updateNickName(nickname).observe(owner, Observer {
             when (it?.status) {
@@ -58,6 +60,11 @@ class SettingViewModel(var repository: SettingRepository = SettingRepository()) 
                 }
             }
         })
+    }
+
+    //收藏列表
+    fun getCollectionList(owner: LifecycleOwner, nickname: String, finish: (isSuccess: Boolean) -> Unit){
+
     }
 
 }

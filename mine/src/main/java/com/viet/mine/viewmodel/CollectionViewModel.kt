@@ -1,14 +1,20 @@
 package com.viet.mine.viewmodel
 
 import android.arch.lifecycle.LiveData
-import android.arch.lifecycle.MutableLiveData
-import com.google.gson.Gson
-import com.viet.news.core.domain.response.NewsResponse
-import com.viet.news.core.utils.FileUtils
+import com.viet.mine.repository.MineRepository
+import com.viet.news.core.domain.response.CollectionListBean
+import com.viet.news.core.domain.response.CollectionListResponse
 import com.viet.news.core.viewmodel.BaseViewModel
+import com.viet.news.core.vo.Resource
 
-class CollectionViewModel() : BaseViewModel() {
-    fun getNewsArticles(): LiveData<NewsResponse> {
-        return FileUtils.handleVirtualData(NewsResponse::class.java)
+class CollectionViewModel(var repository: MineRepository = MineRepository()) : BaseViewModel() {
+    var page_number = 0
+    var id: Int? = 0
+    var collectionList = arrayListOf<CollectionListBean>()
+
+
+    fun getCollectionList(): LiveData<Resource<CollectionListResponse>> {
+        return repository.getCollectionList(page_number, id)
     }
+
 }

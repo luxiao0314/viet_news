@@ -7,21 +7,22 @@ import android.support.v7.widget.DividerItemDecoration
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.OrientationHelper
 import android.support.v7.widget.RecyclerView
+import android.view.View
 import android.widget.AbsListView.OnScrollListener.SCROLL_STATE_TOUCH_SCROLL
+import android.widget.TextView
 import com.chenenyu.router.annotation.Route
-import com.jaeger.library.StatusBarUtil
 import com.scwang.smartrefresh.layout.api.RefreshHeader
 import com.scwang.smartrefresh.layout.header.ClassicsHeader
+import com.scwang.smartrefresh.layout.internal.InternalClassics
 import com.scwang.smartrefresh.layout.listener.SimpleMultiPurposeListener
 import com.viet.mine.R
 import com.viet.mine.adapter.CollectionAdapter
 import com.viet.mine.viewmodel.CollectionViewModel
 import com.viet.news.core.config.Config
 import com.viet.news.core.delegate.viewModelDelegate
-import com.viet.news.core.domain.RefreshNewsEvent
-import com.viet.news.core.ui.BaseActivity
+import com.viet.news.core.domain.response.CollectionListBean
 import com.viet.news.core.ui.InjectActivity
-import com.viet.news.core.utils.RxBus
+import com.viet.news.core.vo.Status
 import kotlinx.android.synthetic.main.activity_mine_collection.*
 
 /**
@@ -41,32 +42,17 @@ class CollectionActivity : InjectActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_mine_collection)
         adapter = CollectionAdapter()
-        initData()
+
         initView()
         initListener()
         refreshLayout.autoRefresh()
     }
 
     private fun initListener() {
-        refreshLayout.setOnRefreshListener {
-            model.getNewsArticles().observe(this, Observer { adapter.addData(it?.articles) })
-            it.finishRefresh()
-        }
-        refreshLayout.setOnLoadMoreListener {
-            it.finishLoadMore(2000/*,false*/)//传入false表示加载失败
-            model.getNewsArticles().observe(this, Observer { adapter.addData(it?.articles) })
-        }
-        refreshLayout.setOnMultiPurposeListener(object : SimpleMultiPurposeListener() {
-            override fun onHeaderFinish(header: RefreshHeader?, success: Boolean) {
-                refreshLayout.setPrimaryColorsId(R.color.red_hint, android.R.color.white)
-                ClassicsHeader.REFRESH_HEADER_FINISH = "已更新2篇文章"
-//                ClassicsHeader.REFRESH_HEADER_FINISH = "暂无更新内容"
-            }
-
-            override fun onHeaderMoving(header: RefreshHeader?, isDragging: Boolean, percent: Float, offset: Int, headerHeight: Int, maxDragHeight: Int) {
-                refreshLayout.setPrimaryColorsId(R.color.white, R.color.text_gray)
-            }
-        })
+        refreshLayout.setOnMultiPurposeListener(listener)
+        refreshLayout.setOnRefreshListener { initData(false) }
+        refreshLayout.setOnLoadMoreListener { initData(false) }
+        multiStatusView.setLoadingButtonClickListener(View.OnClickListener { refreshLayout.autoRefresh() })
     }
 
     private fun initView() {
@@ -84,11 +70,67 @@ class CollectionActivity : InjectActivity() {
         })
     }
 
-    private fun initData() {
-        model.getNewsArticles().observe(this, Observer {
-            adapter.addData(it?.articles)
+    private fun initData(loadMore: Boolean) {
+        if (loadMore) {
+            model.page_number += 1
+        } else {
+            model.page_number = 1
+        }
+
+        model.getCollectionList().observe(this, Observer {
+            when (it?.status) {
+                Status.SUCCESS -> {
+                    model.collectionList = it.data?.data?.list as ArrayList<CollectionListBean>
+                    multiStatusView.showContent()
+                    if (loadMore) {
+                        if (it.data?.data?.list == null || it.data?.data?.list!!.isEmpty()) {
+                            refreshLayout.finishLoadMoreWithNoMoreData()
+                        } else {
+                            refreshLayout.finishLoadMore()
+                            adapter.addData(it.data?.data?.list)
+                        }
+                    } else {
+                        if (it.data?.data?.list == null || it.data?.data?.list!!.isEmpty()) {
+                            multiStatusView.showEmpty()
+                            refreshLayout.setEnableLoadMore(false)
+                        }
+                        adapter.setData(it.data?.data?.list)
+                        refreshLayout.setNoMoreData(false)
+                        refreshLayout.finishRefresh()
+                    }
+                }
+                Status.ERROR -> {
+                    multiStatusView.showError()
+                    if (loadMore) {
+                        refreshLayout.finishLoadMore(false)//传入false表示加载失败
+                    } else {
+                        refreshLayout.finishRefresh(false)
+                    }
+                }
+                else -> {
+                }
+            }
         })
     }
 
+    private val listener = object : SimpleMultiPurposeListener() {
+
+        override fun onHeaderFinish(header: RefreshHeader?, success: Boolean) {
+            header as ClassicsHeader
+            if (model.collectionList.isEmpty()) {
+                header.findViewById<TextView>(InternalClassics.ID_TEXT_TITLE.toInt()).text = "暂无更新内容"
+            } else {
+                header.findViewById<TextView>(InternalClassics.ID_TEXT_TITLE.toInt()).text = "已更新2篇文章"
+            }
+            header.setPrimaryColor(resources.getColor(R.color.red_hint))
+            header.setAccentColor(resources.getColor(R.color.white))
+        }
+
+        override fun onHeaderMoving(header: RefreshHeader?, isDragging: Boolean, percent: Float, offset: Int, headerHeight: Int, maxDragHeight: Int) {
+            header as ClassicsHeader
+            header.setPrimaryColor(resources.getColor(R.color.white))
+            header.setAccentColor(resources.getColor(R.color.text_gray))
+        }
+    }
 
 }
