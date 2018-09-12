@@ -12,3 +12,5 @@ open class LogoutEvent
 open class LoginEvent
 
 open class RefreshNewsEvent
+
+open class GlobalNetworkException(val code :Int ,val bodyString :String)

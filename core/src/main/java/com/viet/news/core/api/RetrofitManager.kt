@@ -3,6 +3,7 @@ package com.viet.news.core.api
 import com.viet.news.core.BuildConfig
 import com.viet.news.core.http.interceptor.HeaderInterceptor
 import com.viet.news.core.http.interceptor.LoggingInterceptor
+import com.viet.news.core.http.interceptor.NetworkExceptionInterceptor
 import com.viet.news.core.utils.LiveDataCallAdapterFactory
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
@@ -29,6 +30,7 @@ class RetrofitManager private constructor() {
                 .readTimeout((10 * 1000).toLong(), TimeUnit.MILLISECONDS)
                 .connectTimeout((10 * 1000).toLong(), TimeUnit.MILLISECONDS)
                 .addInterceptor(HeaderInterceptor())
+                .addInterceptor(NetworkExceptionInterceptor())
                 .addInterceptor(loggingInterceptor.build())
                 .build()
 
