@@ -73,7 +73,7 @@ class NewsAdapter @Inject constructor() : BaseAdapter<NewsListBean>() {
                 holder.itemView.findViewById<TextView>(R.id.tv_title).text = t.contentTitle
                 holder.itemView.findViewById<TextView>(R.id.tv_time).text = t.createDateTime
                 holder.itemView.findViewById<TextView>(R.id.tv_des).text = t.contentTitle
-                holder.itemView.findViewById<ImageView>(R.id.iv_article_image).click { routerWithAnim(Config.ROUTER_PERSONAL_PAGE_ACTIVITY) }
+                holder.itemView.findViewById<ImageView>(R.id.iv_article_image).click { routerWithAnim(Config.ROUTER_PERSONAL_PAGE_ACTIVITY).go(context) }
                 holder.itemView.click { WebActivity.launch(context, t.contentDetail) }
             }
         }

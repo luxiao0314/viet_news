@@ -48,6 +48,7 @@ object Config {
     const val ROUTER_MINE_COLLECTION_ACTIVITY = "/mine/collection/activity"
     const val ROUTER_MINE_SETTING_ACTIVITY = "/mine/setting/activity"
     const val ROUTER_MINE_EDIT_INFO_ACTIVITY = "/mine/edit_info/activity"
+    const val ROUTER_FUNS_AND_FOLLOW_ACTIVITY = "/mine/funs_and_follow/activity"
 
     //我的->fragment
     const val ROUTER_MINE_SETTING_FRAGMENT = "/mine/setting/fragment"

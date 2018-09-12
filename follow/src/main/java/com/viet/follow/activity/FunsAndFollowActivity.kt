@@ -2,8 +2,10 @@ package com.viet.follow.activity
 
 import android.graphics.Typeface
 import android.os.Bundle
+import com.chenenyu.router.annotation.Route
 import com.viet.follow.R
 import com.viet.follow.viewmodel.FunsAndFollowViewModel
+import com.viet.news.core.config.Config
 import com.viet.news.core.delegate.viewModelDelegate
 import com.viet.news.core.dsl.addOnPageChangeListener
 import com.viet.news.core.ui.InjectActivity
@@ -18,6 +20,7 @@ import javax.inject.Inject
  * @Date 07/09/2018 10:45 AM
  * @Version 1.0.0
  */
+@Route(Config.ROUTER_FUNS_AND_FOLLOW_ACTIVITY)
 class FunsAndFollowActivity : InjectActivity() {
 
     @Inject
