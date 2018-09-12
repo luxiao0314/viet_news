@@ -7,7 +7,9 @@ import com.viet.follow.R
 import com.viet.news.core.domain.response.NewsListBean
 import com.viet.news.core.ext.load
 import com.viet.news.core.ui.BaseAdapter
+import com.viet.news.core.utils.DateUtils
 import kotlinx.android.synthetic.main.cell_personal_page_picture_three.view.*
+import java.util.*
 import javax.inject.Inject
 
 /**
@@ -31,19 +33,15 @@ class PersonalPageAdapter @Inject constructor() : BaseAdapter<NewsListBean>() {
     }
 
     override fun onBindViewHolderImpl(holder: BaseViewHolder, position: Int, t: NewsListBean) {
+        holder.itemView.findViewById<ImageView>(R.id.iv_pic).load(t.image_array[0].cover)
+        holder.itemView.findViewById<TextView>(R.id.tv_des).text = t.content.contentTitle
+        holder.itemView.findViewById<TextView>(R.id.tv_time).text = DateUtils.getTimestamp(Date(t.content.createDateTime))
         when (getItemViewType(position)) {
             1 -> {
-                holder.itemView.tv_des.text = t.content.contentTitle
-                holder.itemView.tv_time.text = t.content.createDateTime
                 holder.itemView.rv_news_cell.layoutManager = GridLayoutManager(context, 3)
                 val cellAdapter = NewsCellAdapter()
                 holder.itemView.rv_news_cell.adapter = cellAdapter
-//                cellAdapter.addData(t.urlToImage)
-            }
-            else -> {
-                holder.itemView.findViewById<ImageView>(R.id.iv_pic).load(t.content.contentDetail)
-                holder.itemView.findViewById<TextView>(R.id.tv_des).text = t.content.contentTitle
-                holder.itemView.findViewById<TextView>(R.id.tv_time).text = t.content.createDateTime
+                cellAdapter.addData(t.image_array)
             }
         }
     }

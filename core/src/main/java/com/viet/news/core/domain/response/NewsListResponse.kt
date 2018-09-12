@@ -16,11 +16,11 @@ data class NewsList(var total_count: String?,
                     var total_pages: String?,
                     var list: List<NewsListBean>)
 
-data class NewsListBean(var content: ContentBean, var author: UserInfo)
+data class NewsListBean(var content: ContentBean, var author: UserInfo, var image_array: List<ImageEntity>)
 
 data class ContentBean(var id: String?,
-                       var createDateTime: String?,
-                       var updateDateTime: String?,
+                       var createDateTime: Long,
+                       var updateDateTime: Long,
                        var version: String?,
                        @SerializedName("content_title")
                        var contentTitle: String?,
@@ -40,3 +40,5 @@ data class ContentBean(var id: String?,
                        var collectionNumber: Int,
                        @SerializedName("content_profit")
                        var contentProfit: Int)
+
+data class ImageEntity(var cover: String? = "")

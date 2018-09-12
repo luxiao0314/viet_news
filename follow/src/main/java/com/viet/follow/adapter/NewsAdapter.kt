@@ -1,10 +1,8 @@
 package com.viet.follow.adapter
 
-import android.content.Intent
 import android.support.v7.widget.GridLayoutManager
 import android.widget.ImageView
 import com.viet.follow.R
-import com.viet.follow.activity.PersonalPageActivity
 import com.viet.news.core.config.Config
 import com.viet.news.core.domain.response.NewsListBean
 import com.viet.news.core.ext.click
@@ -17,6 +15,7 @@ import com.viet.news.webview.WebActivity
 import kotlinx.android.synthetic.main.cell_news_picture_three.view.*
 import java.util.*
 import javax.inject.Inject
+
 
 /**
  * @Description
@@ -42,31 +41,24 @@ class NewsAdapter @Inject constructor() : BaseAdapter<NewsListBean>() {
     }
 
     override fun onBindViewHolderImpl(holder: BaseViewHolder, position: Int, t: NewsListBean) {
-
         holder.itemView.tv_title.text = t.author.nick_name
-        holder.itemView.tv_time.text = t.content.createDateTime
-        holder.itemView.tv_des.text = DateUtils.getTimestamp(Date(t.content.contentTitle))
+        holder.itemView.tv_time.text = DateUtils.getTimestamp(Date(t.content.createDateTime))
+        holder.itemView.tv_des.text = t.content.contentTitle
+        holder.itemView.findViewById<ImageView>(R.id.iv_article_image).loadCircle(t.author.avatar)
+        holder.itemView.findViewById<ImageView>(R.id.iv_article_image).click { routerWithAnim(Config.ROUTER_PERSONAL_PAGE_ACTIVITY).go(context) }
+        holder.itemView.click { WebActivity.launch(context, t.content.contentDetail) }
+
         when (getItemViewType(position)) {
             1 -> {
-                holder.itemView.iv_article_image.loadCircle(t.author.avatar)
                 holder.itemView.rv_news_cell.layoutManager = GridLayoutManager(context, 3)
                 val cellAdapter = NewsCellAdapter()
                 holder.itemView.rv_news_cell.adapter = cellAdapter
-//                cellAdapter.addData(t.urlToImage)
-                holder.itemView.iv_article_image.click { context.startActivity(Intent(context, PersonalPageActivity::class.java)) }
+                cellAdapter.addData(t.image_array)
             }
-            2 -> {
-                holder.itemView.findViewById<ImageView>(R.id.iv_article_image).loadCircle(t.author.avatar)
-                holder.itemView.findViewById<ImageView>(R.id.iv_pic).load(t.author.avatar)
-                holder.itemView.findViewById<ImageView>(R.id.iv_article_image).click { context.startActivity(Intent(context, PersonalPageActivity::class.java)) }
+            2 -> holder.itemView.findViewById<ImageView>(R.id.iv_pic).load(t.image_array[0].cover)
+            3 -> {
             }
-            3 -> {}
-            4 -> {
-                holder.itemView.findViewById<ImageView>(R.id.iv_article_image).loadCircle(t.author.avatar)
-                holder.itemView.findViewById<ImageView>(R.id.iv_pic).load(t.author.avatar)
-                holder.itemView.findViewById<ImageView>(R.id.iv_article_image).click { routerWithAnim(Config.ROUTER_PERSONAL_PAGE_ACTIVITY).go(context) }
-                holder.itemView.click { WebActivity.launch(context, t.content.contentDetail) }
-            }
+            4 -> holder.itemView.findViewById<ImageView>(R.id.iv_pic).load(t.image_array[0].cover)
         }
     }
 }
