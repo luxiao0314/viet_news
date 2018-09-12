@@ -19,12 +19,12 @@ import kotlinx.android.synthetic.main.behaviorbar.view.*
  * 社交互动行为工具栏
  */
 class BehaviorBar @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0) : RelativeLayout(context, attrs, defStyleAttr) {
-    private var isLiked: Boolean = false
-    private var isCollected: Boolean = false
-    private var isPraised: Boolean = false
-    private var likedNum: Int = 0
-    private var collectedNum: Int = 0
-    private var praisedNum: Int = 0
+    private var hasRead: Boolean = false
+    private var hasFavorite: Boolean = false
+    private var hasLike: Boolean = false
+    private var readNum: Int = 0
+    private var favoriteNum: Int = 0
+    private var likeNum: Int = 0
 
     private var mDelegate: Delegate? = null
 
@@ -50,40 +50,40 @@ class BehaviorBar @JvmOverloads constructor(context: Context, attrs: AttributeSe
     @SuppressLint("ResourceType")
     private fun initAttr(index: Int, typedArray: TypedArray) {
         when (index) {
+            R.styleable.BehaviorBar_read_number -> {
+                readNum = typedArray.getInt(index, 0)
+                tv_read_num.text = readNum.toString()
+            }
+            R.styleable.BehaviorBar_favorite_number -> {
+                favoriteNum = typedArray.getInt(index, 0)
+                tv_favorite_num.text = favoriteNum.toString()
+            }
             R.styleable.BehaviorBar_like_number -> {
-                likedNum = typedArray.getInt(index, 0)
-                tv_like_num.text = likedNum.toString()
+                likeNum = typedArray.getInt(index, 0)
+                tv_like_num.text = likeNum.toString()
             }
-            R.styleable.BehaviorBar_collect_number -> {
-                collectedNum = typedArray.getInt(index, 0)
-                tv_collect_num.text = collectedNum.toString()
-            }
-            R.styleable.BehaviorBar_praise_number -> {
-                praisedNum = typedArray.getInt(index, 0)
-                tv_praise_num.text = praisedNum.toString()
-            }
-            R.styleable.BehaviorBar_is_liked -> {
-                isLiked = typedArray.getBoolean(index, false)
-                if (isLiked) {
-                    setStatus(tv_like_num, R.drawable.ic_coin_enable, R.color.behavior_enable)
+            R.styleable.BehaviorBar_has_read -> {
+                hasRead = typedArray.getBoolean(index, false)
+                if (hasRead) {
+                    setStatus(tv_read_num, R.drawable.ic_coin_enable, R.color.behavior_enable)
                 } else {
-                    setStatus(tv_like_num, R.drawable.ic_coin, R.color.behavior_normal)
+                    setStatus(tv_read_num, R.drawable.ic_coin, R.color.behavior_normal)
                 }
             }
-            R.styleable.BehaviorBar_is_collected -> {
-                isCollected = typedArray.getBoolean(index, false)
-                if (isCollected) {
-                    setStatus(tv_collect_num, R.drawable.ic_collect_enable, R.color.behavior_enable)
+            R.styleable.BehaviorBar_has_favorite -> {
+                hasFavorite = typedArray.getBoolean(index, false)
+                if (hasFavorite) {
+                    setStatus(tv_favorite_num, R.drawable.ic_favorite_enable, R.color.behavior_enable)
                 } else {
-                    setStatus(tv_collect_num, R.drawable.ic_collect, R.color.behavior_normal)
+                    setStatus(tv_favorite_num, R.drawable.ic_favorite, R.color.behavior_normal)
                 }
             }
-            R.styleable.BehaviorBar_is_praised -> {
-                isPraised = typedArray.getBoolean(index, false)
-                if (isPraised) {
-                    setStatus(tv_praise_num, R.drawable.ic_praise_enable, R.color.behavior_enable)
+            R.styleable.BehaviorBar_has_like -> {
+                hasLike = typedArray.getBoolean(index, false)
+                if (hasLike) {
+                    setStatus(tv_like_num, R.drawable.ic_like_enable, R.color.behavior_enable)
                 } else {
-                    setStatus(tv_praise_num, R.drawable.ic_praise, R.color.behavior_normal)
+                    setStatus(tv_like_num, R.drawable.ic_like, R.color.behavior_normal)
                 }
             }
         }
@@ -95,42 +95,30 @@ class BehaviorBar @JvmOverloads constructor(context: Context, attrs: AttributeSe
      */
     @SuppressLint("ResourceType")
     private fun setListener() {
-        tv_like_num.clickWithTrigger {
-            if (isLiked) {
-                tv_like_num.text = if (likedNum == 0) "0" else (--likedNum).toString()
-                setStatus(tv_like_num, R.drawable.ic_coin, R.color.behavior_normal)
-                isLiked = false
-            } else {
-                tv_like_num.text = (++likedNum).toString()
-                setStatus(tv_like_num, R.drawable.ic_coin_enable, R.color.behavior_enable)
-                isLiked = true
-            }
-            mDelegate?.onLikeClick(isLiked, likedNum)
-        }
 
-        tv_collect_num.clickWithTrigger {
-            if (isCollected) {
-                tv_collect_num.text = if (collectedNum == 0) "0" else (--collectedNum).toString()
-                setStatus(tv_collect_num, R.drawable.ic_collect, R.color.behavior_normal)
-                isCollected = false
+        tv_favorite_num.clickWithTrigger {
+            if (hasFavorite) {
+                tv_favorite_num.text = if (favoriteNum == 0) "0" else (--favoriteNum).toString()
+                setStatus(tv_favorite_num, R.drawable.ic_favorite, R.color.behavior_normal)
+                hasFavorite = false
             } else {
-                tv_collect_num.text = (++collectedNum).toString()
-                setStatus(tv_collect_num, R.drawable.ic_collect_enable, R.color.behavior_enable)
-                isCollected = true
+                tv_favorite_num.text = (++favoriteNum).toString()
+                setStatus(tv_favorite_num, R.drawable.ic_favorite_enable, R.color.behavior_enable)
+                hasFavorite = true
             }
-            mDelegate?.onCollectClick(isCollected, collectedNum)
+            mDelegate?.onFavoriteClick(hasFavorite, favoriteNum)
         }
-        tv_praise_num.clickWithTrigger {
-            if (isPraised) {
-                tv_praise_num.text = if (praisedNum == 0) "0" else (--praisedNum).toString()
-                setStatus(tv_praise_num, R.drawable.ic_praise, R.color.behavior_normal)
-                isPraised = false
+        tv_like_num.clickWithTrigger {
+            if (hasLike) {
+                tv_like_num.text = if (likeNum == 0) "0" else (--likeNum).toString()
+                setStatus(tv_like_num, R.drawable.ic_like, R.color.behavior_normal)
+                hasLike = false
             } else {
-                tv_praise_num.text = (++praisedNum).toString()
-                setStatus(tv_praise_num, R.drawable.ic_praise_enable, R.color.behavior_enable)
-                isPraised = true
+                tv_like_num.text = (++likeNum).toString()
+                setStatus(tv_like_num, R.drawable.ic_like_enable, R.color.behavior_enable)
+                hasLike = true
             }
-            mDelegate?.onPraiseClick(isPraised, praisedNum)
+            mDelegate?.onLikeClick(hasLike, likeNum)
         }
     }
 
@@ -157,7 +145,7 @@ class BehaviorBar @JvmOverloads constructor(context: Context, attrs: AttributeSe
         return drawable
     }
 
-    fun setDelegate(delegate: ClickDelegate): BehaviorBar {
+    private fun setDelegate(delegate: ClickDelegate): BehaviorBar {
         mDelegate = delegate
         return this
     }
@@ -168,15 +156,16 @@ class BehaviorBar @JvmOverloads constructor(context: Context, attrs: AttributeSe
      * @param count 数量
      */
     @SuppressLint("ResourceType")
-    fun setLikedStatus(status: Boolean, count: Int): BehaviorBar {
-        tv_like_num.text = count.toString()
-        isLiked = status
-        likedNum = count
-        if (status) {
-            setStatus(tv_like_num, R.drawable.ic_coin_enable, R.color.behavior_enable)
+    fun setReadNumStatus(count: Int): BehaviorBar {
+        tv_read_num.text = count.toString()
+        hasRead = count != 0
+        readNum = count
+        if (hasRead) {
+            setStatus(tv_read_num, R.drawable.ic_coin_enable, R.color.behavior_enable)
         } else {
-            setStatus(tv_like_num, R.drawable.ic_coin, R.color.behavior_normal)
+            setStatus(tv_read_num, R.drawable.ic_coin, R.color.behavior_normal)
         }
+        tv_read_num.text = readNum.toString()
         return this
     }
 
@@ -184,15 +173,17 @@ class BehaviorBar @JvmOverloads constructor(context: Context, attrs: AttributeSe
      * 设置收藏初始状态
      */
     @SuppressLint("ResourceType")
-    fun setCollectedStatus(status: Boolean, count: Int): BehaviorBar {
-        tv_collect_num.text = count.toString()
-        isCollected = status
-        collectedNum = count
+    fun setFavoriteStatus(status: Boolean, count: Int): BehaviorBar {
+        tv_favorite_num.text = count.toString()
+        hasFavorite = status
+        favoriteNum = count
         if (status) {
-            setStatus(tv_collect_num, R.drawable.ic_collect_enable, R.color.behavior_enable)
+            setStatus(tv_favorite_num, R.drawable.ic_favorite_enable, R.color.behavior_enable)
         } else {
-            setStatus(tv_collect_num, R.drawable.ic_collect, R.color.behavior_normal)
+            setStatus(tv_favorite_num, R.drawable.ic_favorite, R.color.behavior_normal)
         }
+        tv_favorite_num.text = favoriteNum.toString()
+
         return this
     }
 
@@ -202,15 +193,17 @@ class BehaviorBar @JvmOverloads constructor(context: Context, attrs: AttributeSe
      * @param count 数量
      */
     @SuppressLint("ResourceType")
-    fun setPraiseStatus(status: Boolean, count: Int): BehaviorBar {
-        tv_praise_num.text = count.toString()
-        isPraised = status
-        praisedNum = count
+    fun setLikeStatus(status: Boolean, count: Int): BehaviorBar {
+        tv_like_num.text = count.toString()
+        hasLike = status
+        likeNum = count
         if (status) {
-            setStatus(tv_praise_num, R.drawable.ic_praise_enable, R.color.behavior_enable)
+            setStatus(tv_like_num, R.drawable.ic_like_enable, R.color.behavior_enable)
         } else {
-            setStatus(tv_praise_num, R.drawable.ic_praise, R.color.behavior_normal)
+            setStatus(tv_like_num, R.drawable.ic_like, R.color.behavior_normal)
         }
+        tv_like_num.text = likeNum.toString()
+
         return this
     }
 
@@ -231,6 +224,7 @@ class BehaviorBar @JvmOverloads constructor(context: Context, attrs: AttributeSe
         fun onLikeClick(isLiked: Boolean, likedNum: Int, id: Int? = 0)
         fun onCollectClick(isCollected: Boolean, collectedNum: Int, id: Int? = 0)
         fun onPraiseClick(isPraise: Boolean, praiseNum: Int, id: Int? = 0)
+        fun onFavoriteClick(isFavorite: Boolean, favoriteNum: Int)
     }
 
     class ClickDelegate : Delegate {
@@ -238,6 +232,7 @@ class BehaviorBar @JvmOverloads constructor(context: Context, attrs: AttributeSe
         var onLikeClick: ((Boolean, Int, Int?) -> Unit)? = null
         var onCollectClick: ((Boolean, Int, Int?) -> Unit)? = null
         var onPraiseClick: ((Boolean, Int, Int?) -> Unit)? = null
+        var onFavoriteClick: ((Boolean, Int) -> Unit)? = null
 
         override fun onLikeClick(isLiked: Boolean, likedNum: Int, id: Int?) {
             onLikeClick?.let { it(isLiked, likedNum, id) }
@@ -251,6 +246,8 @@ class BehaviorBar @JvmOverloads constructor(context: Context, attrs: AttributeSe
             onPraiseClick?.let { it(isPraise, praiseNum, id) }
         }
 
+        override fun onFavoriteClick(isFavorite: Boolean, favoriteNum: Int) {
+            onFavoriteClick?.let { it(isFavorite, favoriteNum) }
+        }
     }
-
 }

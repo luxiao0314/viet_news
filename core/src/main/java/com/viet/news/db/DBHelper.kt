@@ -7,18 +7,21 @@ import android.content.Context
 import com.viet.news.core.config.Config
 
 /**
- * Created by abhinav.sharma on 04/11/17.
+ * @Author Aaron
+ * @Email aaron@magicwindow.cn
+ * @Date 2018/9/12
+ * @Description
  */
-@Database(entities = [SourceEntity::class], version = 1)
-abstract class NewsDBHelper : RoomDatabase() {
+@Database(entities = [FavoriteEntity::class], version = 1)
+abstract class DBHelper : RoomDatabase() {
     abstract fun getSourceDao(): SourceDao
 
     companion object {
-        private var db: NewsDBHelper? = null
+        private var db: DBHelper? = null
 
-        fun getInstance(context: Context): NewsDBHelper {
+        fun getInstance(context: Context): DBHelper {
             if (db == null) {
-                db = Room.databaseBuilder(context, NewsDBHelper::class.java, Config.DB_NAME).build()
+                db = Room.databaseBuilder(context, DBHelper::class.java, Config.DB_NAME).build()
             }
             return db!!
         }

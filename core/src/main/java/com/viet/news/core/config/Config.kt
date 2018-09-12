@@ -64,7 +64,7 @@ object Config {
     const val ROUTER_MINE_EDIT_VERIFY_CODE_FRAGMENT = "/mine/edit/verify_code/fragment"
 
     const val DB_NAME = "db_news_app"
-    const val T_SOURCE = "t_source"
+    const val FAVORITE_TABLE_NAME = "favorite_table"
     const val T_ARTICLE = "t_article"
 
 

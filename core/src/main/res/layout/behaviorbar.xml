@@ -12,7 +12,7 @@
         android:layout_weight="1"
         android:gravity="center">
         <android.support.v7.widget.AppCompatCheckedTextView
-            android:id="@+id/tv_like_num"
+            android:id="@+id/tv_read_num"
             style="@style/behavior_bar_text"
             android:drawableStart="@drawable/ic_coin"
             android:drawableLeft="@drawable/ic_coin"/>
@@ -24,10 +24,10 @@
         android:layout_weight="1"
         android:gravity="center">
         <android.support.v7.widget.AppCompatCheckedTextView
-            android:id="@+id/tv_praise_num"
+            android:id="@+id/tv_like_num"
             style="@style/behavior_bar_text"
-            android:drawableStart="@drawable/ic_praise"
-            android:drawableLeft="@drawable/ic_praise"/>
+            android:drawableStart="@drawable/ic_like"
+            android:drawableLeft="@drawable/ic_like"/>
     </LinearLayout>
 
     <LinearLayout
@@ -36,9 +36,9 @@
         android:layout_weight="1"
         android:gravity="center">
         <android.support.v7.widget.AppCompatCheckedTextView
-            android:id="@+id/tv_collect_num"
+            android:id="@+id/tv_favorite_num"
             style="@style/behavior_bar_text"
-            android:drawableStart="@drawable/ic_collect"
-            android:drawableLeft="@drawable/ic_collect"/>
+            android:drawableStart="@drawable/ic_favorite"
+            android:drawableLeft="@drawable/ic_favorite"/>
     </LinearLayout>
 </LinearLayout>

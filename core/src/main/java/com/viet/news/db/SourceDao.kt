@@ -5,19 +5,22 @@ import android.arch.persistence.room.*
 import com.viet.news.core.config.Config
 
 /**
- * Created by abhinav.sharma on 04/11/17.
+ * @Author Aaron
+ * @Email aaron@magicwindow.cn
+ * @Date 2018/9/12
+ * @Description
  */
 @Dao
 interface SourceDao {
 
-    @Query("SELECT * FROM " + Config.T_SOURCE)
-    fun getAllNewsSource(): LiveData<List<SourceEntity>>
+    @Query("SELECT * FROM " + Config.FAVORITE_TABLE_NAME)
+    fun getAllNewsSource(): LiveData<List<FavoriteEntity>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertSources(source: List<SourceEntity>)
+    fun insertSources(favorite: List<FavoriteEntity>)
 
     @Delete
-    fun deleteSource(source: List<SourceEntity>)
+    fun deleteSource(favorite: List<FavoriteEntity>)
 
 //    fun insertSources(source: List<Source>) {
 //

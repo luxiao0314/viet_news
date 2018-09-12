@@ -92,7 +92,9 @@ dependencies {
         exclude group: 'tony-common', module: 'tony-common-utils'
     })
     //facebook
-    api 'com.facebook.android:facebook-android-sdk:[4,5)'
+    api('com.facebook.android:facebook-android-sdk:[4,5)') {
+        exclude group: 'com.google.zxing', module: 'core'
+    }
     api 'com.scwang.smartrefresh:SmartRefreshLayout:1.1.0-alpha-14'
 
     kapt "com.google.dagger:dagger-android-processor:$rootProject.dagger"
@@ -117,4 +119,5 @@ dependencies {
     })
 
     api "com.chenenyu.router:router:$rootProject.router"
+    api "com.google.zxing:core:$rootProject.zxing"
 }
