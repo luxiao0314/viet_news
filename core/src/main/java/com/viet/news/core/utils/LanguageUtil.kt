@@ -7,6 +7,7 @@ import android.content.res.Resources
 import android.os.Build
 import android.os.LocaleList
 import android.text.TextUtils
+import com.chenenyu.router.Router
 import com.viet.news.core.BaseApplication
 import com.viet.news.core.config.Config
 import java.util.*
@@ -46,25 +47,17 @@ object LanguageUtil {
     /**
      * 无动画模式，打开MainActivity
      */
-    fun routToMain(activity: Activity? ) {
-        //TODO tsing 如果将来需要在应用内实现语言切换，则需要实现此方法来跳转到主界面 重新加载一遍UI，需要确保主界面是singleTask 或者用CLEAR_TASK与NEW_TASK的flag启动
-        val intent = Intent()
-        intent.setClassName("com.viet.news", "com.viet.news.ui.activity.MainActivity")
-        intent.putExtra(Config.LANGUAGE_CHANGED, true)
-        if (Build.VERSION.SDK_INT > Build.VERSION_CODES.O_MR1) {
-            //android 28 需要重新创建，否则无法切换语言
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
-            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-        }
-        activity?.startActivity(intent)
-        activity?. overridePendingTransition(0, 0)
-        //TODO  END  你们用router或者navigation。。到时候自己换。。
-    }
-
-//            = Router.build(Config.ROUTER_MAIN_ACTIVITY)
-//            .anim(0, 0)//不使用跳转动画
-//            .with(Config.LANGUAGE_CHANGED, true)
-//            .go(context)
+    fun routToMain(activity: Activity? ) = Router.build(Config.ROUTER_MAIN_ACTIVITY)
+            .anim(0, 0)//不使用跳转动画
+            .with(Config.LANGUAGE_CHANGED, true)
+            .also {
+                if (Build.VERSION.SDK_INT > Build.VERSION_CODES.O_MR1) {
+                    //android 28 需要重新初始化界面，否则无法切换语言
+                    it.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
+                    it.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                }
+            }
+            .go(activity)
 
     /**
      * 判断是否需要切换语言

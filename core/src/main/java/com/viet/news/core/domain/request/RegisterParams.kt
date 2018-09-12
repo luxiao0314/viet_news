@@ -1,5 +1,7 @@
 package com.viet.news.core.domain.request
 
+import cn.magicwindow.core.utils.DeviceInfoUtils
+import com.viet.news.core.ui.App
 import java.io.Serializable
 
 /**
@@ -10,14 +12,14 @@ import java.io.Serializable
  * @Version
  */
 class RegisterParams : Serializable {
-    var device_id: String? = ""
-    var email: String? = ""
+    private var device_id: String? = DeviceInfoUtils.getDeviceId(App.instance)
+    private var os_type: String? =  DeviceInfoUtils.os
     var invite_code: String? = ""
-    var key: String? = ""
     var oauth_type: String? = ""
     var oauth_user_id: String? = ""
-    var os_type: String? = ""
     var password: String? = ""
     var phone_number: String? = ""
     var verify_code: String? = ""
+//    var email: String? = ""
+//    var key: String? = ""
 }
