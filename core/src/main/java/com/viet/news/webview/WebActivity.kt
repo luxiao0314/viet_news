@@ -97,7 +97,7 @@ class WebActivity : BaseActivity() {
         internal const val INJECTED_NAME_DEFAULT = "android"
         const val LANGUAGE_COUNTRY = "lang"
 
-        fun launch(context: Context?, url: String, title: String? = null, injectedName: String? = null, skipInterceptor: Boolean = true) {
+        fun launch(context: Context?, url: String?, title: String? = null, injectedName: String? = null, skipInterceptor: Boolean = true) {
             val intent = Intent(context, WebActivity::class.java)
             intent.putExtra(URL, url)
             intent.putExtra(TITLE, title)

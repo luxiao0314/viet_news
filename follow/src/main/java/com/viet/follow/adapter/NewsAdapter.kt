@@ -6,11 +6,14 @@ import android.widget.ImageView
 import android.widget.TextView
 import com.viet.follow.R
 import com.viet.follow.activity.PersonalPageActivity
+import com.viet.news.core.config.Config
 import com.viet.news.core.domain.response.NewsListBean
 import com.viet.news.core.ext.click
 import com.viet.news.core.ext.load
 import com.viet.news.core.ext.loadCircle
+import com.viet.news.core.ext.routerWithAnim
 import com.viet.news.core.ui.BaseAdapter
+import com.viet.news.webview.WebActivity
 import kotlinx.android.synthetic.main.cell_news_picture_three.view.*
 import javax.inject.Inject
 
@@ -32,6 +35,7 @@ class NewsAdapter @Inject constructor() : BaseAdapter<NewsListBean>() {
             1 -> R.layout.cell_news_picture_three
             2 -> R.layout.cell_news_picture_one
             3 -> R.layout.cell_news_picture_none
+            4 -> R.layout.cell_news_picture_one
             else -> R.layout.cell_news_picture_only
         }
     }
@@ -62,7 +66,16 @@ class NewsAdapter @Inject constructor() : BaseAdapter<NewsListBean>() {
                 holder.itemView.findViewById<TextView>(R.id.tv_time).text = t.createDateTime
                 holder.itemView.findViewById<TextView>(R.id.tv_des).text = t.contentTitle
             }
-            4 -> holder.itemView.findViewById<ImageView>(R.id.iv_pic).load(t.contentDetail)
+            4 -> {
+//                holder.itemView.findViewById<ImageView>(R.id.iv_pic).load(t.contentDetail)
+                holder.itemView.findViewById<ImageView>(R.id.iv_article_image).loadCircle(t.contentDetail)
+                holder.itemView.findViewById<ImageView>(R.id.iv_pic).load(t.contentDetail)
+                holder.itemView.findViewById<TextView>(R.id.tv_title).text = t.contentTitle
+                holder.itemView.findViewById<TextView>(R.id.tv_time).text = t.createDateTime
+                holder.itemView.findViewById<TextView>(R.id.tv_des).text = t.contentTitle
+                holder.itemView.findViewById<ImageView>(R.id.iv_article_image).click { routerWithAnim(Config.ROUTER_PERSONAL_PAGE_ACTIVITY) }
+                holder.itemView.click { WebActivity.launch(context, t.contentDetail) }
+            }
         }
     }
 }

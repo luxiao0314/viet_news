@@ -1,7 +1,10 @@
 package com.viet.news.core.api
 
 import android.arch.lifecycle.LiveData
-import com.viet.news.core.domain.request.*
+import com.viet.news.core.domain.request.FeedBackParams
+import com.viet.news.core.domain.request.List4ChannelParams
+import com.viet.news.core.domain.request.LoginParams
+import com.viet.news.core.domain.request.RegisterParams
 import com.viet.news.core.domain.response.ChannelAllListResponse
 import com.viet.news.core.domain.response.ChannelListResponse
 import com.viet.news.core.domain.response.LoginRegisterResponse
@@ -24,11 +27,11 @@ interface ApiService {
     /**
      * 频道文章列表相关
      */
-    @POST("v1/channel/add")
-    fun channelAdd(@Body param: ChannelParams): LiveData<ApiResponse<Any>>
+    @GET("v1/channel/add/{channelId}")
+    fun channelAdd(@Path("channelId") channelId: String?): LiveData<ApiResponse<Any>>
 
-    @POST("v1/channel/remove")
-    fun channelRemove(@Body param: ChannelParams): LiveData<ApiResponse<Any>>
+    @GET("v1/channel/remove/{channelId}")
+    fun channelRemove(@Path("channelId") channelId: String?): LiveData<ApiResponse<Any>>
 
     @POST("v1/channel/allList")
     fun getChannelAllList(): LiveData<ApiResponse<ChannelAllListResponse>>

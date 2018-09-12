@@ -31,7 +31,7 @@ class SSOInterceptor : Interceptor {
             if (!isLoginInvalidate) {
                 isLoginInvalidate = true
                 User.currentUser.logout()//首页会接受登出时间 然后刷新界面
-
+//
 //                IActivityManager.lastActivity()?.let { currentActivity ->
 //                    val router = routerWithAnim(Config.ROUTER_MAIN_ACTIVITY)
 //                    val descClassName = router.getIntent(currentActivity).component.className
