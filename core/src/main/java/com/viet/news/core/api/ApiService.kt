@@ -2,7 +2,10 @@ package com.viet.news.core.api
 
 import android.arch.lifecycle.LiveData
 import com.viet.news.core.domain.request.*
-import com.viet.news.core.domain.response.*
+import com.viet.news.core.domain.response.ChannelAllListResponse
+import com.viet.news.core.domain.response.ChannelListResponse
+import com.viet.news.core.domain.response.LoginRegisterResponse
+import com.viet.news.core.domain.response.NewsListResponse
 import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.POST
@@ -40,6 +43,10 @@ interface ApiService {
     //查询当前关注用户发表的文章列表
     @POST("v1/content/list4follow")
     fun getlist4Follow(@Body param: List4ChannelParams): LiveData<ApiResponse<NewsListResponse>>
+
+    //查询收藏列表
+    @POST("v1/user/collectionList")
+    fun getCollectionList(@Body param: CollectionListParams): LiveData<ApiResponse<CollectionListResponse>>
 
     //查询指定用户发布的文章列表
     @POST("v1/content/list4user")
