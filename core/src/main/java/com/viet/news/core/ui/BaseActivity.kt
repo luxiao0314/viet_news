@@ -7,18 +7,28 @@ import android.support.v4.content.ContextCompat
 import android.support.v7.app.AppCompatActivity
 import android.view.KeyEvent
 import android.view.MenuItem
+import com.google.gson.Gson
 import com.jaeger.library.StatusBarUtil
+import com.safframework.log.L
 import com.safframework.utils.support
 import com.viet.news.core.R
+import com.viet.news.core.api.HttpResponse
 import com.viet.news.core.config.IActivityManager
+import com.viet.news.core.domain.GlobalNetworkException
 import com.viet.news.core.ext.finishWithAnim
+import com.viet.news.core.ext.toast
 import com.viet.news.core.utils.LanguageUtil
 import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.disposables.Disposable
+
+import com.viet.news.core.utils.RxBus
 
 
 abstract class BaseActivity : AppCompatActivity() {
 
     protected var compositeDisposable = CompositeDisposable()
+
+    private var disposable: Disposable? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -47,6 +57,18 @@ abstract class BaseActivity : AppCompatActivity() {
             android.R.id.home -> finish()
         }
         return true
+    }
+
+    override fun onResume() {
+        super.onResume()
+        disposable = RxBus.get().register(GlobalNetworkException::class.java) {
+            checkException(it.code, it.bodyString)
+        }
+    }
+
+    override fun onPause() {
+        RxBus.get().unregister(disposable)
+        super.onPause()
     }
 
     override fun onDestroy() {
@@ -81,5 +103,19 @@ abstract class BaseActivity : AppCompatActivity() {
         }
     } else {
         super.onKeyDown(keyCode, event)
+    }
+
+    protected open var checkException: (Int, String) -> Unit = { code, response ->
+        L.e("接口访问失败了！！ = \n$response")
+        when (code) {
+            1 -> {
+                //TODO tsing 根据code执行不同提示，需要和后台商量
+            }
+            else -> {
+                Gson().fromJson(response, HttpResponse::class.java)?.message?.let {
+                    toast(it).show()
+                }
+            }
+        }
     }
 }

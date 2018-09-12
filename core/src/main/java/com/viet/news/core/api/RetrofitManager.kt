@@ -1,15 +1,16 @@
 package com.viet.news.core.api
 
 import com.viet.news.core.BuildConfig
-import com.viet.news.core.http.interceptor.HeaderInterceptor
-import com.viet.news.core.http.interceptor.LoggingInterceptor
-import com.viet.news.core.http.interceptor.RefreshTokenAuthenticator
-import com.viet.news.core.http.interceptor.SSOInterceptor
+import com.viet.news.core.http.interceptor.*
 import com.viet.news.core.utils.LiveDataCallAdapterFactory
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
+
+import com.viet.news.core.http.interceptor.RefreshTokenAuthenticator
+import com.viet.news.core.http.interceptor.SSOInterceptor
+import com.viet.news.core.http.interceptor.NetworkExceptionInterceptor
 
 class RetrofitManager private constructor() {
 
@@ -33,6 +34,7 @@ class RetrofitManager private constructor() {
                 .addInterceptor(HeaderInterceptor())
                 .addInterceptor(SSOInterceptor())
                 .authenticator(RefreshTokenAuthenticator())
+                .addInterceptor(NetworkExceptionInterceptor())
                 .addInterceptor(loggingInterceptor.build())
                 .build()
 
