@@ -76,7 +76,7 @@ class FindRepository : ApiRepository() {
         }.asLiveData()
     }
 
-    fun collection(contentId: String): LiveData<Resource<Any>> {
+    fun favorite(contentId: String): LiveData<Resource<Any>> {
         return object : NetworkBoundResource<Any, Any>() {
             override fun saveCallResult(item: Any) {
                 TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
