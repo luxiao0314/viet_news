@@ -7,6 +7,7 @@ import com.viet.news.core.domain.request.List4ChannelParams
 import com.viet.news.core.domain.response.ChannelAllListResponse
 import com.viet.news.core.domain.response.ChannelListResponse
 import com.viet.news.core.domain.response.NewsListResponse
+import com.viet.news.core.repository.NetworkBoundResource
 import com.viet.news.core.repository.NetworkOnlyResource
 import com.viet.news.core.vo.Resource
 
@@ -72,6 +73,30 @@ class FindRepository : ApiRepository() {
             override fun createCall(): LiveData<ApiResponse<Any>> {
                 return apiInterface.channelRemove(id)
             }
+        }.asLiveData()
+    }
+
+    fun collection(contentId: String): LiveData<Resource<Any>> {
+        return object : NetworkBoundResource<Any, Any>() {
+            override fun saveCallResult(item: Any) {
+                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+            }
+
+            override fun shouldFetch(data: Any?): Boolean {
+                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+            }
+
+            override fun loadFromDb(): LiveData<Any> {
+                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+            }
+
+            override fun createCall(): LiveData<ApiResponse<Any>> = apiInterface.collection(contentId)
+        }.asLiveData()
+    }
+
+    fun like(contentId: String): LiveData<Resource<Any>> {
+        return object : NetworkOnlyResource<Any>() {
+            override fun createCall(): LiveData<ApiResponse<Any>> = apiInterface.like(contentId)
         }.asLiveData()
     }
 

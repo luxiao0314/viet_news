@@ -15,8 +15,7 @@ import com.viet.news.core.config.Config
 import com.viet.news.core.config.VerifyCodeTypeEnum
 import com.viet.news.core.domain.LoginEvent
 import com.viet.news.core.domain.User
-import com.viet.news.core.domain.request.RegisterParams
-import com.viet.news.core.domain.response.LoginRegisterResponse
+import com.viet.news.core.domain.request.SignInParams
 import com.viet.news.core.ext.toast
 import com.viet.news.core.ui.App
 import com.viet.news.core.ui.BaseFragment
@@ -30,13 +29,13 @@ import com.viet.news.core.vo.Status
  * @date 29/03/2018 17:17
  * @description
  */
-class LoginViewModel(var repository: LoginRepository = LoginRepository()) : BaseViewModel() {
+class LoginViewModel(private var repository: LoginRepository = LoginRepository()) : BaseViewModel() {
     companion object {
-        var signInCountValue = -1L//注册用的倒计时
+        var countValue4SignIn = -1L//注册用的倒计时
             set(value) {
                 field = if (value == 0L) -1L else value
             }
-        var loginCountValue = -1L//登录用的倒计时
+        var countValue4Login = -1L//登录用的倒计时
             set(value) {
                 field = if (value == 0L) -1L else value
             }
@@ -48,170 +47,170 @@ class LoginViewModel(var repository: LoginRepository = LoginRepository()) : Base
     val subFragments = mutableListOf<BaseFragment>(PwdToLoginFragment(), VerifyToLoginFragment())
     var currentTab = 0
 
-    //Pwd To Login tab
-    var password: MutableLiveData<String> = MutableLiveData()   //登录密码
-    var loginVCode: MutableLiveData<String> = MutableLiveData()  //登录验证码
-    var phoneNumber: MutableLiveData<String> = MutableLiveData()    //登录手机号
-    var loginEnable: MutableLiveData<Boolean> = MutableLiveData()   //登录按钮是否可用
-
-    //sign in tab / verify To Login tab
-    var registerPhoneNumber: MutableLiveData<String> = MutableLiveData()    //注册账号
-    var registerVCode: MutableLiveData<String> = MutableLiveData()  //注册验证码
-    var registerInviteCode: MutableLiveData<String> = MutableLiveData()  //注册邀请码
-    var registerButtonEnable: MutableLiveData<Boolean> = MutableLiveData()   //注册按钮是否可用
-    var registerNextButtonEnable: MutableLiveData<Boolean> = MutableLiveData()   //注册下一步按钮是否可用
-    var registerVCodeEnable: MutableLiveData<Boolean> = MutableLiveData()   //注册验证码按钮是否可用
-
-    //sign in next
-    var registerPwd: MutableLiveData<String> = MutableLiveData()    //注册密码输入
-    var registerConfirmPwd: MutableLiveData<String> = MutableLiveData() //注册密码确认
-    var registerBtnEnable: MutableLiveData<Boolean> = MutableLiveData() //注册按钮是否可用
-
+    //错误信息
     var statusMsg: MutableLiveData<Int> = MutableLiveData()
+    //区号
     var zoneCode: MutableLiveData<String> = MutableLiveData()
+
+    //密码登录
+    var pwdLoginPhoneNumber: MutableLiveData<String> = MutableLiveData()    //密码登录 手机号
+    var pwdLoginPassword: MutableLiveData<String> = MutableLiveData()   //登录密码
+    //密码登录 相关按钮是否可用
+    var pwdLoginButtonEnable: MutableLiveData<Boolean> = MutableLiveData()   //密码登录按钮是否可用
+
+    //验证码登录
+    var vCodeLoginPhoneNumber: MutableLiveData<String> = MutableLiveData()    //验证码登录手机号
+    var vCodeLoginVCode: MutableLiveData<String> = MutableLiveData()  //登录验证码
+    //验证码登录 相关按钮是否可用
+    var vCodeLoginSendVCodeButtonEnable: MutableLiveData<Boolean> = MutableLiveData()   //验证码登录按钮是否可用
+    var vCodeLoginButtonEnable: MutableLiveData<Boolean> = MutableLiveData()   //验证码登录按钮是否可用
+
+    //注册
+    var signInPhoneNumber: MutableLiveData<String> = MutableLiveData()    //注册账号
+    var signInVCode: MutableLiveData<String> = MutableLiveData()  //注册验证码
+    var signInInviteCode: MutableLiveData<String> = MutableLiveData()  //注册邀请码
+    var signInPwd: MutableLiveData<String> = MutableLiveData()    //注册密码输入
+    var signInConfirmPwd: MutableLiveData<String> = MutableLiveData() //注册密码确认
+    //注册 相关按钮是否可用
+    var signInSendVCodeEnable: MutableLiveData<Boolean> = MutableLiveData()   //注册 发送验证码按钮是否可用
+    var signInNextButtonEnable: MutableLiveData<Boolean> = MutableLiveData()   //注册下一步按钮是否可用
+    var signInButtonEnable: MutableLiveData<Boolean> = MutableLiveData() //注册按钮是否可用
+
     //倒计时
-    var signInCountDown: MutableLiveData<Int> = MutableLiveData()//注册用的倒计时
-    var loginCountDown: MutableLiveData<Int> = MutableLiveData()//登录用的倒计时
-    var loginCountDownTimeUnit: CountDownTimer? = null
-    var signInCountDownTimeUnit: CountDownTimer? = null
+    var countDown4SignIn: MutableLiveData<Int> = MutableLiveData()//注册用的倒计时
+    var countDown4Login: MutableLiveData<Int> = MutableLiveData()//登录用的倒计时
+    var countDownTimeUnit4SignIn: CountDownTimer? = null
+    var countDownTimeUnit4Login: CountDownTimer? = null
 
     init {
+        //默认区号86
         zoneCode.value = "86"
-        if (signInCountValue != -1L) {
-            signInCountDown.value = (signInCountValue / 1000).toInt()
-            startSignInCountdown(signInCountValue)
+        //初始化倒计时，若上次倒计时未完成，则继续
+        if (countValue4SignIn != -1L) {
+            countDown4SignIn.value = (countValue4SignIn / 1000).toInt()
+            startSignInCountdown(countValue4SignIn)
         }
-        if (loginCountValue != -1L) {
-            loginCountDown.value = (loginCountValue / 1000).toInt()
-            startLoginCountdown(loginCountValue)
+        if (countValue4Login != -1L) {
+            countDown4Login.value = (countValue4Login / 1000).toInt()
+            startLoginCountdown(countValue4Login)
         }
 
     }
 
-    fun startSignInCountdown(time: Long) {
-        if (signInCountValue == -1L) {
-            signInCountDownTimeUnit = object : CountDownTimer(time, 1000) {
+    /**
+     * 开始注册验证码倒计时
+     */
+    private fun startSignInCountdown(time: Long) {
+        if (countValue4SignIn == -1L) {
+            countDownTimeUnit4SignIn = object : CountDownTimer(time, 1000) {
                 override fun onFinish() {
-                    signInCountDown.value = 0
-                    signInCountValue = -1L
+                    countDown4SignIn.value = 0
+                    countValue4SignIn = -1L
                 }
 
                 override fun onTick(millisUntilFinished: Long) {
-                    signInCountDown.value = (millisUntilFinished / 1000).toInt()
-                    signInCountValue = millisUntilFinished
+                    countDown4SignIn.value = (millisUntilFinished / 1000).toInt()
+                    countValue4SignIn = millisUntilFinished
                 }
             }.start()
         }
     }
 
-    fun startLoginCountdown(time: Long) {
-        if (loginCountValue == -1L) {
-            loginCountDownTimeUnit = object : CountDownTimer(time, 1000) {
+    /**
+     * 开始登录验证码倒计时
+     */
+    private fun startLoginCountdown(time: Long) {
+        if (countValue4Login == -1L) {
+            countDownTimeUnit4Login = object : CountDownTimer(time, 1000) {
                 override fun onFinish() {
-                    loginCountDown.value = 0
-                    loginCountValue = -1L
+                    countDown4Login.value = 0
+                    countValue4Login = -1L
                 }
 
                 override fun onTick(millisUntilFinished: Long) {
-                    loginCountDown.value = (millisUntilFinished / 1000).toInt()
-                    loginCountValue = millisUntilFinished
+                    countDown4Login.value = (millisUntilFinished / 1000).toInt()
+                    countValue4Login = millisUntilFinished
                 }
             }.start()
         }
     }
 
-    //结束倒计时
-    fun stopLoginCountdown() {
-        loginCountDownTimeUnit?.cancel()
-        loginCountDown.value = 0
-        loginCountValue = -1L
+    //结束【登录验证码】倒计时
+    private fun stopLoginCountdown() {
+        countDownTimeUnit4Login?.cancel()
+        countDown4Login.value = 0
+        countValue4Login = -1L
     }
 
-    //结束倒计时
-    fun stopSignInCountdown() {
-        signInCountDownTimeUnit?.cancel()
-        signInCountDown.value = 0
-        signInCountValue = -1L
+    //结束【注册验证码】倒计时
+    private fun stopSignInCountdown() {
+        countDownTimeUnit4SignIn?.cancel()
+        countDown4SignIn.value = 0
+        countValue4SignIn = -1L
     }
 
 
-    //检查注册 发送验证码按钮是否可点击
-    fun checkRegisterVCodeBtnEnable() {
-        registerVCodeEnable.value = !registerPhoneNumber.value.isNullOrEmpty()
+    /* --------------------以下为输入框文字变化监听相关-----------------------------------------------------
+     * 一般用于判断手机号\密码长度等异常信息。暂不处理
+     */
+
+    //检查【注册发送验证码】按钮是否可点击
+    fun checkSignInSendVCodeEnable() {
+        signInSendVCodeEnable.value = !signInPhoneNumber.value.isNullOrEmpty()
     }
 
-    //检查注册 下一步按钮是否可用
-    fun checkRegisterNextBtnEnable() {
-        registerNextButtonEnable.value = !registerPhoneNumber.value.isNullOrEmpty()
-                && !registerVCode.value.isNullOrEmpty()
+    //检查【注册下一步】按钮是否可用
+    fun checkSignInNextButtonEnable() {
+        signInNextButtonEnable.value = !signInPhoneNumber.value.isNullOrEmpty()
+                && !signInVCode.value.isNullOrEmpty()
     }
 
-    fun checkRegisterBtnEnable() {
-        registerBtnEnable.value = !registerPwd.value.isNullOrEmpty()
-                && !registerConfirmPwd.value.isNullOrEmpty()
+    //检查【注册按钮】是否可用
+    fun checkSignInButtonEnable() {
+        signInButtonEnable.value = !signInPwd.value.isNullOrEmpty()
+                && !signInConfirmPwd.value.isNullOrEmpty()
     }
 
-    fun checkLoginBtnEnable() {
-        loginEnable.value = (phoneNumber.value != null && phoneNumber.value!!.isNotEmpty()
-                && password.value != null && password.value!!.isNotEmpty())
+    //检查【登录发送验证码】按钮是否可用
+    fun checkVCodeLoginSendVCodeButtonEnable() {
+        vCodeLoginSendVCodeButtonEnable.value = !vCodeLoginPhoneNumber.value.isNullOrEmpty()
     }
 
-    fun nextBtnEnable(): Boolean = when {
-        registerVCodeEnable.value!!.not() -> {
-            statusMsg.value = R.string.verify_the_login
-            false
-        }
-        else -> true
+    //检查【验证码登录】按钮是否可用
+    fun checkVCodeLoginButtonEnable() {
+        vCodeLoginButtonEnable.value = !vCodeLoginPhoneNumber.value.isNullOrEmpty()
+                && !vCodeLoginVCode.value.isNullOrEmpty()
     }
 
-    fun registerBtnEnable(): Boolean = when {
-        registerBtnEnable.value!!.not() -> {
-            statusMsg.value = R.string.verify_the_login
-            false
-        }
-        else -> true
+    //检查【密码登录】按钮是否可用
+    fun checkPwdLoginButtonEnable() {
+        pwdLoginButtonEnable.value = !pwdLoginPhoneNumber.value.isNullOrEmpty()
+                && !pwdLoginPassword.value.isNullOrEmpty()
     }
 
-    fun loginEnable(): Boolean = when {
-//        zoneCode.value == null || zoneCode.value.isNullOrBlank() -> {
+
+    /* --------------------以下为按钮点击时检查相关-----------------------------------------------------
+     * 一般用于判断手机号\密码长度等异常信息。
+     * TODO tsing 根据需求修改，例如密码长度最少6位最大xx位。暂不处理，都返回的true，使用实例如下第一个，注释部分
+     */
+    fun canSendLoginVCode(): Boolean = when {
+        //检查手机号码长度，格式，区号 等信息。
+//        signInerVCodeEnable.value!!.not() -> {
 //            statusMsg.value = R.string.verify_the_login
 //            false
 //        }
-        phoneNumber.value == null || phoneNumber.value.isNullOrBlank() -> {
-            statusMsg.value = R.string.verify_the_login
-            false
-        }
-        password.value == null || password.value.isNullOrBlank() -> {
-            statusMsg.value = R.string.verify_the_login
-            false
-        }
         else -> true
     }
+    fun canVCodeLogin(): Boolean = true
+
+    fun canPwdLogin(): Boolean = true
+    fun canSendSignInVCode(): Boolean = true
+    fun canNextSign(): Boolean = true
+    fun canSign(): Boolean = true
+
 
     //--------------------以下为接口调用相关-----------------------------------------------------
 
-
-    @SuppressLint("CheckResult")
-    fun login(owner: LifecycleOwner, func: () -> Unit) {
-        repository.login(phoneNumber.value, password.value).observe(owner, Observer { resource ->
-            resource?.apply {
-                if (status == Status.SUCCESS) {
-                    if (data != null) {
-                        phoneNumber.value?.let { phoneNumber -> User.currentUser.telephone = phoneNumber }
-                        zoneCode.value?.let { zoneCode -> User.currentUser.zoneCode = zoneCode }
-                        User.currentUser.login(data!!.data!!)
-                        stopLoginCountdown()//登录成功后结束本次倒计时
-                        RxBus.get().post(LoginEvent())
-                        func()
-                    }
-                } else {
-                    message?.let { msg ->
-                        toast(msg).show()
-                    }
-                }
-            }
-        })
-    }
 
     fun sendSMS(owner: LifecycleOwner, type: VerifyCodeTypeEnum, onSent: () -> Unit) {
         var phone: String? = null
@@ -219,11 +218,11 @@ class LoginViewModel(var repository: LoginRepository = LoginRepository()) : Base
         //开始倒计时
             VerifyCodeTypeEnum.LOGIN -> {
                 startLoginCountdown(Config.COUNT_DOWN_TIMER)
-                phone = phoneNumber.value
+                phone = pwdLoginPhoneNumber.value
             }
             VerifyCodeTypeEnum.REGISTER -> {
                 startSignInCountdown(Config.COUNT_DOWN_TIMER)
-                phone = registerPhoneNumber.value
+                phone = signInPhoneNumber.value
             }
             else -> {
             }
@@ -257,12 +256,12 @@ class LoginViewModel(var repository: LoginRepository = LoginRepository()) : Base
         when (type) {
         //开始倒计时
             VerifyCodeTypeEnum.LOGIN -> {
-                phone = phoneNumber.value
-                verifyCode = loginVCode.value
+                phone = pwdLoginPhoneNumber.value
+                verifyCode = vCodeLoginVCode.value
             }
             VerifyCodeTypeEnum.REGISTER -> {
-                phone = registerPhoneNumber.value
-                verifyCode = registerVCode.value
+                phone = signInPhoneNumber.value
+                verifyCode = signInVCode.value
             }
             else -> {
             }
@@ -281,16 +280,23 @@ class LoginViewModel(var repository: LoginRepository = LoginRepository()) : Base
         })
     }
 
-    fun signIn(owner: LifecycleOwner, onSignInSuccess: (data: LoginRegisterResponse.LoginRegister?) -> Unit) {
-        val params = RegisterParams()
-        params.phone_number=registerPhoneNumber.value
-        params.password=registerConfirmPwd.value
-        params.verify_code=registerVCode.value
-        params.invite_code=registerInviteCode.value
+    fun signIn(owner: LifecycleOwner, onSignInSuccess: () -> Unit) {
+        val params = SignInParams()
+        params.phone_number = signInPhoneNumber.value
+        params.password = signInConfirmPwd.value
+        params.verify_code = signInVCode.value
+        params.invite_code = signInInviteCode.value
         repository.signIn(params).observe(owner, Observer { resource ->
             resource?.apply {
                 if (status == Status.SUCCESS) {
-                    onSignInSuccess(data?.data)
+                    if (data != null) {
+                        signInPhoneNumber.value?.let { phoneNumber -> User.currentUser.telephone = phoneNumber }
+                        zoneCode.value?.let { zoneCode -> User.currentUser.zoneCode = zoneCode }
+                        User.currentUser.login(data!!.data!!)
+                        stopSignInCountdown()//注册成功后结束本次倒计时
+                        RxBus.get().post(LoginEvent())
+                        onSignInSuccess()
+                    }
                 } else {
                     message?.let { msg ->
                         toast(msg).show()
@@ -300,5 +306,48 @@ class LoginViewModel(var repository: LoginRepository = LoginRepository()) : Base
         })
     }
 
+    @SuppressLint("CheckResult")
+    fun loginByPwd(owner: LifecycleOwner, onLoginSuccess: () -> Unit) {
+        repository.loginByPwd(pwdLoginPhoneNumber.value, pwdLoginPassword.value).observe(owner, Observer { resource ->
+            resource?.apply {
+                if (status == Status.SUCCESS) {
+                    if (data != null) {
+                        pwdLoginPhoneNumber.value?.let { phoneNumber -> User.currentUser.telephone = phoneNumber }
+                        zoneCode.value?.let { zoneCode -> User.currentUser.zoneCode = zoneCode }
+                        User.currentUser.login(data!!.data!!)
+                        stopLoginCountdown()//登录成功后结束本次倒计时
+                        RxBus.get().post(LoginEvent())
+                        onLoginSuccess()
+                    }
+                } else {
+                    message?.let { msg ->
+                        toast(msg).show()
+                    }
+                }
+            }
+        })
+    }
+
+    @SuppressLint("CheckResult")
+    fun loginBySMS(owner: LifecycleOwner, onLoginSuccess: () -> Unit) {
+        repository.loginBySMS(pwdLoginPhoneNumber.value, vCodeLoginVCode.value).observe(owner, Observer { resource ->
+            resource?.apply {
+                if (status == Status.SUCCESS) {
+                    if (data != null) {
+                        pwdLoginPhoneNumber.value?.let { phoneNumber -> User.currentUser.telephone = phoneNumber }
+                        zoneCode.value?.let { zoneCode -> User.currentUser.zoneCode = zoneCode }
+                        User.currentUser.login(data!!.data!!)
+                        stopLoginCountdown()//登录成功后结束本次倒计时
+                        RxBus.get().post(LoginEvent())
+                        onLoginSuccess()
+                    }
+                } else {
+                    message?.let { msg ->
+                        toast(msg).show()
+                    }
+                }
+            }
+        })
+    }
 
 }

@@ -2,13 +2,13 @@ package com.viet.news.db
 
 import android.arch.persistence.room.Entity
 import android.arch.persistence.room.PrimaryKey
-import com.viet.news.NewsConstants
+import com.viet.news.core.config.Config
 
 /**
  * Created by abhinav.sharma on 04/11/17.
  */
 
-@Entity(tableName = NewsConstants.T_SOURCE)
+@Entity(tableName = Config.T_SOURCE)
 class SourceEntity(
         @PrimaryKey()
         var id: String = "",

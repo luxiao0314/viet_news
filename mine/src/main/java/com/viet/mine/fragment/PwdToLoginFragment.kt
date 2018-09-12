@@ -33,26 +33,31 @@ class PwdToLoginFragment : RealVisibleHintBaseFragment() {
 
     @SuppressLint("CheckResult")
     override fun initView(view: View) {
-        RxTextView.textChanges(phone_input)
-                .subscribe {
-                    model.phoneNumber.value = it.toString()
-                    model.checkLoginBtnEnable()
-                }
-        RxTextView.textChanges(password_input)
-                .subscribe {
-                    model.password.value = it.toString()
-                    model.checkLoginBtnEnable()
-                }
-
-        tv_forget_password.clickWithTrigger { startActivity(Intent(context, FindPwdActivity::class.java)) }
-
-        login_btn.clickWithTrigger {
-            if (model.loginEnable()) {
-                model.login(this@PwdToLoginFragment) { activity?.finish() }
-            }
-        }
 
         //注册按钮能否点击更新
-        model.loginEnable.observe(this, Observer { login_btn.isEnabled = it != null && it })
-    }
+        model.pwdLoginButtonEnable.observe(this, Observer { login_btn.isEnabled = it != null && it })
+
+        //手机
+        RxTextView.textChanges(phone_input)
+                .subscribe {
+                    model.pwdLoginPhoneNumber.value = it.toString()
+                    model.checkPwdLoginButtonEnable()
+                }
+        //密码
+        RxTextView.textChanges(password_input)
+                .subscribe {
+                    model.pwdLoginPassword.value = it.toString()
+                    model.checkPwdLoginButtonEnable()
+                }
+
+        //忘记密码
+        tv_forget_password.clickWithTrigger { startActivity(Intent(context, FindPwdActivity::class.java)) }
+
+        //登录
+        login_btn.clickWithTrigger {
+            if (model.canPwdLogin()) {
+                model.loginByPwd(this@PwdToLoginFragment) { activity?.finish() }
+            }
+        }
+  }
 }

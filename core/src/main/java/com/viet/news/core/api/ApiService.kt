@@ -56,7 +56,7 @@ interface ApiService {
     fun login(@Body param: LoginParams): LiveData<ApiResponse<LoginRegisterResponse>>
 
     @POST("v1/login/register")
-    fun register(@Body param: RegisterParams): LiveData<ApiResponse<LoginRegisterResponse>>
+    fun register(@Body param: SignInParams): LiveData<ApiResponse<LoginRegisterResponse>>
 
     @POST("v1/login/sendSms")
     fun sendSMS(@Body param: VerifyCodeParams): LiveData<ApiResponse<Any>>

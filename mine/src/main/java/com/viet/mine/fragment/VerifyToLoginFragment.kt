@@ -13,7 +13,6 @@ import com.viet.news.core.config.Config
 import com.viet.news.core.config.VerifyCodeTypeEnum
 import com.viet.news.core.delegate.viewModelDelegate
 import com.viet.news.core.ext.clickWithTrigger
-import com.viet.news.core.ext.toast
 import com.viet.news.core.ui.RealVisibleHintBaseFragment
 import kotlinx.android.synthetic.main.fragment_login_verify.*
 
@@ -34,18 +33,8 @@ class VerifyToLoginFragment : RealVisibleHintBaseFragment() {
 
     @SuppressLint("CheckResult")
     override fun initView(view: View) {
-        RxTextView.textChanges(phone_input)
-                .subscribe {
-                    model.registerPhoneNumber.value = it.toString()
-                    model.checkRegisterVCodeBtnEnable()
-                }
-        RxTextView.textChanges(vcode_input)
-                .subscribe {
-                    model.registerVCode.value = it.toString()
-                    model.checkRegisterVCodeBtnEnable()
-                }
         // 判断是否倒计时内
-        model.loginCountDown.observe(this, Observer<Int> {
+        model.countDown4Login.observe(this, Observer<Int> {
             if (it != null && it > 0 && it < (Config.COUNT_DOWN_TIMER / 1000).toInt()) {
                 //正在倒计时
                 btn_send_vcode.isEnabled = false
@@ -56,22 +45,38 @@ class VerifyToLoginFragment : RealVisibleHintBaseFragment() {
                 //倒计时未开始/已结束
             }
         })
-        btn_send_vcode.setOnClickListener {
 
-            model.sendSMS(this, type = VerifyCodeTypeEnum.LOGIN) {
+        //注册按钮能否点击更新
+        model.vCodeLoginButtonEnable.observe(this, Observer { login_btn.isEnabled = it != null && it })
+
+
+        //手机号
+        RxTextView.textChanges(phone_input)
+                .subscribe {
+                    model.vCodeLoginPhoneNumber.value = it.toString()
+                    model.checkVCodeLoginSendVCodeButtonEnable()
+                    model.checkVCodeLoginButtonEnable()
+                }
+        //验证码
+        RxTextView.textChanges(vcode_input)
+                .subscribe {
+                    model.vCodeLoginVCode.value = it.toString()
+                    model.checkVCodeLoginButtonEnable()
+                }
+
+        btn_send_vcode.setOnClickListener {
+            if (model.canSendLoginVCode()) {
+                model.sendSMS(this, type = VerifyCodeTypeEnum.LOGIN) {
+                }
             }
         }
 
-        //错误信息展示
-        model.statusMsg.observe(this, Observer { it?.let { msg -> toast(msg).show() } })
-
-        //注册按钮能否点击更新
-        model.registerVCodeEnable.observe(this, Observer { login_btn.isEnabled = it != null && it })
-
         //注册按钮点击事件
         login_btn.clickWithTrigger {
-            if (model.nextBtnEnable()) {
-                activity?.finish()
+            if (model.canVCodeLogin()) {
+                model.loginBySMS(this) {
+                    activity?.finish()
+                }
             }
         }
     }
