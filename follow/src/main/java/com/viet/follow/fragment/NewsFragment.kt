@@ -123,7 +123,6 @@ class NewsFragment : RealVisibleHintBaseFragment(), HasSupportFragmentInjector {
                             }
                         }
                         else -> {
-//                    multiStatusView.showLoading()
                         }
                     }
                 })

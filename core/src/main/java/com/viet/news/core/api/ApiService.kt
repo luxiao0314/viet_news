@@ -45,7 +45,7 @@ interface ApiService {
 
     //查询当前关注用户发表的文章列表
     @POST("v1/content/list4follow")
-    fun list4follow(): LiveData<ApiResponse<ChannelListResponse>>
+    fun getlist4Follow(@Body param: List4ChannelParams): LiveData<ApiResponse<NewsListResponse>>
 
     /**
      * 登录注册相关

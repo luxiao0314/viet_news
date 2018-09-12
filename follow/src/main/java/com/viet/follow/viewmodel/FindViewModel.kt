@@ -30,6 +30,10 @@ class FindViewModel(var repository: FindRepository = FindRepository()) : BaseVie
         return repository.getlist4Channel(page_number, id)
     }
 
+    fun getlist4Follow(): LiveData<Resource<NewsListResponse>> {
+        return repository.getlist4Follow(page_number, id)
+    }
+
     fun getChannelList(owner: LifecycleOwner, function: () -> Unit) {
         repository.getChannelList().observe(owner, Observer { it ->
             if (it?.status == Status.SUCCESS) {
