@@ -61,7 +61,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/iv_pic"
         app:layout_constraintTop_toBottomOf="@+id/iv_article_image"
-        tools:text=" 过去十年，中共铺设的高铁线路占去了全世界的2/3。 过去十年，中共铺设的高铁线路占去了全世界的2/3。已经成了世界上最大的高铁网络" />
+        tools:text="过去十年，中共铺设的高铁线路占去了全世界的2/3。 过去十年，中共铺设的高铁线路占去了全世界的2/3。已经成了世界上最大的高铁网络" />
 
     <com.viet.news.core.ui.widget.BehaviorBar
         android:layout_width="match_parent"

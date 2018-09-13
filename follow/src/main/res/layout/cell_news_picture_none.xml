@@ -43,14 +43,13 @@
         android:id="@+id/tv_des"
         style="@style/text.16.gray"
         android:layout_width="0dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
         android:layout_marginTop="8dp"
         android:ellipsize="end"
         android:maxLines="2"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/iv_article_image"
-        tools:text=" 过去十年，中共铺设的高铁线路占去了全世界的2/3。 过去十年，中共铺设的高铁线路占去了全世界的2/3。已经成了世界上最大的高铁网络" />
+        tools:text="过去十年，中共铺设的高铁线路占去了全世界的2/3。 过去十年，中共铺设的高铁线路占去了全世界的2/3。已经成了世界上最大的高铁网络"/>
 
     <com.viet.news.core.ui.widget.BehaviorBar
         android:layout_width="match_parent"
