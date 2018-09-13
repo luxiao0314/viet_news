@@ -57,13 +57,13 @@ class CollectionAdapter @Inject constructor() : BaseAdapter<CollectionListBean>(
     }
 
     override fun onOpened(layout: SwipeLayout) {
-        System.out.println("打开了");
-        layouts.add(layout);
+        System.out.println("打开了")
+        layouts.add(layout)
     }
 
     override fun onClosed(layout: SwipeLayout) {
-        System.out.println("关闭了");
-        layouts.remove(layout);
+        System.out.println("关闭了")
+        layouts.remove(layout)
     }
 
     override fun onSwiping(layout: SwipeLayout) {

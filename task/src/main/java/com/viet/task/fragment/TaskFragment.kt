@@ -4,10 +4,13 @@ import android.arch.lifecycle.Observer
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.OrientationHelper
+import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import cn.magicwindow.core.ui.ItemClickSupport
 import com.viet.news.core.delegate.viewModelDelegate
+import com.viet.news.core.ext.toast
 import com.viet.news.core.ui.RealVisibleHintBaseFragment
 import com.viet.task.R
 import com.viet.task.adapter.TaskAdapter
@@ -45,6 +48,11 @@ class TaskFragment : RealVisibleHintBaseFragment() {
             loadTaskListData()
             it.finishRefresh()
         }
+        ItemClickSupport.addTo(recycler_view_task).addOnChildClickListener(R.id.btn_right,object :ItemClickSupport.OnChildClickListener{
+            override fun onChildClicked(recyclerView: RecyclerView, position: Int, v: View) {
+                    toast("等任务接口出来，我就知道要干什么了").show()
+            }
+        })
     }
 
     override fun onFragmentFirstVisible() {

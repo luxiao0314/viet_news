@@ -85,9 +85,7 @@ abstract class AbstractWheelTextAdapter @JvmOverloads protected constructor(// C
      var selectTextStyle = Typeface.BOLD
      var selectTextColor = DEFAULT_TEXT_COLOR
 
-    class Builder {
-
-    }
+    class Builder
 
     init {
 

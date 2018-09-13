@@ -1,6 +1,7 @@
 package com.viet.mine.repository
 
 import android.arch.lifecycle.LiveData
+import com.viet.news.core.config.ContentType
 import com.viet.news.core.api.ApiRepository
 import com.viet.news.core.api.ApiResponse
 import com.viet.news.core.config.Config
@@ -47,6 +48,14 @@ class MineRepository : ApiRepository() {
         return object : NetworkOnlyResource<UserInfoResponse>() {
             override fun createCall(): LiveData<ApiResponse<UserInfoResponse>> {
                 return apiInterface.getUserInfo(userId)
+            }
+        }.asLiveData()
+    }
+
+    fun uploadFile(path: String): LiveData<Resource<Any>> {
+        return object : NetworkOnlyResource<Any>() {
+            override fun createCall(): LiveData<ApiResponse<Any>> {
+                return apiInterface.uploadFile(ContentType.getPart(path))
             }
         }.asLiveData()
     }

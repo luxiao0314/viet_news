@@ -102,6 +102,9 @@ interface ApiService {
                    @Part("subject") subject: String?,
                    @Part("content") content: String?,
                    @Part part: List<MultipartBody.Part>?): Maybe<HttpResponse<Any>>
+    @Multipart
+    @POST("v1/user/updateAvatar")
+    fun uploadFile(@Part part: MultipartBody.Part): LiveData<ApiResponse<Any>>
 
     //用户反馈,未登录
     @Multipart

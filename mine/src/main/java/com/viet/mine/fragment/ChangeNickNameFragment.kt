@@ -10,6 +10,7 @@ import android.widget.Toast
 import com.chenenyu.router.annotation.Route
 import com.jakewharton.rxbinding2.widget.RxTextView
 import com.viet.mine.R
+import com.viet.mine.viewmodel.AccountInfoViewModel
 import com.viet.mine.viewmodel.SettingViewModel
 import com.viet.news.core.config.Config
 import com.viet.news.core.delegate.viewModelDelegate
@@ -30,7 +31,7 @@ import kotlinx.android.synthetic.main.fragment_mine_setting_nickname.*
 @Route(value = [Config.ROUTER_MINE_EDIT_CHANGE_NICKNAME_FRAGMENT])
 class ChangeNickNameFragment : BaseFragment() {
     private var mContainerView: View? = null
-    private val model by viewModelDelegate(SettingViewModel::class, true)
+    private val model by viewModelDelegate(AccountInfoViewModel::class, true)
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         mContainerView = inflater.inflate(R.layout.fragment_mine_setting_nickname, container, false)
