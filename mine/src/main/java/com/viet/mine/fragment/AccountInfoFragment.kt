@@ -52,28 +52,9 @@ class AccountInfoFragment : BaseFragment() {
         val changeNameItem = view.findViewById<CommonItem>(R.id.item_change_name)
         val changePhoneNumItem = view.findViewById<CommonItem>(R.id.item_change_phone_num)
         val resetPwdItem = view.findViewById<CommonItem>(R.id.item_reset_pwd)
-        changeNameItem.setClickDelegate {
-            onItemClick = {
-                openPage(this@AccountInfoFragment, Config.ROUTER_MINE_EDIT_CHANGE_NICKNAME_FRAGMENT, R.id.container_framelayout)
-            }
-        }
-        changePhoneNumItem.setClickDelegate {
-            onItemClick = {
-                openPage(this@AccountInfoFragment, Config.ROUTER_MINE_EDIT_CHANGE_PHONE_FRAGMENT, R.id.container_framelayout)
-            }
-        }
-
-        resetPwdItem.setClickDelegate {
-            onItemClick = {
-                openPage(this@AccountInfoFragment, Config.ROUTER_MINE_EDIT_CHANGE_PWD_FRAGMENT, R.id.container_framelayout)
-            }
-        }
-        title_bar.setDelegate {
-            onClickLeft = {
-                RxBus.get().post(RefreshUserInfoEvent())
-                (activity as BaseActivity).finishWithAnim()
-            }
-        }
+        changeNameItem.clickWithTrigger {  openPage(this@AccountInfoFragment, Config.ROUTER_MINE_EDIT_CHANGE_NICKNAME_FRAGMENT, R.id.container_framelayout) }
+        changePhoneNumItem.clickWithTrigger { openPage(this@AccountInfoFragment, Config.ROUTER_MINE_EDIT_CHANGE_PHONE_FRAGMENT, R.id.container_framelayout) }
+        resetPwdItem.clickWithTrigger { openPage(this@AccountInfoFragment, Config.ROUTER_MINE_EDIT_CHANGE_PWD_FRAGMENT, R.id.container_framelayout) }
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -94,6 +75,7 @@ class AccountInfoFragment : BaseFragment() {
                             // 将头像添加到缓存
 //                                    Settings.setAvatarUrl(User.currentUser.avatarUrl)
                             Settings.create().avatar = User.currentUser.avatarUrl
+                            RxBus.get().post(RefreshUserInfoEvent())
                         }
 //                        dialogFragment?.dismissAllowingStateLoss()
                     }

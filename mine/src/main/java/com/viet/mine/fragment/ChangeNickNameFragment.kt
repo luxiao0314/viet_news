@@ -15,6 +15,8 @@ import com.viet.mine.viewmodel.SettingViewModel
 import com.viet.news.core.config.Config
 import com.viet.news.core.delegate.viewModelDelegate
 import com.viet.news.core.domain.RefreshUserInfoEvent
+import com.viet.news.core.domain.Settings
+import com.viet.news.core.domain.User
 import com.viet.news.core.ext.clickWithTrigger
 import com.viet.news.core.ext.finishWithAnim
 import com.viet.news.core.ui.BaseActivity
@@ -55,6 +57,8 @@ class ChangeNickNameFragment : BaseFragment() {
                 model.updateNickName(this, nickname_input.text.toString()) { isOk ->
                     if (isOk) {
                         Toast.makeText(context, "修改成功", Toast.LENGTH_SHORT).show()
+                        User.currentUser.userName = nickname_input.text.toString()
+                        Settings.create(context!!).userName = nickname_input.text.toString()
                         RxBus.get().post(RefreshUserInfoEvent())
                     } else {
                         Toast.makeText(context, "修改失败", Toast.LENGTH_SHORT).show()

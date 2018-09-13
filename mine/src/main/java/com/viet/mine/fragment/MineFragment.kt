@@ -9,10 +9,7 @@ import com.viet.mine.R
 import com.viet.mine.viewmodel.MineViewModel
 import com.viet.news.core.config.Config
 import com.viet.news.core.delegate.viewModelDelegate
-import com.viet.news.core.domain.LoginEvent
-import com.viet.news.core.domain.LogoutEvent
-import com.viet.news.core.domain.RefreshUserInfoEvent
-import com.viet.news.core.domain.User
+import com.viet.news.core.domain.*
 import com.viet.news.core.ext.loadCircle
 import com.viet.news.core.ext.routerWithAnim
 import com.viet.news.core.ui.BaseFragment
@@ -68,8 +65,7 @@ class MineFragment : BaseFragment() {
             iv_user_icon.visibility = View.VISIBLE
             rl_user.visibility = View.VISIBLE
             edit.visibility = View.VISIBLE
-
-            iv_user_icon.loadCircle(User.currentUser.avatarUrl)
+            iv_user_icon.loadCircle(Settings.create(context!!).avatar)
             tv_nickname.text = User.currentUser.userName
             tv_fans_count.text =  User.currentUser.fansCount.toString()
             tv_follow_count.text = User.currentUser.followCount.toString()
