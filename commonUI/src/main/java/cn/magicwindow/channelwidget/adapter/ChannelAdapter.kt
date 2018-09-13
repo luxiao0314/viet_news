@@ -162,9 +162,10 @@ class ChannelAdapter(context: Context?, recyclerView: RecyclerView, private val 
 
         override fun clickLongMyChannel(mRecyclerView: RecyclerView, holder: ChannelViewHolder) {
             if (!isEditMode) {
+                dataChanged = true
                 doStartEditMode(mRecyclerView)
                 val view = mRecyclerView.getChildAt(0)
-                if (view === mRecyclerView.layoutManager!!.findViewByPosition(0)) {
+                if (view === mRecyclerView.layoutManager?.findViewByPosition(0)) {
                     val tvBtnEdit = view.findViewById<View>(R.id.id_edit_mode) as TextView
                     tvBtnEdit.text = "完成"
                     tvBtnEdit.isSelected = true
