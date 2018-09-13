@@ -47,4 +47,17 @@ class PersonalPageRepository: ApiRepository() {
             }
         }.asLiveData()
     }
+
+    fun collection(contentId: String): LiveData<Resource<HttpResponse<Any>>> {
+        return object : NetworkOnlyResource<HttpResponse<Any>>() {
+            override fun createCall(): LiveData<ApiResponse<HttpResponse<Any>>> = apiInterface.collection(contentId)
+        }.asLiveData()
+    }
+
+    fun like(contentId: String): LiveData<Resource<HttpResponse<Any>>> {
+        return object : NetworkOnlyResource<HttpResponse<Any>>() {
+            override fun createCall(): LiveData<ApiResponse<HttpResponse<Any>>> = apiInterface.like(contentId)
+        }.asLiveData()
+    }
+
 }

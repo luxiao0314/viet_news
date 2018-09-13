@@ -49,4 +49,27 @@ class PersonalPageModel(var repository: PersonalPageRepository = PersonalPageRep
             })
         })
     }
+
+    /**
+     * 点赞
+     */
+    fun like(owner: LifecycleOwner, contentId: String, function: () -> Unit) {
+        repository.like(contentId).observe(owner, Observer {
+            it?.data?.isOkStatus?.then({
+                function()
+            }, {
+                toast(App.instance.resources.getString(R.string.error_msg)).show()
+            })
+        })
+    }
+
+    fun collection(owner: LifecycleOwner, contentId: String, function: () -> Unit) {
+        repository.collection(contentId).observe(owner, Observer {
+            it?.data?.isOkStatus?.then({
+                function()
+            }, {
+                toast(App.instance.resources.getString(R.string.error_msg)).show()
+            })
+        })
+    }
 }

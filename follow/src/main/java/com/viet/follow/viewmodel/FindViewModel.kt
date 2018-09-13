@@ -102,7 +102,7 @@ class FindViewModel(var repository: FindRepository = FindRepository()) : BaseVie
     }
 
     fun collection(owner: LifecycleOwner, contentId: String, function: () -> Unit) {
-        repository.favorite(contentId).observe(owner, Observer {
+        repository.collection(contentId).observe(owner, Observer {
             it?.data?.isOkStatus?.then({
                 function()
             }, {

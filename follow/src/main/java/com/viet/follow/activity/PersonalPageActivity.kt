@@ -82,6 +82,15 @@ class PersonalPageActivity : InjectActivity() {
                 btn_follow.text = resources.getString(R.string.has_follow)
             }
         }
+
+        adapter.setClickDelegate {
+            onLikeClick = { isLiked, num, id, func ->
+                model.like(this@PersonalPageActivity, id.toString()) { func() }
+            }
+            onFavoriteClick = { isFavorite, num, id, func ->
+                model.collection(this@PersonalPageActivity, id.toString()) { func() }
+            }
+        }
     }
 
     private fun initData(loadMore: Boolean) {
