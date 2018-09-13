@@ -40,6 +40,7 @@ class MineFragment : BaseFragment() {
 
     override fun initView(view: View) {
         refresh()
+        iv_user_icon.clickWithTrigger { routerWithAnim(Config.ROUTER_PERSONAL_PAGE_ACTIVITY).go(context) }
         edit.clickWithTrigger { routerWithAnim(Config.ROUTER_MINE_EDIT_INFO_ACTIVITY).go(this) }
         mine_settings.clickWithTrigger { routerWithAnim(Config.ROUTER_MINE_SETTING_ACTIVITY).go(context) }
         mine_collection.clickWithTrigger { routerWithAnim(Config.ROUTER_MINE_COLLECTION_ACTIVITY).go(context) }
@@ -66,9 +67,9 @@ class MineFragment : BaseFragment() {
             rl_user.visibility = View.VISIBLE
             edit.visibility = View.VISIBLE
             iv_user_icon.loadCircle(Settings.create(context!!).avatar)
-            tv_nickname.text = User.currentUser.userName
-            tv_fans_count.text =  User.currentUser.fansCount.toString()
-            tv_follow_count.text = User.currentUser.followCount.toString()
+            tv_nickname.text = Settings.create(context!!).userName
+            tv_fans_count.text = Settings.create(context!!).fansCount.toString()
+            tv_follow_count.text = Settings.create(context!!).followCount.toString()
         }
     }
 }
