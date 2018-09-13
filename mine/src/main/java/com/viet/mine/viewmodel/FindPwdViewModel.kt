@@ -6,14 +6,16 @@ import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.Observer
 import android.os.CountDownTimer
 import com.safframework.ext.then
+import com.viet.mine.R
 import com.viet.mine.repository.LoginRepository
 import com.viet.news.core.config.Config
 import com.viet.news.core.config.VerifyCodeTypeEnum
 import com.viet.news.core.domain.LoginEvent
 import com.viet.news.core.domain.User
+import com.viet.news.core.ext.toast
+import com.viet.news.core.ui.App
 import com.viet.news.core.utils.RxBus
 import com.viet.news.core.viewmodel.BaseViewModel
-import com.viet.news.core.vo.Status
 
 /**
  * @author Aaron
@@ -116,20 +118,18 @@ class FindPwdViewModel(private var repository: LoginRepository = LoginRepository
     fun setPasswordThenLogin(owner: LifecycleOwner, onSetPwdSuccess: () -> Unit) {
         repository.setPassword(phoneNumber = phoneNumber.value, verifyCode = vCode.value, password = password1.value).observe(owner, Observer { resource ->
             resource?.apply {
-                if (status == Status.SUCCESS) {
-                    data?.isOkStatus?.then(
-                            {
-                                data?.data?.let {
-                                    phoneNumber.value?.let { phoneNumber -> User.currentUser.telephone = phoneNumber }
-                                    zoneCode.value?.let { zoneCode -> User.currentUser.zoneCode = zoneCode }
-                                    User.currentUser.login(it)
-                                    stopSignInCountdown()//注册成功后结束本次倒计时
-                                    RxBus.get().post(LoginEvent())
-                                    onSetPwdSuccess()
-                                }
-                            },
-                            {})
-                }
+                data?.isOkStatus?.then({
+                    data?.data?.let {
+                        phoneNumber.value?.let { phoneNumber -> User.currentUser.telephone = phoneNumber }
+                        zoneCode.value?.let { zoneCode -> User.currentUser.zoneCode = zoneCode }
+                        User.currentUser.login(it)
+                        stopSignInCountdown()//注册成功后结束本次倒计时
+                        RxBus.get().post(LoginEvent())
+                        onSetPwdSuccess()
+                    }
+                }, {
+                    toast(App.instance.resources.getString(R.string.error_msg)).show()
+                })
             }
         })
     }
@@ -139,14 +139,12 @@ class FindPwdViewModel(private var repository: LoginRepository = LoginRepository
         //发送验证码接口
         repository.sendSMS(phoneNumber.value, zoneCode.value, VerifyCodeTypeEnum.RESET_PASSWORD).observe(owner, Observer { resource ->
             resource?.apply {
-                if (status == Status.SUCCESS) {
-                    data?.isOkStatus?.then(
-                            { onSent() },
-                            {
-                                //发送验证码失败，结束倒计时
-                                stopSignInCountdown()
-                            })
-                }
+                data?.isOkStatus?.then(
+                        { onSent() },
+                        {
+                            //发送验证码失败，结束倒计时
+                            stopSignInCountdown()
+                        })
             }
         })
     }
@@ -156,9 +154,7 @@ class FindPwdViewModel(private var repository: LoginRepository = LoginRepository
         //发送验证码接口
         repository.checkVerifyCode(phoneNumber = phoneNumber.value, verifyCode = vCode.value, zone_code = zoneCode.value, type = VerifyCodeTypeEnum.RESET_PASSWORD).observe(owner, Observer { resource ->
             resource?.apply {
-                if (status == Status.SUCCESS) {
-                    data?.isOkStatus?.then({ onValidate() }, {})
-                }
+                data?.isOkStatus?.then({ onValidate() }, { toast(App.instance.resources.getString(R.string.error_msg)).show() })
             }
         })
     }

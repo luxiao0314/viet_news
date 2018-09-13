@@ -6,8 +6,9 @@ import android.arch.lifecycle.Observer
 import com.safframework.ext.then
 import com.viet.follow.R
 import com.viet.follow.repository.PersonalPageRepository
+import com.viet.news.core.api.HttpResponse
 import com.viet.news.core.domain.response.NewsListResponse
-import com.viet.news.core.domain.response.UserInfo
+import com.viet.news.core.domain.response.UserInfoResponse
 import com.viet.news.core.ext.toast
 import com.viet.news.core.ui.App
 import com.viet.news.core.viewmodel.BaseViewModel
@@ -23,13 +24,13 @@ import com.viet.news.core.vo.Resource
 class PersonalPageModel(var repository: PersonalPageRepository = PersonalPageRepository()) : BaseViewModel() {
 
     var page_number = 0
-    var userId: String? = "1"
+    var userId: String? = ""
 
-    fun getlist4User(): LiveData<Resource<NewsListResponse>> {
+    fun getlist4User(): LiveData<Resource<HttpResponse<NewsListResponse>>> {
         return repository.getlist4User(page_number, userId)
     }
 
-    fun getUserInfo(owner: LifecycleOwner, function: (user: UserInfo?) -> Unit) {
+    fun getUserInfo(owner: LifecycleOwner, function: (user: UserInfoResponse?) -> Unit) {
         repository.getUserInfo(userId).observe(owner, Observer {
             it?.data?.isOkStatus?.then({
                 function(it.data?.data)

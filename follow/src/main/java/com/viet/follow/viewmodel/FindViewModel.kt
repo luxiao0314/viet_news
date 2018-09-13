@@ -7,13 +7,13 @@ import cn.magicwindow.channelwidget.entity.ChannelBean
 import com.safframework.ext.then
 import com.viet.follow.R
 import com.viet.follow.repository.FindRepository
+import com.viet.news.core.api.HttpResponse
 import com.viet.news.core.domain.response.NewsListBean
 import com.viet.news.core.domain.response.NewsListResponse
 import com.viet.news.core.ext.toast
 import com.viet.news.core.ui.App
 import com.viet.news.core.viewmodel.BaseViewModel
 import com.viet.news.core.vo.Resource
-import com.viet.news.core.vo.Status
 
 /**
  * @Description
@@ -30,26 +30,28 @@ class FindViewModel(var repository: FindRepository = FindRepository()) : BaseVie
     var page_number = 0
     var id: String? = "1"
 
-    fun getlist4Channel(id: String?): LiveData<Resource<NewsListResponse>> {
+    fun getlist4Channel(id: String?): LiveData<Resource<HttpResponse<NewsListResponse>>> {
         return repository.getlist4Channel(page_number, id)
     }
 
-    fun getlist4Follow(): LiveData<Resource<NewsListResponse>> {
+    fun getlist4Follow(): LiveData<Resource<HttpResponse<NewsListResponse>>> {
         return repository.getlist4Follow(page_number, id)
     }
 
     fun getChannelList(owner: LifecycleOwner, function: () -> Unit) {
         repository.getChannelList().observe(owner, Observer { it ->
-            if (it?.status == Status.SUCCESS) {
+            it?.data?.isOkStatus?.then({
                 it.data?.data?.forEach { normalList.add(ChannelBean(it.channelName, it.channelKey)) }
                 function()
-            }
+            }, {
+                toast(App.instance.resources.getString(R.string.error_msg)).show()
+            })
         })
     }
 
     fun getChannelAllList(owner: LifecycleOwner, function: () -> Unit) {
         repository.getChannelAllList().observe(owner, Observer { it ->
-            if (it?.data != null) {
+            it?.data?.isOkStatus?.then({
                 unFollowList.clear()
                 followList.clear()
                 it.data?.data?.unFollowChannelList?.forEach { unFollowList.add(ChannelBean(it.channelName, it.channelKey)) }
@@ -61,15 +63,19 @@ class FindViewModel(var repository: FindRepository = FindRepository()) : BaseVie
                     }
                 }
                 function()
-            }
+            }, {
+                toast(App.instance.resources.getString(R.string.error_msg)).show()
+            })
         })
     }
 
     fun channelAdd(owner: LifecycleOwner, list: List<ChannelBean>, position: Int, function: () -> Unit) {
         repository.channelAdd(list[position].id).observe(owner, Observer {
-            if (it?.data != null) {
+            it?.data?.isOkStatus?.then({
                 function()
-            }
+            }, {
+                toast(App.instance.resources.getString(R.string.error_msg)).show()
+            })
         })
     }
 

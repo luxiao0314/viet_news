@@ -17,6 +17,7 @@ import com.viet.news.core.config.VerifyCodeTypeEnum
 import com.viet.news.core.domain.LoginEvent
 import com.viet.news.core.domain.User
 import com.viet.news.core.domain.request.SignInParams
+import com.viet.news.core.ext.toast
 import com.viet.news.core.ui.App
 import com.viet.news.core.ui.BaseFragment
 import com.viet.news.core.utils.RxBus
@@ -296,7 +297,7 @@ class LoginViewModel(private var repository: LoginRepository = LoginRepository()
                                     onSignInSuccess()
                                 }
                             },
-                            {})
+                            { toast(App.instance.resources.getString(R.string.error_msg)).show() })
                 }
             }
         })
@@ -306,20 +307,18 @@ class LoginViewModel(private var repository: LoginRepository = LoginRepository()
     fun loginByPwd(owner: LifecycleOwner, onLoginSuccess: () -> Unit) {
         repository.loginByPwd(pwdLoginPhoneNumber.value, pwdLoginPassword.value).observe(owner, Observer { resource ->
             resource?.apply {
-                if (status == Status.SUCCESS) {
-                    data?.isOkStatus?.then(
-                            {
-                                data?.data?.let {
-                                    signInPhoneNumber.value?.let { phoneNumber -> User.currentUser.telephone = phoneNumber }
-                                    zoneCode.value?.let { zoneCode -> User.currentUser.zoneCode = zoneCode }
-                                    User.currentUser.login(it)
-                                    stopSignInCountdown()//注册成功后结束本次倒计时
-                                    RxBus.get().post(LoginEvent())
-                                    onLoginSuccess()
-                                }
-                            },
-                            {})
-                }
+                data?.isOkStatus?.then({
+                    data?.data?.let {
+                        signInPhoneNumber.value?.let { phoneNumber -> User.currentUser.telephone = phoneNumber }
+                        zoneCode.value?.let { zoneCode -> User.currentUser.zoneCode = zoneCode }
+                        User.currentUser.login(it)
+                        stopSignInCountdown()//注册成功后结束本次倒计时
+                        RxBus.get().post(LoginEvent())
+                        onLoginSuccess()
+                    }
+                }, {
+                    toast(App.instance.resources.getString(R.string.error_msg)).show()
+                })
             }
         })
     }

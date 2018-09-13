@@ -1,14 +1,12 @@
 package com.viet.news.core.domain.response
 
-import com.viet.news.core.api.HttpResponse
+import java.io.Serializable
 
 /**
  * @Description
  * @Author sean
  * @Email xiao.lu@magicwindow.cn
- * @Date 12/09/2018 12:02 PM
+ * @Date 13/09/2018 5:01 PM
  * @Version
  */
-class UserInfoListResponse : HttpResponse<UserInfoList>()
-
-data class UserInfoList(var list: List<UserInfo>)
+class UserInfoListResponse(var list: List<UserInfoResponse>) : Serializable

@@ -1,6 +1,6 @@
 package com.viet.news.core.domain.response
 
-import com.viet.news.core.api.HttpResponse
+import java.io.Serializable
 
 /**
  * @Description
@@ -9,9 +9,7 @@ import com.viet.news.core.api.HttpResponse
  * @Date 12/09/2018 12:02 PM
  * @Version
  */
-class UserInfoResponse : HttpResponse<UserInfo>()
-
-class UserInfo {
+class UserInfoResponse : Serializable {
     var id: String? = ""
     var zone_code: Int = 0
     var phone_number: String? = ""

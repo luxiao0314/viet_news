@@ -19,25 +19,25 @@ import com.viet.news.core.vo.Resource
  */
 class FansAndFollowRepository : ApiRepository() {
 
-    fun followList(page_number: Int, id: String?): LiveData<Resource<UserInfoListResponse>> {
+    fun followList(page_number: Int, id: String?): LiveData<Resource<HttpResponse<UserInfoListResponse>>> {
         val params = ListParams()
         params.page_number = page_number
         params.page_size = Config.page_size
         params.user_id = id
-        return object : NetworkOnlyResource<UserInfoListResponse>() {
-            override fun createCall(): LiveData<ApiResponse<UserInfoListResponse>> {
+        return object : NetworkOnlyResource<HttpResponse<UserInfoListResponse>>() {
+            override fun createCall(): LiveData<ApiResponse<HttpResponse<UserInfoListResponse>>> {
                 return apiInterface.followList(params)
             }
         }.asLiveData()
     }
 
-    fun fansList(page_number: Int, id: String?): LiveData<Resource<UserInfoListResponse>> {
+    fun fansList(page_number: Int, id: String?): LiveData<Resource<HttpResponse<UserInfoListResponse>>> {
         val params = ListParams()
         params.page_number = page_number
         params.page_size = Config.page_size
         params.user_id = id
-        return object : NetworkOnlyResource<UserInfoListResponse>() {
-            override fun createCall(): LiveData<ApiResponse<UserInfoListResponse>> {
+        return object : NetworkOnlyResource<HttpResponse<UserInfoListResponse>>() {
+            override fun createCall(): LiveData<ApiResponse<HttpResponse<UserInfoListResponse>>> {
                 return apiInterface.fansList(params)
             }
         }.asLiveData()

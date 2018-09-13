@@ -20,21 +20,21 @@ import com.viet.news.core.vo.Resource
  */
 class PersonalPageRepository: ApiRepository() {
 
-    fun getlist4User(page_number: Int, id: String?): LiveData<Resource<NewsListResponse>> {
+    fun getlist4User(page_number: Int, id: String?): LiveData<Resource<HttpResponse<NewsListResponse>>> {
         val params = ListParams()
         params.page_number = page_number
         params.page_size = Config.page_size
         params.user_id = id
-        return object : NetworkOnlyResource<NewsListResponse>() {
-            override fun createCall(): LiveData<ApiResponse<NewsListResponse>> {
+        return object : NetworkOnlyResource<HttpResponse<NewsListResponse>>() {
+            override fun createCall(): LiveData<ApiResponse<HttpResponse<NewsListResponse>>> {
                 return apiInterface.getlist4User(params)
             }
         }.asLiveData()
     }
 
-    fun getUserInfo(userId: String?): LiveData<Resource<UserInfoResponse>> {
-        return object : NetworkOnlyResource<UserInfoResponse>() {
-            override fun createCall(): LiveData<ApiResponse<UserInfoResponse>> {
+    fun getUserInfo(userId: String?): LiveData<Resource<HttpResponse<UserInfoResponse>>> {
+        return object : NetworkOnlyResource<HttpResponse<UserInfoResponse>>() {
+            override fun createCall(): LiveData<ApiResponse<HttpResponse<UserInfoResponse>>> {
                 return apiInterface.getUserInfo(userId)
             }
         }.asLiveData()

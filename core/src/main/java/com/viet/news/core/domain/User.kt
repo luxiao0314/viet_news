@@ -91,7 +91,7 @@ class User private constructor() : Serializable {
 
     fun isDeviceLogin(): Boolean = roleId == "2"  //2:设备登录 1:常规登录
 
-    fun login(userLogin: LoginRegisterResponse.LoginRegister) {
+    fun login(userLogin: LoginRegisterResponse) {
         //init
         this.telephone = userLogin.phoneNumber
         this.avatarUrl = userLogin.imageUrl

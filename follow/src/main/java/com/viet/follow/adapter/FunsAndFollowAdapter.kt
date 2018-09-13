@@ -1,7 +1,7 @@
 package com.viet.follow.adapter
 
 import com.viet.follow.R
-import com.viet.news.core.domain.response.UserInfo
+import com.viet.news.core.domain.response.UserInfoResponse
 import com.viet.news.core.ext.loadCircle
 import com.viet.news.core.ui.BaseAdapter
 import kotlinx.android.synthetic.main.cell_funs_and_follow.view.*
@@ -14,11 +14,11 @@ import javax.inject.Inject
  * @Date 07/09/2018 2:27 PM
  * @Version
  */
-class FunsAndFollowAdapter @Inject constructor() : BaseAdapter<UserInfo>() {
+class FunsAndFollowAdapter @Inject constructor() : BaseAdapter<UserInfoResponse>() {
 
     override fun getLayoutId(viewType: Int): Int = R.layout.cell_funs_and_follow
 
-    override fun onBindViewHolderImpl(holder: BaseViewHolder, position: Int, t: UserInfo) {
+    override fun onBindViewHolderImpl(holder: BaseViewHolder, position: Int, t: UserInfoResponse) {
         holder.itemView.iv_article_image.loadCircle(t.avatar)
         holder.itemView.tv_title.text = t.nick_name
         holder.itemView.tv_funs.text = context.resources.getString(R.string.funs) + t.fans_count

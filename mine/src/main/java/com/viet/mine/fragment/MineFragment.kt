@@ -40,7 +40,6 @@ class MineFragment : BaseFragment() {
 
     override fun initView(view: View) {
         refresh()
-        iv_user_icon.clickWithTrigger { routerWithAnim(Config.ROUTER_PERSONAL_PAGE_ACTIVITY).go(context) }
         edit.clickWithTrigger { routerWithAnim(Config.ROUTER_MINE_EDIT_INFO_ACTIVITY).go(this) }
         mine_settings.clickWithTrigger { routerWithAnim(Config.ROUTER_MINE_SETTING_ACTIVITY).go(context) }
         mine_collection.clickWithTrigger { routerWithAnim(Config.ROUTER_MINE_COLLECTION_ACTIVITY).go(context) }

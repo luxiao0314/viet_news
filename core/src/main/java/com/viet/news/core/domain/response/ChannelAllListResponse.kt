@@ -1,6 +1,6 @@
 package com.viet.news.core.domain.response
 
-import com.viet.news.core.api.HttpResponse
+import java.io.Serializable
 
 /**
  * @Description
@@ -9,7 +9,5 @@ import com.viet.news.core.api.HttpResponse
  * @Date 2018/9/10 上午10:49
  * @Version
  */
-class ChannelAllListResponse: HttpResponse<ChannelAllList>()
-
-class ChannelAllList(var followChannelList: ArrayList<ChannelList>,
-                             var unFollowChannelList: ArrayList<ChannelList>)
+class ChannelAllListResponse(var followChannelList: ArrayList<ChannelList>,
+                             var unFollowChannelList: ArrayList<ChannelList>) : Serializable

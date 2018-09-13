@@ -9,6 +9,7 @@ import com.viet.follow.R
 import com.viet.follow.fragment.FansTabFragment
 import com.viet.follow.fragment.FollowTabFragment
 import com.viet.follow.repository.FansAndFollowRepository
+import com.viet.news.core.api.HttpResponse
 import com.viet.news.core.domain.response.UserInfoListResponse
 import com.viet.news.core.ext.toast
 import com.viet.news.core.ui.App
@@ -30,11 +31,11 @@ class FansAndFollowViewModel(var repository: FansAndFollowRepository = FansAndFo
     var currentTab = MutableLiveData<Int>()
     var userId: String? = ""
 
-    fun followList(page_number: Int): LiveData<Resource<UserInfoListResponse>> {
+    fun followList(page_number: Int): LiveData<Resource<HttpResponse<UserInfoListResponse>>> {
         return repository.followList(page_number, userId)
     }
 
-    fun fansList(page_number: Int): LiveData<Resource<UserInfoListResponse>> {
+    fun fansList(page_number: Int): LiveData<Resource<HttpResponse<UserInfoListResponse>>> {
         return repository.fansList(page_number, userId)
     }
 

@@ -3,9 +3,12 @@ package com.viet.mine.viewmodel
 import android.arch.lifecycle.LifecycleOwner
 import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.Observer
+import com.safframework.ext.then
+import com.viet.mine.R
 import com.viet.mine.repository.MineRepository
+import com.viet.news.core.ext.toast
+import com.viet.news.core.ui.App
 import com.viet.news.core.viewmodel.BaseViewModel
-import com.viet.news.core.vo.Status
 
 class SettingViewModel(var repository: MineRepository = MineRepository()) : BaseViewModel() {
     var feedback: MutableLiveData<String> = MutableLiveData()    //提交反馈内容
@@ -27,16 +30,12 @@ class SettingViewModel(var repository: MineRepository = MineRepository()) : Base
     //反馈
     fun feedBack(owner: LifecycleOwner, feedback: String, finish: (isSuccess: Boolean) -> Unit) {
         return repository.feedBack(feedback).observe(owner, Observer {
-            when (it?.status) {
-                Status.SUCCESS -> finish(true)
-                Status.ERROR -> finish(false)
-                else -> {
-                    // TODO: 正在加载
-                }
-            }
+            it?.data?.isOkStatus?.then({
+                finish(true)
+            }, {
+                finish(false)
+                toast(App.instance.resources.getString(R.string.error_msg)).show()
+            })
         })
     }
-
-
-
 }

@@ -10,6 +10,7 @@ import android.support.v7.widget.RecyclerView
 import android.view.View
 import android.widget.AbsListView.OnScrollListener.SCROLL_STATE_TOUCH_SCROLL
 import com.chenenyu.router.annotation.Route
+import com.safframework.ext.then
 import com.viet.mine.R
 import com.viet.mine.adapter.CollectionAdapter
 import com.viet.mine.viewmodel.CollectionViewModel
@@ -18,7 +19,6 @@ import com.viet.news.core.delegate.viewModelDelegate
 import com.viet.news.core.domain.User
 import com.viet.news.core.domain.response.CollectionListBean
 import com.viet.news.core.ui.InjectActivity
-import com.viet.news.core.vo.Status
 import kotlinx.android.synthetic.main.activity_mine_collection.*
 import javax.inject.Inject
 
@@ -31,7 +31,8 @@ import javax.inject.Inject
 @Route(value = [Config.ROUTER_MINE_COLLECTION_ACTIVITY], interceptors = [(Config.LOGIN_INTERCEPTOR)])
 class CollectionActivity : InjectActivity() {
 
-    @Inject internal lateinit var adapter: CollectionAdapter
+    @Inject
+    internal lateinit var adapter: CollectionAdapter
     private val model: CollectionViewModel by viewModelDelegate(CollectionViewModel::class)
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -71,38 +72,33 @@ class CollectionActivity : InjectActivity() {
         }
 
         model.getCollectionList(User.currentUser.userId).observe(this, Observer {
-            when (it?.status) {
-                Status.SUCCESS -> {
-                    model.collectionList = it.data?.data?.list as ArrayList<CollectionListBean>
-                    multiStatusView.showContent()
-                    if (loadMore) {
-                        if (it.data?.data?.list == null || it.data?.data?.list!!.isEmpty()) {
-                            refreshLayout.finishLoadMoreWithNoMoreData()
-                        } else {
-                            refreshLayout.finishLoadMore()
-                            adapter.addData(it.data?.data?.list)
-                        }
+            it?.data?.isOkStatus?.then({
+                model.collectionList = it.data?.data?.list as ArrayList<CollectionListBean>
+                multiStatusView.showContent()
+                if (loadMore) {
+                    if (it.data?.data?.list == null || it.data?.data?.list!!.isEmpty()) {
+                        refreshLayout.finishLoadMoreWithNoMoreData()
                     } else {
-                        if (it.data?.data?.list == null || it.data?.data?.list!!.isEmpty()) {
-                            multiStatusView.showEmpty()
-                            refreshLayout.setEnableLoadMore(false)
-                        }
-                        adapter.setData(it.data?.data?.list)
-                        refreshLayout.setNoMoreData(false)
-                        refreshLayout.finishRefresh()
+                        refreshLayout.finishLoadMore()
+                        adapter.addData(it.data?.data?.list)
                     }
-                }
-                Status.ERROR -> {
-                    multiStatusView.showError()
-                    if (loadMore) {
-                        refreshLayout.finishLoadMore(false)//传入false表示加载失败
-                    } else {
-                        refreshLayout.finishRefresh(false)
+                } else {
+                    if (it.data?.data?.list == null || it.data?.data?.list!!.isEmpty()) {
+                        multiStatusView.showEmpty()
+                        refreshLayout.setEnableLoadMore(false)
                     }
+                    adapter.setData(it.data?.data?.list)
+                    refreshLayout.setNoMoreData(false)
+                    refreshLayout.finishRefresh()
                 }
-                else -> {
+            }, {
+                multiStatusView.showError()
+                if (loadMore) {
+                    refreshLayout.finishLoadMore(false)//传入false表示加载失败
+                } else {
+                    refreshLayout.finishRefresh(false)
                 }
-            }
+            })
         })
     }
 }

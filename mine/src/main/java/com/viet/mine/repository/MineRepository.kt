@@ -1,14 +1,14 @@
 package com.viet.mine.repository
 
 import android.arch.lifecycle.LiveData
-import com.viet.news.core.config.ContentType
 import com.viet.news.core.api.ApiRepository
 import com.viet.news.core.api.ApiResponse
+import com.viet.news.core.api.HttpResponse
 import com.viet.news.core.config.Config
+import com.viet.news.core.config.ContentType
 import com.viet.news.core.domain.request.FeedBackParams
 import com.viet.news.core.domain.request.ListParams
 import com.viet.news.core.domain.response.CollectionListResponse
-import com.viet.news.core.domain.response.UserInfoResponse
 import com.viet.news.core.repository.NetworkOnlyResource
 import com.viet.news.core.vo.Resource
 
@@ -20,41 +20,33 @@ import com.viet.news.core.vo.Resource
  * @Version
  */
 class MineRepository : ApiRepository() {
-    fun feedBack(feedback: String): LiveData<Resource<Any>> {
+    fun feedBack(feedback: String): LiveData<Resource<HttpResponse<Any>>> {
         val params = FeedBackParams()
         params.feedback = feedback
-        return object : NetworkOnlyResource<Any>() {
-            override fun createCall(): LiveData<ApiResponse<Any>> = apiInterface.feedback(params)
+        return object : NetworkOnlyResource<HttpResponse<Any>>() {
+            override fun createCall(): LiveData<ApiResponse<HttpResponse<Any>>> = apiInterface.feedback(params)
         }.asLiveData()
     }
 
-    fun updateNickName(nickname: String): LiveData<Resource<Any>> {
-        return object : NetworkOnlyResource<Any>() {
-            override fun createCall(): LiveData<ApiResponse<Any>> = apiInterface.updateNickName(nickname)
+    fun updateNickName(nickname: String): LiveData<Resource<HttpResponse<Any>>> {
+        return object : NetworkOnlyResource<HttpResponse<Any>>() {
+            override fun createCall(): LiveData<ApiResponse<HttpResponse<Any>>> = apiInterface.updateNickName(nickname)
         }.asLiveData()
     }
 
-    fun getCollectionList(page: Int, id: String?): LiveData<Resource<CollectionListResponse>> {
+    fun getCollectionList(page: Int, id: String?): LiveData<Resource<HttpResponse<CollectionListResponse>>> {
         val params = ListParams()
         params.page_number = page
         params.page_size = Config.page_size
         params.user_id = id
-        return object : NetworkOnlyResource<CollectionListResponse>() {
-            override fun createCall(): LiveData<ApiResponse<CollectionListResponse>> = apiInterface.getCollectionList(params)
+        return object : NetworkOnlyResource<HttpResponse<CollectionListResponse>>() {
+            override fun createCall(): LiveData<ApiResponse<HttpResponse<CollectionListResponse>>> = apiInterface.getCollectionList(params)
         }.asLiveData()
     }
 
-    fun getUserInfo(userId: String?): LiveData<Resource<UserInfoResponse>> {
-        return object : NetworkOnlyResource<UserInfoResponse>() {
-            override fun createCall(): LiveData<ApiResponse<UserInfoResponse>> {
-                return apiInterface.getUserInfo(userId)
-            }
-        }.asLiveData()
-    }
-
-    fun uploadFile(path: String): LiveData<Resource<Any>> {
-        return object : NetworkOnlyResource<Any>() {
-            override fun createCall(): LiveData<ApiResponse<Any>> {
+    fun uploadFile(path: String): LiveData<Resource<HttpResponse<Any>>> {
+        return object : NetworkOnlyResource<HttpResponse<Any>>() {
+            override fun createCall(): LiveData<ApiResponse<HttpResponse<Any>>> {
                 return apiInterface.uploadFile(ContentType.getPart(path))
             }
         }.asLiveData()

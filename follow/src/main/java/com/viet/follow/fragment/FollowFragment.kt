@@ -11,12 +11,12 @@ import android.support.v7.widget.OrientationHelper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.safframework.ext.then
 import com.viet.follow.R
 import com.viet.follow.adapter.NewsAdapter
 import com.viet.follow.viewmodel.FindViewModel
 import com.viet.news.core.delegate.viewModelDelegate
 import com.viet.news.core.ui.RealVisibleHintBaseFragment
-import com.viet.news.core.vo.Status
 import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.support.AndroidSupportInjection
@@ -68,37 +68,32 @@ class FollowFragment : RealVisibleHintBaseFragment(), HasSupportFragmentInjector
         }
         model.getlist4Follow()
                 .observe(this, Observer {
-                    when (it?.status) {
-                        Status.SUCCESS -> {
-                            multiStatusView.showContent()
-                            if (loadMore) {
-                                if (it.data?.data?.list == null || it.data?.data?.list!!.isEmpty()) {
-                                    refreshLayout.finishLoadMoreWithNoMoreData()
-                                } else {
-                                    refreshLayout.finishLoadMore()
-                                    adapter.addData(it.data?.data?.list)
-                                }
+                    it?.data?.isOkStatus?.then({
+                        multiStatusView.showContent()
+                        if (loadMore) {
+                            if (it.data?.data?.list == null || it.data?.data?.list!!.isEmpty()) {
+                                refreshLayout.finishLoadMoreWithNoMoreData()
                             } else {
-                                if (it.data?.data?.list == null || it.data?.data?.list!!.isEmpty()) {
-                                    multiStatusView.showEmpty()
-                                    refreshLayout.setEnableLoadMore(false)
-                                }
-                                adapter.setData(it.data?.data?.list)
-                                refreshLayout.setNoMoreData(false)
-                                refreshLayout.finishRefresh()
+                                refreshLayout.finishLoadMore()
+                                adapter.addData(it.data?.data?.list)
                             }
-                        }
-                        Status.ERROR -> {
-                            multiStatusView.showError()
-                            if (loadMore) {
-                                refreshLayout.finishLoadMore(false)//传入false表示加载失败
-                            } else {
-                                refreshLayout.finishRefresh(false)
+                        } else {
+                            if (it.data?.data?.list == null || it.data?.data?.list!!.isEmpty()) {
+                                multiStatusView.showEmpty()
+                                refreshLayout.setEnableLoadMore(false)
                             }
+                            adapter.setData(it.data?.data?.list)
+                            refreshLayout.setNoMoreData(false)
+                            refreshLayout.finishRefresh()
                         }
-                        else -> {
+                    }, {
+                        multiStatusView.showError()
+                        if (loadMore) {
+                            refreshLayout.finishLoadMore(false)//传入false表示加载失败
+                        } else {
+                            refreshLayout.finishRefresh(false)
                         }
-                    }
+                    })
                 })
     }
 

@@ -26,39 +26,39 @@ class LoginRepository : ApiRepository() {
     /**
      * login_type:登录类型 1 手机号密码登录 2 手机号验证码登录 3 facebook登录
      */
-    fun loginByPwd(phoneNumber: String?, password: String?): LiveData<Resource<LoginRegisterResponse>> {
+    fun loginByPwd(phoneNumber: String?, password: String?): LiveData<Resource<HttpResponse<LoginRegisterResponse>>> {
         val params = LoginParams()
         params.phone_number = phoneNumber
         params.password = password
         params.setType(LoginEnum.PASSWORD)
-        return object : NetworkOnlyResource<LoginRegisterResponse>() {
-            override fun createCall(): LiveData<ApiResponse<LoginRegisterResponse>> = apiInterface.login(params)
+        return object : NetworkOnlyResource<HttpResponse<LoginRegisterResponse>>() {
+            override fun createCall(): LiveData<ApiResponse<HttpResponse<LoginRegisterResponse>>> = apiInterface.login(params)
         }.asLiveData()
     }
 
     /**
      * login_type:登录类型 1 手机号密码登录 2 手机号验证码登录 3 facebook登录
      */
-    fun loginBySMS(phoneNumber: String?, vCode: String?): LiveData<Resource<LoginRegisterResponse>> {
+    fun loginBySMS(phoneNumber: String?, vCode: String?): LiveData<Resource<HttpResponse<LoginRegisterResponse>>> {
         val params = LoginParams()
         params.phone_number = phoneNumber
         params.validation_code = vCode
         params.setType(LoginEnum.VALIDATION_CODE)
-        return object : NetworkOnlyResource<LoginRegisterResponse>() {
-            override fun createCall(): LiveData<ApiResponse<LoginRegisterResponse>> = apiInterface.login(params)
+        return object : NetworkOnlyResource<HttpResponse<LoginRegisterResponse>>() {
+            override fun createCall(): LiveData<ApiResponse<HttpResponse<LoginRegisterResponse>>> = apiInterface.login(params)
         }.asLiveData()
     }
 
     /**
      * login_type:登录类型 1 手机号密码登录 2 手机号验证码登录 3 facebook登录
      */
-    fun loginByFacebook(phoneNumber: String?, password: String?): LiveData<Resource<LoginRegisterResponse>> {
+    fun loginByFacebook(phoneNumber: String?, password: String?): LiveData<Resource<HttpResponse<LoginRegisterResponse>>> {
         val params = LoginParams()
         params.phone_number = phoneNumber
         //TODO tsing Facebook 传入登录相关信息
         params.setType(LoginEnum.FACEBOOK)
-        return object : NetworkOnlyResource<LoginRegisterResponse>() {
-            override fun createCall(): LiveData<ApiResponse<LoginRegisterResponse>> = apiInterface.login(params)
+        return object : NetworkOnlyResource<HttpResponse<LoginRegisterResponse>>() {
+            override fun createCall(): LiveData<ApiResponse<HttpResponse<LoginRegisterResponse>>> = apiInterface.login(params)
         }.asLiveData()
     }
 
@@ -92,20 +92,20 @@ class LoginRepository : ApiRepository() {
     /**
      * 注册
      */
-    fun signIn(params: SignInParams): LiveData<Resource<LoginRegisterResponse>> =
-            object : NetworkOnlyResource<LoginRegisterResponse>() {
-                override fun createCall(): LiveData<ApiResponse<LoginRegisterResponse>> = apiInterface.register(params)
+    fun signIn(params: SignInParams): LiveData<Resource<HttpResponse<LoginRegisterResponse>>> =
+            object : NetworkOnlyResource<HttpResponse<LoginRegisterResponse>>() {
+                override fun createCall(): LiveData<ApiResponse<HttpResponse<LoginRegisterResponse>>> = apiInterface.register(params)
             }.asLiveData()
     /**
      * 设置密码
      */
-    fun setPassword(phoneNumber: String?, verifyCode: String?, password: String?): LiveData<Resource<LoginRegisterResponse>> {
+    fun setPassword(phoneNumber: String?, verifyCode: String?, password: String?): LiveData<Resource<HttpResponse<LoginRegisterResponse>>> {
         val params = ResetPwdParams()
         params.phone_number = phoneNumber
         params.validation_code = verifyCode
         params.password = password
-        return object : NetworkOnlyResource<LoginRegisterResponse>() {
-            override fun createCall(): LiveData<ApiResponse<LoginRegisterResponse>> = apiInterface.setPassword(params)
+        return object : NetworkOnlyResource<HttpResponse<LoginRegisterResponse>>() {
+            override fun createCall(): LiveData<ApiResponse<HttpResponse<LoginRegisterResponse>>> = apiInterface.setPassword(params)
         }.asLiveData()
     }
 }

@@ -1,7 +1,6 @@
 package com.viet.news.core.domain.response
 
 import com.google.gson.annotations.SerializedName
-import com.viet.news.core.api.HttpResponse
 
 /**
  * @Description
@@ -10,13 +9,11 @@ import com.viet.news.core.api.HttpResponse
  * @Date 11/09/2018 11:57 PM
  * @Version
  */
-class NewsListResponse : HttpResponse<NewsList>()
+class NewsListResponse(var total_count: String?,
+                       var total_pages: String?,
+                       var list: List<NewsListBean>)
 
-data class NewsList(var total_count: String?,
-                    var total_pages: String?,
-                    var list: List<NewsListBean>)
-
-data class NewsListBean(var content: ContentBean, var author: UserInfo, var image_array: List<ImageEntity>)
+data class NewsListBean(var content: ContentBean, var author: UserInfoResponse, var image_array: List<ImageEntity>)
 
 data class ContentBean(var id: Int, //文章id,点赞,收藏使用此id
                        var createDateTime: Long,

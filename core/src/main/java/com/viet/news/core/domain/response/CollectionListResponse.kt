@@ -1,15 +1,13 @@
 package com.viet.news.core.domain.response
 
 import com.google.gson.annotations.SerializedName
-import com.viet.news.core.api.HttpResponse
+import java.io.Serializable
 
-class CollectionListResponse : HttpResponse<CollectionArticleList>()
+class CollectionListResponse(var total_count: String?,
+                             var total_pages: String?,
+                             var list: List<CollectionListBean>) : Serializable
 
-data class CollectionArticleList(var total_count: String?,
-                                 var total_pages: String?,
-                                 var list: List<CollectionListBean>)
-
-data class CollectionListBean(var content: CollectionBean,var author: UserInfo, var image_array: List<CollectionImageEntity>)
+data class CollectionListBean(var content: CollectionBean,var author: UserInfoResponse, var image_array: List<CollectionImageEntity>)
 
 data class CollectionBean(var id: Int,
                           var createDateTime: Long,
