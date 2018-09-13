@@ -6,9 +6,11 @@ import android.support.v4.content.ContextCompat
 import android.support.v7.widget.DividerItemDecoration
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.OrientationHelper
+import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import cn.magicwindow.core.ui.ItemClickSupport
 import com.viet.follow.R
 import com.viet.follow.adapter.FunsAndFollowAdapter
 import com.viet.follow.viewmodel.FansAndFollowViewModel
@@ -47,6 +49,16 @@ class FollowTabFragment : InjectFragment() {
         refreshLayout.setOnRefreshListener { initData(false) }
         refreshLayout.setOnLoadMoreListener { initData(true) }
         multiStatusView.setLoadingButtonClickListener(View.OnClickListener { refreshLayout.autoRefresh() })
+        ItemClickSupport.addTo(recyclerView).addOnChildClickListener(R.id.btn_follow, listener)
+    }
+
+    private val listener = object : ItemClickSupport.OnChildClickListener {
+        override fun onChildClicked(recyclerView: RecyclerView, position: Int, v: View) {
+            model.follow(this@FollowTabFragment,adapter.getData()[position].id) {
+                adapter.getData()[position].follow_flag = true
+                adapter.notifyItemChanged(position)
+            }
+        }
     }
 
     private fun initData(loadMore: Boolean) {

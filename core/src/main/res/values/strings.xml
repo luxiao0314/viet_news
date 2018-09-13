@@ -29,6 +29,7 @@
     <string name="fans">fans</string>
     <string name="follow">follow</string>
     <string name="add_follow">+ follow</string>
+    <string name="follow_each_other">follow each other</string>
     <string name="edit">edit</string>
     <string name="my_wallet">My Wallet</string>
     <string name="invite_friends">Invite Friend</string>
