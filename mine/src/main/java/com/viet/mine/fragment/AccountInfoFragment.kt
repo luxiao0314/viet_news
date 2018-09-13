@@ -79,22 +79,6 @@ class AccountInfoFragment : BaseFragment() {
                         }
 //                        dialogFragment?.dismissAllowingStateLoss()
                     }
-//                    model.uploadFile()
-//                            .bindLifecycle(this)
-//                            .subscribe({
-//                                if (it.isOkStatus) {
-//                                    User.currentUser.avatarUrl = model.selectList[0].compressPath
-//                                    iv_user_icon.loadCircle(User.currentUser.avatarUrl)
-//                                    // 将头像添加到缓存
-////                                    Settings.setAvatarUrl(User.currentUser.avatarUrl)
-//                                    Settings.create().avatar = User.currentUser.avatarUrl
-//                                }
-////                                dialogFragment?.dismissAllowingStateLoss()
-//                            }
-//                                    , {
-//                                it.printStackTrace()
-////                                dialogFragment?.dismissAllowingStateLoss()
-//                            })
                 }
             }
         }
