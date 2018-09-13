@@ -67,7 +67,7 @@ class FeedBackFragment : BaseFragment() {
 
         //注册按钮能否点击更新
         model.submitEnable.observe(this, Observer { confirm_btn.isEnabled = it != null && it })
-        model.count.observe(this, Observer { tv_count.text = if (it!!.toInt() > 300) "300/300" else "${it.toString()}/300" })
+        model.count.observe(this, Observer { tv_count.text = if (it!!.toInt() > 300) "300/300" else "$it/300" })
 //        SoftKeyInputVisibleUtils().registerFragment(this) { keyboardVisible ->
 //            if (edit_content.hasFocus()) {//焦点在描述输入框上
 //                if (keyboardVisible) {//键盘已经弹出

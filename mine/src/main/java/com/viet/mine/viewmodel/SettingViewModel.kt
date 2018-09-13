@@ -12,25 +12,13 @@ class SettingViewModel(var repository: MineRepository = MineRepository()) : Base
     var submitEnable: MutableLiveData<Boolean> = MutableLiveData()   //提交按钮是否可用
     var count: MutableLiveData<Int> = MutableLiveData()   //剩余字数
 
-    var nickName: MutableLiveData<String> = MutableLiveData()    //提交昵称
-
     fun checkFeedBackSubmitBtnEnable() {
         submitEnable.value = feedback.value != null && feedback.value!!.isNotEmpty()
     }
 
-    fun checkNickNameSubmitBtnEnable() {
-        submitEnable.value = nickName.value != null && nickName.value!!.isNotEmpty()
-    }
 
     fun feedBackSubmitEnable(): Boolean = when {
         feedback.value == null || feedback.value.isNullOrBlank() -> {
-            false
-        }
-        else -> true
-    }
-
-    fun nickNameSubmitEnable(): Boolean = when {
-        nickName.value == null || nickName.value.isNullOrBlank() -> {
             false
         }
         else -> true
@@ -49,22 +37,6 @@ class SettingViewModel(var repository: MineRepository = MineRepository()) : Base
         })
     }
 
-    //修改昵称
-    fun updateNickName(owner: LifecycleOwner, nickname: String, finish: (isSuccess: Boolean) -> Unit) {
-        return repository.updateNickName(nickname).observe(owner, Observer {
-            when (it?.status) {
-                Status.SUCCESS -> finish(true)
-                Status.ERROR -> finish(false)
-                else -> {
-                    // TODO: 正在加载
-                }
-            }
-        })
-    }
 
-    //收藏列表
-    fun getCollectionList(owner: LifecycleOwner, nickname: String, finish: (isSuccess: Boolean) -> Unit){
-
-    }
 
 }
