@@ -55,7 +55,7 @@ class FindFragment : InjectFragment(), AddChannelFragment.DataChangeListener {
     }
 
     private fun initData() {
-        model.getChannelAllList(this) {}
+        model.getChannelAllList(this)
         model.getChannelList(this) {
             id_tab_pager_indicator.setDataList(model.normalList)
             pagerAdapter.setData(model.normalList)
