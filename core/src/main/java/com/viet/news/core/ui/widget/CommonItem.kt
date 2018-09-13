@@ -23,6 +23,8 @@ class CommonItem @JvmOverloads constructor(context: Context, attrs: AttributeSet
     init {
         View.inflate(context, R.layout.core_item, this)
         initAttrs(context, attrs)
+        //dsl以后扩展用
+//        setListener()
     }
 
     private fun initAttrs(context: Context, attrs: AttributeSet?) {
