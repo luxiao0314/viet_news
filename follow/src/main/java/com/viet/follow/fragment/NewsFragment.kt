@@ -46,6 +46,7 @@ class NewsFragment : RealVisibleHintBaseFragment(), HasSupportFragmentInjector {
     internal lateinit var adapter: NewsAdapter
     private val model: FindViewModel by viewModelDelegate(FindViewModel::class)
     var id: String? = ""
+    var page_number = 0
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_news, container, false)
@@ -92,11 +93,11 @@ class NewsFragment : RealVisibleHintBaseFragment(), HasSupportFragmentInjector {
 
     private fun initData(loadMore: Boolean) {
         if (loadMore) {
-            model.page_number += 1
+            page_number += 1
         } else {
-            model.page_number = 1
+            page_number = 1
         }
-        model.getlist4Channel(id)
+        model.getlist4Channel(id,page_number)
                 .observe(this, Observer {
                     it?.data?.isOkStatus?.then({
                         model.newsList = it.data?.data?.list as ArrayList<NewsListBean>
@@ -113,7 +114,8 @@ class NewsFragment : RealVisibleHintBaseFragment(), HasSupportFragmentInjector {
                                 multiStatusView.showEmpty()
                                 refreshLayout.setEnableLoadMore(false)
                             }
-                            adapter.setData(it.data?.data?.list)
+                            recyclerView.scrollToPosition(0)
+                            adapter.addData(0, it.data?.data?.list as ArrayList<NewsListBean>)
                             refreshLayout.setNoMoreData(false)
                             refreshLayout.finishRefresh()
                         }
@@ -133,9 +135,9 @@ class NewsFragment : RealVisibleHintBaseFragment(), HasSupportFragmentInjector {
         override fun onHeaderFinish(header: RefreshHeader?, success: Boolean) {
             header as ClassicsHeader
             if (model.newsList.isEmpty()) {
-                header.findViewById<TextView>(InternalClassics.ID_TEXT_TITLE.toInt()).text = "暂无更新内容"
+                header.findViewById<TextView>(InternalClassics.ID_TEXT_TITLE.toInt()).text = getString(R.string.no_updates_are_available)
             } else {
-                header.findViewById<TextView>(InternalClassics.ID_TEXT_TITLE.toInt()).text = "已更新2篇文章"
+                header.findViewById<TextView>(InternalClassics.ID_TEXT_TITLE.toInt()).text = String.format(getString(R.string.updates_s_article), model.newsList.size)
             }
             header.setPrimaryColor(resources.getColor(R.color.red_hint))
             header.setAccentColor(resources.getColor(R.color.white))

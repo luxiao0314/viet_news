@@ -1,6 +1,7 @@
 package com.viet.news.core.ui
 
 import android.content.Context
+import android.support.annotation.IntRange
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
@@ -24,31 +25,54 @@ abstract class BaseAdapter<T> : RecyclerView.Adapter<BaseAdapter.BaseViewHolder>
     fun getData(): MutableList<T> = list
 
     //增加一列数据
-    fun addData(data: List<T>?) {
-        if (data == null || data.isEmpty()) {
-            return
-        }
-        list.addAll(data)
-        notifyDataSetChanged()
+    fun addData(newData: List<T>?) {
+        if (newData == null || newData.isEmpty()) return
+        list.addAll(newData)
+        notifyItemRangeInserted(list.size - newData.size, newData.size)
+        compatibilityDataSizeChanged(newData.size)
+    }
+
+    //根据position插入集合
+    fun addData(@IntRange(from = 0) position: Int, newData: Collection<T>) {
+        if (newData == null || newData.isEmpty()) return
+        list.addAll(position, newData)
+        notifyItemRangeInserted(position, newData.size)
+        compatibilityDataSizeChanged(newData.size)
+    }
+
+    fun addData(@IntRange(from = 0) position: Int, newData: List<T>) {
+        if (newData == null || newData.isEmpty()) return
+        list.addAll(position, newData)
+        compatibilityDataSizeChanged(newData.size)
     }
 
     //增加一条数据
     fun addData(data: T?) {
-        if (data == null) {
-            return
-        }
+        if (data == null) return
         list.add(data)
-        notifyDataSetChanged()
+        notifyItemInserted(list.size)
+        compatibilityDataSizeChanged(1)
     }
 
     //下拉刷新使用,如果null，需要清除list
     fun setData(data: List<T>?) {
         list.clear()
-        if (data == null || data.isEmpty()) {
-            return
-        }
+        if (data == null || data.isEmpty()) return
         list.addAll(data)
         notifyDataSetChanged()
+    }
+
+    //根据position插入item
+    fun setData(@IntRange(from = 0) index: Int, data: T) {
+        list[index] = data
+        notifyItemChanged(index)
+    }
+
+    private fun compatibilityDataSizeChanged(size: Int) {
+        val dataSize =  list.size
+        if (dataSize == size) {
+            notifyDataSetChanged()
+        }
     }
 
     fun setCheckBoxVisibility(visibility: Boolean) {

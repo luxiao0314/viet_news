@@ -27,14 +27,13 @@ class FindViewModel(var repository: FindRepository = FindRepository()) : BaseVie
     var followList = arrayListOf<ChannelBean>()
     var unFollowList = arrayListOf<ChannelBean>()
     var newsList = arrayListOf<NewsListBean>()
-    var page_number = 0
     var id: String? = "1"
 
-    fun getlist4Channel(id: String?): LiveData<Resource<HttpResponse<NewsListResponse>>> {
+    fun getlist4Channel(id: String?, page_number: Int): LiveData<Resource<HttpResponse<NewsListResponse>>> {
         return repository.getlist4Channel(page_number, id)
     }
 
-    fun getlist4Follow(): LiveData<Resource<HttpResponse<NewsListResponse>>> {
+    fun getlist4Follow(page_number: Int): LiveData<Resource<HttpResponse<NewsListResponse>>> {
         return repository.getlist4Follow(page_number, id)
     }
 

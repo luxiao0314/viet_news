@@ -109,4 +109,6 @@
     <string name="login_with_facebook">Facebook登录</string>
     <string name="logout">退出</string>
     <string name="sending_code_s">已发送%s秒</string>
+    <string name="no_updates_are_available">暂无更新内容</string>
+    <string name="updates_s_article">已更新%s篇文章</string>
 </resources>

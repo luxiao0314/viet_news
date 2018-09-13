@@ -36,6 +36,7 @@ class FollowFragment : RealVisibleHintBaseFragment(), HasSupportFragmentInjector
     @Inject
     internal lateinit var adapter: NewsAdapter
     private val model by viewModelDelegate(FindViewModel::class)
+    var page_number = 0
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         return inflater.inflate(R.layout.fragment_follow, container, false)
@@ -62,11 +63,11 @@ class FollowFragment : RealVisibleHintBaseFragment(), HasSupportFragmentInjector
 
     private fun initData(loadMore: Boolean) {
         if (loadMore) {
-            model.page_number += 1
+            page_number += 1
         } else {
-            model.page_number = 1
+            page_number = 1
         }
-        model.getlist4Follow()
+        model.getlist4Follow(page_number)
                 .observe(this, Observer {
                     it?.data?.isOkStatus?.then({
                         multiStatusView.showContent()
