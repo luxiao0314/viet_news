@@ -41,7 +41,7 @@ object Config {
     const val login_userProtocol = "login_userProtocol"
 
     // Router Interceptor
-    const val LOGIN_INTERCEPTOR = "LoginInterceptor"
+    const val LOGIN_INTERCEPTOR = "RouterLoginInterceptor"
     // Router URI
     const val ROUTER_LOGIN_ACTIVITY = "/login/activity"
     const val ROUTER_MAIN_ACTIVITY = "/main/activity"
