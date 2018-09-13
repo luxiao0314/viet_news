@@ -9,6 +9,7 @@ import com.viet.news.core.config.ContentType
 import com.viet.news.core.domain.request.FeedBackParams
 import com.viet.news.core.domain.request.ListParams
 import com.viet.news.core.domain.response.CollectionListResponse
+import com.viet.news.core.domain.response.UserInfoResponse
 import com.viet.news.core.repository.NetworkOnlyResource
 import com.viet.news.core.vo.Resource
 
@@ -51,4 +52,13 @@ class MineRepository : ApiRepository() {
             }
         }.asLiveData()
     }
+
+    fun getUserInfo(userId: String?): LiveData<Resource<HttpResponse<UserInfoResponse>>> {
+        return object : NetworkOnlyResource<HttpResponse<UserInfoResponse>>() {
+            override fun createCall(): LiveData<ApiResponse<HttpResponse<UserInfoResponse>>> {
+                return apiInterface.getUserInfo(userId)
+            }
+        }.asLiveData()
+    }
+
 }

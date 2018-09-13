@@ -45,6 +45,7 @@ class AccountInfoFragment : BaseFragment() {
         return mContainerView
     }
 
+
     override fun initView(view: View) {
         iv_user_icon.loadCircle(User.currentUser.avatarUrl)
         ll_update_avatar.clickWithTrigger { updateHeader(model.selectList) }
@@ -52,9 +53,28 @@ class AccountInfoFragment : BaseFragment() {
         val changeNameItem = view.findViewById<CommonItem>(R.id.item_change_name)
         val changePhoneNumItem = view.findViewById<CommonItem>(R.id.item_change_phone_num)
         val resetPwdItem = view.findViewById<CommonItem>(R.id.item_reset_pwd)
-        changeNameItem.clickWithTrigger {  openPage(this@AccountInfoFragment, Config.ROUTER_MINE_EDIT_CHANGE_NICKNAME_FRAGMENT, R.id.container_framelayout) }
+        val magicBoxItem = view.findViewById<CommonItem>(R.id.item_magicbox)
+        changeNameItem.clickWithTrigger { openPage(this@AccountInfoFragment, Config.ROUTER_MINE_EDIT_CHANGE_NICKNAME_FRAGMENT, R.id.container_framelayout) }
         changePhoneNumItem.clickWithTrigger { openPage(this@AccountInfoFragment, Config.ROUTER_MINE_EDIT_CHANGE_PHONE_FRAGMENT, R.id.container_framelayout) }
         resetPwdItem.clickWithTrigger { openPage(this@AccountInfoFragment, Config.ROUTER_MINE_EDIT_CHANGE_PWD_FRAGMENT, R.id.container_framelayout) }
+        if (User.currentUser.isLogin()) {
+            model.getUserInfo(Settings.create(context!!).userId, activity!!) {
+                if (it!!.is_bind) {
+                    changePhoneNumItem.setRightText("已绑定")
+                } else {
+                    changePhoneNumItem.setRightText("未绑定")
+                }
+
+                if (it.is_set_password) {
+                    resetPwdItem.setRightText("已设置")
+                } else {
+                    resetPwdItem.setRightText("未设置")
+                }
+
+                magicBoxItem.setRightText(it.invite_code.toString())
+
+            }
+        }
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

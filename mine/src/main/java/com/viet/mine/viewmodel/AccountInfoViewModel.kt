@@ -9,7 +9,9 @@ import com.viet.mine.R
 import com.viet.mine.repository.MineRepository
 import com.viet.news.core.ext.toast
 import com.viet.news.core.ui.App
+import com.viet.news.core.domain.response.UserInfoResponse
 import com.viet.news.core.viewmodel.BaseViewModel
+import com.viet.news.core.vo.Status
 
 class AccountInfoViewModel(var repository: MineRepository = MineRepository()) : BaseViewModel() {
     var selectList = ArrayList<LocalMedia>()
@@ -52,6 +54,16 @@ class AccountInfoViewModel(var repository: MineRepository = MineRepository()) : 
                 finish(false)
                 toast(App.instance.resources.getString(R.string.error_msg)).show()
             })
+        })
+    }
+
+    fun getUserInfo(userId: String, owner: LifecycleOwner, function: (user: UserInfoResponse?) -> Unit) {
+        repository.getUserInfo(userId).observe(owner, Observer {
+            if (it?.status == Status.SUCCESS) {
+                function(it.data?.data)
+            } else if (it?.status == Status.ERROR) {
+                toast(App.instance.resources.getString(R.string.error_msg)).show()
+            }
         })
     }
 }
