@@ -3,6 +3,7 @@ package com.viet.follow.viewmodel
 import android.arch.lifecycle.LifecycleOwner
 import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.Observer
+import com.safframework.ext.then
 import com.viet.follow.R
 import com.viet.follow.repository.PersonalPageRepository
 import com.viet.news.core.domain.response.NewsListResponse
@@ -11,7 +12,6 @@ import com.viet.news.core.ext.toast
 import com.viet.news.core.ui.App
 import com.viet.news.core.viewmodel.BaseViewModel
 import com.viet.news.core.vo.Resource
-import com.viet.news.core.vo.Status
 
 /**
  * @Description
@@ -31,23 +31,21 @@ class PersonalPageModel(var repository: PersonalPageRepository = PersonalPageRep
 
     fun getUserInfo(owner: LifecycleOwner, function: (user: UserInfo?) -> Unit) {
         repository.getUserInfo(userId).observe(owner, Observer {
-            if (it?.status == Status.SUCCESS) {
+            it?.data?.isOkStatus?.then({
                 function(it.data?.data)
-            } else if (it?.status == Status.ERROR) {
+            }, {
                 toast(App.instance.resources.getString(R.string.error_msg)).show()
-            }
+            })
         })
     }
 
     fun follow(owner: LifecycleOwner, function: () -> Unit) {
         repository.follow(userId).observe(owner, Observer {
-            if (it?.status == Status.SUCCESS) {
+            it?.data?.isOkStatus?.then({
                 function()
-            } else if (it?.status == Status.ERROR) {
+            }, {
                 toast(App.instance.resources.getString(R.string.error_msg)).show()
-            }
+            })
         })
     }
-
-
 }

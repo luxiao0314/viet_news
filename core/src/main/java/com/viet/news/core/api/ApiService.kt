@@ -84,10 +84,10 @@ interface ApiService {
     fun updateNickName(@Path("nick_name") nick_name: String): LiveData<ApiResponse<Any>>
 
     @GET("v1/content/like/{contentId}")
-    fun like(@Path("contentId") contentId: String): LiveData<ApiResponse<Any>>
+    fun like(@Path("contentId") contentId: String): LiveData<ApiResponse<HttpResponse<Any>>>
 
     @GET("v1/user/follow/{followUserId}")
-    fun follow(@Path("followUserId") followUserId: String?): LiveData<ApiResponse<Any>>
+    fun follow(@Path("followUserId") followUserId: String?): LiveData<ApiResponse<HttpResponse<Any>>>
 
     @POST("v1/user/followList")
     fun followList(@Body param: ListParams): LiveData<ApiResponse<UserInfoListResponse>>

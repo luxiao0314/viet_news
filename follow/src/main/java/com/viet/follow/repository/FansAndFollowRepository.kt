@@ -3,6 +3,7 @@ package com.viet.follow.repository
 import android.arch.lifecycle.LiveData
 import com.viet.news.core.api.ApiRepository
 import com.viet.news.core.api.ApiResponse
+import com.viet.news.core.api.HttpResponse
 import com.viet.news.core.config.Config
 import com.viet.news.core.domain.request.ListParams
 import com.viet.news.core.domain.response.UserInfoListResponse
@@ -38,6 +39,14 @@ class FansAndFollowRepository : ApiRepository() {
         return object : NetworkOnlyResource<UserInfoListResponse>() {
             override fun createCall(): LiveData<ApiResponse<UserInfoListResponse>> {
                 return apiInterface.fansList(params)
+            }
+        }.asLiveData()
+    }
+
+    fun follow(followUserId: String?): LiveData<Resource<HttpResponse<Any>>> {
+        return object : NetworkOnlyResource<HttpResponse<Any>>() {
+            override fun createCall(): LiveData<ApiResponse<HttpResponse<Any>>> {
+                return apiInterface.follow(followUserId)
             }
         }.asLiveData()
     }

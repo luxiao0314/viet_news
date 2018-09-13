@@ -55,6 +55,9 @@
     <string name="fans">粉丝</string>
     <string name="follow">关注</string>
     <string name="add_follow">+ 关注</string>
+    <string name="funs">粉丝</string>
+    <string name="has_follow">已关注</string>
+    <string name="follow_each_other">互相关注</string>
     <string name="edit">编辑</string>
     <string name="my_wallet">我的钱包</string>
     <string name="invite_friends">邀请好友</string>
@@ -100,8 +103,6 @@
     <string name="feedback_des">请写下您的意见或反馈，谢谢！</string>
 
     <!--个人主页-->
-    <string name="funs">粉丝</string>
-    <string name="has_follow">已关注</string>
     <string name="refreshing">正在加载内容</string>
 
 
