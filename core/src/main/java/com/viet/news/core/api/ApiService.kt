@@ -22,10 +22,10 @@ interface ApiService {
      * 频道文章列表相关
      */
     @GET("v1/channel/add/{channelId}")
-    fun channelAdd(@Path("channelId") channelId: String?): LiveData<ApiResponse<Any>>
+    fun channelAdd(@Path("channelId") channelId: String?): LiveData<ApiResponse<HttpResponse<Any>>>
 
     @GET("v1/channel/remove/{channelId}")
-    fun channelRemove(@Path("channelId") channelId: String?): LiveData<ApiResponse<Any>>
+    fun channelRemove(@Path("channelId") channelId: String?): LiveData<ApiResponse<HttpResponse<Any>>>
 
     @POST("v1/channel/allList")
     fun getChannelAllList(): LiveData<ApiResponse<ChannelAllListResponse>>
@@ -78,7 +78,7 @@ interface ApiService {
     fun feedback(@Body param: FeedBackParams): LiveData<ApiResponse<Any>>
 
     @GET("v1/content/collection/{contentId}")
-    fun collection(@Path("contentId") contentId: String): LiveData<ApiResponse<Any>>
+    fun collection(@Path("contentId") contentId: String): LiveData<ApiResponse<HttpResponse<Any>>>
 
     @GET("v1/user/updateNickName/{nick_name}")
     fun updateNickName(@Path("nick_name") nick_name: String): LiveData<ApiResponse<Any>>

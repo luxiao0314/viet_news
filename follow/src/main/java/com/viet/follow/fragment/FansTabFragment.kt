@@ -11,12 +11,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import cn.magicwindow.core.ui.ItemClickSupport
+import com.safframework.ext.then
 import com.viet.follow.R
 import com.viet.follow.adapter.FunsAndFollowAdapter
 import com.viet.follow.viewmodel.FansAndFollowViewModel
 import com.viet.news.core.delegate.viewModelDelegate
 import com.viet.news.core.ui.InjectFragment
-import com.viet.news.core.vo.Status
 import kotlinx.android.synthetic.main.fragment_fans_tab.*
 import javax.inject.Inject
 
@@ -70,37 +70,32 @@ class FansTabFragment : InjectFragment() {
         }
         model.fansList(page_number)
                 .observe(this, Observer {
-                    when (it?.status) {
-                        Status.SUCCESS -> {
-                            multiStatusView.showContent()
-                            if (loadMore) {
-                                if (it.data?.data?.list == null || it.data?.data?.list!!.isEmpty()) {
-                                    refreshLayout.finishLoadMoreWithNoMoreData()
-                                } else {
-                                    refreshLayout.finishLoadMore()
-                                    adapter.addData(it.data?.data?.list)
-                                }
+                    it?.data?.isOkStatus?.then({
+                        multiStatusView.showContent()
+                        if (loadMore) {
+                            if (it.data?.data?.list == null || it.data?.data?.list!!.isEmpty()) {
+                                refreshLayout.finishLoadMoreWithNoMoreData()
                             } else {
-                                if (it.data?.data?.list == null || it.data?.data?.list!!.isEmpty()) {
-                                    multiStatusView.showEmpty()
-                                    refreshLayout.setEnableLoadMore(false)
-                                }
-                                adapter.setData(it.data?.data?.list)
-                                refreshLayout.setNoMoreData(false)
-                                refreshLayout.finishRefresh()
+                                refreshLayout.finishLoadMore()
+                                adapter.addData(it.data?.data?.list)
                             }
-                        }
-                        Status.ERROR -> {
-                            multiStatusView.showError()
-                            if (loadMore) {
-                                refreshLayout.finishLoadMore(false)//传入false表示加载失败
-                            } else {
-                                refreshLayout.finishRefresh(false)
+                        } else {
+                            if (it.data?.data?.list == null || it.data?.data?.list!!.isEmpty()) {
+                                multiStatusView.showEmpty()
+                                refreshLayout.setEnableLoadMore(false)
                             }
+                            adapter.setData(it.data?.data?.list)
+                            refreshLayout.setNoMoreData(false)
+                            refreshLayout.finishRefresh()
                         }
-                        else -> {
+                    }, {
+                        multiStatusView.showError()
+                        if (loadMore) {
+                            refreshLayout.finishLoadMore(false)//传入false表示加载失败
+                        } else {
+                            refreshLayout.finishRefresh(false)
                         }
-                    }
+                    })
                 })
     }
 }

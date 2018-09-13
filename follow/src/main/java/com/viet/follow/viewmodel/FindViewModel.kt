@@ -4,9 +4,13 @@ import android.arch.lifecycle.LifecycleOwner
 import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.Observer
 import cn.magicwindow.channelwidget.entity.ChannelBean
+import com.safframework.ext.then
+import com.viet.follow.R
 import com.viet.follow.repository.FindRepository
 import com.viet.news.core.domain.response.NewsListBean
 import com.viet.news.core.domain.response.NewsListResponse
+import com.viet.news.core.ext.toast
+import com.viet.news.core.ui.App
 import com.viet.news.core.viewmodel.BaseViewModel
 import com.viet.news.core.vo.Resource
 import com.viet.news.core.vo.Status
@@ -26,7 +30,7 @@ class FindViewModel(var repository: FindRepository = FindRepository()) : BaseVie
     var page_number = 0
     var id: String? = "1"
 
-    fun getlist4Channel(id:String?): LiveData<Resource<NewsListResponse>> {
+    fun getlist4Channel(id: String?): LiveData<Resource<NewsListResponse>> {
         return repository.getlist4Channel(page_number, id)
     }
 
@@ -71,9 +75,11 @@ class FindViewModel(var repository: FindRepository = FindRepository()) : BaseVie
 
     fun channelRemove(owner: LifecycleOwner, list: List<ChannelBean>, position: Int, function: () -> Unit) {
         repository.channelRemove(list[position].id).observe(owner, Observer {
-            if (it?.data != null) {
+            it?.data?.isOkStatus?.then({
                 function()
-            }
+            }, {
+                toast(App.instance.resources.getString(R.string.error_msg)).show()
+            })
         })
     }
 
@@ -82,17 +88,21 @@ class FindViewModel(var repository: FindRepository = FindRepository()) : BaseVie
      */
     fun like(owner: LifecycleOwner, contentId: String, function: () -> Unit) {
         repository.like(contentId).observe(owner, Observer {
-            if (it?.data != null) {
+            it?.data?.isOkStatus?.then({
                 function()
-            }
+            }, {
+                toast(App.instance.resources.getString(R.string.error_msg)).show()
+            })
         })
     }
 
     fun collection(owner: LifecycleOwner, contentId: String, function: () -> Unit) {
         repository.favorite(contentId).observe(owner, Observer {
-            if (it?.data != null) {
+            it?.data?.isOkStatus?.then({
                 function()
-            }
+            }, {
+                toast(App.instance.resources.getString(R.string.error_msg)).show()
+            })
         })
     }
 }

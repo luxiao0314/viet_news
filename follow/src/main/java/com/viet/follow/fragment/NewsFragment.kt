@@ -12,6 +12,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import com.safframework.ext.then
 import com.scwang.smartrefresh.layout.api.RefreshHeader
 import com.scwang.smartrefresh.layout.header.ClassicsHeader
 import com.scwang.smartrefresh.layout.internal.InternalClassics
@@ -25,7 +26,6 @@ import com.viet.news.core.domain.RefreshNewsEvent
 import com.viet.news.core.domain.response.NewsListBean
 import com.viet.news.core.ui.RealVisibleHintBaseFragment
 import com.viet.news.core.utils.RxBus
-import com.viet.news.core.vo.Status
 import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.support.AndroidSupportInjection
@@ -98,38 +98,33 @@ class NewsFragment : RealVisibleHintBaseFragment(), HasSupportFragmentInjector {
         }
         model.getlist4Channel(id)
                 .observe(this, Observer {
-                    when (it?.status) {
-                        Status.SUCCESS -> {
-                            model.newsList = it.data?.data?.list as ArrayList<NewsListBean>
-                            multiStatusView.showContent()
-                            if (loadMore) {
-                                if (it.data?.data?.list == null || it.data?.data?.list!!.isEmpty()) {
-                                    refreshLayout.finishLoadMoreWithNoMoreData()
-                                } else {
-                                    refreshLayout.finishLoadMore()
-                                    adapter.addData(it.data?.data?.list)
-                                }
+                    it?.data?.isOkStatus?.then({
+                        model.newsList = it.data?.data?.list as ArrayList<NewsListBean>
+                        multiStatusView.showContent()
+                        if (loadMore) {
+                            if (it.data?.data?.list == null || it.data?.data?.list!!.isEmpty()) {
+                                refreshLayout.finishLoadMoreWithNoMoreData()
                             } else {
-                                if (it.data?.data?.list == null || it.data?.data?.list!!.isEmpty()) {
-                                    multiStatusView.showEmpty()
-                                    refreshLayout.setEnableLoadMore(false)
-                                }
-                                adapter.setData(it.data?.data?.list)
-                                refreshLayout.setNoMoreData(false)
-                                refreshLayout.finishRefresh()
+                                refreshLayout.finishLoadMore()
+                                adapter.addData(it.data?.data?.list)
                             }
-                        }
-                        Status.ERROR -> {
-                            multiStatusView.showError()
-                            if (loadMore) {
-                                refreshLayout.finishLoadMore(false)//传入false表示加载失败
-                            } else {
-                                refreshLayout.finishRefresh(false)
+                        } else {
+                            if (it.data?.data?.list == null || it.data?.data?.list!!.isEmpty()) {
+                                multiStatusView.showEmpty()
+                                refreshLayout.setEnableLoadMore(false)
                             }
+                            adapter.setData(it.data?.data?.list)
+                            refreshLayout.setNoMoreData(false)
+                            refreshLayout.finishRefresh()
                         }
-                        else -> {
+                    }, {
+                        multiStatusView.showError()
+                        if (loadMore) {
+                            refreshLayout.finishLoadMore(false)//传入false表示加载失败
+                        } else {
+                            refreshLayout.finishRefresh(false)
                         }
-                    }
+                    })
                 })
     }
 

@@ -4,6 +4,7 @@ import android.arch.lifecycle.LifecycleOwner
 import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.Observer
+import com.safframework.ext.then
 import com.viet.follow.R
 import com.viet.follow.fragment.FansTabFragment
 import com.viet.follow.fragment.FollowTabFragment
@@ -14,7 +15,6 @@ import com.viet.news.core.ui.App
 import com.viet.news.core.ui.BaseFragment
 import com.viet.news.core.viewmodel.BaseViewModel
 import com.viet.news.core.vo.Resource
-import com.viet.news.core.vo.Status
 
 /**
  * @Description
@@ -38,13 +38,13 @@ class FansAndFollowViewModel(var repository: FansAndFollowRepository = FansAndFo
         return repository.fansList(page_number, userId)
     }
 
-    fun follow(owner: LifecycleOwner, userId: String?, function: () -> Unit) {
+    fun follow(owner: LifecycleOwner, userId: String?,function: () -> Unit) {
         repository.follow(userId).observe(owner, Observer {
-            if (it?.status == Status.SUCCESS) {
+            it?.data?.isOkStatus?.then({
                 function()
-            } else if (it?.status == Status.ERROR) {
+            }, {
                 toast(App.instance.resources.getString(R.string.error_msg)).show()
-            }
+            })
         })
     }
 }
