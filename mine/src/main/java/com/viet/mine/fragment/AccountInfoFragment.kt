@@ -19,7 +19,9 @@ import com.viet.news.core.domain.RefreshUserInfoEvent
 import com.viet.news.core.domain.Settings
 import com.viet.news.core.domain.User
 import com.viet.news.core.ext.clickWithTrigger
+import com.viet.news.core.ext.finishWithAnim
 import com.viet.news.core.ext.loadCircle
+import com.viet.news.core.ui.BaseActivity
 import com.viet.news.core.ui.BaseFragment
 import com.viet.news.core.ui.widget.CommonItem
 import com.viet.news.core.utils.RxBus
@@ -77,6 +79,7 @@ class AccountInfoFragment : BaseFragment() {
         title_bar.setDelegate {
             onClickLeft = {
                 RxBus.get().post(RefreshUserInfoEvent())
+                (activity as BaseActivity).finishWithAnim()
             }
         }
     }
