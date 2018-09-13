@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/swipe"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="108dp">
 
     <TextView
         android:id="@+id/tv_delete"
@@ -20,32 +20,40 @@
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="120dp"
-        android:padding="15dp">
+        android:layout_height="108dp">
 
 
         <ImageView
             android:id="@+id/iv_pic"
             android:layout_width="120dp"
             android:layout_height="75dp"
-            android:layout_marginTop="8dp"
             android:scaleType="centerCrop"
+            android:layout_marginLeft="@dimen/module_margin"
             android:src="@drawable/shape_default_rec_bg"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.5" />
 
         <TextView
             android:id="@+id/tv_des"
             style="@style/text.16.gray"
             android:layout_width="0dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginLeft="12dp"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="@dimen/module_margin"
+            android:layout_marginRight="@dimen/module_margin"
             android:ellipsize="end"
-            android:maxLines="4"
+            android:maxLines="3"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/iv_pic"
+            app:layout_constraintTop_toTopOf="@+id/iv_pic"
+            app:layout_constraintVertical_bias="0"
             tools:text=" 过去十年，中共铺设的高铁线路占去了全世界的2/3。 过去十年，中共铺设的高铁线路占去了全世界的2/3。已经成了世界上最大的高铁网络" />
 
     </android.support.constraint.ConstraintLayout>
+
 
 </com.viet.news.core.ui.widget.SwipeLayout>
