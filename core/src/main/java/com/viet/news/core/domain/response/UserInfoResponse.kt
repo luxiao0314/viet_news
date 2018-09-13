@@ -20,4 +20,6 @@ class UserInfoResponse : Serializable {
     var self_flag: Boolean = false
     var fans_count: Int = 0
     var follow_count: Int = 0
+    var is_bind: Boolean = false
+    var is_set_password: Boolean = false
 }
