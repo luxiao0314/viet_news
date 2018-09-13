@@ -39,20 +39,15 @@ class MineFragment : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initEvent()
-        initData()
     }
 
-    private fun initData() {
-        model.getUserInfo(User.currentUser.userId, this) {
-            iv_user_icon.loadCircle(it?.avatar)
-            tv_nickname.text = it?.nick_name
-            tv_fans_count.text = it?.fans_count.toString()
-            tv_follow_count.text = it?.follow_count.toString()
-            User.currentUser.userName = it?.nick_name.toString()
-            User.currentUser.avatarUrl = it?.avatar.toString()
-            User.currentUser.fansCount = it!!.fans_count
-            User.currentUser.followCount = it.follow_count
-        }
+    override fun initView(view: View) {
+        refresh()
+        edit.clickWithTrigger { routerWithAnim(Config.ROUTER_MINE_EDIT_INFO_ACTIVITY).go(this) }
+        mine_settings.clickWithTrigger { routerWithAnim(Config.ROUTER_MINE_SETTING_ACTIVITY).go(context) }
+        mine_collection.clickWithTrigger { routerWithAnim(Config.ROUTER_MINE_COLLECTION_ACTIVITY).go(context) }
+        mine_invite.clickWithTrigger { routerWithAnim(Config.ROUTER_MINE_INVITE_ACTIVITY).go(context) }
+        mine_wallet.clickWithTrigger { routerWithAnim(Config.ROUTER_MINE_WALLET_ACTIVITY).go(context) }
     }
 
     private fun initEvent() {
@@ -69,22 +64,15 @@ class MineFragment : BaseFragment() {
             edit.visibility = View.GONE
             btn_login.clickWithTrigger { routerWithAnim(Config.ROUTER_LOGIN_ACTIVITY).anim(R.anim.dialog_push_bottom_in, R.anim.dialog_push_bottom_out).go(this) }
         } else {
-            initData()
             btn_login.visibility = View.GONE
             iv_user_icon.visibility = View.VISIBLE
             rl_user.visibility = View.VISIBLE
             edit.visibility = View.VISIBLE
-            iv_user_icon.loadCircle("")
-        }
-    }
 
-    override fun initView(view: View) {
-        refresh()
-        iv_user_icon.clickWithTrigger { routerWithAnim(Config.ROUTER_PERSONAL_PAGE_ACTIVITY).go(this) }
-        edit.clickWithTrigger { routerWithAnim(Config.ROUTER_MINE_EDIT_INFO_ACTIVITY).go(this) }
-        mine_settings.clickWithTrigger { routerWithAnim(Config.ROUTER_MINE_SETTING_ACTIVITY).go(context) }
-        mine_collection.clickWithTrigger { routerWithAnim(Config.ROUTER_MINE_COLLECTION_ACTIVITY).go(context) }
-        mine_invite.clickWithTrigger { routerWithAnim(Config.ROUTER_MINE_INVITE_ACTIVITY).go(context) }
-        mine_wallet.clickWithTrigger { routerWithAnim(Config.ROUTER_MINE_WALLET_ACTIVITY).go(context) }
+            iv_user_icon.loadCircle(User.currentUser.avatarUrl)
+            tv_nickname.text = User.currentUser.userName
+            tv_fans_count.text =  User.currentUser.fansCount.toString()
+            tv_follow_count.text = User.currentUser.followCount.toString()
+        }
     }
 }

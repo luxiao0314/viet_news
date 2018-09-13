@@ -73,7 +73,7 @@ fun FragmentManager.fragmentTransaction(): FragmentTransaction {
  * 带Anim的结束finish
  * @receiver BaseActivity
  */
-fun BaseActivity.finishWithAnim() {
+fun BaseActivity.finishWithAnim(enterAnim: Int = R.anim.in_from_left, exitAnim: Int = R.anim.out_to_right) {
     finish()
-    overridePendingTransition(R.anim.in_from_left, R.anim.out_to_right)
+    overridePendingTransition(enterAnim, exitAnim)
 }

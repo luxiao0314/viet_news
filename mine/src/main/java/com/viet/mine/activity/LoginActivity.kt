@@ -14,6 +14,7 @@ import com.viet.news.core.config.Config
 import com.viet.news.core.delegate.viewModelDelegate
 import com.viet.news.core.dsl.addOnPageChangeListener
 import com.viet.news.core.ext.clickWithTrack
+import com.viet.news.core.ext.finishWithAnim
 import com.viet.news.core.ext.toast
 import com.viet.news.core.ui.InjectActivity
 import com.viet.news.core.ui.TabFragmentAdapter
@@ -70,9 +71,8 @@ class LoginActivity : InjectActivity() {
     private fun initListener() {
         //错误信息展示
         model.statusMsg.observe(this, Observer { it?.let { msg -> toast(msg).show() } })
-
-        iv_close.click { finish() }
         viewpager.addOnPageChangeListener { onPageSelected = { setTabText(it, model.currentTab) } }
+        iv_close.click { finishWithAnim(R.anim.dialog_push_top_out, R.anim.dialog_push_bottom_out) }
     }
 
     private fun setTabText(currentTab: Int, otherTab: Int) {

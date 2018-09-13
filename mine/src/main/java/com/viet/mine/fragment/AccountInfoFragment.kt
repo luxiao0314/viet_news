@@ -46,15 +46,7 @@ class AccountInfoFragment : BaseFragment() {
     }
 
     override fun initView(view: View) {
-        if (User.currentUser.isLogin()) {
-            if (!User.currentUser.avatarUrl.isNullOrBlank()) {
-                iv_user_icon.loadCircle(User.currentUser.avatarUrl)
-            } else {
-                iv_user_icon.loadCircle(R.drawable.shape_default_circle_bg)
-            }
-        } else {
-            iv_user_icon.loadCircle(R.drawable.shape_default_circle_bg)
-        }
+        iv_user_icon.loadCircle(User.currentUser.avatarUrl)
         ll_update_avatar.clickWithTrigger { updateHeader(model.selectList) }
 
         val changeNameItem = view.findViewById<CommonItem>(R.id.item_change_name)
