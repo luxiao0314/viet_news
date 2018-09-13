@@ -1,9 +1,10 @@
 package com.viet.news.di
 
-import com.viet.follow.activity.FunsAndFollowActivity
+import com.viet.follow.activity.FansAndFollowActivity
 import com.viet.follow.activity.PersonalPageActivity
 import com.viet.follow.fragment.FollowFragment
-import com.viet.follow.fragment.FunsAndFollowFragment
+import com.viet.follow.fragment.FollowTabFragment
+import com.viet.follow.fragment.FansTabFragment
 import com.viet.follow.fragment.NewsFragment
 import com.viet.mine.activity.*
 import com.viet.mine.fragment.AccountInAndOutFragment
@@ -36,7 +37,7 @@ abstract class BuildersModule {
 
     @ActivityScope
     @ContributesAndroidInjector(modules = [FunsAndFollowModule::class])
-    internal abstract fun bindFunsAndFollowActivity(): FunsAndFollowActivity
+    internal abstract fun bindFunsAndFollowActivity(): FansAndFollowActivity
 
     @ActivityScope
     @ContributesAndroidInjector()
@@ -80,8 +81,11 @@ abstract class BuildersModule {
 
     @FragmentScope
     @ContributesAndroidInjector()
-    internal abstract fun bindFunsAndFollowFragment(): FunsAndFollowFragment
+    internal abstract fun bindFollowTagFragment(): FollowTabFragment
 
+     @FragmentScope
+    @ContributesAndroidInjector()
+    internal abstract fun bindFunsTagFragment(): FansTabFragment
 
     @FragmentScope
     @ContributesAndroidInjector(modules = [AccountInAndOutFragmentModule::class])

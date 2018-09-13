@@ -4,7 +4,7 @@ import android.graphics.Typeface
 import android.os.Bundle
 import com.chenenyu.router.annotation.Route
 import com.viet.follow.R
-import com.viet.follow.viewmodel.FunsAndFollowViewModel
+import com.viet.follow.viewmodel.FansAndFollowViewModel
 import com.viet.news.core.config.Config
 import com.viet.news.core.delegate.viewModelDelegate
 import com.viet.news.core.dsl.addOnPageChangeListener
@@ -21,11 +21,11 @@ import javax.inject.Inject
  * @Version 1.0.0
  */
 @Route(Config.ROUTER_FUNS_AND_FOLLOW_ACTIVITY)
-class FunsAndFollowActivity : InjectActivity() {
+class FansAndFollowActivity : InjectActivity() {
 
     @Inject
     internal lateinit var adapter: TabFragmentAdapter
-    private val model by viewModelDelegate(FunsAndFollowViewModel::class)
+    private val model by viewModelDelegate(FansAndFollowViewModel::class)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState ?: Bundle())
@@ -34,13 +34,14 @@ class FunsAndFollowActivity : InjectActivity() {
     }
 
     private fun initView() {
+        model.userId = intent?.getStringExtra(Config.BUNDLE_USER_ID)
         adapter.setTitles(model.titles)
         adapter.setFragment(model.fragments)
         viewpager.adapter = adapter
         tablayout.setViewPager(viewpager)
         setTabText(0, 1)
 
-        viewpager.addOnPageChangeListener { onPageSelected = { setTabText(it, model.currentTab) } }
+        viewpager.addOnPageChangeListener { onPageSelected = { setTabText(it, model.currentTab.value!!) } }
     }
 
     private fun setTabText(currentTab: Int, otherTab: Int) {
@@ -48,6 +49,6 @@ class FunsAndFollowActivity : InjectActivity() {
         tablayout.getTitleView(otherTab).textSize = 15F
         tablayout.getTitleView(currentTab).typeface = Typeface.DEFAULT_BOLD
         tablayout.getTitleView(otherTab).typeface = Typeface.DEFAULT
-        model.currentTab = currentTab
+        model.currentTab.value = currentTab
     }
 }

@@ -111,6 +111,7 @@ class User private constructor() : Serializable {
         Settings.create().userName = ""
         Settings.create().avatar = ""
         Settings.create().userId = ""
+        Settings.create().roleId = ""
         Settings.create().fansCount = 0
         Settings.create().followCount = 0
 

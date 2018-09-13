@@ -18,7 +18,7 @@ class UserInfo {
     var nick_name: String? = ""
     var avatar: String? = ""
     var invite_code: String? = ""
-    var follow_flag: String? = ""
+    var follow_flag: Boolean = false
     var self_flag: String? = ""
     var fans_count: Int = 0
     var follow_count: Int = 0

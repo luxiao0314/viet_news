@@ -49,7 +49,7 @@ interface ApiService {
     @POST("v1/content/list4user")
     fun getlist4User(@Body param: ListParams): LiveData<ApiResponse<NewsListResponse>>
 
-    //查询指定用户发布的文章列表
+    //获取用户信息
     @GET("v1/user/info/{userId}")
     fun getUserInfo(@Path("userId") userId: String?): LiveData<ApiResponse<UserInfoResponse>>
 
@@ -89,6 +89,11 @@ interface ApiService {
     @GET("v1/user/follow/{followUserId}")
     fun follow(@Path("followUserId") followUserId: String?): LiveData<ApiResponse<Any>>
 
+    @POST("v1/user/followList")
+    fun followList(@Body param: ListParams): LiveData<ApiResponse<UserInfoListResponse>>
+
+    @POST("v1/user/fansList")
+    fun fansList(@Body param: ListParams): LiveData<ApiResponse<UserInfoListResponse>>
 
     //多参数上传+多图片上传
     @Multipart

@@ -56,8 +56,8 @@ class PersonalPageActivity : InjectActivity() {
             tv_coin.text = it?.follow_count.toString()
             tv_fans_num.text = it?.fans_count.toString()
             tv_follow_num.text = it?.follow_count.toString()
-            btn_follow.isEnabled = it?.follow_flag != "1"
-            btn_follow.text = if (it?.follow_flag != "1") resources.getString(R.string.follow) else resources.getString(R.string.has_follow)
+            btn_follow.isEnabled = !it?.follow_flag!!
+            btn_follow.text = if (!it.follow_flag) resources.getString(R.string.follow) else resources.getString(R.string.has_follow)
         }
     }
 
@@ -75,7 +75,7 @@ class PersonalPageActivity : InjectActivity() {
         refreshLayout.setOnRefreshListener { initData(false) }
         refreshLayout.setOnLoadMoreListener { initData(true) }
         multiStatusView.setLoadingButtonClickListener(View.OnClickListener { refreshLayout.autoRefresh() })
-        relativeLayout.click { routerWithAnim(Config.ROUTER_FUNS_AND_FOLLOW_ACTIVITY).go(this) }
+        relativeLayout.click { routerWithAnim(Config.ROUTER_FUNS_AND_FOLLOW_ACTIVITY).with(Config.BUNDLE_USER_ID,model.userId).go(this) }
         btn_follow.click {
             model.follow(this) {
                 btn_follow.isEnabled = false
