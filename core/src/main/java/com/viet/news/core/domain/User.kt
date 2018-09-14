@@ -27,7 +27,7 @@ class User private constructor() : Serializable {
             Settings.create().userName = value
             field = value
         }
-    var avatarUrl: String = ""
+    var avatar: String = ""
         set(value) {
             Settings.create().avatar = value
             field = value
@@ -65,7 +65,7 @@ class User private constructor() : Serializable {
         if (Settings.create().userName.isNotBlank())
             this.userName = Settings.create().userName
         if (Settings.create().avatar.isNotBlank())
-            this.avatarUrl = Settings.create().avatar
+            this.avatar = Settings.create().avatar
         if (Settings.create().token.isNotBlank())
             this.accessToken = Settings.create().token
         if (Settings.create().roleId.isNotBlank())
@@ -77,7 +77,7 @@ class User private constructor() : Serializable {
         if (Settings.create().userId.isNotBlank())
             this.userId = Settings.create().userId
         if (Settings.create().avatar.isNotBlank())
-            this.avatarUrl = Settings.create().avatar
+            this.avatar = Settings.create().avatar
 
         this.fansCount = Settings.create().fansCount
         this.fansCount = Settings.create().followCount
@@ -94,7 +94,7 @@ class User private constructor() : Serializable {
     fun login(userLogin: LoginRegisterResponse) {
         //init
         this.telephone = userLogin.phoneNumber
-        this.avatarUrl = userLogin.imageUrl
+        this.avatar = userLogin.avatar
         this.accessToken = userLogin.token
         this.roleId = userLogin.roleId
         this.userName = userLogin.nickName
@@ -118,11 +118,6 @@ class User private constructor() : Serializable {
         currentUser = User()
 
     }
-
-//    fun setAvatarUrl(url: String) {
-//        Settings.create().avatar = url
-//        this.avatarUrl = url
-//    }
 
     /**
      * 获取手机尾数

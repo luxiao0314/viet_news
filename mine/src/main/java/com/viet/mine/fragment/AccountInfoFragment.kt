@@ -14,12 +14,14 @@ import com.viet.mine.R
 import com.viet.mine.utils.updateHeader
 import com.viet.mine.viewmodel.AccountInfoViewModel
 import com.viet.news.core.config.Config
-import com.viet.news.core.config.VerifyCodeTypeEnum
 import com.viet.news.core.delegate.viewModelDelegate
 import com.viet.news.core.domain.RefreshUserInfoEvent
 import com.viet.news.core.domain.Settings
 import com.viet.news.core.domain.User
-import com.viet.news.core.ext.*
+import com.viet.news.core.ext.clickWithTrigger
+import com.viet.news.core.ext.goFragment
+import com.viet.news.core.ext.loadCircle
+import com.viet.news.core.ext.routerWithAnim
 import com.viet.news.core.ui.BaseFragment
 import com.viet.news.core.ui.widget.CommonItem
 import com.viet.news.core.utils.RxBus
@@ -45,7 +47,7 @@ class AccountInfoFragment : BaseFragment() {
 
 
     override fun initView(view: View) {
-        iv_user_icon.loadCircle(User.currentUser.avatarUrl)
+        iv_user_icon.loadCircle(User.currentUser.avatar)
         ll_update_avatar.clickWithTrigger { updateHeader(model.selectList) }
 
         val changeNameItem = view.findViewById<CommonItem>(R.id.item_change_name)
@@ -96,11 +98,11 @@ class AccountInfoFragment : BaseFragment() {
 
                     model.uploadFile(this) {
                         if (it) {
-                            User.currentUser.avatarUrl = model.selectList[0].compressPath
-                            iv_user_icon.loadCircle(User.currentUser.avatarUrl)
+                            User.currentUser.avatar = model.selectList[0].compressPath
+                            iv_user_icon.loadCircle(User.currentUser.avatar)
                             // 将头像添加到缓存
-//                                    Settings.setAvatarUrl(User.currentUser.avatarUrl)
-                            Settings.create().avatar = User.currentUser.avatarUrl
+//                                    Settings.setAvatar(User.currentUser.avatar)
+                            Settings.create().avatar = User.currentUser.avatar
                             RxBus.get().post(RefreshUserInfoEvent())
                         }
 //                        dialogFragment?.dismissAllowingStateLoss()

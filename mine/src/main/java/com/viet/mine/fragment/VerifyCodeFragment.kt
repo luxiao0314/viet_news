@@ -40,15 +40,13 @@ class VerifyCodeFragment : BaseFragment() {
         keyboard.hide()
         password_view.clickWithTrigger { keyboard.show() }
         keyboard.setCodeView(password_view)
-        keyboard.setListener(object : CodeView.Listener{
+        password_view.setListener(object : CodeView.Listener{
             override fun onValueChanged(value: String?) {
                 //TODO:待处理
             }
 
             override fun onComplete(value: String) {
-
             }
-
         })
         val phone = Settings.create(context!!).telephone
         phone_num.text = "验证码已经发送至${phone.replaceRange(3..6, "****")}"
