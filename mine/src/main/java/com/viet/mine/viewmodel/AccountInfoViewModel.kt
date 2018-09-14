@@ -62,7 +62,7 @@ class AccountInfoViewModel(var repository: MineRepository = MineRepository()) : 
     }
 
     //结束【注册验证码】倒计时
-     fun stopSignInCountdown() {
+    fun stopSignInCountdown() {
         countDownTimeUnit?.cancel()
         countDown.value = 0
         countValue = -1L
@@ -119,4 +119,13 @@ class AccountInfoViewModel(var repository: MineRepository = MineRepository()) : 
         })
     }
 
+    fun checkVerifyCode(phoneNumber: String, verifyCode: String, owner: LifecycleOwner, onValidate: () -> Unit) {
+        //发送验证码接口
+        repository.checkVerifyCode(phoneNumber = phoneNumber, verifyCode = verifyCode, zone_code = zoneCode.value, type = VerifyCodeTypeEnum.RESET_PASSWORD)
+                .observe(owner, Observer { resource ->
+                    resource?.work(
+                            onSuccess = { onValidate() }
+                    )
+                })
+    }
 }

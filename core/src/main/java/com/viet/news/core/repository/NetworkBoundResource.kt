@@ -30,7 +30,7 @@ abstract class NetworkBoundResource<ResultType, RequestType> @MainThread constru
         result.value = Resource.loading(null)
         @Suppress("LeakingThis")
         val dbSource = loadFromDb()
-        if (dbSource.hasObservers().not()) {
+        if (dbSource.hasActiveObservers().not()) {
             fetchFromNetwork(dbSource)
         } else {
             result.addSource(dbSource) { resultType ->
@@ -69,7 +69,13 @@ abstract class NetworkBoundResource<ResultType, RequestType> @MainThread constru
                 is ApiEmptyResponse -> result.addSource(loadFromDb()) { newData -> result.value = Resource.success(newData) }
                 is ApiErrorResponse -> {
                     onFetchFailed()
-                    result.addSource(dbSource) { resultType -> result.value = response.errorMessage.let { Resource.error(resultType, it) } }
+                    if (dbSource.hasActiveObservers()) {
+                        result.addSource(dbSource) { resultType ->
+                            result.value = response.errorMessage.let { Resource.error(resultType, it) }
+                        }
+                    } else {
+                        result.value = response.errorMessage.let { Resource.error(null, it) }
+                    }
                 }
             }
         }

@@ -35,7 +35,7 @@ class RetrofitManager private constructor() {
                 .addInterceptor(HeaderInterceptor())
                 .addInterceptor(HttpLoginInterceptor())
                 .authenticator(TokenAuthenticator())
-                .addInterceptor(NetworkExceptionInterceptor())
+//                .addInterceptor(NetworkExceptionInterceptor())
                 .addInterceptor(loggingInterceptor.build())
                 .build()
 

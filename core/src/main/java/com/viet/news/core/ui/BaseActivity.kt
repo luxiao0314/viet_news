@@ -13,6 +13,7 @@ import com.safframework.log.L
 import com.safframework.utils.support
 import com.viet.news.core.R
 import com.viet.news.core.api.HttpResponse
+import com.viet.news.core.config.Config
 import com.viet.news.core.config.IActivityManager
 import com.viet.news.core.domain.GlobalNetworkException
 import com.viet.news.core.ext.finishWithAnim
@@ -62,7 +63,7 @@ abstract class BaseActivity : AppCompatActivity() {
     override fun onResume() {
         super.onResume()
         disposable = RxBus.get().register(GlobalNetworkException::class.java) {
-            checkException(it.code, it.bodyString)
+            checkException(it.code, it.httpResponse)
         }
     }
 
@@ -105,14 +106,15 @@ abstract class BaseActivity : AppCompatActivity() {
         super.onKeyDown(keyCode, event)
     }
 
-    protected open var checkException: (Int, String) -> Unit = { code, response ->
+    protected open var checkException: (Int, HttpResponse<*>?) -> Unit = { code, response ->
         L.e("接口访问失败了！！ = \n$response")
         when (code) {
-            1 -> {
                 //TODO tsing 根据code执行不同提示，需要和后台商量
+            Config.NETWORK_RESPONSE_HAS_NO_NETWORK -> {
+                    toast(R.string.error_msg).show()
             }
             else -> {
-                Gson().fromJson(response, HttpResponse::class.java)?.message?.let {
+                response?.message?.let {
                     toast(it).show()
                 }
             }

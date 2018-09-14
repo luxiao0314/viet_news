@@ -222,7 +222,8 @@ class LoginViewModel(private var repository: LoginRepository = LoginRepository()
                 phone = vCodeLoginPhoneNumber.value
             }
             VerifyCodeTypeEnum.REGISTER -> {
-                startSignInCountdown(Config.COUNT_DOWN_TIMER)
+//                startSignInCountdown(Config.COUNT_DOWN_TIMER)
+                startSignInCountdown(10000)
                 phone = signInPhoneNumber.value
             }
             else -> {
@@ -239,7 +240,10 @@ class LoginViewModel(private var repository: LoginRepository = LoginRepository()
                             VerifyCodeTypeEnum.REGISTER -> stopSignInCountdown()
                             else -> {
                             }
-                        }}
+                        }},
+                    onLoading = {
+
+                    }
             )
         })
     }

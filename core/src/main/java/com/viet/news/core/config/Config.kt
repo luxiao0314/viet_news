@@ -4,6 +4,7 @@ object Config {
 
     const val NETWORK_OK = 200
     const val NETWORK_RESPONSE_OK = 0
+    const val NETWORK_RESPONSE_HAS_NO_NETWORK = 1234321
 
     val SHARE_REQUEST_CODE_FACEBOOK = 1001
     val SHARE_REQUEST_CODE_MESSENGER = 1002

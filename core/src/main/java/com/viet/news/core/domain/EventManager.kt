@@ -1,5 +1,7 @@
 package com.viet.news.core.domain
 
+import com.viet.news.core.api.HttpResponse
+
 /**
  * @Description
  * @Author sean
@@ -13,6 +15,6 @@ open class LoginEvent
 
 open class RefreshNewsEvent
 
-open class GlobalNetworkException(val code :Int ,val bodyString :String)
+open class GlobalNetworkException(val code :Int ,val httpResponse: HttpResponse<*>?)
 
 open class RefreshUserInfoEvent
