@@ -19,6 +19,7 @@ import com.viet.news.core.ext.finishWithAnim
 import com.viet.news.core.ui.BaseActivity
 import com.viet.news.core.ui.BaseFragment
 import com.viet.news.core.ui.code.CodeView
+import com.viet.news.core.utils.SPHelper
 import kotlinx.android.synthetic.main.fragment_mine_verify_code.*
 
 /**
@@ -53,10 +54,13 @@ class VerifyCodeFragment : BaseFragment() {
                 model.checkVerifyCode(User.currentUser.telephone, value, this@VerifyCodeFragment) {
                     when (arguments!!["page_type"]) {
                         Config.CHANGE_PHONE_NUM -> {
+                            SPHelper.create().addSet("verify_code", value)
                             openPage(this@VerifyCodeFragment, Config.ROUTER_MINE_EDIT_BIND_PHONE_FRAGMENT, R.id.container_framelayout)
                         }
-                        else -> {
-
+                        Config.SET_PHONE_NUM -> {
+                            model.resetPhoneNum(arguments!!["phone_number"].toString(), User.currentUser.telephone, value, SPHelper.create()["verify_code"], this@VerifyCodeFragment) {
+                                (activity as BaseActivity).finishWithAnim()
+                            }
                         }
                     }
                 }
