@@ -128,4 +128,12 @@ class AccountInfoViewModel(var repository: MineRepository = MineRepository()) : 
                     )
                 })
     }
+
+    fun resetPwdWithOldPwd(oldPwd: String, newPwd: String, owner: LifecycleOwner, finish: () -> Unit) {
+        repository.resetPwdWithOldPwd(oldPwd, newPwd).observe(owner, Observer {
+            it?.work {
+                finish()
+            }
+        })
+    }
 }
