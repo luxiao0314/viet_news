@@ -18,10 +18,7 @@ import com.viet.news.core.delegate.viewModelDelegate
 import com.viet.news.core.domain.RefreshUserInfoEvent
 import com.viet.news.core.domain.Settings
 import com.viet.news.core.domain.User
-import com.viet.news.core.ext.clickWithTrigger
-import com.viet.news.core.ext.finishWithAnim
-import com.viet.news.core.ext.loadCircle
-import com.viet.news.core.ui.BaseActivity
+import com.viet.news.core.ext.*
 import com.viet.news.core.ui.BaseFragment
 import com.viet.news.core.ui.widget.CommonItem
 import com.viet.news.core.utils.RxBus
@@ -55,20 +52,22 @@ class AccountInfoFragment : BaseFragment() {
         val resetPwdItem = view.findViewById<CommonItem>(R.id.item_reset_pwd)
         val magicBoxItem = view.findViewById<CommonItem>(R.id.item_magicbox)
         changeNameItem.clickWithTrigger { openPage(this@AccountInfoFragment, Config.ROUTER_MINE_EDIT_CHANGE_NICKNAME_FRAGMENT, R.id.container_framelayout) }
-        changePhoneNumItem.clickWithTrigger { openPage(this@AccountInfoFragment, Config.ROUTER_MINE_EDIT_CHANGE_PHONE_FRAGMENT, R.id.container_framelayout) }
-        resetPwdItem.clickWithTrigger { openPage(this@AccountInfoFragment, Config.ROUTER_MINE_EDIT_CHANGE_PWD_FRAGMENT, R.id.container_framelayout) }
+
         if (User.currentUser.isLogin()) {
-            model.getUserInfo(Settings.create(context!!).userId, activity!!) {
+            model.getUserInfo(Settings.create(context!!).userId, activity!!) { it ->
                 if (it!!.is_bind) {
                     changePhoneNumItem.setRightText("已绑定")
+                    changePhoneNumItem.clickWithTrigger {
+                        routerWithAnim(Config.ROUTER_MINE_EDIT_CHANGE_PHONE_FRAGMENT).goFragment(this@AccountInfoFragment,  R.id.container_framelayout)}
                 } else {
                     changePhoneNumItem.setRightText("未绑定")
                 }
 
                 if (it.is_set_password) {
                     resetPwdItem.setRightText("已设置")
+                    resetPwdItem.clickWithTrigger { openPage(this@AccountInfoFragment, Config.ROUTER_MINE_EDIT_CHANGE_PWD_FRAGMENT, R.id.container_framelayout) }
                 } else {
-                    resetPwdItem.setRightText("未设置")
+                    resetPwdItem.setRightText("去设置")
                 }
 
                 magicBoxItem.setRightText(it.invite_code.toString())
