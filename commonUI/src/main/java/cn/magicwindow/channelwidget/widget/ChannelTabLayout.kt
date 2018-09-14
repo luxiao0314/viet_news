@@ -122,8 +122,7 @@ class ChannelTabLayout @JvmOverloads constructor(context: Context, attrs: Attrib
     }
 
     private fun createDefaultTextColor(): ColorStateList {
-        val colorStateList = ColorStateList(arrayOf(intArrayOf(android.R.attr.state_selected), intArrayOf(0)), intArrayOf(DEFAULT_SELECT_TEXT_COLOR, DEFAULT_NORMAL_TEXT_COLOR))
-        return colorStateList
+        return ColorStateList(arrayOf(intArrayOf(android.R.attr.state_selected), intArrayOf(0)), intArrayOf(DEFAULT_SELECT_TEXT_COLOR, DEFAULT_NORMAL_TEXT_COLOR))
     }
 
     fun setDataList(dataList: List<ChannelBean>) {
@@ -134,10 +133,8 @@ class ChannelTabLayout @JvmOverloads constructor(context: Context, attrs: Attrib
 
     fun setupWithViewPager(viewPager: ViewPager?) {
         this.mViewPager = viewPager
-        if (viewPager == null)
-            throw IllegalArgumentException("viewpager not is null")
-        viewPager.adapter
-                ?: throw IllegalArgumentException("pagerAdapter not is null")
+        if (viewPager == null) throw IllegalArgumentException("viewpager not is null")
+        viewPager.adapter ?: throw IllegalArgumentException("pagerAdapter not is null")
         this.mViewPager!!.addOnPageChangeListener(TabPagerChanger())
 
         mCurrentTabPosition = viewPager.currentItem
@@ -153,7 +150,7 @@ class ChannelTabLayout @JvmOverloads constructor(context: Context, attrs: Attrib
             tabTextView.setPadding(mTabPadding, 0, mTabPadding, 0)
             tabTextView.text = mDataList[i].channelName
             tabTextView.setOnClickListener { mViewPager!!.currentItem = currentPosition }
-            mTabContainer.addView(tabTextView, LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.MATCH_PARENT, 1f))
+            mTabContainer.addView(tabTextView, LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.MATCH_PARENT, 1f))
         }
         setSelectedTabView(mCurrentTabPosition)
     }
@@ -162,6 +159,7 @@ class ChannelTabLayout @JvmOverloads constructor(context: Context, attrs: Attrib
         val textView = TextView(context)
         textView.setTextSize(TypedValue.COMPLEX_UNIT_PX, mNormalTextSize.toFloat())
         textView.setTextColor(mTextColor)
+        textView.setLines(1)
         textView.minWidth = mMinTabWidth
         textView.typeface = Typeface.DEFAULT_BOLD
         textView.gravity = Gravity.CENTER

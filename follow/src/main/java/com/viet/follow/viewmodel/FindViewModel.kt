@@ -8,8 +8,6 @@ import cn.magicwindow.channelwidget.entity.ChannelBean
 import com.viet.follow.repository.FindRepository
 import com.viet.news.core.domain.response.NewsListBean
 import com.viet.news.core.domain.response.NewsListResponse
-import com.viet.news.core.ext.toast
-import com.viet.news.core.ui.App
 import com.viet.news.core.ui.BaseActivity
 import com.viet.news.core.ui.BaseFragment
 import com.viet.news.core.viewmodel.BaseViewModel
@@ -52,13 +50,7 @@ class FindViewModel(var repository: FindRepository = FindRepository()) : BaseVie
                 unFollowList.clear()
                 followList.clear()
                 it.data?.unFollowChannelList?.forEach { unFollowList.add(ChannelBean(it.channelName, it.id, 2)) }
-                it.data?.followChannelList?.forEachIndexed { index, list ->
-                    if (index == 0) {
-                        followList.add(ChannelBean(list.channelName, list.id, 0))
-                    } else {
-                        followList.add(ChannelBean(list.channelName, list.id, 2))
-                    }
-                }
+                it.data?.followChannelList?.forEach { followList.add(ChannelBean(it.channelName, it.id, if (it.canDelete) 2 else 0)) }
             }
         })
     }

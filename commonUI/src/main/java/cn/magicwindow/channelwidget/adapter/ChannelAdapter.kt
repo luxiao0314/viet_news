@@ -83,7 +83,9 @@ class ChannelAdapter(context: Context?, recyclerView: RecyclerView, private val 
     }
 
     override fun onItemMove(fromPosition: Int, toPosition: Int) {
-        if (toPosition > 1) {
+        var num = 0
+        mMyChannelItems.forEach { if (it.tabType == 0) num++ }
+        if (toPosition > num) {
             val item = mMyChannelItems[fromPosition - mMyHeaderCount]
             mMyChannelItems.removeAt(fromPosition - mMyHeaderCount)
             mMyChannelItems.add(toPosition - mMyHeaderCount, item)
@@ -93,7 +95,7 @@ class ChannelAdapter(context: Context?, recyclerView: RecyclerView, private val 
 
     override fun onItemFinished(position: Int) {
         dataChanged = true
-        channelItemClickListener?.onChannelItemMoved(mMyChannelItems, position){}
+        channelItemClickListener?.onChannelItemMoved(mMyChannelItems, position) {}
     }
 
     override fun onItemSwiped(position: Int) {
