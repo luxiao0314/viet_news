@@ -96,32 +96,6 @@ class FollowTabFragment : InjectFragment() {
                                     refreshLayout.finishRefresh(false)
                                 }}
                     )
-//                    it?.isOkStatus?.then({
-//                        multiStatusView.showContent()
-//                        if (loadMore) {
-//                            if (it.data?.list == null || it.data?.list!!.isEmpty()) {
-//                                refreshLayout.finishLoadMoreWithNoMoreData()
-//                            } else {
-//                                refreshLayout.finishLoadMore()
-//                                adapter.addData(it.data?.list)
-//                            }
-//                        } else {
-//                            if (it.data?.list == null || it.data?.list!!.isEmpty()) {
-//                                multiStatusView.showEmpty()
-//                                refreshLayout.setEnableLoadMore(false)
-//                            }
-//                            adapter.setData(it.data?.list)
-//                            refreshLayout.setNoMoreData(false)
-//                            refreshLayout.finishRefresh()
-//                        }
-//                    }, {
-//                        multiStatusView.showError()
-//                        if (loadMore) {
-//                            refreshLayout.finishLoadMore(false)//传入false表示加载失败
-//                        } else {
-//                            refreshLayout.finishRefresh(false)
-//                        }
-//                    })
                 })
     }
 }

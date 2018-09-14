@@ -31,21 +31,13 @@ class PersonalPageModel(var repository: PersonalPageRepository = PersonalPageRep
 
     fun getUserInfo(owner: LifecycleOwner, function: (user: UserInfoResponse?) -> Unit) {
         repository.getUserInfo(userId).observe(owner, Observer {
-//            it?.data?.isOkStatus?.then({
-                function(it?.data)
-//            }, {
-//                toast(App.instance.resources.getString(R.string.error_msg)).show()
-//            })
+            it?.work {   function(it?.data)}
         })
     }
 
     fun follow(owner: LifecycleOwner, function: () -> Unit) {
         repository.follow(userId).observe(owner, Observer {
-//            it?.data?.isOkStatus?.then({
-                function()
-//            }, {
-//                toast(App.instance.resources.getString(R.string.error_msg)).show()
-//            })
+            it?.work {   function()}
         })
     }
 
@@ -54,21 +46,13 @@ class PersonalPageModel(var repository: PersonalPageRepository = PersonalPageRep
      */
     fun like(owner: LifecycleOwner, contentId: String, function: () -> Unit) {
         repository.like(contentId).observe(owner, Observer {
-//            it?.data?.isOkStatus?.then({
-                function()
-//            }, {
-//                toast(App.instance.resources.getString(R.string.error_msg)).show()
-//            })
+            it?.work {   function()}
         })
     }
 
     fun collection(owner: LifecycleOwner, contentId: String, function: () -> Unit) {
         repository.collection(contentId).observe(owner, Observer {
-//            it?.data?.isOkStatus?.then({
-                function()
-//            }, {
-//                toast(App.instance.resources.getString(R.string.error_msg)).show()
-//            })
+            it?.work {    function()}
         })
     }
 }

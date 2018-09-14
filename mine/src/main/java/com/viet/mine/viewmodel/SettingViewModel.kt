@@ -34,12 +34,6 @@ class SettingViewModel(var repository: MineRepository = MineRepository()) : Base
                     onSuccess = { finish(true)},
                     onError = { finish(false)}
             )
-//            it?.isOkStatus?.then({
-//                finish(true)
-//            }, {
-//                finish(false)
-//                toast(App.instance.resources.getString(R.string.error_msg)).show()
-//            })
         })
     }
 }

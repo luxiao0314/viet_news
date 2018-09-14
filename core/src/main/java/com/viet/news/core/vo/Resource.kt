@@ -23,11 +23,12 @@ package com.viet.news.core.vo
 </T> */
 class Resource<T>(val status: Status, val data: T?, val message: String?) {
 //    var isOkStatus={status==Status.SUCCESS}.invoke()
-    fun work(onSuccess:()->Unit={},onError:()->Unit={},onLoading:()->Unit={}){
+    //lambda会调用最后一个参数，因此成功放最后
+    fun work(onLoading:()->Unit={},onError:()->Unit={},onSuccess:()->Unit={}){
         when(status){
-            Status.SUCCESS->onSuccess()
-            Status.ERROR->onError()
             Status.LOADING->onLoading()
+            Status.ERROR->onError()
+            Status.SUCCESS->onSuccess()
         }
     }
 

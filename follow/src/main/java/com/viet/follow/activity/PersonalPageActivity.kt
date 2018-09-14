@@ -21,7 +21,6 @@ import com.viet.news.core.ext.loadBlur
 import com.viet.news.core.ext.loadCircle
 import com.viet.news.core.ext.routerWithAnim
 import com.viet.news.core.ui.InjectActivity
-import com.viet.news.core.vo.Status
 import kotlinx.android.synthetic.main.activity_personal_page.*
 import javax.inject.Inject
 
@@ -75,7 +74,7 @@ class PersonalPageActivity : InjectActivity() {
         refreshLayout.setOnRefreshListener { initData(false) }
         refreshLayout.setOnLoadMoreListener { initData(true) }
         multiStatusView.setLoadingButtonClickListener(View.OnClickListener { refreshLayout.autoRefresh() })
-        relativeLayout.click { routerWithAnim(Config.ROUTER_FUNS_AND_FOLLOW_ACTIVITY).with(Config.BUNDLE_USER_ID,model.userId).go(this) }
+        relativeLayout.click { routerWithAnim(Config.ROUTER_FUNS_AND_FOLLOW_ACTIVITY).with(Config.BUNDLE_USER_ID, model.userId).go(this) }
         btn_follow.click {
             model.follow(this) {
                 btn_follow.isEnabled = false
@@ -101,37 +100,33 @@ class PersonalPageActivity : InjectActivity() {
         }
         model.getlist4User()
                 .observe(this, Observer {
-                    when (it?.status) {
-                        Status.SUCCESS -> {
-                            multiStatusView.showContent()
-                            if (loadMore) {
-                                if (it. data?.list == null || it. data?.list!!.isEmpty()) {
-                                    refreshLayout.finishLoadMoreWithNoMoreData()
+                    it?.work(onSuccess = {
+                        multiStatusView.showContent()
+                        if (loadMore) {
+                            if (it.data?.list == null || it.data?.list!!.isEmpty()) {
+                                refreshLayout.finishLoadMoreWithNoMoreData()
+                            } else {
+                                refreshLayout.finishLoadMore()
+                                adapter.addData(it.data?.list)
+                            }
+                        } else {
+                            if (it.data?.list == null || it.data?.list!!.isEmpty()) {
+                                multiStatusView.showEmpty()
+                                refreshLayout.setEnableLoadMore(false)
+                            }
+                            adapter.setData(it.data?.list)
+                            refreshLayout.setNoMoreData(false)
+                            refreshLayout.finishRefresh()
+                        }
+                    },
+                            onError = {
+                                multiStatusView.showError()
+                                if (loadMore) {
+                                    refreshLayout.finishLoadMore(false)//传入false表示加载失败
                                 } else {
-                                    refreshLayout.finishLoadMore()
-                                    adapter.addData(it. data?.list)
+                                    refreshLayout.finishRefresh(false)
                                 }
-                            } else {
-                                if (it. data?.list == null || it. data?.list!!.isEmpty()) {
-                                    multiStatusView.showEmpty()
-                                    refreshLayout.setEnableLoadMore(false)
-                                }
-                                adapter.setData(it. data?.list)
-                                refreshLayout.setNoMoreData(false)
-                                refreshLayout.finishRefresh()
-                            }
-                        }
-                        Status.ERROR -> {
-                            multiStatusView.showError()
-                            if (loadMore) {
-                                refreshLayout.finishLoadMore(false)//传入false表示加载失败
-                            } else {
-                                refreshLayout.finishRefresh(false)
-                            }
-                        }
-                        else -> {
-                        }
-                    }
+                            })
                 })
     }
 
