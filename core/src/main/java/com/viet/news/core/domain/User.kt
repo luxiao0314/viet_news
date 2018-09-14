@@ -76,11 +76,11 @@ class User private constructor() : Serializable {
             this.zoneCode = Settings.create().zoneCode
         if (Settings.create().userId.isNotBlank())
             this.userId = Settings.create().userId
+        if (Settings.create().avatar.isNotBlank())
+            this.avatarUrl = Settings.create().avatar
 
         this.fansCount = Settings.create().fansCount
-
         this.fansCount = Settings.create().followCount
-
     }
 
     companion object {
