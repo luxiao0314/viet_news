@@ -29,10 +29,14 @@ class SettingViewModel(var repository: MineRepository = MineRepository()) : Base
 
     //反馈
     fun feedBack(owner: LifecycleOwner, feedback: String, finish: (isSuccess: Boolean) -> Unit) {
-        return repository.feedBack(feedback).observe(owner, Observer {
-            it?.work (
-                    onSuccess = { finish(true)},
-                    onError = { finish(false)}
+        return repository.feedBack(feedback).observe(owner, Observer { resource ->
+            resource?.work(
+                    onSuccess = {
+                        finish(true)
+                    },
+                    onError = {
+                        finish(false)
+                    }
             )
         })
     }

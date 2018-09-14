@@ -14,6 +14,7 @@ import com.viet.mine.R
 import com.viet.mine.utils.updateHeader
 import com.viet.mine.viewmodel.AccountInfoViewModel
 import com.viet.news.core.config.Config
+import com.viet.news.core.config.VerifyCodeTypeEnum
 import com.viet.news.core.delegate.viewModelDelegate
 import com.viet.news.core.domain.RefreshUserInfoEvent
 import com.viet.news.core.domain.Settings
@@ -58,14 +59,20 @@ class AccountInfoFragment : BaseFragment() {
                 if (it!!.is_bind) {
                     changePhoneNumItem.setRightText("已绑定")
                     changePhoneNumItem.clickWithTrigger {
-                        routerWithAnim(Config.ROUTER_MINE_EDIT_CHANGE_PHONE_FRAGMENT).goFragment(this@AccountInfoFragment,  R.id.container_framelayout)}
+                        routerWithAnim(Config.ROUTER_MINE_EDIT_CHANGE_PHONE_FRAGMENT)
+                                .goFragment(this@AccountInfoFragment, R.id.container_framelayout)
+                    }
                 } else {
                     changePhoneNumItem.setRightText("未绑定")
                 }
 
                 if (it.is_set_password) {
                     resetPwdItem.setRightText("已设置")
-                    resetPwdItem.clickWithTrigger { openPage(this@AccountInfoFragment, Config.ROUTER_MINE_EDIT_CHANGE_PWD_FRAGMENT, R.id.container_framelayout) }
+                    resetPwdItem.clickWithTrigger {
+                        model.sendSMS( User.currentUser.telephone,this) {
+                            routerWithAnim(Config.ROUTER_MINE_EDIT_VERIFY_CODE_FRAGMENT).with("page_type", 0).goFragment(this@AccountInfoFragment, R.id.container_framelayout)
+                        }
+                    }
                 } else {
                     resetPwdItem.setRightText("去设置")
                 }
