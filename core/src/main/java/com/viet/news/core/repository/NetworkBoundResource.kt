@@ -53,38 +53,20 @@ abstract class NetworkBoundResource<ResultType, RequestType> @MainThread constru
 
     private fun fetchFromNetwork(dbSource: LiveData<ResultType>) {
         val apiResponse = createCall()
-        // we re-attach dbSource as a new source, it will dispatch its latest value quickly
-        result.addSource(dbSource) { newData ->
-            setValue(Resource.loading(newData))
-        }
+        result.addSource(dbSource) { newData -> setValue(Resource.loading(newData)) }
         result.addSource(apiResponse) { response ->
             result.removeSource(apiResponse)
             result.removeSource(dbSource)
-
             when (response) {
                 is ApiSuccessResponse -> {
-
                     if (response.body == null) {
                         result.value = Resource.success(null)
                         return@addSource
                     }
-                    processResponse(response)?.let {
-                        Observable.fromCallable {
-                            saveCallResult(it)
-                        }.subscribeOn(Schedulers.io()).subscribe()
-                    }
-
-                    // we specially request a new live data,
-                    // otherwise we will get immediately last cached value,
-                    // which may not be updated with latest results received from network.
+                    processResponse(response)?.let { Observable.fromCallable { saveCallResult(it) }.subscribeOn(Schedulers.io()).subscribe() }
                     result.addSource(loadFromDb()) { resultType -> result.value = Resource.success(resultType) }
-
                 }
-                is ApiEmptyResponse -> {
-                    result.addSource(loadFromDb()) { newData ->
-                        result.value = Resource.success(newData)
-                    }
-                }
+                is ApiEmptyResponse -> result.addSource(loadFromDb()) { newData -> result.value = Resource.success(newData) }
                 is ApiErrorResponse -> {
                     onFetchFailed()
                     result.addSource(dbSource) { resultType -> result.value = response.errorMessage.let { Resource.error(resultType, it) } }

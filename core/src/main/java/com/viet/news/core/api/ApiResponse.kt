@@ -27,22 +27,16 @@ import java.util.regex.Pattern
 @Suppress("unused") // T is used in extending classes
 sealed class ApiResponse<T> {
     companion object {
-        fun <T> create(error: Throwable): ApiErrorResponse<T> {
-            return ApiErrorResponse(error.message ?: "unknown error")
-        }
+
+        fun <T> create(error: Throwable): ApiErrorResponse<T> = ApiErrorResponse(error.message ?: "unknown error")
 
         fun <T> create(response: Response<HttpResponse<T>>): ApiResponse<T> {
             if (response.isSuccessful) {
                 val body = response.body()
-
-
                 return if (body == null || response.code() == 204) {
                     ApiEmptyResponse()
                 } else {
-                    ApiSuccessResponse(
-                            body = body.data,
-                            linkHeader = response.headers()?.get("link")
-                    )
+                    ApiSuccessResponse(body = body.data, linkHeader = response.headers()?.get("link"))
                 }
             } else {
                 val msg = response.errorBody()?.string()
@@ -62,14 +56,11 @@ sealed class ApiResponse<T> {
  */
 class ApiEmptyResponse<T> : ApiResponse<T>()
 
-data class ApiSuccessResponse<T>(
-        val body: T?,
-        val links: Map<String, String>
-) : ApiResponse<T>() {
-    constructor(body: T?, linkHeader: String?) : this(
-            body = body,
-            links = linkHeader?.extractLinks() ?: emptyMap()
-    )
+data class ApiErrorResponse<T>(val errorMessage: String) : ApiResponse<T>()
+
+data class ApiSuccessResponse<T>(val body: T?, val links: Map<String, String>) : ApiResponse<T>() {
+
+    constructor(body: T?, linkHeader: String?) : this(body = body, links = linkHeader?.extractLinks() ?: emptyMap())
 
     val nextPage: Int? by lazy(LazyThreadSafetyMode.NONE) {
         links[NEXT_LINK]?.let { next ->
@@ -107,5 +98,3 @@ data class ApiSuccessResponse<T>(
 
     }
 }
-
-data class ApiErrorResponse<T>(val errorMessage: String) : ApiResponse<T>()
