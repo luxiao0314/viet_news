@@ -75,4 +75,18 @@ class MineRepository : ApiRepository() {
         }.asLiveData()
     }
 
+    /**
+     * 【校验】 验证码
+     */
+    fun checkVerifyCode(phoneNumber: String?, verifyCode: String?, zone_code: String?, type: VerifyCodeTypeEnum): LiveData<Resource< Any>> {
+        val params = VerifyCodeParams()
+        params.phone_number = phoneNumber
+        params.validation_code = verifyCode
+        params.zone_code = zone_code
+        params.setType(type)
+        return object : NetworkOnlyResource< Any>() {
+            override fun createCall(): LiveData<ApiResponse< Any>> = apiInterface.checkVerifyCode(params)
+        }.asLiveData()
+    }
+
 }

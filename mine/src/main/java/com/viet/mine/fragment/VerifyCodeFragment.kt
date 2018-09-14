@@ -13,6 +13,7 @@ import com.viet.mine.viewmodel.AccountInfoViewModel
 import com.viet.news.core.config.Config
 import com.viet.news.core.delegate.viewModelDelegate
 import com.viet.news.core.domain.Settings
+import com.viet.news.core.domain.User
 import com.viet.news.core.ui.BaseFragment
 import com.viet.news.core.ui.code.CodeView
 import kotlinx.android.synthetic.main.fragment_mine_verify_code.*
@@ -40,13 +41,15 @@ class VerifyCodeFragment : BaseFragment() {
         keyboard.hide()
         password_view.clickWithTrigger { keyboard.show() }
         keyboard.setCodeView(password_view)
-        keyboard.setListener(object : CodeView.Listener{
+        password_view.setListener(object : CodeView.Listener {
             override fun onValueChanged(value: String?) {
                 //TODO:待处理
             }
 
             override fun onComplete(value: String) {
-
+                model.checkVerifyCode(User.currentUser.telephone, value, this@VerifyCodeFragment) {
+                    openPage(this@VerifyCodeFragment, Config.ROUTER_MINE_EDIT_CHANGE_PWD_FRAGMENT, R.id.container_framelayout)
+                }
             }
 
         })
@@ -66,6 +69,4 @@ class VerifyCodeFragment : BaseFragment() {
             }
         })
     }
-
-//    openPage(this@AccountInfoFragment, Config.ROUTER_MINE_EDIT_CHANGE_PWD_FRAGMENT, R.id.container_framelayout)
 }
