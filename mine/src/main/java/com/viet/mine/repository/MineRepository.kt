@@ -8,6 +8,7 @@ import com.viet.news.core.config.ContentType
 import com.viet.news.core.config.VerifyCodeTypeEnum
 import com.viet.news.core.domain.request.FeedBackParams
 import com.viet.news.core.domain.request.ListParams
+import com.viet.news.core.domain.request.ResetPwdWithOldpwdParams
 import com.viet.news.core.domain.request.VerifyCodeParams
 import com.viet.news.core.domain.response.CollectionListResponse
 import com.viet.news.core.domain.response.UserInfoResponse
@@ -78,14 +79,28 @@ class MineRepository : ApiRepository() {
     /**
      * 【校验】 验证码
      */
-    fun checkVerifyCode(phoneNumber: String?, verifyCode: String?, zone_code: String?, type: VerifyCodeTypeEnum): LiveData<Resource< Any>> {
+    fun checkVerifyCode(phoneNumber: String?, verifyCode: String?, zone_code: String?, type: VerifyCodeTypeEnum): LiveData<Resource<Any>> {
         val params = VerifyCodeParams()
         params.phone_number = phoneNumber
         params.validation_code = verifyCode
         params.zone_code = zone_code
         params.setType(type)
-        return object : NetworkOnlyResource< Any>() {
-            override fun createCall(): LiveData<ApiResponse< Any>> = apiInterface.checkVerifyCode(params)
+        return object : NetworkOnlyResource<Any>() {
+            override fun createCall(): LiveData<ApiResponse<Any>> = apiInterface.checkVerifyCode(params)
+        }.asLiveData()
+    }
+
+    /**
+     * 修改密码
+     */
+    fun resetPwdWithOldPwd(oldPwd: String, newPwd: String): LiveData<Resource<Any>> {
+        val params = ResetPwdWithOldpwdParams()
+        params.new_password = newPwd
+        params.old_password = oldPwd
+        return object : NetworkOnlyResource<Any>() {
+            override fun createCall(): LiveData<ApiResponse<Any>> {
+                return apiInterface.resetPwdWithOldPwd(params)
+            }
         }.asLiveData()
     }
 

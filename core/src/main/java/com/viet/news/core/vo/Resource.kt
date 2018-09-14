@@ -23,7 +23,10 @@ package com.viet.news.core.vo
 </T> */
 class Resource<T>(val status: Status, val data: T?, val message: String?) {
 
-    //lambda会调用最后一个参数，因此成功放最后
+    /**
+     * lambda会调用最后一个参数，因此成功放最后
+     * 例如 this.work { ... }
+     */
     fun work(onLoading: () -> Unit = {}, onError: () -> Unit = {}, onSuccess: () -> Unit = {}) {
         when (status) {
             Status.LOADING -> onLoading()

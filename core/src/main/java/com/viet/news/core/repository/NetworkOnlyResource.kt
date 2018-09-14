@@ -1,10 +1,10 @@
 package com.viet.news.core.repository
 
 import android.arch.lifecycle.LiveData
-import android.arch.lifecycle.MutableLiveData
 import android.support.annotation.MainThread
 import android.support.annotation.WorkerThread
 import com.viet.news.core.api.ApiResponse
+import com.viet.news.db.DBHelper
 
 /**
  * @Author Aaron
@@ -31,6 +31,7 @@ abstract class NetworkOnlyResource<RequestType> @MainThread constructor() : Netw
     @MainThread
     override fun loadFromDb(): LiveData<RequestType> {
         return liveData
+//        return DBHelper.getInstance().getNull().getNull() as LiveData<RequestType>
     }
 
     // 从网络中获取

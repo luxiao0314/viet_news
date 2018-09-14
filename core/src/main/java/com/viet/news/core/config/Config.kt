@@ -10,10 +10,9 @@ object Config {
     val SHARE_REQUEST_CODE_MESSENGER = 1002
     val SHARE_REQUEST_CODE_COPY = 1003
     //倒计时1分钟
-    val COUNT_DOWN_TIMER = 60*1000L
+    val COUNT_DOWN_TIMER = 60 * 1000L
     val CHANGE_PHONE_NUM = 0
     val RESET_PHONE_NUM = 1
-
 
 
     //语言切换
@@ -71,6 +70,7 @@ object Config {
 
     const val DB_NAME = "db_news_app"
     const val FAVORITE_TABLE_NAME = "favorite_table"
+    const val NULL_TABLE_NAME = "null_table"
     const val T_ARTICLE = "t_article"
 
 

@@ -69,7 +69,7 @@
         android:layout_marginRight="@dimen/page_padding_right">
 
         <cn.magicwindow.ClearEditext
-            android:id="@+id/password_input"
+            android:id="@+id/new_password_input"
             style="@style/edit"
             android:layout_width="match_parent"
             android:layout_marginStart="5dp"
