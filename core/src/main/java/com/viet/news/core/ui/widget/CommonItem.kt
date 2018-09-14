@@ -79,7 +79,7 @@ class CommonItem @JvmOverloads constructor(context: Context, attrs: AttributeSet
     }
 
     private fun setStatus(view: View, status: Boolean) {
-        view.visibility = if (status) View.VISIBLE else View.GONE
+        view.visibility = if (status) View.VISIBLE else View.INVISIBLE
     }
 
     fun setLeftText(msg: String): CommonItem {
