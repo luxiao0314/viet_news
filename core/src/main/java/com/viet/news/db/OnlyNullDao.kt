@@ -16,9 +16,6 @@ interface OnlyNullDao {
     @Query("SELECT * FROM " + Config.NULL_TABLE_NAME)
     fun getNull(): LiveData<NullEntity>
 
-//    @Query("SELECT * FROM " + Config.FAVORITE_TABLE_NAME)
-//    fun getNull(): LiveData<Any>
-
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertSources(favorite: NullEntity)
@@ -26,8 +23,4 @@ interface OnlyNullDao {
     @Delete
     fun deleteSource(favorite: NullEntity)
 
-//    fun insertSources(source: List<Source>) {
-//
-//        insertSources(*sourceEntityArray.toTypedArray())
-//    }
 }
