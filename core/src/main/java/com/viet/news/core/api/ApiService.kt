@@ -96,6 +96,9 @@ interface ApiService {
     //修改密码
     @POST("v1/user/replacePassword")
     fun resetPwdWithOldPwd(@Body param: ResetPwdWithOldpwdParams): LiveData<ApiResponse<Any>>
+    //修改手机号
+    @POST("v1/user/replacePhoneNumber")
+    fun resetPwdWithOldPwd(@Body param: ResetPhoneNumParams): LiveData<ApiResponse<Any>>
 
     //多参数上传+多图片上传
     @Multipart

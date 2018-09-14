@@ -6,10 +6,7 @@ import com.viet.news.core.api.ApiResponse
 import com.viet.news.core.config.Config
 import com.viet.news.core.config.ContentType
 import com.viet.news.core.config.VerifyCodeTypeEnum
-import com.viet.news.core.domain.request.FeedBackParams
-import com.viet.news.core.domain.request.ListParams
-import com.viet.news.core.domain.request.ResetPwdWithOldpwdParams
-import com.viet.news.core.domain.request.VerifyCodeParams
+import com.viet.news.core.domain.request.*
 import com.viet.news.core.domain.response.CollectionListResponse
 import com.viet.news.core.domain.response.UserInfoResponse
 import com.viet.news.core.repository.NetworkOnlyResource
@@ -97,6 +94,22 @@ class MineRepository : ApiRepository() {
         val params = ResetPwdWithOldpwdParams()
         params.new_password = newPwd
         params.old_password = oldPwd
+        return object : NetworkOnlyResource<Any>() {
+            override fun createCall(): LiveData<ApiResponse<Any>> {
+                return apiInterface.resetPwdWithOldPwd(params)
+            }
+        }.asLiveData()
+    }
+
+    /**
+     * 修改手机号
+     */
+    fun resetPhoneNum(newPhoneNum:String,oldPhoneNum:String,newVrifyCode:String,oldVerifyCode:String): LiveData<Resource<Any>>{
+        val params = ResetPhoneNumParams()
+        params.new_phone_number = newPhoneNum
+        params.old_phone_number  = oldPhoneNum
+        params.new_validation_code = newVrifyCode
+        params.old_validation_code = oldVerifyCode
         return object : NetworkOnlyResource<Any>() {
             override fun createCall(): LiveData<ApiResponse<Any>> {
                 return apiInterface.resetPwdWithOldPwd(params)

@@ -136,4 +136,14 @@ class AccountInfoViewModel(var repository: MineRepository = MineRepository()) : 
             }
         })
     }
+
+    fun resetPhoneNum(newPhoneNum: String, oldPhoneNum: String, newVrifyCode: String, oldVerifyCode: String, owner: LifecycleOwner, finish: () -> Unit) {
+        repository.resetPhoneNum(newPhoneNum, oldPhoneNum, newVrifyCode, oldVerifyCode).observe(owner, Observer {
+            it?.work {
+                finish()
+            }
+        })
+    }
+
+
 }

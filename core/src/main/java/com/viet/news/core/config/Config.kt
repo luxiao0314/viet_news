@@ -12,7 +12,7 @@ object Config {
     //倒计时1分钟
     val COUNT_DOWN_TIMER = 60 * 1000L
     val CHANGE_PHONE_NUM = 0
-    val RESET_PHONE_NUM = 1
+    val SET_PHONE_NUM = 1
 
 
     //语言切换
