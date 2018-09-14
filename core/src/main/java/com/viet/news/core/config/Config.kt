@@ -65,6 +65,7 @@ object Config {
     const val ROUTER_MINE_EDIT_INFO_FRAGMENT = "/mine/edit_info/fragment"
     const val ROUTER_MINE_EDIT_CHANGE_NICKNAME_FRAGMENT = "/mine/edit/change/nickname/fragment"
     const val ROUTER_MINE_EDIT_CHANGE_PHONE_FRAGMENT = "/mine/edit/change/phone/fragment"
+    const val ROUTER_MINE_EDIT_BIND_PHONE_FRAGMENT = "/mine/edit/bind/phone/fragment"
     const val ROUTER_MINE_EDIT_CHANGE_PWD_FRAGMENT = "/mine/edit/change/pwd/fragment"
     const val ROUTER_MINE_EDIT_VERIFY_CODE_FRAGMENT = "/mine/edit/verify_code/fragment"
 
