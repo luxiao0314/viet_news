@@ -63,17 +63,23 @@ abstract class NetworkBoundResource<ResultType, RequestType> @MainThread constru
 
             when (response) {
                 is ApiSuccessResponse -> {
-                    processResponse(response).let {
+
+                    if (response.body==null) {
+                       result.value = Resource.success(null)
+                    }
+                    processResponse(response)?.let {
                         Observable.fromCallable {
-                            saveCallResult(it!!)
+                            saveCallResult(it)
                         }
                                 .subscribeOn(Schedulers.io())
                                 .subscribe()
                     }
+
                     // we specially request a new live data,
                     // otherwise we will get immediately last cached value,
                     // which may not be updated with latest results received from network.
                     result.addSource(loadFromDb()) { resultType -> result.value = Resource.success(resultType) }
+
                 }
                 is ApiEmptyResponse -> {
                     result.addSource(loadFromDb()) { newData ->
