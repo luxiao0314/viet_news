@@ -11,6 +11,7 @@ import java.util.concurrent.TimeUnit
 import com.viet.news.core.http.interceptor.TokenAuthenticator
 import com.viet.news.core.http.interceptor.HttpLoginInterceptor
 import com.viet.news.core.http.interceptor.NetworkExceptionInterceptor
+import com.viet.news.core.utils.GsonFactory
 
 class RetrofitManager private constructor() {
 
@@ -40,7 +41,8 @@ class RetrofitManager private constructor() {
 
         retrofit = Retrofit.Builder()
                 .baseUrl(ApiService.MAGICBOX_API)
-                .addConverterFactory(GsonConverterFactory.create())
+//                .addConverterFactory(GsonConverterFactory.create())
+                .addConverterFactory(GsonFactory.create())
                 .addCallAdapterFactory(LiveDataCallAdapterFactory())
 //                .addCallAdapterFactory(RxJava2CallAdapterFactory.createWithScheduler(Schedulers.io()))
                 .client(okHttpClient)

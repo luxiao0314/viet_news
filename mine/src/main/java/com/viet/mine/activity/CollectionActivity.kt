@@ -10,7 +10,6 @@ import android.support.v7.widget.RecyclerView
 import android.view.View
 import android.widget.AbsListView.OnScrollListener.SCROLL_STATE_TOUCH_SCROLL
 import com.chenenyu.router.annotation.Route
-import com.safframework.ext.then
 import com.viet.mine.R
 import com.viet.mine.adapter.CollectionAdapter
 import com.viet.mine.viewmodel.CollectionViewModel
@@ -72,33 +71,36 @@ class CollectionActivity : InjectActivity() {
         }
 
         model.getCollectionList(User.currentUser.userId).observe(this, Observer {
-            it?.data?.isOkStatus?.then({
-                model.collectionList = it.data?.data?.list as ArrayList<CollectionListBean>
-                multiStatusView.showContent()
-                if (loadMore) {
-                    if (it.data?.data?.list == null || it.data?.data?.list!!.isEmpty()) {
-                        refreshLayout.finishLoadMoreWithNoMoreData()
-                    } else {
-                        refreshLayout.finishLoadMore()
-                        adapter.addData(it.data?.data?.list)
+            it?.work(
+                    onSuccess = {
+                        model.collectionList = it.data?.list as ArrayList<CollectionListBean>
+                        multiStatusView.showContent()
+                        if (loadMore) {
+                            if (it.data?.list == null || it.data?.list!!.isEmpty()) {
+                                refreshLayout.finishLoadMoreWithNoMoreData()
+                            } else {
+                                refreshLayout.finishLoadMore()
+                                adapter.addData(it.data?.list)
+                            }
+                        } else {
+                            if (it.data?.list == null || it.data?.list!!.isEmpty()) {
+                                multiStatusView.showEmpty()
+                                refreshLayout.setEnableLoadMore(false)
+                            }
+                            adapter.setData(it.data?.list)
+                            refreshLayout.setNoMoreData(false)
+                            refreshLayout.finishRefresh()
+                        }
+                    },
+                    onError = {
+                        multiStatusView.showError()
+                        if (loadMore) {
+                            refreshLayout.finishLoadMore(false)//传入false表示加载失败
+                        } else {
+                            refreshLayout.finishRefresh(false)
+                        }
                     }
-                } else {
-                    if (it.data?.data?.list == null || it.data?.data?.list!!.isEmpty()) {
-                        multiStatusView.showEmpty()
-                        refreshLayout.setEnableLoadMore(false)
-                    }
-                    adapter.setData(it.data?.data?.list)
-                    refreshLayout.setNoMoreData(false)
-                    refreshLayout.finishRefresh()
-                }
-            }, {
-                multiStatusView.showError()
-                if (loadMore) {
-                    refreshLayout.finishLoadMore(false)//传入false表示加载失败
-                } else {
-                    refreshLayout.finishRefresh(false)
-                }
-            })
+            )
         })
     }
 }

@@ -11,7 +11,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import cn.magicwindow.core.ui.ItemClickSupport
-import com.safframework.ext.then
 import com.viet.follow.R
 import com.viet.follow.adapter.FunsAndFollowAdapter
 import com.viet.follow.viewmodel.FansAndFollowViewModel
@@ -54,7 +53,7 @@ class FansTabFragment : InjectFragment() {
 
     private val listener = object : ItemClickSupport.OnChildClickListener {
         override fun onChildClicked(recyclerView: RecyclerView, position: Int, v: View) {
-            model.follow(this@FansTabFragment,adapter.getData()[position].id) {
+            model.follow(this@FansTabFragment, adapter.getData()[position].id) {
                 adapter.getData()[position].follow_flag = true
                 adapter.notifyItemChanged(position)
             }
@@ -70,32 +69,35 @@ class FansTabFragment : InjectFragment() {
         }
         model.fansList(page_number)
                 .observe(this, Observer {
-                    it?.data?.isOkStatus?.then({
-                        multiStatusView.showContent()
-                        if (loadMore) {
-                            if (it.data?.data?.list == null || it.data?.data?.list!!.isEmpty()) {
-                                refreshLayout.finishLoadMoreWithNoMoreData()
-                            } else {
-                                refreshLayout.finishLoadMore()
-                                adapter.addData(it.data?.data?.list)
+                    it?.work(
+                            onSuccess = {
+                                multiStatusView.showContent()
+                                if (loadMore) {
+                                    if (it.data?.list == null || it.data?.list!!.isEmpty()) {
+                                        refreshLayout.finishLoadMoreWithNoMoreData()
+                                    } else {
+                                        refreshLayout.finishLoadMore()
+                                        adapter.addData(it.data?.list)
+                                    }
+                                } else {
+                                    if (it.data?.list == null || it.data?.list!!.isEmpty()) {
+                                        multiStatusView.showEmpty()
+                                        refreshLayout.setEnableLoadMore(false)
+                                    }
+                                    adapter.setData(it.data?.list)
+                                    refreshLayout.setNoMoreData(false)
+                                    refreshLayout.finishRefresh()
+                                }
+                            },
+                            onError = {
+                                multiStatusView.showError()
+                                if (loadMore) {
+                                    refreshLayout.finishLoadMore(false)//传入false表示加载失败
+                                } else {
+                                    refreshLayout.finishRefresh(false)
+                                }
                             }
-                        } else {
-                            if (it.data?.data?.list == null || it.data?.data?.list!!.isEmpty()) {
-                                multiStatusView.showEmpty()
-                                refreshLayout.setEnableLoadMore(false)
-                            }
-                            adapter.setData(it.data?.data?.list)
-                            refreshLayout.setNoMoreData(false)
-                            refreshLayout.finishRefresh()
-                        }
-                    }, {
-                        multiStatusView.showError()
-                        if (loadMore) {
-                            refreshLayout.finishLoadMore(false)//传入false表示加载失败
-                        } else {
-                            refreshLayout.finishRefresh(false)
-                        }
-                    })
+                    )
                 })
     }
 }

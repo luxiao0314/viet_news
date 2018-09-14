@@ -31,14 +31,16 @@ sealed class ApiResponse<T> {
             return ApiErrorResponse(error.message ?: "unknown error")
         }
 
-        fun <T> create(response: Response<T>): ApiResponse<T> {
+        fun <T> create(response: Response<HttpResponse<T>>): ApiResponse<T> {
             if (response.isSuccessful) {
                 val body = response.body()
+
+
                 return if (body == null || response.code() == 204) {
                     ApiEmptyResponse()
                 } else {
                     ApiSuccessResponse(
-                            body = body,
+                            body = body.data,
                             linkHeader = response.headers()?.get("link")
                     )
                 }
@@ -61,10 +63,10 @@ sealed class ApiResponse<T> {
 class ApiEmptyResponse<T> : ApiResponse<T>()
 
 data class ApiSuccessResponse<T>(
-        val body: T,
+        val body: T?,
         val links: Map<String, String>
 ) : ApiResponse<T>() {
-    constructor(body: T, linkHeader: String?) : this(
+    constructor(body: T?, linkHeader: String?) : this(
             body = body,
             links = linkHeader?.extractLinks() ?: emptyMap()
     )

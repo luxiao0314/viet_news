@@ -7,7 +7,6 @@ import android.content.Context
 import com.safframework.ext.then
 import com.viet.follow.R
 import com.viet.follow.repository.PersonalPageRepository
-import com.viet.news.core.api.HttpResponse
 import com.viet.news.core.domain.response.NewsListResponse
 import com.viet.news.core.domain.response.UserInfoResponse
 import com.viet.news.core.ext.toast
@@ -29,61 +28,50 @@ class PersonalPageModel(var repository: PersonalPageRepository = PersonalPageRep
     var page_number = 0
     var userId: String? = ""
 
-    fun getlist4User(): LiveData<Resource<HttpResponse<NewsListResponse>>> {
+    fun getlist4User(): LiveData<Resource<NewsListResponse>> {
         return repository.getlist4User(page_number, userId)
     }
 
     fun getUserInfo(owner: LifecycleOwner, function: (user: UserInfoResponse?) -> Unit) {
         repository.getUserInfo(userId).observe(owner, Observer {
-            it?.data?.isOkStatus?.then({
-                function(it.data?.data)
-            }, {
-                toast(App.instance.resources.getString(R.string.error_msg)).show()
-            })
+            it?.work { function(it?.data) }
         })
     }
 
     fun follow(owner: LifecycleOwner, function: () -> Unit) {
         repository.follow(userId).observe(owner, Observer {
-            it?.data?.isOkStatus?.then({
-                function()
-            }, {
-                toast(App.instance.resources.getString(R.string.error_msg)).show()
-            })
+            it?.work { function() }
         })
     }
+
+
+    private lateinit var owner: LifecycleOwner
 
     /**
      * 点赞
      */
-    private lateinit var owner:LifecycleOwner
     fun like(context: Context, contentId: String, function: (num: Int?) -> Unit) {
         if (context is BaseFragment) {
             owner = context
-        }else if (context is BaseActivity) {
+        } else if (context is BaseActivity) {
             owner = context
         }
         repository.like(contentId).observe(owner, Observer {
-            it?.data?.isOkStatus?.then({
-                function(it.data?.data)
-            }, {
-                toast(App.instance.resources.getString(R.string.error_msg)).show()
-            })
+            it?.work { function(it.data) }
         })
     }
 
+    /**
+     * 收藏
+     */
     fun collection(context: Context, contentId: String, function: (num: Int?) -> Unit) {
         if (context is BaseFragment) {
             owner = context
-        }else if (context is BaseActivity) {
+        } else if (context is BaseActivity) {
             owner = context
         }
         repository.collection(contentId).observe(owner, Observer {
-            it?.data?.isOkStatus?.then({
-                function(it.data?.data)
-            }, {
-                toast(App.instance.resources.getString(R.string.error_msg)).show()
-            })
+            it?.work { function(it.data) }
         })
     }
 }
