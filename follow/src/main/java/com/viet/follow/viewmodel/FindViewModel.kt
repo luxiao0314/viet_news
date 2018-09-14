@@ -69,28 +69,28 @@ class FindViewModel(var repository: FindRepository = FindRepository()) : BaseVie
      */
     private lateinit var owner: LifecycleOwner
 
-    fun like(context: Context, contentId: String, function: (num: Int?) -> Unit) {
+    fun like(context: Context, contentId: String) {
         if (context is BaseFragment) {
             owner = context
         } else if (context is BaseActivity) {
             owner = context
         }
         repository.like(contentId).observe(owner, Observer {
-            it?.work { function(it.data) }
+            it?.work {  }
         })
     }
 
     /**
      * 收藏
      */
-    fun collection(context: Context, contentId: String, function: (num: Int?) -> Unit) {
+    fun collection(context: Context, contentId: String) {
         if (context is BaseFragment) {
             owner = context
         } else if (context is BaseActivity) {
             owner = context
         }
         repository.collection(contentId).observe(owner, Observer {
-            it?.work { function(it.data) }
+            it?.work {  }
         })
     }
 }

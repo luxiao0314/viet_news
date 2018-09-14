@@ -20,7 +20,7 @@ import kotlinx.android.synthetic.main.behaviorbar.view.*
  */
 class BehaviorBar @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0) : RelativeLayout(context, attrs, defStyleAttr) {
     private var hasRead: Boolean = false
-    private var hasFavorite: Boolean = false
+    private var hasCollection: Boolean = false
     private var hasLike: Boolean = false
     private var readNum: Int = 0
     private var favoriteNum: Int = 0
@@ -71,8 +71,8 @@ class BehaviorBar @JvmOverloads constructor(context: Context, attrs: AttributeSe
                 }
             }
             R.styleable.BehaviorBar_has_favorite -> {
-                hasFavorite = typedArray.getBoolean(index, false)
-                if (hasFavorite) {
+                hasCollection = typedArray.getBoolean(index, false)
+                if (hasCollection) {
                     setStatus(tv_favorite_num, R.drawable.ic_favorite_enable, R.color.behavior_enable)
                 } else {
                     setStatus(tv_favorite_num, R.drawable.ic_favorite, R.color.behavior_normal)
@@ -95,10 +95,30 @@ class BehaviorBar @JvmOverloads constructor(context: Context, attrs: AttributeSe
     @SuppressLint("ResourceType")
     private fun setListener() {
         tv_favorite_num.clickWithTrigger {
-            mDelegate?.onFavoriteClick()
+            mDelegate?.onCollectionClick {
+                if (it) {
+                    tv_favorite_num.text = if (favoriteNum == 0) "0" else (--favoriteNum).toString()
+                    setStatus(tv_favorite_num, R.drawable.ic_favorite, R.color.behavior_normal)
+                    false
+                } else {
+                    tv_favorite_num.text = (++favoriteNum).toString()
+                    setStatus(tv_favorite_num, R.drawable.ic_favorite_enable, R.color.behavior_enable)
+                    true
+                }
+            }
         }
         tv_like_num.clickWithTrigger {
-            mDelegate?.onLikeClick()
+            mDelegate?.onLikeClick{
+                if (it) {
+                    tv_like_num.text = if (likeNum == 0) "0" else (--likeNum).toString()
+                    setStatus(tv_like_num, R.drawable.ic_like, R.color.behavior_normal)
+                    false
+                } else {
+                    tv_like_num.text = (++likeNum).toString()
+                    setStatus(tv_like_num, R.drawable.ic_like_enable, R.color.behavior_enable)
+                    true
+                }
+            }
         }
     }
 
@@ -155,7 +175,7 @@ class BehaviorBar @JvmOverloads constructor(context: Context, attrs: AttributeSe
     @SuppressLint("ResourceType")
     fun setFavoriteStatus(status: Boolean, count: Int): BehaviorBar {
         tv_favorite_num.text = count.toString()
-        hasFavorite = status
+        hasCollection = status
         favoriteNum = count
         if (status) {
             setStatus(tv_favorite_num, R.drawable.ic_favorite_enable, R.color.behavior_enable)
@@ -199,21 +219,21 @@ class BehaviorBar @JvmOverloads constructor(context: Context, attrs: AttributeSe
      * 点击事件监听代理
      */
     interface Delegate {
-        fun onLikeClick()
-        fun onFavoriteClick()
+        fun onLikeClick(func: (isCollection: Boolean) -> Boolean)
+        fun onCollectionClick(func: (isCollection: Boolean) -> Boolean)
     }
 
     class ClickDelegate : Delegate {
 
-        var onLikeClick: (() -> Unit)? = null
-        var onFavoriteClick: (() -> Unit)? = null
+        var onLikeClick: (((isCollection: Boolean) -> Boolean) -> Unit)? = null
+        var onCollectionClick: (((isCollection: Boolean) -> Boolean) -> Unit)? = null
 
-        override fun onLikeClick() {
-            onLikeClick?.let { it() }
+        override fun onLikeClick(func: (isCollection: Boolean) -> Boolean) {
+            onLikeClick?.let { it(func) }
         }
 
-        override fun onFavoriteClick() {
-            onFavoriteClick?.let { it() }
+        override fun onCollectionClick(func: (isCollection: Boolean) -> Boolean) {
+            onCollectionClick?.let { it(func) }
         }
     }
 }

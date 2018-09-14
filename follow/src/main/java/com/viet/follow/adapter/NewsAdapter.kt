@@ -58,17 +58,13 @@ class NewsAdapter @Inject constructor() : BaseAdapter<NewsListBean>() {
         holder.itemView.findViewById<BehaviorBar>(R.id.behaviorBar)?.setClickDelegate {
             onLikeClick = {
                 if (!t.content.likeFlag) {
-                    model.like(context, t.content.id.toString()) {
-                        t.content.likeFlag = !t.content.likeFlag
-                        holder.itemView.findViewById<BehaviorBar>(R.id.behaviorBar)?.setLikeStatus(t.content.likeFlag, it!!)
-                    }
+                    t.content.likeFlag = it(t.content.likeFlag)
+                    model.like(context, t.content.id.toString())
                 }
             }
-            onFavoriteClick = {
-                model.collection(context, t.content.id.toString()) {
-                    t.content.collectionFlag = !t.content.collectionFlag
-                    holder.itemView.findViewById<BehaviorBar>(R.id.behaviorBar)?.setFavoriteStatus(t.content.collectionFlag, it!!)
-                }
+            onCollectionClick = {
+                t.content.collectionFlag = it(t.content.collectionFlag)
+                model.collection(context, t.content.id.toString())
             }
         }
 

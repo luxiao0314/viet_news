@@ -46,7 +46,7 @@ class ChannelTabLayout @JvmOverloads constructor(context: Context, attrs: Attrib
     private val DEFAULT_INDICATOR_COLOR = Color.RED
     private var mIndicatorColor = DEFAULT_INDICATOR_COLOR
     //tab最小宽度
-    private val DEFAULT_TAB_MIN_WIDTH = ResolutionUtils.dp2px(50, context)
+    private val DEFAULT_TAB_MIN_WIDTH = ResolutionUtils.dp2px(30, context)
     private var mMinTabWidth = DEFAULT_TAB_MIN_WIDTH
     //tab之间的间距
     private var mTabPadding: Int = 0
@@ -116,7 +116,7 @@ class ChannelTabLayout @JvmOverloads constructor(context: Context, attrs: Attrib
         mDividerColor = typedArray.getColor(R.styleable.ChannelTabLayout_tab_dividerColor, DEFAULT_DIVIDER_COLOR)
         mDividerWidth = typedArray.getDimension(R.styleable.ChannelTabLayout_tab_dividerWidth, DEFAULT_DIVIDER_WIDTH.toFloat()).toInt()
         mDividerPadding = typedArray.getDimension(R.styleable.ChannelTabLayout_tab_dividerPadding, DEFAULT_DIVIDER_PADDING.toFloat()).toInt()
-        mTabPadding = typedArray.getDimension(R.styleable.ChannelTabLayout_tab_Padding, 0f).toInt()
+        mTabPadding = typedArray.getDimension(R.styleable.ChannelTabLayout_tab_Padding, dp2px(10,context).toFloat()).toInt()
         hasShowDivider = typedArray.getBoolean(R.styleable.ChannelTabLayout_tab_dividerShow, false)
         typedArray.recycle()
     }
@@ -300,5 +300,9 @@ class ChannelTabLayout @JvmOverloads constructor(context: Context, attrs: Attrib
         override fun onPageScrollStateChanged(state: Int) {
 
         }
+    }
+
+    fun dp2px(value: Int, context: Context): Int {
+        return (context.applicationContext.resources.displayMetrics.density * value).toInt()
     }
 }

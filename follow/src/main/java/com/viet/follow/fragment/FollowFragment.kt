@@ -11,12 +11,14 @@ import android.support.v7.widget.OrientationHelper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.safframework.ext.then
 import com.viet.follow.R
 import com.viet.follow.adapter.NewsAdapter
 import com.viet.follow.viewmodel.FindViewModel
 import com.viet.news.core.delegate.viewModelDelegate
+import com.viet.news.core.domain.LoginEvent
+import com.viet.news.core.domain.LogoutEvent
 import com.viet.news.core.ui.RealVisibleHintBaseFragment
+import com.viet.news.core.utils.RxBus
 import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.support.AndroidSupportInjection
@@ -53,6 +55,12 @@ class FollowFragment : RealVisibleHintBaseFragment(), HasSupportFragmentInjector
 
     override fun onFragmentFirstVisible() {
         refreshLayout.autoRefresh()
+        initEvent()
+    }
+
+    private fun initEvent() {
+        compositeDisposable.add(RxBus.get().register(LogoutEvent::class.java) { refreshLayout.autoRefresh() })
+        compositeDisposable.add(RxBus.get().register(LoginEvent::class.java) { refreshLayout.autoRefresh() })
     }
 
     private fun initListener() {

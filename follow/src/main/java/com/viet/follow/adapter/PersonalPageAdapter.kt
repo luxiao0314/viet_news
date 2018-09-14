@@ -57,7 +57,7 @@ class PersonalPageAdapter @Inject constructor() : BaseAdapter<NewsListBean>() {
                     }
                 }
             }
-            onFavoriteClick = {
+            onCollectionClick = {
                 model.collection(context, t.content.id.toString()) {
                     t.content.collectionFlag = !t.content.collectionFlag
                     holder.itemView.findViewById<BehaviorBar>(R.id.behaviorBar)?.setFavoriteStatus(t.content.collectionFlag, it!!)
