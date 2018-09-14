@@ -66,6 +66,7 @@ abstract class NetworkBoundResource<ResultType, RequestType> @MainThread constru
 
                     if (response.body==null) {
                        result.value = Resource.success(null)
+                        return@addSource
                     }
                     processResponse(response)?.let {
                         Observable.fromCallable {
