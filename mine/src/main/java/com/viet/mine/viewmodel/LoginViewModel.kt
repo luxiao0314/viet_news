@@ -326,5 +326,19 @@ class LoginViewModel(private var repository: LoginRepository = LoginRepository()
             )
         })
     }
+    @SuppressLint("CheckResult")
+    fun loginByFacebook(owner: LifecycleOwner,facebookUserId:String,facebookToken:String,facebookExpires:String, onLoginSuccess: () -> Unit) {
+        repository.loginByFacebook(facebookUserId,facebookToken,facebookExpires).observe(owner, Observer { resource ->
+            resource?.work (
+                    onSuccess = {
+                        resource.data?.let {
+                            User.currentUser.login(it)
+                            stopSignInCountdown()//注册成功后结束本次倒计时
+                            RxBus.get().post(LoginEvent())
+                            onLoginSuccess()
+                        }}
+            )
+        })
+    }
 
 }

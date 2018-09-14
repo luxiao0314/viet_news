@@ -4,7 +4,9 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.chenenyu.router.annotation.Route
 import com.viet.mine.R
+import com.viet.news.core.config.Config
 import com.viet.news.core.ui.BaseFragment
 
 /**
@@ -14,6 +16,7 @@ import com.viet.news.core.ui.BaseFragment
  * @Email zongjia.long@merculet.io
  * @Version
  */
+@Route(value = [Config.ROUTER_MINE_EDIT_BIND_PHONE_FRAGMENT])
 class BindNewPhoneNumFragment : BaseFragment() {
     private var mContainerView: View? = null
 

@@ -53,11 +53,10 @@ class VerifyCodeFragment : BaseFragment() {
                 model.checkVerifyCode(User.currentUser.telephone, value, this@VerifyCodeFragment) {
                     when (arguments!!["page_type"]) {
                         Config.CHANGE_PHONE_NUM -> {
-
+                            openPage(this@VerifyCodeFragment, Config.ROUTER_MINE_EDIT_BIND_PHONE_FRAGMENT, R.id.container_framelayout)
                         }
-                        Config.RESET_PHONE_NUM -> {
-                            openPage(this@VerifyCodeFragment, Config.ROUTER_MINE_EDIT_CHANGE_PWD_FRAGMENT, R.id.container_framelayout)
-                            (activity as BaseActivity).finishWithAnim()
+                        else -> {
+
                         }
                     }
                 }

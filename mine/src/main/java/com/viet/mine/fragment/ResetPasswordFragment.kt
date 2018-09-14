@@ -11,6 +11,7 @@ import com.viet.news.core.config.Config
 import com.viet.news.core.delegate.viewModelDelegate
 import com.viet.news.core.ext.clickWithTrigger
 import com.viet.news.core.ext.finishWithAnim
+import com.viet.news.core.ext.toast
 import com.viet.news.core.ui.BaseActivity
 import com.viet.news.core.ui.BaseFragment
 import kotlinx.android.synthetic.main.fragment_mine_setting_resetpwd.*
@@ -26,11 +27,12 @@ class ResetPasswordFragment : BaseFragment() {
     }
 
     override fun initView(view: View) {
-        val oldpwd = old_password_input.text.toString()
-        val newpwd = new_password_input.text.toString()
         confirm_btn.clickWithTrigger {
+            var oldpwd = old_password_input.text.toString()
+            val newpwd = new_password_input.text.toString()
             model.resetPwdWithOldPwd(oldpwd, newpwd,this@ResetPasswordFragment) {
                 (activity as BaseActivity).finishWithAnim()
+                toast("修改成功")
             }
         }
     }

@@ -1,5 +1,6 @@
 package com.viet.news.core.domain
 
+import com.facebook.login.LoginManager
 import com.viet.news.core.domain.response.LoginRegisterResponse
 import com.viet.news.core.utils.RxBus
 import java.io.Serializable
@@ -93,12 +94,12 @@ class User private constructor() : Serializable {
 
     fun login(userLogin: LoginRegisterResponse) {
         //init
-        this.telephone = userLogin.phoneNumber
-        this.avatar = userLogin.avatar
-        this.accessToken = userLogin.token
-        this.roleId = userLogin.roleId
-        this.userName = userLogin.nickName
-        this.userId = userLogin.userId
+        this.telephone = userLogin.phoneNumber?:""
+        this.avatar = userLogin.avatar?:""
+        this.accessToken = userLogin.token?:""
+        this.roleId = userLogin.roleId?:""
+        this.userName = userLogin.nickName?:""
+        this.userId = userLogin.userId?:""
         this.fansCount = userLogin.fansCount
         this.followCount = userLogin.followCount
 
@@ -114,7 +115,7 @@ class User private constructor() : Serializable {
         Settings.create().roleId = ""
         Settings.create().fansCount = 0
         Settings.create().followCount = 0
-
+        LoginManager.getInstance().logOut()
         currentUser = User()
 
     }
