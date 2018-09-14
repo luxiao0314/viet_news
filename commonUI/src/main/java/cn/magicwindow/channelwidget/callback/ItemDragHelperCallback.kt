@@ -45,7 +45,7 @@ class ItemDragHelperCallback(private val mDragMoveListener: ItemDragListener) : 
     override fun onSelectedChanged(viewHolder: RecyclerView.ViewHolder?, actionState: Int) {
         if (actionState != ItemTouchHelper.ACTION_STATE_IDLE) {
             val itemViewHolder = viewHolder as ItemDragVHListener?
-            itemViewHolder!!.onItemSelected()
+            itemViewHolder?.onItemSelected()
         }
         super.onSelectedChanged(viewHolder, actionState)
     }
@@ -54,5 +54,6 @@ class ItemDragHelperCallback(private val mDragMoveListener: ItemDragListener) : 
         super.clearView(recyclerView, viewHolder)
         val itemViewHolder = viewHolder as ItemDragVHListener
         itemViewHolder.onItemFinished()
+        mDragMoveListener.onItemFinished(viewHolder.adapterPosition)
     }
 }

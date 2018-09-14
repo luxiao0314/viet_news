@@ -34,8 +34,8 @@ class ChannelAdapter(context: Context?, recyclerView: RecyclerView, private val 
     private val mInflater: LayoutInflater
     private val mTypeMap: SparseArray<IChannelType> = SparseArray()
     // 是否是编辑状态
-    private var isEditMode: Boolean = false
     private var dataChanged: Boolean = false
+    private var isEditMode: Boolean = false
     private val mItemTouchHelper: ItemTouchHelper = ItemTouchHelper(ItemDragHelperCallback(this))
     // touch 点击开始时间
     private var startTime: Long = 0
@@ -83,7 +83,7 @@ class ChannelAdapter(context: Context?, recyclerView: RecyclerView, private val 
     }
 
     override fun onItemMove(fromPosition: Int, toPosition: Int) {
-        if (toPosition > 2) {
+        if (toPosition > 1) {
             val item = mMyChannelItems[fromPosition - mMyHeaderCount]
             mMyChannelItems.removeAt(fromPosition - mMyHeaderCount)
             mMyChannelItems.add(toPosition - mMyHeaderCount, item)
@@ -91,7 +91,14 @@ class ChannelAdapter(context: Context?, recyclerView: RecyclerView, private val 
         }
     }
 
-    override fun onItemSwiped(position: Int) {}
+    override fun onItemFinished(position: Int) {
+        dataChanged = true
+        channelItemClickListener?.onChannelItemMoved(mMyChannelItems, position){}
+    }
+
+    override fun onItemSwiped(position: Int) {
+
+    }
 
     /**
      * 频道条目
@@ -137,7 +144,7 @@ class ChannelAdapter(context: Context?, recyclerView: RecyclerView, private val 
         override fun clickMyChannel(mRecyclerView: RecyclerView, holder: ChannelViewHolder) {
             val position = holder.adapterPosition
             if (isEditMode) {
-                channelItemClickListener?.moveMyToOther(mMyChannelItems, position - mMyHeaderCount) { moveMyToOther(position) }
+                channelItemClickListener?.onChannelItemMoved(mMyChannelItems, position - mMyHeaderCount) { moveMyToOther(position) }
             } else {
                 channelItemClickListener?.onChannelItemClick(mMyChannelItems, position - mMyHeaderCount)
             }
@@ -162,7 +169,6 @@ class ChannelAdapter(context: Context?, recyclerView: RecyclerView, private val 
 
         override fun clickLongMyChannel(mRecyclerView: RecyclerView, holder: ChannelViewHolder) {
             if (!isEditMode) {
-                dataChanged = true
                 doStartEditMode(mRecyclerView)
                 val view = mRecyclerView.getChildAt(0)
                 if (view === mRecyclerView.layoutManager?.findViewByPosition(0)) {
@@ -176,7 +182,7 @@ class ChannelAdapter(context: Context?, recyclerView: RecyclerView, private val 
 
         override fun clickRecChannel(mRecyclerView: RecyclerView, holder: ChannelViewHolder) {
             val position = holder.adapterPosition
-            channelItemClickListener?.moveOtherToMy(mOtherChannelItems, position - mMyChannelItems.size - mRecHeaderCount - mMyHeaderCount) { moveOtherToMy(position) }
+            channelItemClickListener?.onChannelItemMoved(mMyChannelItems, position - mMyChannelItems.size - mRecHeaderCount - mMyHeaderCount) { moveOtherToMy(position) }
         }
     }
 
@@ -257,10 +263,9 @@ class ChannelAdapter(context: Context?, recyclerView: RecyclerView, private val 
     }
 
     interface ChannelItemClickListener {
-        fun onChannelItemClick(list: List<ChannelBean>, position: Int)
         fun onCloseClick(list: List<ChannelBean>, dataChange: Boolean)
-        fun moveMyToOther(list: List<ChannelBean>, position: Int, function: () -> Unit)
-        fun moveOtherToMy(list: List<ChannelBean>, position: Int, function: () -> Unit)
+        fun onChannelItemClick(list: List<ChannelBean>, position: Int)
+        fun onChannelItemMoved(list: List<ChannelBean>, position: Int, function: () -> Unit)
     }
 
     companion object {

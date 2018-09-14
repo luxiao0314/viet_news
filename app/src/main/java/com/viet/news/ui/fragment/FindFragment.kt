@@ -80,17 +80,11 @@ class FindFragment : InjectFragment(), AddChannelFragment.DataChangeListener {
         pagerAdapter.notifyDataSetChanged()
         id_tab_pager_indicator.setDataList(model.normalList)
         id_tab_pager_indicator.notifyDataSetChanged()
-        if (position != 100000) {
-            id_view_Pager.currentItem = position
-        }
+        if (position != 100000) id_view_Pager.currentItem = position
     }
 
-    override fun moveMyToOther(list: List<ChannelBean>, position: Int, function: () -> Unit) {
-        model.channelAdd(this, list, position) { function() }
-    }
-
-    override fun moveOtherToMy(list: List<ChannelBean>, position: Int, function: () -> Unit) {
-        model.channelRemove(this, list, position) { function() }
+    override fun onChannelItemMoved(list: List<ChannelBean>, position: Int, function: () -> Unit) {
+        model.updateSort(this, list) { function() }
     }
 }
 

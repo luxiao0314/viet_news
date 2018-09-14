@@ -3,9 +3,10 @@ package com.viet.follow.adapter
 import android.support.v7.widget.GridLayoutManager
 import android.widget.ImageView
 import com.viet.follow.R
+import com.viet.follow.viewmodel.FindViewModel
 import com.viet.news.core.config.Config
 import com.viet.news.core.domain.response.NewsListBean
-import com.viet.news.core.ext.click
+import com.viet.news.core.ext.clickWithTrigger
 import com.viet.news.core.ext.load
 import com.viet.news.core.ext.loadCircle
 import com.viet.news.core.ext.routerWithAnim
@@ -27,6 +28,8 @@ import javax.inject.Inject
  */
 class NewsAdapter @Inject constructor() : BaseAdapter<NewsListBean>() {
 
+    lateinit var model: FindViewModel
+
     override fun getItemViewType(position: Int): Int {
         return getData()[position].content.contentType
     }
@@ -46,11 +49,28 @@ class NewsAdapter @Inject constructor() : BaseAdapter<NewsListBean>() {
         holder.itemView.tv_time.text = DateUtils.getTimestamp(Date(t.content.createDateTime))
         holder.itemView.tv_des.text = t.content.contentTitle
         holder.itemView.findViewById<ImageView>(R.id.iv_article_image).loadCircle(t.author.avatar)
-        holder.itemView.findViewById<ImageView>(R.id.iv_article_image).click { routerWithAnim(Config.ROUTER_PERSONAL_PAGE_ACTIVITY).with(Config.BUNDLE_USER_ID,t.content.userId).go(context) }
-        holder.itemView.click { WebActivity.launch(context, t.content.contentDetail) }
-        holder.itemView.behaviorBar?.setClickDelegate {
-            onLikeClick = { isLiked, num, id, func -> delegate?.onLikeClick(isLiked, num, t.content.id, func) }
-            onFavoriteClick = { isFavorite, num, id, func -> delegate?.onLikeClick(isFavorite, num, t.content.id, func) }
+
+        holder.itemView.findViewById<BehaviorBar>(R.id.behaviorBar)?.setReadNumStatus(t.content.contentProfit)
+        holder.itemView.findViewById<BehaviorBar>(R.id.behaviorBar)?.setLikeStatus(t.content.likeFlag, t.content.likeNumber)
+        holder.itemView.findViewById<BehaviorBar>(R.id.behaviorBar)?.setFavoriteStatus(t.content.collectionFlag, t.content.collectionNumber)
+
+        holder.itemView.findViewById<ImageView>(R.id.iv_article_image).clickWithTrigger { routerWithAnim(Config.ROUTER_PERSONAL_PAGE_ACTIVITY).with(Config.BUNDLE_USER_ID, t.content.userId).go(context) }
+        holder.itemView.clickWithTrigger { WebActivity.launch(context, t.content.contentDetail) }
+        holder.itemView.findViewById<BehaviorBar>(R.id.behaviorBar)?.setClickDelegate {
+            onLikeClick = {
+                if (!t.content.likeFlag) {
+                    model.like(context, t.content.id.toString()) {
+                        t.content.likeFlag = !t.content.likeFlag
+                        holder.itemView.findViewById<BehaviorBar>(R.id.behaviorBar)?.setLikeStatus(t.content.likeFlag, it!!)
+                    }
+                }
+            }
+            onFavoriteClick = {
+                model.collection(context, t.content.id.toString()) {
+                    t.content.collectionFlag = !t.content.collectionFlag
+                    holder.itemView.findViewById<BehaviorBar>(R.id.behaviorBar)?.setFavoriteStatus(t.content.collectionFlag, it!!)
+                }
+            }
         }
 
         when (getItemViewType(position)) {
@@ -65,12 +85,5 @@ class NewsAdapter @Inject constructor() : BaseAdapter<NewsListBean>() {
             }
             4 -> holder.itemView.findViewById<ImageView>(R.id.iv_pic).load(t.image_array[0].cover)
         }
-    }
-
-    var delegate: BehaviorBar.ClickDelegate? = null
-    fun setClickDelegate(init: BehaviorBar.ClickDelegate.() -> Unit) {
-        val delegate = BehaviorBar.ClickDelegate()
-        delegate.init()
-        this.delegate = delegate
     }
 }

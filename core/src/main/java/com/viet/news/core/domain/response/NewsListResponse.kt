@@ -21,6 +21,10 @@ data class ContentBean(var id: Int, //文章id,点赞,收藏使用此id
                        var version: String?,
                        @SerializedName("content_title")
                        var contentTitle: String?,
+                       @SerializedName("like_flag")
+                       var likeFlag: Boolean,
+                       @SerializedName("collection_flag")
+                       var collectionFlag: Boolean,
                        @SerializedName("content_image")
                        var contentImage: String?,
                        @SerializedName("content_detail")

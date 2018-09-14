@@ -63,6 +63,7 @@ class PersonalPageActivity : InjectActivity() {
 
     private fun initView() {
         initListener()
+        adapter.model = model
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(this, OrientationHelper.VERTICAL, false)
         val dividerItemDecoration = DividerItemDecoration(this, DividerItemDecoration.VERTICAL)
@@ -80,15 +81,6 @@ class PersonalPageActivity : InjectActivity() {
             model.follow(this) {
                 btn_follow.isEnabled = false
                 btn_follow.text = resources.getString(R.string.has_follow)
-            }
-        }
-
-        adapter.setClickDelegate {
-            onLikeClick = { isLiked, num, id, func ->
-                model.like(this@PersonalPageActivity, id.toString()) { func() }
-            }
-            onFavoriteClick = { isFavorite, num, id, func ->
-                model.collection(this@PersonalPageActivity, id.toString()) { func() }
             }
         }
     }

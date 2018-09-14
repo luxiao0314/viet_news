@@ -89,38 +89,16 @@ class BehaviorBar @JvmOverloads constructor(context: Context, attrs: AttributeSe
         }
     }
 
-
     /**
      * 设置监听
      */
     @SuppressLint("ResourceType")
     private fun setListener() {
-
         tv_favorite_num.clickWithTrigger {
-            mDelegate?.onFavoriteClick(hasFavorite, favoriteNum) {
-                if (hasFavorite) {
-                    tv_favorite_num.text = if (favoriteNum == 0) "0" else (--favoriteNum).toString()
-                    setStatus(tv_favorite_num, R.drawable.ic_favorite, R.color.behavior_normal)
-                    hasFavorite = false
-                } else {
-                    tv_favorite_num.text = (++favoriteNum).toString()
-                    setStatus(tv_favorite_num, R.drawable.ic_favorite_enable, R.color.behavior_enable)
-                    hasFavorite = true
-                }
-            }
+            mDelegate?.onFavoriteClick()
         }
         tv_like_num.clickWithTrigger {
-            mDelegate?.onLikeClick(hasLike, likeNum) {
-                if (hasLike) {
-                    tv_like_num.text = if (likeNum == 0) "0" else (--likeNum).toString()
-                    setStatus(tv_like_num, R.drawable.ic_like, R.color.behavior_normal)
-                    hasLike = false
-                } else {
-                    tv_like_num.text = (++likeNum).toString()
-                    setStatus(tv_like_num, R.drawable.ic_like_enable, R.color.behavior_enable)
-                    hasLike = true
-                }
-            }
+            mDelegate?.onLikeClick()
         }
     }
 
@@ -185,7 +163,6 @@ class BehaviorBar @JvmOverloads constructor(context: Context, attrs: AttributeSe
             setStatus(tv_favorite_num, R.drawable.ic_favorite, R.color.behavior_normal)
         }
         tv_favorite_num.text = favoriteNum.toString()
-
         return this
     }
 
@@ -205,7 +182,6 @@ class BehaviorBar @JvmOverloads constructor(context: Context, attrs: AttributeSe
             setStatus(tv_like_num, R.drawable.ic_like, R.color.behavior_normal)
         }
         tv_like_num.text = likeNum.toString()
-
         return this
     }
 
@@ -223,21 +199,21 @@ class BehaviorBar @JvmOverloads constructor(context: Context, attrs: AttributeSe
      * 点击事件监听代理
      */
     interface Delegate {
-        fun onLikeClick(isLiked: Boolean, likedNum: Int, id: Int? = 0, func: () -> Unit)
-        fun onFavoriteClick(isFavorite: Boolean, favoriteNum: Int, id: Int? = 0, func: () -> Unit)
+        fun onLikeClick()
+        fun onFavoriteClick()
     }
 
     class ClickDelegate : Delegate {
 
-        var onLikeClick: ((Boolean, Int, Int?, func: () -> Unit) -> Unit)? = null
-        var onFavoriteClick: ((Boolean, Int, Int?, func: () -> Unit) -> Unit)? = null
+        var onLikeClick: (() -> Unit)? = null
+        var onFavoriteClick: (() -> Unit)? = null
 
-        override fun onLikeClick(isLiked: Boolean, likedNum: Int, id: Int?, func: () -> Unit) {
-            onLikeClick?.let { it(isLiked, likedNum, id, func) }
+        override fun onLikeClick() {
+            onLikeClick?.let { it() }
         }
 
-        override fun onFavoriteClick(isFavorite: Boolean, favoriteNum: Int, id: Int?, func: () -> Unit) {
-            onFavoriteClick?.let { it(isFavorite, favoriteNum, id, func) }
+        override fun onFavoriteClick() {
+            onFavoriteClick?.let { it() }
         }
     }
 }

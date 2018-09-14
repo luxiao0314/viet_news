@@ -63,8 +63,10 @@ class AddChannelFragment(private var mMyChannelList: MutableList<ChannelBean>, p
     }
 
     override fun onCloseClick(list: List<ChannelBean>, dataChange: Boolean) {
-        listener?.let { if (dataChange) it.onDataChanged(list, 100000) }
-        dismiss()
+        listener?.let {
+            if (dataChange) it.onDataChanged(list, 100000)
+            dismiss()
+        }
     }
 
     override fun onChannelItemClick(list: List<ChannelBean>, position: Int) {
@@ -74,18 +76,13 @@ class AddChannelFragment(private var mMyChannelList: MutableList<ChannelBean>, p
         }
     }
 
-    override fun moveMyToOther(list: List<ChannelBean>, position: Int, function: () -> Unit) {
-        listener?.moveMyToOther(list, position, function)
-    }
-
-    override fun moveOtherToMy(list: List<ChannelBean>, position: Int, function: () -> Unit) {
-        listener?.moveOtherToMy(list, position, function)
+    override fun onChannelItemMoved(list: List<ChannelBean>, position: Int, function: () -> Unit) {
+        listener?.onChannelItemMoved(list, position, function)
     }
 
     interface DataChangeListener {
         fun onDataChanged(list: List<ChannelBean>, position: Int)
-        fun moveMyToOther(list: List<ChannelBean>, position: Int, function: () -> Unit)
-        fun moveOtherToMy(list: List<ChannelBean>, position: Int, function: () -> Unit)
+        fun onChannelItemMoved(list: List<ChannelBean>, position: Int, function: () -> Unit)
     }
 
     fun setOnDataChangeListener(listener: DataChangeListener) {

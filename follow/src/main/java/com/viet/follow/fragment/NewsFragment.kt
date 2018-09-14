@@ -60,6 +60,7 @@ class NewsFragment : RealVisibleHintBaseFragment(), HasSupportFragmentInjector {
 
     override fun initView(view: View) {
         recyclerView.adapter = adapter
+        adapter.model = model
         recyclerView.layoutManager = LinearLayoutManager(activity, OrientationHelper.VERTICAL, false)
         val dividerItemDecoration = DividerItemDecoration(activity, DividerItemDecoration.VERTICAL)
         dividerItemDecoration.setDrawable(ContextCompat.getDrawable(context!!, R.drawable.shape_list_divider_gray_05dp)!!)
@@ -81,14 +82,6 @@ class NewsFragment : RealVisibleHintBaseFragment(), HasSupportFragmentInjector {
         refreshLayout.setOnRefreshListener { initData(false) }
         refreshLayout.setOnLoadMoreListener { initData(true) }
         multiStatusView.setLoadingButtonClickListener(View.OnClickListener { refreshLayout.autoRefresh() })
-        adapter.setClickDelegate {
-            onLikeClick = { isLiked, num, id, func ->
-                model.like(this@NewsFragment, id.toString()) { func() }
-            }
-            onFavoriteClick = { isFavorite, num, id, func ->
-                model.collection(this@NewsFragment, id.toString()) { func() }
-            }
-        }
     }
 
     private fun initData(loadMore: Boolean) {
@@ -97,7 +90,7 @@ class NewsFragment : RealVisibleHintBaseFragment(), HasSupportFragmentInjector {
         } else {
             page_number = 1
         }
-        model.getlist4Channel(id,page_number)
+        model.getlist4Channel(id, page_number)
                 .observe(this, Observer {
                     it?.data?.isOkStatus?.then({
                         model.newsList = it.data?.data?.list as ArrayList<NewsListBean>

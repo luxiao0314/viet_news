@@ -4,11 +4,14 @@ import android.support.v7.widget.GridLayoutManager
 import android.widget.ImageView
 import android.widget.TextView
 import com.viet.follow.R
+import com.viet.follow.viewmodel.PersonalPageModel
 import com.viet.news.core.domain.response.NewsListBean
+import com.viet.news.core.ext.clickWithTrigger
 import com.viet.news.core.ext.load
 import com.viet.news.core.ui.BaseAdapter
 import com.viet.news.core.ui.widget.BehaviorBar
 import com.viet.news.core.utils.DateUtils
+import com.viet.news.webview.WebActivity
 import kotlinx.android.synthetic.main.cell_personal_page_picture_three.view.*
 import java.util.*
 import javax.inject.Inject
@@ -21,6 +24,8 @@ import javax.inject.Inject
  * @Version
  */
 class PersonalPageAdapter @Inject constructor() : BaseAdapter<NewsListBean>() {
+
+    lateinit var model: PersonalPageModel
 
     override fun getItemViewType(position: Int): Int {
         return getData()[position].content.contentType
@@ -38,10 +43,28 @@ class PersonalPageAdapter @Inject constructor() : BaseAdapter<NewsListBean>() {
         holder.itemView.findViewById<TextView>(R.id.tv_des)?.text = t.content.contentTitle
         holder.itemView.findViewById<TextView>(R.id.tv_time)?.text = DateUtils.getTimestamp(Date(t.content.createDateTime))
 
-        holder.itemView.behaviorBar?.setClickDelegate {
-            onLikeClick = { isLiked, num, id, func -> delegate?.onLikeClick(isLiked, num, t.content.id, func) }
-            onFavoriteClick = { isFavorite, num, id, func -> delegate?.onLikeClick(isFavorite, num, t.content.id, func) }
+        holder.itemView.findViewById<BehaviorBar>(R.id.behaviorBar)?.setReadNumStatus(t.content.contentProfit)
+        holder.itemView.findViewById<BehaviorBar>(R.id.behaviorBar)?.setLikeStatus(t.content.likeFlag, t.content.likeNumber)
+        holder.itemView.findViewById<BehaviorBar>(R.id.behaviorBar)?.setFavoriteStatus(t.content.collectionFlag, t.content.collectionNumber)
+
+        holder.itemView.clickWithTrigger { WebActivity.launch(context, t.content.contentDetail) }
+        holder.itemView.findViewById<BehaviorBar>(R.id.behaviorBar)?.setClickDelegate {
+            onLikeClick = {
+                if (!t.content.likeFlag) {
+                    model.like(context, t.content.id.toString()) {
+                        t.content.likeFlag = !t.content.likeFlag
+                        holder.itemView.findViewById<BehaviorBar>(R.id.behaviorBar)?.setLikeStatus(t.content.likeFlag, it!!)
+                    }
+                }
+            }
+            onFavoriteClick = {
+                model.collection(context, t.content.id.toString()) {
+                    t.content.collectionFlag = !t.content.collectionFlag
+                    holder.itemView.findViewById<BehaviorBar>(R.id.behaviorBar)?.setFavoriteStatus(t.content.collectionFlag, it!!)
+                }
+            }
         }
+
         when (getItemViewType(position)) {
             1 -> {
                 holder.itemView.rv_news_cell.layoutManager = GridLayoutManager(context, 3)
@@ -50,12 +73,5 @@ class PersonalPageAdapter @Inject constructor() : BaseAdapter<NewsListBean>() {
                 cellAdapter.addData(t.image_array)
             }
         }
-    }
-
-    var delegate: BehaviorBar.ClickDelegate? = null
-    fun setClickDelegate(init: BehaviorBar.ClickDelegate.() -> Unit) {
-        val delegate = BehaviorBar.ClickDelegate()
-        delegate.init()
-        this.delegate = delegate
     }
 }
