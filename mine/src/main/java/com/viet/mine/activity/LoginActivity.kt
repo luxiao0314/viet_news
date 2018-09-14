@@ -57,13 +57,17 @@ class LoginActivity : InjectActivity() {
 
         login_button.setOnLoginListener(this, callbackManager) {
             onSuccess = {
-                //...
+                it?.accessToken?.apply {
+                    model.loginByFacebook(this@LoginActivity, userId, token, expires.toString()) {
+                        finishWithAnim()
+                    }
+                }
             }
             onCancel = {
                 //...
             }
             onError = {
-                //...
+                it?.message.let { toast(it).show() }
             }
         }
     }

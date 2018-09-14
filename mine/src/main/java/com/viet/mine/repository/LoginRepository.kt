@@ -51,10 +51,11 @@ class LoginRepository : ApiRepository() {
     /**
      * login_type:登录类型 1 手机号密码登录 2 手机号验证码登录 3 facebook登录
      */
-    fun loginByFacebook(phoneNumber: String?, password: String?): LiveData<Resource< LoginRegisterResponse>> {
+    fun loginByFacebook(oauthUserId: String?, oauthToken: String?, oauthExpires: String?): LiveData<Resource< LoginRegisterResponse>> {
         val params = LoginParams()
-        params.phone_number = phoneNumber
-        //TODO tsing Facebook 传入登录相关信息
+        params.oauth_user_id = oauthUserId
+        params.oauth_token = oauthToken
+        params.oauth_expires = oauthExpires
         params.setType(LoginEnum.FACEBOOK)
         return object : NetworkOnlyResource< LoginRegisterResponse>() {
             override fun createCall(): LiveData<ApiResponse< LoginRegisterResponse>> = apiInterface.login(params)
