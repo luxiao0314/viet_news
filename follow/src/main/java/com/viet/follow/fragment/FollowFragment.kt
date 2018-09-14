@@ -45,6 +45,7 @@ class FollowFragment : RealVisibleHintBaseFragment(), HasSupportFragmentInjector
     }
 
     override fun initView(view: View) {
+        adapter.model = model
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(activity, OrientationHelper.VERTICAL, false)
         val dividerItemDecoration = DividerItemDecoration(activity, DividerItemDecoration.VERTICAL)

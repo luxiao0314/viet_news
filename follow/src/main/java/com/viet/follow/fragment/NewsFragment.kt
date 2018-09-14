@@ -58,8 +58,8 @@ class NewsFragment : RealVisibleHintBaseFragment(), HasSupportFragmentInjector {
     }
 
     override fun initView(view: View) {
-        recyclerView.adapter = adapter
         adapter.model = model
+        recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(activity, OrientationHelper.VERTICAL, false)
         val dividerItemDecoration = DividerItemDecoration(activity, DividerItemDecoration.VERTICAL)
         dividerItemDecoration.setDrawable(ContextCompat.getDrawable(context!!, R.drawable.shape_list_divider_gray_05dp)!!)
