@@ -17,7 +17,7 @@ abstract class NetworkOnlyResource<RequestType> @MainThread constructor() : Netw
     // 将网络获取的数据存储到db
     @WorkerThread
     override fun saveCallResult(item: RequestType) {
-//        liveData.postValue(item)
+        liveData.postValue(item)
     }
 
 
@@ -30,8 +30,8 @@ abstract class NetworkOnlyResource<RequestType> @MainThread constructor() : Netw
     // 从db内获取cache数据
     @MainThread
     override fun loadFromDb(): LiveData<RequestType> {
-//        return liveData
-        return DBHelper.getInstance().getNull().getNull() as LiveData<RequestType>
+        return liveData
+//        return DBHelper.getInstance().getNull().getNull() as LiveData<RequestType>
     }
 
     // 从网络中获取

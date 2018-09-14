@@ -2,6 +2,7 @@ package com.viet.news.core.repository
 
 import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.MediatorLiveData
+import android.arch.lifecycle.MutableLiveData
 import android.support.annotation.MainThread
 import android.support.annotation.WorkerThread
 import com.viet.news.core.api.ApiEmptyResponse
@@ -23,16 +24,22 @@ abstract class NetworkBoundResource<ResultType, RequestType> @MainThread constru
 
     fun asLiveData(): LiveData<Resource<ResultType>> = result
 
+    protected val liveData: MutableLiveData<RequestType> = MutableLiveData()
+
     init {
         result.value = Resource.loading(null)
         @Suppress("LeakingThis")
         val dbSource = loadFromDb()
-        result.addSource(dbSource) { resultType ->
-            result.removeSource(dbSource)
-            if (shouldFetch(resultType)) {
-                fetchFromNetwork(dbSource)
-            } else {
-                result.addSource(dbSource) { rT -> result.value = Resource.success(rT) }
+        if (dbSource.hasActiveObservers().not()) {
+            fetchFromNetwork(dbSource)
+        } else {
+            result.addSource(dbSource) { resultType ->
+                result.removeSource(dbSource)
+                if (shouldFetch(resultType)) {
+                    fetchFromNetwork(dbSource)
+                } else {
+                    result.addSource(dbSource) { rT -> result.value = Resource.success(rT) }
+                }
             }
         }
     }
@@ -62,8 +69,12 @@ abstract class NetworkBoundResource<ResultType, RequestType> @MainThread constru
                 is ApiEmptyResponse -> result.addSource(loadFromDb()) { newData -> result.value = Resource.success(newData) }
                 is ApiErrorResponse -> {
                     onFetchFailed()
-                    result.addSource(dbSource) { resultType ->
-                        result.value = response.errorMessage.let { Resource.error(resultType, it) }
+                    if (dbSource.hasActiveObservers()) {
+                        result.addSource(dbSource) { resultType ->
+                            result.value = response.errorMessage.let { Resource.error(resultType, it) }
+                        }
+                    } else {
+                        result.value = response.errorMessage.let { Resource.error(null, it) }
                     }
                 }
             }
