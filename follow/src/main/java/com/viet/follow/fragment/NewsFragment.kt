@@ -12,7 +12,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import com.safframework.ext.then
 import com.scwang.smartrefresh.layout.api.RefreshHeader
 import com.scwang.smartrefresh.layout.header.ClassicsHeader
 import com.scwang.smartrefresh.layout.internal.InternalClassics
@@ -92,36 +91,34 @@ class NewsFragment : RealVisibleHintBaseFragment(), HasSupportFragmentInjector {
         }
         model.getlist4Channel(id, page_number)
                 .observe(this, Observer {
-
-                    it?.work (
-                            onSuccess = {
-                                model.newsList = it.data?.list as ArrayList<NewsListBean>
-                                multiStatusView.showContent()
-                                if (loadMore) {
-                                    if (it.data?.list == null || it.data?.list!!.isEmpty()) {
-                                        refreshLayout.finishLoadMoreWithNoMoreData()
-                                    } else {
-                                        refreshLayout.finishLoadMore()
-                                        adapter.addData(it.data?.list)
-                                    }
-                                } else {
-                                    if (it.data?.list == null || it.data?.list!!.isEmpty()) {
-                                        multiStatusView.showEmpty()
-                                        refreshLayout.setEnableLoadMore(false)
-                                    }
-                                    recyclerView.scrollToPosition(0)
-                                    adapter.addData(0, it.data?.list as ArrayList<NewsListBean>)
-                                    refreshLayout.setNoMoreData(false)
-                                    refreshLayout.finishRefresh()
-                                }},
-                            onError = {
-                                multiStatusView.showError()
-                                if (loadMore) {
-                                    refreshLayout.finishLoadMore(false)//传入false表示加载失败
-                                } else {
-                                    refreshLayout.finishRefresh(false)
-                                }}
-                    )
+                    it?.work(onSuccess = {
+                        model.newsList = it.data?.list as ArrayList<NewsListBean>
+                        multiStatusView.showContent()
+                        if (loadMore) {
+                            if (it.data?.list == null || it.data?.list!!.isEmpty()) {
+                                refreshLayout.finishLoadMoreWithNoMoreData()
+                            } else {
+                                refreshLayout.finishLoadMore()
+                                adapter.addData(it.data?.list)
+                            }
+                        } else {
+                            if (it.data?.list == null || it.data?.list!!.isEmpty()) {
+                                multiStatusView.showEmpty()
+                                refreshLayout.setEnableLoadMore(false)
+                            }
+                            recyclerView.scrollToPosition(0)
+                            adapter.addData(0, it.data?.list as ArrayList<NewsListBean>)
+                            refreshLayout.setNoMoreData(false)
+                            refreshLayout.finishRefresh()
+                        }
+                    }, onError = {
+                        multiStatusView.showError()
+                        if (loadMore) {
+                            refreshLayout.finishLoadMore(false)//传入false表示加载失败
+                        } else {
+                            refreshLayout.finishRefresh(false)
+                        }
+                    })
                 })
     }
 

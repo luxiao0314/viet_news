@@ -33,13 +33,13 @@ class PersonalPageAdapter @Inject constructor() : BaseAdapter<NewsListBean>() {
 
     override fun getLayoutId(viewType: Int): Int {
         return when (viewType) {
-            1 -> R.layout.cell_personal_page_picture_three
-            else -> R.layout.cell_personal_page_picture_one
+            1 -> R.layout.cell_personal_page_picture_three  //3图
+            2 -> R.layout.cell_personal_page_picture_one    //1图
+            else -> R.layout.cell_personal_page_picture_none //无图(文字)
         }
     }
 
     override fun onBindViewHolderImpl(holder: BaseViewHolder, position: Int, t: NewsListBean) {
-        holder.itemView.findViewById<ImageView>(R.id.iv_pic)?.load(t.image_array[0].cover)
         holder.itemView.findViewById<TextView>(R.id.tv_des)?.text = t.content.contentTitle
         holder.itemView.findViewById<TextView>(R.id.tv_time)?.text = DateUtils.getTimestamp(Date(t.content.createDateTime))
 
@@ -72,6 +72,7 @@ class PersonalPageAdapter @Inject constructor() : BaseAdapter<NewsListBean>() {
                 holder.itemView.rv_news_cell.adapter = cellAdapter
                 cellAdapter.addData(t.image_array)
             }
+            2 -> holder.itemView.findViewById<ImageView>(R.id.iv_pic)?.load(t.image_array[0].cover)
         }
     }
 }

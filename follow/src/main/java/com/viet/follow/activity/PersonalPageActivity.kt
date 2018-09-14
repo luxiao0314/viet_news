@@ -110,15 +110,14 @@ class PersonalPageActivity : InjectActivity() {
                             refreshLayout.setNoMoreData(false)
                             refreshLayout.finishRefresh()
                         }
-                    },
-                            onError = {
-                                multiStatusView.showError()
-                                if (loadMore) {
-                                    refreshLayout.finishLoadMore(false)//传入false表示加载失败
-                                } else {
-                                    refreshLayout.finishRefresh(false)
-                                }
-                            })
+                    }, onError = {
+                        multiStatusView.showError()
+                        if (loadMore) {
+                            refreshLayout.finishLoadMore(false)//传入false表示加载失败
+                        } else {
+                            refreshLayout.finishRefresh(false)
+                        }
+                    })
                 })
     }
 

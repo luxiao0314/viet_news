@@ -36,11 +36,10 @@ class NewsAdapter @Inject constructor() : BaseAdapter<NewsListBean>() {
 
     override fun getLayoutId(viewType: Int): Int {
         return when (viewType) {
-            1 -> R.layout.cell_news_picture_three
-            2 -> R.layout.cell_news_picture_one
-            3 -> R.layout.cell_news_picture_none
-            4 -> R.layout.cell_news_picture_one
-            else -> R.layout.cell_news_picture_only
+            1 -> R.layout.cell_news_picture_three   //3图
+            2 -> R.layout.cell_news_picture_one //1图
+            3 -> R.layout.cell_news_picture_none    //无图(文字)
+            else -> R.layout.cell_news_picture_only //广告
         }
     }
 
@@ -81,9 +80,6 @@ class NewsAdapter @Inject constructor() : BaseAdapter<NewsListBean>() {
                 cellAdapter.addData(t.image_array)
             }
             2 -> holder.itemView.findViewById<ImageView>(R.id.iv_pic).load(t.image_array[0].cover)
-            3 -> {
-            }
-            4 -> holder.itemView.findViewById<ImageView>(R.id.iv_pic).load(t.image_array[0].cover)
         }
     }
 }
