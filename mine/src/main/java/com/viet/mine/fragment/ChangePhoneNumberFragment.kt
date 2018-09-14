@@ -7,8 +7,11 @@ import android.view.ViewGroup
 import com.chenenyu.router.Router
 import com.chenenyu.router.annotation.Route
 import com.viet.mine.R
+import com.viet.mine.viewmodel.AccountInfoViewModel
 import com.viet.news.core.config.Config
+import com.viet.news.core.delegate.viewModelDelegate
 import com.viet.news.core.domain.Settings
+import com.viet.news.core.domain.User
 import com.viet.news.core.ext.clickWithTrigger
 import com.viet.news.core.ext.goFragment
 import com.viet.news.core.ui.BaseFragment
@@ -23,6 +26,7 @@ import kotlinx.android.synthetic.main.fragment_mine_setting_change_phone.*
 @Route(value = [Config.ROUTER_MINE_EDIT_CHANGE_PHONE_FRAGMENT])
 class ChangePhoneNumberFragment : BaseFragment() {
     private var mContainerView: View? = null
+    private val model by viewModelDelegate(AccountInfoViewModel::class)
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         mContainerView = inflater.inflate(R.layout.fragment_mine_setting_change_phone, container, false)
@@ -35,7 +39,9 @@ class ChangePhoneNumberFragment : BaseFragment() {
             phone_num.text = phoneNum.replaceRange(3..6, "****")
         }
         confirm_btn.clickWithTrigger {
-            Router.build(Config.ROUTER_MINE_EDIT_VERIFY_CODE_FRAGMENT).with("page_type", 1).goFragment(this@ChangePhoneNumberFragment, R.id.container_framelayout)
+            model.sendSMS( User.currentUser.telephone,this) {
+                Router.build(Config.ROUTER_MINE_EDIT_VERIFY_CODE_FRAGMENT).with("page_type", Config.CHANGE_PHONE_NUM).goFragment(this@ChangePhoneNumberFragment, R.id.container_framelayout,false)
+            }
         }
 
     }

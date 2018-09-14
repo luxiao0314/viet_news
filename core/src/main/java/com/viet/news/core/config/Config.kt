@@ -11,6 +11,8 @@ object Config {
     val SHARE_REQUEST_CODE_COPY = 1003
     //倒计时1分钟
     val COUNT_DOWN_TIMER = 60*1000L
+    val CHANGE_PHONE_NUM = 0
+    val RESET_PHONE_NUM = 1
 
 
 
