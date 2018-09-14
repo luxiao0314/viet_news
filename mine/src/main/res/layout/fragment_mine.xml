@@ -26,14 +26,14 @@
         <RelativeLayout
             android:id="@+id/login_layout"
             android:layout_width="match_parent"
-            android:layout_height="130dp"
-            android:layout_marginTop="8dp">
+            android:layout_height="130dp">
 
             <Button
                 android:id="@+id/btn_login"
                 style="@style/button.small"
-                android:layout_centerInParent="true"
                 android:paddingLeft="30dp"
+                android:layout_marginTop="42dp"
+                android:layout_centerHorizontal="true"
                 android:paddingRight="30dp"
                 android:paddingTop="10dp"
                 android:paddingBottom="10dp"
