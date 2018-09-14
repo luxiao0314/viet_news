@@ -4,11 +4,13 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.chenenyu.router.Router
 import com.chenenyu.router.annotation.Route
 import com.viet.mine.R
 import com.viet.news.core.config.Config
 import com.viet.news.core.domain.Settings
 import com.viet.news.core.ext.clickWithTrigger
+import com.viet.news.core.ext.goFragment
 import com.viet.news.core.ui.BaseFragment
 import kotlinx.android.synthetic.main.fragment_mine_setting_change_phone.*
 
@@ -33,7 +35,7 @@ class ChangePhoneNumberFragment : BaseFragment() {
             phone_num.text = phoneNum.replaceRange(3..6, "****")
         }
         confirm_btn.clickWithTrigger {
-            openPage(this@ChangePhoneNumberFragment, Config.ROUTER_MINE_EDIT_VERIFY_CODE_FRAGMENT, R.id.container_framelayout)
+            Router.build(Config.ROUTER_MINE_EDIT_VERIFY_CODE_FRAGMENT).with("page_type", 1).goFragment(this@ChangePhoneNumberFragment, R.id.container_framelayout)
         }
 
     }

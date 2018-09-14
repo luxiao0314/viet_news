@@ -59,7 +59,7 @@ class KeyboardView : FrameLayout, View.OnClickListener {
         visibility = View.VISIBLE
     }
 
-    fun setListener(listener: Listener) {
+    fun setListener(listener: CodeView.Listener) {
         this.listener = listener
     }
 

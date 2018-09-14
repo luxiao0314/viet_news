@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -11,16 +11,20 @@
         app:titlebar_titleText="@string/title_verify_code" />
 
     <TextView
+        android:layout_below="@id/title_bar"
+        android:id="@+id/phone_num"
         style="@style/text.14.gray.bold"
+        android:layout_centerHorizontal="true"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="40dp"
         android:text="验证码已经发送至 187***4320" />
 
     <com.viet.news.core.ui.code.CodeView
         android:id="@+id/password_view"
+        android:layout_centerHorizontal="true"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/iv_next"
+        android:layout_below="@+id/phone_num"
         android:layout_marginLeft="20dp"
         android:layout_marginTop="30dp"
         android:layout_marginRight="20dp"
@@ -33,9 +37,17 @@
         app:showType="3" />
 
     <TextView
+        android:layout_centerHorizontal="true"
+        android:id="@+id/count_down"
+        android:layout_below="@id/password_view"
         style="@style/text.14.blue.bold"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="10dp"
         android:text="重新发送验证码" />
 
-</LinearLayout>
+    <com.viet.news.core.ui.code.KeyboardView
+        android:id="@+id/keyboard"
+        android:layout_width="match_parent"
+        android:layout_alignParentBottom="true"
+        android:layout_height="300dp" />
+</RelativeLayout>
