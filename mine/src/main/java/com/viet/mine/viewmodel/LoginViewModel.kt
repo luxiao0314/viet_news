@@ -230,17 +230,28 @@ class LoginViewModel(private var repository: LoginRepository = LoginRepository()
         }
         //发送验证码接口
         repository.sendSMS(phone, zoneCode.value, type).observe(owner, Observer { resource ->
-            resource?.isOkStatus?.then(
-                            { onSent() },
-                            {
-                                //发送验证码失败，结束倒计时
-                                when (type) {
-                                    VerifyCodeTypeEnum.LOGIN -> stopLoginCountdown()
-                                    VerifyCodeTypeEnum.REGISTER -> stopSignInCountdown()
-                                    else -> {
-                                    }
-                                }
-                            })
+            resource?.work (
+                    onSuccess = { onSent()},
+                    onError = {
+                        //发送验证码失败，结束倒计时
+                        when (type) {
+                            VerifyCodeTypeEnum.LOGIN -> stopLoginCountdown()
+                            VerifyCodeTypeEnum.REGISTER -> stopSignInCountdown()
+                            else -> {
+                            }
+                        }}
+            )
+//            resource?.isOkStatus?.then(
+//                            { onSent() },
+//                            {
+//                                //发送验证码失败，结束倒计时
+//                                when (type) {
+//                                    VerifyCodeTypeEnum.LOGIN -> stopLoginCountdown()
+//                                    VerifyCodeTypeEnum.REGISTER -> stopSignInCountdown()
+//                                    else -> {
+//                                    }
+//                                }
+//                            })
 
 
         })
@@ -265,7 +276,10 @@ class LoginViewModel(private var repository: LoginRepository = LoginRepository()
         }
         //发送验证码接口
         repository.checkVerifyCode(phoneNumber = phone, verifyCode = verifyCode, zone_code = zoneCode.value, type = type).observe(owner, Observer { resource ->
-            resource?.isOkStatus?.then({ onValidate() }, {})
+//            resource?.isOkStatus?.then({ onValidate() }, {})
+            resource?.work (
+                    onSuccess = { onValidate()}
+            )
         })
     }
 
@@ -276,18 +290,28 @@ class LoginViewModel(private var repository: LoginRepository = LoginRepository()
         params.verify_code = signInVCode.value
         params.invite_code = signInInviteCode.value
         repository.signIn(params).observe(owner, Observer { resource ->
-            resource?.isOkStatus?.then(
-                            {
-                                resource.data?.let {
-                                    signInPhoneNumber.value?.let { phoneNumber -> User.currentUser.telephone = phoneNumber }
-                                    zoneCode.value?.let { zoneCode -> User.currentUser.zoneCode = zoneCode }
-                                    User.currentUser.login(it)
-                                    stopSignInCountdown()//注册成功后结束本次倒计时
-                                    RxBus.get().post(LoginEvent())
-                                    onSignInSuccess()
-                                }
-                            },
-                            { toast(App.instance.resources.getString(R.string.error_msg)).show() })
+            resource?.work (
+                    onSuccess = { resource.data?.let {
+                        signInPhoneNumber.value?.let { phoneNumber -> User.currentUser.telephone = phoneNumber }
+                        zoneCode.value?.let { zoneCode -> User.currentUser.zoneCode = zoneCode }
+                        User.currentUser.login(it)
+                        stopSignInCountdown()//注册成功后结束本次倒计时
+                        RxBus.get().post(LoginEvent())
+                        onSignInSuccess()
+                    }}
+            )
+//            resource?.isOkStatus?.then(
+//                            {
+//                                resource.data?.let {
+//                                    signInPhoneNumber.value?.let { phoneNumber -> User.currentUser.telephone = phoneNumber }
+//                                    zoneCode.value?.let { zoneCode -> User.currentUser.zoneCode = zoneCode }
+//                                    User.currentUser.login(it)
+//                                    stopSignInCountdown()//注册成功后结束本次倒计时
+//                                    RxBus.get().post(LoginEvent())
+//                                    onSignInSuccess()
+//                                }
+//                            },
+//                            { toast(App.instance.resources.getString(R.string.error_msg)).show() })
         })
     }
 
@@ -295,16 +319,27 @@ class LoginViewModel(private var repository: LoginRepository = LoginRepository()
     fun loginByPwd(owner: LifecycleOwner, onLoginSuccess: () -> Unit) {
         repository.loginByPwd(pwdLoginPhoneNumber.value, pwdLoginPassword.value).observe(owner, Observer { resource ->
             //            resource?.apply {
-            resource?.isOkStatus?.then({
-                resource.data?.let {
-                    signInPhoneNumber.value?.let { phoneNumber -> User.currentUser.telephone = phoneNumber }
-                    zoneCode.value?.let { zoneCode -> User.currentUser.zoneCode = zoneCode }
-                    User.currentUser.login(it)
-                    stopSignInCountdown()//注册成功后结束本次倒计时
-                    RxBus.get().post(LoginEvent())
-                    onLoginSuccess()
-                }
-            }, { toast(App.instance.resources.getString(R.string.error_msg)).show() })
+            resource?.work (
+                    onSuccess = {
+                        resource.data?.let {
+                            signInPhoneNumber.value?.let { phoneNumber -> User.currentUser.telephone = phoneNumber }
+                            zoneCode.value?.let { zoneCode -> User.currentUser.zoneCode = zoneCode }
+                            User.currentUser.login(it)
+                            stopSignInCountdown()//注册成功后结束本次倒计时
+                            RxBus.get().post(LoginEvent())
+                            onLoginSuccess()
+                        }}
+            )
+//            resource?.isOkStatus?.then({
+//                resource.data?.let {
+//                    signInPhoneNumber.value?.let { phoneNumber -> User.currentUser.telephone = phoneNumber }
+//                    zoneCode.value?.let { zoneCode -> User.currentUser.zoneCode = zoneCode }
+//                    User.currentUser.login(it)
+//                    stopSignInCountdown()//注册成功后结束本次倒计时
+//                    RxBus.get().post(LoginEvent())
+//                    onLoginSuccess()
+//                }
+//            }, { toast(App.instance.resources.getString(R.string.error_msg)).show() })
 //                }, {
 //
 //                })
@@ -317,8 +352,8 @@ class LoginViewModel(private var repository: LoginRepository = LoginRepository()
         repository.loginBySMS(vCodeLoginPhoneNumber.value, vCodeLoginVCode.value).observe(owner, Observer { resource ->
             //            resource?.apply {
 //                if (status == Status.SUCCESS) {
-            resource?.isOkStatus?.then(
-                    {
+            resource?.work (
+                    onSuccess = {
                         resource.data?.let {
                             signInPhoneNumber.value?.let { phoneNumber -> User.currentUser.telephone = phoneNumber }
                             zoneCode.value?.let { zoneCode -> User.currentUser.zoneCode = zoneCode }
@@ -326,9 +361,20 @@ class LoginViewModel(private var repository: LoginRepository = LoginRepository()
                             stopSignInCountdown()//注册成功后结束本次倒计时
                             RxBus.get().post(LoginEvent())
                             onLoginSuccess()
-                        }
-                    },
-                    {})
+                        }}
+            )
+//            resource?.isOkStatus?.then(
+//                    {
+//                        resource.data?.let {
+//                            signInPhoneNumber.value?.let { phoneNumber -> User.currentUser.telephone = phoneNumber }
+//                            zoneCode.value?.let { zoneCode -> User.currentUser.zoneCode = zoneCode }
+//                            User.currentUser.login(it)
+//                            stopSignInCountdown()//注册成功后结束本次倒计时
+//                            RxBus.get().post(LoginEvent())
+//                            onLoginSuccess()
+//                        }
+//                    },
+//                    {})
 //                }
 //            }
         })

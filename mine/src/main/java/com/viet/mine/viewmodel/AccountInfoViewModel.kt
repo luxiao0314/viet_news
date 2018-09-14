@@ -36,34 +36,45 @@ class AccountInfoViewModel(var repository: MineRepository = MineRepository()) : 
     //修改昵称
     fun updateNickName(owner: LifecycleOwner, nickname: String, finish: (isSuccess: Boolean) -> Unit) {
         return repository.updateNickName(nickname).observe(owner, Observer {
-            it?.isOkStatus?.then({
-                finish(true)
-            }, {
-                finish(false)
-                toast(App.instance.resources.getString(R.string.error_msg)).show()
-            })
+//            it?.isOkStatus?.then({
+//                finish(true)
+//            }, {
+//                finish(false)
+//                toast(App.instance.resources.getString(R.string.error_msg)).show()
+//            })
+            it?.work (
+                    onSuccess = { finish(true)},
+                    onError = { finish(false)}
+            )
         })
     }
 
 
     fun uploadFile(owner: LifecycleOwner, finish: (isSuccess: Boolean) -> Unit) {
         return repository.uploadFile(selectList[0].compressPath).observe(owner, Observer {
-            it?.isOkStatus?.then({
-                finish(true)
-            }, {
-                finish(false)
-                toast(App.instance.resources.getString(R.string.error_msg)).show()
-            })
+//            it?.isOkStatus?.then({
+//                finish(true)
+//            }, {
+//                finish(false)
+//                toast(App.instance.resources.getString(R.string.error_msg)).show()
+//            })
+            it?.work (
+                    onSuccess = { finish(true)},
+                    onError = { finish(false)}
+            )
         })
     }
 
     fun getUserInfo(userId: String, owner: LifecycleOwner, function: (user: UserInfoResponse?) -> Unit) {
         repository.getUserInfo(userId).observe(owner, Observer {
-            if (it?.status == Status.SUCCESS) {
-                function(it.data)
-            } else if (it?.status == Status.ERROR) {
-                toast(App.instance.resources.getString(R.string.error_msg)).show()
-            }
+            it?.work (
+                    onSuccess = {   function(it.data)}
+            )
+//            if (it?.status == Status.SUCCESS) {
+//                function(it.data)
+//            } else if (it?.status == Status.ERROR) {
+//                toast(App.instance.resources.getString(R.string.error_msg)).show()
+//            }
         })
     }
 }

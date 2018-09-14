@@ -117,18 +117,30 @@ class FindPwdViewModel(private var repository: LoginRepository = LoginRepository
     @SuppressLint("CheckResult")
     fun setPasswordThenLogin(owner: LifecycleOwner, onSetPwdSuccess: () -> Unit) {
         repository.setPassword(phoneNumber = phoneNumber.value, verifyCode = vCode.value, password = password1.value).observe(owner, Observer { resource ->
-            resource?.isOkStatus?.then({
-                resource.data?.let {
+
+            resource?.work (
+                    onSuccess = { resource.data?.let {
                         phoneNumber.value?.let { phoneNumber -> User.currentUser.telephone = phoneNumber }
                         zoneCode.value?.let { zoneCode -> User.currentUser.zoneCode = zoneCode }
                         User.currentUser.login(it)
                         stopSignInCountdown()//注册成功后结束本次倒计时
                         RxBus.get().post(LoginEvent())
                         onSetPwdSuccess()
-                    }
-                }, {
-                    toast(App.instance.resources.getString(R.string.error_msg)).show()
-                })
+                    }}
+//                    , onError = { finish(false)}
+            )
+//            resource?.isOkStatus?.then({
+//                resource.data?.let {
+//                        phoneNumber.value?.let { phoneNumber -> User.currentUser.telephone = phoneNumber }
+//                        zoneCode.value?.let { zoneCode -> User.currentUser.zoneCode = zoneCode }
+//                        User.currentUser.login(it)
+//                        stopSignInCountdown()//注册成功后结束本次倒计时
+//                        RxBus.get().post(LoginEvent())
+//                        onSetPwdSuccess()
+//                    }
+//                }, {
+//                    toast(App.instance.resources.getString(R.string.error_msg)).show()
+//                })
 //            }
         })
     }
@@ -138,12 +150,18 @@ class FindPwdViewModel(private var repository: LoginRepository = LoginRepository
         //发送验证码接口
         repository.sendSMS(phoneNumber.value, zoneCode.value, VerifyCodeTypeEnum.RESET_PASSWORD).observe(owner, Observer { resource ->
 //            resource?.apply {
-                resource?.isOkStatus?.then(
-                        { onSent() },
-                        {
-                            //发送验证码失败，结束倒计时
-                            stopSignInCountdown()
-                        })
+            resource?.work (
+                    onSuccess = { onSent() },
+                    onError = {
+                        //发送验证码失败，结束倒计时
+                        stopSignInCountdown()}
+            )
+//                resource?.isOkStatus?.then(
+//                        { onSent() },
+//                        {
+//                            //发送验证码失败，结束倒计时
+//                            stopSignInCountdown()
+//                        })
 //            }
         })
     }
@@ -152,7 +170,10 @@ class FindPwdViewModel(private var repository: LoginRepository = LoginRepository
     fun checkVerifyCode(owner: LifecycleOwner, onValidate: () -> Unit) {
         //发送验证码接口
         repository.checkVerifyCode(phoneNumber = phoneNumber.value, verifyCode = vCode.value, zone_code = zoneCode.value, type = VerifyCodeTypeEnum.RESET_PASSWORD).observe(owner, Observer { resource ->
-            resource?.isOkStatus?.then({ onValidate() }, { toast(App.instance.resources.getString(R.string.error_msg)).show() })
+//            resource?.isOkStatus?.then({ onValidate() }, { toast(App.instance.resources.getString(R.string.error_msg)).show() })
+            resource?.work (
+                    onSuccess = { onValidate()}
+            )
         })
     }
 

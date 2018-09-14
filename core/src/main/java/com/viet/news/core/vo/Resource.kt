@@ -22,7 +22,14 @@ package com.viet.news.core.vo
  * @param <T>
 </T> */
 class Resource<T>(val status: Status, val data: T?, val message: String?) {
-    var isOkStatus={status==Status.SUCCESS}.invoke()
+//    var isOkStatus={status==Status.SUCCESS}.invoke()
+    fun work(onSuccess:()->Unit={},onError:()->Unit={},onLoading:()->Unit={}){
+        when(status){
+            Status.SUCCESS->onSuccess()
+            Status.ERROR->onError()
+            Status.LOADING->onLoading()
+        }
+    }
 
     companion object {
         fun <T> success(data: T?): Resource<T> = Resource(Status.SUCCESS, data, null)

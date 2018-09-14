@@ -99,34 +99,64 @@ class NewsFragment : RealVisibleHintBaseFragment(), HasSupportFragmentInjector {
         }
         model.getlist4Channel(id,page_number)
                 .observe(this, Observer {
-                    it?.isOkStatus?.then({
-                        model.newsList = it.data?.list as ArrayList<NewsListBean>
-                        multiStatusView.showContent()
-                        if (loadMore) {
-                            if (it.data?.list == null || it.data?.list!!.isEmpty()) {
-                                refreshLayout.finishLoadMoreWithNoMoreData()
-                            } else {
-                                refreshLayout.finishLoadMore()
-                                adapter.addData(it.data?.list)
-                            }
-                        } else {
-                            if (it.data?.list == null || it.data?.list!!.isEmpty()) {
-                                multiStatusView.showEmpty()
-                                refreshLayout.setEnableLoadMore(false)
-                            }
-                            recyclerView.scrollToPosition(0)
-                            adapter.addData(0, it.data?.list as ArrayList<NewsListBean>)
-                            refreshLayout.setNoMoreData(false)
-                            refreshLayout.finishRefresh()
-                        }
-                    }, {
-                        multiStatusView.showError()
-                        if (loadMore) {
-                            refreshLayout.finishLoadMore(false)//传入false表示加载失败
-                        } else {
-                            refreshLayout.finishRefresh(false)
-                        }
-                    })
+
+                    it?.work (
+                            onSuccess = {
+                                model.newsList = it.data?.list as ArrayList<NewsListBean>
+                                multiStatusView.showContent()
+                                if (loadMore) {
+                                    if (it.data?.list == null || it.data?.list!!.isEmpty()) {
+                                        refreshLayout.finishLoadMoreWithNoMoreData()
+                                    } else {
+                                        refreshLayout.finishLoadMore()
+                                        adapter.addData(it.data?.list)
+                                    }
+                                } else {
+                                    if (it.data?.list == null || it.data?.list!!.isEmpty()) {
+                                        multiStatusView.showEmpty()
+                                        refreshLayout.setEnableLoadMore(false)
+                                    }
+                                    recyclerView.scrollToPosition(0)
+                                    adapter.addData(0, it.data?.list as ArrayList<NewsListBean>)
+                                    refreshLayout.setNoMoreData(false)
+                                    refreshLayout.finishRefresh()
+                                }},
+                            onError = {
+                                multiStatusView.showError()
+                                if (loadMore) {
+                                    refreshLayout.finishLoadMore(false)//传入false表示加载失败
+                                } else {
+                                    refreshLayout.finishRefresh(false)
+                                }}
+                    )
+//                    it?.isOkStatus?.then({
+//                        model.newsList = it.data?.list as ArrayList<NewsListBean>
+//                        multiStatusView.showContent()
+//                        if (loadMore) {
+//                            if (it.data?.list == null || it.data?.list!!.isEmpty()) {
+//                                refreshLayout.finishLoadMoreWithNoMoreData()
+//                            } else {
+//                                refreshLayout.finishLoadMore()
+//                                adapter.addData(it.data?.list)
+//                            }
+//                        } else {
+//                            if (it.data?.list == null || it.data?.list!!.isEmpty()) {
+//                                multiStatusView.showEmpty()
+//                                refreshLayout.setEnableLoadMore(false)
+//                            }
+//                            recyclerView.scrollToPosition(0)
+//                            adapter.addData(0, it.data?.list as ArrayList<NewsListBean>)
+//                            refreshLayout.setNoMoreData(false)
+//                            refreshLayout.finishRefresh()
+//                        }
+//                    }, {
+//                        multiStatusView.showError()
+//                        if (loadMore) {
+//                            refreshLayout.finishLoadMore(false)//传入false表示加载失败
+//                        } else {
+//                            refreshLayout.finishRefresh(false)
+//                        }
+//                    })
                 })
     }
 
