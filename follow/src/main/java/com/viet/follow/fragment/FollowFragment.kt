@@ -69,21 +69,21 @@ class FollowFragment : RealVisibleHintBaseFragment(), HasSupportFragmentInjector
         }
         model.getlist4Follow(page_number)
                 .observe(this, Observer {
-                    it?.data?.isOkStatus?.then({
+                    it?.isOkStatus?.then({
                         multiStatusView.showContent()
                         if (loadMore) {
-                            if (it.data?.data?.list == null || it.data?.data?.list!!.isEmpty()) {
+                            if (it.data?.list == null || it. data?.list!!.isEmpty()) {
                                 refreshLayout.finishLoadMoreWithNoMoreData()
                             } else {
                                 refreshLayout.finishLoadMore()
-                                adapter.addData(it.data?.data?.list)
+                                adapter.addData(it. data?.list)
                             }
                         } else {
-                            if (it.data?.data?.list == null || it.data?.data?.list!!.isEmpty()) {
+                            if (it. data?.list == null || it. data?.list!!.isEmpty()) {
                                 multiStatusView.showEmpty()
                                 refreshLayout.setEnableLoadMore(false)
                             }
-                            adapter.setData(it.data?.data?.list)
+                            adapter.setData(it. data?.list)
                             refreshLayout.setNoMoreData(false)
                             refreshLayout.finishRefresh()
                         }

@@ -99,23 +99,23 @@ class NewsFragment : RealVisibleHintBaseFragment(), HasSupportFragmentInjector {
         }
         model.getlist4Channel(id,page_number)
                 .observe(this, Observer {
-                    it?.data?.isOkStatus?.then({
-                        model.newsList = it.data?.data?.list as ArrayList<NewsListBean>
+                    it?.isOkStatus?.then({
+                        model.newsList = it.data?.list as ArrayList<NewsListBean>
                         multiStatusView.showContent()
                         if (loadMore) {
-                            if (it.data?.data?.list == null || it.data?.data?.list!!.isEmpty()) {
+                            if (it.data?.list == null || it.data?.list!!.isEmpty()) {
                                 refreshLayout.finishLoadMoreWithNoMoreData()
                             } else {
                                 refreshLayout.finishLoadMore()
-                                adapter.addData(it.data?.data?.list)
+                                adapter.addData(it.data?.list)
                             }
                         } else {
-                            if (it.data?.data?.list == null || it.data?.data?.list!!.isEmpty()) {
+                            if (it.data?.list == null || it.data?.list!!.isEmpty()) {
                                 multiStatusView.showEmpty()
                                 refreshLayout.setEnableLoadMore(false)
                             }
                             recyclerView.scrollToPosition(0)
-                            adapter.addData(0, it.data?.data?.list as ArrayList<NewsListBean>)
+                            adapter.addData(0, it.data?.list as ArrayList<NewsListBean>)
                             refreshLayout.setNoMoreData(false)
                             refreshLayout.finishRefresh()
                         }

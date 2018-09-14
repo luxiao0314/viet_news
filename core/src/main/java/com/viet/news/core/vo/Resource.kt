@@ -22,6 +22,7 @@ package com.viet.news.core.vo
  * @param <T>
 </T> */
 class Resource<T>(val status: Status, val data: T?, val message: String?) {
+    var isOkStatus={status==Status.SUCCESS}.invoke()
 
     companion object {
         fun <T> success(data: T?): Resource<T> = Resource(Status.SUCCESS, data, null)

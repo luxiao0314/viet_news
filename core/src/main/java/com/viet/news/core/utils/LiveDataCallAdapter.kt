@@ -19,6 +19,7 @@ package com.viet.news.core.utils
 
 import android.arch.lifecycle.LiveData
 import com.viet.news.core.api.ApiResponse
+import com.viet.news.core.api.HttpResponse
 import retrofit2.Call
 import retrofit2.CallAdapter
 import retrofit2.Callback
@@ -31,22 +32,22 @@ import java.util.concurrent.atomic.AtomicBoolean
  * @param <R>
 </R> */
 class LiveDataCallAdapter<R>(private val responseType: Type) :
-    CallAdapter<R, LiveData<ApiResponse<R>>> {
+    CallAdapter<HttpResponse<R>, LiveData<ApiResponse<R>>> {
 
     override fun responseType() = responseType
 
-    override fun adapt(call: Call<R>): LiveData<ApiResponse<R>> {
+    override fun adapt(call: Call<HttpResponse<R>>): LiveData<ApiResponse<R>> {
         return object : LiveData<ApiResponse<R>>() {
             private var started = AtomicBoolean(false)
             override fun onActive() {
                 super.onActive()
                 if (started.compareAndSet(false, true)) {
-                    call.enqueue(object : Callback<R> {
-                        override fun onResponse(call: Call<R>, response: Response<R>) {
+                    call.enqueue(object : Callback<HttpResponse<R>> {
+                        override fun onResponse(call: Call<HttpResponse<R>>, response: Response<HttpResponse<R>>) {
                             postValue(ApiResponse.create(response))
                         }
 
-                        override fun onFailure(call: Call<R>, throwable: Throwable) {
+                        override fun onFailure(call: Call<HttpResponse<R>>, throwable: Throwable) {
                             postValue(ApiResponse.create(throwable))
                         }
                     })

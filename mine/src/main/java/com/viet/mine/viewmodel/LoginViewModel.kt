@@ -230,9 +230,7 @@ class LoginViewModel(private var repository: LoginRepository = LoginRepository()
         }
         //发送验证码接口
         repository.sendSMS(phone, zoneCode.value, type).observe(owner, Observer { resource ->
-            resource?.apply {
-                if (status == Status.SUCCESS) {
-                    data?.isOkStatus?.then(
+            resource?.isOkStatus?.then(
                             { onSent() },
                             {
                                 //发送验证码失败，结束倒计时
@@ -245,8 +243,6 @@ class LoginViewModel(private var repository: LoginRepository = LoginRepository()
                             })
 
 
-                }
-            }
         })
     }
 
@@ -269,11 +265,7 @@ class LoginViewModel(private var repository: LoginRepository = LoginRepository()
         }
         //发送验证码接口
         repository.checkVerifyCode(phoneNumber = phone, verifyCode = verifyCode, zone_code = zoneCode.value, type = type).observe(owner, Observer { resource ->
-            resource?.apply {
-                if (status == Status.SUCCESS) {
-                    data?.isOkStatus?.then({ onValidate() }, {})
-                }
-            }
+            resource?.isOkStatus?.then({ onValidate() }, {})
         })
     }
 
@@ -284,11 +276,9 @@ class LoginViewModel(private var repository: LoginRepository = LoginRepository()
         params.verify_code = signInVCode.value
         params.invite_code = signInInviteCode.value
         repository.signIn(params).observe(owner, Observer { resource ->
-            resource?.apply {
-                if (status == Status.SUCCESS) {
-                    data?.isOkStatus?.then(
+            resource?.isOkStatus?.then(
                             {
-                                data?.data?.let {
+                                resource.data?.let {
                                     signInPhoneNumber.value?.let { phoneNumber -> User.currentUser.telephone = phoneNumber }
                                     zoneCode.value?.let { zoneCode -> User.currentUser.zoneCode = zoneCode }
                                     User.currentUser.login(it)
@@ -298,50 +288,49 @@ class LoginViewModel(private var repository: LoginRepository = LoginRepository()
                                 }
                             },
                             { toast(App.instance.resources.getString(R.string.error_msg)).show() })
-                }
-            }
         })
     }
 
     @SuppressLint("CheckResult")
     fun loginByPwd(owner: LifecycleOwner, onLoginSuccess: () -> Unit) {
         repository.loginByPwd(pwdLoginPhoneNumber.value, pwdLoginPassword.value).observe(owner, Observer { resource ->
-            resource?.apply {
-                data?.isOkStatus?.then({
-                    data?.data?.let {
-                        signInPhoneNumber.value?.let { phoneNumber -> User.currentUser.telephone = phoneNumber }
-                        zoneCode.value?.let { zoneCode -> User.currentUser.zoneCode = zoneCode }
-                        User.currentUser.login(it)
-                        stopSignInCountdown()//注册成功后结束本次倒计时
-                        RxBus.get().post(LoginEvent())
-                        onLoginSuccess()
-                    }
-                }, {
-                    toast(App.instance.resources.getString(R.string.error_msg)).show()
-                })
-            }
+            //            resource?.apply {
+            resource?.isOkStatus?.then({
+                resource.data?.let {
+                    signInPhoneNumber.value?.let { phoneNumber -> User.currentUser.telephone = phoneNumber }
+                    zoneCode.value?.let { zoneCode -> User.currentUser.zoneCode = zoneCode }
+                    User.currentUser.login(it)
+                    stopSignInCountdown()//注册成功后结束本次倒计时
+                    RxBus.get().post(LoginEvent())
+                    onLoginSuccess()
+                }
+            }, { toast(App.instance.resources.getString(R.string.error_msg)).show() })
+//                }, {
+//
+//                })
+//            }
         })
     }
 
     @SuppressLint("CheckResult")
     fun loginBySMS(owner: LifecycleOwner, onLoginSuccess: () -> Unit) {
         repository.loginBySMS(vCodeLoginPhoneNumber.value, vCodeLoginVCode.value).observe(owner, Observer { resource ->
-            resource?.apply {
-                if (status == Status.SUCCESS) {
-                    data?.isOkStatus?.then(
-                            {
-                                data?.data?.let {
-                                    signInPhoneNumber.value?.let { phoneNumber -> User.currentUser.telephone = phoneNumber }
-                                    zoneCode.value?.let { zoneCode -> User.currentUser.zoneCode = zoneCode }
-                                    User.currentUser.login(it)
-                                    stopSignInCountdown()//注册成功后结束本次倒计时
-                                    RxBus.get().post(LoginEvent())
-                                    onLoginSuccess()
-                                }
-                            },
-                            {})
-                }
-            }
+            //            resource?.apply {
+//                if (status == Status.SUCCESS) {
+            resource?.isOkStatus?.then(
+                    {
+                        resource.data?.let {
+                            signInPhoneNumber.value?.let { phoneNumber -> User.currentUser.telephone = phoneNumber }
+                            zoneCode.value?.let { zoneCode -> User.currentUser.zoneCode = zoneCode }
+                            User.currentUser.login(it)
+                            stopSignInCountdown()//注册成功后结束本次倒计时
+                            RxBus.get().post(LoginEvent())
+                            onLoginSuccess()
+                        }
+                    },
+                    {})
+//                }
+//            }
         })
     }
 

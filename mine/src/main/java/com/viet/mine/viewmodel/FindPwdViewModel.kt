@@ -117,9 +117,8 @@ class FindPwdViewModel(private var repository: LoginRepository = LoginRepository
     @SuppressLint("CheckResult")
     fun setPasswordThenLogin(owner: LifecycleOwner, onSetPwdSuccess: () -> Unit) {
         repository.setPassword(phoneNumber = phoneNumber.value, verifyCode = vCode.value, password = password1.value).observe(owner, Observer { resource ->
-            resource?.apply {
-                data?.isOkStatus?.then({
-                    data?.data?.let {
+            resource?.isOkStatus?.then({
+                resource.data?.let {
                         phoneNumber.value?.let { phoneNumber -> User.currentUser.telephone = phoneNumber }
                         zoneCode.value?.let { zoneCode -> User.currentUser.zoneCode = zoneCode }
                         User.currentUser.login(it)
@@ -130,7 +129,7 @@ class FindPwdViewModel(private var repository: LoginRepository = LoginRepository
                 }, {
                     toast(App.instance.resources.getString(R.string.error_msg)).show()
                 })
-            }
+//            }
         })
     }
 
@@ -138,14 +137,14 @@ class FindPwdViewModel(private var repository: LoginRepository = LoginRepository
         startSignInCountdown(Config.COUNT_DOWN_TIMER)
         //发送验证码接口
         repository.sendSMS(phoneNumber.value, zoneCode.value, VerifyCodeTypeEnum.RESET_PASSWORD).observe(owner, Observer { resource ->
-            resource?.apply {
-                data?.isOkStatus?.then(
+//            resource?.apply {
+                resource?.isOkStatus?.then(
                         { onSent() },
                         {
                             //发送验证码失败，结束倒计时
                             stopSignInCountdown()
                         })
-            }
+//            }
         })
     }
 
@@ -153,9 +152,7 @@ class FindPwdViewModel(private var repository: LoginRepository = LoginRepository
     fun checkVerifyCode(owner: LifecycleOwner, onValidate: () -> Unit) {
         //发送验证码接口
         repository.checkVerifyCode(phoneNumber = phoneNumber.value, verifyCode = vCode.value, zone_code = zoneCode.value, type = VerifyCodeTypeEnum.RESET_PASSWORD).observe(owner, Observer { resource ->
-            resource?.apply {
-                data?.isOkStatus?.then({ onValidate() }, { toast(App.instance.resources.getString(R.string.error_msg)).show() })
-            }
+            resource?.isOkStatus?.then({ onValidate() }, { toast(App.instance.resources.getString(R.string.error_msg)).show() })
         })
     }
 

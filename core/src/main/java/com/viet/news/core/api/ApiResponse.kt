@@ -31,14 +31,16 @@ sealed class ApiResponse<T> {
             return ApiErrorResponse(error.message ?: "unknown error")
         }
 
-        fun <T> create(response: Response<T>): ApiResponse<T> {
+        fun <T> create(response: Response<HttpResponse<T>>): ApiResponse<T> {
             if (response.isSuccessful) {
                 val body = response.body()
-                return if (body == null || response.code() == 204) {
+
+
+                return if (body == null || response.code() == 204||body.data==null) {
                     ApiEmptyResponse()
                 } else {
                     ApiSuccessResponse(
-                            body = body,
+                            body = body.data!!,
                             linkHeader = response.headers()?.get("link")
                     )
                 }

@@ -23,7 +23,7 @@ class TokenAuthenticator : Authenticator {
                 .logins(param)
                 .execute()
                 .body()
-        val token = data?.data?.token.toString()
+        val token = data?.token.toString()
         User.currentUser.accessToken = token
         return response.request().newBuilder()
                 .addHeader("Authorization", token)
