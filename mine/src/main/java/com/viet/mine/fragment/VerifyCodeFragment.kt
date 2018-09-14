@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.chenenyu.router.Router
 import com.chenenyu.router.annotation.Route
 import com.safframework.ext.clickWithTrigger
 import com.viet.mine.R
@@ -14,6 +15,8 @@ import com.viet.news.core.config.Config
 import com.viet.news.core.delegate.viewModelDelegate
 import com.viet.news.core.domain.Settings
 import com.viet.news.core.domain.User
+import com.viet.news.core.ext.finishWithAnim
+import com.viet.news.core.ui.BaseActivity
 import com.viet.news.core.ui.BaseFragment
 import com.viet.news.core.ui.code.CodeView
 import kotlinx.android.synthetic.main.fragment_mine_verify_code.*
@@ -32,7 +35,7 @@ class VerifyCodeFragment : BaseFragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         mContainerView = inflater.inflate(R.layout.fragment_mine_verify_code, container, false)
-        model.startResetPwdCountdown(60000)
+        model.startResetPwdCountdown(Config.COUNT_DOWN_TIMER)
         return mContainerView
     }
 
@@ -48,7 +51,15 @@ class VerifyCodeFragment : BaseFragment() {
 
             override fun onComplete(value: String) {
                 model.checkVerifyCode(User.currentUser.telephone, value, this@VerifyCodeFragment) {
-                    openPage(this@VerifyCodeFragment, Config.ROUTER_MINE_EDIT_CHANGE_PWD_FRAGMENT, R.id.container_framelayout)
+                    when (arguments!!["page_type"]) {
+                        Config.CHANGE_PHONE_NUM -> {
+
+                        }
+                        Config.RESET_PHONE_NUM -> {
+                            openPage(this@VerifyCodeFragment, Config.ROUTER_MINE_EDIT_CHANGE_PWD_FRAGMENT, R.id.container_framelayout)
+                            (activity as BaseActivity).finishWithAnim()
+                        }
+                    }
                 }
             }
         })

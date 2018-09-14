@@ -55,7 +55,7 @@ abstract class BaseFragment : Fragment() {
         compositeDisposable.clear() // 防止内存泄露
     }
 
-    protected fun openPage(context: BaseFragment, path: String, @IdRes id: Int) {
-        routerWithAnim(path).goFragment(context, id)
+    protected fun openPage(context: BaseFragment, path: String, @IdRes id: Int, addToBackStack: Boolean = true) {
+        routerWithAnim(path).goFragment(context, id, addToBackStack)
     }
 }
