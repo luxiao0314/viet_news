@@ -9,7 +9,6 @@ import com.viet.follow.repository.FindRepository
 import com.viet.news.core.domain.response.NewsListBean
 import com.viet.news.core.domain.response.NewsListResponse
 import com.viet.news.core.ui.BaseActivity
-import com.viet.news.core.ui.BaseFragment
 import com.viet.news.core.viewmodel.BaseViewModel
 import com.viet.news.core.vo.Resource
 
@@ -67,30 +66,14 @@ class FindViewModel(var repository: FindRepository = FindRepository()) : BaseVie
     /**
      * 点赞
      */
-    private lateinit var owner: LifecycleOwner
-
     fun like(context: Context, contentId: String) {
-        if (context is BaseFragment) {
-            owner = context
-        } else if (context is BaseActivity) {
-            owner = context
-        }
-        repository.like(contentId).observe(owner, Observer {
-            it?.work {  }
-        })
+        repository.like(contentId).observe(context as BaseActivity, Observer { it?.work { } })
     }
 
     /**
      * 收藏
      */
     fun collection(context: Context, contentId: String) {
-        if (context is BaseFragment) {
-            owner = context
-        } else if (context is BaseActivity) {
-            owner = context
-        }
-        repository.collection(contentId).observe(owner, Observer {
-            it?.work {  }
-        })
+        repository.collection(contentId).observe(context as BaseActivity, Observer { it?.work { } })
     }
 }

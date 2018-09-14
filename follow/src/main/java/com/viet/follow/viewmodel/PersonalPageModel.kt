@@ -4,15 +4,10 @@ import android.arch.lifecycle.LifecycleOwner
 import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.Observer
 import android.content.Context
-import com.safframework.ext.then
-import com.viet.follow.R
 import com.viet.follow.repository.PersonalPageRepository
 import com.viet.news.core.domain.response.NewsListResponse
 import com.viet.news.core.domain.response.UserInfoResponse
-import com.viet.news.core.ext.toast
-import com.viet.news.core.ui.App
 import com.viet.news.core.ui.BaseActivity
-import com.viet.news.core.ui.BaseFragment
 import com.viet.news.core.viewmodel.BaseViewModel
 import com.viet.news.core.vo.Resource
 
@@ -44,34 +39,17 @@ class PersonalPageModel(var repository: PersonalPageRepository = PersonalPageRep
         })
     }
 
-
-    private lateinit var owner: LifecycleOwner
-
     /**
      * 点赞
      */
-    fun like(context: Context, contentId: String, function: (num: Int?) -> Unit) {
-        if (context is BaseFragment) {
-            owner = context
-        } else if (context is BaseActivity) {
-            owner = context
-        }
-        repository.like(contentId).observe(owner, Observer {
-            it?.work { function(it.data) }
-        })
+    fun like(context: Context, contentId: String) {
+        repository.like(contentId).observe(context as BaseActivity, Observer { it?.work { } })
     }
 
     /**
      * 收藏
      */
-    fun collection(context: Context, contentId: String, function: (num: Int?) -> Unit) {
-        if (context is BaseFragment) {
-            owner = context
-        } else if (context is BaseActivity) {
-            owner = context
-        }
-        repository.collection(contentId).observe(owner, Observer {
-            it?.work { function(it.data) }
-        })
+    fun collection(context: Context, contentId: String) {
+        repository.collection(contentId).observe(context as BaseActivity, Observer { it?.work { } })
     }
 }
