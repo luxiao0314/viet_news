@@ -7,7 +7,10 @@ import android.view.ViewGroup
 import com.chenenyu.router.Router
 import com.chenenyu.router.annotation.Route
 import com.viet.mine.R
+import com.viet.mine.viewmodel.AccountInfoViewModel
 import com.viet.news.core.config.Config
+import com.viet.news.core.delegate.viewModelDelegate
+import com.viet.news.core.domain.User
 import com.viet.news.core.ext.clickWithTrigger
 import com.viet.news.core.ext.goFragment
 import com.viet.news.core.ui.BaseFragment
@@ -23,6 +26,7 @@ import kotlinx.android.synthetic.main.fragment_mine_bind_new_phone_num.*
 @Route(value = [Config.ROUTER_MINE_EDIT_BIND_PHONE_FRAGMENT])
 class BindNewPhoneNumFragment : BaseFragment() {
     private var mContainerView: View? = null
+    private val model by viewModelDelegate(AccountInfoViewModel::class)
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         mContainerView = inflater.inflate(R.layout.fragment_mine_bind_new_phone_num, container, false)
@@ -31,10 +35,13 @@ class BindNewPhoneNumFragment : BaseFragment() {
 
     override fun initView(view: View) {
         bind_phone_next_btn.clickWithTrigger {
-            var bundle = Bundle()
-            bundle.putInt("page_type", Config.SET_PHONE_NUM)
-            bundle.putString("phone_number",phone_input.text.toString())
-            Router.build(Config.ROUTER_MINE_EDIT_VERIFY_CODE_FRAGMENT).with(bundle).goFragment(this@BindNewPhoneNumFragment, R.id.container_framelayout,false)
+            val phone = phone_input.text.toString()
+            model.sendSMS(phone, this) {
+                val bundle = Bundle()
+                bundle.putInt("page_type", Config.SET_PHONE_NUM)
+                bundle.putString("phone_number", phone)
+                Router.build(Config.ROUTER_MINE_EDIT_VERIFY_CODE_FRAGMENT).with(bundle).goFragment(this@BindNewPhoneNumFragment, R.id.container_framelayout, false)
+            }
         }
     }
 }

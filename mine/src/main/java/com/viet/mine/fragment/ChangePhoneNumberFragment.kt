@@ -15,6 +15,7 @@ import com.viet.news.core.domain.User
 import com.viet.news.core.ext.clickWithTrigger
 import com.viet.news.core.ext.goFragment
 import com.viet.news.core.ui.BaseFragment
+import kotlinx.android.synthetic.main.fragment_mine_bind_new_phone_num.*
 import kotlinx.android.synthetic.main.fragment_mine_setting_change_phone.*
 
 /**
@@ -38,9 +39,14 @@ class ChangePhoneNumberFragment : BaseFragment() {
         if (phoneNum.length == 11) {
             phone_num.text = phoneNum.replaceRange(3..6, "****")
         }
-        confirm_btn.clickWithTrigger {
-            model.sendSMS( User.currentUser.telephone,this) {
-                Router.build(Config.ROUTER_MINE_EDIT_VERIFY_CODE_FRAGMENT).with("page_type", Config.CHANGE_PHONE_NUM).goFragment(this@ChangePhoneNumberFragment, R.id.container_framelayout,false)
+        if (phoneNum.isNotBlank()) {
+            confirm_btn.clickWithTrigger {
+                model.sendSMS(User.currentUser.telephone, this) {
+                    val bundle = Bundle()
+                    bundle.putInt("page_type", Config.CHANGE_PHONE_NUM)
+                    bundle.putString("phone_number", User.currentUser.telephone)
+                    Router.build(Config.ROUTER_MINE_EDIT_VERIFY_CODE_FRAGMENT).with(bundle).goFragment(this@ChangePhoneNumberFragment, R.id.container_framelayout, false)
+                }
             }
         }
 
