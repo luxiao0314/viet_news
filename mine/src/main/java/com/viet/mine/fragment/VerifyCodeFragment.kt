@@ -66,10 +66,8 @@ class VerifyCodeFragment : BaseFragment() {
 //                        }
 //                    }
 //                }
-
-
                 model.checkVerifyCode(User.currentUser.telephone, value, this@VerifyCodeFragment) {
-                    when (arguments!!["page_type"]) {
+                    when (arguments?.getInt("page_type")) {
                         Config.CHANGE_PHONE_NUM -> {
                             SPHelper.create().putString("verify_code", value)
                             val bundle = Bundle()
@@ -79,14 +77,17 @@ class VerifyCodeFragment : BaseFragment() {
                         Config.SET_PHONE_NUM -> {
                             when (arguments!!["change_phone_type"]) {
                                 Config.BIND_CHANGE_PHONE_NUM -> {
-                                    model.resetPhoneNum(arguments!!["phone_number"].toString(), User.currentUser.telephone, value, SPHelper.create().getString("verify_code"), this@VerifyCodeFragment) {
+                                    model.resetPhoneNum(arguments!!.getString("phone_number", ""), User.currentUser.telephone, value, SPHelper.create().getString("verify_code"), this@VerifyCodeFragment) {
                                         (activity as BaseActivity).finishWithAnim()
                                     }
                                 }
 
                                 Config.BIND_SET_PHONE_NUM -> {
                                     //设置密码
-                                    Router.build(Config.ROUTER_MINE_EDIT_SETUP_PWD_FRAGMENT).with("phone_number", arguments!!["phone_number"].toString()).goFragment(this@VerifyCodeFragment, R.id.container_framelayout)
+                                    val bundle = Bundle()
+                                    bundle.putString("phone_number", arguments?.getString("phone_number"))
+                                    bundle.putString("verify_code", value)
+                                    Router.build(Config.ROUTER_MINE_EDIT_SETUP_PWD_FRAGMENT).with(bundle).goFragment(this@VerifyCodeFragment, R.id.container_framelayout)
                                 }
                             }
                         }
@@ -99,12 +100,12 @@ class VerifyCodeFragment : BaseFragment() {
                 phone = Settings.create(context!!).telephone
             }
             Config.SET_PHONE_NUM -> {
-                phone = arguments!!["phone_number"].toString()
+                phone = arguments!!.getString("phone_number", "")
             }
         }
 
 
-        phone_num.text = "验证码已经发送至${phone.replaceRange(3..6, "****")}"
+        phone_num.text = if (phone.isNotBlank()) "验证码已经发送至${phone.replaceRange(3..6, "****")}" else ""
         initData()
     }
 

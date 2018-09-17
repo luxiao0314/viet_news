@@ -59,7 +59,7 @@ class AccountInfoFragment : BaseFragment() {
 
         if (User.currentUser.isLogin()) {
             model.getUserInfo(Settings.create(context!!).userId, activity!!) { it ->
-                if (false) {//it!!.is_bind
+                if (it!!.is_bind) {//it!!.is_bind
                     changePhoneNumItem.setRightText("已绑定")
                     changePhoneNumItem.clickWithTrigger {
                         routerWithAnim(Config.ROUTER_MINE_EDIT_CHANGE_PHONE_FRAGMENT).goFragment(this@AccountInfoFragment, R.id.container_framelayout)
@@ -71,7 +71,7 @@ class AccountInfoFragment : BaseFragment() {
                     }
                 }
 
-                if (false) {//it.is_set_password
+                if (it.is_set_password && it.is_bind) {//it.is_set_password
                     resetPwdItem.setRightText("已设置")
                     resetPwdItem.clickWithTrigger {
                         openPage(this@AccountInfoFragment, Config.ROUTER_MINE_EDIT_CHANGE_PWD_FRAGMENT, R.id.container_framelayout)
@@ -90,7 +90,7 @@ class AccountInfoFragment : BaseFragment() {
                     }
                 }
 
-                magicBoxItem.setRightText(it!!.invite_code.toString())
+                magicBoxItem.setRightText(it.invite_code.toString())
 
             }
         }
