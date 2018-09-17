@@ -23,7 +23,7 @@ class ShareDialog : BaseDialogFragment() {
                 DialogBuilder(context, ShareDialog::class.java)
                         .setCancelableOnTouchOutside(false)
                         .setFullScreen(true)
-                        .setShowButtom(true)
+                        .setShowBottom(true)
                         .showAllowingStateLoss()
     }
 
@@ -36,15 +36,15 @@ class ShareDialog : BaseDialogFragment() {
     private fun initView(view: View) {
         view.tv_cancel.clickWithTrigger { dismiss() }
         view.tv_messenger.clickWithTrigger {
-            positiveListeners?.onPositiveButtonClicked(Config.SHARE_REQUEST_CODE_MESSENGER)
+            positiveListener?.onPositiveButtonClicked(Config.SHARE_REQUEST_CODE_MESSENGER)
             dismiss()
         }
         view.tv_facebook.clickWithTrigger {
-            positiveListeners?.onPositiveButtonClicked(Config.SHARE_REQUEST_CODE_FACEBOOK)
+            positiveListener?.onPositiveButtonClicked(Config.SHARE_REQUEST_CODE_FACEBOOK)
             dismiss()
         }
         view.tv_copy.clickWithTrigger {
-            positiveListeners?.onPositiveButtonClicked(Config.SHARE_REQUEST_CODE_COPY)
+            positiveListener?.onPositiveButtonClicked(Config.SHARE_REQUEST_CODE_COPY)
             dismiss()
         }
     }

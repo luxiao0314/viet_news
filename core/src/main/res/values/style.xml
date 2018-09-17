@@ -608,4 +608,10 @@
         <item name="android:windowEnterAnimation">@anim/scale_center_in</item>
         <item name="android:windowExitAnimation">@anim/scale_center_out</item>
     </style>
+
+    <!--anim-->
+    <style name="AnimBottom">
+        <item name="android:windowEnterAnimation">@anim/push_bottom_in</item>
+        <item name="android:windowExitAnimation">@anim/push_bottom_out</item>
+    </style>
 </resources>

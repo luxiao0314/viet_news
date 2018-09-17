@@ -18,13 +18,12 @@ import com.viet.news.core.delegate.viewModelDelegate
 import com.viet.news.core.domain.RefreshUserInfoEvent
 import com.viet.news.core.domain.Settings
 import com.viet.news.core.domain.User
-import com.viet.news.core.ext.clickWithTrigger
-import com.viet.news.core.ext.goFragment
-import com.viet.news.core.ext.loadCircle
-import com.viet.news.core.ext.routerWithAnim
+import com.viet.news.core.ext.*
 import com.viet.news.core.ui.BaseFragment
 import com.viet.news.core.ui.widget.CommonItem
 import com.viet.news.core.utils.RxBus
+import com.viet.news.dialog.NormalDialog
+import com.viet.news.dialog.interfaces.IPositiveButtonDialogListener
 import kotlinx.android.synthetic.main.fragment_mine_account_info.*
 import java.util.*
 
@@ -36,6 +35,7 @@ import java.util.*
  */
 @Route(value = [Config.ROUTER_MINE_EDIT_INFO_FRAGMENT])
 class AccountInfoFragment : BaseFragment() {
+
 
     private var mContainerView: View? = null
     private val model by viewModelDelegate(AccountInfoViewModel::class)
@@ -58,25 +58,36 @@ class AccountInfoFragment : BaseFragment() {
 
         if (User.currentUser.isLogin()) {
             model.getUserInfo(Settings.create(context!!).userId, activity!!) { it ->
-                if (it!!.is_bind) {
+                if (false) {//it!!.is_bind
                     changePhoneNumItem.setRightText("已绑定")
                     changePhoneNumItem.clickWithTrigger {
                         routerWithAnim(Config.ROUTER_MINE_EDIT_CHANGE_PHONE_FRAGMENT).goFragment(this@AccountInfoFragment, R.id.container_framelayout)
                     }
                 } else {
                     changePhoneNumItem.setRightText("未绑定")
+                    changePhoneNumItem.clickWithTrigger {
+                        val dialog = NormalDialog.create(activity!!, "未绑定手机号", null, "确定", "取消") as NormalDialog
+                    }
                 }
 
-                if (it.is_set_password) {
+                if (false) {//it.is_set_password
                     resetPwdItem.setRightText("已设置")
                     resetPwdItem.clickWithTrigger {
                         openPage(this@AccountInfoFragment, Config.ROUTER_MINE_EDIT_CHANGE_PWD_FRAGMENT, R.id.container_framelayout)
                     }
                 } else {
                     resetPwdItem.setRightText("去设置")
+                    resetPwdItem.clickWithTrigger {
+                        val dialog = NormalDialog.create(activity!!, "未绑定手机号", null, "确定", "取消") as NormalDialog
+                        dialog.positiveListener = object : IPositiveButtonDialogListener {
+                            override fun onPositiveButtonClicked(requestCode: Int) {
+//                                openPage(this@AccountInfoFragment, Config.ROUTER_MINE_EDIT_CHANGE_PWD_FRAGMENT, R.id.container_framelayout)
+                            }
+                        }
+                    }
                 }
 
-                magicBoxItem.setRightText(it.invite_code.toString())
+                magicBoxItem.setRightText(it!!.invite_code.toString())
 
             }
         }

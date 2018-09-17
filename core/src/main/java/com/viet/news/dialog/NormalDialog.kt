@@ -1,13 +1,14 @@
-package io.merculet.core.ui.dialog
+package com.viet.news.dialog
 
 import android.os.Bundle
 import android.support.v4.app.FragmentActivity
+import android.text.Html
 import android.view.LayoutInflater
 import android.view.View
+import com.safframework.ext.clickWithTrigger
 import com.viet.news.core.R
-import com.viet.news.core.ext.click
-import com.viet.news.dialog.BaseDialogFragment
-import com.viet.news.dialog.DialogBuilder
+import com.viet.news.core.config.Config
+import com.viet.news.core.ui.BaseFragment
 import kotlinx.android.synthetic.main.dialog_normal.view.*
 
 /**
@@ -24,13 +25,41 @@ class NormalDialog : BaseDialogFragment() {
         const val EXTRA_CONTENT = "extra_content"    //提示框内容
         const val EXTRA_CANCEL = "extra_cancel"    //取消按钮的文本
         const val EXTRA_CONFIRM = "extra_confirm"    //确定按钮文本
+        const val EXTRA_WITH_HTML = "extra_with_html"    //确定按钮文本
 
         fun create(context: FragmentActivity, title: String? = null, content: String? = null, confirmText: String? = null, cancelText: String? = null) =
                 NormalBuilder(context, title, content, cancelText, confirmText)
                         .setCancelableOnTouchOutside(false)
-                        .setAnimStyle(R.style.DialogAnimScaleCenter)
-                        .setShowButtom(false)
+                        .setAnimStyle(R.style.AnimScaleCenter)
+                        .setShowBottom(false)
                         .showAllowingStateLoss()
+
+        fun create(context: FragmentActivity, title: String? = null, content: String? = null, confirmText: String? = null, cancelText: String? = null, requestCode: Int) =
+                NormalBuilder(context, title, content, cancelText, confirmText)
+//                        .setPositiveCode(requestCode)
+                        .setCancelableOnTouchOutside(false)
+                        .setAnimStyle(R.style.AnimScaleCenter)
+                        .setRequestCode(requestCode)
+                        .setShowBottom(false)
+                        .showAllowingStateLoss()
+
+        fun create(context: FragmentActivity, title: String? = null, content: String? = null, confirmText: String? = null, cancelText: String? = null, cancelable: Boolean, requestCode: Int) =
+                NormalBuilder(context, title, content, if (cancelable) cancelText else null, confirmText)
+                        .setRequestCode(requestCode)
+                        .setCancelableOnTouchOutside(false)
+                        .setCancelable(cancelable)
+                        .setAnimStyle(R.style.AnimScaleCenter)
+                        .setShowBottom(false)
+                        .showAllowingStateLoss()
+
+        fun create(fragment: BaseFragment, title: String? = null, content: String? = null, confirmText: String? = null, cancelText: String? = null) =
+                NormalBuilder(fragment.activity!!, title, content, cancelText, confirmText)
+                        .setTargetFragment(fragment, 0)
+                        .setCancelableOnTouchOutside(false)
+                        .setAnimStyle(R.style.AnimScaleCenter)
+                        .setShowBottom(false)
+                        .showAllowingStateLoss()
+
     }
 
     /**
@@ -48,12 +77,17 @@ class NormalDialog : BaseDialogFragment() {
         if (title != null && title.isNotEmpty()) {
             view.dialog_title.text = title
         } else {
-            view.dialog_title.visibility = View.INVISIBLE
-            view.v_title_divider.visibility = View.INVISIBLE
+            view.dialog_title.visibility = View.GONE
+            view.v_title_divider.visibility = View.GONE
         }
 
         //content
-        view.dialog_content.text = arguments?.getString(EXTRA_CONTENT)
+        val withHtml: Boolean = arguments?.getBoolean(EXTRA_WITH_HTML, false)!!
+        if (withHtml) {
+            view.dialog_content.text = Html.fromHtml(arguments?.getString(EXTRA_CONTENT))
+        } else {
+            view.dialog_content.text = arguments?.getString(EXTRA_CONTENT)
+        }
 
         //confirmText
         val confirmText = arguments?.getString(EXTRA_CONFIRM)
@@ -69,12 +103,14 @@ class NormalDialog : BaseDialogFragment() {
             view.btn_dialog_ok.textSize = 14f
         }
 
-        view.btn_dialog_ok.click {
-            positiveListeners?.onPositiveButtonClicked(DIALOG_POSITIVE_REQUEST_CODE)
-            dismiss()
+        view.btn_dialog_ok.clickWithTrigger {
+            positiveListener?.onPositiveButtonClicked(requestCode = mRequestCode)
+            if (isCancelable) {//在不可取消时对应强制更新，点击确定按钮跳转到apk安装,此时不应dismiss,即使取消安装，dialog也不消失。
+                dismiss()
+            }
         }
-        view.btn_dialog_cancel.click {
-            negativeListeners?.onNegativeButtonClicked(DIALOG_NEGATIVE_REQUEST_CODE)
+        view.btn_dialog_cancel.clickWithTrigger {
+            negativeListener?.onNegativeButtonClicked(requestCode = Config.DIALOG_CANCEL_REQUEST_CODE)//取消按钮暂时使用统一CODE
             dismiss()
         }
         return initialBuilder.setView(view)
@@ -93,6 +129,12 @@ class NormalDialog : BaseDialogFragment() {
             return this
         }
 
+        private var withHtml: Boolean = false
+
+        fun setWithHtml(): NormalBuilder {
+            this.withHtml = true
+            return this
+        }
 
         override fun prepareArguments(): Bundle {
             val args = Bundle()
@@ -100,6 +142,7 @@ class NormalDialog : BaseDialogFragment() {
             args.putString(EXTRA_CONTENT, content)
             args.putString(EXTRA_CANCEL, cancelText)
             args.putString(EXTRA_CONFIRM, confirmText)
+            args.putBoolean(EXTRA_WITH_HTML, withHtml)
             return args
         }
     }

@@ -17,14 +17,14 @@ import kotlinx.android.synthetic.main.dialog_cancle_follow.view.*
 class CancelFollowDialog : BaseDialogFragment() {
 
     companion object {
-        fun create(context: FragmentActivity?) =
+        fun create(context: FragmentActivity) =
                 DialogBuilder(context, CancelFollowDialog::class.java)
                         .setCancelableOnTouchOutside(false)
                         .setAnimStyle(R.style.AnimScaleCenter)
                         .showAllowingStateLoss()
 
         fun create(fragment: Fragment) =
-                DialogBuilder(fragment.activity, CancelFollowDialog::class.java)
+                DialogBuilder(fragment.activity!!, CancelFollowDialog::class.java)
                         .setCancelableOnTouchOutside(false)
                         .setTargetFragment(fragment,1000)
                         .setAnimStyle(R.style.AnimScaleCenter)
@@ -34,11 +34,11 @@ class CancelFollowDialog : BaseDialogFragment() {
     override fun build(builder: Builder): Builder {
         val view = LayoutInflater.from(activity).inflate(R.layout.dialog_cancle_follow, null)
         view.tv_cancel.clickWithTrigger {
-            cancelListeners?.onCancelled(1)
+            cancelListener?.onCancelled(1)
             dismiss()
         }
         view.tv_confirm.clickWithTrigger {
-            positiveListeners?.onPositiveButtonClicked(1)
+            positiveListener?.onPositiveButtonClicked(1)
             dismiss()
         }
         return builder.setView(view)
