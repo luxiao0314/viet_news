@@ -111,7 +111,7 @@ class AccountInfoViewModel(var repository: MineRepository = MineRepository()) : 
 
     fun sendSMS(phoneNumber: String, owner: LifecycleOwner, onSent: () -> Unit) {
         //发送验证码接口
-        repository.sendSMS(phoneNumber, zoneCode.value, VerifyCodeTypeEnum.RESET_PASSWORD).observe(owner, Observer { resource ->
+        repository.sendSMS(phoneNumber, zoneCode.value, VerifyCodeTypeEnum.BIND_PHONE).observe(owner, Observer { resource ->
             resource?.work(
                     onSuccess = { onSent() },
                     onError = {}
@@ -121,7 +121,7 @@ class AccountInfoViewModel(var repository: MineRepository = MineRepository()) : 
 
     fun checkVerifyCode(phoneNumber: String, verifyCode: String, owner: LifecycleOwner, onValidate: () -> Unit) {
         //发送验证码接口
-        repository.checkVerifyCode(phoneNumber = phoneNumber, verifyCode = verifyCode, zone_code = zoneCode.value, type = VerifyCodeTypeEnum.RESET_PASSWORD)
+        repository.checkVerifyCode(phoneNumber = phoneNumber, verifyCode = verifyCode, zone_code = zoneCode.value, type = VerifyCodeTypeEnum.BIND_PHONE)
                 .observe(owner, Observer { resource ->
                     resource?.work(
                             onSuccess = { onValidate() }
