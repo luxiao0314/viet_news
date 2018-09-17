@@ -77,9 +77,8 @@
     <string name="cancel">Cancel</string>
 
     <!--facebook的key-->
-    <!-- TODO tsing 现在的key是我个人的，到时候需要替换-->
-    <string name="facebook_app_id">225604058116921</string>
-    <string name="fb_login_protocol_scheme">fb225604058116921</string>
+    <string name="facebook_app_id">443803932808723</string>
+    <string name="fb_login_protocol_scheme">fb443803932808723</string>
     <string name="tab_mine_title">个人</string>
     <string name="copy_the_link">Copy the link</string>
     <string name="facebook">Facebook</string>
