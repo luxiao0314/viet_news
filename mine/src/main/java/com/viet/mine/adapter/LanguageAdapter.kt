@@ -1,4 +1,4 @@
-package cn.magicwindow.mine.adapter
+package com.viet.mine.adapter
 
 import android.support.v4.content.ContextCompat
 import com.viet.mine.R

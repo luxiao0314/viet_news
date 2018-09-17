@@ -10,7 +10,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import cn.magicwindow.core.ui.ItemClickSupport
-import cn.magicwindow.mine.adapter.LanguageAdapter
+import com.viet.mine.adapter.LanguageAdapter
 import com.chenenyu.router.annotation.Route
 import com.viet.mine.R
 import com.viet.news.core.config.Config
