@@ -64,21 +64,20 @@ class AddChannelFragment(private var mMyChannelList: MutableList<ChannelBean>, p
     }
 
     override fun onCloseClick(list: List<ChannelBean>) {
-        listener?.let { followList = list }
+        followList = list
+        listener?.dataChangeListener(followList, 100000) //100000表示不移动新闻列表中tab位置
         dismiss()
     }
 
     override fun onChannelItemClick(list: List<ChannelBean>, position: Int) {
-        listener?.let {
-            it.dataChangeListener(list, position)
-            dismiss()
-        }
+        this.followList = list
+        listener?.dataChangeListener(followList, position)
+        dismiss()
     }
 
     override fun onDismiss(dialog: DialogInterface?) {
         if (dataChange) {
             listener?.onChannelItemMoved(followList) { super.onDismiss(dialog) }
-            listener?.dataChangeListener(followList, 100000)
         } else {
             super.onDismiss(dialog)
         }
@@ -87,8 +86,9 @@ class AddChannelFragment(private var mMyChannelList: MutableList<ChannelBean>, p
     var followList = listOf<ChannelBean>()
     var dataChange = false
     override fun onChannelItemMoved(list: List<ChannelBean>, position: Int) {
-        followList = list
-        dataChange = true
+        this.followList = list
+        this.dataChange = true
+        listener?.dataChangeListener(followList, position)
     }
 
     interface DataChangeListener {

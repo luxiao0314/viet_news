@@ -37,9 +37,7 @@ class MyChannelViewHolder(private val editModeHandler: EditModeHandler?) : IChan
             myHolder.mChannelTitleTv.setTextColor(Color.parseColor("#333333"))
             myHolder.mDeleteIv.visibility = if (it.editStatus == 1) View.VISIBLE else View.INVISIBLE
             myHolder.mChannelTitleTv.setOnClickListener {
-                if (editModeHandler != null && data.tabType == 2) {
-                    editModeHandler.clickMyChannel(mRecyclerView!!, holder)
-                }
+                editModeHandler?.clickMyChannel(mRecyclerView!!, holder)
             }
             myHolder.mChannelTitleTv.setOnTouchListener { _v, motionEvent ->
                 if (editModeHandler != null && data.tabType == 2) {

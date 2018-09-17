@@ -95,7 +95,7 @@ class ChannelAdapter(context: Context?, recyclerView: RecyclerView, private val 
 
     override fun onItemFinished(position: Int) {
         dataChanged = true
-        channelItemClickListener?.onChannelItemMoved(mMyChannelItems, position)
+        channelItemClickListener?.onChannelItemMoved(mMyChannelItems, position - mMyHeaderCount)
     }
 
     override fun onItemSwiped(position: Int) {
@@ -145,7 +145,7 @@ class ChannelAdapter(context: Context?, recyclerView: RecyclerView, private val 
 
         override fun clickMyChannel(mRecyclerView: RecyclerView, holder: ChannelViewHolder) {
             val position = holder.adapterPosition
-            if (isEditMode) {
+            if (isEditMode && mMyChannelItems[position - mMyHeaderCount].tabType == 2) {
                 moveMyToOther(position)
                 channelItemClickListener?.onChannelItemMoved(mMyChannelItems, position - mMyHeaderCount)
             } else {
