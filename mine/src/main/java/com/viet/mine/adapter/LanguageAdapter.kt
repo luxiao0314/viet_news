@@ -1,6 +1,7 @@
 package com.viet.mine.adapter
 
 import android.support.v4.content.ContextCompat
+import android.view.View
 import com.viet.mine.R
 import com.viet.news.core.config.Config
 import com.viet.news.core.ui.BaseAdapter
@@ -23,13 +24,13 @@ class LanguageAdapter : BaseAdapter<String>() {
         holder.itemView.language_name.text = t
         val selectedLanguageIndex = SPHelper.create().getInt(Config.SELECTED_LANGUAGE)
         if (position == selectedLanguageIndex) {
-//            holder.itemView.iv_arrow_right.visibility = View.VISIBLE
-            holder.itemView.language_name.setTextColor(ContextCompat.getColor(context, R.color.white))
-            holder.itemView.rl_mvp_holdings.setBackgroundResource(R.drawable.shape_list_bg)
+            holder.itemView.iv_arrow_right.visibility = View.VISIBLE
+//            holder.itemView.language_name.setTextColor(ContextCompat.getColor(context, R.color.white))
+//            holder.itemView.rl_mvp_holdings.setBackgroundResource(R.drawable.shape_list_bg)
         } else {
-//            holder.itemView.iv_arrow_right.visibility = View.GONE
-            holder.itemView.language_name.setTextColor(ContextCompat.getColor(context, R.color.text_gray))
-            holder.itemView.rl_mvp_holdings.setBackgroundResource(R.color.white)
+            holder.itemView.iv_arrow_right.visibility = View.INVISIBLE
+//            holder.itemView.language_name.setTextColor(ContextCompat.getColor(context, R.color.text_gray))
+//            holder.itemView.rl_mvp_holdings.setBackgroundResource(R.color.white)
         }
 
     }
