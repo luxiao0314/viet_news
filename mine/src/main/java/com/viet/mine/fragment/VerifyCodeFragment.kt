@@ -32,6 +32,7 @@ import kotlinx.android.synthetic.main.fragment_mine_verify_code.*
 @Route(value = [Config.ROUTER_MINE_EDIT_VERIFY_CODE_FRAGMENT])
 class VerifyCodeFragment : BaseFragment() {
     private var mContainerView: View? = null
+    private var phone = "18812345678"
     private val model by viewModelDelegate(AccountInfoViewModel::class)
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -51,14 +52,29 @@ class VerifyCodeFragment : BaseFragment() {
             }
 
             override fun onComplete(value: String) {
+//                if (value == "123456") {
+//                    when (arguments!!["page_type"]) {
+//                        Config.CHANGE_PHONE_NUM -> {
+//                            SPHelper.create().putString("verify_code", value)
+//                            openPage(this@VerifyCodeFragment, Config.ROUTER_MINE_EDIT_BIND_PHONE_FRAGMENT, R.id.container_framelayout)
+//                        }
+//                        Config.SET_PHONE_NUM -> {
+//                            model.resetPhoneNum(arguments!!["phone_number"].toString(), User.currentUser.telephone, value, SPHelper.create().getString("verify_code"), this@VerifyCodeFragment) {
+//                                (activity as BaseActivity).finishWithAnim()
+//                            }
+//                        }
+//                    }
+//                }
+
+
                 model.checkVerifyCode(User.currentUser.telephone, value, this@VerifyCodeFragment) {
                     when (arguments!!["page_type"]) {
                         Config.CHANGE_PHONE_NUM -> {
-                            SPHelper.create().addSet("verify_code", value)
+                            SPHelper.create().putString("verify_code", value)
                             openPage(this@VerifyCodeFragment, Config.ROUTER_MINE_EDIT_BIND_PHONE_FRAGMENT, R.id.container_framelayout)
                         }
                         Config.SET_PHONE_NUM -> {
-                            model.resetPhoneNum(arguments!!["phone_number"].toString(), User.currentUser.telephone, value, SPHelper.create()["verify_code"], this@VerifyCodeFragment) {
+                            model.resetPhoneNum(arguments!!["phone_number"].toString(), User.currentUser.telephone, value, SPHelper.create().getString("verify_code"), this@VerifyCodeFragment) {
                                 (activity as BaseActivity).finishWithAnim()
                             }
                         }
@@ -66,7 +82,16 @@ class VerifyCodeFragment : BaseFragment() {
                 }
             }
         })
-        val phone = Settings.create(context!!).telephone
+        when (arguments!!["page_type"]) {
+            Config.CHANGE_PHONE_NUM -> {
+                phone = Settings.create(context!!).telephone
+            }
+            Config.SET_PHONE_NUM -> {
+                phone = arguments!!["phone_number"].toString()
+            }
+        }
+
+
         phone_num.text = "验证码已经发送至${phone.replaceRange(3..6, "****")}"
         initData()
     }
