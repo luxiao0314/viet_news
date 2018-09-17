@@ -58,9 +58,7 @@ class FindViewModel(var repository: FindRepository = FindRepository()) : BaseVie
      * 频道排序:添加,删除,拖拽
      */
     fun updateSort(owner: LifecycleOwner, list: List<ChannelBean>, function: () -> Unit) {
-        repository.updateSort(list).observe(owner, Observer {
-            it?.work { function() }
-        })
+        repository.updateSort(list).observe(owner, Observer { it?.work { function() } })
     }
 
     /**

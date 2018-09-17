@@ -59,6 +59,5 @@ class MyChannelViewHolder(private val editModeHandler: EditModeHandler?) : IChan
     inner class MyChannelHeaderViewHolder(itemView: View) : ChannelAdapter.ChannelViewHolder(itemView) {
         val mChannelTitleTv: TextView = itemView.findViewById(R.id.id_channel_title)
         val mDeleteIv: ImageView = itemView.findViewById(R.id.id_delete_icon)
-
     }
 }

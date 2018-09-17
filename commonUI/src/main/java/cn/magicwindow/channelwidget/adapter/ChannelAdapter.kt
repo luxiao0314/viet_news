@@ -95,7 +95,7 @@ class ChannelAdapter(context: Context?, recyclerView: RecyclerView, private val 
 
     override fun onItemFinished(position: Int) {
         dataChanged = true
-        channelItemClickListener?.onChannelItemMoved(mMyChannelItems, position) {}
+        channelItemClickListener?.onChannelItemMoved(mMyChannelItems, position)
     }
 
     override fun onItemSwiped(position: Int) {
@@ -146,14 +146,15 @@ class ChannelAdapter(context: Context?, recyclerView: RecyclerView, private val 
         override fun clickMyChannel(mRecyclerView: RecyclerView, holder: ChannelViewHolder) {
             val position = holder.adapterPosition
             if (isEditMode) {
-                channelItemClickListener?.onChannelItemMoved(mMyChannelItems, position - mMyHeaderCount) { moveMyToOther(position) }
+                moveMyToOther(position)
+                channelItemClickListener?.onChannelItemMoved(mMyChannelItems, position - mMyHeaderCount)
             } else {
                 channelItemClickListener?.onChannelItemClick(mMyChannelItems, position - mMyHeaderCount)
             }
         }
 
         override fun close() {
-            channelItemClickListener?.onCloseClick(mMyChannelItems, dataChanged)
+            channelItemClickListener?.onCloseClick(mMyChannelItems)
         }
 
         override fun touchMyChannel(motionEvent: MotionEvent, holder: ChannelViewHolder) {
@@ -184,7 +185,8 @@ class ChannelAdapter(context: Context?, recyclerView: RecyclerView, private val 
 
         override fun clickRecChannel(mRecyclerView: RecyclerView, holder: ChannelViewHolder) {
             val position = holder.adapterPosition
-            channelItemClickListener?.onChannelItemMoved(mMyChannelItems, position - mMyChannelItems.size - mRecHeaderCount - mMyHeaderCount) { moveOtherToMy(position) }
+            moveOtherToMy(position)
+            channelItemClickListener?.onChannelItemMoved(mMyChannelItems, position - mMyChannelItems.size - mRecHeaderCount - mMyHeaderCount)
         }
     }
 
@@ -265,9 +267,9 @@ class ChannelAdapter(context: Context?, recyclerView: RecyclerView, private val 
     }
 
     interface ChannelItemClickListener {
-        fun onCloseClick(list: List<ChannelBean>, dataChange: Boolean)
+        fun onCloseClick(list: List<ChannelBean>)
         fun onChannelItemClick(list: List<ChannelBean>, position: Int)
-        fun onChannelItemMoved(list: List<ChannelBean>, position: Int, function: () -> Unit)
+        fun onChannelItemMoved(list: List<ChannelBean>, position: Int)
     }
 
     companion object {

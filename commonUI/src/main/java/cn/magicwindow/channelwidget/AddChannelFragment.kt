@@ -2,6 +2,7 @@ package cn.magicwindow.channelwidget
 
 
 import android.annotation.SuppressLint
+import android.content.DialogInterface
 import android.os.Bundle
 import android.support.v4.app.DialogFragment
 import android.support.v7.widget.GridLayoutManager
@@ -62,27 +63,37 @@ class AddChannelFragment(private var mMyChannelList: MutableList<ChannelBean>, p
         id_tab_recycler_view.addItemDecoration(GridItemDecoration(5))
     }
 
-    override fun onCloseClick(list: List<ChannelBean>, dataChange: Boolean) {
-        listener?.let {
-            if (dataChange) it.onDataChanged(list, 100000)
-            dismiss()
-        }
+    override fun onCloseClick(list: List<ChannelBean>) {
+        listener?.let { followList = list }
+        dismiss()
     }
 
     override fun onChannelItemClick(list: List<ChannelBean>, position: Int) {
         listener?.let {
-            it.onDataChanged(list, position)
+            it.dataChangeListener(list, position)
             dismiss()
         }
     }
 
-    override fun onChannelItemMoved(list: List<ChannelBean>, position: Int, function: () -> Unit) {
-        listener?.onChannelItemMoved(list, position, function)
+    override fun onDismiss(dialog: DialogInterface?) {
+        if (dataChange) {
+            listener?.onChannelItemMoved(followList) { super.onDismiss(dialog) }
+            listener?.dataChangeListener(followList, 100000)
+        } else {
+            super.onDismiss(dialog)
+        }
+    }
+
+    var followList = listOf<ChannelBean>()
+    var dataChange = false
+    override fun onChannelItemMoved(list: List<ChannelBean>, position: Int) {
+        followList = list
+        dataChange = true
     }
 
     interface DataChangeListener {
-        fun onDataChanged(list: List<ChannelBean>, position: Int)
-        fun onChannelItemMoved(list: List<ChannelBean>, position: Int, function: () -> Unit)
+        fun dataChangeListener(list: List<ChannelBean>, position: Int)
+        fun onChannelItemMoved(list: List<ChannelBean>, function: () -> Unit)
     }
 
     fun setOnDataChangeListener(listener: DataChangeListener) {
