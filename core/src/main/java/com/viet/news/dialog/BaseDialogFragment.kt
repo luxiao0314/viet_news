@@ -141,25 +141,25 @@ abstract class BaseDialogFragment : DialogFragment() {
     }
 
 
-    fun showWithDismissPreDialog(manager: FragmentManager, tag: String, dismissPreDialog: Boolean) {
-        val ft = manager.beginTransaction()
+    fun showWithDismissPreDialog(manager: FragmentManager?, tag: String, dismissPreDialog: Boolean) {
+        val ft = manager?.beginTransaction()
         //将之前的dialog隐藏
-        val targetFragment = manager.findFragmentByTag(tag)
+        val targetFragment = manager?.findFragmentByTag(tag)
         if (dismissPreDialog && targetFragment != null && targetFragment is BaseDialogFragment) {
-            ft.remove(targetFragment).commit()
+            ft?.remove(targetFragment)?.commit()
         }
         show(manager, tag)
     }
 
-    fun showAllowingStateLoss(manager: FragmentManager, tag: String, dismissPreDialog: Boolean) {
-        val ft = manager.beginTransaction()
+    fun showAllowingStateLoss(manager: FragmentManager?, tag: String, dismissPreDialog: Boolean) {
+        val ft = manager?.beginTransaction()
         //将之前的dialog隐藏
-        val targetFragment = manager.findFragmentByTag(tag)
+        val targetFragment = manager?.findFragmentByTag(tag)
         if (dismissPreDialog && targetFragment != null && targetFragment is BaseDialogFragment) {
-            ft.remove(targetFragment)
+            ft?.remove(targetFragment)
         }
-        ft.add(this, tag)
-        ft.commitAllowingStateLoss()
+        ft?.add(this, tag)
+        ft?.commitAllowingStateLoss()
     }
 
     fun <T> getDialogListeners(listenerInterface: Class<T>): T? {

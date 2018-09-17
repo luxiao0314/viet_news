@@ -87,6 +87,9 @@ interface ApiService {
     @GET("v1/user/follow/{followUserId}")
     fun follow(@Path("followUserId") followUserId: String?): LiveData<ApiResponse<Any>>
 
+    @GET("v1/user/cancelFollow/{followUserId}")
+    fun cancelfollow(@Path("followUserId") followUserId: String?): LiveData<ApiResponse<Any>>
+
     @POST("v1/user/followList")
     fun followList(@Body param: ListParams): LiveData<ApiResponse<UserInfoListResponse>>
 

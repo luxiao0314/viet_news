@@ -28,12 +28,12 @@ class FunsAndFollowAdapter @Inject constructor() : BaseAdapter<UserInfoResponse>
             } else {
                 holder.itemView.btn_follow.text = context.getString(R.string.has_follow)
             }
-            holder.itemView.btn_follow.isEnabled = false
+            holder.itemView.btn_follow.isSelected = false
             holder.itemView.btn_follow.setCompoundDrawablesWithIntrinsicBounds(context.resources.getDrawable(R.drawable.ic_hook), null, null, null)
             holder.itemView.btn_follow.compoundDrawablePadding = 4
         } else {
             holder.itemView.btn_follow.setCompoundDrawablesWithIntrinsicBounds(null, null, null, null)
-            holder.itemView.btn_follow.isEnabled = true
+            holder.itemView.btn_follow.isSelected = true
             holder.itemView.btn_follow.text = context.getString(R.string.add_follow)
         }
     }

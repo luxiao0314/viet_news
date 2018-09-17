@@ -25,25 +25,25 @@ class PersonalPageRepository : ApiRepository() {
         params.page_size = Config.page_size
         params.user_id = id
         return object : NetworkOnlyResource<NewsListResponse>() {
-            override fun createCall(): LiveData<ApiResponse<NewsListResponse>> {
-                return apiInterface.getlist4User(params)
-            }
+            override fun createCall(): LiveData<ApiResponse<NewsListResponse>> = apiInterface.getlist4User(params)
         }.asLiveData()
     }
 
     fun getUserInfo(userId: String?): LiveData<Resource<UserInfoResponse>> {
         return object : NetworkOnlyResource<UserInfoResponse>() {
-            override fun createCall(): LiveData<ApiResponse<UserInfoResponse>> {
-                return apiInterface.getUserInfo(userId)
-            }
+            override fun createCall(): LiveData<ApiResponse<UserInfoResponse>> = apiInterface.getUserInfo(userId)
         }.asLiveData()
     }
 
     fun follow(followUserId: String?): LiveData<Resource<Any>> {
         return object : NetworkOnlyResource<Any>() {
-            override fun createCall(): LiveData<ApiResponse<Any>> {
-                return apiInterface.follow(followUserId)
-            }
+            override fun createCall(): LiveData<ApiResponse<Any>> = apiInterface.follow(followUserId)
+        }.asLiveData()
+    }
+
+    fun cancelfollow(followUserId: String?): LiveData<Resource<Any>> {
+        return object : NetworkOnlyResource<Any>() {
+            override fun createCall(): LiveData<ApiResponse<Any>> = apiInterface.cancelfollow(followUserId)
         }.asLiveData()
     }
 

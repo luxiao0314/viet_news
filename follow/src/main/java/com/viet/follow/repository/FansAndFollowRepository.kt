@@ -49,4 +49,12 @@ class FansAndFollowRepository : ApiRepository() {
             }
         }.asLiveData()
     }
+
+    fun cancelfollow(followUserId: String?): LiveData<Resource< Any>> {
+        return object : NetworkOnlyResource< Any>() {
+            override fun createCall(): LiveData<ApiResponse< Any>> {
+                return apiInterface.cancelfollow(followUserId)
+            }
+        }.asLiveData()
+    }
 }

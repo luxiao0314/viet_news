@@ -28,15 +28,15 @@ class PersonalPageModel(var repository: PersonalPageRepository = PersonalPageRep
     }
 
     fun getUserInfo(owner: LifecycleOwner, function: (user: UserInfoResponse?) -> Unit) {
-        repository.getUserInfo(userId).observe(owner, Observer {
-            it?.work { function(it?.data) }
-        })
+        repository.getUserInfo(userId).observe(owner, Observer { it?.work { function(it.data) } })
     }
 
     fun follow(owner: LifecycleOwner, function: () -> Unit) {
-        repository.follow(userId).observe(owner, Observer {
-            it?.work { function() }
-        })
+        repository.follow(userId).observe(owner, Observer { it?.work { function() } })
+    }
+
+    fun cancelfollow(owner: LifecycleOwner, function: () -> Unit) {
+        repository.cancelfollow(userId).observe(owner, Observer { it?.work { function() } })
     }
 
     /**

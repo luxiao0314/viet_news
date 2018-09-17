@@ -26,21 +26,18 @@ class FansAndFollowViewModel(var repository: FansAndFollowRepository = FansAndFo
     val titles = arrayListOf(App.instance.resources.getString(R.string.funs), App.instance.resources.getString(R.string.follow))
     val fragments = arrayListOf<BaseFragment>(FansTabFragment(), FollowTabFragment())
     var currentTab = MutableLiveData<Int>()
-    var userId: String? = ""
+    var userId = MutableLiveData<String>()
+    var cancelPosition = MutableLiveData<Int>()
 
-    fun followList(page_number: Int): LiveData<Resource<UserInfoListResponse>> {
-        return repository.followList(page_number, userId)
-    }
+    fun followList(page_number: Int): LiveData<Resource<UserInfoListResponse>> = repository.followList(page_number, userId.value)
 
-    fun fansList(page_number: Int): LiveData<Resource<UserInfoListResponse>> {
-        return repository.fansList(page_number, userId)
-    }
+    fun fansList(page_number: Int): LiveData<Resource<UserInfoListResponse>> = repository.fansList(page_number, userId.value)
 
     fun follow(owner: LifecycleOwner, userId: String?, function: () -> Unit) {
-        repository.follow(userId).observe(owner, Observer {
-            it?.work(onSuccess = {
-                function()
-            })
-        })
+        repository.follow(userId).observe(owner, Observer { it?.work { function() } })
+    }
+
+    fun cancelfollow(owner: LifecycleOwner, userId: String?, function: () -> Unit) {
+        repository.cancelfollow(userId).observe(owner, Observer { it?.work { function() } })
     }
 }

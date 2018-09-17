@@ -56,7 +56,7 @@
 
     <Button
         android:id="@+id/btn_follow"
-        style="@style/button.small"
+        style="@style/button.small.follow"
         android:layout_marginTop="40dp"
         android:layout_marginEnd="15dp"
         android:layout_marginRight="15dp"

@@ -21,6 +21,8 @@ import com.viet.news.core.ext.loadBlur
 import com.viet.news.core.ext.loadCircle
 import com.viet.news.core.ext.routerWithAnim
 import com.viet.news.core.ui.InjectActivity
+import com.viet.news.dialog.CancelFollowDialog
+import com.viet.news.dialog.interfaces.IPositiveButtonDialogListener
 import kotlinx.android.synthetic.main.activity_personal_page.*
 import javax.inject.Inject
 
@@ -32,7 +34,7 @@ import javax.inject.Inject
  * @Version 1.0.0
  */
 @Route(value = [Config.ROUTER_PERSONAL_PAGE_ACTIVITY])
-class PersonalPageActivity : InjectActivity() {
+class PersonalPageActivity : InjectActivity(), IPositiveButtonDialogListener {
 
     @Inject
     internal lateinit var adapter: PersonalPageAdapter
@@ -55,8 +57,7 @@ class PersonalPageActivity : InjectActivity() {
             tv_coin.text = it?.follow_count.toString()
             tv_fans_num.text = it?.fans_count.toString()
             tv_follow_num.text = it?.follow_count.toString()
-            btn_follow.isEnabled = !it?.follow_flag!!
-            btn_follow.text = if (!it.follow_flag) resources.getString(R.string.follow) else resources.getString(R.string.has_follow)
+            notifyBtn(!it?.follow_flag!!, if (!it.follow_flag) resources.getString(R.string.follow) else resources.getString(R.string.has_follow))
         }
     }
 
@@ -77,11 +78,25 @@ class PersonalPageActivity : InjectActivity() {
         multiStatusView.setLoadingButtonClickListener(View.OnClickListener { refreshLayout.autoRefresh() })
         relativeLayout.click { routerWithAnim(Config.ROUTER_FUNS_AND_FOLLOW_ACTIVITY).with(Config.BUNDLE_USER_ID, model.userId).go(this) }
         btn_follow.click {
-            model.follow(this) {
-                btn_follow.isEnabled = false
-                btn_follow.text = resources.getString(R.string.has_follow)
+            if (btn_follow.isSelected) {
+                model.follow(this) { notifyBtn(!btn_follow.isSelected, resources.getString(R.string.has_follow)) }
+            } else {
+                CancelFollowDialog.create(this)
             }
         }
+    }
+
+    override fun onPositiveButtonClicked(requestCode: Int) {
+        model.cancelfollow(this) {
+            notifyBtn(!btn_follow.isSelected, resources.getString(R.string.follow))
+            initInfoData()
+        }
+    }
+
+    private fun notifyBtn(isSelected: Boolean, text: String) {
+        btn_follow.isSelected = isSelected
+        btn_follow.text = text
+        btn_follow.setCompoundDrawablesWithIntrinsicBounds(if (isSelected) null else resources.getDrawable(R.drawable.ic_hook), null, null, null)
     }
 
     private fun initData(loadMore: Boolean) {

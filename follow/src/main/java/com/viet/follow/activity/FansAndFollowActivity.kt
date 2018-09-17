@@ -34,7 +34,7 @@ class FansAndFollowActivity : InjectActivity() {
     }
 
     private fun initView() {
-        model.userId = intent?.getStringExtra(Config.BUNDLE_USER_ID)
+        model.userId.value = intent?.getStringExtra(Config.BUNDLE_USER_ID)
         adapter.setTitles(model.titles)
         adapter.setFragment(model.fragments)
         viewpager.adapter = adapter

@@ -400,6 +400,9 @@
         <item name="android:minWidth">0dp</item>
     </style>
 
+    <style name="button.small.follow">
+        <item name="android:background">@drawable/selector_follow_red_button</item>
+    </style>
 
     <style name="line">
         <item name="android:layout_width">match_parent</item>

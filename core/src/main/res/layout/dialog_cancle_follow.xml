@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:background="@drawable/shape_dialog_bg"
+              android:gravity="center"
+              android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tv_title"
+        style="@style/text.16.gray.bold"
+        android:padding="20dp"
+        android:text="您是否要取消关注"
+        android:textStyle="bold"/>
+
+    <View style="@style/line.gray_tran"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:weightSum="2">
+
+        <TextView
+            android:id="@+id/tv_cancel"
+            style="@style/text.16.gray.bold"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="考虑一哈"
+            android:textColor="#478DF6"/>
+
+        <View style="@style/line.vertical.gray"/>
+
+        <TextView
+            android:id="@+id/tv_confirm"
+            style="@style/text.16.gray"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="是的"
+            android:textColor="#478DF6"/>
+    </LinearLayout>
+
+</LinearLayout>

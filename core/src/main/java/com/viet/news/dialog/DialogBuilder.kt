@@ -13,7 +13,7 @@ import java.io.Serializable
  * @Date 09/05/2018 2:35 PM
  * @Version
  */
-open class DialogBuilder(val context: FragmentActivity, private val mClass: Class<out BaseDialogFragment>) {
+open class DialogBuilder(val context: FragmentActivity?, private val mClass: Class<out BaseDialogFragment>) {
 
 
     //dialog默认屏幕占比
@@ -144,14 +144,14 @@ open class DialogBuilder(val context: FragmentActivity, private val mClass: Clas
 
     fun show(): BaseDialogFragment {
         val fragment = create()
-        fragment.showWithDismissPreDialog(context.supportFragmentManager, mTag, mDismissPreDialog)
+        fragment.showWithDismissPreDialog(context?.supportFragmentManager, mTag, mDismissPreDialog)
         return fragment
     }
 
     //IllegalStateException : Can not perform this action after onSaveInstanceState()报该异常的时候使用此show
     fun showAllowingStateLoss(): BaseDialogFragment {
         val fragment = create()
-        fragment.showAllowingStateLoss(context.supportFragmentManager, mTag, mDismissPreDialog)
+        fragment.showAllowingStateLoss(context?.supportFragmentManager, mTag, mDismissPreDialog)
         return fragment
     }
 

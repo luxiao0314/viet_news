@@ -11,12 +11,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import cn.magicwindow.core.ui.ItemClickSupport
-import com.safframework.ext.then
 import com.viet.follow.R
 import com.viet.follow.adapter.FunsAndFollowAdapter
 import com.viet.follow.viewmodel.FansAndFollowViewModel
 import com.viet.news.core.delegate.viewModelDelegate
 import com.viet.news.core.ui.InjectFragment
+import com.viet.news.dialog.CancelFollowDialog
+import com.viet.news.dialog.interfaces.IPositiveButtonDialogListener
 import kotlinx.android.synthetic.main.fragment_follow_tab.*
 import javax.inject.Inject
 
@@ -27,7 +28,7 @@ import javax.inject.Inject
  * @Date 03/09/2018 11:13 AM
  * @Version 1.0.0
  */
-class FollowTabFragment : InjectFragment() {
+class FollowTabFragment : InjectFragment(), IPositiveButtonDialogListener {
 
     @Inject
     internal lateinit var adapter: FunsAndFollowAdapter
@@ -54,10 +55,22 @@ class FollowTabFragment : InjectFragment() {
 
     private val listener = object : ItemClickSupport.OnChildClickListener {
         override fun onChildClicked(recyclerView: RecyclerView, position: Int, v: View) {
-            model.follow(this@FollowTabFragment, adapter.getData()[position].id) {
-                adapter.getData()[position].follow_flag = true
-                adapter.notifyItemChanged(position)
+            if (adapter.getData()[position].follow_flag) {
+                model.cancelPosition.value = position
+                CancelFollowDialog.create(this@FollowTabFragment)
+            } else {
+                model.follow(this@FollowTabFragment, adapter.getData()[position].id) {
+                    adapter.getData()[position].follow_flag = true
+                    adapter.notifyItemChanged(position)
+                }
             }
+        }
+    }
+
+    override fun onPositiveButtonClicked(requestCode: Int) {
+        model.cancelfollow(this@FollowTabFragment,adapter.getData()[ model.cancelPosition.value!!].id){
+            adapter.getData()[ model.cancelPosition.value!!].follow_flag = false
+            adapter.notifyItemChanged( model.cancelPosition.value!!)
         }
     }
 

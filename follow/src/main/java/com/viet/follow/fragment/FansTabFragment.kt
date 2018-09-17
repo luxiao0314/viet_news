@@ -16,6 +16,8 @@ import com.viet.follow.adapter.FunsAndFollowAdapter
 import com.viet.follow.viewmodel.FansAndFollowViewModel
 import com.viet.news.core.delegate.viewModelDelegate
 import com.viet.news.core.ui.InjectFragment
+import com.viet.news.dialog.CancelFollowDialog
+import com.viet.news.dialog.interfaces.IPositiveButtonDialogListener
 import kotlinx.android.synthetic.main.fragment_fans_tab.*
 import javax.inject.Inject
 
@@ -26,7 +28,7 @@ import javax.inject.Inject
  * @Date 03/09/2018 11:13 AM
  * @Version 1.0.0
  */
-class FansTabFragment : InjectFragment() {
+class FansTabFragment : InjectFragment(), IPositiveButtonDialogListener {
 
     @Inject
     internal lateinit var adapter: FunsAndFollowAdapter
@@ -53,13 +55,24 @@ class FansTabFragment : InjectFragment() {
 
     private val listener = object : ItemClickSupport.OnChildClickListener {
         override fun onChildClicked(recyclerView: RecyclerView, position: Int, v: View) {
-            model.follow(this@FansTabFragment, adapter.getData()[position].id) {
-                adapter.getData()[position].follow_flag = true
-                adapter.notifyItemChanged(position)
+            if (adapter.getData()[position].follow_flag) {
+                model.cancelPosition.value = position
+                CancelFollowDialog.create(this@FansTabFragment)
+            } else {
+                model.follow(this@FansTabFragment, adapter.getData()[position].id) {
+                    adapter.getData()[position].follow_flag = true
+                    adapter.notifyItemChanged(position)
+                }
             }
         }
     }
 
+    override fun onPositiveButtonClicked(requestCode: Int) {
+        model.cancelfollow(this@FansTabFragment,adapter.getData()[ model.cancelPosition.value!!].id){
+            adapter.getData()[ model.cancelPosition.value!!].follow_flag = false
+            adapter.notifyItemChanged( model.cancelPosition.value!!)
+        }
+    }
 
     private fun initData(loadMore: Boolean) {
         if (loadMore) {
