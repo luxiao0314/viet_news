@@ -39,16 +39,10 @@ class PersonalPageModel(var repository: PersonalPageRepository = PersonalPageRep
         repository.cancelfollow(userId).observe(owner, Observer { it?.work { function() } })
     }
 
-    /**
-     * 点赞
-     */
     fun like(context: Context, contentId: String) {
         repository.like(contentId).observe(context as BaseActivity, Observer { it?.work { } })
     }
 
-    /**
-     * 收藏
-     */
     fun collection(context: Context, contentId: String) {
         repository.collection(contentId).observe(context as BaseActivity, Observer { it?.work { } })
     }

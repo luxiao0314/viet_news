@@ -79,7 +79,10 @@ class PersonalPageActivity : InjectActivity(), IPositiveButtonDialogListener {
         relativeLayout.click { routerWithAnim(Config.ROUTER_FUNS_AND_FOLLOW_ACTIVITY).with(Config.BUNDLE_USER_ID, model.userId).go(this) }
         btn_follow.click {
             if (btn_follow.isSelected) {
-                model.follow(this) { notifyBtn(!btn_follow.isSelected, resources.getString(R.string.has_follow)) }
+                model.follow(this) {
+                    initInfoData()
+                    notifyBtn(!btn_follow.isSelected, resources.getString(R.string.has_follow))
+                }
             } else {
                 CancelFollowDialog.create(this)
             }
@@ -88,8 +91,8 @@ class PersonalPageActivity : InjectActivity(), IPositiveButtonDialogListener {
 
     override fun onPositiveButtonClicked(requestCode: Int) {
         model.cancelfollow(this) {
-            notifyBtn(!btn_follow.isSelected, resources.getString(R.string.follow))
             initInfoData()
+            notifyBtn(!btn_follow.isSelected, resources.getString(R.string.follow))
         }
     }
 
