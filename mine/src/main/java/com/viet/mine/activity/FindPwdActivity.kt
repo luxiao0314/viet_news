@@ -37,7 +37,7 @@ class FindPwdActivity : InjectActivity() {
     private fun initView() {
 
         //错误信息展示
-        model.statusMsg.observe(this, Observer { it?.let { msg -> toast(msg).show() } })
+        model.statusMsg.observe(this, Observer { it?.let { msg -> toast(msg)  } })
 
         //验证码按钮是否可点击
         model.vCodeButtonEnable.observe(this, Observer { btn_send_vcode.isEnabled = it != null && it })

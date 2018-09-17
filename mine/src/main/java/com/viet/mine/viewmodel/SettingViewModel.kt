@@ -3,11 +3,7 @@ package com.viet.mine.viewmodel
 import android.arch.lifecycle.LifecycleOwner
 import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.Observer
-import com.safframework.ext.then
-import com.viet.mine.R
 import com.viet.mine.repository.MineRepository
-import com.viet.news.core.ext.toast
-import com.viet.news.core.ui.App
 import com.viet.news.core.viewmodel.BaseViewModel
 
 class SettingViewModel(var repository: MineRepository = MineRepository()) : BaseViewModel() {

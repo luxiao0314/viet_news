@@ -107,15 +107,15 @@ abstract class BaseActivity : AppCompatActivity() {
     }
 
     protected open var checkException: (Int, HttpResponse<*>?) -> Unit = { code, response ->
-        L.e("接口访问失败了！！ = \n$response")
+        L.e("接口访问失败了！！ code = $code, response = \n$response")
         when (code) {
                 //TODO tsing 根据code执行不同提示，需要和后台商量
             Config.NETWORK_RESPONSE_HAS_NO_NETWORK -> {
-                    toast(R.string.error_msg).show()
+                    toast(R.string.error_msg)
             }
             else -> {
                 response?.message?.let {
-                    toast(it).show()
+                    toast(it)
                 }
             }
         }

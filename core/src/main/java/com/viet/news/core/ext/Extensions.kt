@@ -2,6 +2,8 @@ package com.viet.news.core.ext
 
 import android.content.Context
 import android.graphics.drawable.Drawable
+import android.os.Handler
+import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -80,4 +82,15 @@ fun ViewGroup.inflate(layoutRes: Int): View {
 fun dp2px(value: Int, context: Context): Int {
     val scale = context.resources.displayMetrics.density
     return (value * scale + 0.5f).toInt()
+}
+
+
+object MainHandler : Handler(Looper.getMainLooper())
+
+fun runOnUIThread(uiWork: () -> Unit) {
+    if (Looper.myLooper() == Looper.getMainLooper()) {
+        uiWork()
+    } else {
+        MainHandler.post(uiWork)
+    }
 }

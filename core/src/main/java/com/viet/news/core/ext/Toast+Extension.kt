@@ -28,38 +28,23 @@ import com.viet.news.core.ui.App
  * @param postion
  * @return
  */
-fun Toast.addView(addView: View, position: Int): Toast {
+//fun Toast.addView(addView: View, position: Int): Toast {
+//
+//    (view as LinearLayout).addView(addView, position)
+//
+//    return this
+//}
+//
+//fun Toast.addView(block: () -> View, position: Int): Toast {
+//
+//    (view as LinearLayout).addView(block(), position)
+//
+//    return this
+//}
 
-    (view as LinearLayout).addView(addView, position)
-
-    return this
-}
-
-fun Toast.addView(block: () -> View, position: Int): Toast {
-
-    (view as LinearLayout).addView(block(), position)
-
-    return this
-}
-
-fun Toast.setGravityCenter(): Toast {
+private fun Toast.setGravityCenter(): Toast {
     setGravity(Gravity.CENTER, 0, 0)
     return this
-}
-
-/**
- * 设置Toast字体及背景颜色
- * @param messageColor
- * @param backgroundColor
- * @return
- */
-fun Toast.setToastColor(@ColorInt messageColor: Int, @ColorInt backgroundColor: Int) {
-    val view = view
-    if (view != null) {
-        val message = view.findViewById(android.R.id.message) as TextView
-        message.setBackgroundColor(backgroundColor)
-        message.setTextColor(messageColor)
-    }
 }
 
 /**
@@ -68,7 +53,7 @@ fun Toast.setToastColor(@ColorInt messageColor: Int, @ColorInt backgroundColor: 
  * @param background
  * @return
  */
-fun Toast.setBackground(@ColorInt messageColor: Int = Color.WHITE, @DrawableRes background: Int = R.color.gray_tran): Toast {
+private fun Toast.setBackground(@ColorInt messageColor: Int, @DrawableRes background: Int): Toast {
     val view = view
     if (view != null) {
         val message = view.findViewById(android.R.id.message) as TextView
@@ -79,14 +64,21 @@ fun Toast.setBackground(@ColorInt messageColor: Int = Color.WHITE, @DrawableRes 
 }
 
 @SuppressLint("ShowToast")
-fun toast(text: CharSequence?): Toast = Toast.makeText(App.instance, text, Toast.LENGTH_SHORT)
-        .setGravityCenter()
-        .setBackground()
-//需要的地方调用withErrorIcon，默认不要添加
-//        .withErrorIcon()
-
+fun toast(text: CharSequence?, @ColorInt messageColor: Int = Color.WHITE, @DrawableRes background: Int = R.color.color_bg_trans, vararg views: Pair<View, Int> = arrayOf()) =
+        runOnUIThread {
+            Toast.makeText(App.instance, text, Toast.LENGTH_SHORT)
+                    .setGravityCenter()
+                    .setBackground(messageColor, background)
+                    .also {
+                        if (views.isNotEmpty()) {
+                            for (addView in views) {
+                                (it.view as LinearLayout).addView(addView.first, addView.second)
+                            }
+                        }
+                    }
+                    .show()
+        }
 
 @SuppressLint("ShowToast")
-fun toast(@StringRes res: Int): Toast = Toast.makeText(App.instance, App.instance.resources.getString(res), Toast.LENGTH_SHORT)
-        .setGravityCenter()
-        .setBackground()
+fun toast(@StringRes res: Int, @ColorInt messageColor: Int = Color.WHITE, @DrawableRes background: Int = R.color.color_bg_trans, vararg views: Pair<View, Int> = arrayOf()) =
+        toast(App.instance.resources.getString(res), messageColor, background, *views)

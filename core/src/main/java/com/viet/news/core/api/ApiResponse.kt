@@ -19,7 +19,6 @@ package com.viet.news.core.api
 import android.util.Log
 import com.viet.news.core.config.Config
 import com.viet.news.core.domain.GlobalNetworkException
-import com.viet.news.core.ext.toast
 import com.viet.news.core.utils.RxBus
 import retrofit2.Response
 import java.util.regex.Pattern
