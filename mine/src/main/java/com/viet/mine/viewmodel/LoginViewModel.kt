@@ -221,8 +221,7 @@ class LoginViewModel(private var repository: LoginRepository = LoginRepository()
                 phone = vCodeLoginPhoneNumber.value
             }
             VerifyCodeTypeEnum.REGISTER -> {
-//                startSignInCountdown(Config.COUNT_DOWN_TIMER)
-                startSignInCountdown(10000)
+                startSignInCountdown(Config.COUNT_DOWN_TIMER)
                 phone = signInPhoneNumber.value
             }
             else -> {
