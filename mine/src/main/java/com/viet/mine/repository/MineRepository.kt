@@ -8,6 +8,7 @@ import com.viet.news.core.config.ContentType
 import com.viet.news.core.config.VerifyCodeTypeEnum
 import com.viet.news.core.domain.request.*
 import com.viet.news.core.domain.response.CollectionListResponse
+import com.viet.news.core.domain.response.LoginRegisterResponse
 import com.viet.news.core.domain.response.UserInfoResponse
 import com.viet.news.core.repository.NetworkOnlyResource
 import com.viet.news.core.vo.Resource
@@ -114,6 +115,19 @@ class MineRepository : ApiRepository() {
             override fun createCall(): LiveData<ApiResponse<Any>> {
                 return apiInterface.resetPwdWithOldPwd(params)
             }
+        }.asLiveData()
+    }
+
+    /**
+     * 设置密码
+     */
+    fun setPassword(phoneNumber: String?, verifyCode: String?, password: String?): LiveData<Resource<LoginRegisterResponse>> {
+        val params = ResetPwdParams()
+        params.phone_number = phoneNumber
+        params.validation_code = verifyCode
+        params.password = password
+        return object : NetworkOnlyResource<LoginRegisterResponse>() {
+            override fun createCall(): LiveData<ApiResponse<LoginRegisterResponse>> = apiInterface.setPassword(params)
         }.asLiveData()
     }
 

@@ -14,7 +14,7 @@
     <string name="title_invite">邀请好友</string>
     <string name="title_wallet">我的钱包</string>
     <string name="title_verify_code">验证手机</string>">
-    <string name="title_bind_phone_num">Bind New Phone Number</string>
+    <string name="title_bind_phone_num">绑定新手机</string>
 
     <string name="empty_msg">内容不存在</string><!-- 没有数据 -->
     <string name="error_msg">网络不给力</string><!-- 网络错误，请检查您的网络设置 -->
