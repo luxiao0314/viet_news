@@ -13,6 +13,8 @@ object Config {
     val COUNT_DOWN_TIMER = 60 * 1000L
     val CHANGE_PHONE_NUM = 0
     val SET_PHONE_NUM = 1
+    val BIND_CHANGE_PHONE_NUM = 0
+    val BIND_SET_PHONE_NUM = 1
 
     //对话框请求码
     const val DIALOG_OK_REQUEST_CODE = 100
@@ -90,6 +92,7 @@ object Config {
     const val ROUTER_MINE_EDIT_CHANGE_PHONE_FRAGMENT = "/mine/edit/change/phone/fragment"
     const val ROUTER_MINE_EDIT_BIND_PHONE_FRAGMENT = "/mine/edit/bind/phone/fragment"
     const val ROUTER_MINE_EDIT_CHANGE_PWD_FRAGMENT = "/mine/edit/change/pwd/fragment"
+    const val ROUTER_MINE_EDIT_SETUP_PWD_FRAGMENT = "/mine/edit/setup/pwd/fragment"
     const val ROUTER_MINE_EDIT_VERIFY_CODE_FRAGMENT = "/mine/edit/verify_code/fragment"
 
     const val DB_NAME = "db_news_app"

@@ -67,14 +67,14 @@ class LoginActivity : InjectActivity() {
                 //...
             }
             onError = {
-                it?.message.let { toast(it).show() }
+                it?.message.let { toast(it)  }
             }
         }
     }
 
     private fun initListener() {
         //错误信息展示
-        model.statusMsg.observe(this, Observer { it?.let { msg -> toast(msg).show() } })
+        model.statusMsg.observe(this, Observer { it?.let { msg -> toast(msg)  } })
         viewpager.addOnPageChangeListener { onPageSelected = { setTabText(it, model.currentTab) } }
         iv_close.click { finishWithAnim(R.anim.dialog_push_top_out, R.anim.dialog_push_bottom_out) }
     }

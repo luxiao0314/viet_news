@@ -50,7 +50,7 @@ class TaskFragment : RealVisibleHintBaseFragment() {
         }
         ItemClickSupport.addTo(recycler_view_task).addOnChildClickListener(R.id.btn_right,object :ItemClickSupport.OnChildClickListener{
             override fun onChildClicked(recyclerView: RecyclerView, position: Int, v: View) {
-                    toast("等任务接口出来，我就知道要干什么了").show()
+                    toast("等任务接口出来，我就知道要干什么了")
             }
         })
     }

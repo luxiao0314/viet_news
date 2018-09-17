@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <com.viet.news.core.ui.widget.TitleBar
+        android:id="@+id/title_bar"
+        style="@style/title_bar_white"
+        app:titlebar_titleText="@string/title_resetpwd" />
+
+    <TextView
+        android:id="@+id/tv_hint"
+        style="@style/text.12.gray"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/page_padding_left"
+        android:layout_marginLeft="@dimen/page_padding_left"
+        android:layout_marginTop="@dimen/top_padding_different_module"
+        android:layout_marginEnd="@dimen/page_padding_right"
+        android:layout_marginRight="@dimen/page_padding_right"
+        android:height="40dp"
+        android:background="@drawable/shape_gray_round_bg"
+        android:gravity="center"
+        android:text="密码可使用字母、数字、字符两者组合，限8～20位"
+        android:textColor="@color/text_blue"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        style="@style/line.edit"
+        android:layout_marginStart="@dimen/page_padding_left"
+        android:layout_marginLeft="@dimen/page_padding_left"
+        android:layout_marginEnd="@dimen/page_padding_right"
+        android:layout_marginRight="@dimen/page_padding_right" />
+
+
+    <android.support.design.widget.TextInputLayout
+        style="@style/textInputLayout"
+        android:layout_width="match_parent"
+        android:layout_marginStart="@dimen/page_padding_left"
+        android:layout_marginLeft="@dimen/page_padding_left"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="@dimen/page_padding_right"
+        android:layout_marginRight="@dimen/page_padding_right">
+
+        <cn.magicwindow.ClearEditext
+            android:id="@+id/new_password_input"
+            style="@style/edit"
+            android:layout_width="match_parent"
+            android:layout_marginStart="5dp"
+            android:layout_marginLeft="5dp"
+            android:hint="新密码"
+            android:inputType="textPassword"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:textColor="@color/text_gray"
+            android:textSize="@dimen/text_14sp" />
+    </android.support.design.widget.TextInputLayout>
+
+    <View
+        style="@style/line.edit"
+        android:layout_marginStart="@dimen/page_padding_left"
+        android:layout_marginLeft="@dimen/page_padding_left"
+        android:layout_marginEnd="@dimen/page_padding_right"
+        android:layout_marginRight="@dimen/page_padding_right" />
+
+
+    <android.support.design.widget.TextInputLayout
+        style="@style/textInputLayout"
+        android:layout_width="match_parent"
+        android:layout_marginStart="@dimen/page_padding_left"
+        android:layout_marginLeft="@dimen/page_padding_left"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="@dimen/page_padding_right"
+        android:layout_marginRight="@dimen/page_padding_right">
+
+        <cn.magicwindow.ClearEditext
+            android:id="@+id/password_input_confirm"
+            style="@style/edit"
+            android:layout_width="match_parent"
+            android:layout_marginStart="5dp"
+            android:layout_marginLeft="5dp"
+            android:hint="再次确认登录密码"
+            android:inputType="textPassword"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:textColor="@color/text_gray"
+            android:textSize="@dimen/text_14sp" />
+    </android.support.design.widget.TextInputLayout>
+
+    <View
+        style="@style/line.edit"
+        android:layout_marginStart="@dimen/page_padding_left"
+        android:layout_marginLeft="@dimen/page_padding_left"
+        android:layout_marginEnd="@dimen/page_padding_right"
+        android:layout_marginRight="@dimen/page_padding_right" />
+
+    <Button
+        android:id="@+id/confirm_btn"
+        style="@style/button"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginStart="@dimen/page_padding_left"
+        android:layout_marginLeft="@dimen/page_padding_left"
+        android:layout_marginTop="50dp"
+        android:layout_marginEnd="@dimen/page_padding_right"
+        android:layout_marginRight="@dimen/page_padding_right"
+        android:clickable="false"
+        android:text="@string/confirm" />
+</LinearLayout>

@@ -14,7 +14,6 @@ import com.viet.news.core.config.FragmentExchangeManager
 import com.viet.news.core.config.VerifyCodeTypeEnum
 import com.viet.news.core.delegate.viewModelDelegate
 import com.viet.news.core.ext.clickWithTrigger
-import com.viet.news.core.ext.toast
 import com.viet.news.core.ui.RealVisibleHintBaseFragment
 import kotlinx.android.synthetic.main.fragment_register.*
 

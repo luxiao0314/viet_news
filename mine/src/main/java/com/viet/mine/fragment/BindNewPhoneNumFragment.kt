@@ -34,14 +34,28 @@ class BindNewPhoneNumFragment : BaseFragment() {
     }
 
     override fun initView(view: View) {
+
         bind_phone_next_btn.clickWithTrigger {
-            val phone = phone_input.text.toString()
-            model.sendSMS(phone, this) {
-                val bundle = Bundle()
-                bundle.putInt("page_type", Config.SET_PHONE_NUM)
-                bundle.putString("phone_number", phone)
-                Router.build(Config.ROUTER_MINE_EDIT_VERIFY_CODE_FRAGMENT).with(bundle).goFragment(this@BindNewPhoneNumFragment, R.id.container_framelayout, false)
+            when (arguments!!["change_phone_type"]) {
+                Config.BIND_SET_PHONE_NUM -> {
+                    setPhone(Config.BIND_SET_PHONE_NUM)
+                }
+                Config.BIND_CHANGE_PHONE_NUM -> {
+                    setPhone(Config.BIND_CHANGE_PHONE_NUM)
+                }
             }
+        }
+    }
+
+
+    private fun setPhone(code: Int) {
+        val phone = phone_input.text.toString()
+        model.sendSMS(phone, this) {
+            val bundle = Bundle()
+            bundle.putInt("page_type", Config.SET_PHONE_NUM)
+            bundle.putInt("change_phone_type", code)
+            bundle.putString("phone_number", phone)
+            Router.build(Config.ROUTER_MINE_EDIT_VERIFY_CODE_FRAGMENT).with(bundle).goFragment(this@BindNewPhoneNumFragment, R.id.container_framelayout, false)
         }
     }
 }

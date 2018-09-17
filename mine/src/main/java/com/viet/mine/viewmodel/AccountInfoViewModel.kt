@@ -137,13 +137,20 @@ class AccountInfoViewModel(var repository: MineRepository = MineRepository()) : 
         })
     }
 
-    fun resetPhoneNum(newPhoneNum: String, oldPhoneNum: String, newVrifyCode: String, oldVerifyCode: String, owner: LifecycleOwner, finish: () -> Unit) {
-        repository.resetPhoneNum(newPhoneNum, oldPhoneNum, newVrifyCode, oldVerifyCode).observe(owner, Observer {
+    fun resetPhoneNum(newPhoneNum: String, oldPhoneNum: String, newVerifyCode: String, oldVerifyCode: String, owner: LifecycleOwner, finish: () -> Unit) {
+        repository.resetPhoneNum(newPhoneNum, oldPhoneNum, newVerifyCode, oldVerifyCode).observe(owner, Observer {
             it?.work {
                 finish()
             }
         })
     }
 
+    fun setPassword(phoneNumber: String?, verifyCode: String?, password: String?, owner: LifecycleOwner, finish: () -> Unit) {
+        repository.setPassword(phoneNumber, verifyCode, password).observe(owner, Observer {
+            it?.work {
+                finish()
+            }
+        })
+    }
 
 }

@@ -17,7 +17,6 @@ import com.viet.news.core.config.VerifyCodeTypeEnum
 import com.viet.news.core.domain.LoginEvent
 import com.viet.news.core.domain.User
 import com.viet.news.core.domain.request.SignInParams
-import com.viet.news.core.ext.toast
 import com.viet.news.core.ui.App
 import com.viet.news.core.ui.BaseFragment
 import com.viet.news.core.utils.RxBus

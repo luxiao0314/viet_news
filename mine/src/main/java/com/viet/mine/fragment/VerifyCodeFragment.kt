@@ -16,6 +16,7 @@ import com.viet.news.core.delegate.viewModelDelegate
 import com.viet.news.core.domain.Settings
 import com.viet.news.core.domain.User
 import com.viet.news.core.ext.finishWithAnim
+import com.viet.news.core.ext.goFragment
 import com.viet.news.core.ui.BaseActivity
 import com.viet.news.core.ui.BaseFragment
 import com.viet.news.core.ui.code.CodeView
@@ -71,11 +72,22 @@ class VerifyCodeFragment : BaseFragment() {
                     when (arguments!!["page_type"]) {
                         Config.CHANGE_PHONE_NUM -> {
                             SPHelper.create().putString("verify_code", value)
-                            openPage(this@VerifyCodeFragment, Config.ROUTER_MINE_EDIT_BIND_PHONE_FRAGMENT, R.id.container_framelayout)
+                            val bundle = Bundle()
+                            bundle.putInt("change_phone_type", Config.CHANGE_PHONE_NUM)
+                            Router.build(Config.ROUTER_MINE_EDIT_VERIFY_CODE_FRAGMENT).with(bundle).goFragment(this@VerifyCodeFragment, R.id.container_framelayout)
                         }
                         Config.SET_PHONE_NUM -> {
-                            model.resetPhoneNum(arguments!!["phone_number"].toString(), User.currentUser.telephone, value, SPHelper.create().getString("verify_code"), this@VerifyCodeFragment) {
-                                (activity as BaseActivity).finishWithAnim()
+                            when (arguments!!["change_phone_type"]) {
+                                Config.BIND_CHANGE_PHONE_NUM -> {
+                                    model.resetPhoneNum(arguments!!["phone_number"].toString(), User.currentUser.telephone, value, SPHelper.create().getString("verify_code"), this@VerifyCodeFragment) {
+                                        (activity as BaseActivity).finishWithAnim()
+                                    }
+                                }
+
+                                Config.BIND_SET_PHONE_NUM -> {
+                                    //设置密码
+                                    Router.build(Config.ROUTER_MINE_EDIT_SETUP_PWD_FRAGMENT).with("phone_number", arguments!!["phone_number"].toString()).goFragment(this@VerifyCodeFragment, R.id.container_framelayout)
+                                }
                             }
                         }
                     }

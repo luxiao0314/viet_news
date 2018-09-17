@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.chenenyu.router.Router
 import com.chenenyu.router.annotation.Route
 import com.luck.picture.lib.PictureSelector
 import com.luck.picture.lib.config.PictureConfig
@@ -81,7 +82,9 @@ class AccountInfoFragment : BaseFragment() {
                         val dialog = NormalDialog.create(activity!!, "未绑定手机号", null, "确定", "取消") as NormalDialog
                         dialog.positiveListener = object : IPositiveButtonDialogListener {
                             override fun onPositiveButtonClicked(requestCode: Int) {
-//                                openPage(this@AccountInfoFragment, Config.ROUTER_MINE_EDIT_CHANGE_PWD_FRAGMENT, R.id.container_framelayout)
+                                val bundle = Bundle()
+                                bundle.putInt("change_phone_type", Config.SET_PHONE_NUM)
+                                Router.build(Config.ROUTER_MINE_EDIT_VERIFY_CODE_FRAGMENT).with(bundle).goFragment(this@AccountInfoFragment, R.id.container_framelayout)
                             }
                         }
                     }
