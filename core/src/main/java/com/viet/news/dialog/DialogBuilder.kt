@@ -4,7 +4,9 @@ import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentActivity
 import com.viet.news.core.R
+import com.viet.news.core.config.Config
 import java.io.Serializable
+
 
 /**
  * @Description 如果想在dialog展示前取消之前的dialog。则不要调用setTag，参考@link{BaseDialogFragment.showAllowingStateLoss}
@@ -13,13 +15,7 @@ import java.io.Serializable
  * @Date 09/05/2018 2:35 PM
  * @Version
  */
-open class DialogBuilder(val context: FragmentActivity?, private val mClass: Class<out BaseDialogFragment>) {
-
-
-    //dialog默认屏幕占比
-    val DIALOG_DEFAULT_SCALE = 0.75
-    //新的UI中dialog在屏幕上的宽度占比
-    val DIALOG_BIG_SCALE = 329.0 / 375
+open class DialogBuilder(val context: FragmentActivity, private val mClass: Class<out BaseDialogFragment>) {
 
     private var mTag = DEFAULT_TAG
     var mRequestCode = DEFAULT_REQUEST_CODE
@@ -28,10 +24,10 @@ open class DialogBuilder(val context: FragmentActivity?, private val mClass: Cla
     private var mCancelableOnTouchOutside = true   //默认点击屏幕取消dialog
     private var mfullScreen = false   //默认全屏
     private var mTheme = R.style.DialogTheme   //主题
-    private var mShowButtom: Boolean = false    //是否底部显示
+    private var mShowBottom: Boolean = false    //是否底部显示
     private var mDimAmount = 0.5f//灰度深浅
     private var mAnimStyle: Int = 0  //动画
-    private var mScale = DIALOG_BIG_SCALE   //占用屏幕宽度一定比例
+    private var mScale = Config.DIALOG_BIG_SCALE   //占用屏幕宽度一定比例
     private var args: Bundle? = null
     private var mDismissPreDialog: Boolean = true
 
@@ -75,8 +71,8 @@ open class DialogBuilder(val context: FragmentActivity?, private val mClass: Cla
         return this
     }
 
-    fun setShowButtom(showButtom: Boolean): DialogBuilder {
-        mShowButtom = showButtom
+    fun setShowBottom(showBottom: Boolean): DialogBuilder {
+        mShowBottom = showBottom
         return this
     }
 
@@ -123,7 +119,7 @@ open class DialogBuilder(val context: FragmentActivity?, private val mClass: Cla
         //全屏
         args.putBoolean(ARG_FULL_SCREEN, mfullScreen)
         //显示底部
-        args.putBoolean(ARG_SHOW_BUTTOM, mShowButtom)
+        args.putBoolean(ARG_SHOW_BUTTOM, mShowBottom)
         //设置主题
         args.putInt(ARG_USE_THEME, mTheme)
         //透明度
@@ -144,28 +140,29 @@ open class DialogBuilder(val context: FragmentActivity?, private val mClass: Cla
 
     fun show(): BaseDialogFragment {
         val fragment = create()
-        fragment.showWithDismissPreDialog(context?.supportFragmentManager, mTag, mDismissPreDialog)
+        fragment.showWithDismissPreDialog(context.supportFragmentManager, mTag, mDismissPreDialog)
         return fragment
     }
 
     //IllegalStateException : Can not perform this action after onSaveInstanceState()报该异常的时候使用此show
     fun showAllowingStateLoss(): BaseDialogFragment {
         val fragment = create()
-        fragment.showAllowingStateLoss(context?.supportFragmentManager, mTag, mDismissPreDialog)
+        fragment.showAllowingStateLoss(context.supportFragmentManager, mTag, mDismissPreDialog)
         return fragment
     }
 
+
     companion object {
 
-        val ARG_REQUEST_CODE = "request_code"
-        val ARG_FULL_SCREEN = "arg_full_screen"
-        val ARG_SHOW_BUTTOM = "arg_show_buttom"
-        val ARG_CANCELABLE_ON_TOUCH_OUTSIDE = "cancelable_oto"
+        const val ARG_REQUEST_CODE = "request_code"
+        const val ARG_FULL_SCREEN = "arg_full_screen"
+        const val ARG_SHOW_BUTTOM = "arg_show_buttom"
+        const val ARG_CANCELABLE_ON_TOUCH_OUTSIDE = "cancelable_oto"
         var ARG_USE_THEME = "arg_use_theme_type"
         var ARG_DIM_AMOUNT = "arg_dim_amount"
         var ARG_ANIM_STYLE = "arg_anim_style"
         var ARG_SCALE = "arg_scale"
-        val DEFAULT_TAG = "simple_dialog"
-        val DEFAULT_REQUEST_CODE = -42
+        const val DEFAULT_TAG = "simple_dialog"
+        const val DEFAULT_REQUEST_CODE = -42
     }
 }

@@ -9,7 +9,7 @@
 
     <TextView
         android:id="@+id/dialog_title"
-        style="@style/text.16.white.bold"
+        style="@style/text.16.gray.bold"
         android:layout_marginBottom="10dp"
         android:layout_marginTop="35dp"
         tools:text="title" />
@@ -20,7 +20,7 @@
 
     <TextView
         android:id="@+id/dialog_content"
-        style="@style/text.14.white"
+        style="@style/text.14.gray"
         android:layout_marginTop="20dp"
         android:gravity="center|start"
         android:lineSpacingMultiplier="1.2"
@@ -52,7 +52,7 @@
 
         <TextView
             android:id="@+id/btn_dialog_ok"
-            style="@style/text.18.white"
+            style="@style/text.18.gray"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"

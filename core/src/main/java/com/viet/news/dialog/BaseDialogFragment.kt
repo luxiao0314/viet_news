@@ -39,33 +39,33 @@ abstract class BaseDialogFragment : DialogFragment() {
 
     protected var mRequestCode: Int = 0
     private var canceledOnTouchOutside: Boolean = false
-    private var full_screen: Boolean = false
+    private var fullScreen: Boolean = false
     private var mTheme: Int = 0   //主题
     private var dimAmount: Float = 0.toFloat()//灰度深浅
-    private var showButtom: Boolean = false//是否底部显示
+    private var showBottom: Boolean = false//是否底部显示
     private var animStyle: Int = 0
     private var scale: Double = 0.toDouble()
     protected var compositeDisposable = CompositeDisposable()
 
     //获取关闭按钮回调
-    protected val cancelListeners: ISimpleDialogCancelListener?
-        get() = getDialogListeners(ISimpleDialogCancelListener::class.java)
+    var cancelListener: ISimpleDialogCancelListener? = null
+        get() = if (field == null) getDialogListener(ISimpleDialogCancelListener::class.java) else field
 
     //获取Positive按钮回调
-    protected val positiveListeners: IPositiveButtonDialogListener?
-        get() = getDialogListeners(IPositiveButtonDialogListener::class.java)
+    var positiveListener: IPositiveButtonDialogListener? = null
+        get() = if (field == null) getDialogListener(IPositiveButtonDialogListener::class.java) else field
 
     //获取Negative按钮回调
-    protected val negativeListeners: INegativeButtonDialogListener?
-        get() = getDialogListeners(INegativeButtonDialogListener::class.java)
+    var negativeListener: INegativeButtonDialogListener? = null
+        get() = if (field == null) getDialogListener(INegativeButtonDialogListener::class.java) else field
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val args = arguments
         if (args != null) {
             canceledOnTouchOutside = args.getBoolean(DialogBuilder.ARG_CANCELABLE_ON_TOUCH_OUTSIDE)
-            full_screen = args.getBoolean(DialogBuilder.ARG_FULL_SCREEN)
-            showButtom = args.getBoolean(DialogBuilder.ARG_SHOW_BUTTOM)
+            fullScreen = args.getBoolean(DialogBuilder.ARG_FULL_SCREEN)
+            showBottom = args.getBoolean(DialogBuilder.ARG_SHOW_BUTTOM)
             mTheme = args.getInt(DialogBuilder.ARG_USE_THEME, R.style.DialogTheme)
             animStyle = args.getInt(DialogBuilder.ARG_ANIM_STYLE)
             dimAmount = args.getFloat(DialogBuilder.ARG_DIM_AMOUNT)
@@ -105,17 +105,17 @@ abstract class BaseDialogFragment : DialogFragment() {
             //调节灰色背景透明度[0-1]，默认0.5f
             lp.dimAmount = dimAmount
             //是否在底部显示
-            if (showButtom) {
+            if (showBottom) {
                 lp.gravity = Gravity.BOTTOM
                 if (animStyle == 0) {
-                    animStyle = R.style.DialogAnimBottom
+                    animStyle = R.style.AnimBottom
                 }
             }
             //占用屏幕宽度一定比例
             if (scale != 1.0) {
                 lp.width = (getScreenWidth(context!!) * scale).toInt()
             }
-            if (full_screen) {
+            if (fullScreen) {
                 lp.width = getScreenWidth(context!!)
             }
             //设置dialog高度
@@ -135,34 +135,34 @@ abstract class BaseDialogFragment : DialogFragment() {
     }
 
     override fun onDismiss(dialog: DialogInterface?) {
-        cancelListeners?.onCancelled(DIALOG_CANCEL_REQUEST_CODE)
+        cancelListener?.onCancelled(0)
         super.onDismiss(dialog)
 
     }
 
 
-    fun showWithDismissPreDialog(manager: FragmentManager?, tag: String, dismissPreDialog: Boolean) {
-        val ft = manager?.beginTransaction()
+    fun showWithDismissPreDialog(manager: FragmentManager, tag: String, dismissPreDialog: Boolean) {
+        val ft = manager.beginTransaction()
         //将之前的dialog隐藏
-        val targetFragment = manager?.findFragmentByTag(tag)
+        val targetFragment = manager.findFragmentByTag(tag)
         if (dismissPreDialog && targetFragment != null && targetFragment is BaseDialogFragment) {
-            ft?.remove(targetFragment)?.commit()
+            ft.remove(targetFragment).commit()
         }
         show(manager, tag)
     }
 
-    fun showAllowingStateLoss(manager: FragmentManager?, tag: String, dismissPreDialog: Boolean) {
-        val ft = manager?.beginTransaction()
+    fun showAllowingStateLoss(manager: FragmentManager, tag: String, dismissPreDialog: Boolean) {
+        val ft = manager.beginTransaction()
         //将之前的dialog隐藏
-        val targetFragment = manager?.findFragmentByTag(tag)
+        val targetFragment = manager.findFragmentByTag(tag)
         if (dismissPreDialog && targetFragment != null && targetFragment is BaseDialogFragment) {
-            ft?.remove(targetFragment)
+            ft.remove(targetFragment)
         }
-        ft?.add(this, tag)
-        ft?.commitAllowingStateLoss()
+        ft.add(this, tag)
+        ft.commitAllowingStateLoss()
     }
 
-    fun <T> getDialogListeners(listenerInterface: Class<T>): T? {
+    fun <T> getDialogListener(listenerInterface: Class<T>): T? {
 
         val targetFragment = targetFragment
         if (targetFragment != null && listenerInterface.isAssignableFrom(targetFragment.javaClass)) {
@@ -193,11 +193,6 @@ abstract class BaseDialogFragment : DialogFragment() {
     }
 
     companion object {
-
-
-        val DIALOG_POSITIVE_REQUEST_CODE = 100
-        val DIALOG_NEGATIVE_REQUEST_CODE = 101
-        val DIALOG_CANCEL_REQUEST_CODE = 102
 
         fun getScreenWidth(context: Context): Int {
 

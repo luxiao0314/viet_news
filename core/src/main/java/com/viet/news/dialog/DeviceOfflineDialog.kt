@@ -28,7 +28,7 @@ class DeviceOfflineDialog : BaseDialogFragment() {
     override fun build(initialBuilder: Builder): Builder {
         val view = LayoutInflater.from(activity).inflate(R.layout.dialog_device_offline, null)
         view.iv_cancle.clickWithTrigger {
-            cancelListeners?.onCancelled(1)
+            cancelListener?.onCancelled(1)
             dismiss()
         }
         view.btn_login.clickWithTrigger {
