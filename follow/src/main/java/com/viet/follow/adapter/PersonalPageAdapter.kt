@@ -35,7 +35,7 @@ class PersonalPageAdapter @Inject constructor() : BaseAdapter<NewsListBean>() {
         return when (viewType) {
             1 -> R.layout.cell_personal_page_picture_three  //3图
             2 -> R.layout.cell_personal_page_picture_one    //1图
-            else -> R.layout.cell_personal_page_picture_none //无图(文字)
+            else -> R.layout.cell_personal_page_text_only //无图(文字)
         }
     }
 

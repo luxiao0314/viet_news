@@ -2,8 +2,6 @@ package com.viet.mine.activity
 
 import android.arch.lifecycle.Observer
 import android.os.Bundle
-import android.support.v4.content.ContextCompat
-import android.support.v7.widget.DividerItemDecoration
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.OrientationHelper
 import android.support.v7.widget.RecyclerView
@@ -16,7 +14,6 @@ import com.viet.mine.viewmodel.CollectionViewModel
 import com.viet.news.core.config.Config
 import com.viet.news.core.delegate.viewModelDelegate
 import com.viet.news.core.domain.User
-import com.viet.news.core.domain.response.CollectionListBean
 import com.viet.news.core.ui.InjectActivity
 import kotlinx.android.synthetic.main.activity_mine_collection.*
 import javax.inject.Inject
@@ -51,9 +48,6 @@ class CollectionActivity : InjectActivity() {
     private fun initView() {
         rl_collection.adapter = adapter
         rl_collection.layoutManager = LinearLayoutManager(this, OrientationHelper.VERTICAL, false)
-        val dividerItemDecoration = DividerItemDecoration(this, DividerItemDecoration.VERTICAL)
-        dividerItemDecoration.setDrawable(ContextCompat.getDrawable(this, R.drawable.shape_list_divider_gray_05dp)!!)
-        rl_collection.addItemDecoration(dividerItemDecoration)
         rl_collection.setOnScrollListener(object : RecyclerView.OnScrollListener() {
             override fun onScrollStateChanged(recyclerView: RecyclerView?, newState: Int) {
                 if (newState == SCROLL_STATE_TOUCH_SCROLL) {
@@ -71,35 +65,32 @@ class CollectionActivity : InjectActivity() {
         }
 
         model.getCollectionList(User.currentUser.userId).observe(this, Observer {
-            it?.work(
-                    onSuccess = {
-                        model.collectionList = it.data?.list as ArrayList<CollectionListBean>
-                        multiStatusView.showContent()
-                        if (loadMore) {
-                            if (it.data?.list == null || it.data?.list!!.isEmpty()) {
-                                refreshLayout.finishLoadMoreWithNoMoreData()
-                            } else {
-                                refreshLayout.finishLoadMore()
-                                adapter.addData(it.data?.list)
-                            }
-                        } else {
-                            if (it.data?.list == null || it.data?.list!!.isEmpty()) {
-                                multiStatusView.showEmpty()
-                                refreshLayout.setEnableLoadMore(false)
-                            }
-                            adapter.setData(it.data?.list)
-                            refreshLayout.setNoMoreData(false)
-                            refreshLayout.finishRefresh()
-                        }
-                    },
-                    onError = {
-                        multiStatusView.showError()
-                        if (loadMore) {
-                            refreshLayout.finishLoadMore(false)//传入false表示加载失败
-                        } else {
-                            refreshLayout.finishRefresh(false)
-                        }
+            it?.work(onSuccess = {
+                multiStatusView.showContent()
+                if (loadMore) {
+                    if (it.data?.list == null || it.data?.list!!.isEmpty()) {
+                        refreshLayout.finishLoadMoreWithNoMoreData()
+                    } else {
+                        refreshLayout.finishLoadMore()
+                        adapter.addData(it.data?.list)
                     }
+                } else {
+                    if (it.data?.list == null || it.data?.list!!.isEmpty()) {
+                        multiStatusView.showEmpty()
+                        refreshLayout.setEnableLoadMore(false)
+                    }
+                    adapter.setData(it.data?.list)
+                    refreshLayout.setNoMoreData(false)
+                    refreshLayout.finishRefresh()
+                }
+            }, onError = {
+                multiStatusView.showError()
+                if (loadMore) {
+                    refreshLayout.finishLoadMore(false)//传入false表示加载失败
+                } else {
+                    refreshLayout.finishRefresh(false)
+                }
+            }
             )
         })
     }

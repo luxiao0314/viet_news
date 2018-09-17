@@ -41,7 +41,7 @@ interface ApiService {
 
     //查询收藏列表
     @POST("v1/content/collectionList")
-    fun getCollectionList(@Body param: ListParams): LiveData<ApiResponse<CollectionListResponse>>
+    fun getCollectionList(@Body param: ListParams): LiveData<ApiResponse<NewsListResponse>>
 
     //查询指定用户发布的文章列表
     @POST("v1/content/list4user")

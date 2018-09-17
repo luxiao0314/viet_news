@@ -38,7 +38,7 @@ class NewsAdapter @Inject constructor() : BaseAdapter<NewsListBean>() {
         return when (viewType) {
             1 -> R.layout.cell_news_picture_three   //3图
             2 -> R.layout.cell_news_picture_one //1图
-            3 -> R.layout.cell_news_picture_none    //无图(文字)
+            3 -> R.layout.cell_news_text_only    //无图(文字)
             else -> R.layout.cell_news_picture_only //广告
         }
     }

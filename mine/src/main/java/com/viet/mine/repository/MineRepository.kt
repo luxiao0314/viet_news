@@ -7,7 +7,7 @@ import com.viet.news.core.config.Config
 import com.viet.news.core.config.ContentType
 import com.viet.news.core.config.VerifyCodeTypeEnum
 import com.viet.news.core.domain.request.*
-import com.viet.news.core.domain.response.CollectionListResponse
+import com.viet.news.core.domain.response.NewsListResponse
 import com.viet.news.core.domain.response.UserInfoResponse
 import com.viet.news.core.repository.NetworkOnlyResource
 import com.viet.news.core.vo.Resource
@@ -34,13 +34,13 @@ class MineRepository : ApiRepository() {
         }.asLiveData()
     }
 
-    fun getCollectionList(page: Int, id: String?): LiveData<Resource<CollectionListResponse>> {
+    fun getCollectionList(page: Int, id: String?): LiveData<Resource<NewsListResponse>> {
         val params = ListParams()
         params.page_number = page
         params.page_size = Config.page_size
         params.user_id = id
-        return object : NetworkOnlyResource<CollectionListResponse>() {
-            override fun createCall(): LiveData<ApiResponse<CollectionListResponse>> = apiInterface.getCollectionList(params)
+        return object : NetworkOnlyResource<NewsListResponse>() {
+            override fun createCall(): LiveData<ApiResponse<NewsListResponse>> = apiInterface.getCollectionList(params)
         }.asLiveData()
     }
 
