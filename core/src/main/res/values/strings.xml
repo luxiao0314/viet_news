@@ -117,4 +117,7 @@
     <string name="sending_code_s">Sending verification code%sS</string>
     <string name="no_updates_are_available">No updates are available</string>
     <string name="updates_s_article">%s articles have been updated</string>
+    <string name="think_about">Think About</string>
+    <string name="yeap">Yeap</string>
+    <string name="do_you_want_to_unfollow">Do you want to unfollow</string>
 </resources>

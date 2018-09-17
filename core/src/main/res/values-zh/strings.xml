@@ -111,4 +111,7 @@
     <string name="sending_code_s">已发送%s秒</string>
     <string name="no_updates_are_available">暂无更新内容</string>
     <string name="updates_s_article">已更新%s篇文章</string>
+    <string name="think_about">考虑一哈</string>
+    <string name="yeap">是的</string>
+    <string name="do_you_want_to_unfollow">您是否要取消关注</string>
 </resources>
