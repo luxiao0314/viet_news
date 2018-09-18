@@ -131,4 +131,5 @@
     <string name="think_about">考虑一哈</string>
     <string name="yeap">是的</string>
     <string name="do_you_want_to_unfollow">您是否要取消关注</string>
+    <string name="unknown_error">Unknown Error</string>
 </resources>

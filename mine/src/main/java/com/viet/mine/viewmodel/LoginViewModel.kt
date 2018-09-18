@@ -5,7 +5,6 @@ import android.arch.lifecycle.LifecycleOwner
 import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.Observer
 import android.os.CountDownTimer
-import com.safframework.ext.then
 import com.viet.mine.R
 import com.viet.mine.fragment.LoginFragment
 import com.viet.mine.fragment.PwdToLoginFragment
@@ -21,7 +20,6 @@ import com.viet.news.core.ui.App
 import com.viet.news.core.ui.BaseFragment
 import com.viet.news.core.utils.RxBus
 import com.viet.news.core.viewmodel.BaseViewModel
-import com.viet.news.core.vo.Status
 
 /**
  * @author Aaron
@@ -229,8 +227,8 @@ class LoginViewModel(private var repository: LoginRepository = LoginRepository()
         }
         //发送验证码接口
         repository.sendSMS(phone, zoneCode.value, type).observe(owner, Observer { resource ->
-            resource?.work (
-                    onSuccess = { onSent()},
+            resource?.work(
+                    onSuccess = { onSent() },
                     onError = {
                         //发送验证码失败，结束倒计时
                         when (type) {
@@ -238,10 +236,9 @@ class LoginViewModel(private var repository: LoginRepository = LoginRepository()
                             VerifyCodeTypeEnum.REGISTER -> stopSignInCountdown()
                             else -> {
                             }
-                        }},
-                    onLoading = {
-
-                    }
+                        }
+                    },
+                    onLoading = { true }
             )
         })
     }
@@ -265,8 +262,8 @@ class LoginViewModel(private var repository: LoginRepository = LoginRepository()
         }
         //发送验证码接口
         repository.checkVerifyCode(phoneNumber = phone, verifyCode = verifyCode, zone_code = zoneCode.value, type = type).observe(owner, Observer { resource ->
-            resource?.work (
-                    onSuccess = { onValidate()}
+            resource?.work(
+                    onSuccess = { onValidate() }
             )
         })
     }
@@ -278,15 +275,17 @@ class LoginViewModel(private var repository: LoginRepository = LoginRepository()
         params.verify_code = signInVCode.value
         params.invite_code = signInInviteCode.value
         repository.signIn(params).observe(owner, Observer { resource ->
-            resource?.work (
-                    onSuccess = { resource.data?.let {
-                        signInPhoneNumber.value?.let { phoneNumber -> User.currentUser.telephone = phoneNumber }
-                        zoneCode.value?.let { zoneCode -> User.currentUser.zoneCode = zoneCode }
-                        User.currentUser.login(it)
-                        stopSignInCountdown()//注册成功后结束本次倒计时
-                        RxBus.get().post(LoginEvent())
-                        onSignInSuccess()
-                    }}
+            resource?.work(
+                    onSuccess = {
+                        resource.data?.let {
+                            signInPhoneNumber.value?.let { phoneNumber -> User.currentUser.telephone = phoneNumber }
+                            zoneCode.value?.let { zoneCode -> User.currentUser.zoneCode = zoneCode }
+                            User.currentUser.login(it)
+                            stopSignInCountdown()//注册成功后结束本次倒计时
+                            RxBus.get().post(LoginEvent())
+                            onSignInSuccess()
+                        }
+                    }
             )
         })
     }
@@ -294,7 +293,7 @@ class LoginViewModel(private var repository: LoginRepository = LoginRepository()
     @SuppressLint("CheckResult")
     fun loginByPwd(owner: LifecycleOwner, onLoginSuccess: () -> Unit) {
         repository.loginByPwd(pwdLoginPhoneNumber.value, pwdLoginPassword.value).observe(owner, Observer { resource ->
-            resource?.work (
+            resource?.work(
                     onSuccess = {
                         resource.data?.let {
                             signInPhoneNumber.value?.let { phoneNumber -> User.currentUser.telephone = phoneNumber }
@@ -303,7 +302,9 @@ class LoginViewModel(private var repository: LoginRepository = LoginRepository()
                             stopSignInCountdown()//注册成功后结束本次倒计时
                             RxBus.get().post(LoginEvent())
                             onLoginSuccess()
-                        }}
+                        }
+                    },
+                    onLoading = { true }
             )
         })
     }
@@ -311,7 +312,7 @@ class LoginViewModel(private var repository: LoginRepository = LoginRepository()
     @SuppressLint("CheckResult")
     fun loginBySMS(owner: LifecycleOwner, onLoginSuccess: () -> Unit) {
         repository.loginBySMS(vCodeLoginPhoneNumber.value, vCodeLoginVCode.value).observe(owner, Observer { resource ->
-            resource?.work (
+            resource?.work(
                     onSuccess = {
                         resource.data?.let {
                             signInPhoneNumber.value?.let { phoneNumber -> User.currentUser.telephone = phoneNumber }
@@ -320,21 +321,24 @@ class LoginViewModel(private var repository: LoginRepository = LoginRepository()
                             stopSignInCountdown()//注册成功后结束本次倒计时
                             RxBus.get().post(LoginEvent())
                             onLoginSuccess()
-                        }}
+                        }
+                    }
             )
         })
     }
+
     @SuppressLint("CheckResult")
-    fun loginByFacebook(owner: LifecycleOwner,facebookUserId:String,facebookToken:String,facebookExpires:String, onLoginSuccess: () -> Unit) {
-        repository.loginByFacebook(facebookUserId,facebookToken,facebookExpires).observe(owner, Observer { resource ->
-            resource?.work (
+    fun loginByFacebook(owner: LifecycleOwner, facebookUserId: String, facebookToken: String, facebookExpires: String, onLoginSuccess: () -> Unit) {
+        repository.loginByFacebook(facebookUserId, facebookToken, facebookExpires).observe(owner, Observer { resource ->
+            resource?.work(
                     onSuccess = {
                         resource.data?.let {
                             User.currentUser.login(it)
                             stopSignInCountdown()//注册成功后结束本次倒计时
                             RxBus.get().post(LoginEvent())
                             onLoginSuccess()
-                        }}
+                        }
+                    }
             )
         })
     }

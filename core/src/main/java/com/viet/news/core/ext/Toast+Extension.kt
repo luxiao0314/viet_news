@@ -67,8 +67,8 @@ private fun Toast.setBackground(@ColorInt messageColor: Int, @DrawableRes backgr
 fun toast(text: CharSequence?, @ColorInt messageColor: Int = Color.WHITE, @DrawableRes background: Int = R.color.color_bg_trans, vararg views: Pair<View, Int> = arrayOf()) =
         runOnUIThread {
             Toast.makeText(App.instance, text, Toast.LENGTH_SHORT)
-                    .setGravityCenter()
-                    .setBackground(messageColor, background)
+//                    .setGravityCenter()
+//                    .setBackground(messageColor, background)
                     .also {
                         if (views.isNotEmpty()) {
                             for (addView in views) {

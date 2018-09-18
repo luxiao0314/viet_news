@@ -17,9 +17,8 @@
 package com.viet.news.core.api
 
 import android.util.Log
-import com.viet.news.core.config.Config
-import com.viet.news.core.domain.GlobalNetworkException
-import com.viet.news.core.utils.RxBus
+import com.viet.news.core.R
+import com.viet.news.core.ui.App
 import retrofit2.Response
 import java.util.regex.Pattern
 
@@ -30,35 +29,21 @@ import java.util.regex.Pattern
 @Suppress("unused") // T is used in extending classes
 sealed class ApiResponse<T> {
     companion object {
-        fun <T> create(error: Throwable): ApiErrorResponse<T> {
-            //网络请求无响应
-            RxBus.get().post(GlobalNetworkException(Config.NETWORK_RESPONSE_HAS_NO_NETWORK, null))
-            return ApiErrorResponse(error.message ?: "unknown error")
-        }
+
+        fun <T> create(error: Throwable): ApiErrorResponse<T> = ApiErrorResponse(error.message ?: App.instance.resources.getString(R.string.unknown_error)) //网络请求无响应
 
         fun <T> create(response: Response<HttpResponse<T>>): ApiResponse<T> {
-            //网络请求有有响应
-            if (response.isSuccessful) {
+            //网络请求有响应
+            return if (response.isSuccessful) {
                 val body = response.body()
-                return when {
-                //请求无结果
-                    body == null -> apiErrorResponse(response)
-                //204
-                    response.code() == 204 -> ApiEmptyResponse()
-                //code!=0
-                    body.code != Config.NETWORK_RESPONSE_OK -> {
-                        RxBus.get().post(GlobalNetworkException(body.code, body))
-                        ApiErrorResponse(body.message ?: "unknown error")
-                    }
-                //成功
-                    else -> ApiSuccessResponse(
-                            body = body.data,
-                            linkHeader = response.headers()?.get("link")
-                    )
+                when {
+                    body == null -> apiErrorResponse(response) //请求无结果
+                    response.code() == 204 -> ApiEmptyResponse()    //204
+                    !body.isOkStatus -> ApiErrorResponse(body.message ?: App.instance.resources.getString(R.string.unknown_error)) //code!=0,即服务器异常
+                    else -> ApiSuccessResponse(body.data, response.headers()?.get("link")) //成功
                 }
             } else {
-                //网络请求失败
-                return apiErrorResponse(response)
+                apiErrorResponse(response)   //网络请求失败,网络错误
             }
         }
 
@@ -69,8 +54,8 @@ sealed class ApiResponse<T> {
             } else {
                 msg
             }
-            RxBus.get().post(GlobalNetworkException(Config.NETWORK_RESPONSE_HAS_NO_NETWORK, null))
-            return ApiErrorResponse(errorMsg ?: "unknown error")
+            return ApiErrorResponse(errorMsg
+                    ?: App.instance.resources.getString(R.string.unknown_error))
         }
     }
 }
@@ -84,7 +69,8 @@ data class ApiErrorResponse<T>(val errorMessage: String) : ApiResponse<T>()
 
 data class ApiSuccessResponse<T>(val body: T?, val links: Map<String, String>) : ApiResponse<T>() {
 
-    constructor(body: T?, linkHeader: String?) : this(body = body, links = linkHeader?.extractLinks() ?: emptyMap())
+    constructor(body: T?, linkHeader: String?) : this(body = body, links = linkHeader?.extractLinks()
+            ?: emptyMap())
 
     val nextPage: Int? by lazy(LazyThreadSafetyMode.NONE) {
         links[NEXT_LINK]?.let { next ->

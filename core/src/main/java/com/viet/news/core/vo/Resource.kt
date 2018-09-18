@@ -16,22 +16,36 @@
 
 package com.viet.news.core.vo
 
+import android.support.v4.app.FragmentActivity
+import com.viet.news.core.config.IActivityManager
+import com.viet.news.core.ext.toast
+import com.viet.news.dialog.ProgressDialogFragment
+
 /**
  * A generic class that holds a value with its loading status.
  *
  * @param <T>
 </T> */
-class Resource<T>(val status: Status, val data: T?, val message: String?) {
+class Resource<T>(val status: Status, val data: T?, val message: String? = "") {
 
     /**
      * lambda会调用最后一个参数，因此成功放最后
      * 例如 this.work { ... }
      */
-    fun work(onLoading: () -> Unit = {}, onError: () -> Unit = {}, onSuccess: () -> Unit = {}) {
+    fun work(onLoading: () -> Boolean = { false }, onError: () -> Unit = { toast(message) }, onSuccess: () -> Unit) {
+        var dialog: ProgressDialogFragment? = null
         when (status) {
-            Status.LOADING -> onLoading()
-            Status.ERROR -> onError()
-            Status.SUCCESS -> onSuccess()
+            Status.LOADING -> if (onLoading()) {
+                dialog = ProgressDialogFragment.create(IActivityManager.lastActivity() as FragmentActivity) as ProgressDialogFragment
+            }
+            Status.ERROR -> {
+                onError()
+                dialog?.dismissAllowingStateLoss()
+            }
+            Status.SUCCESS -> {
+                onSuccess()
+                dialog?.dismissAllowingStateLoss()
+            }
         }
     }
 

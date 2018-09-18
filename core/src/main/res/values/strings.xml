@@ -137,4 +137,5 @@
     <string name="think_about">Think About</string>
     <string name="yeap">Yeap</string>
     <string name="do_you_want_to_unfollow">Do you want to unfollow</string>
+    <string name="unknown_error">Unknown Error</string>
 </resources>
