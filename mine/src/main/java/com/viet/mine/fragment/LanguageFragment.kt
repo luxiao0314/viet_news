@@ -52,9 +52,8 @@ class LanguageFragment : BaseFragment() {
 
         ItemClickSupport.addTo(rvLanguage).addOnItemClickListener(object : ItemClickSupport.OnItemClickListener {
             override fun onItemClicked(recyclerView: RecyclerView, position: Int, v: View) {
+                setLanguage(position)
                 if (LanguageUtil.needChange(position)) {
-                    SPHelper.create(context!!).putString("language", resources.getStringArray(R.array.language).toList()[position])
-                    RxBus.get().post(RefreshSettingInfoEvent())
                     LanguageUtil.saveSelectLanguage(context!!, position)
                     LanguageUtil.routToMainForce(activity)
                 } else {
@@ -67,5 +66,10 @@ class LanguageFragment : BaseFragment() {
                 }
             }
         })
+    }
+
+    fun setLanguage(position: Int) {
+        SPHelper.create(context!!).putInt("language", position)
+        RxBus.get().post(RefreshSettingInfoEvent())
     }
 }

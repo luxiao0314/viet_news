@@ -11,7 +11,6 @@ import com.chenenyu.router.annotation.Route
 import com.jakewharton.rxbinding2.widget.RxTextView
 import com.viet.mine.R
 import com.viet.mine.viewmodel.AccountInfoViewModel
-import com.viet.mine.viewmodel.SettingViewModel
 import com.viet.news.core.config.Config
 import com.viet.news.core.delegate.viewModelDelegate
 import com.viet.news.core.domain.RefreshUserInfoEvent

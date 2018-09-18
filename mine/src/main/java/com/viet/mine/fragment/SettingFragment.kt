@@ -7,7 +7,6 @@ import android.view.ViewGroup
 import com.chenenyu.router.annotation.Route
 import com.viet.mine.R
 import com.viet.news.core.config.Config
-import com.viet.news.core.domain.LogoutEvent
 import com.viet.news.core.domain.RefreshSettingInfoEvent
 import com.viet.news.core.domain.User
 import com.viet.news.core.ext.click
@@ -64,7 +63,8 @@ class SettingFragment : BaseFragment() {
 
 
     fun refresh() {
-        val language = SPHelper.create(context!!).getString("language", resources.getStringArray(R.array.language).toList()[0])
+        val position = SPHelper.create(context!!).getInt("language", 0)
+        val language =  resources.getStringArray(R.array.language).toList()[position]
         item_language_setting.setRightText(language)
     }
 
