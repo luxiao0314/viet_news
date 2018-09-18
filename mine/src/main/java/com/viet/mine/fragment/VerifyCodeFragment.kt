@@ -17,6 +17,7 @@ import com.viet.news.core.domain.Settings
 import com.viet.news.core.domain.User
 import com.viet.news.core.ext.finishWithAnim
 import com.viet.news.core.ext.goFragment
+import com.viet.news.core.ext.toast
 import com.viet.news.core.ui.BaseActivity
 import com.viet.news.core.ui.BaseFragment
 import com.viet.news.core.ui.code.CodeView
@@ -101,6 +102,7 @@ class VerifyCodeFragment : BaseFragment() {
                             when (arguments!!["change_phone_type"]) {
                                 Config.BIND_CHANGE_PHONE_NUM -> {
                                     model.resetPhoneNum(arguments!!.getString("phone_number", ""), User.currentUser.telephone, value, SPHelper.create().getString("verify_code"), this@VerifyCodeFragment) {
+                                        toast("修改成功")
                                         (activity as BaseActivity).finishWithAnim()
                                     }
                                 }

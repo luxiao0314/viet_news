@@ -12,6 +12,7 @@
         app:titlebar_titleText="@string/title_help" />
 
     <com.viet.news.core.ui.widget.CommonItem
+        android:id="@+id/help"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         app:left_text="@string/description"

@@ -28,9 +28,9 @@ class ResetPasswordFragment : BaseFragment() {
 
     override fun initView(view: View) {
         confirm_btn.clickWithTrigger {
-            val oldpwd = old_password_input.text.toString()
-            val newpwd = new_password_input.text.toString()
-            model.resetPwdWithOldPwd(oldpwd, newpwd,this@ResetPasswordFragment) {
+            val oldPwd = old_password_input.text.toString()
+            val newPwd = new_password_input.text.toString()
+            model.resetPwdWithOldPwd(oldPwd, newPwd,this@ResetPasswordFragment) {
                 (activity as BaseActivity).finishWithAnim()
                 toast("修改成功")
             }

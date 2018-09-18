@@ -16,6 +16,7 @@ import com.viet.news.core.delegate.viewModelDelegate
 import com.viet.news.core.domain.User
 import com.viet.news.core.domain.response.NewsListBean
 import com.viet.news.core.ui.InjectActivity
+import com.viet.news.webview.WebActivity
 import kotlinx.android.synthetic.main.activity_mine_collection.*
 import javax.inject.Inject
 
@@ -35,8 +36,8 @@ class CollectionActivity : InjectActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_mine_collection)
-        initListener()
         initView()
+        initListener()
         refreshLayout.autoRefresh()
     }
 
@@ -44,6 +45,9 @@ class CollectionActivity : InjectActivity() {
         refreshLayout.setOnRefreshListener { initData(false) }
         refreshLayout.setOnLoadMoreListener { initData(true) }
         multiStatusView.setLoadingButtonClickListener(View.OnClickListener { refreshLayout.autoRefresh() })
+        adapter.setClickDelegate {
+            onItemClick = { url -> WebActivity.launch(this@CollectionActivity, url) }
+        }
     }
 
     private fun initView() {
