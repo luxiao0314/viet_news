@@ -47,6 +47,7 @@ class CollectionActivity : InjectActivity() {
         multiStatusView.setLoadingButtonClickListener(View.OnClickListener { refreshLayout.autoRefresh() })
         adapter.setClickDelegate {
             onItemClick = { url -> WebActivity.launch(this@CollectionActivity, url) }
+            onItemDelete = { id -> model.collection(this@CollectionActivity, id) }
         }
     }
 

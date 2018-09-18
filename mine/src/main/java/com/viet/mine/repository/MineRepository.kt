@@ -131,4 +131,12 @@ class MineRepository : ApiRepository() {
         }.asLiveData()
     }
 
+    /**
+     * 收藏
+     */
+    fun collection(contentId: String): LiveData<Resource<Int>> {
+        return object : NetworkOnlyResource<Int>() {
+            override fun createCall(): LiveData<ApiResponse<Int>> = apiInterface.collection(contentId)
+        }.asLiveData()
+    }
 }
