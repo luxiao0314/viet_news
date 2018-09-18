@@ -6,9 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.safframework.ext.clickWithTrigger
 import com.viet.mine.R
-import com.viet.mine.viewmodel.MineViewModel
 import com.viet.news.core.config.Config
-import com.viet.news.core.delegate.viewModelDelegate
 import com.viet.news.core.domain.*
 import com.viet.news.core.ext.loadCircle
 import com.viet.news.core.ext.routerWithAnim
@@ -26,7 +24,6 @@ import kotlinx.android.synthetic.main.fragment_mine.*
 class MineFragment : BaseFragment() {
 
     private var mContainerView: View? = null
-    private val model: MineViewModel by viewModelDelegate(MineViewModel::class)
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         mContainerView = inflater.inflate(R.layout.fragment_mine, container, false)

@@ -7,13 +7,15 @@ import android.view.ViewGroup
 import com.chenenyu.router.annotation.Route
 import com.viet.mine.R
 import com.viet.news.core.config.Config
+import com.viet.news.core.domain.RefreshSettingInfoEvent
 import com.viet.news.core.domain.User
 import com.viet.news.core.ext.click
 import com.viet.news.core.ext.clickWithTrigger
 import com.viet.news.core.ext.finishWithAnim
 import com.viet.news.core.ui.BaseActivity
 import com.viet.news.core.ui.BaseFragment
-import com.viet.news.core.ui.widget.CommonItem
+import com.viet.news.core.utils.RxBus
+import com.viet.news.core.utils.SPHelper
 import kotlinx.android.synthetic.main.fragment_mine_setting.*
 
 /**
@@ -32,14 +34,20 @@ class SettingFragment : BaseFragment() {
         return mContainerView
     }
 
-    override fun initView(view: View) {
-        val languageSettingItem = view.findViewById<CommonItem>(R.id.item_language_setting)
-        val helpItem = view.findViewById<CommonItem>(R.id.item_help)
-        val feedBackItem = view.findViewById<CommonItem>(R.id.item_feed_back)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        initEvent()
+    }
 
-        languageSettingItem.clickWithTrigger { openPage(this@SettingFragment, Config.ROUTER_MINE_SETTING_LANGUAGE_FRAGMENT, R.id.container_framelayout) }
-        helpItem.clickWithTrigger { openPage(this@SettingFragment, Config.ROUTER_MINE_SETTING_HELP_FRAGMENT, R.id.container_framelayout) }
-        feedBackItem.clickWithTrigger { openPage(this@SettingFragment, Config.ROUTER_MINE_SETTING_FEEDBACK_FRAGMENT, R.id.container_framelayout) }
+    private fun initEvent() {
+        compositeDisposable.add(RxBus.get().register(RefreshSettingInfoEvent::class.java) { refresh() })
+    }
+
+    override fun initView(view: View) {
+        refresh()
+        item_language_setting.clickWithTrigger { openPage(this@SettingFragment, Config.ROUTER_MINE_SETTING_LANGUAGE_FRAGMENT, R.id.container_framelayout) }
+        item_help.clickWithTrigger { openPage(this@SettingFragment, Config.ROUTER_MINE_SETTING_HELP_FRAGMENT, R.id.container_framelayout) }
+        item_feed_back.clickWithTrigger { openPage(this@SettingFragment, Config.ROUTER_MINE_SETTING_FEEDBACK_FRAGMENT, R.id.container_framelayout) }
 
         if (User.currentUser.isLogin()) {
             btn_logout.visibility = View.VISIBLE
@@ -51,6 +59,13 @@ class SettingFragment : BaseFragment() {
             btn_logout.visibility = View.GONE
         }
 
+    }
+
+
+    fun refresh() {
+        val position = SPHelper.create(context!!).getInt("language", 0)
+        val language =  resources.getStringArray(R.array.language).toList()[position]
+        item_language_setting.setRightText(language)
     }
 
 }

@@ -45,7 +45,7 @@ class ChangePhoneNumberFragment : BaseFragment() {
                     val bundle = Bundle()
                     bundle.putInt("page_type", Config.CHANGE_PHONE_NUM)
                     bundle.putString("phone_number", User.currentUser.telephone)
-                    Router.build(Config.ROUTER_MINE_EDIT_VERIFY_CODE_FRAGMENT).with(bundle).goFragment(this@ChangePhoneNumberFragment, R.id.container_framelayout, false)
+                    Router.build(Config.ROUTER_MINE_EDIT_VERIFY_CODE_FRAGMENT).with(bundle).goFragment(this@ChangePhoneNumberFragment, R.id.container_framelayout)
                 }
             }
         }

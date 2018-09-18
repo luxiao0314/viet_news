@@ -54,39 +54,62 @@ class VerifyCodeFragment : BaseFragment() {
 
             override fun onComplete(value: String) {
 //                if (value == "123456") {
-//                    when (arguments!!["page_type"]) {
+//                    when (arguments?.getInt("page_type")) {
 //                        Config.CHANGE_PHONE_NUM -> {
 //                            SPHelper.create().putString("verify_code", value)
-//                            openPage(this@VerifyCodeFragment, Config.ROUTER_MINE_EDIT_BIND_PHONE_FRAGMENT, R.id.container_framelayout)
+//                            val bundle = Bundle()
+//                            bundle.putInt("change_phone_type", Config.CHANGE_PHONE_NUM)
+//                            Router.build(Config.ROUTER_MINE_EDIT_BIND_PHONE_FRAGMENT).with(bundle).goFragment(this@VerifyCodeFragment, R.id.container_framelayout, false)
 //                        }
 //                        Config.SET_PHONE_NUM -> {
-//                            model.resetPhoneNum(arguments!!["phone_number"].toString(), User.currentUser.telephone, value, SPHelper.create().getString("verify_code"), this@VerifyCodeFragment) {
-//                                (activity as BaseActivity).finishWithAnim()
+//                            when (arguments!!["change_phone_type"]) {
+//                                Config.BIND_CHANGE_PHONE_NUM -> {
+//                                    model.resetPhoneNum(arguments!!.getString("phone_number", ""), User.currentUser.telephone, value, SPHelper.create().getString("verify_code"), this@VerifyCodeFragment) {
+//                                        (activity as BaseActivity).finishWithAnim()
+//                                    }
+//                                }
+//                                Config.BIND_SET_PHONE_NUM -> {
+//                                    //设置密码
+//                                    val bundle = Bundle()
+//                                    bundle.putString("phone_number", arguments?.getString("phone_number"))
+//                                    bundle.putString("verify_code", value)
+//                                    Router.build(Config.ROUTER_MINE_EDIT_SETUP_PWD_FRAGMENT).with(bundle).goFragment(this@VerifyCodeFragment, R.id.container_framelayout)
+//                                }
 //                            }
 //                        }
 //                    }
 //                }
+                var phone = ""
+                when (arguments?.getInt("page_type")) {
+                    Config.CHANGE_PHONE_NUM -> {
+                        phone = User.currentUser.telephone
+                    }
+                    Config.SET_PHONE_NUM -> {
+                        phone = arguments!!.getString("phone_number", "")
+                    }
+                }
 
-
-                model.checkVerifyCode(User.currentUser.telephone, value, this@VerifyCodeFragment) {
-                    when (arguments!!["page_type"]) {
+                model.checkVerifyCode(phone, value, this@VerifyCodeFragment) {
+                    when (arguments?.getInt("page_type")) {
                         Config.CHANGE_PHONE_NUM -> {
                             SPHelper.create().putString("verify_code", value)
                             val bundle = Bundle()
                             bundle.putInt("change_phone_type", Config.CHANGE_PHONE_NUM)
-                            Router.build(Config.ROUTER_MINE_EDIT_VERIFY_CODE_FRAGMENT).with(bundle).goFragment(this@VerifyCodeFragment, R.id.container_framelayout)
+                            Router.build(Config.ROUTER_MINE_EDIT_BIND_PHONE_FRAGMENT).with(bundle).goFragment(this@VerifyCodeFragment, R.id.container_framelayout, false)
                         }
                         Config.SET_PHONE_NUM -> {
                             when (arguments!!["change_phone_type"]) {
                                 Config.BIND_CHANGE_PHONE_NUM -> {
-                                    model.resetPhoneNum(arguments!!["phone_number"].toString(), User.currentUser.telephone, value, SPHelper.create().getString("verify_code"), this@VerifyCodeFragment) {
+                                    model.resetPhoneNum(arguments!!.getString("phone_number", ""), User.currentUser.telephone, value, SPHelper.create().getString("verify_code"), this@VerifyCodeFragment) {
                                         (activity as BaseActivity).finishWithAnim()
                                     }
                                 }
-
                                 Config.BIND_SET_PHONE_NUM -> {
                                     //设置密码
-                                    Router.build(Config.ROUTER_MINE_EDIT_SETUP_PWD_FRAGMENT).with("phone_number", arguments!!["phone_number"].toString()).goFragment(this@VerifyCodeFragment, R.id.container_framelayout)
+                                    val bundle = Bundle()
+                                    bundle.putString("phone_number", arguments?.getString("phone_number"))
+                                    bundle.putString("verify_code", value)
+                                    Router.build(Config.ROUTER_MINE_EDIT_SETUP_PWD_FRAGMENT).with(bundle).goFragment(this@VerifyCodeFragment, R.id.container_framelayout)
                                 }
                             }
                         }
@@ -99,12 +122,12 @@ class VerifyCodeFragment : BaseFragment() {
                 phone = Settings.create(context!!).telephone
             }
             Config.SET_PHONE_NUM -> {
-                phone = arguments!!["phone_number"].toString()
+                phone = arguments!!.getString("phone_number", "")
             }
         }
 
 
-        phone_num.text = "验证码已经发送至${phone.replaceRange(3..6, "****")}"
+        phone_num.text = if (phone.isNotBlank()) "验证码已经发送至${phone.replaceRange(3..6, "****")}" else ""
         initData()
     }
 
