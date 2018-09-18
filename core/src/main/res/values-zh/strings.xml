@@ -110,6 +110,13 @@
     <!--个人主页-->
     <string name="refreshing">正在加载内容</string>
 
+    <!--邀请页面-->
+    <string name="invite_code">我的邀请码</string>
+    <string name="copy_link">复制链接</string>
+    <string name="scan">扫描下载应用</string>
+    <string name="share">分享</string>
+    <string name="msg1">邀请好友即可获得奖励40MB钻</string>
+    <string name="msg2">后续可获得更多关联收益</string>
 
     <string name="login_with_facebook">Facebook登录</string>
     <string name="logout">退出</string>

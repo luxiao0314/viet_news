@@ -60,6 +60,14 @@
     <!--用户反馈-->
     <string name="feedback_des">Please write down your comments or feedback. Thank you!</string>
 
+    <!--邀请页面-->
+    <string name="invite_code">My invitation code</string>
+    <string name="copy_link">Copy link</string>
+    <string name="scan">Scan download application</string>
+    <string name="share">Share</string>
+    <string name="msg1">Invite friends to get a reward 40MB drill</string>
+    <string name="msg2">follow up can get more related income</string>
+
     <!--Account info-->
     <string name="user_icon">Head Portrait</string>
     <string name="magicbox_num">MagicBox Number</string>
