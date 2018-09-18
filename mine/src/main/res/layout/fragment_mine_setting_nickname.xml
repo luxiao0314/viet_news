@@ -23,8 +23,9 @@
         android:layout_marginRight="@dimen/page_padding_right"
         android:height="40dp"
         android:background="@drawable/shape_gray_round_bg"
+        android:padding="5dp"
         android:gravity="center"
-        android:text="昵称每月仅能修改1次，请谨慎"
+        android:text="@string/modify_nickname_prompt"
         android:textColor="@color/text_blue"
         app:layout_constraintTop_toTopOf="parent" />
 

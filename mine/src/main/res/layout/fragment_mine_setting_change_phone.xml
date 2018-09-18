@@ -15,7 +15,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="当前手机号码"
+        android:text="@string/current_num"
         android:textSize="@dimen/text_14sp"
         android:textColor="@color/text_gray"
         android:layout_marginTop="@dimen/padding_top_large"
@@ -49,7 +49,9 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="为确保账户安全换绑前需要验证当前手机号"
+        android:layout_marginLeft="@dimen/module_margin"
+        android:layout_marginRight="@dimen/module_margin"
+        android:text="@string/info"
         android:textColor="@color/text_gray"
         android:textSize="@dimen/text_14sp"
         android:layout_marginTop="@dimen/module_margin"

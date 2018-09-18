@@ -60,24 +60,24 @@ class AccountInfoFragment : BaseFragment() {
         if (User.currentUser.isLogin()) {
             model.getUserInfo(Settings.create(context!!).userId, activity!!) { it ->
                 if (it!!.is_bind) {//it!!.is_bind
-                    changePhoneNumItem.setRightText("已绑定")
+                    changePhoneNumItem.setRightText(resources.getString(R.string.bind))
                     changePhoneNumItem.clickWithTrigger {
                         routerWithAnim(Config.ROUTER_MINE_EDIT_CHANGE_PHONE_FRAGMENT).goFragment(this@AccountInfoFragment, R.id.container_framelayout)
                     }
                 } else {
-                    changePhoneNumItem.setRightText("未绑定")
+                    changePhoneNumItem.setRightText(resources.getString(R.string.tobind))
                     changePhoneNumItem.clickWithTrigger {
                         val dialog = NormalDialog.create(activity!!, "未绑定手机号", null, "确定", "取消") as NormalDialog
                     }
                 }
 
                 if (it.is_set_password && it.is_bind) {//it.is_set_password
-                    resetPwdItem.setRightText("已设置")
+                    resetPwdItem.setRightText(resources.getString(R.string.set))
                     resetPwdItem.clickWithTrigger {
                         openPage(this@AccountInfoFragment, Config.ROUTER_MINE_EDIT_CHANGE_PWD_FRAGMENT, R.id.container_framelayout)
                     }
                 } else {
-                    resetPwdItem.setRightText("去设置")
+                    resetPwdItem.setRightText(resources.getString(R.string.toset))
                     resetPwdItem.clickWithTrigger {
                         val dialog = NormalDialog.create(activity!!, "未绑定手机号", null, "确定", "取消") as NormalDialog
                         dialog.positiveListener = object : IPositiveButtonDialogListener {
