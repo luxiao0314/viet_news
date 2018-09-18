@@ -49,7 +49,7 @@ class CollectionAdapter @Inject constructor() : BaseAdapter<NewsListBean>(), Swi
         swipeLayout.setOnSwipingListener(this)
         content.clickWithTrigger {
             mDelegate?.onItemClick(t.content.contentDetail!!)
-            swipeLayout.closeItem(true)
+            closeAllItem()
         }
         holder.itemView.findViewById<TextView>(R.id.tv_delete).clickWithTrigger {
             Toast.makeText(context, "删除", Toast.LENGTH_SHORT).show()
