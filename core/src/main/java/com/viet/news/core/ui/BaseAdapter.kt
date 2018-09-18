@@ -1,8 +1,10 @@
 package com.viet.news.core.ui
 
 import android.content.Context
+import android.support.annotation.IdRes
 import android.support.annotation.IntRange
 import android.support.v7.widget.RecyclerView
+import android.util.SparseArray
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -96,6 +98,19 @@ abstract class BaseAdapter<T> : RecyclerView.Adapter<BaseAdapter.BaseViewHolder>
 
     abstract fun onBindViewHolderImpl(holder: BaseViewHolder, position: Int, t: T)
 
-    open class BaseViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
+    open class BaseViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
+
+        private val views: SparseArray<View>? = null
+
+        fun <T : View> getView(@IdRes viewId: Int): T {
+            var view: View? = views?.get(viewId)
+            if (view == null) {
+                view = itemView.findViewById(viewId)
+                views?.put(viewId, view)
+            }
+            return view as T
+        }
+
+    }
 }
 

@@ -44,10 +44,11 @@ class NewsAdapter @Inject constructor() : BaseAdapter<NewsListBean>() {
     }
 
     override fun onBindViewHolderImpl(holder: BaseViewHolder, position: Int, t: NewsListBean) {
+
         holder.itemView.tv_title.text = t.author.nick_name
         holder.itemView.tv_time.text = DateUtils.getTimestamp(Date(t.content.createDateTime))
         holder.itemView.tv_des.text = t.content.contentTitle
-        holder.itemView.findViewById<ImageView>(R.id.iv_article_image).loadCircle(t.author.avatar)
+        holder.getView<ImageView>(R.id.iv_article_image).loadCircle(t.author.avatar)
 
         holder.itemView.findViewById<BehaviorBar>(R.id.behaviorBar)?.setReadNumStatus(t.content.contentProfit)
         holder.itemView.findViewById<BehaviorBar>(R.id.behaviorBar)?.setLikeStatus(t.content.likeFlag, t.content.likeNumber)
