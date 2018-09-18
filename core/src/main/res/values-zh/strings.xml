@@ -90,11 +90,16 @@
     <string name="nick_name">昵称</string>
     <string name="phone_num">手机</string>
     <string name="login_pwd">登录密码</string>
-    <string name="unbind">未绑定</string>
-    <string name="to_setting">去设置</string>
     <string name="get_vcode">获取验证码</string>
     <string name="title_find_pwd">找回密码</string>
     <string name="input_nick_name">输入昵称</string>
+    <string name="bind">已绑定</string>
+    <string name="set">已设置</string>
+    <string name="toset">去设置</string>
+    <string name="tobind">去设置</string>
+    <string name="current_num">当前手机号</string>
+    <string name="info">为确保账户安全换绑前需要验证当前手机号</string>
+    <string name="modify_nickname_prompt">昵称每月仅能修改1次，请谨慎</string>
 
     <!--通用-->
     <string name="confirm">确定</string>

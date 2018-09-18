@@ -66,9 +66,14 @@
     <string name="nick_name">Nick Name</string>
     <string name="phone_num">Moblie</string>
     <string name="login_pwd">Password</string>
-    <string name="unbind">Unbind</string>
-    <string name="to_setting">To Set Up</string>
     <string name="input_nick_name">Input Nick Name</string>
+    <string name="bind">bound</string>
+    <string name="set">had been set</string>
+    <string name="tobind">to bind</string>
+    <string name="toset">to set</string>
+    <string name="current_num">Current cell phone number</string>
+    <string name="info">To verify account security, verify the current cell phone number before changing it</string>
+    <string name="modify_nickname_prompt">Nicknames can be modified only 1 times a month. Please be careful</string>
 
     <string name="loading_msg">Loading</string><!-- 正在加载 -->
     <string name="empty_msg">There is noting here！</string><!-- 没有数据 -->

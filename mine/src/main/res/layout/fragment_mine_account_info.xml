@@ -90,7 +90,7 @@
         android:layout_height="@dimen/item_height"
         app:left_text="@string/phone_num"
         app:next_icon_visibility="true"
-        app:right_text="@string/unbind" />
+        app:right_text="@string/tobind" />
 
 
     <View style="@style/line.gray_tran.margin_left" />
@@ -101,5 +101,5 @@
         android:layout_height="@dimen/item_height"
         app:left_text="@string/login_pwd"
         app:next_icon_visibility="true"
-        app:right_text="@string/to_setting" />
+        app:right_text="@string/toset" />
 </LinearLayout>
