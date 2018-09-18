@@ -8,6 +8,11 @@ import android.support.v7.widget.RecyclerView
 import android.view.View
 import android.widget.AbsListView.OnScrollListener.SCROLL_STATE_TOUCH_SCROLL
 import com.chenenyu.router.annotation.Route
+import com.scwang.smartrefresh.layout.api.RefreshFooter
+import com.scwang.smartrefresh.layout.api.RefreshHeader
+import com.scwang.smartrefresh.layout.api.RefreshLayout
+import com.scwang.smartrefresh.layout.constant.RefreshState
+import com.scwang.smartrefresh.layout.listener.OnMultiPurposeListener
 import com.viet.mine.R
 import com.viet.mine.adapter.CollectionAdapter
 import com.viet.mine.viewmodel.CollectionViewModel
@@ -47,7 +52,44 @@ class CollectionActivity : InjectActivity() {
         multiStatusView.setLoadingButtonClickListener(View.OnClickListener { refreshLayout.autoRefresh() })
         adapter.setClickDelegate {
             onItemClick = { url -> WebActivity.launch(this@CollectionActivity, url) }
+            onItemDelete = { id -> model.collection(this@CollectionActivity, id) }
         }
+        refreshLayout.setOnMultiPurposeListener(object : OnMultiPurposeListener {
+            override fun onFooterMoving(footer: RefreshFooter?, isDragging: Boolean, percent: Float, offset: Int, footerHeight: Int, maxDragHeight: Int) {
+                adapter.closeAllItem()
+            }
+
+            override fun onHeaderStartAnimator(header: RefreshHeader?, headerHeight: Int, maxDragHeight: Int) {
+            }
+
+            override fun onFooterReleased(footer: RefreshFooter?, footerHeight: Int, maxDragHeight: Int) {
+            }
+
+            override fun onStateChanged(refreshLayout: RefreshLayout, oldState: RefreshState, newState: RefreshState) {
+            }
+
+            override fun onHeaderMoving(header: RefreshHeader?, isDragging: Boolean, percent: Float, offset: Int, headerHeight: Int, maxDragHeight: Int) {
+                adapter.closeAllItem()
+            }
+
+            override fun onFooterFinish(footer: RefreshFooter?, success: Boolean) {
+            }
+
+            override fun onFooterStartAnimator(footer: RefreshFooter?, footerHeight: Int, maxDragHeight: Int) {
+            }
+
+            override fun onHeaderReleased(header: RefreshHeader?, headerHeight: Int, maxDragHeight: Int) {
+            }
+
+            override fun onLoadMore(refreshLayout: RefreshLayout) {
+            }
+
+            override fun onRefresh(refreshLayout: RefreshLayout) {
+            }
+
+            override fun onHeaderFinish(header: RefreshHeader?, success: Boolean) {
+            }
+        })
     }
 
     private fun initView() {

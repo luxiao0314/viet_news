@@ -13,7 +13,6 @@ import com.viet.news.core.ext.load
 import com.viet.news.core.ui.BaseAdapter
 import com.viet.news.core.ui.widget.SwipeLayout
 import com.viet.news.core.utils.DateUtils
-import com.viet.news.webview.WebActivity
 import kotlinx.android.synthetic.main.cell_collection_picture_three.view.*
 import java.util.*
 import javax.inject.Inject
@@ -45,20 +44,19 @@ class CollectionAdapter @Inject constructor() : BaseAdapter<NewsListBean>(), Swi
 
         holder.itemView.findViewById<TextView>(R.id.tv_des)?.text = t.content.contentTitle
         holder.itemView.findViewById<TextView>(R.id.tv_time)?.text = DateUtils.getTimestamp(Date(t.content.createDateTime))
-
-//        holder.itemView.clickWithTrigger { WebActivity.launch(context, t.content.contentDetail) }
-
         val swipeLayout = holder.itemView.findViewById<SwipeLayout>(R.id.swipe)
         val content = holder.itemView.findViewById<LinearLayout>(R.id.content)
         swipeLayout.setOnSwipingListener(this)
         content.clickWithTrigger {
             mDelegate?.onItemClick(t.content.contentDetail!!)
-            swipeLayout.closeItem(true)
+            closeAllItem()
         }
         holder.itemView.findViewById<TextView>(R.id.tv_delete).clickWithTrigger {
             Toast.makeText(context, "删除", Toast.LENGTH_SHORT).show()
             swipeLayout.closeItem(true)
-            mDelegate?.onItemDelete()
+            list.removeAt(position)
+            notifyDataSetChanged()
+            mDelegate?.onItemDelete(t.content.id.toString())
         }
 
         when (getItemViewType(position)) {
@@ -116,11 +114,11 @@ class CollectionAdapter @Inject constructor() : BaseAdapter<NewsListBean>(), Swi
      */
     interface Delegate {
         fun onItemClick(url: String)
-        fun onItemDelete()
+        fun onItemDelete(id: String)
     }
 
     class ClickDelegate : Delegate {
-        var onItemDelete: (() -> Unit)? = null
+        var onItemDelete: ((id: String) -> Unit)? = null
 
         var onItemClick: ((url: String) -> Unit)? = null
 
@@ -128,8 +126,8 @@ class CollectionAdapter @Inject constructor() : BaseAdapter<NewsListBean>(), Swi
             onItemClick?.let { it(url) }
         }
 
-        override fun onItemDelete() {
-            onItemDelete?.let { it() }
+        override fun onItemDelete(id: String) {
+            onItemDelete?.let { it(id) }
         }
     }
 
