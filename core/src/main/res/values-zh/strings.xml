@@ -100,6 +100,11 @@
     <string name="current_num">当前手机号</string>
     <string name="info">为确保账户安全换绑前需要验证当前手机号</string>
     <string name="modify_nickname_prompt">昵称每月仅能修改1次，请谨慎</string>
+    <string name="old_pwd">原登录密码</string>
+    <string name="new_pwd">新密码</string>
+    <string name="confirm_pwd">再次确认登录密码</string>
+    <string name="pwd_info">密码可使用字母、数字、字符两者组合，限8～20位</string>
+
 
     <!--通用-->
     <string name="confirm">确定</string>
