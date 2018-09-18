@@ -7,7 +7,10 @@ import android.view.ViewGroup
 import com.chenenyu.router.annotation.Route
 import com.viet.mine.R
 import com.viet.news.core.config.Config
+import com.viet.news.core.ext.clickWithTrigger
 import com.viet.news.core.ui.BaseFragment
+import com.viet.news.webview.WebActivity
+import kotlinx.android.synthetic.main.fragment_mine_setting_help.*
 
 /**
  * @Description 帮助
@@ -25,6 +28,8 @@ class HelpFragment : BaseFragment() {
     }
 
     override fun initView(view: View) {
-
+        help.clickWithTrigger {
+            WebActivity.launch(context, "https://www.baidu.com")
+        }
     }
 }

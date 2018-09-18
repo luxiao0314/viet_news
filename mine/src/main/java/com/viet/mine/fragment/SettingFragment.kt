@@ -16,6 +16,7 @@ import com.viet.news.core.ui.BaseActivity
 import com.viet.news.core.ui.BaseFragment
 import com.viet.news.core.utils.RxBus
 import com.viet.news.core.utils.SPHelper
+import com.viet.news.webview.WebActivity
 import kotlinx.android.synthetic.main.fragment_mine_setting.*
 
 /**
@@ -48,7 +49,7 @@ class SettingFragment : BaseFragment() {
         item_language_setting.clickWithTrigger { openPage(this@SettingFragment, Config.ROUTER_MINE_SETTING_LANGUAGE_FRAGMENT, R.id.container_framelayout) }
         item_help.clickWithTrigger { openPage(this@SettingFragment, Config.ROUTER_MINE_SETTING_HELP_FRAGMENT, R.id.container_framelayout) }
         item_feed_back.clickWithTrigger { openPage(this@SettingFragment, Config.ROUTER_MINE_SETTING_FEEDBACK_FRAGMENT, R.id.container_framelayout) }
-
+        item_about.clickWithTrigger { WebActivity.launch(context, "https://www.baidu.com") }
         if (User.currentUser.isLogin()) {
             btn_logout.visibility = View.VISIBLE
             btn_logout.click {

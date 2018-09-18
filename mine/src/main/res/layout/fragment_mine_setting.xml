@@ -52,6 +52,7 @@
         android:background="@color/gray_tran"/>
 
     <com.viet.news.core.ui.widget.CommonItem
+        android:id="@+id/item_about"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         app:left_text="@string/about"
