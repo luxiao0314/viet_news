@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="15dp">
+    android:padding="10dp">
 
     <ImageView
         android:id="@+id/iv_article_image"
@@ -43,7 +43,7 @@
         android:id="@+id/tv_des"
         style="@style/text.16.gray"
         android:layout_width="0dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="10dp"
         android:ellipsize="end"
         android:maxLines="2"
         app:layout_constraintEnd_toEndOf="parent"

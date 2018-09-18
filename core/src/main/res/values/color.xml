@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <color name="colorPrimary" tools:keep="@color/colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark" tools:keep="@color/colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent" tools:keep="@color/colorAccent">#FED230</color>
+    <color name="colorPrimary" tools:keep="@color/colorPrimary">@color/red_text</color>
+    <color name="colorPrimaryDark" tools:keep="@color/colorPrimaryDark">@color/red_text</color>
+    <color name="colorAccent" tools:keep="@color/colorAccent">@color/white</color>
 
     <color name="colorHomeRingStart" tools:keep="@color/colorHomeRingStart">#00FFFFFF</color>
     <color name="colorHomeRingMiddle" tools:keep="@color/colorHomeRingMiddle">#77FFFFFF</color>

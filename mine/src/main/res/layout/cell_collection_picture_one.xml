@@ -18,40 +18,18 @@
         android:textSize="16sp"
         android:textStyle="bold"/>
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="96dp">
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp">
 
-        <ImageView
-            android:id="@+id/iv_pic"
-            android:layout_width="120dp"
-            android:layout_height="75dp"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="10dp"
-            android:scaleType="centerCrop"
-            android:src="@drawable/shape_default_rec_bg"/>
+        <include layout="@layout/include_picture_one"/>
 
-        <TextView
-            android:id="@+id/tv_des"
-            style="@style/text.16.gray"
-            android:layout_width="match_parent"
-            android:layout_centerVertical="true"
-            android:layout_marginStart="12dp"
-            android:layout_marginLeft="12dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="@dimen/module_margin"
-            android:layout_marginRight="@dimen/module_margin"
-            android:layout_toRightOf="@+id/iv_pic"
-            android:ellipsize="end"
-            android:maxLines="3"
-            tools:text=" 过去十年，中共铺设的高铁线路占去了全世界的2/3。 过去十年，中共铺设的高铁线路占去了全世界的2/3。已经成了世界上最大的高铁网络"/>
+        <View style="@style/line.gray_tran"/>
 
-        <View
-            style="@style/line.gray_tran"
-            android:layout_alignParentBottom="true"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            app:layout_constraintBottom_toBottomOf="parent"/>
+    </LinearLayout>
 
-    </RelativeLayout>
+
 </com.viet.news.core.ui.widget.SwipeLayout>

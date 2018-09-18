@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="96dp">
+
+    <ImageView
+        android:id="@+id/iv_pic"
+        android:layout_width="120dp"
+        android:layout_height="75dp"
+        android:layout_centerVertical="true"
+        android:scaleType="centerCrop"
+        android:src="@drawable/shape_default_rec_bg"/>
+
+    <TextView
+        android:id="@+id/tv_des"
+        style="@style/text.16.gray"
+        android:layout_width="match_parent"
+        android:layout_alignTop="@+id/iv_pic"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_toRightOf="@+id/iv_pic"
+        android:ellipsize="end"
+        android:maxLines="3"
+        tools:text="过去十年，中共铺设的高铁线路占去了全世界的2/3。 过去十年，中共铺设的高铁线路占去了全世界的2/3。已经成了世界上最大的高铁网络"/>
+</RelativeLayout>
