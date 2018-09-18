@@ -29,7 +29,7 @@ class HelpFragment : BaseFragment() {
 
     override fun initView(view: View) {
         help.clickWithTrigger {
-            WebActivity.launch(context, "https://www.baidu.com")
+            WebActivity.launch(context, "http://www.baidu.com")
         }
     }
 }

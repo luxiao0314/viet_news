@@ -49,7 +49,7 @@ class SettingFragment : BaseFragment() {
         item_language_setting.clickWithTrigger { openPage(this@SettingFragment, Config.ROUTER_MINE_SETTING_LANGUAGE_FRAGMENT, R.id.container_framelayout) }
         item_help.clickWithTrigger { openPage(this@SettingFragment, Config.ROUTER_MINE_SETTING_HELP_FRAGMENT, R.id.container_framelayout) }
         item_feed_back.clickWithTrigger { openPage(this@SettingFragment, Config.ROUTER_MINE_SETTING_FEEDBACK_FRAGMENT, R.id.container_framelayout) }
-        item_about.clickWithTrigger { WebActivity.launch(context, "https://www.baidu.com") }
+        item_about.clickWithTrigger { WebActivity.launch(context, "http://www.baidu.com") }
         if (User.currentUser.isLogin()) {
             btn_logout.visibility = View.VISIBLE
             btn_logout.click {
@@ -65,7 +65,7 @@ class SettingFragment : BaseFragment() {
 
     fun refresh() {
         val position = SPHelper.create(context!!).getInt("language", 0)
-        val language =  resources.getStringArray(R.array.language).toList()[position]
+        val language = resources.getStringArray(R.array.language).toList()[position]
         item_language_setting.setRightText(language)
     }
 

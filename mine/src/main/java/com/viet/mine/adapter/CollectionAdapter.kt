@@ -2,6 +2,7 @@ package com.viet.mine.adapter
 
 import android.support.v7.widget.GridLayoutManager
 import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
 import com.safframework.ext.clickWithTrigger
@@ -26,6 +27,7 @@ import javax.inject.Inject
 class CollectionAdapter @Inject constructor() : BaseAdapter<NewsListBean>(), SwipeLayout.OnSwipingListener {
 
     private var layouts: HashSet<SwipeLayout> = HashSet()
+    private var mDelegate: Delegate? = null
 
     override fun getItemViewType(position: Int): Int {
         return getData()[position].content.contentType
@@ -44,13 +46,19 @@ class CollectionAdapter @Inject constructor() : BaseAdapter<NewsListBean>(), Swi
         holder.itemView.findViewById<TextView>(R.id.tv_des)?.text = t.content.contentTitle
         holder.itemView.findViewById<TextView>(R.id.tv_time)?.text = DateUtils.getTimestamp(Date(t.content.createDateTime))
 
-        holder.itemView.clickWithTrigger { WebActivity.launch(context, t.content.contentDetail) }
+//        holder.itemView.clickWithTrigger { WebActivity.launch(context, t.content.contentDetail) }
 
         val swipeLayout = holder.itemView.findViewById<SwipeLayout>(R.id.swipe)
+        val content = holder.itemView.findViewById<LinearLayout>(R.id.content)
         swipeLayout.setOnSwipingListener(this)
+        content.clickWithTrigger {
+            mDelegate?.onItemClick(t.content.contentDetail!!)
+            swipeLayout.closeItem(true)
+        }
         holder.itemView.findViewById<TextView>(R.id.tv_delete).clickWithTrigger {
             Toast.makeText(context, "删除", Toast.LENGTH_SHORT).show()
             swipeLayout.closeItem(true)
+            mDelegate?.onItemDelete()
         }
 
         when (getItemViewType(position)) {
@@ -81,11 +89,48 @@ class CollectionAdapter @Inject constructor() : BaseAdapter<NewsListBean>(), Swi
         layouts.clear()
     }
 
+    private fun setDelegate(delegate: ClickDelegate): CollectionAdapter {
+        mDelegate = delegate
+        return this
+    }
+
     fun closeAllItem() {
         for (layout in layouts) {
             layout.closeItem(true)
         }
         layouts.clear()
+    }
+
+    /**
+     * 设置点击事件
+     * @param init [@kotlin.ExtensionFunctionType] Function1<ClickDelegate, Unit>
+     */
+    fun setClickDelegate(init: ClickDelegate.() -> Unit) {
+        val delegate = ClickDelegate()
+        delegate.init()
+        setDelegate(delegate)
+    }
+
+    /**
+     * 点击事件监听代理
+     */
+    interface Delegate {
+        fun onItemClick(url: String)
+        fun onItemDelete()
+    }
+
+    class ClickDelegate : Delegate {
+        var onItemDelete: (() -> Unit)? = null
+
+        var onItemClick: ((url: String) -> Unit)? = null
+
+        override fun onItemClick(url: String) {
+            onItemClick?.let { it(url) }
+        }
+
+        override fun onItemDelete() {
+            onItemDelete?.let { it() }
+        }
     }
 
 }
