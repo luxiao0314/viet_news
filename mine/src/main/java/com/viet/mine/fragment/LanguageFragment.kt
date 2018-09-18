@@ -14,10 +14,12 @@ import com.viet.mine.adapter.LanguageAdapter
 import com.chenenyu.router.annotation.Route
 import com.viet.mine.R
 import com.viet.news.core.config.Config
+import com.viet.news.core.domain.RefreshSettingInfoEvent
 import com.viet.news.core.ext.finishWithAnim
 import com.viet.news.core.ui.BaseActivity
 import com.viet.news.core.ui.BaseFragment
 import com.viet.news.core.utils.LanguageUtil
+import com.viet.news.core.utils.RxBus
 import com.viet.news.core.utils.SPHelper
 
 /**
@@ -51,6 +53,8 @@ class LanguageFragment : BaseFragment() {
         ItemClickSupport.addTo(rvLanguage).addOnItemClickListener(object : ItemClickSupport.OnItemClickListener {
             override fun onItemClicked(recyclerView: RecyclerView, position: Int, v: View) {
                 if (LanguageUtil.needChange(position)) {
+                    SPHelper.create(context!!).putString("language", resources.getStringArray(R.array.language).toList()[position])
+                    RxBus.get().post(RefreshSettingInfoEvent())
                     LanguageUtil.saveSelectLanguage(context!!, position)
                     LanguageUtil.routToMainForce(activity)
                 } else {

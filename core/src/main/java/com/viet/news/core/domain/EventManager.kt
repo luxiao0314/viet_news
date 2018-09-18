@@ -18,3 +18,5 @@ open class RefreshNewsEvent
 open class GlobalNetworkException(val code :Int ,val httpResponse: HttpResponse<*>?)
 
 open class RefreshUserInfoEvent
+
+open class RefreshSettingInfoEvent
