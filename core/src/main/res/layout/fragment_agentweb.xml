@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/linearLayout"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:id="@+id/linearLayout"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
@@ -28,16 +28,16 @@
                 android:paddingLeft="14dp"
                 android:paddingRight="10dp"
                 android:scaleType="center"
-                android:src="@drawable/ic_back" />
+                android:src="@drawable/ic_back"/>
 
             <View
                 android:id="@+id/view_line"
                 style="@style/line.gray_tran"
                 android:layout_width="1dp"
                 android:layout_height="match_parent"
-                android:layout_marginBottom="15dp"
                 android:layout_marginTop="15dp"
-                android:layout_toRightOf="@+id/iv_back" />
+                android:layout_marginBottom="15dp"
+                android:layout_toRightOf="@+id/iv_back"/>
 
             <ImageView
                 android:id="@+id/iv_finish"
@@ -46,30 +46,30 @@
                 android:layout_toRightOf="@+id/view_line"
                 android:scaleType="center"
                 android:src="@drawable/ic_close"
-                android:visibility="visible" />
+                android:visibility="visible"/>
 
             <View
                 android:id="@+id/view_line2"
-                style="@style/line.white.transparent"
+                style="@style/line.gray_tran"
                 android:layout_width="1dp"
                 android:layout_height="match_parent"
-                android:layout_marginBottom="15dp"
                 android:layout_marginTop="15dp"
-                android:layout_toRightOf="@+id/iv_finish" />
-
+                android:layout_marginBottom="15dp"
+                android:layout_toRightOf="@+id/iv_finish"/>
 
 
             <TextView
                 android:id="@+id/toolbar_title"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
+                android:layout_toLeftOf="@+id/iv_more"
                 android:layout_toRightOf="@+id/iv_finish"
                 android:paddingLeft="14dp"
                 android:singleLine="true"
-                android:textColor="@android:color/white"
+                android:textColor="#FF4A4A4A"
                 android:textSize="16sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"/>
 
             <ImageView
                 android:id="@+id/iv_more"

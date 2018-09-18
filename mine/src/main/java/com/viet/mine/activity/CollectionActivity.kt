@@ -14,6 +14,7 @@ import com.viet.mine.viewmodel.CollectionViewModel
 import com.viet.news.core.config.Config
 import com.viet.news.core.delegate.viewModelDelegate
 import com.viet.news.core.domain.User
+import com.viet.news.core.domain.response.NewsListBean
 import com.viet.news.core.ui.InjectActivity
 import kotlinx.android.synthetic.main.activity_mine_collection.*
 import javax.inject.Inject
@@ -41,7 +42,7 @@ class CollectionActivity : InjectActivity() {
 
     private fun initListener() {
         refreshLayout.setOnRefreshListener { initData(false) }
-        refreshLayout.setOnLoadMoreListener { initData(false) }
+        refreshLayout.setOnLoadMoreListener { initData(true) }
         multiStatusView.setLoadingButtonClickListener(View.OnClickListener { refreshLayout.autoRefresh() })
     }
 
@@ -63,7 +64,6 @@ class CollectionActivity : InjectActivity() {
         } else {
             model.page_number = 1
         }
-
         model.getCollectionList(User.currentUser.userId).observe(this, Observer {
             it?.work(onSuccess = {
                 multiStatusView.showContent()
@@ -79,7 +79,7 @@ class CollectionActivity : InjectActivity() {
                         multiStatusView.showEmpty()
                         refreshLayout.setEnableLoadMore(false)
                     }
-                    adapter.setData(it.data?.list)
+                    adapter.setData(it.data?.list as ArrayList<NewsListBean>)
                     refreshLayout.setNoMoreData(false)
                     refreshLayout.finishRefresh()
                 }
@@ -90,8 +90,7 @@ class CollectionActivity : InjectActivity() {
                 } else {
                     refreshLayout.finishRefresh(false)
                 }
-            }
-            )
+            })
         })
     }
 }
