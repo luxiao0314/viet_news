@@ -75,6 +75,7 @@ class FindFragment : InjectFragment(), AddChannelFragment.DataChangeListener {
     }
 
     override fun dataChangeListener(list: List<ChannelBean>, position: Int) {
+        list.forEach { it.editStatus = 0 }  //重置编辑状态
         model.normalList.clear()
         model.normalList.addAll(list)
         pagerAdapter.notifyDataSetChanged()
