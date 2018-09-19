@@ -11,6 +11,7 @@ import android.view.ViewGroup
 import com.chenenyu.router.annotation.Route
 import com.viet.mine.R
 import com.viet.mine.adapter.HelpAdapter
+import com.viet.mine.bean.HelpBean
 import com.viet.news.core.config.Config
 import com.viet.news.core.ui.RealVisibleHintBaseFragment
 import dagger.android.AndroidInjector
