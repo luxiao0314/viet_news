@@ -39,7 +39,21 @@ class VerifyCodeFragment : BaseFragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         mContainerView = inflater.inflate(R.layout.fragment_mine_verify_code, container, false)
+        initListener()
         return mContainerView
+    }
+
+    private fun initListener() {
+        count_down.clickWithTrigger {
+            when (arguments?.getInt("page_type")) {
+                Config.CHANGE_PHONE_NUM -> {
+                    model.startChangePhoneCountdown(Config.COUNT_DOWN_TIMER)
+                }
+                Config.SET_PHONE_NUM -> {
+                    model.startSetNewPhoneCountdown(Config.COUNT_DOWN_TIMER)
+                }
+            }
+        }
     }
 
     @SuppressLint("SetTextI18n")
