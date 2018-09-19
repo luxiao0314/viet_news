@@ -27,8 +27,12 @@ class AccountInfoViewModel(var repository: MineRepository = MineRepository()) : 
     var newPwd: MutableLiveData<String> = MutableLiveData()
     var confirmPwd: MutableLiveData<String> = MutableLiveData()
 
+    var setNewPwd: MutableLiveData<String> = MutableLiveData()
+    var confirmNewPwd: MutableLiveData<String> = MutableLiveData()
+
     var submitEnable: MutableLiveData<Boolean> = MutableLiveData()   //提交按钮是否可用
     var resetEnable: MutableLiveData<Boolean> = MutableLiveData()
+    var setupEnable: MutableLiveData<Boolean> = MutableLiveData()
 
     //区号
     var zoneCode: MutableLiveData<String> = MutableLiveData()
@@ -90,6 +94,17 @@ class AccountInfoViewModel(var repository: MineRepository = MineRepository()) : 
 
     fun reSetSubmitEnable(): Boolean = when {
         oldPwd.value.isNullOrEmpty() || newPwd.value.isNullOrEmpty() || confirmPwd.value.isNullOrEmpty() -> {
+            false
+        }
+        else -> true
+    }
+
+    fun checkSetupSubmitBtnEnable() {
+        setupEnable.value = !setNewPwd.value.isNullOrEmpty() && !confirmNewPwd.value.isNullOrEmpty()
+    }
+
+    fun setupSubmitEnable(): Boolean = when {
+        setNewPwd.value.isNullOrEmpty() || confirmNewPwd.value.isNullOrEmpty() -> {
             false
         }
         else -> true

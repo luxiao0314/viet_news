@@ -1,10 +1,13 @@
 package com.viet.mine.fragment
 
+import android.annotation.SuppressLint
+import android.arch.lifecycle.Observer
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.chenenyu.router.annotation.Route
+import com.jakewharton.rxbinding2.widget.RxTextView
 import com.safframework.ext.clickWithTrigger
 import com.viet.mine.R
 import com.viet.mine.viewmodel.AccountInfoViewModel
@@ -34,17 +37,34 @@ class SetUpPwdFragment : BaseFragment() {
         return mContainerView
     }
 
+    @SuppressLint("CheckResult")
     override fun initView(view: View) {
+        RxTextView.textChanges(new_password_input)
+                .subscribe {
+                    model.setNewPwd.value = it.toString()
+                    model.checkSetupSubmitBtnEnable()
+                }
+
+        RxTextView.textChanges(password_input_confirm)
+                .subscribe {
+                    model.confirmNewPwd.value = it.toString()
+                    model.checkSetupSubmitBtnEnable()
+                }
+
+
         confirm_btn.clickWithTrigger {
-            var oldpwd = old_password_input.text.toString()
-            val newpwd = new_password_input.text.toString()
-            val phone = arguments?.getString("phone_number")
-            val verifyCode = arguments?.getString("verify_code")
-            model.setPassword(phone, verifyCode, newpwd, this) {
-                (activity as BaseActivity).finishWithAnim()
+            if (model.setupSubmitEnable()) {
+                var oldpwd = old_password_input.text.toString()
+                val newpwd = new_password_input.text.toString()
+                val phone = arguments?.getString("phone_number")
+                val verifyCode = arguments?.getString("verify_code")
+                model.setPassword(phone, verifyCode, newpwd, this) {
+                    (activity as BaseActivity).finishWithAnim()
+                }
             }
         }
 
+        model.setupEnable.observe(this, Observer { confirm_btn.isEnabled = it != null && it })
 
     }
 }

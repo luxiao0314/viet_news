@@ -24,7 +24,7 @@
         android:height="40dp"
         android:background="@drawable/shape_gray_round_bg"
         android:gravity="center"
-        android:text="密码可使用字母、数字、字符两者组合，限8～20位"
+        android:text="@string/pwd_info"
         android:textColor="@color/text_blue"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -51,7 +51,7 @@
             android:layout_width="match_parent"
             android:layout_marginStart="5dp"
             android:layout_marginLeft="5dp"
-            android:hint="新密码"
+            android:hint="@string/new_pwd"
             android:inputType="textPassword"
             android:paddingTop="10dp"
             android:paddingBottom="10dp"
@@ -82,7 +82,7 @@
             android:layout_width="match_parent"
             android:layout_marginStart="5dp"
             android:layout_marginLeft="5dp"
-            android:hint="再次确认登录密码"
+            android:hint="@string/confirm_pwd"
             android:inputType="textPassword"
             android:paddingTop="10dp"
             android:paddingBottom="10dp"
