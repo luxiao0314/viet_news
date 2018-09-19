@@ -39,7 +39,6 @@ class VerifyCodeFragment : BaseFragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         mContainerView = inflater.inflate(R.layout.fragment_mine_verify_code, container, false)
-        model.startResetPwdCountdown(Config.COUNT_DOWN_TIMER)
         return mContainerView
     }
 
@@ -101,7 +100,7 @@ class VerifyCodeFragment : BaseFragment() {
                         Config.SET_PHONE_NUM -> {
                             when (arguments!!["change_phone_type"]) {
                                 Config.BIND_CHANGE_PHONE_NUM -> {
-                                    model.resetPhoneNum(arguments!!.getString("phone_number", ""), User.currentUser.telephone, value, SPHelper.create().getString("verify_code"), this@VerifyCodeFragment) {
+                                    model.resetPhoneNum(arguments!!.getString("phone_number", ""), phone, value, SPHelper.create().getString("verify_code"), this@VerifyCodeFragment) {
                                         toast("修改成功")
                                         (activity as BaseActivity).finishWithAnim()
                                     }
@@ -109,7 +108,7 @@ class VerifyCodeFragment : BaseFragment() {
                                 Config.BIND_SET_PHONE_NUM -> {
                                     //设置密码
                                     val bundle = Bundle()
-                                    bundle.putString("phone_number", arguments?.getString("phone_number"))
+                                    bundle.putString("phone_number", phone)
                                     bundle.putString("verify_code", value)
                                     Router.build(Config.ROUTER_MINE_EDIT_SETUP_PWD_FRAGMENT).with(bundle).goFragment(this@VerifyCodeFragment, R.id.container_framelayout)
                                 }
@@ -122,26 +121,32 @@ class VerifyCodeFragment : BaseFragment() {
         when (arguments!!["page_type"]) {
             Config.CHANGE_PHONE_NUM -> {
                 phone = Settings.create(context!!).telephone
+                model.startChangePhoneCountdown(Config.COUNT_DOWN_TIMER)
+                model.changePhoneCountDown.observe(this, Observer {
+                    if (it != null && it > 0 && it < (Config.COUNT_DOWN_TIMER / 1000).toInt()) {
+                        //正在倒计时
+                        count_down.text = String.format(getString(R.string.sending_code_s), it.toString())
+                    } else {
+                        //倒计时未开始/已结束
+                        count_down.text = getString(R.string.get_vcode)//重新发送验证码
+                    }
+                })
             }
             Config.SET_PHONE_NUM -> {
                 phone = arguments!!.getString("phone_number", "")
+                model.startSetNewPhoneCountdown(Config.COUNT_DOWN_TIMER)
+                model.setNewPhoneCountDown.observe(this, Observer {
+                    if (it != null && it > 0 && it < (Config.COUNT_DOWN_TIMER / 1000).toInt()) {
+                        //正在倒计时
+                        count_down.text = String.format(getString(R.string.sending_code_s), it.toString())
+                    } else {
+                        //倒计时未开始/已结束
+                        count_down.text = getString(R.string.get_vcode)//重新发送验证码
+                    }
+                })
             }
         }
-
-
         phone_num.text = if (phone.isNotBlank()) "验证码已经发送至${phone.replaceRange(3..6, "****")}" else ""
-        initData()
     }
 
-    private fun initData() {
-        model.countDown.observe(this, Observer {
-            if (it != null && it > 0 && it < (Config.COUNT_DOWN_TIMER / 1000).toInt()) {
-                //正在倒计时
-                count_down.text = String.format(getString(R.string.sending_code_s), it.toString())
-            } else {
-                //倒计时未开始/已结束
-                count_down.text = getString(R.string.get_vcode)//重新发送验证码
-            }
-        })
-    }
 }
