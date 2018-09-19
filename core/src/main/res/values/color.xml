@@ -31,6 +31,7 @@
     <color name="text_light_gray">#9B9B9B</color>
     <color name="red_text">#F24B4F</color>
     <color name="red_hint">#F77276</color>
+    <color name="red_tran">#55FF0032</color>
     <color name="red_warn">#FF0032</color>
     <color name="indicator_yellow">#FFAE28</color>
     <!--规范设计End-->

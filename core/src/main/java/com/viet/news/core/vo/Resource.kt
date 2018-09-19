@@ -26,14 +26,16 @@ import com.viet.news.dialog.ProgressDialogFragment
  *
  * @param <T>
 </T> */
-class Resource<T>(val status: Status, val data: T?, val message: String? = "") {
+class Resource<T>(private var status: Status, var data: T? = null, var message: String? = "") {
 
     /**
      * lambda会调用最后一个参数，因此成功放最后
      * 例如 this.work { ... }
+     * 1,onError:默认使用toast(message),如果重写了onError方法,需要自行写toast
+     * 2,onLoading:默认不弹loading,需要则onLoading = { true }
+     * 3,resource:更换为只在初始化laoding创建,error和success采用同一对象,否则dialog无法取消
      */
     fun work(onLoading: () -> Boolean = { false }, onError: () -> Unit = { toast(message) }, onSuccess: () -> Unit) {
-        var dialog: ProgressDialogFragment? = null
         when (status) {
             Status.LOADING -> if (onLoading()) {
                 dialog = ProgressDialogFragment.create(IActivityManager.lastActivity() as FragmentActivity) as ProgressDialogFragment
@@ -49,15 +51,26 @@ class Resource<T>(val status: Status, val data: T?, val message: String? = "") {
         }
     }
 
-    companion object {
-        fun <T> success(data: T?): Resource<T> = Resource(Status.SUCCESS, data, null)
-        fun <T> error(data: T?, message: String): Resource<T> = Resource(Status.ERROR, data, message)
-        fun <T> loading(data: T?): Resource<T> = Resource(Status.LOADING, data, null)
+    var dialog: ProgressDialogFragment? = null
+
+    fun success(data: T?): Resource<T> {
+        this.status = Status.SUCCESS
+        this.data = data
+        return this
     }
 
-    override fun toString(): String {
-        return "Resource(status=$status, data=$data, message=$message)"
+    fun error(message: String): Resource<T>? {
+        this.message = message
+        this.status = Status.ERROR
+        return this
     }
+
+    fun loading(): Resource<T>? {
+        this.status = Status.LOADING
+        return this
+    }
+
+    override fun toString(): String = "Resource(status=$status, data=$data, message=$message)"
 
     override fun hashCode(): Int {
         var result = status.hashCode()
