@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical">
 
     <com.viet.news.core.ui.widget.TitleBar
@@ -17,7 +18,7 @@
         android:layout_centerHorizontal="true"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="40dp"
-        android:text="验证码已经发送至 187***4320" />
+        tools:text="验证码已经发送至 187***4320" />
 
     <com.viet.news.core.ui.code.CodeView
         android:id="@+id/password_view"
@@ -43,7 +44,7 @@
         style="@style/text.14.blue.bold"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="10dp"
-        android:text="重新发送验证码" />
+        tools:text="重新发送验证码" />
 
     <com.viet.news.core.ui.code.KeyboardView
         android:id="@+id/keyboard"

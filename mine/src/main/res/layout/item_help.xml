@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <com.viet.news.core.ui.widget.CommonItem
+        android:id="@+id/item_help"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/item_height"
+        app:left_text="@string/my_wallet"
+        app:next_icon_visibility="true"
+        app:right_text_visibility="false" />
+</LinearLayout>
