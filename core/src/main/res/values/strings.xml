@@ -123,6 +123,7 @@
 
     <!--common-->
     <string name="confirm">Confirm</string>
+    <string name="delete">delete</string>
 
     <!--个人主页-->
     <string name="funs">Funs</string>

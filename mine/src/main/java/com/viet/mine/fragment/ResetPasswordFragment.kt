@@ -1,10 +1,13 @@
 package com.viet.mine.fragment
 
+import android.annotation.SuppressLint
+import android.arch.lifecycle.Observer
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.chenenyu.router.annotation.Route
+import com.jakewharton.rxbinding2.widget.RxTextView
 import com.viet.mine.R
 import com.viet.mine.viewmodel.AccountInfoViewModel
 import com.viet.news.core.config.Config
@@ -26,14 +29,43 @@ class ResetPasswordFragment : BaseFragment() {
         return mContainerView
     }
 
+    @SuppressLint("CheckResult")
     override fun initView(view: View) {
+        //手机号
+        RxTextView.textChanges(old_password_input)
+                .subscribe {
+                    model.oldPwd.value = it.toString()
+                    model.checkResetSubmitBtnEnable()
+                }
+
+        //手机号
+        RxTextView.textChanges(new_password_input)
+                .subscribe {
+                    model.newPwd.value = it.toString()
+                    model.checkResetSubmitBtnEnable()
+                }
+
+        //手机号
+        RxTextView.textChanges(password_input_confirm)
+                .subscribe {
+                    model.confirmPwd.value = it.toString()
+                    model.checkResetSubmitBtnEnable()
+                }
+
         confirm_btn.clickWithTrigger {
-            val oldPwd = old_password_input.text.toString()
-            val newPwd = new_password_input.text.toString()
-            model.resetPwdWithOldPwd(oldPwd, newPwd,this@ResetPasswordFragment) {
-                (activity as BaseActivity).finishWithAnim()
-                toast("修改成功")
+            if (model.reSetSubmitEnable()) {
+                val oldPwd = old_password_input.text.toString()
+                val newPwd = new_password_input.text.toString()
+                model.resetPwdWithOldPwd(oldPwd, newPwd, this@ResetPasswordFragment) {
+                    (activity as BaseActivity).finishWithAnim()
+                    toast("修改成功")
+                }
             }
         }
+
+
+        model.resetEnable.observe(this, Observer { confirm_btn.isEnabled = it != null && it  })
     }
+
+
 }

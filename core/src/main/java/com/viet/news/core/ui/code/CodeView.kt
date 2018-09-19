@@ -79,7 +79,7 @@ class CodeView : View {
         if (attrs == null) {
             length = 6
             borderColor = Color.parseColor("#E1E1E1")
-            borderSelectColor = Color.parseColor("#9666FB")
+            borderSelectColor = Color.parseColor("#343434")
             borderWidth = 1f
             dividerColor = Color.parseColor("#F71F01")
             dividerWidth = 1f

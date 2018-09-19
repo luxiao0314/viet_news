@@ -11,7 +11,7 @@
         android:layout_height="match_parent"
         android:background="@android:color/holo_red_light"
         android:gravity="center"
-        android:text="删除"
+        android:text="@string/delete"
         android:textColor="@android:color/white"
         android:textSize="16sp"
         android:textStyle="bold"/>
