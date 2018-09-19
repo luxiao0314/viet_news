@@ -23,8 +23,12 @@ class AccountInfoViewModel(var repository: MineRepository = MineRepository()) : 
 
 
     var nickName: MutableLiveData<String> = MutableLiveData()    //提交昵称
+    var oldPwd: MutableLiveData<String> = MutableLiveData()
+    var newPwd: MutableLiveData<String> = MutableLiveData()
+    var confirmPwd: MutableLiveData<String> = MutableLiveData()
 
     var submitEnable: MutableLiveData<Boolean> = MutableLiveData()   //提交按钮是否可用
+    var resetEnable: MutableLiveData<Boolean> = MutableLiveData()
 
     //区号
     var zoneCode: MutableLiveData<String> = MutableLiveData()
@@ -68,18 +72,31 @@ class AccountInfoViewModel(var repository: MineRepository = MineRepository()) : 
         countValue = -1L
     }
 
-
+    /**************************************以下是状态判断****************************************/
     fun checkNickNameSubmitBtnEnable() {
-        submitEnable.value = nickName.value != null && nickName.value!!.isNotEmpty()
+        submitEnable.value = !nickName.value.isNullOrEmpty()
     }
 
     fun nickNameSubmitEnable(): Boolean = when {
-        nickName.value == null || nickName.value.isNullOrBlank() -> {
+        nickName.value.isNullOrEmpty() -> {
             false
         }
         else -> true
     }
 
+    fun checkResetSubmitBtnEnable() {
+        resetEnable.value = !oldPwd.value.isNullOrEmpty() && !newPwd.value.isNullOrEmpty() && !confirmPwd.value.isNullOrEmpty()
+    }
+
+    fun reSetSubmitEnable(): Boolean = when {
+        oldPwd.value.isNullOrEmpty() || newPwd.value.isNullOrEmpty() || confirmPwd.value.isNullOrEmpty() -> {
+            false
+        }
+        else -> true
+    }
+
+
+    /**************************************以下是网络请求****************************************/
 
     //修改昵称
     fun updateNickName(owner: LifecycleOwner, nickname: String, finish: (isSuccess: Boolean) -> Unit) {
