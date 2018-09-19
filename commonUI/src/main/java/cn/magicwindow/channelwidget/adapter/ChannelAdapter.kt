@@ -93,6 +93,9 @@ class ChannelAdapter(context: Context?, recyclerView: RecyclerView, private val 
         }
     }
 
+    /**
+     * 拖动结束
+     */
     override fun onItemFinished(position: Int) {
         dataChanged = true
         channelItemClickListener?.onChannelItemMoved(mMyChannelItems, position - mMyHeaderCount)
@@ -147,9 +150,10 @@ class ChannelAdapter(context: Context?, recyclerView: RecyclerView, private val 
             val position = holder.adapterPosition
             if (isEditMode && mMyChannelItems[position - mMyHeaderCount].tabType == 2) {
                 moveMyToOther(position)
-                channelItemClickListener?.onChannelItemMoved(mMyChannelItems, position - mMyHeaderCount)
+                channelItemClickListener?.onChannelItemMoved(mMyChannelItems, position - mMyHeaderCount)    //编辑下点击我的频道
             } else {
-                channelItemClickListener?.onChannelItemClick(mMyChannelItems, position - mMyHeaderCount)
+                //不编辑下点我的频道,需要刷新新闻
+                channelItemClickListener?.clickMyChannel(mMyChannelItems, position - mMyHeaderCount)
             }
         }
 
@@ -186,6 +190,7 @@ class ChannelAdapter(context: Context?, recyclerView: RecyclerView, private val 
         override fun clickRecChannel(mRecyclerView: RecyclerView, holder: ChannelViewHolder) {
             val position = holder.adapterPosition
             moveOtherToMy(position)
+            //点击其他频道
             channelItemClickListener?.onChannelItemMoved(mMyChannelItems, position - mMyChannelItems.size - mRecHeaderCount - mMyHeaderCount)
         }
     }
@@ -268,8 +273,8 @@ class ChannelAdapter(context: Context?, recyclerView: RecyclerView, private val 
 
     interface ChannelItemClickListener {
         fun onCloseClick(list: List<ChannelBean>)
-        fun onChannelItemClick(list: List<ChannelBean>, position: Int)
-        fun onChannelItemMoved(list: List<ChannelBean>, position: Int)
+        fun clickMyChannel(list: List<ChannelBean>, position: Int)
+        fun onChannelItemMoved(list: List<ChannelBean>, position: Int)  //编辑下:点我的频道,和推动,不编辑下点其他频道;都不需要刷新新闻列表
     }
 
     companion object {
