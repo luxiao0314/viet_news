@@ -17,13 +17,11 @@ package cn.magicwindow.wheelview.adapter
 
 import android.content.Context
 import android.graphics.Typeface
-import android.util.Log
 import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import java.time.format.TextStyle
 
 /**
  * Abstract wheel adapter provides common functionality for adapters.
@@ -165,7 +163,6 @@ abstract class AbstractWheelTextAdapter @JvmOverloads protected constructor(// C
                 text = view?.findViewById(textResource)
             }
         } catch (e: ClassCastException) {
-            Log.e("AbstractWheelAdapter", "You must supply a resource ID for a TextView")
             throw IllegalStateException(
                     "AbstractWheelAdapter requires the resource ID to be a TextView", e)
         }

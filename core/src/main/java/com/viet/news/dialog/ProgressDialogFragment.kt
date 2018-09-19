@@ -1,6 +1,5 @@
 package com.viet.news.dialog
 
-import android.os.Bundle
 import android.support.v4.app.FragmentActivity
 import com.viet.news.core.R
 
@@ -23,7 +22,6 @@ class ProgressDialogFragment : BaseDialogFragment() {
         fun create(context: FragmentActivity): BaseDialogFragment {
             return DialogBuilder(context, ProgressDialogFragment::class.java)
                     .setCancelableOnTouchOutside(false)
-                    .setDimAmount(0F)
                     .showAllowingStateLoss()
         }
     }
@@ -37,13 +35,6 @@ class ProgressDialogFragment : BaseDialogFragment() {
     fun setOnCancelListener(listener: ProgressCancelListener): ProgressDialogFragment {
         this.listener = listener
         return this
-    }
-
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        if (arguments == null) {
-            throw IllegalArgumentException("use ProgressDialogBuilder to construct this dialog")
-        }
     }
 
     override fun onDestroyView() {

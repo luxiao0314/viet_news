@@ -20,7 +20,6 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.Typeface
 import android.text.TextUtils
-import android.util.Log
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
@@ -94,7 +93,6 @@ class NumericWheelAdapter(context: Context, private val minValue: Int, private v
 
     override fun configureTextView(view: TextView?) {
         super.configureTextView(view)
-//        Log.e("aaron", "currentItem:$currentItem,currentValue:$currentValue,textSize:$textSize,selectTextSize:$selectTextSize")
         if (currentItem == currentValue) {
             view?.setTextColor(selectTextColor)
             view?.textSize = selectTextSize.toFloat()

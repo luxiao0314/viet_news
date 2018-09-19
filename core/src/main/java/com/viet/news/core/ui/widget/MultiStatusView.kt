@@ -6,7 +6,6 @@ import android.support.annotation.DrawableRes
 import android.support.annotation.LayoutRes
 import android.text.TextUtils
 import android.util.AttributeSet
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,6 +14,7 @@ import android.view.animation.LinearInterpolator
 import android.view.animation.RotateAnimation
 import android.widget.RelativeLayout
 import android.widget.TextView
+import com.safframework.log.L
 import com.viet.news.core.R
 import com.viet.news.core.ui.LoadingInterface
 import java.util.*
@@ -209,7 +209,7 @@ class MultiStatusView @JvmOverloads constructor(context: Context, attrs: Attribu
         when (type) {
             TYPE_EMPTY -> {
                 initEmptyValues()
-                Log.i(TAG, "type: TYPE_EMPTY")
+                L.i(TAG, "type: TYPE_EMPTY")
                 if (loadingAnimationView != null && loadingAnimationView.animation != null) {
                     loadingAnimationView.animation.cancel()
                 }
@@ -224,7 +224,7 @@ class MultiStatusView @JvmOverloads constructor(context: Context, attrs: Attribu
             }
             TYPE_ERROR -> {
                 initErrorValues()
-                Log.i(TAG, "type: TYPE_ERROR")
+                L.i(TAG, "type: TYPE_ERROR")
 
                 if (!TextUtils.isEmpty(mErrorMessage)) {
                     val errorMsg = mErrorView!!.findViewById<TextView>(R.id.text_error_msg)
@@ -239,7 +239,7 @@ class MultiStatusView @JvmOverloads constructor(context: Context, attrs: Attribu
                 showViewById(mErrorView!!.id)
             }
             TYPE_LOADING -> {
-                Log.i(TAG, "type: TYPE_LOADING")
+                L.i(TAG, "type: TYPE_LOADING")
                 initLoadingValues()
                 if (loadingAnimationView != null) {
                     loadingAnimationView.startAnimation(rotateAnimation)
@@ -248,7 +248,7 @@ class MultiStatusView @JvmOverloads constructor(context: Context, attrs: Attribu
                 showViewById(mLoadingView!!.id)
             }
             else -> {
-                Log.i(TAG, "type: TYPE_CONTENT")
+                L.i(TAG, "type: TYPE_CONTENT")
                 if (loadingAnimationView != null && loadingAnimationView.animation != null) {
                     loadingAnimationView.animation.cancel()
                 }

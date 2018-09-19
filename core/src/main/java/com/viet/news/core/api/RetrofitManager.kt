@@ -1,15 +1,15 @@
 package com.viet.news.core.api
 
+import com.safframework.http.interceptor.LoggingInterceptor
 import com.viet.news.core.BuildConfig
-import com.viet.news.core.http.interceptor.*
+import com.viet.news.core.http.interceptor.HeaderInterceptor
+import com.viet.news.core.http.interceptor.HttpLoginInterceptor
+import com.viet.news.core.http.interceptor.TokenAuthenticator
+import com.viet.news.core.utils.GsonFactory
 import com.viet.news.core.utils.LiveDataCallAdapterFactory
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import java.util.concurrent.TimeUnit
-
-import com.viet.news.core.http.interceptor.TokenAuthenticator
-import com.viet.news.core.http.interceptor.HttpLoginInterceptor
-import com.viet.news.core.utils.GsonFactory
 
 class RetrofitManager private constructor() {
 
@@ -19,7 +19,7 @@ class RetrofitManager private constructor() {
 
     init {
         val loggingInterceptor = LoggingInterceptor.Builder()
-                .loggable(true)
+                .hideVerticalLine()
                 .request()
                 .requestTag("Request")
                 .response()
@@ -33,16 +33,13 @@ class RetrofitManager private constructor() {
                 .addInterceptor(HeaderInterceptor())
                 .addInterceptor(HttpLoginInterceptor())
                 .authenticator(TokenAuthenticator())
-//                .addInterceptor(NetworkExceptionInterceptor())
                 .addInterceptor(loggingInterceptor.build())
                 .build()
 
         retrofit = Retrofit.Builder()
                 .baseUrl(ApiService.MAGICBOX_API)
-//                .addConverterFactory(GsonConverterFactory.create())
                 .addConverterFactory(GsonFactory.create())
                 .addCallAdapterFactory(LiveDataCallAdapterFactory())
-//                .addCallAdapterFactory(RxJava2CallAdapterFactory.createWithScheduler(Schedulers.io()))
                 .client(okHttpClient)
                 .build()
 

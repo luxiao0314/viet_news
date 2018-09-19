@@ -1,19 +1,16 @@
 package com.viet.mine.adapter
 
-import android.support.v7.widget.GridLayoutManager
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
 import com.safframework.ext.clickWithTrigger
-import com.viet.follow.adapter.NewsCellAdapter
 import com.viet.mine.R
 import com.viet.news.core.domain.response.NewsListBean
 import com.viet.news.core.ext.load
 import com.viet.news.core.ui.BaseAdapter
 import com.viet.news.core.ui.widget.SwipeLayout
 import com.viet.news.core.utils.DateUtils
-import kotlinx.android.synthetic.main.cell_collection_picture_three.view.*
 import java.util.*
 import javax.inject.Inject
 
@@ -34,7 +31,7 @@ class CollectionAdapter @Inject constructor() : BaseAdapter<NewsListBean>(), Swi
 
     override fun getLayoutId(viewType: Int): Int {
         return when (viewType) {
-            1 -> R.layout.cell_collection_picture_three
+            1 -> R.layout.cell_collection_picture_one
             2 -> R.layout.cell_collection_picture_one
             else -> R.layout.cell_collection_text_only
         }
@@ -60,12 +57,6 @@ class CollectionAdapter @Inject constructor() : BaseAdapter<NewsListBean>(), Swi
         }
 
         when (getItemViewType(position)) {
-            1 -> {
-                holder.itemView.rv_news_cell.layoutManager = GridLayoutManager(context, 3)
-                val cellAdapter = NewsCellAdapter()
-                holder.itemView.rv_news_cell.adapter = cellAdapter
-                cellAdapter.addData(t.image_array)
-            }
             2 -> holder.itemView.findViewById<ImageView>(R.id.iv_pic)?.load(t.image_array[0].cover)
         }
     }
