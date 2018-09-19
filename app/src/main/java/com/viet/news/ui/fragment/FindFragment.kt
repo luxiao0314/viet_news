@@ -56,10 +56,7 @@ class FindFragment : InjectFragment(), AddChannelFragment.DataChangeListener {
 
     private fun initData() {
         model.getChannelAllList(this)
-        model.getChannelList(this) {
-            id_tab_pager_indicator.setDataList(model.normalList)
-            pagerAdapter.setData(model.normalList)
-        }
+        model.getChannelList(this) { update(model.normalList) }
     }
 
     override fun initView(view: View) {
@@ -76,11 +73,13 @@ class FindFragment : InjectFragment(), AddChannelFragment.DataChangeListener {
 
     override fun dataChangeListener(list: List<ChannelBean>, position: Int) {
         list.forEach { it.editStatus = 0 }  //重置编辑状态
-        model.normalList.clear()
-        model.normalList.addAll(list)
-        pagerAdapter.notifyDataSetChanged()
-        id_tab_pager_indicator.setDataList(model.normalList)
+        update(list)
         if (position != 100000) id_view_Pager.currentItem = position
+    }
+
+    private fun update(list: List<ChannelBean>) {
+        id_tab_pager_indicator.setDataList(list)
+        pagerAdapter.setData(list)
     }
 
     override fun onChannelItemMoved(list: List<ChannelBean>, function: () -> Unit) {
