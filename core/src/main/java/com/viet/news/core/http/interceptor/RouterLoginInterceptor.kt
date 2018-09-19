@@ -18,11 +18,5 @@ class RouterLoginInterceptor : RouteInterceptor {
             } else {
                 routerWithAnim(Config.ROUTER_LOGIN_ACTIVITY).anim(R.anim.dialog_push_bottom_in, R.anim.dialog_push_bottom_out).go(IActivityManager.lastActivity())
                 chain!!.intercept()    //true表示拦截
-//                val context = chain?.context
-//                if (context is FragmentActivity) {
-//                    LoginDialog.create(context)
-//                } else if (context is Fragment) {
-//                    LoginDialog.create(context.activity!!)
-//                }
             }
 }

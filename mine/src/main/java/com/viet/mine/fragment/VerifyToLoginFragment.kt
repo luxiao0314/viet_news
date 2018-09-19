@@ -12,6 +12,7 @@ import com.viet.mine.viewmodel.LoginViewModel
 import com.viet.news.core.config.Config
 import com.viet.news.core.config.VerifyCodeTypeEnum
 import com.viet.news.core.delegate.viewModelDelegate
+import com.viet.news.core.domain.User
 import com.viet.news.core.ext.clickWithTrigger
 import com.viet.news.core.ui.RealVisibleHintBaseFragment
 import kotlinx.android.synthetic.main.fragment_login_verify.*
@@ -33,6 +34,7 @@ class VerifyToLoginFragment : RealVisibleHintBaseFragment() {
 
     @SuppressLint("CheckResult")
     override fun initView(view: View) {
+        phone_input.setText(User.currentUser.telephone)
         // 判断是否倒计时内
         model.countDown4Login.observe(this, Observer<Int> {
             if (it != null && it > 0 && it < (Config.COUNT_DOWN_TIMER / 1000).toInt()) {
@@ -48,7 +50,6 @@ class VerifyToLoginFragment : RealVisibleHintBaseFragment() {
 
         //注册按钮能否点击更新
         model.vCodeLoginButtonEnable.observe(this, Observer { login_btn.isEnabled = it != null && it })
-
 
         //手机号
         RxTextView.textChanges(phone_input)

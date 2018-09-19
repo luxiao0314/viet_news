@@ -141,7 +141,8 @@ class FindPwdViewModel(private var repository: LoginRepository = LoginRepository
                         stopSignInCountdown()
                         toast(it)
                         if (it == "用户不存在") onError()
-                    }
+                    },
+                    onLoading = { true }
             )
         })
     }
@@ -153,6 +154,7 @@ class FindPwdViewModel(private var repository: LoginRepository = LoginRepository
                 .observe(owner, Observer { resource ->
                     resource?.work(
                             onSuccess = { onValidate() }
+                            , onLoading = { true }
                     )
                 })
     }

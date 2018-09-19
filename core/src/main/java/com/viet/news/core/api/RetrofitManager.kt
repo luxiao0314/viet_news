@@ -4,7 +4,6 @@ import com.safframework.http.interceptor.LoggingInterceptor
 import com.viet.news.core.BuildConfig
 import com.viet.news.core.http.interceptor.HeaderInterceptor
 import com.viet.news.core.http.interceptor.HttpLoginInterceptor
-import com.viet.news.core.http.interceptor.TokenAuthenticator
 import com.viet.news.core.utils.GsonFactory
 import com.viet.news.core.utils.LiveDataCallAdapterFactory
 import okhttp3.OkHttpClient
@@ -32,7 +31,7 @@ class RetrofitManager private constructor() {
                 .connectTimeout((10 * 1000).toLong(), TimeUnit.MILLISECONDS)
                 .addInterceptor(HeaderInterceptor())
                 .addInterceptor(HttpLoginInterceptor())
-                .authenticator(TokenAuthenticator())
+//                .authenticator(TokenAuthenticator())
                 .addInterceptor(loggingInterceptor.build())
                 .build()
 

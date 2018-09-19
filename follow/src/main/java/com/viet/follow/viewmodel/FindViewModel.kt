@@ -37,6 +37,7 @@ class FindViewModel(var repository: FindRepository = FindRepository()) : BaseVie
     fun getChannelList(owner: LifecycleOwner, function: () -> Unit) {
         repository.getChannelList().observe(owner, Observer { it ->
             it?.work {
+                normalList.clear()
                 it.data?.forEach { normalList.add(ChannelBean(it.channelName, it.id, 2)) }
                 function()
             }

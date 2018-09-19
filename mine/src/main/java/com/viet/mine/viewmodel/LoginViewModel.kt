@@ -16,6 +16,7 @@ import com.viet.news.core.config.VerifyCodeTypeEnum
 import com.viet.news.core.domain.LoginEvent
 import com.viet.news.core.domain.User
 import com.viet.news.core.domain.request.SignInParams
+import com.viet.news.core.ext.toast
 import com.viet.news.core.ui.App
 import com.viet.news.core.ui.BaseFragment
 import com.viet.news.core.utils.RxBus
@@ -228,8 +229,10 @@ class LoginViewModel(private var repository: LoginRepository = LoginRepository()
         //发送验证码接口
         repository.sendSMS(phone, zoneCode.value, type).observe(owner, Observer { resource ->
             resource?.work(
+                    onLoading = { true },
                     onSuccess = { onSent() },
                     onError = {
+                        toast(it)
                         //发送验证码失败，结束倒计时
                         when (type) {
                             VerifyCodeTypeEnum.LOGIN -> stopLoginCountdown()
@@ -237,8 +240,7 @@ class LoginViewModel(private var repository: LoginRepository = LoginRepository()
                             else -> {
                             }
                         }
-                    },
-                    onLoading = { true }
+                    }
             )
         })
     }

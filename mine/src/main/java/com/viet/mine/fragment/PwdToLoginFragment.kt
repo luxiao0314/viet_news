@@ -13,6 +13,7 @@ import com.viet.mine.R
 import com.viet.mine.activity.FindPwdActivity
 import com.viet.mine.viewmodel.LoginViewModel
 import com.viet.news.core.delegate.viewModelDelegate
+import com.viet.news.core.domain.User
 import com.viet.news.core.ui.RealVisibleHintBaseFragment
 import kotlinx.android.synthetic.main.fragment_login_pwd.*
 
@@ -33,6 +34,7 @@ class PwdToLoginFragment : RealVisibleHintBaseFragment() {
 
     @SuppressLint("CheckResult")
     override fun initView(view: View) {
+        phone_input.setText(User.currentUser.telephone)
 
         //注册按钮能否点击更新
         model.pwdLoginButtonEnable.observe(this, Observer { login_btn.isEnabled = it != null && it })

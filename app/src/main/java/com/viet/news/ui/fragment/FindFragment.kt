@@ -80,7 +80,6 @@ class FindFragment : InjectFragment(), AddChannelFragment.DataChangeListener {
         model.normalList.addAll(list)
         pagerAdapter.notifyDataSetChanged()
         id_tab_pager_indicator.setDataList(model.normalList)
-        id_tab_pager_indicator.notifyDataSetChanged()
         if (position != 100000) id_view_Pager.currentItem = position
     }
 
