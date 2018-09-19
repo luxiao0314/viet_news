@@ -17,6 +17,11 @@ class AccountInfoViewModel(var repository: MineRepository = MineRepository()) : 
             set(value) {
                 field = if (value == 0L) -1L else value
             }
+
+        var setNewPhoneCountValue = -1L//倒计时
+            set(value) {
+                field = if (value == 0L) -1L else value
+            }
     }
 
     var selectList = ArrayList<LocalMedia>()
@@ -38,31 +43,39 @@ class AccountInfoViewModel(var repository: MineRepository = MineRepository()) : 
     var zoneCode: MutableLiveData<String> = MutableLiveData()
 
     //倒计时
-    var countDown: MutableLiveData<Int> = MutableLiveData()//注册用的倒计时
-    var countDownTimeUnit: CountDownTimer? = null
+    var changePhoneCountDown: MutableLiveData<Int> = MutableLiveData()//更换手机号用的倒计时
+    var changePhoneCountDownTimeUnit: CountDownTimer? = null
+
+    var setNewPhoneCountDown: MutableLiveData<Int> = MutableLiveData()//更换手机号用的倒计时
+    var setNewPhoneCountDownTimeUnit: CountDownTimer? = null
 
     init {
         zoneCode.value = "86"
 //        //初始化倒计时，若上次倒计时未完成，则继续
-        if (FindPwdViewModel.countValue != -1L) {
-            countDown.value = (FindPwdViewModel.countValue / 1000).toInt()
-            startResetPwdCountdown(FindPwdViewModel.countValue)
+        if (AccountInfoViewModel.countValue != -1L) {
+            changePhoneCountDown.value = (AccountInfoViewModel.countValue / 1000).toInt()
+            startChangePhoneCountdown(AccountInfoViewModel.countValue)
+        }
+
+        if (AccountInfoViewModel.setNewPhoneCountValue != -1L) {
+            changePhoneCountDown.value = (AccountInfoViewModel.setNewPhoneCountValue / 1000).toInt()
+            startSetNewPhoneCountdown(AccountInfoViewModel.setNewPhoneCountValue)
         }
     }
 
     /**
      * 开始倒计时
      */
-    fun startResetPwdCountdown(time: Long) {
-        if (FindPwdViewModel.countValue == -1L) {
-            countDownTimeUnit = object : CountDownTimer(time, 1000) {
+    fun startChangePhoneCountdown(time: Long) {
+        if (AccountInfoViewModel.countValue == -1L) {
+            changePhoneCountDownTimeUnit = object : CountDownTimer(time, 1000) {
                 override fun onFinish() {
-                    countDown.value = 0
+                    changePhoneCountDown.value = 0
                     FindPwdViewModel.countValue = -1L
                 }
 
                 override fun onTick(millisUntilFinished: Long) {
-                    countDown.value = (millisUntilFinished / 1000).toInt()
+                    changePhoneCountDown.value = (millisUntilFinished / 1000).toInt()
                     FindPwdViewModel.countValue = millisUntilFinished
                 }
             }.start()
@@ -70,11 +83,39 @@ class AccountInfoViewModel(var repository: MineRepository = MineRepository()) : 
     }
 
     //结束【注册验证码】倒计时
-    fun stopSignInCountdown() {
-        countDownTimeUnit?.cancel()
-        countDown.value = 0
+    fun stopChangePhoneCountdown() {
+        changePhoneCountDownTimeUnit?.cancel()
+        changePhoneCountDown.value = 0
         countValue = -1L
     }
+
+    /**
+     * 开始倒计时
+     */
+    fun startSetNewPhoneCountdown(time: Long) {
+        if (AccountInfoViewModel.setNewPhoneCountValue == -1L) {
+            setNewPhoneCountDownTimeUnit = object : CountDownTimer(time, 1000) {
+                override fun onFinish() {
+                    setNewPhoneCountDown.value = 0
+                    AccountInfoViewModel.countValue = -1L
+                }
+
+                override fun onTick(millisUntilFinished: Long) {
+                    setNewPhoneCountDown.value = (millisUntilFinished / 1000).toInt()
+                    AccountInfoViewModel.countValue = millisUntilFinished
+                }
+            }.start()
+        }
+    }
+
+    //结束【设置新手机验证码】倒计时
+    fun stopSetNewPhoneCountdown() {
+        setNewPhoneCountDownTimeUnit?.cancel()
+        setNewPhoneCountDown.value = 0
+        setNewPhoneCountValue = -1L
+    }
+
+
 
     /**************************************以下是状态判断****************************************/
     fun checkNickNameSubmitBtnEnable() {

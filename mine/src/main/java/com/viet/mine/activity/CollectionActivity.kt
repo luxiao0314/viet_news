@@ -110,7 +110,7 @@ class CollectionActivity : InjectActivity() {
         } else {
             model.page_number = 1
         }
-        model.getCollectionList(User.currentUser.userId).observe(this, Observer {
+        model.getCollectionList(User.currentUser.userId).observe(this, Observer { it ->
             it?.work(onSuccess = {
                 multiStatusView.showContent()
                 if (loadMore) {

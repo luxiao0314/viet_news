@@ -1,6 +1,7 @@
 package com.viet.news.core.domain.request
 
 import cn.magicwindow.core.utils.DeviceInfoUtils
+import cn.magicwindow.core.utils.EncryptUtils
 import com.viet.news.core.ui.App
 import java.io.Serializable
 
@@ -18,6 +19,9 @@ class SignInParams : Serializable {
     var oauth_type: String? = ""
     var oauth_user_id: String? = ""
     var password: String? = ""
+        set(value) {
+            field = EncryptUtils.encryptPayPassword(value?:"")
+        }
     var phone_number: String? = ""
     var verify_code: String? = ""
 //    var email: String? = ""

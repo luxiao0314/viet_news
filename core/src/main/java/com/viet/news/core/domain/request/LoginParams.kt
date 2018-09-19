@@ -1,6 +1,7 @@
 package com.viet.news.core.domain.request
 
 import cn.magicwindow.core.utils.DeviceInfoUtils
+import cn.magicwindow.core.utils.EncryptUtils
 import com.viet.news.core.config.LoginEnum
 import com.viet.news.core.ui.App
 import java.io.Serializable
@@ -16,6 +17,9 @@ class LoginParams : Serializable {
     var phone_number: String? = ""
     var validation_code: String? = ""
     var password: String? = ""
+        set(value) {
+            field = EncryptUtils.encryptPayPassword(value?:"")
+        }
     var oauth_expires: String? = ""
     var oauth_token: String? = ""
     var oauth_user_id: String? = ""

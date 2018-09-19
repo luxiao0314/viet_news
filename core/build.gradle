@@ -26,6 +26,12 @@ android {
         }
     }
 
+    sourceSets {
+        main {
+            jniLibs.srcDirs = ['libs']
+        }
+    }
+
 }
 
 
@@ -33,8 +39,8 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
     testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'com.android.support.test:runner:1.0.2'
-    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+    androidTestImplementation "com.android.support.test:runner:$rootProject.test_runner"
+    androidTestImplementation "com.android.support.test.espresso:espresso-core:$rootProject.espresso_core"
     api "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 
 
@@ -120,4 +126,11 @@ dependencies {
 
     api "com.chenenyu.router:router:$rootProject.router"
     api "com.google.zxing:core:$rootProject.zxing"
+}
+
+task nativeLibsToJar(type: Jar, description: 'create a jar archive of the native libs') {
+    destinationDir file("$buildDir/native-libs")
+    baseName 'native-libs'
+    from fileTree(dir: 'libs', include: '**/*.so')
+    into 'lib/'
 }

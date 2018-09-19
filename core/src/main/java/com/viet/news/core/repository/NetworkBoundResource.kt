@@ -1,9 +1,8 @@
 package com.viet.news.core.repository
 
-import android.arch.lifecycle.LiveData
-import android.arch.lifecycle.MediatorLiveData
-import android.arch.lifecycle.MutableLiveData
+import android.arch.lifecycle.*
 import android.support.annotation.MainThread
+import android.support.annotation.NonNull
 import android.support.annotation.WorkerThread
 import com.viet.news.core.api.ApiEmptyResponse
 import com.viet.news.core.api.ApiErrorResponse
@@ -102,6 +101,11 @@ abstract class NetworkBoundResource<ResultType, RequestType> @MainThread constru
     // 网络获取失败
     @MainThread
     protected open fun onFetchFailed() {
+    }
+
+    @MainThread
+    fun cancelAll(owner: LifecycleOwner) {
+        result.removeObservers(owner)
     }
 
 }
