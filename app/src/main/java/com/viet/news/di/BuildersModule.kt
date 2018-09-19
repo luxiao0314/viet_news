@@ -8,6 +8,7 @@ import com.viet.follow.fragment.FansTabFragment
 import com.viet.follow.fragment.NewsFragment
 import com.viet.mine.activity.*
 import com.viet.mine.fragment.AccountInAndOutFragment
+import com.viet.mine.fragment.HelpFragment
 import com.viet.mine.fragment.LoginFragment
 import com.viet.news.core.di.ActivityScope
 import com.viet.news.core.di.FragmentScope
@@ -90,5 +91,9 @@ abstract class BuildersModule {
     @FragmentScope
     @ContributesAndroidInjector(modules = [AccountInAndOutFragmentModule::class])
     internal abstract fun bindAccountInAndOutFragment(): AccountInAndOutFragment
+
+    @FragmentScope
+    @ContributesAndroidInjector()
+    internal abstract fun bindHelpFragment(): HelpFragment
 
 }

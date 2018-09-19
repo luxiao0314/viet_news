@@ -11,10 +11,15 @@
         style="@style/title_bar_white"
         app:titlebar_titleText="@string/title_help" />
 
-    <com.viet.news.core.ui.widget.CommonItem
-        android:id="@+id/help"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        app:left_text="@string/description"
-        app:next_icon_visibility="true" />
+   <android.support.v7.widget.RecyclerView
+       android:id="@+id/rl_help"
+       android:layout_width="match_parent"
+       android:layout_height="match_parent"/>
+
+    <!--<com.viet.news.core.ui.widget.CommonItem-->
+        <!--android:id="@+id/help"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="50dp"-->
+        <!--app:left_text="@string/description"-->
+        <!--app:next_icon_visibility="true" />-->
 </LinearLayout>
