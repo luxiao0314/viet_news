@@ -63,7 +63,16 @@ class CollectionAdapter @Inject constructor() : BaseAdapter<NewsListBean>(), Swi
 
     override fun onOpened(layout: SwipeLayout) {
         System.out.println("打开了")
+        var l2: SwipeLayout? = null
         layouts.add(layout)
+        for (l in layouts) {
+            if (l != layout) {
+                l2 = l
+                l.closeItem(true)
+                break
+            }
+        }
+        l2?.let { layouts.remove(l2) }
     }
 
     override fun onClosed(layout: SwipeLayout) {
