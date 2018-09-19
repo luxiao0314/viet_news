@@ -263,7 +263,8 @@ class LoginViewModel(private var repository: LoginRepository = LoginRepository()
         //发送验证码接口
         repository.checkVerifyCode(phoneNumber = phone, verifyCode = verifyCode, zone_code = zoneCode.value, type = type).observe(owner, Observer { resource ->
             resource?.work(
-                    onSuccess = { onValidate() }
+                    onSuccess = { onValidate() },
+                    onLoading = { true }
             )
         })
     }
@@ -285,7 +286,8 @@ class LoginViewModel(private var repository: LoginRepository = LoginRepository()
                             RxBus.get().post(LoginEvent())
                             onSignInSuccess()
                         }
-                    }
+                    },
+                    onLoading = { true }
             )
         })
     }
@@ -322,7 +324,8 @@ class LoginViewModel(private var repository: LoginRepository = LoginRepository()
                             RxBus.get().post(LoginEvent())
                             onLoginSuccess()
                         }
-                    }
+                    },
+                    onLoading = { true }
             )
         })
     }
