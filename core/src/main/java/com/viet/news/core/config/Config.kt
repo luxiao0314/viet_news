@@ -11,7 +11,9 @@ object Config {
     val SHARE_REQUEST_CODE_COPY = 1003
     //倒计时1分钟
     val COUNT_DOWN_TIMER = 60 * 1000L
+    //更换手机号短信标志
     val CHANGE_PHONE_NUM = 0
+    //设置新手机手机号短信标志
     val SET_PHONE_NUM = 1
     val BIND_CHANGE_PHONE_NUM = 0
     val BIND_SET_PHONE_NUM = 1

@@ -45,12 +45,16 @@ class VerifyCodeFragment : BaseFragment() {
 
     private fun initListener() {
         count_down.clickWithTrigger {
-            when (arguments?.getInt("page_type")) {
-                Config.CHANGE_PHONE_NUM -> {
-                    model.startChangePhoneCountdown(Config.COUNT_DOWN_TIMER)
-                }
-                Config.SET_PHONE_NUM -> {
-                    model.startSetNewPhoneCountdown(Config.COUNT_DOWN_TIMER)
+            if (it.text.toString().equals(getString(R.string.get_vcode))) {
+                when (arguments?.getInt("page_type")) {
+                    Config.CHANGE_PHONE_NUM -> {
+                        model.startChangePhoneCountdown(Config.COUNT_DOWN_TIMER)
+                        model.sendSMS(User.currentUser.telephone, this) {}
+                    }
+                    Config.SET_PHONE_NUM -> {
+                        model.startSetNewPhoneCountdown(Config.COUNT_DOWN_TIMER)
+                        model.sendSMS(arguments!!.getString("phone_number", ""), this) {}
+                    }
                 }
             }
         }
