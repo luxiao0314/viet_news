@@ -10,6 +10,7 @@ import com.viet.news.core.config.Config
 import com.viet.news.core.config.VerifyCodeTypeEnum
 import com.viet.news.core.domain.LoginEvent
 import com.viet.news.core.domain.User
+import com.viet.news.core.ext.toast
 import com.viet.news.core.utils.RxBus
 import com.viet.news.core.viewmodel.BaseViewModel
 
@@ -129,7 +130,7 @@ class FindPwdViewModel(private var repository: LoginRepository = LoginRepository
         })
     }
 
-    fun sendSMS(owner: LifecycleOwner, onSent: () -> Unit) {
+    fun sendSMS(owner: LifecycleOwner, onSent: () -> Unit, onError: () -> Unit) {
         startSignInCountdown(Config.COUNT_DOWN_TIMER)
         //发送验证码接口
         repository.sendSMS(phoneNumber.value, zoneCode.value, VerifyCodeTypeEnum.RESET_PASSWORD).observe(owner, Observer { resource ->
@@ -138,6 +139,8 @@ class FindPwdViewModel(private var repository: LoginRepository = LoginRepository
                     onError = {
                         //发送验证码失败，结束倒计时
                         stopSignInCountdown()
+                        toast(it)
+                        if (it == "用户不存在") onError()
                     }
             )
         })

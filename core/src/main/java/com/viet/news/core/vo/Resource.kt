@@ -35,13 +35,13 @@ class Resource<T>(private var status: Status, var data: T? = null, var message: 
      * 2,onLoading:默认不弹loading,需要则onLoading = { true }
      * 3,resource:更换为只在初始化laoding创建,error和success采用同一对象,否则dialog无法取消
      */
-    fun work(onLoading: () -> Boolean = { false }, onError: () -> Unit = { toast(message) }, onSuccess: () -> Unit) {
+    fun work(onLoading: () -> Boolean = { false }, onError: (message: String?) -> Unit = { toast(message) }, onSuccess: () -> Unit) {
         when (status) {
             Status.LOADING -> if (onLoading()) {
                 dialog = ProgressDialogFragment.create(IActivityManager.lastActivity() as FragmentActivity) as ProgressDialogFragment
             }
             Status.ERROR -> {
-                onError()
+                onError(message)
                 dialog?.dismissAllowingStateLoss()
             }
             Status.SUCCESS -> {

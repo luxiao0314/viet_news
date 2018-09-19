@@ -3,6 +3,7 @@ package com.viet.mine.activity
 import android.annotation.SuppressLint
 import android.arch.lifecycle.Observer
 import android.os.Bundle
+import android.view.View
 import com.jakewharton.rxbinding2.widget.RxTextView
 import com.viet.mine.R
 import com.viet.mine.fragment.FindPwdNextFragment
@@ -70,9 +71,11 @@ class FindPwdActivity : InjectActivity() {
                 }
         btn_send_vcode.clickWithTrigger {
             if (model.canSendVCode()) {
-                model.sendSMS(this){
-                    //发送验证码成功，暂时不需要做什么
-                }
+                model.sendSMS(this,{
+                    tv_hint.visibility = View.INVISIBLE
+                },{
+                    tv_hint.visibility = View.VISIBLE
+                })
             }
         }
 

@@ -3,6 +3,8 @@ package com.viet.news.ui.activity
 import android.content.Intent
 import android.content.res.Configuration
 import android.os.Bundle
+import android.os.Handler
+import android.view.KeyEvent
 import com.chenenyu.router.annotation.Route
 import com.viet.news.R
 import com.viet.news.core.config.Config
@@ -11,6 +13,7 @@ import com.viet.news.core.domain.RefreshNewsEvent
 import com.viet.news.core.dsl.addOnPageChangeListener
 import com.viet.news.core.dsl.setOnTabSelectListener
 import com.viet.news.core.ext.click
+import com.viet.news.core.ext.toast
 import com.viet.news.core.ui.InjectActivity
 import com.viet.news.core.ui.TabFragmentAdapter
 import com.viet.news.core.utils.LanguageUtil
@@ -79,5 +82,25 @@ class MainActivity : InjectActivity() {
         model.reLoadData()
         initView()
         bottomBar.currentTab = 0
+    }
+
+    /**
+     * 双击返回键退出
+     */
+    private var mIsExit: Boolean = false
+    override fun onKeyDown(keyCode: Int, event: KeyEvent?): Boolean {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            when {
+                container.currentItem != 0 -> container.currentItem = 0
+                mIsExit -> this.finish()
+                else -> {
+                    toast(R.string.exit_by_double_click)
+                    mIsExit = true
+                    Handler().postDelayed(Runnable { mIsExit = false }, 2000)
+                }
+            }
+            return true
+        }
+        return super.onKeyDown(keyCode, event)
     }
 }

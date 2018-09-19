@@ -133,4 +133,6 @@
     <string name="yeap">是的</string>
     <string name="do_you_want_to_unfollow">您是否要取消关注</string>
     <string name="unknown_error">Unknown Error</string>
+    <string name="exit_by_double_click">再次点击退出</string>
+    <string name="this_mobile_phone_number_has_not_been_registered">此手机号码尚未注册</string>
 </resources>

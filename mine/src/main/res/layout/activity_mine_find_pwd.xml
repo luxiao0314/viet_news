@@ -12,7 +12,7 @@
 
         <com.viet.news.core.ui.widget.TitleBar
             android:id="@+id/title_bar"
-            style="@style/title_bar.white_bg"
+            style="@style/title_bar_white"
             app:titlebar_titleText="@string/title_find_pwd" />
 
         <TextView
@@ -27,7 +27,8 @@
             android:paddingLeft="@dimen/page_padding_left"
             android:paddingEnd="@dimen/page_padding_right"
             android:paddingRight="@dimen/page_padding_right"
-            android:text="此手机号码尚未注册"
+            android:text="@string/this_mobile_phone_number_has_not_been_registered"
+            android:visibility="invisible"
             android:textColor="@color/red_warn"
             app:layout_constraintBottom_toTopOf="@+id/phone_input"
             app:layout_constraintStart_toStartOf="parent"
