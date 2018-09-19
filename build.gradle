@@ -39,6 +39,8 @@ task clean(type: Delete) {
 }
 
 ext {
+    test_runner = '1.0.2'
+    espresso_core = '3.0.2'
     kotlin_version = '1.2.60'
     arch_core = "1.1.1"
     retrofit = "2.3.0"
