@@ -20,6 +20,7 @@ import com.viet.news.core.config.Config
 import com.viet.news.core.delegate.viewModelDelegate
 import com.viet.news.core.domain.User
 import com.viet.news.core.domain.response.NewsListBean
+import com.viet.news.core.ext.isBlank
 import com.viet.news.core.ui.InjectActivity
 import com.viet.news.webview.WebActivity
 import kotlinx.android.synthetic.main.activity_mine_collection.*
@@ -114,14 +115,14 @@ class CollectionActivity : InjectActivity() {
             it?.work(onSuccess = {
                 multiStatusView.showContent()
                 if (loadMore) {
-                    if (it.data?.list == null || it.data?.list!!.isEmpty()) {
+                    if (isBlank(it.data?.list)) {
                         refreshLayout.finishLoadMoreWithNoMoreData()
                     } else {
                         refreshLayout.finishLoadMore()
                         adapter.addData(it.data?.list)
                     }
                 } else {
-                    if (it.data?.list == null || it.data?.list!!.isEmpty()) {
+                    if (isBlank(it.data?.list)) {
                         multiStatusView.showEmpty()
                         refreshLayout.setEnableLoadMore(false)
                     }

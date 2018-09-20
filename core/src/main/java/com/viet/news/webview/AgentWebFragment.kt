@@ -212,8 +212,8 @@ open class AgentWebFragment : BaseFragment(), FragmentKeyDown {
 
     protected fun initListener() {
         iv_back.setOnClickListener(mOnClickListener)
-        iv_more.setOnClickListener(mOnClickListener)
         iv_finish.setOnClickListener(mOnClickListener)
+        iv_more.setOnClickListener(mOnClickListener)
         pageNavigator(View.GONE)
     }
 
@@ -280,7 +280,6 @@ open class AgentWebFragment : BaseFragment(), FragmentKeyDown {
             false
         }
     }
-
 
     override fun onDestroy() {
         toCleanWebCache()   //TODO:目前没找到哪里给webview添加了缓存,暂时关闭就清楚缓存,解决error_view不显示bug

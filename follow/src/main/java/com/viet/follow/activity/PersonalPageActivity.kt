@@ -16,10 +16,7 @@ import com.viet.follow.adapter.PersonalPageAdapter
 import com.viet.follow.viewmodel.PersonalPageModel
 import com.viet.news.core.config.Config
 import com.viet.news.core.delegate.viewModelDelegate
-import com.viet.news.core.ext.click
-import com.viet.news.core.ext.loadBlur
-import com.viet.news.core.ext.loadCircle
-import com.viet.news.core.ext.routerWithAnim
+import com.viet.news.core.ext.*
 import com.viet.news.core.ui.InjectActivity
 import com.viet.news.dialog.CancelFollowDialog
 import com.viet.news.dialog.interfaces.IPositiveButtonDialogListener
@@ -113,14 +110,14 @@ class PersonalPageActivity : InjectActivity(), IPositiveButtonDialogListener {
                     it?.work(onSuccess = {
                         multiStatusView.showContent()
                         if (loadMore) {
-                            if (it.data?.list == null || it.data?.list!!.isEmpty()) {
+                            if (isBlank(it.data?.list)) {
                                 refreshLayout.finishLoadMoreWithNoMoreData()
                             } else {
                                 refreshLayout.finishLoadMore()
                                 adapter.addData(it.data?.list)
                             }
                         } else {
-                            if (it.data?.list == null || it.data?.list!!.isEmpty()) {
+                            if (isBlank(it.data?.list)) {
                                 multiStatusView.showEmpty()
                                 refreshLayout.setEnableLoadMore(false)
                             }

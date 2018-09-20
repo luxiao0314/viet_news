@@ -17,6 +17,7 @@ import com.viet.follow.viewmodel.FindViewModel
 import com.viet.news.core.delegate.viewModelDelegate
 import com.viet.news.core.domain.LoginEvent
 import com.viet.news.core.domain.LogoutEvent
+import com.viet.news.core.ext.isBlank
 import com.viet.news.core.ui.RealVisibleHintBaseFragment
 import com.viet.news.core.utils.RxBus
 import dagger.android.AndroidInjector
@@ -82,14 +83,14 @@ class FollowFragment : RealVisibleHintBaseFragment(), HasSupportFragmentInjector
                             onSuccess = {
                                 multiStatusView.showContent()
                                 if (loadMore) {
-                                    if (it.data?.list == null || it. data?.list!!.isEmpty()) {
+                                    if (isBlank(it.data?.list)) {
                                         refreshLayout.finishLoadMoreWithNoMoreData()
                                     } else {
                                         refreshLayout.finishLoadMore()
                                         adapter.addData(it. data?.list)
                                     }
                                 } else {
-                                    if (it. data?.list == null || it. data?.list!!.isEmpty()) {
+                                    if (isBlank(it.data?.list)) {
                                         multiStatusView.showEmpty()
                                         refreshLayout.setEnableLoadMore(false)
                                     }

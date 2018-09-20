@@ -23,6 +23,7 @@ import com.viet.news.core.config.Config
 import com.viet.news.core.delegate.viewModelDelegate
 import com.viet.news.core.domain.RefreshNewsEvent
 import com.viet.news.core.domain.response.NewsListBean
+import com.viet.news.core.ext.isBlank
 import com.viet.news.core.ui.RealVisibleHintBaseFragment
 import com.viet.news.core.utils.RxBus
 import dagger.android.AndroidInjector
@@ -95,14 +96,14 @@ class NewsFragment : RealVisibleHintBaseFragment(), HasSupportFragmentInjector {
                         model.newsList = it.data?.list as ArrayList<NewsListBean>
                         multiStatusView.showContent()
                         if (loadMore) {
-                            if (it.data?.list == null || it.data?.list!!.isEmpty()) {
+                            if (isBlank(it.data?.list)) {
                                 refreshLayout.finishLoadMoreWithNoMoreData()
                             } else {
                                 refreshLayout.finishLoadMore()
                                 adapter.addData(it.data?.list)
                             }
                         } else {
-                            if (it.data?.list == null || it.data?.list!!.isEmpty()) {
+                            if (isBlank(it.data?.list)) {
                                 multiStatusView.showEmpty()
                                 refreshLayout.setEnableLoadMore(false)
                             }
