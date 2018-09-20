@@ -56,7 +56,7 @@ class MineFragment : BaseFragment() {
             iv_user_icon.visibility = View.GONE
             rl_user.visibility = View.GONE
             edit.visibility = View.GONE
-            btn_login.clickWithTrigger { routerWithAnim(Config.ROUTER_LOGIN_ACTIVITY).anim(R.anim.dialog_push_bottom_in, R.anim.dialog_push_bottom_out).go(this) }
+            btn_login.clickWithTrigger { routerWithAnim(Config.ROUTER_LOGIN_ACTIVITY).anim(R.anim.activity_open,android.R.anim.fade_out).go(this) }
         } else {
             btn_login.visibility = View.GONE
             iv_user_icon.visibility = View.VISIBLE

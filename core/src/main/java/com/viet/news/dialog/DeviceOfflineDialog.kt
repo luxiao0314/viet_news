@@ -33,7 +33,7 @@ class DeviceOfflineDialog : BaseDialogFragment() {
         }
         view.btn_login.clickWithTrigger {
             dismiss()
-            routerWithAnim(Config.ROUTER_LOGIN_ACTIVITY).anim(R.anim.dialog_push_bottom_in, R.anim.dialog_push_bottom_out).go(this)
+            routerWithAnim(Config.ROUTER_LOGIN_ACTIVITY).anim(R.anim.activity_open,android.R.anim.fade_out).go(this)
         }
         return initialBuilder.setView(view)
     }

@@ -76,7 +76,7 @@ class LoginActivity : InjectActivity() {
         //错误信息展示
         model.statusMsg.observe(this, Observer { it?.let { msg -> toast(msg)  } })
         viewpager.addOnPageChangeListener { onPageSelected = { setTabText(it, model.currentTab) } }
-        iv_close.click { finishWithAnim(R.anim.dialog_push_top_out, R.anim.dialog_push_bottom_out) }
+        iv_close.click { finishWithAnim(0, R.anim.activity_close) }
     }
 
     private fun setTabText(currentTab: Int, otherTab: Int) {
@@ -96,7 +96,8 @@ class LoginActivity : InjectActivity() {
                 tablayout.currentTab = 0
                 true
             } else {
-                super.onKeyDown(keyCode, event)
+                finishWithAnim(0, R.anim.activity_close)
+                false
             }
         }
         return super.onKeyDown(keyCode, event)

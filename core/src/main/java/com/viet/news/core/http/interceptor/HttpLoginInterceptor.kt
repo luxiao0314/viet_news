@@ -36,7 +36,7 @@ class HttpLoginInterceptor : Interceptor {
             response.code() == Config.ErrorCode.NETWORK_RESPONSE_LOGIN_FORBIDDEN -> {
                 if (!isLoginInvalidate) {
                     isLoginInvalidate = true
-                    routerWithAnim(Config.ROUTER_LOGIN_ACTIVITY).anim(R.anim.dialog_push_bottom_in, R.anim.dialog_push_bottom_out).go(IActivityManager.lastActivity())
+                    routerWithAnim(Config.ROUTER_LOGIN_ACTIVITY).anim(R.anim.activity_open,android.R.anim.fade_out).go(IActivityManager.lastActivity())
                 }
                 isLoginInvalidate = false
                 response

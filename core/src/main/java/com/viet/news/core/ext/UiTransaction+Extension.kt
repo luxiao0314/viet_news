@@ -23,7 +23,7 @@ import com.viet.news.core.ui.BaseFragment
  * @return IRouter
  */
 fun routerWithAnim(path: String): IRouter {
-    return Router.build(path).anim(R.anim.in_from_right, R.anim.out_to_left)
+    return Router.build(path).anim(R.anim.slide_in_from_right, R.anim.slide_out_to_left)
 }
 
 /**
@@ -66,14 +66,14 @@ fun IRouter.goFragment(targetFragment: BaseFragment, @IdRes containerViewId: Int
  * @return FragmentTransaction
  */
 fun FragmentManager.fragmentTransaction(): FragmentTransaction {
-    return beginTransaction().setCustomAnimations(R.anim.in_from_right, R.anim.out_to_left, R.anim.in_from_left, R.anim.out_to_right)
+    return beginTransaction().setCustomAnimations(R.anim.slide_in_from_right, R.anim.slide_out_to_left, R.anim.slide_in_from_left, R.anim.slide_out_to_right)
 }
 
 /**
  * 带Anim的结束finish
  * @receiver BaseActivity
  */
-fun BaseActivity.finishWithAnim(enterAnim: Int = R.anim.in_from_left, exitAnim: Int = R.anim.out_to_right) {
+fun BaseActivity.finishWithAnim(enterAnim: Int = R.anim.slide_in_from_left, exitAnim: Int = R.anim.slide_out_to_right) {
     finish()
     overridePendingTransition(enterAnim, exitAnim)
 }
