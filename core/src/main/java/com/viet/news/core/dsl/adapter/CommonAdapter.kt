@@ -15,7 +15,7 @@ import com.viet.news.core.ext.event
  *@Since:2018/6/12
  *@ChangeList:
  */
-class CommonAdapter<D>(create: CommonMgr<D>.() -> Unit) : RecyclerView.Adapter<CommonAdapter.AcroViewHolder<D>>() {
+class CommonAdapter<D>(create: CommonMgr<D>.() -> Unit) : RecyclerView.Adapter<CommonAdapter.CommonViewHolder<D>>() {
 
     private val commonMgr by lazy { CommonMgr<D>() }
 
@@ -27,15 +27,15 @@ class CommonAdapter<D>(create: CommonMgr<D>.() -> Unit) : RecyclerView.Adapter<C
 
     var itemCompare: ((D, D) -> Boolean)? = null
 
-    private var bind: AcroViewHolder<D>.() -> Unit = {}
+    private var bind: CommonViewHolder<D>.() -> Unit = {}
 
     lateinit var context: Context
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AcroViewHolder<D> {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CommonViewHolder<D> {
         val acrobatItem = commonMgr.items[viewType]
         val view = LayoutInflater.from(parent.context).inflate(acrobatItem.getResId(), parent, false)
         acrobatItem.onViewCreate(parent, view)
-        val viewHolder = AcroViewHolder(view, acrobatItem)
+        val viewHolder = CommonViewHolder(view, acrobatItem)
         if (acrobatItem.hasEvent()) {
             view.event({ acrobatItem.click?.apply { this(commonMgr.data[viewHolder.adapterPosition], viewHolder.adapterPosition) } },
                     { acrobatItem.doubleTap?.apply { this(commonMgr.data[viewHolder.adapterPosition], viewHolder.adapterPosition) } },
@@ -49,11 +49,11 @@ class CommonAdapter<D>(create: CommonMgr<D>.() -> Unit) : RecyclerView.Adapter<C
 
     override fun getItemCount(): Int = commonMgr.data.size
 
-    override fun onBindViewHolder(holder: AcroViewHolder<D>, position: Int) {
+    override fun onBindViewHolder(holder: CommonViewHolder<D>, position: Int) {
         holder.acrobatItem.showItem(commonMgr.data[position], position, holder.itemView)
     }
 
-    override fun onBindViewHolder(holder: AcroViewHolder<D>, position: Int, payloads: MutableList<Any>) {
+    override fun onBindViewHolder(holder: CommonViewHolder<D>, position: Int, payloads: MutableList<Any>) {
         if (payloads.isNotEmpty()) {
             holder.acrobatItem.showItem(commonMgr.data[position], position, holder.itemView, payloads)
         } else {
@@ -95,7 +95,7 @@ class CommonAdapter<D>(create: CommonMgr<D>.() -> Unit) : RecyclerView.Adapter<C
 
     fun getData() = commonMgr.data.clone() as ArrayList<D>
 
-    fun bindEvent(click: AcroViewHolder<D>.() -> Unit): CommonAdapter<D> {
+    fun bindEvent(click: CommonViewHolder<D>.() -> Unit): CommonAdapter<D> {
         this.bind = click
         return this
     }
@@ -140,7 +140,7 @@ class CommonAdapter<D>(create: CommonMgr<D>.() -> Unit) : RecyclerView.Adapter<C
         }
     }
 
-    class AcroViewHolder<D>(view: View, val acrobatItem: CommonItem<D>) : RecyclerView.ViewHolder(view) {
+    class CommonViewHolder<D>(view: View, val acrobatItem: CommonItem<D>) : RecyclerView.ViewHolder(view) {
         private var click: ((Int) -> Unit)? = null
         private var doubleTap: ((Int) -> Unit)? = null
         private var longPress: ((Int) -> Unit)? = null

@@ -47,7 +47,7 @@ class NewsAdapter @Inject constructor() : BaseAdapter<NewsListBean>() {
         holder.itemView.tv_title.text = t.author.nick_name
         holder.itemView.tv_time.text = DateUtils.getTimestamp(Date(t.content.createDateTime))
         holder.itemView.tv_des.text = t.content.contentTitle
-        holder.getView<ImageView>(R.id.iv_article_image).loadCircle(t.author.avatar)
+        holder.getView<ImageView>(R.id.iv_article_image)?.loadCircle(t.author.avatar)
 
         holder.itemView.findViewById<BehaviorBar>(R.id.behaviorBar)?.setReadNumStatus(t.content.contentProfit)
         holder.itemView.findViewById<BehaviorBar>(R.id.behaviorBar)?.setLikeStatus(t.content.likeFlag, t.content.likeNumber)
@@ -75,6 +75,7 @@ class NewsAdapter @Inject constructor() : BaseAdapter<NewsListBean>() {
                     itemDSL {
                         resId(com.viet.follow.R.layout.cell_news_picture)
                         showItem { t, pos, view -> view.iv_pic.load(t.cover) }
+                        onClick { it, pos -> WebActivity.launch(context, t.content.contentDetail) }
                     }
                 }.addData(t.image_array)
             }

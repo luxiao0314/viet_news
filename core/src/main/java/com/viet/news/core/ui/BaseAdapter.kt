@@ -102,10 +102,11 @@ abstract class BaseAdapter<T> : RecyclerView.Adapter<BaseAdapter.BaseViewHolder>
 
         private val views: SparseArray<View>? = null
 
-        fun <T : View> getView(@IdRes viewId: Int): T {
+        fun <T : View> getView(@IdRes viewId: Int): T? {
             var view: View? = views?.get(viewId)
             if (view == null) {
                 view = itemView.findViewById(viewId)
+                if (view == null) return null
                 views?.put(viewId, view)
             }
             return view as T

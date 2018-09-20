@@ -71,6 +71,7 @@ class PersonalPageAdapter @Inject constructor() : BaseAdapter<NewsListBean>() {
                     itemDSL {
                         resId(R.layout.cell_news_picture)
                         showItem { t, pos, view -> view.iv_pic.load(t.cover) }
+                        onClick { it, pos -> WebActivity.launch(context, t.content.contentDetail) }
                     }
                 }.addData(t.image_array)
             }
