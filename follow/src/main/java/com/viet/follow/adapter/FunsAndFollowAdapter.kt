@@ -1,5 +1,6 @@
 package com.viet.follow.adapter
 
+import android.view.View
 import com.viet.follow.R
 import com.viet.news.core.domain.response.UserInfoResponse
 import com.viet.news.core.ext.loadCircle
@@ -23,11 +24,12 @@ class FunsAndFollowAdapter @Inject constructor() : BaseAdapter<UserInfoResponse>
         holder.itemView.tv_title.text = t.nick_name
         holder.itemView.tv_funs.text = context.resources.getString(R.string.funs) + t.fans_count
         if (t.follow_flag) {
-            if (t.self_flag) {
-                holder.itemView.btn_follow.text = context.getString(R.string.follow_each_other)
-            } else {
-                holder.itemView.btn_follow.text = context.getString(R.string.has_follow)
-            }
+//            if (t.self_flag) {
+//                holder.itemView.btn_follow.text = context.getString(R.string.follow_each_other)
+//            } else {
+//                holder.itemView.btn_follow.text = context.getString(R.string.has_follow)
+//            }
+            holder.itemView.btn_follow.visibility = if (t.self_flag) View.GONE else View.VISIBLE
             holder.itemView.btn_follow.isSelected = false
             holder.itemView.btn_follow.setCompoundDrawablesWithIntrinsicBounds(context.resources.getDrawable(R.drawable.ic_hook), null, null, null)
             holder.itemView.btn_follow.compoundDrawablePadding = 4

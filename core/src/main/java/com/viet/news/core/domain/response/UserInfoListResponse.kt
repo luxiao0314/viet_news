@@ -9,4 +9,4 @@ import java.io.Serializable
  * @Date 13/09/2018 5:01 PM
  * @Version
  */
-class UserInfoListResponse(var list: List<UserInfoResponse>) : Serializable
+class UserInfoListResponse(var list: ArrayList<UserInfoResponse>) : Serializable
