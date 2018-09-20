@@ -89,6 +89,7 @@ class CommonAdapter<D>(create: CommonMgr<D>.() -> Unit) : RecyclerView.Adapter<C
         val calculateDiff = DiffUtil.calculateDiff(diffCallBack)
         calculateDiff.dispatchUpdatesTo(this)
         commonMgr.addData(dataList)
+        notifyDataSetChanged()
         return this
     }
 
