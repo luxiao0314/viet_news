@@ -44,9 +44,7 @@ fun <T> isBlank(var0: T?): Boolean {
     }
 }
 
-fun <T> isNotBlank(var0: T): Boolean {
-    return !isBlank(var0)
-}
+fun <T> isNotBlank(var0: T): Boolean = !isBlank(var0)
 
 fun <T> isNotBlanks(vararg var0: Any): Boolean {
     if (var0 == null) {
@@ -60,7 +58,6 @@ fun <T> isNotBlanks(vararg var0: Any): Boolean {
                 return false
             }
         }
-
         return true
     }
 }
@@ -71,6 +68,4 @@ fun checkNotNull(var0: Any?, var1: String) {
     }
 }
 
-fun isJsonString(var0: String): Boolean {
-    return isNotBlank(var0) && var0.startsWith("{")
-}
+fun isJsonString(var0: String): Boolean = isNotBlank(var0) && var0.startsWith("{")

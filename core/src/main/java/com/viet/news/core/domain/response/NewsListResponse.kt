@@ -13,7 +13,7 @@ class NewsListResponse(var total_count: String?,
                        var total_pages: String?,
                        var list: List<NewsListBean>)
 
-data class NewsListBean(var content: ContentBean, var author: UserInfoResponse, var image_array: List<ImageEntity>)
+data class NewsListBean(var content: ContentBean, var author: UserInfoResponse, var image_array: ArrayList<ImageEntity>)
 
 data class ContentBean(var id: Int, //文章id,点赞,收藏使用此id
                        var createDateTime: Long,
