@@ -4,7 +4,6 @@ import android.content.Context
 import android.os.Build
 import android.os.Bundle
 import android.support.v4.content.ContextCompat
-import android.support.v7.app.AppCompatActivity
 import android.view.KeyEvent
 import android.view.MenuItem
 import com.jaeger.library.StatusBarUtil
@@ -16,7 +15,7 @@ import com.viet.news.core.utils.LanguageUtil
 import io.reactivex.disposables.CompositeDisposable
 
 
-abstract class BaseActivity : AppCompatActivity() {
+abstract class BaseActivity : SwipebackActivity() {
 
     protected var compositeDisposable = CompositeDisposable()
 
