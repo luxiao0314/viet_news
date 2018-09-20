@@ -74,16 +74,14 @@
 
         <Button
             android:id="@+id/btn_send_vcode"
-            style="@style/text.12.gray"
-            android:layout_width="wrap_content"
-            android:layout_height="30dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginLeft="8dp"
+            style="@style/button.small"
+            android:textColor="@color/text_gray"
+            android:textSize="@dimen/text_12sp"
+            android:layout_marginStart="10dp"
+            android:layout_marginLeft="10dp"
             android:layout_marginEnd="10dp"
             android:layout_marginRight="10dp"
             android:background="@drawable/shape_white_round_bg"
-            android:paddingLeft="10dp"
-            android:paddingRight="10dp"
             android:text="@string/get_vcode"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/vcode_input"/>
