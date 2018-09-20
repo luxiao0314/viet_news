@@ -116,7 +116,6 @@ class AccountInfoViewModel(var repository: MineRepository = MineRepository()) : 
     }
 
 
-
     /**************************************以下是状态判断****************************************/
     fun checkNickNameSubmitBtnEnable() {
         submitEnable.value = !nickName.value.isNullOrEmpty()
@@ -187,7 +186,7 @@ class AccountInfoViewModel(var repository: MineRepository = MineRepository()) : 
         repository.sendSMS(phoneNumber, zoneCode.value, VerifyCodeTypeEnum.BIND_PHONE).observe(owner, Observer { resource ->
             resource?.work(
                     onSuccess = { onSent() },
-                    onError = {}
+                    onLoading = { true }
             )
         })
     }
@@ -197,7 +196,8 @@ class AccountInfoViewModel(var repository: MineRepository = MineRepository()) : 
         repository.checkVerifyCode(phoneNumber = phoneNumber, verifyCode = verifyCode, zone_code = zoneCode.value, type = VerifyCodeTypeEnum.BIND_PHONE)
                 .observe(owner, Observer { resource ->
                     resource?.work(
-                            onSuccess = { onValidate() }
+                            onSuccess = { onValidate() },
+                            onLoading = { true }
                     )
                 })
     }

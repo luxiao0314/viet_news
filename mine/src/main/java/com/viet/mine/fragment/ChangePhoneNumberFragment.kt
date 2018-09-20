@@ -15,7 +15,6 @@ import com.viet.news.core.domain.User
 import com.viet.news.core.ext.clickWithTrigger
 import com.viet.news.core.ext.goFragment
 import com.viet.news.core.ui.BaseFragment
-import kotlinx.android.synthetic.main.fragment_mine_bind_new_phone_num.*
 import kotlinx.android.synthetic.main.fragment_mine_setting_change_phone.*
 
 /**

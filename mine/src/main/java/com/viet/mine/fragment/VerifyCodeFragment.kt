@@ -39,8 +39,12 @@ class VerifyCodeFragment : BaseFragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         mContainerView = inflater.inflate(R.layout.fragment_mine_verify_code, container, false)
-        initListener()
         return mContainerView
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        initListener()
     }
 
     private fun initListener() {
