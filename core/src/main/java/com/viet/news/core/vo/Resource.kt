@@ -39,6 +39,7 @@ class Resource<T>(private var status: Status, var data: T? = null, var message: 
         when (status) {
             Status.LOADING -> if (onLoading()) {
                 dialog = ProgressDialogFragment.create(IActivityManager.lastActivity() as FragmentActivity) as ProgressDialogFragment
+                dialog?.setOnCancelListener { cancelListener?.let { it() } }
             }
             Status.ERROR -> {
                 onError(message)
@@ -92,4 +93,8 @@ class Resource<T>(private var status: Status, var data: T? = null, var message: 
         return true
     }
 
+    var cancelListener: (() -> Unit?)? = null
+    fun setOnCancelListener(cancelListener: () -> Unit) {
+        this.cancelListener = cancelListener
+    }
 }

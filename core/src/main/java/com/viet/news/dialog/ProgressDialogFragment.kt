@@ -16,7 +16,7 @@ import com.viet.news.core.R
  */
 class ProgressDialogFragment : BaseDialogFragment() {
 
-    var listener: ProgressCancelListener? = null
+    var listener: (() -> Unit?)? = null
 
     companion object {
         fun create(context: FragmentActivity): BaseDialogFragment {
@@ -28,21 +28,16 @@ class ProgressDialogFragment : BaseDialogFragment() {
 
     override fun build(builder: BaseDialogFragment.Builder): BaseDialogFragment.Builder {
         val view = builder.layoutInflater.inflate(R.layout.cus_progress, null, false)
-        builder.setView(view)
-        return builder
+        return builder.setView(view)
     }
 
-    fun setOnCancelListener(listener: ProgressCancelListener): ProgressDialogFragment {
+    fun setOnCancelListener(listener: () -> Unit): ProgressDialogFragment {
         this.listener = listener
         return this
     }
 
     override fun onDestroyView() {
-        listener?.onCancelProgress()
+        listener?.let { it() }
         super.onDestroyView()
-    }
-
-    interface ProgressCancelListener {
-        fun onCancelProgress()
     }
 }

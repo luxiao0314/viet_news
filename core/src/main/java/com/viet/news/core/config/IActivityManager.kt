@@ -1,6 +1,6 @@
 package com.viet.news.core.config
 
-import android.app.Activity
+import android.support.v7.app.AppCompatActivity
 import java.lang.ref.WeakReference
 import java.util.*
 
@@ -13,10 +13,10 @@ import java.util.*
  */
 class IActivityManager private constructor() {
 
-    private var mCurrentActivityWeakRef: WeakReference<Activity>? = null
+    private var mCurrentActivityWeakRef: WeakReference<AppCompatActivity>? = null
 
-    fun currentActivity(): Activity? {
-        var currentActivity: Activity? = null
+    fun currentActivity(): AppCompatActivity? {
+        var currentActivity: AppCompatActivity? = null
         if (null != mCurrentActivityWeakRef) {
             currentActivity = mCurrentActivityWeakRef!!.get()
         }
@@ -28,7 +28,7 @@ class IActivityManager private constructor() {
      *
      * @param activity 活动对象
      */
-    fun registerActivity(activity: Activity) {
+    fun registerActivity(activity: AppCompatActivity) {
         mCurrentActivityWeakRef = WeakReference(activity)
         activitys.add(activity)
     }
@@ -38,7 +38,7 @@ class IActivityManager private constructor() {
      *
      * @param activity
      */
-    fun unregisterActivity(activity: Activity?) {
+    fun unregisterActivity(activity: AppCompatActivity?) {
         if (null != mCurrentActivityWeakRef) {
             mCurrentActivityWeakRef!!.clear()
         }
@@ -71,7 +71,7 @@ class IActivityManager private constructor() {
         /**
          * 应用创建activity集合 在创建activity时调用addActivity方法将新创建的活动添加到集合中
          */
-        private val activitys = LinkedList<Activity>()
+        private val activitys = LinkedList<AppCompatActivity>()
 
         var instance = IActivityManager()
 
@@ -94,8 +94,8 @@ class IActivityManager private constructor() {
          *
          * @return ACTIVITY
          */
-        fun lastActivity(): Activity? {
-            var activity: Activity? = null
+        fun lastActivity(): AppCompatActivity? {
+            var activity: AppCompatActivity? = null
             if (null != activitys) {
                 activity = activitys.last
             }
