@@ -31,7 +31,6 @@ class RetrofitManager private constructor() {
                 .connectTimeout((10 * 1000).toLong(), TimeUnit.MILLISECONDS)
                 .addInterceptor(HeaderInterceptor())
                 .addInterceptor(HttpLoginInterceptor())
-//                .authenticator(TokenAuthenticator())
                 .addInterceptor(loggingInterceptor.build())
                 .build()
 

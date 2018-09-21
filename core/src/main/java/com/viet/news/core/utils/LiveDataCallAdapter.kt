@@ -39,7 +39,7 @@ class LiveDataCallAdapter<R>(private val responseType: Type) :
     override fun adapt(call: Call<HttpResponse<R>>): LiveData<ApiResponse<R>> {
         return object : LiveData<ApiResponse<R>>() {
             private var started = AtomicBoolean(false)
-            override fun onActive() {
+            override fun onActive() {   //当remove掉LiveData的时候,下面的对象被直接销毁,所以网络被中断
                 super.onActive()
                 if (started.compareAndSet(false, true)) {
                     call.enqueue(object : Callback<HttpResponse<R>> {
