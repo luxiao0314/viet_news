@@ -1,6 +1,5 @@
 package com.viet.news.core.repository
 
-import android.arch.lifecycle.LifecycleOwner
 import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.MediatorLiveData
 import android.arch.lifecycle.MutableLiveData
@@ -10,7 +9,6 @@ import com.viet.news.core.api.ApiEmptyResponse
 import com.viet.news.core.api.ApiErrorResponse
 import com.viet.news.core.api.ApiResponse
 import com.viet.news.core.api.ApiSuccessResponse
-import com.viet.news.core.config.IActivityManager
 import com.viet.news.core.vo.Resource
 import com.viet.news.core.vo.Status
 import io.reactivex.Observable
@@ -31,7 +29,7 @@ abstract class NetworkBoundResource<ResultType, RequestType> @MainThread constru
 
     init {
         result.value = Resource(Status.LOADING)
-        result.value?.setOnCancelListener { cancelAll(IActivityManager.lastActivity()) }
+        result.value?.setOnCancelListener { cancelAll() }
         @Suppress("LeakingThis")
         val dbSource = loadFromDb()
         if (dbSource.hasActiveObservers().not()) {
@@ -55,8 +53,9 @@ abstract class NetworkBoundResource<ResultType, RequestType> @MainThread constru
         }
     }
 
+    private lateinit var apiResponse: LiveData<ApiResponse<RequestType>>
     private fun fetchFromNetwork(dbSource: LiveData<ResultType>) {
-        val apiResponse = createCall()
+        apiResponse = createCall()
         result.addSource(dbSource) { newData -> result.value?.loading()?.let { setValue(it) } }
         result.addSource(apiResponse) { response ->
             result.removeSource(apiResponse)
@@ -108,9 +107,8 @@ abstract class NetworkBoundResource<ResultType, RequestType> @MainThread constru
     }
 
     @MainThread
-    private fun cancelAll(owner: LifecycleOwner?) {
-//        createCall().removeObservers(owner!!)
-        result.removeSource(createCall())
+    private fun cancelAll() {
+        result.removeSource(apiResponse)
     }
 
 }
