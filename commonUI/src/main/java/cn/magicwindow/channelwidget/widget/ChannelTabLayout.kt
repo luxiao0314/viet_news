@@ -116,7 +116,7 @@ class ChannelTabLayout @JvmOverloads constructor(context: Context, attrs: Attrib
         mDividerColor = typedArray.getColor(R.styleable.ChannelTabLayout_tab_dividerColor, DEFAULT_DIVIDER_COLOR)
         mDividerWidth = typedArray.getDimension(R.styleable.ChannelTabLayout_tab_dividerWidth, DEFAULT_DIVIDER_WIDTH.toFloat()).toInt()
         mDividerPadding = typedArray.getDimension(R.styleable.ChannelTabLayout_tab_dividerPadding, DEFAULT_DIVIDER_PADDING.toFloat()).toInt()
-        mTabPadding = typedArray.getDimension(R.styleable.ChannelTabLayout_tab_Padding, dp2px(10,context).toFloat()).toInt()
+        mTabPadding = typedArray.getDimension(R.styleable.ChannelTabLayout_tab_Padding, dp2px(10, context).toFloat()).toInt()
         hasShowDivider = typedArray.getBoolean(R.styleable.ChannelTabLayout_tab_dividerShow, false)
         typedArray.recycle()
     }
@@ -152,7 +152,11 @@ class ChannelTabLayout @JvmOverloads constructor(context: Context, attrs: Attrib
             tabTextView.setOnClickListener { mViewPager!!.currentItem = currentPosition }
             mTabContainer.addView(tabTextView, LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.MATCH_PARENT, 1f))
         }
-        setSelectedTabView(mCurrentTabPosition)
+        if (mCurrentTabPosition < mTabCount) {
+            setSelectedTabView(mCurrentTabPosition)
+        } else {
+            setSelectedTabView(0)
+        }
     }
 
     private fun createTextView(): TextView {
@@ -193,9 +197,15 @@ class ChannelTabLayout @JvmOverloads constructor(context: Context, attrs: Attrib
             null
         val selectedWidth = selectedChild?.width ?: 0
         val nextWidth = nextChild?.width ?: 0
-        return (selectedChild!!.left
-                + ((selectedWidth + nextWidth).toFloat() * positionOffset * 0.5f).toInt()
-                + selectedChild.width / 2) - width / 2
+
+        return selectedChild.let {
+            if (it == null) {
+                0
+            } else {
+                (it.left + ((selectedWidth + nextWidth).toFloat() * positionOffset * 0.5f).toInt()
+                        + selectedChild.width / 2) - width / 2
+            }
+        }
     }
 
     override fun onDraw(canvas: Canvas) {
