@@ -7,6 +7,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_marginTop="@dimen/page_padding_left"
+    android:background="@color/white"
     android:paddingStart="@dimen/page_padding_left"
     android:paddingLeft="@dimen/page_padding_left"
     android:paddingTop="@dimen/padding_top_large"
@@ -75,14 +76,14 @@
         <Button
             android:id="@+id/btn_send_vcode"
             style="@style/button.small"
-            android:textColor="@color/text_gray"
-            android:textSize="@dimen/text_12sp"
             android:layout_marginStart="10dp"
             android:layout_marginLeft="10dp"
             android:layout_marginEnd="10dp"
             android:layout_marginRight="10dp"
             android:background="@drawable/shape_white_round_bg"
             android:text="@string/get_vcode"
+            android:textColor="@color/text_gray"
+            android:textSize="@dimen/text_12sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/vcode_input"/>
     </LinearLayout>

@@ -44,6 +44,7 @@ class LoginActivity : InjectActivity() {
     }
 
     private fun initView() {
+        swipeBackLayout.setEnableGesture(false)
         adapter.setTitles(model.titles)
         adapter.setFragment(model.fragments)
         viewpager.adapter = adapter

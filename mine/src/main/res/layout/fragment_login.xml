@@ -3,13 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/white">
+    android:layout_height="match_parent">
 
     <com.flyco.tablayout.SlidingTabLayout
         android:id="@+id/tablayout"
         android:layout_width="match_parent"
         android:layout_height="40dp"
+        android:background="@color/white"
         app:tl_divider_color="#1A000000"
         app:tl_divider_width="0dp"
         app:tl_indicator_color="@color/red_text"
@@ -24,7 +24,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/tablayout"
-        android:layout_marginTop="10dp"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
 </RelativeLayout>
 
