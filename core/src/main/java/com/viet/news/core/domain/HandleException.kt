@@ -40,7 +40,7 @@ class HandleException {
             return when (e) {
                 is HttpException -> when (e.code()) {
                     UNAUTHORIZED -> Throwable("token过期", e)
-                    FORBIDDEN -> Throwable("请求被禁止", e)
+                    FORBIDDEN -> Throwable("请先登录", e)
                     NOT_FOUND -> Throwable("HTTP NOT FOUND", e)
                     REQUEST_TIMEOUT -> Throwable("请求超时", e)
                     GATEWAY_TIMEOUT -> Throwable("网关超时")
