@@ -3,10 +3,7 @@ package com.viet.mine.fragment
 import android.annotation.SuppressLint
 import android.arch.lifecycle.Observer
 import android.content.Intent
-import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import com.jakewharton.rxbinding2.widget.RxTextView
 import com.safframework.ext.clickWithTrigger
 import com.viet.mine.R
@@ -26,11 +23,15 @@ import kotlinx.android.synthetic.main.fragment_login_pwd.*
  */
 //@Route(value = [(Config.ROUTER_LOGIN_FRAGMENT)])
 class PwdToLoginFragment : RealVisibleHintBaseFragment() {
-
     private val model by viewModelDelegate(LoginViewModel::class, true)
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? =
-            inflater.inflate(R.layout.fragment_login_pwd, container, false)
+    override fun isSupportSwipeBack(): Boolean {
+        return false
+    }
+
+    override fun getLayoutId(): Int {
+        return R.layout.fragment_login_pwd
+    }
 
     @SuppressLint("CheckResult")
     override fun initView(view: View) {

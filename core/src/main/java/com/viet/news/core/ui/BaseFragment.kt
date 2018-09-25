@@ -6,11 +6,13 @@ import android.content.Context
 import android.os.Build
 import android.os.Bundle
 import android.support.annotation.IdRes
-import android.support.v4.app.Fragment
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import com.viet.news.core.ext.goFragment
 import com.viet.news.core.ext.routerWithAnim
 import io.reactivex.disposables.CompositeDisposable
+import me.yokeyword.swipebackfragment.SwipeBackFragment
 
 /**
  * @author Aaron
@@ -18,10 +20,11 @@ import io.reactivex.disposables.CompositeDisposable
  * @date 18/03/2018 22:13
  * @description
  */
-abstract class BaseFragment : Fragment() {
+abstract class BaseFragment : SwipeBackFragment() {
 
     protected lateinit var mContext: Context
     protected var compositeDisposable = CompositeDisposable()
+    private var mContainerView: View? = null
 
     /**
      * Deprecated on API 23
@@ -48,6 +51,15 @@ abstract class BaseFragment : Fragment() {
         initView(view)
     }
 
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        mContainerView = inflater.inflate(getLayoutId(), container, false)
+        return if (isSupportSwipeBack()) attachToSwipeBack(mContainerView) else mContainerView
+    }
+
+    abstract fun isSupportSwipeBack(): Boolean
+
+    abstract fun getLayoutId(): Int
+
     protected abstract fun initView(view: View)
 
     override fun onDestroyView() {
@@ -58,4 +70,6 @@ abstract class BaseFragment : Fragment() {
     protected fun openPage(context: BaseFragment, path: String, @IdRes id: Int, addToBackStack: Boolean = true) {
         routerWithAnim(path).goFragment(context, id, addToBackStack)
     }
+
+
 }

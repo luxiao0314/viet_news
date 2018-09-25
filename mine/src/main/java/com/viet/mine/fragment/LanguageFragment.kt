@@ -1,14 +1,11 @@
 package com.viet.mine.fragment
 
-import android.os.Bundle
 import android.support.v4.content.ContextCompat
 import android.support.v7.widget.DividerItemDecoration
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.OrientationHelper
 import android.support.v7.widget.RecyclerView
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import cn.magicwindow.core.ui.ItemClickSupport
 import com.viet.mine.adapter.LanguageAdapter
 import com.chenenyu.router.annotation.Route
@@ -31,11 +28,13 @@ import com.viet.news.core.utils.SPHelper
 @Route(Config.ROUTER_MINE_SETTING_LANGUAGE_FRAGMENT)
 class LanguageFragment : BaseFragment() {
     private lateinit var adapter: LanguageAdapter
-    private var mContainerView: View? = null
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        mContainerView = inflater.inflate(R.layout.fragment_mine_setting_language, container, false)
-        return mContainerView
+    override fun isSupportSwipeBack(): Boolean {
+        return true
+    }
+
+    override fun getLayoutId(): Int {
+        return R.layout.fragment_mine_setting_language
     }
 
     override fun initView(view: View) {

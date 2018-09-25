@@ -1,9 +1,7 @@
 package com.viet.mine.fragment
 
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import com.safframework.ext.clickWithTrigger
 import com.viet.mine.R
 import com.viet.news.core.config.Config
@@ -23,11 +21,13 @@ import kotlinx.android.synthetic.main.fragment_mine.*
  */
 class MineFragment : BaseFragment() {
 
-    private var mContainerView: View? = null
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        mContainerView = inflater.inflate(R.layout.fragment_mine, container, false)
-        return mContainerView
+    override fun isSupportSwipeBack(): Boolean {
+        return false
+    }
+
+    override fun getLayoutId(): Int {
+        return R.layout.fragment_mine
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

@@ -1,9 +1,6 @@
 package com.viet.mine.fragment
 
-import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import com.viet.mine.R
 import com.viet.news.core.ui.RealVisibleHintBaseFragment
 
@@ -15,11 +12,13 @@ import com.viet.news.core.ui.RealVisibleHintBaseFragment
  * @Version
  */
 class AccountInOutFragment : RealVisibleHintBaseFragment(){
-    private var mContainerView: View? = null
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        mContainerView = inflater.inflate(R.layout.fragment_mine_wallet_in_out_sub, container, false)
-        return mContainerView
+    override fun isSupportSwipeBack(): Boolean {
+        return false
+    }
+
+    override fun getLayoutId(): Int {
+        return R.layout.fragment_mine_wallet_in_out_sub
     }
 
     override fun initView(view: View) {

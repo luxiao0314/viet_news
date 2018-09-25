@@ -51,9 +51,14 @@ open class AgentWebFragment : BaseFragment(), FragmentKeyDown {
         mTitle = arguments?.getString(WebActivity.TITLE)
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.fragment_agentweb, container, false)
+    override fun isSupportSwipeBack(): Boolean {
+        return false
     }
+
+    override fun getLayoutId(): Int {
+        return R.layout.fragment_agentweb
+    }
+
 
     override fun initView(view: View) {
         mAgentWeb = AgentWeb.with(this)

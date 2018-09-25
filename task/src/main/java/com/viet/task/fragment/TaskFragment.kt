@@ -32,8 +32,12 @@ class TaskFragment : RealVisibleHintBaseFragment() {
     private val adapter: TaskAdapter = TaskAdapter()
 
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
-        return inflater.inflate(R.layout.fragment_task, container, false)
+    override fun isSupportSwipeBack(): Boolean {
+        return false
+    }
+
+    override fun getLayoutId(): Int {
+        return R.layout.fragment_task
     }
 
     override fun initView(view: View) {

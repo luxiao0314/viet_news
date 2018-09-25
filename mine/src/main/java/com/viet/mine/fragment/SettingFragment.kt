@@ -9,9 +9,7 @@ import com.viet.mine.R
 import com.viet.news.core.config.Config
 import com.viet.news.core.domain.RefreshSettingInfoEvent
 import com.viet.news.core.domain.User
-import com.viet.news.core.ext.click
-import com.viet.news.core.ext.clickWithTrigger
-import com.viet.news.core.ext.finishWithAnim
+import com.viet.news.core.ext.*
 import com.viet.news.core.ui.BaseActivity
 import com.viet.news.core.ui.BaseFragment
 import com.viet.news.core.utils.RxBus
@@ -27,13 +25,14 @@ import kotlinx.android.synthetic.main.fragment_mine_setting.*
  */
 @Route(value = [Config.ROUTER_MINE_SETTING_FRAGMENT])
 class SettingFragment : BaseFragment() {
-
-    private var mContainerView: View? = null
-
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        mContainerView = inflater.inflate(R.layout.fragment_mine_setting, container, false)
-        return mContainerView
+    override fun isSupportSwipeBack(): Boolean {
+        return false
     }
+
+    override fun getLayoutId(): Int {
+        return R.layout.fragment_mine_setting
+    }
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

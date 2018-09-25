@@ -2,10 +2,7 @@ package com.viet.mine.fragment
 
 import android.annotation.SuppressLint
 import android.arch.lifecycle.Observer
-import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import android.widget.Toast
 import com.chenenyu.router.annotation.Route
 import com.jakewharton.rxbinding2.widget.RxTextView
@@ -31,12 +28,14 @@ import kotlinx.android.synthetic.main.fragment_mine_setting_nickname.*
  */
 @Route(value = [Config.ROUTER_MINE_EDIT_CHANGE_NICKNAME_FRAGMENT])
 class ChangeNickNameFragment : BaseFragment() {
-    private var mContainerView: View? = null
     private val model by viewModelDelegate(AccountInfoViewModel::class, true)
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        mContainerView = inflater.inflate(R.layout.fragment_mine_setting_nickname, container, false)
-        return mContainerView
+    override fun isSupportSwipeBack(): Boolean {
+        return true
+    }
+
+    override fun getLayoutId(): Int {
+        return R.layout.fragment_mine_setting_nickname
     }
 
     override fun initView(view: View) {

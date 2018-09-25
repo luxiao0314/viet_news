@@ -31,12 +31,17 @@ import kotlinx.android.synthetic.main.fragment_follow_tab.*
  */
 class FollowTabFragment : InjectFragment(), IPositiveButtonDialogListener {
 
+
     lateinit var adapter: CommonAdapter<UserInfoResponse>
     private val model by viewModelDelegate(FansAndFollowViewModel::class)
     var page_number = 0
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
-        return inflater.inflate(R.layout.fragment_follow_tab, container, false)
+    override fun isSupportSwipeBack(): Boolean {
+        return false
+    }
+
+    override fun getLayoutId(): Int {
+        return R.layout.fragment_follow_tab
     }
 
     override fun initView(view: View) {

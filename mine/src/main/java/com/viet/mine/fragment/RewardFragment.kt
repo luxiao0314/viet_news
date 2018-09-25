@@ -15,12 +15,14 @@ import com.viet.news.core.ui.RealVisibleHintBaseFragment
  * @Version
  */
 class RewardFragment : RealVisibleHintBaseFragment(){
-    private var mContainerView: View? = null
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        mContainerView = inflater.inflate(R.layout.fragment_mine_wallet_reward, container, false)
-        return mContainerView}
+    override fun isSupportSwipeBack(): Boolean {
+        return false
+    }
 
+    override fun getLayoutId(): Int {
+        return R.layout.fragment_mine_wallet_reward
+    }
     override fun initView(view: View) {
 
     }

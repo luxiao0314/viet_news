@@ -33,13 +33,16 @@ import kotlinx.android.synthetic.main.fragment_mine_verify_code.*
  */
 @Route(value = [Config.ROUTER_MINE_EDIT_VERIFY_CODE_FRAGMENT])
 class VerifyCodeFragment : BaseFragment() {
-    private var mContainerView: View? = null
     private var phone = "18812345678"
     private val model by viewModelDelegate(AccountInfoViewModel::class)
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        mContainerView = inflater.inflate(R.layout.fragment_mine_verify_code, container, false)
-        return mContainerView
+
+    override fun isSupportSwipeBack(): Boolean {
+        return true
+    }
+
+    override fun getLayoutId(): Int {
+        return R.layout.fragment_mine_verify_code
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

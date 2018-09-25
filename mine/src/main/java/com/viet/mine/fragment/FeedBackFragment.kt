@@ -2,10 +2,7 @@ package com.viet.mine.fragment
 
 import android.annotation.SuppressLint
 import android.arch.lifecycle.Observer
-import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import android.widget.Toast
 import com.chenenyu.router.annotation.Route
 import com.jakewharton.rxbinding2.widget.RxTextView
@@ -27,17 +24,17 @@ import kotlinx.android.synthetic.main.fragment_mine_setting_feedback.*
  */
 @Route(value = [Config.ROUTER_MINE_SETTING_FEEDBACK_FRAGMENT])
 class FeedBackFragment : BaseFragment() {
-    private var mContainerView: View? = null
-    //    lateinit var scrollView:ScrollView
     private val model by viewModelDelegate(SettingViewModel::class, true)
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        mContainerView = inflater.inflate(R.layout.fragment_mine_setting_feedback, container, false)
-        return mContainerView
+    override fun isSupportSwipeBack(): Boolean {
+        return true
+    }
+
+    override fun getLayoutId(): Int {
+        return R.layout.fragment_mine_setting_feedback
     }
 
     override fun initView(view: View) {
-//         scrollView = view.findViewById(R.id.scrollView)
         initListener(view)
     }
 

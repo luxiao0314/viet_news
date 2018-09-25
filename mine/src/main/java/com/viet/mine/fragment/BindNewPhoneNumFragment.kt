@@ -1,16 +1,13 @@
 package com.viet.mine.fragment
 
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import com.chenenyu.router.Router
 import com.chenenyu.router.annotation.Route
 import com.viet.mine.R
 import com.viet.mine.viewmodel.AccountInfoViewModel
 import com.viet.news.core.config.Config
 import com.viet.news.core.delegate.viewModelDelegate
-import com.viet.news.core.domain.User
 import com.viet.news.core.ext.clickWithTrigger
 import com.viet.news.core.ext.goFragment
 import com.viet.news.core.ui.BaseFragment
@@ -25,12 +22,14 @@ import kotlinx.android.synthetic.main.fragment_mine_bind_new_phone_num.*
  */
 @Route(value = [Config.ROUTER_MINE_EDIT_BIND_PHONE_FRAGMENT])
 class BindNewPhoneNumFragment : BaseFragment() {
-    private var mContainerView: View? = null
     private val model by viewModelDelegate(AccountInfoViewModel::class)
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        mContainerView = inflater.inflate(R.layout.fragment_mine_bind_new_phone_num, container, false)
-        return mContainerView
+    override fun isSupportSwipeBack(): Boolean {
+        return false
+    }
+
+    override fun getLayoutId(): Int {
+        return R.layout.fragment_mine_bind_new_phone_num
     }
 
     override fun initView(view: View) {

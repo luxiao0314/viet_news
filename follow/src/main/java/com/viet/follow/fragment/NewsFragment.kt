@@ -41,15 +41,18 @@ import javax.inject.Inject
  * @Version 1.0.0
  */
 class NewsFragment : RealVisibleHintBaseFragment(), HasSupportFragmentInjector {
-
     @Inject
     internal lateinit var adapter: NewsAdapter
     private val model: FindViewModel by viewModelDelegate(FindViewModel::class)
     var id: String? = ""
     var page_number = 0
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.fragment_news, container, false)
+    override fun isSupportSwipeBack(): Boolean {
+        return false
+    }
+
+    override fun getLayoutId(): Int {
+        return R.layout.fragment_news
     }
 
     override fun onFragmentFirstVisible() {

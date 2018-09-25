@@ -3,9 +3,7 @@ package com.viet.mine.fragment
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import com.chenenyu.router.Router
 import com.chenenyu.router.annotation.Route
 import com.luck.picture.lib.PictureSelector
@@ -37,15 +35,16 @@ import java.util.*
 @Route(value = [Config.ROUTER_MINE_EDIT_INFO_FRAGMENT])
 class AccountInfoFragment : BaseFragment() {
 
-
-    private var mContainerView: View? = null
     private val model by viewModelDelegate(AccountInfoViewModel::class)
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        mContainerView = inflater.inflate(R.layout.fragment_mine_account_info, container, false)
-        return mContainerView
+
+    override fun isSupportSwipeBack(): Boolean {
+        return false
     }
 
+    override fun getLayoutId(): Int {
+        return R.layout.fragment_mine_account_info
+    }
 
     override fun initView(view: View) {
         iv_user_icon.loadCircle(User.currentUser.avatar)

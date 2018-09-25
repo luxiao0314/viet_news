@@ -1,13 +1,10 @@
 package com.viet.mine.fragment
 
 import android.content.Context
-import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.OrientationHelper
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import com.chenenyu.router.annotation.Route
 import com.viet.mine.R
 import com.viet.mine.adapter.HelpAdapter
@@ -29,14 +26,17 @@ import javax.inject.Inject
  */
 @Route(value = [Config.ROUTER_MINE_SETTING_HELP_FRAGMENT])
 class HelpFragment : RealVisibleHintBaseFragment(), HasSupportFragmentInjector {
-    private var mContainerView: View? = null
     @Inject
     internal lateinit var adapter: HelpAdapter
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        mContainerView = inflater.inflate(R.layout.fragment_mine_setting_help, container, false)
-        return mContainerView
+    override fun isSupportSwipeBack(): Boolean {
+        return true
     }
+
+    override fun getLayoutId(): Int {
+        return R.layout.fragment_mine_setting_help
+    }
+
 
     override fun initView(view: View) {
         val list = ArrayList<HelpBean>()

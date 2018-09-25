@@ -34,11 +34,11 @@ fun routerWithAnim(path: String): IRouter {
  * @param addToBackStack Boolean 默认为false
  * @param backStackName String?
  */
-fun IRouter.goFragment(activity: BaseActivity, @IdRes containerViewId: Int, addToBackStack: Boolean = false, backStackName: String? = null) {
+fun IRouter.goFragment(activity: BaseActivity, @IdRes containerViewId: Int, addToBackStack: Boolean = true, backStackName: String? = null) {
     val fm = activity.supportFragmentManager
     val transaction = fm.beginTransaction()
     val fragment = getFragment(activity) as BaseFragment
-    transaction.replace(containerViewId, fragment)
+    transaction.add(containerViewId, fragment)
     if (addToBackStack) transaction.addToBackStack(backStackName)
     transaction.commit()
 }
@@ -55,7 +55,7 @@ fun IRouter.goFragment(targetFragment: BaseFragment, @IdRes containerViewId: Int
     val fm = targetFragment.fragmentManager
     val transaction = fm?.fragmentTransaction()
     val fragment = getFragment(targetFragment.context!!) as BaseFragment
-    transaction?.replace(containerViewId, fragment)
+    transaction?.add(containerViewId, fragment)
     if (addToBackStack) transaction?.addToBackStack(backStackName)
     transaction?.commit()
 }

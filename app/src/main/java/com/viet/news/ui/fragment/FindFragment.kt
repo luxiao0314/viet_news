@@ -31,16 +31,19 @@ import javax.inject.Inject
  * @Version 1.0.0
  */
 class FindFragment : InjectFragment(), AddChannelFragment.DataChangeListener {
+    override fun isSupportSwipeBack(): Boolean {
+        return false
+    }
+
+    override fun getLayoutId(): Int {
+        return R.layout.activity_find
+    }
 
     @Inject
     internal lateinit var pagerAdapter: MyViewPager
     private val model: FindViewModel by viewModelDelegate(FindViewModel::class)
 
     private var mAddChannelFragment: AddChannelFragment? = null
-
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
-        return inflater.inflate(R.layout.activity_find, container, false)
-    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

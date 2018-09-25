@@ -41,8 +41,12 @@ class FollowFragment : RealVisibleHintBaseFragment(), HasSupportFragmentInjector
     private val model by viewModelDelegate(FindViewModel::class)
     var page_number = 0
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
-        return inflater.inflate(R.layout.fragment_follow, container, false)
+    override fun isSupportSwipeBack(): Boolean {
+        return false
+    }
+
+    override fun getLayoutId(): Int {
+        return R.layout.fragment_follow
     }
 
     override fun initView(view: View) {

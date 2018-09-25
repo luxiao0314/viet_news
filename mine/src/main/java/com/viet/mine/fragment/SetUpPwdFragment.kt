@@ -32,9 +32,12 @@ class SetUpPwdFragment : BaseFragment() {
     private var mContainerView: View? = null
     private val model by viewModelDelegate(AccountInfoViewModel::class)
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        mContainerView = inflater.inflate(R.layout.fragment_mine_setting_setuppwd, container, false)
-        return mContainerView
+    override fun isSupportSwipeBack(): Boolean {
+        return true
+    }
+
+    override fun getLayoutId(): Int {
+        return R.layout.fragment_mine_setting_setuppwd
     }
 
     @SuppressLint("CheckResult")

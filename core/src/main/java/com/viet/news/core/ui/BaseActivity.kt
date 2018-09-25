@@ -14,9 +14,11 @@ import com.viet.news.core.config.IActivityManager
 import com.viet.news.core.ext.finishWithAnim
 import com.viet.news.core.utils.LanguageUtil
 import io.reactivex.disposables.CompositeDisposable
+import me.yokeyword.swipebackfragment.SwipeBackActivity
+import me.yokeyword.swipebackfragment.SwipeBackLayout
 
 
-abstract class BaseActivity : AppCompatActivity() {
+abstract class BaseActivity : SwipeBackActivity() {
 
     protected var compositeDisposable = CompositeDisposable()
 
@@ -26,6 +28,7 @@ abstract class BaseActivity : AppCompatActivity() {
         setStatusBar()
         IActivityManager.instance.registerActivity(this)
     }
+
 
     protected open fun setStatusBar() {
         //沉浸式菜单栏的lib 国外版可以不设置状态栏 通过背景实现沉浸式菜单栏效果

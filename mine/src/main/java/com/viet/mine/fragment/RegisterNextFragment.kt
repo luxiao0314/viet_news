@@ -3,9 +3,7 @@ package com.viet.mine.fragment
 import android.annotation.SuppressLint
 import android.arch.lifecycle.Observer
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import com.jakewharton.rxbinding2.widget.RxTextView
 import com.viet.mine.R
 import com.viet.mine.viewmodel.LoginViewModel
@@ -24,8 +22,14 @@ class RegisterNextFragment : RealVisibleHintBaseFragment() {
 
     private val model by viewModelDelegate(LoginViewModel::class, true)
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? =
-            inflater.inflate(R.layout.fragment_register_next, container, false)
+
+    override fun isSupportSwipeBack(): Boolean {
+        return false
+    }
+
+    override fun getLayoutId(): Int {
+        return R.layout.fragment_register_next
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

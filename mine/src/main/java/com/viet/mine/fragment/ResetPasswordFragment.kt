@@ -2,10 +2,7 @@ package com.viet.mine.fragment
 
 import android.annotation.SuppressLint
 import android.arch.lifecycle.Observer
-import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import com.chenenyu.router.annotation.Route
 import com.jakewharton.rxbinding2.widget.RxTextView
 import com.viet.mine.R
@@ -21,12 +18,14 @@ import kotlinx.android.synthetic.main.fragment_mine_setting_resetpwd.*
 
 @Route(value = [Config.ROUTER_MINE_EDIT_CHANGE_PWD_FRAGMENT])
 class ResetPasswordFragment : BaseFragment() {
-    private var mContainerView: View? = null
     private val model by viewModelDelegate(AccountInfoViewModel::class)
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        mContainerView = inflater.inflate(R.layout.fragment_mine_setting_resetpwd, container, false)
-        return mContainerView
+    override fun isSupportSwipeBack(): Boolean {
+        return true
+    }
+
+    override fun getLayoutId(): Int {
+        return R.layout.fragment_mine_setting_resetpwd
     }
 
     @SuppressLint("CheckResult")

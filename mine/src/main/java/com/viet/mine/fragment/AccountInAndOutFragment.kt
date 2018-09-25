@@ -1,11 +1,8 @@
 package com.viet.mine.fragment
 
 import android.content.Context
-import android.os.Bundle
 import android.support.v4.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import com.viet.mine.R
 import com.viet.mine.viewmodel.MineWalletViewModel
 import com.viet.news.core.delegate.viewModelDelegate
@@ -27,13 +24,16 @@ import javax.inject.Inject
  */
 class AccountInAndOutFragment : RealVisibleHintBaseFragment(), HasSupportFragmentInjector {
 
-    private var mContainerView: View? = null
     @Inject
     internal lateinit var adapter: TabFragmentAdapter
     private val model by viewModelDelegate(MineWalletViewModel::class)
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        mContainerView = inflater.inflate(R.layout.fragment_mine_wallet_in_out, container, false)
-        return mContainerView
+
+    override fun isSupportSwipeBack(): Boolean {
+        return false
+    }
+
+    override fun getLayoutId(): Int {
+        return R.layout.fragment_mine_wallet_in_out
     }
 
     override fun initView(view: View) {
