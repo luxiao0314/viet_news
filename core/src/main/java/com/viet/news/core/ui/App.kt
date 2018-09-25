@@ -4,7 +4,6 @@ import android.content.Context
 import android.content.pm.PackageManager
 import android.os.Build
 import android.support.multidex.MultiDex
-import cn.bingoogolapple.swipebacklayout.BGASwipeBackHelper
 import com.safframework.log.L
 import com.scwang.smartrefresh.layout.SmartRefreshLayout
 import com.scwang.smartrefresh.layout.constant.SpinnerStyle
@@ -31,7 +30,6 @@ open class App : BaseApplication() {
         super.onCreate()
         instance = this
         LanguageUtil.setApplicationLanguage(this)
-        BGASwipeBackHelper.init(this, null)
         initConfig()
     }
 

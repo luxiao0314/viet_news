@@ -126,7 +126,6 @@ dependencies {
 
     api "com.chenenyu.router:router:$rootProject.router"
     api "com.google.zxing:core:$rootProject.zxing"
-    api 'cn.bingoogolapple:bga-swipebacklayout:1.1.9@aar'
 }
 
 task nativeLibsToJar(type: Jar, description: 'create a jar archive of the native libs') {
