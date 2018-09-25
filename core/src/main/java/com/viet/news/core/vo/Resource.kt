@@ -60,7 +60,8 @@ class Resource<T>(private var status: Status, var data: T? = null, var message: 
         return this
     }
 
-    fun error(message: String): Resource<T>? {
+    fun error(data: T? = null, message: String): Resource<T>? {
+        this.data = data
         this.message = message
         this.status = Status.ERROR
         return this

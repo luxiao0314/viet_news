@@ -73,9 +73,9 @@ abstract class NetworkBoundResource<ResultType, RequestType> @MainThread constru
                 is ApiErrorResponse -> {
                     onFetchFailed()
                     if (dbSource.hasActiveObservers()) {
-                        result.addSource(dbSource) { result.value = result.value?.error(response.errorMessage) }
+                        result.addSource(dbSource) { it -> result.value = result.value?.error(it, response.errorMessage) }
                     } else {
-                        result.value = result.value?.error(response.errorMessage)
+                        result.value = result.value?.error(message = response.errorMessage)
                     }
                 }
             }

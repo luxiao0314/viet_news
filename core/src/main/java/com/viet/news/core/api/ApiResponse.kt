@@ -16,9 +16,12 @@
 
 package com.viet.news.core.api
 
-import android.util.Log
+import com.safframework.log.L
 import com.viet.news.core.R
+import com.viet.news.core.domain.HandleException
+import com.viet.news.core.domain.ServiceException
 import com.viet.news.core.ui.App
+import retrofit2.HttpException
 import retrofit2.Response
 import java.util.regex.Pattern
 
@@ -30,33 +33,25 @@ import java.util.regex.Pattern
 sealed class ApiResponse<T> {
     companion object {
 
-        fun <T> create(error: Throwable): ApiErrorResponse<T> = ApiErrorResponse(error.message ?: App.instance.resources.getString(R.string.unknown_error)) //网络请求无响应
+        fun <T> create(error: Throwable): ApiErrorResponse<T> = apiErrorResponse(error)
 
         fun <T> create(response: Response<HttpResponse<T>>): ApiResponse<T> {
             //网络请求有响应
             return if (response.isSuccessful) {
                 val body = response.body()
                 when {
-                    body == null -> apiErrorResponse(response) //请求无结果
+                    body == null -> apiErrorResponse(ServiceException(response.code(), response.message())) //请求无结果
                     response.code() == 204 -> ApiEmptyResponse()    //204
-                    !body.isOkStatus -> ApiErrorResponse(body.message ?: App.instance.resources.getString(R.string.unknown_error)) //code!=0,即服务器异常
-                    else -> ApiSuccessResponse(body.data, response.headers()?.get("link")) //成功
+                    body.isOkStatus -> ApiSuccessResponse(body.data, response.headers()?.get("link"))
+                    else -> apiErrorResponse(ServiceException(body.code, body.message)) //服务器异常
                 }
             } else {
-                apiErrorResponse(response)   //网络请求失败,网络错误
+                apiErrorResponse(HttpException(response)) //Http异常
             }
         }
 
-        private fun <T> apiErrorResponse(response: Response<HttpResponse<T>>): ApiErrorResponse<T> {
-            val msg = response.errorBody()?.string()
-            val errorMsg = if (msg.isNullOrEmpty()) {
-                response.message()
-            } else {
-                msg
-            }
-            return ApiErrorResponse(errorMsg
-                    ?: App.instance.resources.getString(R.string.unknown_error))
-        }
+        private fun <T> apiErrorResponse(e: Throwable): ApiErrorResponse<T> = ApiErrorResponse(HandleException.handleException(e).message
+                ?: App.instance.resources.getString(R.string.unknown_error))
     }
 }
 
@@ -69,8 +64,7 @@ data class ApiErrorResponse<T>(val errorMessage: String) : ApiResponse<T>()
 
 data class ApiSuccessResponse<T>(val body: T?, val links: Map<String, String>) : ApiResponse<T>() {
 
-    constructor(body: T?, linkHeader: String?) : this(body = body, links = linkHeader?.extractLinks()
-            ?: emptyMap())
+    constructor(body: T?, linkHeader: String?) : this(body = body, links = linkHeader?.extractLinks() ?: emptyMap())
 
     val nextPage: Int? by lazy(LazyThreadSafetyMode.NONE) {
         links[NEXT_LINK]?.let { next ->
@@ -81,7 +75,7 @@ data class ApiSuccessResponse<T>(val body: T?, val links: Map<String, String>) :
                 try {
                     Integer.parseInt(matcher.group(1))
                 } catch (ex: NumberFormatException) {
-                    Log.w("ApiSuccessResponse", "cannot parse next page from $next")
+                    L.w("ApiSuccessResponse", "cannot parse next page from $next")
                     null
                 }
             }

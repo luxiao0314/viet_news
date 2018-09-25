@@ -7,6 +7,7 @@ import com.viet.news.core.api.RetrofitManager
 import com.viet.news.core.config.Config
 import com.viet.news.core.config.IActivityManager
 import com.viet.news.core.config.LoginEnum
+import com.viet.news.core.domain.HandleException
 import com.viet.news.core.domain.User
 import com.viet.news.core.domain.request.LoginParams
 import com.viet.news.core.domain.response.LoginRegisterResponse
@@ -33,7 +34,7 @@ class HttpLoginInterceptor : Interceptor {
         val request = chain.request()
         val response = chain.proceed(request)
         return when {
-            response.code() == Config.ErrorCode.NETWORK_RESPONSE_LOGIN_FORBIDDEN -> {
+            response.code() == HandleException.FORBIDDEN -> {
                 if (!isLoginInvalidate) {
                     isLoginInvalidate = true
                     routerWithAnim(Config.ROUTER_LOGIN_ACTIVITY).anim(R.anim.activity_open,android.R.anim.fade_out).go(IActivityManager.lastActivity())
@@ -41,7 +42,7 @@ class HttpLoginInterceptor : Interceptor {
                 isLoginInvalidate = false
                 response
             }
-            response.code() == Config.ErrorCode.NETWORK_RESPONSE_LOGIN_UNAUTHORIZED -> {
+            response.code() == HandleException.UNAUTHORIZED -> {
                 val param = LoginParams()
                 param.setType(LoginEnum.HARDWARE)
                 //由于GsonFactory强制加了一层HttpResponse，所以此处强制转换

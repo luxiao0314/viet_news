@@ -47,14 +47,6 @@ object Config {
     const val LAST_LANGUAGE = "lastLanguage"
     const val SELECTED_LANGUAGE = "selected_language"
 
-    interface ErrorCode {
-        companion object {
-            val UNKNOWN = 1
-            val NETWORK_RESPONSE_LOGIN_FORBIDDEN = 403
-            val NETWORK_RESPONSE_LOGIN_UNAUTHORIZED = 401
-        }
-    }
-
     const val page_size = 10
 
     //bundle
