@@ -4,7 +4,6 @@ import android.content.Context
 import android.os.Build
 import android.os.Bundle
 import android.support.v4.content.ContextCompat
-import android.support.v7.app.AppCompatActivity
 import android.view.KeyEvent
 import android.view.MenuItem
 import com.jaeger.library.StatusBarUtil
@@ -15,7 +14,6 @@ import com.viet.news.core.ext.finishWithAnim
 import com.viet.news.core.utils.LanguageUtil
 import io.reactivex.disposables.CompositeDisposable
 import me.yokeyword.swipebackfragment.SwipeBackActivity
-import me.yokeyword.swipebackfragment.SwipeBackLayout
 
 
 abstract class BaseActivity : SwipeBackActivity() {
@@ -72,7 +70,7 @@ abstract class BaseActivity : SwipeBackActivity() {
     }
 
     override fun onKeyDown(keyCode: Int, event: KeyEvent?): Boolean = if (KeyEvent.KEYCODE_BACK == keyCode) {
-        if (supportFragmentManager.backStackEntryCount == 0) {
+        if (supportFragmentManager.backStackEntryCount == 1 || supportFragmentManager.backStackEntryCount ==0) {
             finishWithAnim()
             true
         } else {
