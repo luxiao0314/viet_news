@@ -11,7 +11,7 @@ extern "C" {
 #endif
 
 JNIEXPORT jstring JNICALL
-Java_com_viet_news_core_utils_EncryptUtils_nativeCheck(JNIEnv *env, jclass type);
+Java_com_viet_news_core_utils_EncryptUtils_nativeCheck(JNIEnv *env, jobject);
 
 #ifdef __cplusplus
 }
