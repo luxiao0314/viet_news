@@ -10,13 +10,17 @@ import android.support.v7.widget.OrientationHelper
 import android.view.View
 import com.chenenyu.router.annotation.Route
 import com.jaeger.library.StatusBarUtil
+import com.safframework.ext.clickWithTrigger
 import com.safframework.utils.support
 import com.viet.follow.R
 import com.viet.follow.adapter.PersonalPageAdapter
 import com.viet.follow.viewmodel.PersonalPageModel
 import com.viet.news.core.config.Config
 import com.viet.news.core.delegate.viewModelDelegate
-import com.viet.news.core.ext.*
+import com.viet.news.core.ext.isBlank
+import com.viet.news.core.ext.loadBlur
+import com.viet.news.core.ext.loadCircle
+import com.viet.news.core.ext.routerWithAnim
 import com.viet.news.core.ui.InjectActivity
 import com.viet.news.dialog.CancelFollowDialog
 import com.viet.news.dialog.interfaces.IPositiveButtonDialogListener
@@ -73,8 +77,8 @@ class PersonalPageActivity : InjectActivity(), IPositiveButtonDialogListener {
         refreshLayout.setOnRefreshListener { initData(false) }
         refreshLayout.setOnLoadMoreListener { initData(true) }
         multiStatusView.setLoadingButtonClickListener(View.OnClickListener { refreshLayout.autoRefresh() })
-        relativeLayout.click { routerWithAnim(Config.ROUTER_FUNS_AND_FOLLOW_ACTIVITY).with(Config.BUNDLE_USER_ID, model.userId).go(this) }
-        btn_follow.click {
+        relativeLayout.clickWithTrigger { routerWithAnim(Config.ROUTER_FUNS_AND_FOLLOW_ACTIVITY).with(Config.BUNDLE_USER_ID, model.userId).go(this) }
+        btn_follow.clickWithTrigger {
             if (btn_follow.isSelected) {
                 model.follow(this) {
                     initInfoData()

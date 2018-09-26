@@ -1,15 +1,14 @@
 package com.viet.mine.fragment
 
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import com.chenenyu.router.annotation.Route
+import com.safframework.ext.clickWithTrigger
 import com.viet.mine.R
 import com.viet.news.core.config.Config
 import com.viet.news.core.domain.RefreshSettingInfoEvent
 import com.viet.news.core.domain.User
-import com.viet.news.core.ext.*
+import com.viet.news.core.ext.finishWithAnim
 import com.viet.news.core.ui.BaseActivity
 import com.viet.news.core.ui.BaseFragment
 import com.viet.news.core.utils.RxBus
@@ -51,7 +50,7 @@ class SettingFragment : BaseFragment() {
         item_about.clickWithTrigger { WebActivity.launch(context, "http://www.baidu.com") }
         if (User.currentUser.isLogin()) {
             btn_logout.visibility = View.VISIBLE
-            btn_logout.click {
+            btn_logout.clickWithTrigger {
                 User.currentUser.logout()
                 (activity as BaseActivity).finishWithAnim()
             }

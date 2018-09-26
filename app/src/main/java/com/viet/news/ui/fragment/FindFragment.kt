@@ -11,6 +11,7 @@ import cn.magicwindow.channelwidget.AddChannelFragment
 import cn.magicwindow.channelwidget.entity.ChannelBean
 import com.jaeger.library.StatusBarUtil
 import com.safframework.ext.click
+import com.safframework.ext.clickWithTrigger
 import com.viet.follow.fragment.NewsFragment
 import com.viet.follow.viewmodel.FindViewModel
 import com.viet.news.R
@@ -67,7 +68,7 @@ class FindFragment : InjectFragment(), AddChannelFragment.DataChangeListener {
         id_view_Pager.adapter = pagerAdapter
         id_tab_pager_indicator.setupWithViewPager(id_view_Pager)
 
-        id_add_channel_entry_iv.click {
+        id_add_channel_entry_iv.clickWithTrigger {
             mAddChannelFragment = AddChannelFragment(model.followList, model.unFollowList)
             mAddChannelFragment?.setOnDataChangeListener(this)
             mAddChannelFragment?.show(fragmentManager, "addChannel")
