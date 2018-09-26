@@ -5,7 +5,6 @@ import android.support.annotation.StringRes
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentStatePagerAdapter
-import com.safframework.log.L
 import javax.inject.Inject
 
 /**
@@ -82,12 +81,5 @@ class TabFragmentAdapter @Inject constructor(fm: FragmentManager?) : FragmentSta
         }
     }
 
-    override fun getPageTitle(position: Int): CharSequence? {
-        return if (titleList.size > 0) {
-            L.i(TAG, "page title:" + titleList[position])
-            titleList[position]
-        } else {
-            null
-        }
-    }
+    override fun getPageTitle(position: Int): CharSequence? = if (titleList.size > 0) titleList[position] else ""
 }
