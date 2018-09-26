@@ -1,7 +1,7 @@
 package com.viet.news.core.domain.request
 
 import cn.magicwindow.core.utils.DeviceInfoUtils
-import cn.magicwindow.core.utils.EncryptUtils
+import com.viet.news.core.utils.EncryptUtils
 import com.viet.news.core.ui.App
 import java.io.Serializable
 

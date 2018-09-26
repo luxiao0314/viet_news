@@ -38,6 +38,8 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
+    implementation project(path: ':codec')
+
     testImplementation 'junit:junit:4.12'
     androidTestImplementation "com.android.support.test:runner:$rootProject.test_runner"
     androidTestImplementation "com.android.support.test.espresso:espresso-core:$rootProject.espresso_core"

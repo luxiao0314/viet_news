@@ -1,6 +1,6 @@
 package com.viet.news.core.ext
 
-import cn.magicwindow.core.utils.EncryptUtils
+import com.viet.news.core.utils.EncryptUtils
 import io.reactivex.Maybe
 import org.json.JSONObject
 
