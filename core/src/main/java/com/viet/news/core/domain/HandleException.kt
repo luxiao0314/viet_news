@@ -14,10 +14,10 @@ import javax.net.ssl.SSLHandshakeException
 
 /**
  * @Description 服务器异常,http异常处理
- * @Author luxiao418
- * @Email luxiao418@pingan.com.cn
- * @Date 08/09/2017 11:21 PM
- * @Version 1.0.0
+ * @Author sean
+ * @Email xiao.lu@magicwindow.cn
+ * @Date 26/09/2018 3:32 PM
+ * @Version
  */
 class HandleException {
 
@@ -36,7 +36,7 @@ class HandleException {
         //服务器异常状态码
         private const val SERVICE_EXCEPTION = 1000
 
-        fun handleException(e: Throwable): Throwable {
+        fun handle(e: Throwable): Throwable {
             return when (e) {
                 is HttpException -> when (e.code()) {
                     UNAUTHORIZED -> Throwable("token过期", e)

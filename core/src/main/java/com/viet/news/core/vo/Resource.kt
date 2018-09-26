@@ -54,7 +54,7 @@ class Resource<T>(private var status: Status, var data: T? = null, var message: 
 
     var dialog: ProgressDialogFragment? = null
 
-    fun success(data: T?): Resource<T> {
+    fun success(data: T? = null): Resource<T> {
         this.status = Status.SUCCESS
         this.data = data
         return this

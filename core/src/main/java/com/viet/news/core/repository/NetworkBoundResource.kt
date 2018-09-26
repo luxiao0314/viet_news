@@ -9,6 +9,7 @@ import com.viet.news.core.api.ApiEmptyResponse
 import com.viet.news.core.api.ApiErrorResponse
 import com.viet.news.core.api.ApiResponse
 import com.viet.news.core.api.ApiSuccessResponse
+import com.viet.news.core.ext.isBlank
 import com.viet.news.core.vo.Resource
 import com.viet.news.core.vo.Status
 import io.reactivex.Observable
@@ -29,7 +30,7 @@ abstract class NetworkBoundResource<ResultType, RequestType> @MainThread constru
 
     init {
         result.value = Resource(Status.LOADING)
-        result.value?.setOnCancelListener { cancelAll() }
+        result.value?.setOnCancelListener { cancel() }
         @Suppress("LeakingThis")
         val dbSource = loadFromDb()
         if (dbSource.hasActiveObservers().not()) {
@@ -40,7 +41,7 @@ abstract class NetworkBoundResource<ResultType, RequestType> @MainThread constru
                 if (shouldFetch(resultType)) {
                     fetchFromNetwork(dbSource)
                 } else {
-                    result.addSource(dbSource) { rT -> result.value = result.value?.success(rT) }
+                    result.addSource(dbSource) { result.value = result.value?.success(it) }
                 }
             }
         }
@@ -56,20 +57,19 @@ abstract class NetworkBoundResource<ResultType, RequestType> @MainThread constru
     private lateinit var apiResponse: LiveData<ApiResponse<RequestType>>
     private fun fetchFromNetwork(dbSource: LiveData<ResultType>) {
         apiResponse = createCall()
-        result.addSource(dbSource) { newData -> result.value?.loading()?.let { setValue(it) } }
+        result.addSource(dbSource) { result.value?.loading()?.let { setValue(it) } }
         result.addSource(apiResponse) { response ->
             result.removeSource(apiResponse)
             result.removeSource(dbSource)
             when (response) {
                 is ApiSuccessResponse -> {
-                    if (response.body == null) {
-                        result.value = result.value?.success(null)
+                    if (isBlank(response.body)) {
+                        result.value = result.value?.success()
                         return@addSource
                     }
                     processResponse(response)?.let { Observable.fromCallable { saveCallResult(it) }.subscribeOn(Schedulers.io()).subscribe() }
                     result.addSource(loadFromDb()) { resultType -> result.value = result.value?.success(resultType) }
                 }
-                is ApiEmptyResponse -> result.addSource(loadFromDb()) { newData -> result.value = result.value?.success(newData) }
                 is ApiErrorResponse -> {
                     onFetchFailed()
                     if (dbSource.hasActiveObservers()) {
@@ -78,6 +78,7 @@ abstract class NetworkBoundResource<ResultType, RequestType> @MainThread constru
                         result.value = result.value?.error(message = response.errorMessage)
                     }
                 }
+                is ApiEmptyResponse -> result.addSource(loadFromDb()) { newData -> result.value = result.value?.success(newData) }
             }
         }
     }
@@ -107,7 +108,7 @@ abstract class NetworkBoundResource<ResultType, RequestType> @MainThread constru
     }
 
     @MainThread
-    private fun cancelAll() {
+    private fun cancel() {
         result.removeSource(apiResponse)
     }
 

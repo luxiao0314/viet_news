@@ -50,7 +50,7 @@ sealed class ApiResponse<T> {
             }
         }
 
-        private fun <T> apiErrorResponse(e: Throwable): ApiErrorResponse<T> = ApiErrorResponse(HandleException.handleException(e).message
+        private fun <T> apiErrorResponse(e: Throwable): ApiErrorResponse<T> = ApiErrorResponse(HandleException.handle(e).message
                 ?: App.instance.resources.getString(R.string.unknown_error))
     }
 }
