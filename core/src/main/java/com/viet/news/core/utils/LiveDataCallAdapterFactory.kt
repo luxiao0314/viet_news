@@ -29,15 +29,15 @@ class LiveDataCallAdapterFactory : Factory() {
         if (Factory.getRawType(returnType) != LiveData::class.java) {
             return null
         }
-        val observableType = Factory.getParameterUpperBound(0, returnType as ParameterizedType)
-        val rawObservableType = Factory.getRawType(observableType)
-        if (rawObservableType != ApiResponse::class.java) {
+        val liveDataType = Factory.getParameterUpperBound(0, returnType as ParameterizedType)
+        val rawLiveDataType = Factory.getRawType(liveDataType)
+        if (rawLiveDataType != ApiResponse::class.java) {
             throw IllegalArgumentException("type must be a resource")
         }
-        if (observableType !is ParameterizedType) {
+        if (liveDataType !is ParameterizedType) {
             throw IllegalArgumentException("resource must be parameterized")
         }
-        val bodyType = Factory.getParameterUpperBound(0, observableType)
+        val bodyType = Factory.getParameterUpperBound(0, liveDataType)
         return LiveDataCallAdapter<Any>(bodyType)
     }
 }
