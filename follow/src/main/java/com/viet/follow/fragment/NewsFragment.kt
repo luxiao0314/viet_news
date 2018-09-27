@@ -8,9 +8,7 @@ import android.support.v4.content.ContextCompat
 import android.support.v7.widget.DividerItemDecoration
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.OrientationHelper
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import android.widget.TextView
 import com.scwang.smartrefresh.layout.api.RefreshHeader
 import com.scwang.smartrefresh.layout.header.ClassicsHeader
@@ -117,6 +115,7 @@ class NewsFragment : RealVisibleHintBaseFragment(), HasSupportFragmentInjector {
                         }
                     }, onError = {
                         multiStatusView.showError()
+                        model.newsList.clear()
                         if (loadMore) {
                             refreshLayout.finishLoadMore(false)//传入false表示加载失败
                         } else {
