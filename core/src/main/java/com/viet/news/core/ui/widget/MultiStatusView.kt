@@ -248,7 +248,6 @@ class MultiStatusView @JvmOverloads constructor(context: Context, attrs: Attribu
                 showViewById(mLoadingView!!.id)
             }
             else -> {
-                L.i(TAG, "type: TYPE_CONTENT")
                 if (loadingAnimationView != null && loadingAnimationView.animation != null) {
                     loadingAnimationView.animation.cancel()
                 }

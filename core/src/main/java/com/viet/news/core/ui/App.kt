@@ -86,14 +86,16 @@ open class App : BaseApplication() {
         //设置全局的Header构建器
         SmartRefreshLayout.setDefaultRefreshHeaderCreator { context, layout ->
             layout.setHeaderHeight(40F)
-            layout.setEnableAutoLoadMore(true)
-            layout.setEnableFooterFollowWhenLoadFinished(true)
+            layout.setEnableOverScrollDrag(true)    //开启越界拖动（仿苹果效果)
+            layout.setEnableAutoLoadMore(true)  //启用列表惯性滑动到底部时自动加载更多
+            layout.setEnableFooterFollowWhenLoadFinished(true)  //在全部加载结束之后Footer跟随内容
             ClassicsHeader.REFRESH_HEADER_REFRESHING = getString(R.string.refreshing)
             ClassicsHeader(context).setEnableLastTime(false).setTextSizeTitle(14F).setSpinnerStyle(SpinnerStyle.Translate)
         }
         //设置全局的Footer构建器
         SmartRefreshLayout.setDefaultRefreshFooterCreator { context, layout ->
             layout.setFooterHeight(40F)
+            layout.setEnableOverScrollDrag(true)
             ClassicsFooter(context).setDrawableSize(20f).setTextSizeTitle(14F)
         }
     }
