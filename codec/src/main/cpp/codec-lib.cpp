@@ -9,7 +9,6 @@
 #include <cstring>
 #include <sys/ptrace.h>
 #include "sha256.h"
-#include "native-check.h"
 
 #define LOGI(...) ((void)__android_log_print(ANDROID_LOG_INFO, "security", __VA_ARGS__))
 #define LOGE(...) ((void)__android_log_print(ANDROID_LOG_ERROR, "security", __VA_ARGS__))
@@ -17,14 +16,14 @@
 const char *RELEASE_SIGN = "30820255308201bea00302010202045461d0c1300d06092a864886f70d0101050500306f310b300906035504061302636e3111300f060355040813085368616e674861693111300f060355040713085368616e6748616931123010060355040a13095a58496e736967687431123010060355040b13095a58496e736967687431123010060355040313094161726f6e2e4c6975301e170d3134313131313039303235375a170d3339313130353039303235375a306f310b300906035504061302636e3111300f060355040813085368616e674861693111300f060355040713085368616e6748616931123010060355040a13095a58496e736967687431123010060355040b13095a58496e736967687431123010060355040313094161726f6e2e4c697530819f300d06092a864886f70d010101050003818d00308189028181008099a3c80816147c921b59f20159bb688aac1e6d730cc177a5454bfe46635201ad2097456ac539ee093e1fe0e867ce63e14c48f15e8854fc5d79e42f27dee4e8f2852c384cdaad394ac70809c908cca7f8fc32763969360b06261a9bc8eb2080fed91d73137696d0b629cd9e8e775925a6cd6a7cec416b5260bc024d80b4f4690203010001300d06092a864886f70d01010505000381810035d9b7a787090c699f43a65363cd0f6ab33486181e7b793f4aab5b9679073a5d2dddb9579a08739be06652e87dab48858d55793aabe6a7a92d1df337a133854ff9fe1a76db05a532aebca2441803c2f3cf60a1276c3dd9235d08ee9fdd95e997caf1517be9a34392c873a8aa5ec1ca6ad02b0d21f4dfefc0c13ee351baaf0105";
 
 const char *SALT_CN_RELEASE = "df6e7e9a333d4a37bdf9c2d539dd0780"; // 国内正式
-const char *SALT_CN_TEST    = "96a538b436014231881f951233a36fe5"; // 国内测式
-const char *SALT_RELEASE    = "b392a6141d154ac0ac77e59ba6e3377d"; // 国外正式
-const char *SALT_TEST       = "96a538b436014231881f951233a36fe5"; // 国外测式
+const char *SALT_CN_TEST = "96a538b436014231881f951233a36fe5"; // 国内测式
+const char *SALT_RELEASE = "b392a6141d154ac0ac77e59ba6e3377d"; // 国外正式
+const char *SALT_TEST = "96a538b436014231881f951233a36fe5"; // 国外测式
 
 extern "C"
 JNIEXPORT jstring JNICALL
-Java_com_viet_news_core_utils_EncryptUtils_encryptPayPassword(JNIEnv *env, jobject ,
-                                                   jstring old_string) {
+Java_com_viet_news_core_utils_EncryptUtils_encryptPayPassword(JNIEnv *env, jobject,
+                                                              jstring old_string) {
 
     const char *str = env->GetStringUTFChars(old_string, 0);
 
@@ -37,13 +36,14 @@ Java_com_viet_news_core_utils_EncryptUtils_encryptPayPassword(JNIEnv *env, jobje
 
 extern "C"
 JNIEXPORT jstring JNICALL
-Java_com_viet_news_core_utils_EncryptUtils_encryptPayPasswordWithSalt(JNIEnv *env, jobject ,
-                                                               jstring old_string, jint type) {
+Java_com_viet_news_core_utils_EncryptUtils_encryptPayPasswordWithSalt(JNIEnv *env, jobject,
+                                                                      jstring old_string,
+                                                                      jint type) {
 
     const char *str = env->GetStringUTFChars(old_string, 0);
     const char *salt;
 
-    switch(type) {
+    switch (type) {
         case 1:
             salt = SALT_CN_RELEASE;
             break;
@@ -59,7 +59,7 @@ Java_com_viet_news_core_utils_EncryptUtils_encryptPayPasswordWithSalt(JNIEnv *en
     }
 
     //拼接两个字符串
-    std::string const& input = std::string(str) + std::string(salt);
+    std::string const &input = std::string(str) + std::string(salt);
 
     std::string output = sha256(input);
 
@@ -173,8 +173,8 @@ static int verifySign(JNIEnv *env) {
     return JNI_ERR;
 }
 
-jstring Java_com_viet_news_core_utils_EncryptUtils_nativeCheck(JNIEnv *env, jclass type) {
+jstring Java_com_viet_news_core_utils_EncryptUtils_nativeCheck(JNIEnv *env, jobject) {
 
-    ptrace(PTRACE_TRACEME,0,0,0); // 实现反动态调试
+    ptrace(PTRACE_TRACEME, 0, 0, 0); // 实现反动态调试
     return env->NewStringUTF("Security str from native.");
 }

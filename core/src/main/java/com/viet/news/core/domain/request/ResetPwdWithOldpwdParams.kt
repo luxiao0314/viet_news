@@ -1,6 +1,6 @@
 package com.viet.news.core.domain.request
 
-import cn.magicwindow.core.utils.EncryptUtils
+import com.viet.news.core.utils.EncryptUtils
 
 class ResetPwdWithOldpwdParams{
     var new_password: String? = null

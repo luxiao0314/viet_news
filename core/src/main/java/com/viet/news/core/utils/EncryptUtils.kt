@@ -1,4 +1,4 @@
-package cn.magicwindow.core.utils
+package com.viet.news.core.utils
 
 import android.annotation.SuppressLint
 import android.util.Base64
@@ -11,7 +11,7 @@ import javax.crypto.spec.SecretKeySpec
 
 /**
  * @version V1.0 <描述当前版本功能>
- * @FileName: cn.magicwindow.core.utils.EncryptUtils.java
+ * @FileName: com.viet.news.core.utils.EncryptUtils.java
  * @author: Tony Shen
  * @date: 2018-05-21 20:53
  */
