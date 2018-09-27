@@ -66,15 +66,13 @@ class FindViewModel(var repository: FindRepository = FindRepository()) : BaseVie
      * 点赞
      */
     fun like(context: Context, contentId: String) {
-        repository.like(contentId).observe(context as BaseActivity, Observer {
-            it?.work(onError = {}, onSuccess = {})  //覆盖onError
-        })
+        repository.like(contentId).observe(context as BaseActivity, Observer { it?.work {} })
     }
 
     /**
      * 收藏
      */
     fun collection(context: Context, contentId: String) {
-        repository.collection(contentId).observe(context as BaseActivity, Observer { it?.work(onError = {}, onSuccess = {}) })
+        repository.collection(contentId).observe(context as BaseActivity, Observer { it?.work {} })
     }
 }

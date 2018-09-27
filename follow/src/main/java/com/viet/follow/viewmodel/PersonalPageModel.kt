@@ -40,10 +40,10 @@ class PersonalPageModel(var repository: PersonalPageRepository = PersonalPageRep
     }
 
     fun like(context: Context, contentId: String) {
-        repository.like(contentId).observe(context as BaseActivity, Observer { it?.work(onError = {}, onSuccess = {}) })
+        repository.like(contentId).observe(context as BaseActivity, Observer { it?.work {} })
     }
 
     fun collection(context: Context, contentId: String) {
-        repository.collection(contentId).observe(context as BaseActivity, Observer { it?.work(onError = {}, onSuccess = {}) })
+        repository.collection(contentId).observe(context as BaseActivity, Observer { it?.work {} })
     }
 }
