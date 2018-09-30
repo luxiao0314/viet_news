@@ -4,8 +4,8 @@ buildscript {
     ext.kotlin_version = '1.2.60'
 //    apply from: 'versions.gradle'
     repositories {
-        google()
         maven { url 'http://maven.aliyun.com/nexus/content/groups/public/' }
+        google()
         jcenter()
     }
     dependencies {
@@ -24,9 +24,9 @@ buildscript {
 
 allprojects {
     repositories {
+        maven { url 'http://maven.aliyun.com/nexus/content/groups/public/' }
         google()
         jcenter()
-        maven { url 'http://maven.aliyun.com/nexus/content/groups/public/' }
         mavenCentral()
         maven { url "https://jitpack.io" }
         //临时的解决方案
