@@ -3,13 +3,10 @@ package cn.magicwindow.core.utils
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.pm.PackageInfo
-import android.content.pm.PackageManager
 import android.content.pm.PackageManager.NameNotFoundException
 import android.content.res.Configuration
 import android.graphics.Point
 import android.net.ConnectivityManager
-import android.net.NetworkInfo
-import android.net.wifi.WifiManager
 import android.os.Build
 import android.provider.Settings.Secure
 import android.telephony.TelephonyManager
@@ -17,10 +14,6 @@ import android.text.TextUtils
 import android.view.WindowManager
 import com.viet.news.core.ui.App
 import com.viet.news.core.utils.SPHelper
-import java.io.BufferedReader
-import java.io.File
-import java.io.FileReader
-import java.io.IOException
 import java.util.*
 
 
@@ -534,12 +527,12 @@ object DeviceInfoUtils {
      * @param context
      * @return
      */
-//    fun isNetworkAvailable(): Boolean {
-//        val manager = App.instance.getSystemService(
-//                Context.CONNECTIVITY_SERVICE) as ConnectivityManager ?: return false
-//        val networkinfo = manager.activeNetworkInfo
-//        return !(networkinfo == null || !networkinfo.isAvailable)
-//    }
+    fun isNetworkAvailable(): Boolean {
+        val manager = App.instance.getSystemService(
+                Context.CONNECTIVITY_SERVICE) as ConnectivityManager ?: return false
+        val networkinfo = manager.activeNetworkInfo
+        return !(networkinfo == null || !networkinfo.isAvailable)
+    }
 
     /**
      * 首先检查手机是否安装了某一项APP

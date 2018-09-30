@@ -1,20 +1,19 @@
 package com.viet.news.ui.fragment
 
+import android.arch.lifecycle.Observer
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentStatePagerAdapter
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import cn.magicwindow.channelwidget.AddChannelFragment
 import cn.magicwindow.channelwidget.entity.ChannelBean
 import com.jaeger.library.StatusBarUtil
-import com.safframework.ext.click
 import com.safframework.ext.clickWithTrigger
 import com.viet.follow.fragment.NewsFragment
 import com.viet.follow.viewmodel.FindViewModel
 import com.viet.news.R
+import com.viet.news.core.config.NetWorkState
 import com.viet.news.core.delegate.viewModelDelegate
 import com.viet.news.core.domain.LoginEvent
 import com.viet.news.core.domain.LogoutEvent
@@ -56,6 +55,7 @@ class FindFragment : InjectFragment(), AddChannelFragment.DataChangeListener {
     private fun initEvent() {
         compositeDisposable.add(RxBus.get().register(LogoutEvent::class.java) { initData() })
         compositeDisposable.add(RxBus.get().register(LoginEvent::class.java) { initData() })
+        NetWorkState(context).observe(this, Observer { if (it!!) initData() })  //有网络之后重新加载
     }
 
     private fun initData() {
