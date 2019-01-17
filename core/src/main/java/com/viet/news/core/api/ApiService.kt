@@ -15,7 +15,7 @@ import retrofit2.http.*
 interface ApiService {
 
     companion object {
-        const val MAGICBOX_API = "http://magicbox.liaoyantech.cn/magicbox/api/"
+        const val MAGICBOX_API = "http://94.191.23.229:9090"
     }
 
     /**
