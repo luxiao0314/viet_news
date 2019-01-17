@@ -28,21 +28,6 @@ android {
             buildConfigField 'String', 'API_KEY', '"ce7f730145454a25bbccf29d7ebc60fb"'
         }
     }
-
-    signingConfigs { // 签名，你可以配置多个签名，然后再在buildTypes 进行指定。
-        release {
-            storeFile file("../zxInsight.jks") // 签名文件存放路径
-            storePassword "zxInsight"
-            keyAlias "magicWindowExample"
-            keyPassword "magicWindowExample"
-        }
-        debug {
-            storeFile file("../zxInsight.jks") // 签名文件存放路径
-            storePassword "zxInsight"
-            keyAlias "magicWindowExample"
-            keyPassword "magicWindowExample"
-        }
-    }
 }
 
 dependencies {

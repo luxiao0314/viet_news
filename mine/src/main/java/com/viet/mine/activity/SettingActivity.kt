@@ -14,7 +14,7 @@ import com.viet.news.core.ui.InjectActivity
  * @Email zongjia.long@merculet.io
  * @Version
  */
-@Route(value = [Config.ROUTER_MINE_SETTING_ACTIVITY], interceptors = [Config.LOGIN_INTERCEPTOR])
+@Route(value = [Config.ROUTER_MINE_SETTING_ACTIVITY])
 class SettingActivity : InjectActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
