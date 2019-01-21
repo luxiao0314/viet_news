@@ -53,6 +53,18 @@ class LiveDataCallAdapter<R>(private val responseType: Type) :
                     })
                 }
             }
+
+            /**
+             * 上面的onActive似乎不会执行,当remove掉LiveData的时候mActive=false,未验证
+             *  if (wasInactive && mActive) {
+                    onActive();
+                }
+             * 取消的时候需要手动cancel retrofit的call,底层会cancel okhttp的call
+             */
+            override fun onInactive() {
+                super.onInactive()
+                call.cancel()
+            }
         }
     }
 }
